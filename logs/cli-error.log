@@ -1,0 +1,546 @@
+2016-09-01 06:14:04 Error: [Cake\Database\Exception] Cannot describe drivers. It has 0 columns.
+Stack Trace:
+#0 /Users/maptell/zorbatrack/vendor/cakephp/cakephp/src/Database/Schema/CachedCollection.php(63): Cake\Database\Schema\Collection->describe('drivers', Array)
+#1 /Users/maptell/zorbatrack/vendor/cakephp/cakephp/src/ORM/Table.php(440): Cake\Database\Schema\CachedCollection->describe('drivers')
+#2 /Users/maptell/zorbatrack/vendor/cakephp/cakephp/src/ORM/Table.php(518): Cake\ORM\Table->schema()
+#3 /Users/maptell/zorbatrack/vendor/cakephp/bake/src/Shell/Task/ModelTask.php(210): Cake\ORM\Table->primaryKey()
+#4 /Users/maptell/zorbatrack/vendor/cakephp/bake/src/Shell/Task/ModelTask.php(127): Bake\Shell\Task\ModelTask->getAssociations(Object(Cake\ORM\Table))
+#5 /Users/maptell/zorbatrack/vendor/cakephp/bake/src/Shell/Task/ModelTask.php(110): Bake\Shell\Task\ModelTask->getTableContext(Object(Cake\ORM\Table), 'drivers', 'Drivers')
+#6 /Users/maptell/zorbatrack/vendor/cakephp/bake/src/Shell/Task/ModelTask.php(97): Bake\Shell\Task\ModelTask->bake('Drivers')
+#7 /Users/maptell/zorbatrack/vendor/cakephp/bake/src/Shell/BakeShell.php(257): Bake\Shell\Task\ModelTask->main('Drivers')
+#8 /Users/maptell/zorbatrack/vendor/cakephp/cakephp/src/Collection/CollectionTrait.php(52): Bake\Shell\BakeShell->Bake\Shell\{closure}('Drivers', 0)
+#9 /Users/maptell/zorbatrack/vendor/cakephp/bake/src/Shell/BakeShell.php(260): Cake\Collection\Collection->each(Object(Closure))
+#10 [internal function]: Bake\Shell\BakeShell->all('drivers')
+#11 /Users/maptell/zorbatrack/vendor/cakephp/cakephp/src/Console/Shell.php(452): call_user_func_array(Array, Array)
+#12 /Users/maptell/zorbatrack/vendor/cakephp/cakephp/src/Console/ShellDispatcher.php(227): Cake\Console\Shell->runCommand(Array, true, Array)
+#13 /Users/maptell/zorbatrack/vendor/cakephp/cakephp/src/Console/ShellDispatcher.php(182): Cake\Console\ShellDispatcher->_dispatch(Array)
+#14 /Users/maptell/zorbatrack/vendor/cakephp/cakephp/src/Console/ShellDispatcher.php(128): Cake\Console\ShellDispatcher->dispatch(Array)
+#15 /Users/maptell/zorbatrack/bin/cake.php(34): Cake\Console\ShellDispatcher::run(Array)
+#16 {main}
+
+
+2016-09-01 06:26:33 Error: [Cake\Database\Exception] Cannot describe ownerships. It has 0 columns.
+Stack Trace:
+#0 /Users/maptell/zorbatrack/vendor/cakephp/cakephp/src/Database/Schema/CachedCollection.php(63): Cake\Database\Schema\Collection->describe('ownerships', Array)
+#1 /Users/maptell/zorbatrack/vendor/cakephp/cakephp/src/ORM/Table.php(440): Cake\Database\Schema\CachedCollection->describe('ownerships')
+#2 /Users/maptell/zorbatrack/vendor/cakephp/cakephp/src/ORM/Table.php(518): Cake\ORM\Table->schema()
+#3 /Users/maptell/zorbatrack/vendor/cakephp/bake/src/Shell/Task/ModelTask.php(210): Cake\ORM\Table->primaryKey()
+#4 /Users/maptell/zorbatrack/vendor/cakephp/bake/src/Shell/Task/ModelTask.php(127): Bake\Shell\Task\ModelTask->getAssociations(Object(Cake\ORM\Table))
+#5 /Users/maptell/zorbatrack/vendor/cakephp/bake/src/Shell/Task/ModelTask.php(110): Bake\Shell\Task\ModelTask->getTableContext(Object(Cake\ORM\Table), 'ownerships', 'Ownerships')
+#6 /Users/maptell/zorbatrack/vendor/cakephp/bake/src/Shell/Task/ModelTask.php(97): Bake\Shell\Task\ModelTask->bake('Ownerships')
+#7 /Users/maptell/zorbatrack/vendor/cakephp/bake/src/Shell/BakeShell.php(257): Bake\Shell\Task\ModelTask->main('Ownerships')
+#8 /Users/maptell/zorbatrack/vendor/cakephp/cakephp/src/Collection/CollectionTrait.php(52): Bake\Shell\BakeShell->Bake\Shell\{closure}('Ownerships', 0)
+#9 /Users/maptell/zorbatrack/vendor/cakephp/bake/src/Shell/BakeShell.php(260): Cake\Collection\Collection->each(Object(Closure))
+#10 [internal function]: Bake\Shell\BakeShell->all('Ownerships')
+#11 /Users/maptell/zorbatrack/vendor/cakephp/cakephp/src/Console/Shell.php(452): call_user_func_array(Array, Array)
+#12 /Users/maptell/zorbatrack/vendor/cakephp/cakephp/src/Console/ShellDispatcher.php(227): Cake\Console\Shell->runCommand(Array, true, Array)
+#13 /Users/maptell/zorbatrack/vendor/cakephp/cakephp/src/Console/ShellDispatcher.php(182): Cake\Console\ShellDispatcher->_dispatch(Array)
+#14 /Users/maptell/zorbatrack/vendor/cakephp/cakephp/src/Console/ShellDispatcher.php(128): Cake\Console\ShellDispatcher->dispatch(Array)
+#15 /Users/maptell/zorbatrack/bin/cake.php(34): Cake\Console\ShellDispatcher::run(Array)
+#16 {main}
+
+
+2016-09-01 06:26:35 Error: [Cake\Database\Exception] Cannot describe ownership. It has 0 columns.
+Stack Trace:
+#0 /Users/maptell/zorbatrack/vendor/cakephp/cakephp/src/Database/Schema/CachedCollection.php(63): Cake\Database\Schema\Collection->describe('ownership', Array)
+#1 /Users/maptell/zorbatrack/vendor/cakephp/cakephp/src/ORM/Table.php(440): Cake\Database\Schema\CachedCollection->describe('ownership')
+#2 /Users/maptell/zorbatrack/vendor/cakephp/cakephp/src/ORM/Table.php(518): Cake\ORM\Table->schema()
+#3 /Users/maptell/zorbatrack/vendor/cakephp/bake/src/Shell/Task/ModelTask.php(210): Cake\ORM\Table->primaryKey()
+#4 /Users/maptell/zorbatrack/vendor/cakephp/bake/src/Shell/Task/ModelTask.php(127): Bake\Shell\Task\ModelTask->getAssociations(Object(Cake\ORM\Table))
+#5 /Users/maptell/zorbatrack/vendor/cakephp/bake/src/Shell/Task/ModelTask.php(110): Bake\Shell\Task\ModelTask->getTableContext(Object(Cake\ORM\Table), 'ownership', 'Ownership')
+#6 /Users/maptell/zorbatrack/vendor/cakephp/bake/src/Shell/Task/ModelTask.php(97): Bake\Shell\Task\ModelTask->bake('Ownership')
+#7 /Users/maptell/zorbatrack/vendor/cakephp/bake/src/Shell/BakeShell.php(257): Bake\Shell\Task\ModelTask->main('Ownership')
+#8 /Users/maptell/zorbatrack/vendor/cakephp/cakephp/src/Collection/CollectionTrait.php(52): Bake\Shell\BakeShell->Bake\Shell\{closure}('Ownership', 0)
+#9 /Users/maptell/zorbatrack/vendor/cakephp/bake/src/Shell/BakeShell.php(260): Cake\Collection\Collection->each(Object(Closure))
+#10 [internal function]: Bake\Shell\BakeShell->all('Ownership')
+#11 /Users/maptell/zorbatrack/vendor/cakephp/cakephp/src/Console/Shell.php(452): call_user_func_array(Array, Array)
+#12 /Users/maptell/zorbatrack/vendor/cakephp/cakephp/src/Console/ShellDispatcher.php(227): Cake\Console\Shell->runCommand(Array, true, Array)
+#13 /Users/maptell/zorbatrack/vendor/cakephp/cakephp/src/Console/ShellDispatcher.php(182): Cake\Console\ShellDispatcher->_dispatch(Array)
+#14 /Users/maptell/zorbatrack/vendor/cakephp/cakephp/src/Console/ShellDispatcher.php(128): Cake\Console\ShellDispatcher->dispatch(Array)
+#15 /Users/maptell/zorbatrack/bin/cake.php(34): Cake\Console\ShellDispatcher::run(Array)
+#16 {main}
+
+
+2016-09-01 06:27:04 Error: [Cake\Database\Exception] Cannot describe ownership. It has 0 columns.
+Stack Trace:
+#0 /Users/maptell/zorbatrack/vendor/cakephp/cakephp/src/Database/Schema/CachedCollection.php(63): Cake\Database\Schema\Collection->describe('ownership', Array)
+#1 /Users/maptell/zorbatrack/vendor/cakephp/cakephp/src/ORM/Table.php(440): Cake\Database\Schema\CachedCollection->describe('ownership')
+#2 /Users/maptell/zorbatrack/vendor/cakephp/cakephp/src/ORM/Table.php(518): Cake\ORM\Table->schema()
+#3 /Users/maptell/zorbatrack/vendor/cakephp/bake/src/Shell/Task/ModelTask.php(210): Cake\ORM\Table->primaryKey()
+#4 /Users/maptell/zorbatrack/vendor/cakephp/bake/src/Shell/Task/ModelTask.php(127): Bake\Shell\Task\ModelTask->getAssociations(Object(Cake\ORM\Table))
+#5 /Users/maptell/zorbatrack/vendor/cakephp/bake/src/Shell/Task/ModelTask.php(110): Bake\Shell\Task\ModelTask->getTableContext(Object(Cake\ORM\Table), 'ownership', 'Ownership')
+#6 /Users/maptell/zorbatrack/vendor/cakephp/bake/src/Shell/Task/ModelTask.php(97): Bake\Shell\Task\ModelTask->bake('Ownership')
+#7 /Users/maptell/zorbatrack/vendor/cakephp/bake/src/Shell/BakeShell.php(257): Bake\Shell\Task\ModelTask->main('Ownership')
+#8 /Users/maptell/zorbatrack/vendor/cakephp/cakephp/src/Collection/CollectionTrait.php(52): Bake\Shell\BakeShell->Bake\Shell\{closure}('Ownership', 0)
+#9 /Users/maptell/zorbatrack/vendor/cakephp/bake/src/Shell/BakeShell.php(260): Cake\Collection\Collection->each(Object(Closure))
+#10 [internal function]: Bake\Shell\BakeShell->all('Ownership')
+#11 /Users/maptell/zorbatrack/vendor/cakephp/cakephp/src/Console/Shell.php(452): call_user_func_array(Array, Array)
+#12 /Users/maptell/zorbatrack/vendor/cakephp/cakephp/src/Console/ShellDispatcher.php(227): Cake\Console\Shell->runCommand(Array, true, Array)
+#13 /Users/maptell/zorbatrack/vendor/cakephp/cakephp/src/Console/ShellDispatcher.php(182): Cake\Console\ShellDispatcher->_dispatch(Array)
+#14 /Users/maptell/zorbatrack/vendor/cakephp/cakephp/src/Console/ShellDispatcher.php(128): Cake\Console\ShellDispatcher->dispatch(Array)
+#15 /Users/maptell/zorbatrack/bin/cake.php(34): Cake\Console\ShellDispatcher::run(Array)
+#16 {main}
+
+
+2016-09-01 06:36:26 Error: [Cake\Database\Exception] Cannot describe puposes. It has 0 columns.
+Stack Trace:
+#0 /Users/maptell/zorbatrack/vendor/cakephp/cakephp/src/Database/Schema/CachedCollection.php(63): Cake\Database\Schema\Collection->describe('puposes', Array)
+#1 /Users/maptell/zorbatrack/vendor/cakephp/cakephp/src/ORM/Table.php(440): Cake\Database\Schema\CachedCollection->describe('puposes')
+#2 /Users/maptell/zorbatrack/vendor/cakephp/cakephp/src/ORM/Table.php(518): Cake\ORM\Table->schema()
+#3 /Users/maptell/zorbatrack/vendor/cakephp/bake/src/Shell/Task/ModelTask.php(210): Cake\ORM\Table->primaryKey()
+#4 /Users/maptell/zorbatrack/vendor/cakephp/bake/src/Shell/Task/ModelTask.php(127): Bake\Shell\Task\ModelTask->getAssociations(Object(Cake\ORM\Table))
+#5 /Users/maptell/zorbatrack/vendor/cakephp/bake/src/Shell/Task/ModelTask.php(110): Bake\Shell\Task\ModelTask->getTableContext(Object(Cake\ORM\Table), 'puposes', 'Puposes')
+#6 /Users/maptell/zorbatrack/vendor/cakephp/bake/src/Shell/Task/ModelTask.php(97): Bake\Shell\Task\ModelTask->bake('Puposes')
+#7 /Users/maptell/zorbatrack/vendor/cakephp/bake/src/Shell/BakeShell.php(257): Bake\Shell\Task\ModelTask->main('Puposes')
+#8 /Users/maptell/zorbatrack/vendor/cakephp/cakephp/src/Collection/CollectionTrait.php(52): Bake\Shell\BakeShell->Bake\Shell\{closure}('Puposes', 0)
+#9 /Users/maptell/zorbatrack/vendor/cakephp/bake/src/Shell/BakeShell.php(260): Cake\Collection\Collection->each(Object(Closure))
+#10 [internal function]: Bake\Shell\BakeShell->all('puposes')
+#11 /Users/maptell/zorbatrack/vendor/cakephp/cakephp/src/Console/Shell.php(452): call_user_func_array(Array, Array)
+#12 /Users/maptell/zorbatrack/vendor/cakephp/cakephp/src/Console/ShellDispatcher.php(227): Cake\Console\Shell->runCommand(Array, true, Array)
+#13 /Users/maptell/zorbatrack/vendor/cakephp/cakephp/src/Console/ShellDispatcher.php(182): Cake\Console\ShellDispatcher->_dispatch(Array)
+#14 /Users/maptell/zorbatrack/vendor/cakephp/cakephp/src/Console/ShellDispatcher.php(128): Cake\Console\ShellDispatcher->dispatch(Array)
+#15 /Users/maptell/zorbatrack/bin/cake.php(34): Cake\Console\ShellDispatcher::run(Array)
+#16 {main}
+
+
+2016-09-01 07:05:43 Error: [Cake\Database\Exception] Cannot describe vehiclepurchases. It has 0 columns.
+Stack Trace:
+#0 /Users/maptell/zorbatrack/vendor/cakephp/cakephp/src/Database/Schema/CachedCollection.php(63): Cake\Database\Schema\Collection->describe('vehiclepurchase...', Array)
+#1 /Users/maptell/zorbatrack/vendor/cakephp/cakephp/src/ORM/Table.php(440): Cake\Database\Schema\CachedCollection->describe('vehiclepurchase...')
+#2 /Users/maptell/zorbatrack/vendor/cakephp/cakephp/src/ORM/Table.php(518): Cake\ORM\Table->schema()
+#3 /Users/maptell/zorbatrack/vendor/cakephp/bake/src/Shell/Task/ModelTask.php(210): Cake\ORM\Table->primaryKey()
+#4 /Users/maptell/zorbatrack/vendor/cakephp/bake/src/Shell/Task/ModelTask.php(127): Bake\Shell\Task\ModelTask->getAssociations(Object(Cake\ORM\Table))
+#5 /Users/maptell/zorbatrack/vendor/cakephp/bake/src/Shell/Task/ModelTask.php(110): Bake\Shell\Task\ModelTask->getTableContext(Object(Cake\ORM\Table), 'vehiclepurchase...', 'Vehiclepurchase...')
+#6 /Users/maptell/zorbatrack/vendor/cakephp/bake/src/Shell/Task/ModelTask.php(97): Bake\Shell\Task\ModelTask->bake('Vehiclepurchase...')
+#7 /Users/maptell/zorbatrack/vendor/cakephp/bake/src/Shell/BakeShell.php(257): Bake\Shell\Task\ModelTask->main('Vehiclepurchase...')
+#8 /Users/maptell/zorbatrack/vendor/cakephp/cakephp/src/Collection/CollectionTrait.php(52): Bake\Shell\BakeShell->Bake\Shell\{closure}('Vehiclepurchase...', 0)
+#9 /Users/maptell/zorbatrack/vendor/cakephp/bake/src/Shell/BakeShell.php(260): Cake\Collection\Collection->each(Object(Closure))
+#10 [internal function]: Bake\Shell\BakeShell->all('vehiclepurchase...')
+#11 /Users/maptell/zorbatrack/vendor/cakephp/cakephp/src/Console/Shell.php(452): call_user_func_array(Array, Array)
+#12 /Users/maptell/zorbatrack/vendor/cakephp/cakephp/src/Console/ShellDispatcher.php(227): Cake\Console\Shell->runCommand(Array, true, Array)
+#13 /Users/maptell/zorbatrack/vendor/cakephp/cakephp/src/Console/ShellDispatcher.php(182): Cake\Console\ShellDispatcher->_dispatch(Array)
+#14 /Users/maptell/zorbatrack/vendor/cakephp/cakephp/src/Console/ShellDispatcher.php(128): Cake\Console\ShellDispatcher->dispatch(Array)
+#15 /Users/maptell/zorbatrack/bin/cake.php(34): Cake\Console\ShellDispatcher::run(Array)
+#16 {main}
+
+
+2016-09-03 13:07:10 Error: [Cake\Database\Exception] Cannot describe tripstatuses. It has 0 columns.
+Stack Trace:
+#0 /Users/maptell/zorbatrack/vendor/cakephp/cakephp/src/Database/Schema/CachedCollection.php(63): Cake\Database\Schema\Collection->describe('tripstatuses', Array)
+#1 /Users/maptell/zorbatrack/vendor/cakephp/cakephp/src/ORM/Table.php(440): Cake\Database\Schema\CachedCollection->describe('tripstatuses')
+#2 /Users/maptell/zorbatrack/vendor/cakephp/cakephp/src/ORM/Table.php(518): Cake\ORM\Table->schema()
+#3 /Users/maptell/zorbatrack/vendor/cakephp/bake/src/Shell/Task/ModelTask.php(210): Cake\ORM\Table->primaryKey()
+#4 /Users/maptell/zorbatrack/vendor/cakephp/bake/src/Shell/Task/ModelTask.php(127): Bake\Shell\Task\ModelTask->getAssociations(Object(Cake\ORM\Table))
+#5 /Users/maptell/zorbatrack/vendor/cakephp/bake/src/Shell/Task/ModelTask.php(110): Bake\Shell\Task\ModelTask->getTableContext(Object(Cake\ORM\Table), 'tripstatuses', 'Tripstatuses')
+#6 /Users/maptell/zorbatrack/vendor/cakephp/bake/src/Shell/Task/ModelTask.php(97): Bake\Shell\Task\ModelTask->bake('Tripstatuses')
+#7 /Users/maptell/zorbatrack/vendor/cakephp/bake/src/Shell/BakeShell.php(257): Bake\Shell\Task\ModelTask->main('Tripstatuses')
+#8 /Users/maptell/zorbatrack/vendor/cakephp/cakephp/src/Collection/CollectionTrait.php(52): Bake\Shell\BakeShell->Bake\Shell\{closure}('Tripstatuses', 0)
+#9 /Users/maptell/zorbatrack/vendor/cakephp/bake/src/Shell/BakeShell.php(260): Cake\Collection\Collection->each(Object(Closure))
+#10 [internal function]: Bake\Shell\BakeShell->all('Tripstatuses')
+#11 /Users/maptell/zorbatrack/vendor/cakephp/cakephp/src/Console/Shell.php(452): call_user_func_array(Array, Array)
+#12 /Users/maptell/zorbatrack/vendor/cakephp/cakephp/src/Console/ShellDispatcher.php(227): Cake\Console\Shell->runCommand(Array, true, Array)
+#13 /Users/maptell/zorbatrack/vendor/cakephp/cakephp/src/Console/ShellDispatcher.php(182): Cake\Console\ShellDispatcher->_dispatch(Array)
+#14 /Users/maptell/zorbatrack/vendor/cakephp/cakephp/src/Console/ShellDispatcher.php(128): Cake\Console\ShellDispatcher->dispatch(Array)
+#15 /Users/maptell/zorbatrack/bin/cake.php(34): Cake\Console\ShellDispatcher::run(Array)
+#16 {main}
+
+
+2016-09-03 13:07:23 Error: [Cake\Database\Exception] Cannot describe tripstatus. It has 0 columns.
+Stack Trace:
+#0 /Users/maptell/zorbatrack/vendor/cakephp/cakephp/src/Database/Schema/CachedCollection.php(63): Cake\Database\Schema\Collection->describe('tripstatus', Array)
+#1 /Users/maptell/zorbatrack/vendor/cakephp/cakephp/src/ORM/Table.php(440): Cake\Database\Schema\CachedCollection->describe('tripstatus')
+#2 /Users/maptell/zorbatrack/vendor/cakephp/cakephp/src/ORM/Table.php(518): Cake\ORM\Table->schema()
+#3 /Users/maptell/zorbatrack/vendor/cakephp/bake/src/Shell/Task/ModelTask.php(210): Cake\ORM\Table->primaryKey()
+#4 /Users/maptell/zorbatrack/vendor/cakephp/bake/src/Shell/Task/ModelTask.php(127): Bake\Shell\Task\ModelTask->getAssociations(Object(Cake\ORM\Table))
+#5 /Users/maptell/zorbatrack/vendor/cakephp/bake/src/Shell/Task/ModelTask.php(110): Bake\Shell\Task\ModelTask->getTableContext(Object(Cake\ORM\Table), 'tripstatus', 'Tripstatus')
+#6 /Users/maptell/zorbatrack/vendor/cakephp/bake/src/Shell/Task/ModelTask.php(97): Bake\Shell\Task\ModelTask->bake('Tripstatus')
+#7 /Users/maptell/zorbatrack/vendor/cakephp/bake/src/Shell/BakeShell.php(257): Bake\Shell\Task\ModelTask->main('Tripstatus')
+#8 /Users/maptell/zorbatrack/vendor/cakephp/cakephp/src/Collection/CollectionTrait.php(52): Bake\Shell\BakeShell->Bake\Shell\{closure}('Tripstatus', 0)
+#9 /Users/maptell/zorbatrack/vendor/cakephp/bake/src/Shell/BakeShell.php(260): Cake\Collection\Collection->each(Object(Closure))
+#10 [internal function]: Bake\Shell\BakeShell->all('Tripstatus')
+#11 /Users/maptell/zorbatrack/vendor/cakephp/cakephp/src/Console/Shell.php(452): call_user_func_array(Array, Array)
+#12 /Users/maptell/zorbatrack/vendor/cakephp/cakephp/src/Console/ShellDispatcher.php(227): Cake\Console\Shell->runCommand(Array, true, Array)
+#13 /Users/maptell/zorbatrack/vendor/cakephp/cakephp/src/Console/ShellDispatcher.php(182): Cake\Console\ShellDispatcher->_dispatch(Array)
+#14 /Users/maptell/zorbatrack/vendor/cakephp/cakephp/src/Console/ShellDispatcher.php(128): Cake\Console\ShellDispatcher->dispatch(Array)
+#15 /Users/maptell/zorbatrack/bin/cake.php(34): Cake\Console\ShellDispatcher::run(Array)
+#16 {main}
+
+
+2016-09-03 13:08:27 Error: [Cake\Database\Exception] Cannot describe tripstatus. It has 0 columns.
+Stack Trace:
+#0 /Users/maptell/zorbatrack/vendor/cakephp/cakephp/src/Database/Schema/CachedCollection.php(63): Cake\Database\Schema\Collection->describe('tripstatus', Array)
+#1 /Users/maptell/zorbatrack/vendor/cakephp/cakephp/src/ORM/Table.php(440): Cake\Database\Schema\CachedCollection->describe('tripstatus')
+#2 /Users/maptell/zorbatrack/vendor/cakephp/cakephp/src/ORM/Table.php(518): Cake\ORM\Table->schema()
+#3 /Users/maptell/zorbatrack/vendor/cakephp/bake/src/Shell/Task/ModelTask.php(210): Cake\ORM\Table->primaryKey()
+#4 /Users/maptell/zorbatrack/vendor/cakephp/bake/src/Shell/Task/ModelTask.php(127): Bake\Shell\Task\ModelTask->getAssociations(Object(Cake\ORM\Table))
+#5 /Users/maptell/zorbatrack/vendor/cakephp/bake/src/Shell/Task/ModelTask.php(110): Bake\Shell\Task\ModelTask->getTableContext(Object(Cake\ORM\Table), 'tripstatus', 'Tripstatus')
+#6 /Users/maptell/zorbatrack/vendor/cakephp/bake/src/Shell/Task/ModelTask.php(97): Bake\Shell\Task\ModelTask->bake('Tripstatus')
+#7 /Users/maptell/zorbatrack/vendor/cakephp/bake/src/Shell/BakeShell.php(257): Bake\Shell\Task\ModelTask->main('Tripstatus')
+#8 /Users/maptell/zorbatrack/vendor/cakephp/cakephp/src/Collection/CollectionTrait.php(52): Bake\Shell\BakeShell->Bake\Shell\{closure}('Tripstatus', 0)
+#9 /Users/maptell/zorbatrack/vendor/cakephp/bake/src/Shell/BakeShell.php(260): Cake\Collection\Collection->each(Object(Closure))
+#10 [internal function]: Bake\Shell\BakeShell->all('Tripstatus')
+#11 /Users/maptell/zorbatrack/vendor/cakephp/cakephp/src/Console/Shell.php(452): call_user_func_array(Array, Array)
+#12 /Users/maptell/zorbatrack/vendor/cakephp/cakephp/src/Console/ShellDispatcher.php(227): Cake\Console\Shell->runCommand(Array, true, Array)
+#13 /Users/maptell/zorbatrack/vendor/cakephp/cakephp/src/Console/ShellDispatcher.php(182): Cake\Console\ShellDispatcher->_dispatch(Array)
+#14 /Users/maptell/zorbatrack/vendor/cakephp/cakephp/src/Console/ShellDispatcher.php(128): Cake\Console\ShellDispatcher->dispatch(Array)
+#15 /Users/maptell/zorbatrack/bin/cake.php(34): Cake\Console\ShellDispatcher::run(Array)
+#16 {main}
+
+
+2016-09-03 14:18:31 Error: [Cake\Database\Exception] Cannot describe peoples. It has 0 columns.
+Stack Trace:
+#0 /Users/maptell/zorbatrack/vendor/cakephp/cakephp/src/Database/Schema/CachedCollection.php(63): Cake\Database\Schema\Collection->describe('peoples', Array)
+#1 /Users/maptell/zorbatrack/vendor/cakephp/cakephp/src/ORM/Table.php(440): Cake\Database\Schema\CachedCollection->describe('peoples')
+#2 /Users/maptell/zorbatrack/vendor/cakephp/cakephp/src/ORM/Table.php(518): Cake\ORM\Table->schema()
+#3 /Users/maptell/zorbatrack/vendor/cakephp/bake/src/Shell/Task/ModelTask.php(210): Cake\ORM\Table->primaryKey()
+#4 /Users/maptell/zorbatrack/vendor/cakephp/bake/src/Shell/Task/ModelTask.php(127): Bake\Shell\Task\ModelTask->getAssociations(Object(Cake\ORM\Table))
+#5 /Users/maptell/zorbatrack/vendor/cakephp/bake/src/Shell/Task/ModelTask.php(110): Bake\Shell\Task\ModelTask->getTableContext(Object(Cake\ORM\Table), 'peoples', 'Peoples')
+#6 /Users/maptell/zorbatrack/vendor/cakephp/bake/src/Shell/Task/ModelTask.php(97): Bake\Shell\Task\ModelTask->bake('Peoples')
+#7 /Users/maptell/zorbatrack/vendor/cakephp/bake/src/Shell/BakeShell.php(257): Bake\Shell\Task\ModelTask->main('Peoples')
+#8 /Users/maptell/zorbatrack/vendor/cakephp/cakephp/src/Collection/CollectionTrait.php(52): Bake\Shell\BakeShell->Bake\Shell\{closure}('Peoples', 0)
+#9 /Users/maptell/zorbatrack/vendor/cakephp/bake/src/Shell/BakeShell.php(260): Cake\Collection\Collection->each(Object(Closure))
+#10 [internal function]: Bake\Shell\BakeShell->all('peoples')
+#11 /Users/maptell/zorbatrack/vendor/cakephp/cakephp/src/Console/Shell.php(452): call_user_func_array(Array, Array)
+#12 /Users/maptell/zorbatrack/vendor/cakephp/cakephp/src/Console/ShellDispatcher.php(227): Cake\Console\Shell->runCommand(Array, true, Array)
+#13 /Users/maptell/zorbatrack/vendor/cakephp/cakephp/src/Console/ShellDispatcher.php(182): Cake\Console\ShellDispatcher->_dispatch(Array)
+#14 /Users/maptell/zorbatrack/vendor/cakephp/cakephp/src/Console/ShellDispatcher.php(128): Cake\Console\ShellDispatcher->dispatch(Array)
+#15 /Users/maptell/zorbatrack/bin/cake.php(34): Cake\Console\ShellDispatcher::run(Array)
+#16 {main}
+
+
+2016-09-03 14:40:08 Error: [Cake\Database\Exception] Cannot describe ibuttons. It has 0 columns.
+Stack Trace:
+#0 /Users/maptell/zorbatrack/vendor/cakephp/cakephp/src/Database/Schema/CachedCollection.php(63): Cake\Database\Schema\Collection->describe('ibuttons', Array)
+#1 /Users/maptell/zorbatrack/vendor/cakephp/cakephp/src/ORM/Table.php(440): Cake\Database\Schema\CachedCollection->describe('ibuttons')
+#2 /Users/maptell/zorbatrack/vendor/cakephp/cakephp/src/ORM/Table.php(518): Cake\ORM\Table->schema()
+#3 /Users/maptell/zorbatrack/vendor/cakephp/bake/src/Shell/Task/ModelTask.php(210): Cake\ORM\Table->primaryKey()
+#4 /Users/maptell/zorbatrack/vendor/cakephp/bake/src/Shell/Task/ModelTask.php(127): Bake\Shell\Task\ModelTask->getAssociations(Object(Cake\ORM\Table))
+#5 /Users/maptell/zorbatrack/vendor/cakephp/bake/src/Shell/Task/ModelTask.php(110): Bake\Shell\Task\ModelTask->getTableContext(Object(Cake\ORM\Table), 'ibuttons', 'Ibuttons')
+#6 /Users/maptell/zorbatrack/vendor/cakephp/bake/src/Shell/Task/ModelTask.php(97): Bake\Shell\Task\ModelTask->bake('Ibuttons')
+#7 /Users/maptell/zorbatrack/vendor/cakephp/bake/src/Shell/BakeShell.php(257): Bake\Shell\Task\ModelTask->main('Ibuttons')
+#8 /Users/maptell/zorbatrack/vendor/cakephp/cakephp/src/Collection/CollectionTrait.php(52): Bake\Shell\BakeShell->Bake\Shell\{closure}('Ibuttons', 0)
+#9 /Users/maptell/zorbatrack/vendor/cakephp/bake/src/Shell/BakeShell.php(260): Cake\Collection\Collection->each(Object(Closure))
+#10 [internal function]: Bake\Shell\BakeShell->all('ibuttons')
+#11 /Users/maptell/zorbatrack/vendor/cakephp/cakephp/src/Console/Shell.php(452): call_user_func_array(Array, Array)
+#12 /Users/maptell/zorbatrack/vendor/cakephp/cakephp/src/Console/ShellDispatcher.php(227): Cake\Console\Shell->runCommand(Array, true, Array)
+#13 /Users/maptell/zorbatrack/vendor/cakephp/cakephp/src/Console/ShellDispatcher.php(182): Cake\Console\ShellDispatcher->_dispatch(Array)
+#14 /Users/maptell/zorbatrack/vendor/cakephp/cakephp/src/Console/ShellDispatcher.php(128): Cake\Console\ShellDispatcher->dispatch(Array)
+#15 /Users/maptell/zorbatrack/bin/cake.php(34): Cake\Console\ShellDispatcher::run(Array)
+#16 {main}
+
+
+2016-09-03 16:08:12 Error: [Cake\Database\Exception] Cannot describe templatestypes. It has 0 columns.
+Stack Trace:
+#0 /Users/maptell/zorbatrack/vendor/cakephp/cakephp/src/Database/Schema/CachedCollection.php(63): Cake\Database\Schema\Collection->describe('templatestypes', Array)
+#1 /Users/maptell/zorbatrack/vendor/cakephp/cakephp/src/ORM/Table.php(440): Cake\Database\Schema\CachedCollection->describe('templatestypes')
+#2 /Users/maptell/zorbatrack/vendor/cakephp/cakephp/src/ORM/Table.php(518): Cake\ORM\Table->schema()
+#3 /Users/maptell/zorbatrack/vendor/cakephp/bake/src/Shell/Task/ModelTask.php(210): Cake\ORM\Table->primaryKey()
+#4 /Users/maptell/zorbatrack/vendor/cakephp/bake/src/Shell/Task/ModelTask.php(127): Bake\Shell\Task\ModelTask->getAssociations(Object(Cake\ORM\Table))
+#5 /Users/maptell/zorbatrack/vendor/cakephp/bake/src/Shell/Task/ModelTask.php(110): Bake\Shell\Task\ModelTask->getTableContext(Object(Cake\ORM\Table), 'templatestypes', 'Templatestypes')
+#6 /Users/maptell/zorbatrack/vendor/cakephp/bake/src/Shell/Task/ModelTask.php(97): Bake\Shell\Task\ModelTask->bake('Templatestypes')
+#7 /Users/maptell/zorbatrack/vendor/cakephp/bake/src/Shell/BakeShell.php(257): Bake\Shell\Task\ModelTask->main('Templatestypes')
+#8 /Users/maptell/zorbatrack/vendor/cakephp/cakephp/src/Collection/CollectionTrait.php(52): Bake\Shell\BakeShell->Bake\Shell\{closure}('Templatestypes', 0)
+#9 /Users/maptell/zorbatrack/vendor/cakephp/bake/src/Shell/BakeShell.php(260): Cake\Collection\Collection->each(Object(Closure))
+#10 [internal function]: Bake\Shell\BakeShell->all('templatestypes')
+#11 /Users/maptell/zorbatrack/vendor/cakephp/cakephp/src/Console/Shell.php(452): call_user_func_array(Array, Array)
+#12 /Users/maptell/zorbatrack/vendor/cakephp/cakephp/src/Console/ShellDispatcher.php(227): Cake\Console\Shell->runCommand(Array, true, Array)
+#13 /Users/maptell/zorbatrack/vendor/cakephp/cakephp/src/Console/ShellDispatcher.php(182): Cake\Console\ShellDispatcher->_dispatch(Array)
+#14 /Users/maptell/zorbatrack/vendor/cakephp/cakephp/src/Console/ShellDispatcher.php(128): Cake\Console\ShellDispatcher->dispatch(Array)
+#15 /Users/maptell/zorbatrack/bin/cake.php(34): Cake\Console\ShellDispatcher::run(Array)
+#16 {main}
+
+
+2016-09-03 16:08:58 Error: [Cake\Database\Exception] Cannot describe templatestypes. It has 0 columns.
+Stack Trace:
+#0 /Users/maptell/zorbatrack/vendor/cakephp/cakephp/src/Database/Schema/CachedCollection.php(63): Cake\Database\Schema\Collection->describe('templatestypes', Array)
+#1 /Users/maptell/zorbatrack/vendor/cakephp/cakephp/src/ORM/Table.php(440): Cake\Database\Schema\CachedCollection->describe('templatestypes')
+#2 /Users/maptell/zorbatrack/vendor/cakephp/cakephp/src/ORM/Table.php(518): Cake\ORM\Table->schema()
+#3 /Users/maptell/zorbatrack/vendor/cakephp/bake/src/Shell/Task/ModelTask.php(210): Cake\ORM\Table->primaryKey()
+#4 /Users/maptell/zorbatrack/vendor/cakephp/bake/src/Shell/Task/ModelTask.php(127): Bake\Shell\Task\ModelTask->getAssociations(Object(Cake\ORM\Table))
+#5 /Users/maptell/zorbatrack/vendor/cakephp/bake/src/Shell/Task/ModelTask.php(110): Bake\Shell\Task\ModelTask->getTableContext(Object(Cake\ORM\Table), 'templatestypes', 'Templatestypes')
+#6 /Users/maptell/zorbatrack/vendor/cakephp/bake/src/Shell/Task/ModelTask.php(97): Bake\Shell\Task\ModelTask->bake('Templatestypes')
+#7 /Users/maptell/zorbatrack/vendor/cakephp/bake/src/Shell/BakeShell.php(257): Bake\Shell\Task\ModelTask->main('Templatestypes')
+#8 /Users/maptell/zorbatrack/vendor/cakephp/cakephp/src/Collection/CollectionTrait.php(52): Bake\Shell\BakeShell->Bake\Shell\{closure}('Templatestypes', 0)
+#9 /Users/maptell/zorbatrack/vendor/cakephp/bake/src/Shell/BakeShell.php(260): Cake\Collection\Collection->each(Object(Closure))
+#10 [internal function]: Bake\Shell\BakeShell->all('templatestypes')
+#11 /Users/maptell/zorbatrack/vendor/cakephp/cakephp/src/Console/Shell.php(452): call_user_func_array(Array, Array)
+#12 /Users/maptell/zorbatrack/vendor/cakephp/cakephp/src/Console/ShellDispatcher.php(227): Cake\Console\Shell->runCommand(Array, true, Array)
+#13 /Users/maptell/zorbatrack/vendor/cakephp/cakephp/src/Console/ShellDispatcher.php(182): Cake\Console\ShellDispatcher->_dispatch(Array)
+#14 /Users/maptell/zorbatrack/vendor/cakephp/cakephp/src/Console/ShellDispatcher.php(128): Cake\Console\ShellDispatcher->dispatch(Array)
+#15 /Users/maptell/zorbatrack/bin/cake.php(34): Cake\Console\ShellDispatcher::run(Array)
+#16 {main}
+
+
+2016-09-03 16:09:01 Error: [Cake\Database\Exception] Cannot describe templatestypes. It has 0 columns.
+Stack Trace:
+#0 /Users/maptell/zorbatrack/vendor/cakephp/cakephp/src/Database/Schema/CachedCollection.php(63): Cake\Database\Schema\Collection->describe('templatestypes', Array)
+#1 /Users/maptell/zorbatrack/vendor/cakephp/cakephp/src/ORM/Table.php(440): Cake\Database\Schema\CachedCollection->describe('templatestypes')
+#2 /Users/maptell/zorbatrack/vendor/cakephp/cakephp/src/ORM/Table.php(518): Cake\ORM\Table->schema()
+#3 /Users/maptell/zorbatrack/vendor/cakephp/bake/src/Shell/Task/ModelTask.php(210): Cake\ORM\Table->primaryKey()
+#4 /Users/maptell/zorbatrack/vendor/cakephp/bake/src/Shell/Task/ModelTask.php(127): Bake\Shell\Task\ModelTask->getAssociations(Object(Cake\ORM\Table))
+#5 /Users/maptell/zorbatrack/vendor/cakephp/bake/src/Shell/Task/ModelTask.php(110): Bake\Shell\Task\ModelTask->getTableContext(Object(Cake\ORM\Table), 'templatestypes', 'Templatestypes')
+#6 /Users/maptell/zorbatrack/vendor/cakephp/bake/src/Shell/Task/ModelTask.php(97): Bake\Shell\Task\ModelTask->bake('Templatestypes')
+#7 /Users/maptell/zorbatrack/vendor/cakephp/bake/src/Shell/BakeShell.php(257): Bake\Shell\Task\ModelTask->main('Templatestypes')
+#8 /Users/maptell/zorbatrack/vendor/cakephp/cakephp/src/Collection/CollectionTrait.php(52): Bake\Shell\BakeShell->Bake\Shell\{closure}('Templatestypes', 0)
+#9 /Users/maptell/zorbatrack/vendor/cakephp/bake/src/Shell/BakeShell.php(260): Cake\Collection\Collection->each(Object(Closure))
+#10 [internal function]: Bake\Shell\BakeShell->all('templatestypes')
+#11 /Users/maptell/zorbatrack/vendor/cakephp/cakephp/src/Console/Shell.php(452): call_user_func_array(Array, Array)
+#12 /Users/maptell/zorbatrack/vendor/cakephp/cakephp/src/Console/ShellDispatcher.php(227): Cake\Console\Shell->runCommand(Array, true, Array)
+#13 /Users/maptell/zorbatrack/vendor/cakephp/cakephp/src/Console/ShellDispatcher.php(182): Cake\Console\ShellDispatcher->_dispatch(Array)
+#14 /Users/maptell/zorbatrack/vendor/cakephp/cakephp/src/Console/ShellDispatcher.php(128): Cake\Console\ShellDispatcher->dispatch(Array)
+#15 /Users/maptell/zorbatrack/bin/cake.php(34): Cake\Console\ShellDispatcher::run(Array)
+#16 {main}
+
+
+2016-09-03 17:05:42 Error: [Cake\Database\Exception] Cannot describe services. It has 0 columns.
+Stack Trace:
+#0 /Users/maptell/zorbatrack/vendor/cakephp/cakephp/src/Database/Schema/CachedCollection.php(63): Cake\Database\Schema\Collection->describe('services', Array)
+#1 /Users/maptell/zorbatrack/vendor/cakephp/cakephp/src/ORM/Table.php(440): Cake\Database\Schema\CachedCollection->describe('services')
+#2 /Users/maptell/zorbatrack/vendor/cakephp/bake/src/Shell/Task/ModelTask.php(261): Cake\ORM\Table->schema()
+#3 /Users/maptell/zorbatrack/vendor/cakephp/bake/src/Shell/Task/ModelTask.php(211): Bake\Shell\Task\ModelTask->findBelongsTo(Object(App\Model\Table\ServicesTable), Array)
+#4 /Users/maptell/zorbatrack/vendor/cakephp/bake/src/Shell/Task/ModelTask.php(127): Bake\Shell\Task\ModelTask->getAssociations(Object(App\Model\Table\ServicesTable))
+#5 /Users/maptell/zorbatrack/vendor/cakephp/bake/src/Shell/Task/ModelTask.php(110): Bake\Shell\Task\ModelTask->getTableContext(Object(App\Model\Table\ServicesTable), 'services', 'Services')
+#6 /Users/maptell/zorbatrack/vendor/cakephp/bake/src/Shell/Task/ModelTask.php(97): Bake\Shell\Task\ModelTask->bake('Services')
+#7 /Users/maptell/zorbatrack/vendor/cakephp/bake/src/Shell/BakeShell.php(257): Bake\Shell\Task\ModelTask->main('Services')
+#8 /Users/maptell/zorbatrack/vendor/cakephp/cakephp/src/Collection/CollectionTrait.php(52): Bake\Shell\BakeShell->Bake\Shell\{closure}('Services', 0)
+#9 /Users/maptell/zorbatrack/vendor/cakephp/bake/src/Shell/BakeShell.php(260): Cake\Collection\Collection->each(Object(Closure))
+#10 [internal function]: Bake\Shell\BakeShell->all('services')
+#11 /Users/maptell/zorbatrack/vendor/cakephp/cakephp/src/Console/Shell.php(452): call_user_func_array(Array, Array)
+#12 /Users/maptell/zorbatrack/vendor/cakephp/cakephp/src/Console/ShellDispatcher.php(227): Cake\Console\Shell->runCommand(Array, true, Array)
+#13 /Users/maptell/zorbatrack/vendor/cakephp/cakephp/src/Console/ShellDispatcher.php(182): Cake\Console\ShellDispatcher->_dispatch(Array)
+#14 /Users/maptell/zorbatrack/vendor/cakephp/cakephp/src/Console/ShellDispatcher.php(128): Cake\Console\ShellDispatcher->dispatch(Array)
+#15 /Users/maptell/zorbatrack/bin/cake.php(34): Cake\Console\ShellDispatcher::run(Array)
+#16 {main}
+
+
+2016-09-03 17:05:49 Error: [Cake\Database\Exception] Cannot describe serviceentries. It has 0 columns.
+Stack Trace:
+#0 /Users/maptell/zorbatrack/vendor/cakephp/cakephp/src/Database/Schema/CachedCollection.php(63): Cake\Database\Schema\Collection->describe('serviceentries', Array)
+#1 /Users/maptell/zorbatrack/vendor/cakephp/cakephp/src/ORM/Table.php(440): Cake\Database\Schema\CachedCollection->describe('serviceentries')
+#2 /Users/maptell/zorbatrack/vendor/cakephp/cakephp/src/ORM/Table.php(518): Cake\ORM\Table->schema()
+#3 /Users/maptell/zorbatrack/vendor/cakephp/bake/src/Shell/Task/ModelTask.php(210): Cake\ORM\Table->primaryKey()
+#4 /Users/maptell/zorbatrack/vendor/cakephp/bake/src/Shell/Task/ModelTask.php(127): Bake\Shell\Task\ModelTask->getAssociations(Object(Cake\ORM\Table))
+#5 /Users/maptell/zorbatrack/vendor/cakephp/bake/src/Shell/Task/ModelTask.php(110): Bake\Shell\Task\ModelTask->getTableContext(Object(Cake\ORM\Table), 'serviceentries', 'Serviceentries')
+#6 /Users/maptell/zorbatrack/vendor/cakephp/bake/src/Shell/Task/ModelTask.php(97): Bake\Shell\Task\ModelTask->bake('Serviceentries')
+#7 /Users/maptell/zorbatrack/vendor/cakephp/bake/src/Shell/BakeShell.php(257): Bake\Shell\Task\ModelTask->main('Serviceentries')
+#8 /Users/maptell/zorbatrack/vendor/cakephp/cakephp/src/Collection/CollectionTrait.php(52): Bake\Shell\BakeShell->Bake\Shell\{closure}('Serviceentries', 0)
+#9 /Users/maptell/zorbatrack/vendor/cakephp/bake/src/Shell/BakeShell.php(260): Cake\Collection\Collection->each(Object(Closure))
+#10 [internal function]: Bake\Shell\BakeShell->all('serviceentries')
+#11 /Users/maptell/zorbatrack/vendor/cakephp/cakephp/src/Console/Shell.php(452): call_user_func_array(Array, Array)
+#12 /Users/maptell/zorbatrack/vendor/cakephp/cakephp/src/Console/ShellDispatcher.php(227): Cake\Console\Shell->runCommand(Array, true, Array)
+#13 /Users/maptell/zorbatrack/vendor/cakephp/cakephp/src/Console/ShellDispatcher.php(182): Cake\Console\ShellDispatcher->_dispatch(Array)
+#14 /Users/maptell/zorbatrack/vendor/cakephp/cakephp/src/Console/ShellDispatcher.php(128): Cake\Console\ShellDispatcher->dispatch(Array)
+#15 /Users/maptell/zorbatrack/bin/cake.php(34): Cake\Console\ShellDispatcher::run(Array)
+#16 {main}
+
+
+2016-09-03 20:14:11 Error: [Cake\Database\Exception] Cannot describe ibuttons. It has 0 columns.
+Stack Trace:
+#0 /Users/maptell/zorbatrack/vendor/cakephp/cakephp/src/Database/Schema/CachedCollection.php(63): Cake\Database\Schema\Collection->describe('ibuttons', Array)
+#1 /Users/maptell/zorbatrack/vendor/cakephp/cakephp/src/ORM/Table.php(440): Cake\Database\Schema\CachedCollection->describe('ibuttons')
+#2 /Users/maptell/zorbatrack/vendor/cakephp/cakephp/src/ORM/Table.php(518): Cake\ORM\Table->schema()
+#3 /Users/maptell/zorbatrack/vendor/cakephp/bake/src/Shell/Task/ModelTask.php(210): Cake\ORM\Table->primaryKey()
+#4 /Users/maptell/zorbatrack/vendor/cakephp/bake/src/Shell/Task/ModelTask.php(127): Bake\Shell\Task\ModelTask->getAssociations(Object(Cake\ORM\Table))
+#5 /Users/maptell/zorbatrack/vendor/cakephp/bake/src/Shell/Task/ModelTask.php(110): Bake\Shell\Task\ModelTask->getTableContext(Object(Cake\ORM\Table), 'ibuttons', 'Ibuttons')
+#6 /Users/maptell/zorbatrack/vendor/cakephp/bake/src/Shell/Task/ModelTask.php(97): Bake\Shell\Task\ModelTask->bake('Ibuttons')
+#7 /Users/maptell/zorbatrack/vendor/cakephp/bake/src/Shell/BakeShell.php(257): Bake\Shell\Task\ModelTask->main('Ibuttons')
+#8 /Users/maptell/zorbatrack/vendor/cakephp/cakephp/src/Collection/CollectionTrait.php(52): Bake\Shell\BakeShell->Bake\Shell\{closure}('Ibuttons', 0)
+#9 /Users/maptell/zorbatrack/vendor/cakephp/bake/src/Shell/BakeShell.php(260): Cake\Collection\Collection->each(Object(Closure))
+#10 [internal function]: Bake\Shell\BakeShell->all('ibuttons')
+#11 /Users/maptell/zorbatrack/vendor/cakephp/cakephp/src/Console/Shell.php(452): call_user_func_array(Array, Array)
+#12 /Users/maptell/zorbatrack/vendor/cakephp/cakephp/src/Console/ShellDispatcher.php(227): Cake\Console\Shell->runCommand(Array, true, Array)
+#13 /Users/maptell/zorbatrack/vendor/cakephp/cakephp/src/Console/ShellDispatcher.php(182): Cake\Console\ShellDispatcher->_dispatch(Array)
+#14 /Users/maptell/zorbatrack/vendor/cakephp/cakephp/src/Console/ShellDispatcher.php(128): Cake\Console\ShellDispatcher->dispatch(Array)
+#15 /Users/maptell/zorbatrack/bin/cake.php(34): Cake\Console\ShellDispatcher::run(Array)
+#16 {main}
+
+
+2016-09-03 20:14:33 Error: [Cake\Database\Exception] Cannot describe ibuttons. It has 0 columns.
+Stack Trace:
+#0 /Users/maptell/zorbatrack/vendor/cakephp/cakephp/src/Database/Schema/CachedCollection.php(63): Cake\Database\Schema\Collection->describe('ibuttons', Array)
+#1 /Users/maptell/zorbatrack/vendor/cakephp/cakephp/src/ORM/Table.php(440): Cake\Database\Schema\CachedCollection->describe('ibuttons')
+#2 /Users/maptell/zorbatrack/vendor/cakephp/cakephp/src/ORM/Table.php(518): Cake\ORM\Table->schema()
+#3 /Users/maptell/zorbatrack/vendor/cakephp/bake/src/Shell/Task/ModelTask.php(210): Cake\ORM\Table->primaryKey()
+#4 /Users/maptell/zorbatrack/vendor/cakephp/bake/src/Shell/Task/ModelTask.php(127): Bake\Shell\Task\ModelTask->getAssociations(Object(Cake\ORM\Table))
+#5 /Users/maptell/zorbatrack/vendor/cakephp/bake/src/Shell/Task/ModelTask.php(110): Bake\Shell\Task\ModelTask->getTableContext(Object(Cake\ORM\Table), 'ibuttons', 'Ibuttons')
+#6 /Users/maptell/zorbatrack/vendor/cakephp/bake/src/Shell/Task/ModelTask.php(97): Bake\Shell\Task\ModelTask->bake('Ibuttons')
+#7 /Users/maptell/zorbatrack/vendor/cakephp/bake/src/Shell/BakeShell.php(257): Bake\Shell\Task\ModelTask->main('Ibuttons')
+#8 /Users/maptell/zorbatrack/vendor/cakephp/cakephp/src/Collection/CollectionTrait.php(52): Bake\Shell\BakeShell->Bake\Shell\{closure}('Ibuttons', 0)
+#9 /Users/maptell/zorbatrack/vendor/cakephp/bake/src/Shell/BakeShell.php(260): Cake\Collection\Collection->each(Object(Closure))
+#10 [internal function]: Bake\Shell\BakeShell->all('ibuttons')
+#11 /Users/maptell/zorbatrack/vendor/cakephp/cakephp/src/Console/Shell.php(452): call_user_func_array(Array, Array)
+#12 /Users/maptell/zorbatrack/vendor/cakephp/cakephp/src/Console/ShellDispatcher.php(227): Cake\Console\Shell->runCommand(Array, true, Array)
+#13 /Users/maptell/zorbatrack/vendor/cakephp/cakephp/src/Console/ShellDispatcher.php(182): Cake\Console\ShellDispatcher->_dispatch(Array)
+#14 /Users/maptell/zorbatrack/vendor/cakephp/cakephp/src/Console/ShellDispatcher.php(128): Cake\Console\ShellDispatcher->dispatch(Array)
+#15 /Users/maptell/zorbatrack/bin/cake.php(34): Cake\Console\ShellDispatcher::run(Array)
+#16 {main}
+
+
+2016-09-03 20:32:58 Error: [Cake\Database\Exception] Cannot describe partcategorires. It has 0 columns.
+Stack Trace:
+#0 /Users/maptell/zorbatrack/vendor/cakephp/cakephp/src/Database/Schema/CachedCollection.php(63): Cake\Database\Schema\Collection->describe('partcategorires', Array)
+#1 /Users/maptell/zorbatrack/vendor/cakephp/cakephp/src/ORM/Table.php(440): Cake\Database\Schema\CachedCollection->describe('partcategorires')
+#2 /Users/maptell/zorbatrack/vendor/cakephp/cakephp/src/ORM/Table.php(518): Cake\ORM\Table->schema()
+#3 /Users/maptell/zorbatrack/vendor/cakephp/bake/src/Shell/Task/ModelTask.php(210): Cake\ORM\Table->primaryKey()
+#4 /Users/maptell/zorbatrack/vendor/cakephp/bake/src/Shell/Task/ModelTask.php(127): Bake\Shell\Task\ModelTask->getAssociations(Object(Cake\ORM\Table))
+#5 /Users/maptell/zorbatrack/vendor/cakephp/bake/src/Shell/Task/ModelTask.php(110): Bake\Shell\Task\ModelTask->getTableContext(Object(Cake\ORM\Table), 'partcategorires', 'Partcategorires')
+#6 /Users/maptell/zorbatrack/vendor/cakephp/bake/src/Shell/Task/ModelTask.php(97): Bake\Shell\Task\ModelTask->bake('Partcategorires')
+#7 /Users/maptell/zorbatrack/vendor/cakephp/bake/src/Shell/BakeShell.php(257): Bake\Shell\Task\ModelTask->main('Partcategorires')
+#8 /Users/maptell/zorbatrack/vendor/cakephp/cakephp/src/Collection/CollectionTrait.php(52): Bake\Shell\BakeShell->Bake\Shell\{closure}('Partcategorires', 0)
+#9 /Users/maptell/zorbatrack/vendor/cakephp/bake/src/Shell/BakeShell.php(260): Cake\Collection\Collection->each(Object(Closure))
+#10 [internal function]: Bake\Shell\BakeShell->all('partcategorires')
+#11 /Users/maptell/zorbatrack/vendor/cakephp/cakephp/src/Console/Shell.php(452): call_user_func_array(Array, Array)
+#12 /Users/maptell/zorbatrack/vendor/cakephp/cakephp/src/Console/ShellDispatcher.php(227): Cake\Console\Shell->runCommand(Array, true, Array)
+#13 /Users/maptell/zorbatrack/vendor/cakephp/cakephp/src/Console/ShellDispatcher.php(182): Cake\Console\ShellDispatcher->_dispatch(Array)
+#14 /Users/maptell/zorbatrack/vendor/cakephp/cakephp/src/Console/ShellDispatcher.php(128): Cake\Console\ShellDispatcher->dispatch(Array)
+#15 /Users/maptell/zorbatrack/bin/cake.php(34): Cake\Console\ShellDispatcher::run(Array)
+#16 {main}
+
+
+2016-09-03 20:36:07 Error: [Cake\Database\Exception] Cannot describe iisues. It has 0 columns.
+Stack Trace:
+#0 /Users/maptell/zorbatrack/vendor/cakephp/cakephp/src/Database/Schema/CachedCollection.php(63): Cake\Database\Schema\Collection->describe('iisues', Array)
+#1 /Users/maptell/zorbatrack/vendor/cakephp/cakephp/src/ORM/Table.php(440): Cake\Database\Schema\CachedCollection->describe('iisues')
+#2 /Users/maptell/zorbatrack/vendor/cakephp/cakephp/src/ORM/Table.php(518): Cake\ORM\Table->schema()
+#3 /Users/maptell/zorbatrack/vendor/cakephp/bake/src/Shell/Task/ModelTask.php(210): Cake\ORM\Table->primaryKey()
+#4 /Users/maptell/zorbatrack/vendor/cakephp/bake/src/Shell/Task/ModelTask.php(127): Bake\Shell\Task\ModelTask->getAssociations(Object(Cake\ORM\Table))
+#5 /Users/maptell/zorbatrack/vendor/cakephp/bake/src/Shell/Task/ModelTask.php(110): Bake\Shell\Task\ModelTask->getTableContext(Object(Cake\ORM\Table), 'iisues', 'Iisues')
+#6 /Users/maptell/zorbatrack/vendor/cakephp/bake/src/Shell/Task/ModelTask.php(97): Bake\Shell\Task\ModelTask->bake('Iisues')
+#7 /Users/maptell/zorbatrack/vendor/cakephp/bake/src/Shell/BakeShell.php(257): Bake\Shell\Task\ModelTask->main('Iisues')
+#8 /Users/maptell/zorbatrack/vendor/cakephp/cakephp/src/Collection/CollectionTrait.php(52): Bake\Shell\BakeShell->Bake\Shell\{closure}('Iisues', 0)
+#9 /Users/maptell/zorbatrack/vendor/cakephp/bake/src/Shell/BakeShell.php(260): Cake\Collection\Collection->each(Object(Closure))
+#10 [internal function]: Bake\Shell\BakeShell->all('iisues')
+#11 /Users/maptell/zorbatrack/vendor/cakephp/cakephp/src/Console/Shell.php(452): call_user_func_array(Array, Array)
+#12 /Users/maptell/zorbatrack/vendor/cakephp/cakephp/src/Console/ShellDispatcher.php(227): Cake\Console\Shell->runCommand(Array, true, Array)
+#13 /Users/maptell/zorbatrack/vendor/cakephp/cakephp/src/Console/ShellDispatcher.php(182): Cake\Console\ShellDispatcher->_dispatch(Array)
+#14 /Users/maptell/zorbatrack/vendor/cakephp/cakephp/src/Console/ShellDispatcher.php(128): Cake\Console\ShellDispatcher->dispatch(Array)
+#15 /Users/maptell/zorbatrack/bin/cake.php(34): Cake\Console\ShellDispatcher::run(Array)
+#16 {main}
+
+
+2016-09-05 14:43:27 Error: [Cake\Database\Exception] Cannot describe services. It has 0 columns.
+Stack Trace:
+#0 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Database/Schema/CachedCollection.php(63): Cake\Database\Schema\Collection->describe('services', Array)
+#1 /Users/maptell/testgit/vendor/cakephp/cakephp/src/ORM/Table.php(440): Cake\Database\Schema\CachedCollection->describe('services')
+#2 /Users/maptell/testgit/vendor/cakephp/cakephp/src/ORM/Table.php(518): Cake\ORM\Table->schema()
+#3 /Users/maptell/testgit/vendor/cakephp/bake/src/Shell/Task/ModelTask.php(210): Cake\ORM\Table->primaryKey()
+#4 /Users/maptell/testgit/vendor/cakephp/bake/src/Shell/Task/ModelTask.php(127): Bake\Shell\Task\ModelTask->getAssociations(Object(Cake\ORM\Table))
+#5 /Users/maptell/testgit/vendor/cakephp/bake/src/Shell/Task/ModelTask.php(110): Bake\Shell\Task\ModelTask->getTableContext(Object(Cake\ORM\Table), 'services', 'Services')
+#6 /Users/maptell/testgit/vendor/cakephp/bake/src/Shell/Task/ModelTask.php(97): Bake\Shell\Task\ModelTask->bake('Services')
+#7 /Users/maptell/testgit/vendor/cakephp/bake/src/Shell/BakeShell.php(257): Bake\Shell\Task\ModelTask->main('Services')
+#8 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Collection/CollectionTrait.php(52): Bake\Shell\BakeShell->Bake\Shell\{closure}('Services', 0)
+#9 /Users/maptell/testgit/vendor/cakephp/bake/src/Shell/BakeShell.php(260): Cake\Collection\Collection->each(Object(Closure))
+#10 [internal function]: Bake\Shell\BakeShell->all('services')
+#11 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Console/Shell.php(452): call_user_func_array(Array, Array)
+#12 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Console/ShellDispatcher.php(227): Cake\Console\Shell->runCommand(Array, true, Array)
+#13 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Console/ShellDispatcher.php(182): Cake\Console\ShellDispatcher->_dispatch(Array)
+#14 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Console/ShellDispatcher.php(128): Cake\Console\ShellDispatcher->dispatch(Array)
+#15 /Users/maptell/testgit/bin/cake.php(34): Cake\Console\ShellDispatcher::run(Array)
+#16 {main}
+
+
+2016-09-05 14:46:48 Error: [Cake\Database\Exception] Cannot describe workorders. It has 0 columns.
+Stack Trace:
+#0 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Database/Schema/CachedCollection.php(63): Cake\Database\Schema\Collection->describe('workorders', Array)
+#1 /Users/maptell/testgit/vendor/cakephp/cakephp/src/ORM/Table.php(440): Cake\Database\Schema\CachedCollection->describe('workorders')
+#2 /Users/maptell/testgit/vendor/cakephp/cakephp/src/ORM/Table.php(518): Cake\ORM\Table->schema()
+#3 /Users/maptell/testgit/vendor/cakephp/bake/src/Shell/Task/ModelTask.php(210): Cake\ORM\Table->primaryKey()
+#4 /Users/maptell/testgit/vendor/cakephp/bake/src/Shell/Task/ModelTask.php(127): Bake\Shell\Task\ModelTask->getAssociations(Object(Cake\ORM\Table))
+#5 /Users/maptell/testgit/vendor/cakephp/bake/src/Shell/Task/ModelTask.php(110): Bake\Shell\Task\ModelTask->getTableContext(Object(Cake\ORM\Table), 'workorders', 'Workorders')
+#6 /Users/maptell/testgit/vendor/cakephp/bake/src/Shell/Task/ModelTask.php(97): Bake\Shell\Task\ModelTask->bake('Workorders')
+#7 /Users/maptell/testgit/vendor/cakephp/bake/src/Shell/BakeShell.php(257): Bake\Shell\Task\ModelTask->main('Workorders')
+#8 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Collection/CollectionTrait.php(52): Bake\Shell\BakeShell->Bake\Shell\{closure}('Workorders', 0)
+#9 /Users/maptell/testgit/vendor/cakephp/bake/src/Shell/BakeShell.php(260): Cake\Collection\Collection->each(Object(Closure))
+#10 [internal function]: Bake\Shell\BakeShell->all('workorders')
+#11 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Console/Shell.php(452): call_user_func_array(Array, Array)
+#12 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Console/ShellDispatcher.php(227): Cake\Console\Shell->runCommand(Array, true, Array)
+#13 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Console/ShellDispatcher.php(182): Cake\Console\ShellDispatcher->_dispatch(Array)
+#14 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Console/ShellDispatcher.php(128): Cake\Console\ShellDispatcher->dispatch(Array)
+#15 /Users/maptell/testgit/bin/cake.php(34): Cake\Console\ShellDispatcher::run(Array)
+#16 {main}
+
+
+2016-09-07 07:36:44 Error: [Cake\Database\Exception] Cannot describe workorderstatuses. It has 0 columns.
+Stack Trace:
+#0 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Database/Schema/CachedCollection.php(63): Cake\Database\Schema\Collection->describe('workorderstatus...', Array)
+#1 /Users/maptell/testgit/vendor/cakephp/cakephp/src/ORM/Table.php(440): Cake\Database\Schema\CachedCollection->describe('workorderstatus...')
+#2 /Users/maptell/testgit/vendor/cakephp/cakephp/src/ORM/Table.php(518): Cake\ORM\Table->schema()
+#3 /Users/maptell/testgit/vendor/cakephp/bake/src/Shell/Task/ModelTask.php(210): Cake\ORM\Table->primaryKey()
+#4 /Users/maptell/testgit/vendor/cakephp/bake/src/Shell/Task/ModelTask.php(127): Bake\Shell\Task\ModelTask->getAssociations(Object(Cake\ORM\Table))
+#5 /Users/maptell/testgit/vendor/cakephp/bake/src/Shell/Task/ModelTask.php(110): Bake\Shell\Task\ModelTask->getTableContext(Object(Cake\ORM\Table), 'workorderstatus...', 'Workorderstatus...')
+#6 /Users/maptell/testgit/vendor/cakephp/bake/src/Shell/Task/ModelTask.php(97): Bake\Shell\Task\ModelTask->bake('Workorderstatus...')
+#7 /Users/maptell/testgit/vendor/cakephp/bake/src/Shell/BakeShell.php(257): Bake\Shell\Task\ModelTask->main('Workorderstatus...')
+#8 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Collection/CollectionTrait.php(52): Bake\Shell\BakeShell->Bake\Shell\{closure}('Workorderstatus...', 0)
+#9 /Users/maptell/testgit/vendor/cakephp/bake/src/Shell/BakeShell.php(260): Cake\Collection\Collection->each(Object(Closure))
+#10 [internal function]: Bake\Shell\BakeShell->all('Workorderstatus...')
+#11 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Console/Shell.php(452): call_user_func_array(Array, Array)
+#12 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Console/ShellDispatcher.php(227): Cake\Console\Shell->runCommand(Array, true, Array)
+#13 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Console/ShellDispatcher.php(182): Cake\Console\ShellDispatcher->_dispatch(Array)
+#14 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Console/ShellDispatcher.php(128): Cake\Console\ShellDispatcher->dispatch(Array)
+#15 /Users/maptell/testgit/bin/cake.php(34): Cake\Console\ShellDispatcher::run(Array)
+#16 {main}
+
+
+2016-09-07 07:38:02 Error: [Cake\Database\Exception] Cannot describe workorderstatuses. It has 0 columns.
+Stack Trace:
+#0 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Database/Schema/CachedCollection.php(63): Cake\Database\Schema\Collection->describe('workorderstatus...', Array)
+#1 /Users/maptell/testgit/vendor/cakephp/cakephp/src/ORM/Table.php(440): Cake\Database\Schema\CachedCollection->describe('workorderstatus...')
+#2 /Users/maptell/testgit/vendor/cakephp/cakephp/src/ORM/Table.php(518): Cake\ORM\Table->schema()
+#3 /Users/maptell/testgit/vendor/cakephp/bake/src/Shell/Task/ModelTask.php(210): Cake\ORM\Table->primaryKey()
+#4 /Users/maptell/testgit/vendor/cakephp/bake/src/Shell/Task/ModelTask.php(127): Bake\Shell\Task\ModelTask->getAssociations(Object(Cake\ORM\Table))
+#5 /Users/maptell/testgit/vendor/cakephp/bake/src/Shell/Task/ModelTask.php(110): Bake\Shell\Task\ModelTask->getTableContext(Object(Cake\ORM\Table), 'workorderstatus...', 'Workorderstatus...')
+#6 /Users/maptell/testgit/vendor/cakephp/bake/src/Shell/Task/ModelTask.php(97): Bake\Shell\Task\ModelTask->bake('Workorderstatus...')
+#7 /Users/maptell/testgit/vendor/cakephp/bake/src/Shell/BakeShell.php(257): Bake\Shell\Task\ModelTask->main('Workorderstatus...')
+#8 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Collection/CollectionTrait.php(52): Bake\Shell\BakeShell->Bake\Shell\{closure}('Workorderstatus...', 0)
+#9 /Users/maptell/testgit/vendor/cakephp/bake/src/Shell/BakeShell.php(260): Cake\Collection\Collection->each(Object(Closure))
+#10 [internal function]: Bake\Shell\BakeShell->all('Workorderstatus...')
+#11 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Console/Shell.php(452): call_user_func_array(Array, Array)
+#12 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Console/ShellDispatcher.php(227): Cake\Console\Shell->runCommand(Array, true, Array)
+#13 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Console/ShellDispatcher.php(182): Cake\Console\ShellDispatcher->_dispatch(Array)
+#14 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Console/ShellDispatcher.php(128): Cake\Console\ShellDispatcher->dispatch(Array)
+#15 /Users/maptell/testgit/bin/cake.php(34): Cake\Console\ShellDispatcher::run(Array)
+#16 {main}
+
+
+2016-09-07 07:42:35 Error: [Cake\Database\Exception] Cannot describe services. It has 0 columns.
+Stack Trace:
+#0 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Database/Schema/CachedCollection.php(63): Cake\Database\Schema\Collection->describe('services', Array)
+#1 /Users/maptell/testgit/vendor/cakephp/cakephp/src/ORM/Table.php(440): Cake\Database\Schema\CachedCollection->describe('services')
+#2 /Users/maptell/testgit/vendor/cakephp/cakephp/src/ORM/Table.php(518): Cake\ORM\Table->schema()
+#3 /Users/maptell/testgit/vendor/cakephp/bake/src/Shell/Task/ModelTask.php(210): Cake\ORM\Table->primaryKey()
+#4 /Users/maptell/testgit/vendor/cakephp/bake/src/Shell/Task/ModelTask.php(127): Bake\Shell\Task\ModelTask->getAssociations(Object(Cake\ORM\Table))
+#5 /Users/maptell/testgit/vendor/cakephp/bake/src/Shell/Task/ModelTask.php(110): Bake\Shell\Task\ModelTask->getTableContext(Object(Cake\ORM\Table), 'services', 'Services')
+#6 /Users/maptell/testgit/vendor/cakephp/bake/src/Shell/Task/ModelTask.php(97): Bake\Shell\Task\ModelTask->bake('Services')
+#7 /Users/maptell/testgit/vendor/cakephp/bake/src/Shell/BakeShell.php(257): Bake\Shell\Task\ModelTask->main('Services')
+#8 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Collection/CollectionTrait.php(52): Bake\Shell\BakeShell->Bake\Shell\{closure}('Services', 0)
+#9 /Users/maptell/testgit/vendor/cakephp/bake/src/Shell/BakeShell.php(260): Cake\Collection\Collection->each(Object(Closure))
+#10 [internal function]: Bake\Shell\BakeShell->all('Services')
+#11 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Console/Shell.php(452): call_user_func_array(Array, Array)
+#12 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Console/ShellDispatcher.php(227): Cake\Console\Shell->runCommand(Array, true, Array)
+#13 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Console/ShellDispatcher.php(182): Cake\Console\ShellDispatcher->_dispatch(Array)
+#14 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Console/ShellDispatcher.php(128): Cake\Console\ShellDispatcher->dispatch(Array)
+#15 /Users/maptell/testgit/bin/cake.php(34): Cake\Console\ShellDispatcher::run(Array)
+#16 {main}
+
+
+2016-09-07 07:43:37 Error: [Cake\Database\Exception] Cannot describe servicetasks. It has 0 columns.
+Stack Trace:
+#0 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Database/Schema/CachedCollection.php(63): Cake\Database\Schema\Collection->describe('servicetasks', Array)
+#1 /Users/maptell/testgit/vendor/cakephp/cakephp/src/ORM/Table.php(440): Cake\Database\Schema\CachedCollection->describe('servicetasks')
+#2 /Users/maptell/testgit/vendor/cakephp/cakephp/src/ORM/Table.php(518): Cake\ORM\Table->schema()
+#3 /Users/maptell/testgit/vendor/cakephp/bake/src/Shell/Task/ModelTask.php(210): Cake\ORM\Table->primaryKey()
+#4 /Users/maptell/testgit/vendor/cakephp/bake/src/Shell/Task/ModelTask.php(127): Bake\Shell\Task\ModelTask->getAssociations(Object(Cake\ORM\Table))
+#5 /Users/maptell/testgit/vendor/cakephp/bake/src/Shell/Task/ModelTask.php(110): Bake\Shell\Task\ModelTask->getTableContext(Object(Cake\ORM\Table), 'servicetasks', 'Servicetasks')
+#6 /Users/maptell/testgit/vendor/cakephp/bake/src/Shell/Task/ModelTask.php(97): Bake\Shell\Task\ModelTask->bake('Servicetasks')
+#7 /Users/maptell/testgit/vendor/cakephp/bake/src/Shell/BakeShell.php(257): Bake\Shell\Task\ModelTask->main('Servicetasks')
+#8 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Collection/CollectionTrait.php(52): Bake\Shell\BakeShell->Bake\Shell\{closure}('Servicetasks', 0)
+#9 /Users/maptell/testgit/vendor/cakephp/bake/src/Shell/BakeShell.php(260): Cake\Collection\Collection->each(Object(Closure))
+#10 [internal function]: Bake\Shell\BakeShell->all('Servicetasks')
+#11 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Console/Shell.php(452): call_user_func_array(Array, Array)
+#12 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Console/ShellDispatcher.php(227): Cake\Console\Shell->runCommand(Array, true, Array)
+#13 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Console/ShellDispatcher.php(182): Cake\Console\ShellDispatcher->_dispatch(Array)
+#14 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Console/ShellDispatcher.php(128): Cake\Console\ShellDispatcher->dispatch(Array)
+#15 /Users/maptell/testgit/bin/cake.php(34): Cake\Console\ShellDispatcher::run(Array)
+#16 {main}
+
+

@@ -1,0 +1,75 @@
+<nav class="large-3 medium-4 columns" id="actions-sidebar">
+    <ul class="side-nav">
+        <li class="heading"><?= __('Actions') ?></li>
+        <li><?= $this->Html->link(__('New Fence'), ['action' => 'add']) ?></li>
+        <li><?= $this->Html->link(__('List Users'), ['controller' => 'Users', 'action' => 'index']) ?></li>
+        <li><?= $this->Html->link(__('New User'), ['controller' => 'Users', 'action' => 'add']) ?></li>
+        <li><?= $this->Html->link(__('List Vehicles'), ['controller' => 'Vehicles', 'action' => 'index']) ?></li>
+        <li><?= $this->Html->link(__('New Vehicle'), ['controller' => 'Vehicles', 'action' => 'add']) ?></li>
+        <li><?= $this->Html->link(__('List Customers'), ['controller' => 'Customers', 'action' => 'index']) ?></li>
+        <li><?= $this->Html->link(__('New Customer'), ['controller' => 'Customers', 'action' => 'add']) ?></li>
+    </ul>
+</nav>
+<div class="fences index large-9 medium-8 columns content">
+    <h3><?= __('Fences') ?></h3>
+    <table cellpadding="0" cellspacing="0">
+        <thead>
+            <tr>
+                <th><?= $this->Paginator->sort('id') ?></th>
+                <th><?= $this->Paginator->sort('name') ?></th>
+                <th><?= $this->Paginator->sort('user_id') ?></th>
+                <th><?= $this->Paginator->sort('vehiclegroup_id') ?></th>
+                <th><?= $this->Paginator->sort('vehicle_id') ?></th>
+                <th><?= $this->Paginator->sort('show_on_map') ?></th>
+                <th><?= $this->Paginator->sort('alerts_on') ?></th>
+                <th><?= $this->Paginator->sort('enter_alert') ?></th>
+                <th><?= $this->Paginator->sort('enter_in') ?></th>
+                <th><?= $this->Paginator->sort('leave_alert') ?></th>
+                <th><?= $this->Paginator->sort('leave_out') ?></th>
+                <th><?= $this->Paginator->sort('customer_id') ?></th>
+                <th><?= $this->Paginator->sort('leave_out_time') ?></th>
+                <th><?= $this->Paginator->sort('enter_in_time') ?></th>
+                <th><?= $this->Paginator->sort('zonetype_id') ?></th>
+                <th><?= $this->Paginator->sort('peoplegroup_id') ?></th>
+                <th><?= $this->Paginator->sort('assetgroup_id') ?></th>
+                <th class="actions"><?= __('Actions') ?></th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php foreach ($fences as $fence): ?>
+            <tr>
+                <td><?= $this->Number->format($fence->id) ?></td>
+                <td><?= h($fence->name) ?></td>
+                <td><?= $fence->has('user') ? $this->Html->link($fence->user->username, ['controller' => 'Users', 'action' => 'view', $fence->user->id]) : '' ?></td>
+                <td><?= $this->Number->format($fence->vehiclegroup_id) ?></td>
+                <td><?= $fence->has('vehicle') ? $this->Html->link($fence->vehicle->id, ['controller' => 'Vehicles', 'action' => 'view', $fence->vehicle->id]) : '' ?></td>
+                <td><?= h($fence->show_on_map) ?></td>
+                <td><?= h($fence->alerts_on) ?></td>
+                <td><?= h($fence->enter_alert) ?></td>
+                <td><?= h($fence->enter_in) ?></td>
+                <td><?= h($fence->leave_alert) ?></td>
+                <td><?= h($fence->leave_out) ?></td>
+                <td><?= $fence->has('customer') ? $this->Html->link($fence->customer->name, ['controller' => 'Customers', 'action' => 'view', $fence->customer->id]) : '' ?></td>
+                <td><?= $this->Number->format($fence->leave_out_time) ?></td>
+                <td><?= $this->Number->format($fence->enter_in_time) ?></td>
+                <td><?= $this->Number->format($fence->zonetype_id) ?></td>
+                <td><?= $this->Number->format($fence->peoplegroup_id) ?></td>
+                <td><?= $this->Number->format($fence->assetgroup_id) ?></td>
+                <td class="actions">
+                    <?= $this->Html->link(__('View'), ['action' => 'view', $fence->id]) ?>
+                    <?= $this->Html->link(__('Edit'), ['action' => 'edit', $fence->id]) ?>
+                    <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $fence->id], ['confirm' => __('Are you sure you want to delete # {0}?', $fence->id)]) ?>
+                </td>
+            </tr>
+            <?php endforeach; ?>
+        </tbody>
+    </table>
+    <div class="paginator">
+        <ul class="pagination">
+            <?= $this->Paginator->prev('< ' . __('previous')) ?>
+            <?= $this->Paginator->numbers() ?>
+            <?= $this->Paginator->next(__('next') . ' >') ?>
+        </ul>
+        <p><?= $this->Paginator->counter() ?></p>
+    </div>
+</div>

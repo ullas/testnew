@@ -1,0 +1,77 @@
+<nav class="large-3 medium-4 columns" id="actions-sidebar">
+    <ul class="side-nav">
+        <li class="heading"><?= __('Actions') ?></li>
+        <li><?= $this->Form->postLink(
+                __('Delete'),
+                ['action' => 'delete', $vehicle->id],
+                ['confirm' => __('Are you sure you want to delete # {0}?', $vehicle->id)]
+            )
+        ?></li>
+        <li><?= $this->Html->link(__('List Vehicles'), ['action' => 'index']) ?></li>
+        <li><?= $this->Html->link(__('List Vehicletypes'), ['controller' => 'Vehicletypes', 'action' => 'index']) ?></li>
+        <li><?= $this->Html->link(__('New Vehicletype'), ['controller' => 'Vehicletypes', 'action' => 'add']) ?></li>
+        <li><?= $this->Html->link(__('List Drivers'), ['controller' => 'Drivers', 'action' => 'index']) ?></li>
+        <li><?= $this->Html->link(__('New Driver'), ['controller' => 'Drivers', 'action' => 'add']) ?></li>
+        <li><?= $this->Html->link(__('List Trackingobjects'), ['controller' => 'Trackingobjects', 'action' => 'index']) ?></li>
+        <li><?= $this->Html->link(__('New Trackingobject'), ['controller' => 'Trackingobjects', 'action' => 'add']) ?></li>
+        <li><?= $this->Html->link(__('List Ownerships'), ['controller' => 'Ownerships', 'action' => 'index']) ?></li>
+        <li><?= $this->Html->link(__('New Ownership'), ['controller' => 'Ownerships', 'action' => 'add']) ?></li>
+        <li><?= $this->Html->link(__('List Symbols'), ['controller' => 'Symbols', 'action' => 'index']) ?></li>
+        <li><?= $this->Html->link(__('New Symbol'), ['controller' => 'Symbols', 'action' => 'add']) ?></li>
+        <li><?= $this->Html->link(__('List Stations'), ['controller' => 'Stations', 'action' => 'index']) ?></li>
+        <li><?= $this->Html->link(__('New Station'), ['controller' => 'Stations', 'action' => 'add']) ?></li>
+        <li><?= $this->Html->link(__('List Departments'), ['controller' => 'Departments', 'action' => 'index']) ?></li>
+        <li><?= $this->Html->link(__('New Department'), ['controller' => 'Departments', 'action' => 'add']) ?></li>
+        <li><?= $this->Html->link(__('List Purposes'), ['controller' => 'Purposes', 'action' => 'index']) ?></li>
+        <li><?= $this->Html->link(__('New Purpose'), ['controller' => 'Purposes', 'action' => 'add']) ?></li>
+        <li><?= $this->Html->link(__('List Fuelentries'), ['controller' => 'Fuelentries', 'action' => 'index']) ?></li>
+        <li><?= $this->Html->link(__('New Fuelentry'), ['controller' => 'Fuelentries', 'action' => 'add']) ?></li>
+        <li><?= $this->Html->link(__('List Vehicleengines'), ['controller' => 'Vehicleengines', 'action' => 'index']) ?></li>
+        <li><?= $this->Html->link(__('New Vehicleengine'), ['controller' => 'Vehicleengines', 'action' => 'add']) ?></li>
+        <li><?= $this->Html->link(__('List Vehiclefluids'), ['controller' => 'Vehiclefluids', 'action' => 'index']) ?></li>
+        <li><?= $this->Html->link(__('New Vehiclefluid'), ['controller' => 'Vehiclefluids', 'action' => 'add']) ?></li>
+        <li><?= $this->Html->link(__('List Vehiclepurchases'), ['controller' => 'Vehiclepurchases', 'action' => 'index']) ?></li>
+        <li><?= $this->Html->link(__('New Vehiclepurchase'), ['controller' => 'Vehiclepurchases', 'action' => 'add']) ?></li>
+        <li><?= $this->Html->link(__('List Vehiclespecifications'), ['controller' => 'Vehiclespecifications', 'action' => 'index']) ?></li>
+        <li><?= $this->Html->link(__('New Vehiclespecification'), ['controller' => 'Vehiclespecifications', 'action' => 'add']) ?></li>
+        <li><?= $this->Html->link(__('List Vehiclewheelstyres'), ['controller' => 'Vehiclewheelstyres', 'action' => 'index']) ?></li>
+        <li><?= $this->Html->link(__('New Vehiclewheelstyre'), ['controller' => 'Vehiclewheelstyres', 'action' => 'add']) ?></li>
+    </ul>
+</nav>
+<div class="vehicles form large-9 medium-8 columns content">
+    <?= $this->Form->create($vehicle) ?>
+    <fieldset>
+        <legend><?= __('Edit Vehicle') ?></legend>
+        <?php
+            echo $this->Form->input('code');
+            echo $this->Form->input('plateno');
+            echo $this->Form->input('vin');
+            echo $this->Form->input('vehicletype_id', ['options' => $vehicletypes, 'empty' => true]);
+            echo $this->Form->input('year');
+            echo $this->Form->input('make');
+            echo $this->Form->input('model');
+            echo $this->Form->input('trim');
+            echo $this->Form->input('registationloc');
+            echo $this->Form->input('status');
+            echo $this->Form->input('driver_id', ['options' => $drivers, 'empty' => true]);
+            echo $this->Form->input('ownership_id', ['options' => $ownerships, 'empty' => true]);
+            echo $this->Form->input('symbol_id', ['options' => $symbols, 'empty' => true]);
+            echo $this->Form->input('driverdetectionmode');
+            echo $this->Form->input('activedriver');
+            echo $this->Form->input('station_id', ['options' => $stations, 'empty' => true]);
+            echo $this->Form->input('department_id', ['options' => $departments, 'empty' => true]);
+            echo $this->Form->input('odometer');
+            echo $this->Form->input('trackingobject_id', ['options' => $trackingobjects, 'empty' => true]);
+            echo $this->Form->input('description');
+            echo $this->Form->input('regstate');
+            echo $this->Form->input('color');
+            echo $this->Form->input('bodytype');
+            echo $this->Form->input('bodysubtype');
+            echo $this->Form->input('msrp');
+            echo $this->Form->input('photo');
+            echo $this->Form->input('purpose_id', ['options' => $purposes, 'empty' => true]);
+        ?>
+    </fieldset>
+    <?= $this->Form->button(__('Submit')) ?>
+    <?= $this->Form->end() ?>
+</div>
