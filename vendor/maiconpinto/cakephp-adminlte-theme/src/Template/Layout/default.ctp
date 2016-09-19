@@ -13,7 +13,7 @@
     <!-- Ionicons -->
     <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
      <link rel="stylesheet" href="/js/ol/ol.css">
-    
+
     <!-- Theme style -->
     <?php echo $this->Html->css('AdminLTE.AdminLTE.min'); ?>
 <!-- AdminLTE Skins. Choose a skin from the css/skins
@@ -73,6 +73,8 @@
 
 <!-- jQuery 2.1.4 -->
 <?php echo $this->Html->script('AdminLTE./plugins/jQuery/jQuery-2.1.4.min'); ?>
+<!-- jQueryUI 1.11.4 -->
+<?php echo $this->Html->script('AdminLTE./plugins/jQueryUI/jquery-ui.min.js'); ?>
 <!-- Bootstrap 3.3.5 -->
 <?php echo $this->Html->script('AdminLTE./bootstrap/js/bootstrap'); ?>
 <!-- SlimScroll -->
