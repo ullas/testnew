@@ -3,7 +3,7 @@
 <!-- Content Header (Page header) -->
 <section class="content-header">
   <h1>
-    Vehicles 
+    Vehicles
     <small>The vehicles monitered and managed by Maptell Zorba</small>
   </h1>
   <ol class="breadcrumb">
@@ -17,14 +17,12 @@
 <section class="content">
 
 
-  
+
   <!-- Main row -->
   <div class="row">
     <!-- Left col -->
     <div class="col-md-12">
-      
-      
-     
+
       <div class="box box-info">
         <div class="box-header with-border">
           <h3 class="box-title">List of Vehicles</h3>
@@ -34,12 +32,11 @@
            <a class="btn btn-sm btn-default" href="#" aria-label="Settings">
              <i class="fa fa-cog" aria-hidden="true"></i>
            </a>
-         
+
           </div>
         </div>
         <!-- /.box-header -->
         <div class="box-body">
-          <div class="table-responsive">
             <table class="table no-margin table-hover">
               <thead>
               <tr>
@@ -50,7 +47,6 @@
                 <th><?= $this->Paginator->sort('vin',['title'=>'VIN/SIN']) ?></th>
                 <th><?= $this->Paginator->sort('vehicletype_id',['title'=>'Vehicle Type']) ?></th>
                <th class="actions"><?= __('Actions') ?></th>
-                <th></th>
               </tr>
               </thead>
               <tbody>
@@ -58,7 +54,7 @@
             <tr>
                 <td><?= $this->Number->format($vehicle->id) ?></td>
                 <td><?= $vehicle->has('vehicletype') ? $this->Html->link($vehicle->vehicletype->name, ['controller' => 'Vehicletypes', 'action' => 'view', $vehicle->vehicletype->id]) : '' ?></td>
-              
+
                 <td><?= h($vehicle->code) ?></td>
                 <td><?= h($vehicle->plateno) ?></td>
                 <td><?= h($vehicle->vin) ?></td>
@@ -72,8 +68,6 @@
             <?php endforeach; ?>
               </tbody>
             </table>
-          </div>
-          <!-- /.table-responsive -->
         </div>
         <!-- /.box-body -->
         <div class="box-footer clearfix">
@@ -84,8 +78,8 @@
             <?= $this->Paginator->next(__('next') . ' >') ?>
         </ul>
         <p><?= $this->Paginator->counter() ?></p>
-    </div>	
-         
+    </div>
+
         </div>
         <!-- /.box-footer -->
       </div>
@@ -93,14 +87,9 @@
     </div>
     <!-- /.col -->
 
-   
+
     <!-- /.col -->
   </div>
   <!-- /.row -->
 </section>
 <!-- /.content -->
-
-
-
-
-
