@@ -33,13 +33,31 @@
 		display: block;
 }
 
+.trackbox{
+	border-radius: 0px;
+	border-top: 0px;
+	margin-bottom:0px;
+}
+.trackbox {
+    position: relative;
+    background: #ffffff;
+    border-top: 1px solid #d2d6de;
+    margin-bottom: 5px;
+    width: 100%;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+}
+
+.lowpad{
+	padding:5px;
+}
+
 /*
  * Component: Info Box small
  * -------------------
  */
 .info-box-sm {
   display: block;
-  min-height: 45px;
+  min-height: 40px;
   background: #fff;
   width: 100%;
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
@@ -65,11 +83,11 @@
   border-bottom-left-radius: 2px;
   display: block;
   float: left;
-  height: 50px;
-  width: 50px;
+  height: 45px;
+  width: 45px;
   text-align: center;
-  font-size: 50px;
-  line-height: 50px;
+  font-size: 45px;
+  line-height: 45px;
   background: rgba(0, 0, 0, 0.2);
 }
 .info-box-sm-icon > img {
@@ -77,17 +95,17 @@
 }
 .info-box-sm-content {
   padding: 5px 10px;
-  margin-left: 45px;
+  margin-left: 40px;
 }
 .info-box-sm-number {
   display: block;
   font-weight: bold;
-  font-size: 14px;
+  font-size: 12px;
 }
 
 .info-box-sm-text {
   display: block;
-  font-size: 14px;
+  font-size: 12px;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -129,50 +147,27 @@
 		<section class="content">
 			<!-- /.row -->
 			<div class="row">
-				<div class="col-md-12">
-					<div class="box">
-						<div class="box-header with-border">
-							<h3 class="box-title">Details</h3>
-
-							<div class="box-tools pull-right">
-								<button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
-								</button>
-								<div class="btn-group">
-									<button type="button" class="btn btn-box-tool dropdown-toggle" data-toggle="dropdown">
-										<i class="fa fa-wrench"></i></button>
-									<ul class="dropdown-menu" role="menu">
-										<li><a href="#">Add a widget</a></li>
-										<li><a href="#">Another widget</a></li>
-										<li><a href="#">Extra widget</a></li>
-										<li class="divider"></li>
-										<li><a href="#">Vehicle details</a></li>
-										<li><a href="#">Alerts</a></li>
-										<li><a href="#">Reports</a></li>
-									</ul>
-								</div>
-								<button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
-							</div>
-						</div>
+					<div class="trackbox">
 						<!-- /.box-header -->
 						<div class="box-body">
 								<!-- /.details-->
 							<div class="row">
-								<ul class="col-md-12 infoSortable list-inline">
-  							<li class="col-md-3 ui-sortable">
+								<div class="col-md-12 infoSortable list-inline" style="min-width:190px">
+  							<div class="col-md-3 ui-sortable">
 									<div class="box box-success">
-										<div class="box-header" style="cursor:move;">
+										<div class="box-header lowpad" style="cursor:move;">
 											<h3 class="box-title">Vehicle</h3>
 											<div class="box-tools pull-right">
                 			<button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
                 			<button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
               				</div>
 										</div>
-										<div class="box-body">
-											<ul class="todo-list" >
-												<li><span class="text label-primary"> Name </span>
-													<span>Samantha Hyundai</span>
+										<div class="box-body lowpad">
+											<ul class="todo-list">
+												<li class="text-blue" style="font-weight:bold">
+													Samantha Hyundai
 												</li>
-													<li><span class="text label-info"> Location </span>
+													<li><i class="icon fa fa-map text-light-blue"></i>
 														<span>Sunny Meads Lane, Bakery Jn, Thiruvananthapuram, Kerala</span>
 													</li>
 													<li><span><i class="fa fa-circle text-green"></i>
@@ -184,7 +179,7 @@
 													</li>
 												<li>
 													<ul class="list-inline odo-widget">
-													<span class="text label-danger">Odometer</span>
+													<i class="icon fa fa-dashboard text-light-blue"></i>
 													<li class="odo-val">0</li>
 													<li class="odo-val">1</li>
 													<li class="odo-val">3</li>
@@ -213,17 +208,17 @@
 											</ul>
 											</div>
 												</div>
-								</li>
-  						<li class="col-md-3 ui-sortable">
+								</div>
+  						<div class="col-md-3 ui-sortable">
 								<div class="box box-warning">
-									<div class="box-header" style="cursor:move;">
+									<div class="box-header lowpad" style="cursor:move;">
 										<h3 class="box-title">Driver</h3>
 										<div class="box-tools pull-right">
 										<button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
 										<button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
 										</div>
 									</div>
-									<div class="box-body">
+									<div class="box-body lowpad">
 										<div class="box box-widget widget-user">
             <!-- Add the bg color to the header using any of the bg-* classes -->
             <div class="widget-user-header bg-aqua-active">
@@ -263,18 +258,19 @@
               <!-- /.row -->
             </div>
           </div>
-						</div></div>
-							</li>
-  					<li class="col-md-3 ui-sortable">
+								</div>
+								</div>
+							</div>
+  					<div class="col-md-3 ui-sortable">
 							<div class="box box-danger">
-								<div class="box-header" style="cursor:move;">
+								<div class="box-header lowpad" style="cursor:move;">
 										<h3 class="box-title">Sensors</h3>
 										<div class="box-tools pull-right">
 										<button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
 										<button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
 										</div>
 									</div>
-									<div class="box-body">
+									<div class="box-body lowpad">
 										<ul class="products-list product-list-in-box">
                 <li class="item">
                   <div class="product-img">
@@ -342,17 +338,17 @@
               </ul>
 										</div>
 									</div>
-						</li>
-						<li class="col-md-3 ui-sortable">
+						</div>
+						<div class="col-md-3 ui-sortable">
 							<div class="box box-primary">
-								<div class="box-header" style="cursor:move;">
+								<div class="box-header lowpad" style="cursor:move;">
 										<h3 class="box-title">Events</h3>
 										<div class="box-tools pull-right">
 										<button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
 										<button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
 										</div>
 									</div>
-									<div class="box-body">
+									<div class="box-body lowpad">
 										<div class="alert-small alert-danger">
                 <i class="icon fa fa-battery-empty"></i>
                 Vehicle battery needs to be replaced. Maintenance pending.
@@ -376,69 +372,15 @@
 								Heavy acceleration NH 60 Bypass, Venpalavattom, Thiruvananthapuram.
 							</div>
 										</div></div>
-						</li>
-							</ul>
+						</div>
+					</div>
 								</div>
 					</div>
 							<!-- /.details-->
-			</div>
+				</div>
+					</div>
 			<!-- /.row -->
 			</section>
-
-
-						 <div class="row">
-				<div class="col-md-3" style="padding-right:0;">
-					<div class="info-box">
-						<span class="info-box-icon bg-aqua mptl-infoband"></span>
-						<div class="info-box">
-							<span style="padding-left:5px"><b>Vehicle Details</b></span>
-							<ul class="padding:0px">
-								<li>Name</li>
-								<li>Location</li>
-								<li>Odometer</li>
-								<li>Last updated</li>
-							</ul>
-						</div>
-						<!-- /.info-box-content -->
-					</div>
-					<!-- /.info-box -->
-				</div>
-				<!-- /.col -->
-				<div class="col-md-3" style="padding-right:0; padding-left:0">
-					<div class="info-box">
-						<span class="info-box-icon bg-green" style="width: 10px"></span>
-						 <span style="padding-left:5px"><b>Staus</b></span>
-							<ul>
-								<li>Name</li>
-								<li>Location</li>
-								<li>Odometer</li>
-								<li>Last updated</li>
-							</ul>
-						<!-- /.info-box-content -->
-					</div>
-					<!-- /.info-box -->
-				</div>
-				<!-- /.col -->
-				<div class="col-md-3" style="padding-right:0; padding-left:0">
-					<div class="info-box">
-						<span class="info-box-icon bg-yellow" style="width: 10px"></span>
-							<span style="padding-left:5px"><b>Odometer</b></span>
-
-						<!-- /.info-box-content -->
-					</div>
-					<!-- /.info-box -->
-				</div>
-				<!-- /.col -->
-				<div class="col-md-3" style="padding-right:0; padding-left:0">
-					<div class="info-box">
-						<span class="info-box-icon bg-red" style="width: 10px"></span>
-						<span style="padding-left:5px"><b>Driver</b></span>
-						<!-- /.info-box-content -->
-					</div>
-					<!-- /.info-box -->
-				</div>
-				<!-- /.col -->
-			</div>
 
 		<!-- /.content class content-->
 
