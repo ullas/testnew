@@ -148,9 +148,9 @@
 			<!-- /.row -->
 			<div class="row">
 					<div class="trackbox">
-						<!-- /.box-header -->
+							<!-- /.Details Box-->
 						<div class="box-body">
-								<!-- /.details-->
+								<!-- /.details box body-->
 							<div class="row">
 								<div class="col-md-12 infoSortable list-inline" style="min-width:190px">
   							<div class="col-md-3 ui-sortable">
@@ -376,7 +376,7 @@
 					</div>
 								</div>
 					</div>
-							<!-- /.details-->
+						<!-- /.details-->
 				</div>
 					</div>
 			<!-- /.row -->
