@@ -151,7 +151,6 @@
 							<!-- /.Details Box-->
 						<div class="box-body">
 								<!-- /.details box body-->
-							<div class="row">
 								<div class="col-md-12 infoSortable list-inline" style="min-width:190px">
   							<div class="col-md-3 ui-sortable">
 									<div class="box box-success">
@@ -374,7 +373,7 @@
 										</div></div>
 						</div>
 					</div>
-								</div>
+
 					</div>
 						<!-- /.details-->
 				</div>
