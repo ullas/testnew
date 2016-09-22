@@ -144,6 +144,9 @@ function initMap(p,q)
              	  var props=feature.getProperties();            	   
              	    selectTableItem(props['name'],false);
               }
+              if(e.selected.length==0){
+              	 $(".mptl-trackdata").hide();
+              }
              
              
       });
@@ -177,23 +180,18 @@ function initMap(p,q)
 			
         } );
          
+        $('input.table_search').on( 'keyup click', function () {
+            filterGlobal();
+           
+         } );
       
       
 }
-function getTextWidth ( _text, _fontStyle ) {
-
-    var canvas = undefined,
-        context = undefined,
-        metrics = undefined;
-
-    canvas = document.createElement( "canvas" )
-
-    context = canvas.getContext( "2d" );
-
-    context.font = _fontStyle;
-    metrics = context.measureText( _text );
-
-    return metrics.width;
+function filterGlobal () {
+    $('#vlist').DataTable().search(
+        $('#table_search').val()
+        
+    ).draw();
 }
 
 
