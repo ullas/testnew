@@ -56,7 +56,7 @@
  */
 .info-box-sm {
   display: block;
-  min-height: 40px;
+  min-height: 45px;
   background: #fff;
   width: 100%;
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
@@ -149,16 +149,12 @@
 			<!-- /.Details Box-->
 			<div class="box-body">
 				<!-- /.details box body-->
-				<div class="row">
 					<div class="col-md-12 infoSortable list-inline" style="min-width:190px">
                        <?php echo $this->element('/tracking/vehicle'); ?>
                        <?php echo $this->element('/tracking/driver'); ?>
                        <?php echo $this->element('/tracking/sensor'); ?>
                        <?php echo $this->element('/tracking/events'); ?>
-
-
 					</div>
-				</div>
 			</div>
 			<!-- /.details-->
 		</div>
@@ -196,11 +192,11 @@ $this->Html->script([
 		var p =<?php print_r($loggedincustomer['initlong']) ?>;
 	    var q = <?php echo $loggedincustomer['initlat']?>;
 	    initMap(p, q);
-	    checkForTracking(); 
-		
+	    checkForTracking();
+
 
 	});
-	  
+
 </script>
 
 <?php $this -> end(); ?>
