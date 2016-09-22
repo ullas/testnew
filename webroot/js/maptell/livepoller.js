@@ -91,15 +91,15 @@ function initMap(p,q)
       map.addLayer(vector); 
 
 
-     /* var select = new ol.interaction.Select({
+      var select = new ol.interaction.Select({
         condition: ol.events.condition.pointerMove,
         style :iconStyle_sel
-      });*/
+      });
      
-     var select = new ol.interaction.Select({
+    /* var select = new ol.interaction.Select({
         condition: ol.events.condition.click,
         style :iconStyle_sel
-      });
+      });*/
       
       map.addInteraction(select);
       $(".mptl-trackdata").hide();
