@@ -29,101 +29,111 @@
 	}
 	.odo-widget .odo-unit .odo-unit-convert {
 		display: block;
-	}
-	.trackbox {
-		border-radius: 0px;
-		border-top: 0px;
-		margin-bottom: 0px;
-	}
-	.trackbox {
-		position: relative;
-		background: #ffffff;
-		border-top: 1px solid #d2d6de;
-		margin-bottom: 5px;
-		width: 100%;
-		box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
-	}
-	.lowpad {
-		padding: 5px;
-	}
-	/*
-	 * Component: Info Box small
-	 * -------------------
-	 */
-	.info-box-sm {
-		display: block;
-		min-height: 40px;
-		background: #fff;
-		width: 100%;
-		box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
-		border-radius: 2px;
-		margin-bottom: 5px;
-	}
-	.info-box-sm .progress {
-		background: rgba(0, 0, 0, 0.2);
-		margin: 5px -10px 5px -10px;
-		height: 2px;
-	}
-	.info-box-sm .progress, .info-box-sm .progress .progress-bar {
-		border-radius: 0;
-	}
-	.info-box-sm .progress .progress-bar {
-		background: #fff;
-	}
-	.info-box-sm-icon {
-		border-top-left-radius: 2px;
-		border-top-right-radius: 0;
-		border-bottom-right-radius: 0;
-		border-bottom-left-radius: 2px;
-		display: block;
-		float: left;
-		height: 45px;
-		width: 45px;
-		text-align: center;
-		font-size: 45px;
-		line-height: 45px;
-		background: rgba(0, 0, 0, 0.2);
-	}
-	.info-box-sm-icon > img {
-		max-width: 100%;
-	}
-	.info-box-sm-content {
-		padding: 5px 10px;
-		margin-left: 40px;
-	}
-	.info-box-sm-number {
-		display: block;
-		font-weight: bold;
-		font-size: 12px;
-	}
-	.info-box-sm-text {
-		display: block;
-		font-size: 12px;
-		white-space: nowrap;
-		overflow: hidden;
-		text-overflow: ellipsis;
-	}
-	.info-box-sm-text {
-		text-transform: uppercase;
-	}
-	.info-box-sm-more {
-		display: block;
-	}
-	.progress-description {
-		margin: 0;
-	}
-	.products-list .product-info {
-		margin-left: 30px;
-	}
-	/*
-	 * Component: Alert small
-	 * -------------------
-	 */
-	.alert-small {
-		padding: 5px;
-		margin-bottom: 2px;
-		border-radius: 3px;
-	}
+
+    }
+
+.trackbox{
+	border-radius: 0px;
+	border-top: 0px;
+	margin-bottom:0px;
+}
+.trackbox {
+    position: relative;
+    background: #ffffff;
+    border-top: 1px solid #d2d6de;
+    margin-bottom: 5px;
+    width: 100%;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+}
+
+.lowpad{
+	padding:5px;
+}
+
+/*
+ * Component: Info Box small
+ * -------------------
+ */
+.info-box-sm {
+  display: block;
+  min-height: 40px;
+  background: #fff;
+  width: 100%;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+  border-radius: 2px;
+  margin-bottom: 5px;
+}
+.info-box-sm .progress {
+  background: rgba(0, 0, 0, 0.2);
+  margin: 5px -10px 5px -10px;
+  height: 2px;
+}
+.info-box-sm .progress,
+.info-box-sm .progress .progress-bar {
+  border-radius: 0;
+}
+.info-box-sm .progress .progress-bar {
+  background: #fff;
+}
+.info-box-sm-icon {
+  border-top-left-radius: 2px;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 2px;
+  display: block;
+  float: left;
+  height: 45px;
+  width: 45px;
+  text-align: center;
+  font-size: 45px;
+  line-height: 45px;
+  background: rgba(0, 0, 0, 0.2);
+}
+.info-box-sm-icon > img {
+  max-width: 100%;
+}
+.info-box-sm-content {
+  padding: 5px 10px;
+  margin-left: 40px;
+}
+.info-box-sm-number {
+  display: block;
+  font-weight: bold;
+  font-size: 12px;
+}
+
+.info-box-sm-text {
+  display: block;
+  font-size: 12px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.info-box-sm-text {
+  text-transform: uppercase;
+}
+.info-box-sm-more {
+  display: block;
+}
+.progress-description {
+  margin: 0;
+}
+
+.products-list .product-info {
+    margin-left: 30px;
+}
+
+/*
+ * Component: Alert small
+ * -------------------
+ */
+ .alert-small{
+	 padding: 5px;
+	 margin-bottom: 2px;
+	 border-radius: 3px;
+ }
+
+
 </style>
 <!-- Main content -->
 <section>
@@ -145,6 +155,7 @@
                        <?php echo $this->element('/tracking/driver'); ?>
                        <?php echo $this->element('/tracking/sensor'); ?>
                        <?php echo $this->element('/tracking/events'); ?>
+
 
 					</div>
 				</div>
@@ -173,9 +184,8 @@ $this->Html->script([
 <?php $this->Html->script(['/js/maptell/livepoller'],['block' => 'scriptTop']);?>
 
 <?php $this -> start('scriptBotton'); ?>
-<script>
-    
-</script>
+
+
 
 <script>
 	$(function() {
