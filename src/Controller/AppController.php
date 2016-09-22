@@ -17,6 +17,7 @@ namespace App\Controller;
 use Cake\Controller\Controller;
 use Cake\Event\Event;
 use Cake\Core\Configure;
+use Cake\ORM\TableRegistry;
 
 /**
  * Application Controller
@@ -28,7 +29,9 @@ use Cake\Core\Configure;
  */
 class AppController extends Controller
 {
-
+ 
+    protected $loggedinuser;
+	protected $customer;
 
     /**
      * Initialization hook method.
@@ -84,7 +87,18 @@ class AppController extends Controller
 	{
    		 // Admin can access every action
     	if (isset($user['role']) && $user['role'] === 'admin') {
-        		 $this->set('loggedinuser', $user);
+        		 $this->set('loggedinuser', $user);		    
+			     $this->loggedinuser=$user;
+				 
+				 
+				 $custTable = TableRegistry::get('Customers');
+	    
+		         $customer=$custTable->get($user['customer_id'], [
+                      'contain' => []
+                 ]);
+				 
+				 $this->customer=$customer;
+				 $this->set('loggedincustomer', $customer);
         	return true;
     	}
     	// Default deny

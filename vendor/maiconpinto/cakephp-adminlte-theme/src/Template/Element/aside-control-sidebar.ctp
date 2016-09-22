@@ -10,23 +10,21 @@ if (file_exists($file)) {
     <!-- Create the tabs -->
     <ul class="nav nav-tabs nav-justified control-sidebar-tabs">
         <li><a href="#control-sidebar-home-tab" data-toggle="tab"><i class="fa fa-home"></i></a></li>
-
         <li><a href="#control-sidebar-settings-tab" data-toggle="tab"><i class="fa fa-gears"></i></a></li>
     </ul>
     <!-- Tab panes -->
     <div class="tab-content">
         <!-- Home tab content -->
-        <div class="tab-pane" id="control-sidebar-home-tab">
-            <h3 class="control-sidebar-heading">Recent Activity</h3>
+        <div class="tab-pane" id="control-sidebar-home-tab" style="margin-top:10px">
+            <h3 class="control-sidebar-heading">Vehicle List</h3>
             <ul class="control-sidebar-menu">
                 <li>
                     <a href="javascript::;">
                         <i class="menu-icon fa fa-birthday-cake bg-red"></i>
 
                         <div class="menu-info">
-                            <h4 class="control-sidebar-subheading">Langdon's Birthday</h4>
-
-                            <p>Will be 23 on April 24th</p>
+                            <h4 class="control-sidebar-subheading">GJ-4532</h4>
+							<p>Will be 23 on April 24th</p>
                         </div>
                     </a>
                 </li>

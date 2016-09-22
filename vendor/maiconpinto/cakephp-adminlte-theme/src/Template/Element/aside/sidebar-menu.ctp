@@ -79,7 +79,7 @@ if (file_exists($file)) {
     
     <li class="header">ADMINISTRATION</li>
     
-    
+   <!-- 
     
     <li class="treeview">
         <a href="#">
@@ -161,7 +161,7 @@ if (file_exists($file)) {
             <i class="fa fa-angle-left pull-right"></i>
         </a>
     </li>
-    -->
+    
      <li class="treeview">
         <a href="#">
             <i class="fa fa-map-o"></i> <span>Geography</span>
@@ -175,6 +175,7 @@ if (file_exists($file)) {
         </ul>
     </li>
     <li><a href="<?php echo $this->Url->build('/vendors'); ?>"><i class="fa fa-book"></i> <span>Vendors</span></a></li>
+    -->
      <li class="header">REPORTS</li>
     
     <li class="treeview">

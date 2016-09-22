@@ -7,7 +7,39 @@ use Cake\ORM\Entity;
  * Customer Entity
  *
  * @property int $id
+ * @property string $code
  * @property string $name
+ * @property \Cake\I18n\Time $srv_exp_date
+ * @property string $contact_first_name
+ * @property string $tech_cont_first_name
+ * @property string $alert_email
+ * @property \Cake\I18n\Time $srv_str_date
+ * @property int $no_of_lic
+ * @property string $contact_phone
+ * @property string $tech_cont_phone
+ * @property string $address
+ * @property string $contact_last_name
+ * @property string $tech_cont_last_name
+ * @property string $contact_email
+ * @property string $city
+ * @property string $state
+ * @property string $country
+ * @property string $zip
+ * @property string $designation
+ * @property int $parent_customer
+ * @property \Cake\I18n\Time $created
+ * @property \Cake\I18n\Time $modified
+ * @property string $fax
+ * @property int $timezone
+ * @property int $language
+ * @property bool $smsenabled
+ * @property int $mapregion_id
+ * @property int $customertype_id
+ * @property float $initlat
+ * @property float $initlong
+ * @property int $updategroup
+ * @property int $weekly_off1
+ * @property int $weekly_off2
  *
  * @property \App\Model\Entity\Department[] $departments
  * @property \App\Model\Entity\Driver[] $drivers

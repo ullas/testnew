@@ -18,6 +18,9 @@ class CustomersController extends AppController
      */
     public function index()
     {
+        $this->paginate = [
+            'contain' => ['Mapregions', 'Customertypes']
+        ];
         $customers = $this->paginate($this->Customers);
 
         $this->set(compact('customers'));
@@ -34,7 +37,7 @@ class CustomersController extends AppController
     public function view($id = null)
     {
         $customer = $this->Customers->get($id, [
-            'contain' => ['Departments', 'Drivers', 'Gpsdata', 'Ownerships', 'Purposes', 'Stations', 'Symbols', 'Trackingobjects']
+            'contain' => ['Mapregions', 'Customertypes', 'Addresses', 'Contractors', 'Departments', 'Devices', 'Distributionlists', 'Drivers', 'Fences', 'Gpsdata', 'Ibuttons', 'Inspections', 'Issues', 'Jobs', 'Locations', 'Manufacturers', 'Measurementunits', 'Ownerships', 'Partcategories', 'Passengergroups', 'Passengers', 'Providers', 'Purposes', 'Renewalreminders', 'Renewalstypes', 'Rfids', 'Routes', 'Schedules', 'Servicereminders', 'Servicetasks', 'Stations', 'Subscriptions', 'Symbols', 'Templates', 'Templatetypes', 'Timepolicies', 'Trackingobjects', 'Trips', 'Users', 'Vehiclecategories', 'Vehiclestatuses', 'Vehicletypes', 'Vendors', 'Worklorderlineitems', 'Workorderdocuments', 'Workorderstatuses', 'Zonetypes']
         ]);
 
         $this->set('customer', $customer);
@@ -59,7 +62,9 @@ class CustomersController extends AppController
                 $this->Flash->error(__('The customer could not be saved. Please, try again.'));
             }
         }
-        $this->set(compact('customer'));
+        $mapregions = $this->Customers->Mapregions->find('list', ['limit' => 200]);
+        $customertypes = $this->Customers->Customertypes->find('list', ['limit' => 200]);
+        $this->set(compact('customer', 'mapregions', 'customertypes'));
         $this->set('_serialize', ['customer']);
     }
 
@@ -85,7 +90,9 @@ class CustomersController extends AppController
                 $this->Flash->error(__('The customer could not be saved. Please, try again.'));
             }
         }
-        $this->set(compact('customer'));
+        $mapregions = $this->Customers->Mapregions->find('list', ['limit' => 200]);
+        $customertypes = $this->Customers->Customertypes->find('list', ['limit' => 200]);
+        $this->set(compact('customer', 'mapregions', 'customertypes'));
         $this->set('_serialize', ['customer']);
     }
 

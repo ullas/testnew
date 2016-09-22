@@ -9,7 +9,10 @@ use Cake\Validation\Validator;
 /**
  * Users Model
  *
- * @property \Cake\ORM\Association\BelongsTo $Roles
+ * @property \Cake\ORM\Association\BelongsTo $Customers
+ * @property \Cake\ORM\Association\HasMany $Fences
+ * @property \Cake\ORM\Association\HasMany $Locations
+ * @property \Cake\ORM\Association\HasMany $Routes
  *
  * @method \App\Model\Entity\User get($primaryKey, $options = [])
  * @method \App\Model\Entity\User newEntity($data = null, array $options = [])
@@ -40,7 +43,18 @@ class UsersTable extends Table
 
         $this->addBehavior('Timestamp');
 
-       
+        $this->belongsTo('Customers', [
+            'foreignKey' => 'customer_id'
+        ]);
+        $this->hasMany('Fences', [
+            'foreignKey' => 'user_id'
+        ]);
+        $this->hasMany('Locations', [
+            'foreignKey' => 'user_id'
+        ]);
+        $this->hasMany('Routes', [
+            'foreignKey' => 'user_id'
+        ]);
     }
 
     /**
@@ -51,14 +65,27 @@ class UsersTable extends Table
      */
     public function validationDefault(Validator $validator)
     {
-       return $validator
-            ->notEmpty('username', 'A username is required')
-            ->notEmpty('password', 'A password is required')
-            ->notEmpty('role', 'A role is required. Allowed roles are admin,user,supervisor,supplier')
-            ->add('role', 'inList', [
-                'rule' => ['inList', ['admin', 'author']],
-                'message' => 'Please enter a valid role'
-            ]);
+        $validator
+            ->allowEmpty('id', 'create');
+
+        $validator
+            ->allowEmpty('username');
+
+        $validator
+            ->allowEmpty('password');
+
+        $validator
+            ->allowEmpty('role');
+
+        $validator
+            ->email('email')
+            ->allowEmpty('email');
+
+        $validator
+            ->integer('onlinestat')
+            ->allowEmpty('onlinestat');
+
+        return $validator;
     }
 
     /**
@@ -71,7 +98,8 @@ class UsersTable extends Table
     public function buildRules(RulesChecker $rules)
     {
         $rules->add($rules->isUnique(['username']));
-       
+        $rules->add($rules->isUnique(['email']));
+        $rules->add($rules->existsIn(['customer_id'], 'Customers'));
 
         return $rules;
     }
