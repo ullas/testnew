@@ -19,6 +19,28 @@ function resizeMap()
 	
 }
 
+function selectTableItem(name,act){
+ 
+ if(act){
+	 $('#vlist td').filter(function(){
+	    return $(this).text() === name;
+	 }).parent().addClass("selected");
+ }else{
+ 	
+ 	$('#vlist td').filter(function(){
+	    return $(this).text() === name;
+	 }).parent().removeClass("selected");
+ }
+  
+}
+function unSelectAllTableItem(){
+ 
+ 
+ 	$('#vlist td').parent().removeClass("selected");
+ 
+  
+}
+
 function initMap(p,q)
 {
 	  
@@ -91,43 +113,41 @@ function initMap(p,q)
       map.addLayer(vector); 
 
 
-      var select = new ol.interaction.Select({
+   /*   var select = new ol.interaction.Select({
         condition: ol.events.condition.pointerMove,
         style :iconStyle_sel
-      });
+      });*/
      
-    /* var select = new ol.interaction.Select({
+     var select = new ol.interaction.Select({
         condition: ol.events.condition.click,
         style :iconStyle_sel
-      });*/
+      });
       
       map.addInteraction(select);
       $(".mptl-trackdata").hide();
       select.on('select', function(e) {
-            
-             var p= e.target.getFeatures().getLength() ;
-             if(p==1){
-             	
-             	 var feature = e.selected[0];
+        
+             for(var i=0;i<e.selected.length;i++)
+             {
+             	 var feature = e.selected[i];
              	 var props=feature.getProperties();
              	 $("#vname").text(props['name']);
              	 $("#loc").text(props['location']);
              	 $("#loc").text(props['location']);
-             	
-             	$(".mptl-trackdata").show();
-             	
-             	$("html, body").animate({ scrollTop: $(document).height() }, 1000);
-             	
-             }else{
-             	$(".mptl-trackdata").hide();
-             }
-      });
-      select.on('deselected', function(e) {
-            
-            
-             	$(".mptl-trackdata").hide();
+             	 $(".mptl-trackdata").show();
+             	 $("html, body").animate({ scrollTop: $(document).height() }, 1000);
+             	 selectTableItem(props['name'],true);
+              }
+              for(var i=0;i<e.deselected.length;i++)
+              {
+             	  var feature = e.deselected[i];
+             	  var props=feature.getProperties();            	   
+             	    selectTableItem(props['name'],false);
+              }
+             
              
       });
+     
       
 
       source.on('addfeature', function(e) {
@@ -142,7 +162,19 @@ function initMap(p,q)
         });
         $('#vlist tbody').on( 'click', 'tr', function () {
            $(this).toggleClass('selected');
-           
+          if($(this).hasClass('selected')) {
+           var id=$(this).children().first().html();
+           var f =source.getFeatureById(id);
+           var col = select.getFeatures();
+			col.push(f);
+		   }else{
+		   	var id=$(this).children().first().html();
+            var f =source.getFeatureById(id);
+            var col = select.getFeatures();
+            col.remove(f);
+		   	
+		   }
+			
         } );
          
       
@@ -252,7 +284,7 @@ function addTrackingPosition(responseText){
      	
      	var mobj=obj[i];
      	var id=mobj.id;
-     	var f=source.getFeatureById(id);
+     	var f=source.getFeatureById(mobj['trackingobjects'].name);
      	
      	 if(!f){
 	       
@@ -264,13 +296,13 @@ function addTrackingPosition(responseText){
 			  	location: mobj.location,	    
 			  	status: 3
 			});
-			iconFeature.setId(id);
+			iconFeature.setId(mobj['trackingobjects'].name);
 			source.addFeature(iconFeature);
 			iconFeature.on('change', function(e) {
 	           flash(e.target);
 	           //console.log("Change");
 	        });
-	        vlist.row.add([mobj['trackingobjects'].name,mobj.location]).draw( false );
+	        vlist.row.add([mobj['trackingobjects'].name,mobj.location]).draw( false);
      	 }else{
      	 	//console.log("Updating...."+id);
      	 	var coord =getPointFromLongLat(mobj.longitude,mobj.latitude);

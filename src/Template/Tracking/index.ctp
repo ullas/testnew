@@ -49,6 +49,9 @@
 .lowpad{
 	padding:5px;
 }
+.selected{
+	background-color: bisque;
+}
 
 /*
  * Component: Info Box small

@@ -32,7 +32,7 @@ if (file_exists($file)) {
             </div>
             <!-- /.box-header -->
             <div class="box-body">
-              <table id="vlist" class="table table-striped">
+              <table id="vlist" class="table">
               	 <thead>
                 <tr>
                   
