@@ -15,7 +15,7 @@
 		<div class="box-body lowpad">
 			<ul class="todo-list">
 				<li  class="text-blue" style="font-weight:bold">
-					<h3 id="vname"></h3>
+					<span id="vname"></span>
 				</li>
 				<li>
 					<i class="icon fa fa-map text-light-blue"></i>
