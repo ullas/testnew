@@ -53,6 +53,13 @@
 	background-color: bisque;
 }
 
+
+      .ol-dragbox {
+        background-color: rgba(255,255,255,0.4);
+        border-color: rgba(100,150,0,1);
+      }
+   
+
 /*
  * Component: Info Box small
  * -------------------

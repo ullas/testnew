@@ -34,23 +34,37 @@ class TrackingController extends AppController
 		
     }
 	
-	public function livepoll($stime)
+	public function livepoll($stime,$filter)
 	{
+			
+		 $flt=substr($filter,2);
+		 
 		// $this->autoRender = false;
 		 $connection = ConnectionManager::get('default');
          $results = $connection->execute('SELECT EXTRACT(EPOCH FROM now())')->fetchAll('assoc');  
 		 $servtime=$results[0]['date_part'];
 		 $trobjTable = TableRegistry::get('gpsdata');
 		 $cid=$this->loggedinuser['customer_id'];	 
-		 $query = $trobjTable->find('all')
-		    ->select(['id','trackingobjects.name','longitude','latitude','location','gpspwer','gsmsignal','odometer'])
+		 if(strlen($flt)>0){
+		 	
+			$query = $trobjTable->find('all');
+			$expr = $query->newExpr()->add("gpstime + interval '05:30'");
+		    $query->select(['id','trackingobjects.name','longitude','latitude','location','gpspwer','gsmsignal','odometer','heading','gpstime'=>$expr])
+		    ->where("gpsdata.customer_id=$cid and updatetime > $stime and trackingobjects.name ilike '%$flt%'")
+			->contain(['Trackingobjects']);
+		 	
+		 
+		 }else{
+		 	 $query = $trobjTable->find('all');
+			$expr = $query->newExpr()->add("gpstime + interval '05:30'");
+		    $query->select(['id','trackingobjects.name','longitude','latitude','location','gpspwer','gsmsignal','odometer','heading','gpstime'=>$expr])
 		    ->where("gpsdata.customer_id=$cid and updatetime > $stime")
 			->contain(['Trackingobjects']);
-		
+		 }
 			
 		// $query->hydrate(false);	
 		 $data=$query->all();
-		 // print_r($data);	
+		 	
 		$obj = (object) [
 		    'stime' => $servtime,
 		    'data' => $data
