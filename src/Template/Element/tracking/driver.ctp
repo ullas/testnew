@@ -1,4 +1,4 @@
-	<div class="col-md-3 ui-sortable">
+	<div class="crsl-item col-md-3">
 								<div class="box box-warning">
 									<div class="box-header lowpad" style="cursor:move;">
 										<h3 class="box-title">Driver</h3>
