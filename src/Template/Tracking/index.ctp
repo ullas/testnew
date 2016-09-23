@@ -44,6 +44,7 @@
     margin-bottom: 5px;
     width: 100%;
     box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+    z-index:6000;
 }
 
 .lowpad{
@@ -184,6 +185,8 @@ $this->Html->css([
 $this->Html->script([
   'AdminLTE./plugins/datatables/jquery.dataTables.min',
   'AdminLTE./plugins/datatables/dataTables.bootstrap.min',
+  '/js/ol/ext/interaction/selectclusterinteraction',
+  '/js/ol/ext/layer/animatedclusterlayer'
 ],
 ['block' => 'script']);
 ?>

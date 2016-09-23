@@ -12,6 +12,7 @@ var vlist;
 var dragBox;
 var filterd=[];
 var styleCache = {};
+var OBJECTLIST={};
 
 
 
@@ -19,9 +20,10 @@ function resizeMap()
 {
 	
 	map.removeLayer(vector);
-	var stime=0;
+	 stime=0;
 	var poll_active=0;
     setTimeout( function() { map.updateSize();map.addLayer(vector);}, 2000);
+    
 	
 }
 
@@ -79,7 +81,8 @@ function initMap(p,q)
        source = new ol.source.Vector({
         wrapX: false
       });
-    
+      
+      
       
       
 
@@ -100,23 +103,24 @@ function initMap(p,q)
 	  
 
 
-       vector = new ol.layer.Vector({
-        source: source,
-        style :function(feature, resolution){
-        	var props=feature.getProperties();
-        	var r=props['heading']?props['heading']:0;
-        	return  new ol.style.Style({
-		    "image": new ol.style.Icon({
-		        "img": imageElement,
-		        'rotation':r,
-		        "imgSize":[64, 64],
-		        "anchor": [0.5, 0.5],
-                "offset": [-20, -20]
-		    })
-		});
-        }
-      });
-      map.addLayer(vector); 
+	       vector = new ol.layer.Vector({
+	        source: source,
+	        style :function(feature, resolution){
+	        	var props=feature.getProperties();
+	        	var r=props['heading']?props['heading']:0;
+	        	return  new ol.style.Style({
+			    "image": new ol.style.Icon({
+			        "img": imageElement,
+			        'rotation':r,
+			        "imgSize":[64, 64],
+			        "anchor": [0.5, 0.5],
+	                "offset": [-20, -20]
+			    })
+			});
+	        }
+	      });
+	      map.addLayer(vector); 
+      
 
 
    /*   var select = new ol.interaction.Select({
@@ -214,10 +218,14 @@ function initMap(p,q)
         $('#vlist tbody').on( 'click', 'tr', function () {
            $(this).toggleClass('selected');
           if($(this).hasClass('selected')) {
-           var id=$(this).children().first().html();
-           var f =source.getFeatureById(id);
-           var col = select.getFeatures();
-			col.push(f);
+	           var id=$(this).children().first().html();
+	           var f =source.getFeatureById(id);
+	           var col = select.getFeatures();
+			   col.push(f);
+			   var props=f.getProperties();
+			   $("#vname").text(props['name']);
+               $("#loc").text(props['location']);
+               $("#loc").text(props['location']);
 			
 		   }else{
 		   	var id=$(this).children().first().html();
@@ -236,21 +244,30 @@ function initMap(p,q)
 			
         } );
          
-        $('input.table_search').on( 'keyup click', function () {
+        $('input.table_search').on( 'keyup', function () {
             filterGlobal();
            
          } );
       
       
 }
+
+
+
 function filterGlobal () {
-    source.clear();
-    stime=0;
-   
+    
     $('#vlist').DataTable().column(0).search(
         $('#table_search').val()
      ).draw();
-     checkForTracking();
+     source.clear();
+     for (var key in OBJECTLIST) {
+        var val=key.toUpperCase().search($('#table_search').val().toUpperCase());
+        if(val>=0){
+        	source.addFeature(OBJECTLIST[key]);
+        }
+     }
+     
+     
 }
 
 
@@ -341,7 +358,7 @@ function addTrackingPosition(responseText){
      	
      	var mobj=obj[i];
      	var id=mobj.id;
-     	var f=source.getFeatureById(mobj['trackingobjects'].name);
+     	var f=OBJECTLIST[mobj['trackingobjects'].name];
      	
      	 if(!f){
 	       
@@ -354,16 +371,18 @@ function addTrackingPosition(responseText){
 			  	heading:mobj.heading,	    
 			  	status: 3
 			});
+			OBJECTLIST[mobj['trackingobjects'].name]=iconFeature;
 			iconFeature.setId(mobj['trackingobjects'].name);
 			source.addFeature(iconFeature);
 			iconFeature.on('change', function(e) {
 	           flash(e.target);
 	           //console.log("Change");
 	        });
-	        if($('#vlist td').filter(function(){return $(this).text() === mobj['trackingobjects'].name;}).length==0){
-	           var row=vlist.row.add([mobj['trackingobjects'].name,mobj.location]).draw().node();
-	          // $( row ).find('td').eq(0).addClass('vname');
-	        }
+	       
+	        	
+	        
+	         var row=vlist.row.add([mobj['trackingobjects'].name,mobj.location]).draw().node();
+	         
      	 }else{
      	 	//console.log("Updating...."+id);
      	 	var coord =getPointFromLongLat(mobj.longitude,mobj.latitude);
