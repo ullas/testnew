@@ -49,7 +49,7 @@ class TrackingController extends AppController
 		 	
 			$query = $trobjTable->find('all');
 			$expr = $query->newExpr()->add("gpstime + interval '05:30'");
-		    $query->select(['id','trackingobjects.name','longitude','latitude','location','gpspwer','gsmsignal','odometer','heading','gpstime'=>$expr])
+		    $query->select(['id','trackingobjects.name','longitude','latitude','location','gpspwer','gsmsignal','odometer','heading','gpstime'=>$expr,'status'])
 		    ->where("gpsdata.customer_id=$cid and updatetime > $stime and trackingobjects.name ilike '%$flt%'")
 			->contain(['Trackingobjects']);
 		 	
@@ -57,7 +57,7 @@ class TrackingController extends AppController
 		 }else{
 		 	 $query = $trobjTable->find('all');
 			$expr = $query->newExpr()->add("gpstime + interval '05:30'");
-		    $query->select(['id','trackingobjects.name','longitude','latitude','location','gpspwer','gsmsignal','odometer','heading','gpstime'=>$expr])
+		    $query->select(['id','trackingobjects.name','longitude','latitude','location','gpspwer','gsmsignal','odometer','heading','gpstime'=>$expr,'status'])
 		    ->where("gpsdata.customer_id=$cid and updatetime > $stime")
 			->contain(['Trackingobjects']);
 		 }

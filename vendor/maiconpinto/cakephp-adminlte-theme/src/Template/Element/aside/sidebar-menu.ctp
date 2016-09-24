@@ -8,7 +8,7 @@ if (file_exists($file)) {
 } else {
 ?>
 <ul class="sidebar-menu">
-    <li class="header">SUMMARY</li>
+   <!-- <li class="header">SUMMARY</li>-->
     <li class="treeview">
         <a href="#">
             <i class="fa fa-dashboard"></i> <span>Dashboard</span> <i class="fa fa-angle-left pull-right"></i>
