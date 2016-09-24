@@ -44,6 +44,7 @@
     margin-bottom: 5px;
     width: 100%;
     box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+    z-index:6000;
 }
 
 .lowpad{
@@ -193,7 +194,12 @@ $this->Html->css([
 $this->Html->script([
   'AdminLTE./plugins/datatables/jquery.dataTables.min',
   'AdminLTE./plugins/datatables/dataTables.bootstrap.min',
-	'AdminLTE./plugins/respcarousel/responsiveCarousel.min',
+  'AdminLTE./plugins/respcarousel/responsiveCarousel.min',
+  '/js/ol/ext/interaction/selectclusterinteraction.js',
+  '/js/ol/ext/layer/animatedclusterlayer.js',
+  '/js/ol/ext/style/chartstyle',
+  '/js/ol/ext/utils/ol.ordering'
+
 ],
 ['block' => 'script']);
 ?>
