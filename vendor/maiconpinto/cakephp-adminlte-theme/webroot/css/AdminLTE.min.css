@@ -689,7 +689,7 @@ a:focus {
 .control-sidebar {
   top: 0;
   right: -400px;
-  width: 400px;
+  width: 320px;
   -webkit-transition: right 0.3s ease-in-out;
   -o-transition: right 0.3s ease-in-out;
   transition: right 0.3s ease-in-out;
