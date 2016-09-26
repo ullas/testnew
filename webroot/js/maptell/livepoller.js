@@ -54,8 +54,8 @@ function unSelectAllTableItem(){
 function initMap(p,q)
 {
 
-	  //var h=$(".sidebar").height();
-      //$("#map").css("height",h +"px");
+	  var h=$(".sidebar").height();
+    $("#map").css("height",h +"px");
 	 duration = 3000;
      map = new ol.Map({
         layers: [
