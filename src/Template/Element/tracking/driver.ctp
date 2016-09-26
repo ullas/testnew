@@ -1,5 +1,5 @@
 	<div class="crsl-item col-md-3">
-								<div class="box box-warning">
+								<div class="trackbox">
 									<div class="box-header lowpad" style="cursor:move;">
 										<h3 class="box-title">Driver</h3>
 										<div class="box-tools pull-right">
@@ -8,7 +8,7 @@
 										</div>
 									</div>
 									<div class="box-body lowpad">
-										<div class="box box-widget widget-user">
+										<div class="box box-widget widget-user box-driver">
             <!-- Add the bg color to the header using any of the bg-* classes -->
             <div class="widget-user-header bg-aqua-active">
               <h3 class="widget-user-username">Chan Chong</h3>

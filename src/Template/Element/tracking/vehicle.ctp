@@ -1,25 +1,21 @@
 <div class="crsl-item col-md-3">
-	<div class="box box-success">
+	<div class="trackbox">
 		<div class="box-header lowpad" style="cursor:move;">
 			<h3 class="box-title">Vehicle</h3>
-			<span><i class="fa fa-circle text-green"></i> <span>
+			<span><i class="fa fa-circle text-green"></i> </span>
 			<div class="box-tools pull-right">
-				<button type="button" class="btn btn-box-tool" data-widget="collapse">
-					<i class="fa fa-minus"></i>
-				</button>
-				<button type="button" class="btn btn-box-tool" data-widget="remove">
-					<i class="fa fa-times"></i>
-				</button>
+			<button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+			<button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
 			</div>
 		</div>
 		<div class="box-body lowpad">
 			<ul class="todo-list">
 				<li  class="text-blue" style="font-weight:bold">
-					<span id="vname"></span>
+					<span id="vname">Vehicle Name</span>
 				</li>
 				<li>
 					<i class="icon fa fa-map text-light-blue"></i>
-					<span id="loc"></span>
+					<span id="loc">Location</span>
 				</li>
 				<li>
 					<i class="fa fa-compass text-green"></i> <span id="gps">GPS: 4 Sats</span></span> <span><i class="fa fa-signal text-green"></i> <span id="gsm">GSM: 65%</span></span>
@@ -50,22 +46,13 @@
 						</li>
 						<li class="odo-unit">
 							km
-
 						</li>
 					</ul>
 				</li>
 				<li>
-					<div>
-						<div class="info-box-sm">
-							<span class="info-box-sm-icon bg-aqua"><i class="ion ion-ios-clock-outline"></i></span>
-
-							<div class="info-box-sm-content">
-								<span class="info-box-sm-text">Last Updated</span>
-								<span class="info-box-sm-number"><small id="gpsdate"></small><span id="gpstime"></span></span>
-							</div>
-							<!-- /.info-box-content -->
-						</div>
-					</div>
+					<i class="icon fa fa-clock-o text-light-blue"></i>
+					<span id="loc">Last Updated</span>
+					<span><small id="gpsdate"></small><span id="gpstime"></span></span>
 				</li>
 			</ul>
 		</div>

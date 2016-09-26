@@ -3,8 +3,8 @@
   height:52px
 }
 .pb-box{
-  border-top: 1px solid #d2d6de;
-  margin-bottom:1px
+  margin-bottom:1px;
+  margin-top:-2px
 }
 .nopadding{
   padding:0
@@ -21,17 +21,6 @@
 }
 
 </style>
-     <section class="content-header" style="margin-bottom: 20px">
-      <h1>
-        Play Back
-        <small>Histoty is a collections on mistakes and misfortues....</small>
-      </h1>
-      <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li><a href="#">Logs</a></li>
-        <li class="active">Play Back</li>
-      </ol>
-    </section>
     <!-- Main content -->
     <section >
         <div class="row">
