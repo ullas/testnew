@@ -1,109 +1,121 @@
+<style>
+.irs-with-grid{
+  height:52px
+}
+.pb-box{
+  border-top: 1px solid #d2d6de;
+  margin-bottom:1px
+}
+.nopadding{
+  padding:0
+}
+.btn-app{
+  min-height:50px;
+  height:50px;
+  min-width:55px;
+  padding:17px 5px;
+  margin:0 0 5px 10px
+}
+.btn-app .fa{
+  font-size:12px
+}
 
+</style>
      <section class="content-header" style="margin-bottom: 20px">
-     	
       <h1>
         Play Back
         <small>Histoty is a collections on mistakes and misfortues....</small>
       </h1>
       <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li><a href="#">Examples</a></li>
-        <li class="active">Blank page</li>
+        <li><a href="#">Logs</a></li>
+        <li class="active">Play Back</li>
       </ol>
     </section>
-
-
     <!-- Main content -->
     <section >
-           <div class="row">
-        <div class="col-sm-12">
-          <div class="box box-primary" style="margin-bottom:0px">
-           
-           
-           
-              <div class="row " style="margin-top:8px">
-                
-               <div class="col-sm-2 datepick" style="padding-left:20px">
-                	    <input type="text" class="form-control" style="margin-top:15px">
+        <div class="row">
+        <div class="col-md-12">
+          <div class="box pb-box">
+              <div class="row " style="margin-top:5px">
+               <div class="col-md-2 datepick" style="padding-left:25px">
+                	    <input type="text" class="form-control" style="margin-top:5px">
                 </div>
-                <div class="col-sm-4">
+                <div class="col-md-4">
                   <input id="range_2" type="text" name="range_2"  data-type="double" data-step="0.5"  data-from="0" data-to="24" data-hasgrid="true">
                 </div>
-                
-                 <div class="col-sm-6">
-                 	
-		            <div class="box-body" style="padding-bottom:0px">
-		             
+
+                 <div class="col-md-6">
+
+		            <div class="box-body nopadding">
+
 		              <a class="btn btn-app">
 		                <i class="fa fa-play"></i> Play
 		              </a>
-		              
+                  <!-- <a class="btn btn-app">
+		                <i class="fa fa-pause"></i> Play
+		              </a> -->
+                  <a class="btn btn-app">
+		                <i class="fa fa-repeat"></i> Repeat
+		              </a>
 		              <a class="btn btn-app">
 		                <i class="fa fa-backward"></i> Rewind
 		              </a>
 		              <a class="btn btn-app">
 		                <i class="fa fa-forward"></i> Forward
 		              </a>
-		              
 		            </div>
-		           
                 </div>
               </div>
-             
-             
-          
           </div>
           <!-- /.box -->
         </div>
         <!-- /.col -->
       </div>
       <!-- /.row -->
-     
             <div class="mptl-map">
               <div id="map" style="height: 100%; width: 100%;"></div>
             </div>
-           
-      
     </section>
     <!-- /.content -->
-    
+
 <?php $this->Html->css([
     'AdminLTE./plugins/ionslider/ion.rangeSlider',
     'AdminLTE./plugins/ionslider/ion.rangeSlider.skinNice',
     'AdminLTE./plugins/bootstrap-slider/slider',
     'AdminLTE./plugins/bootstrap-datepicker/bootstrap-datepicker.min'
-], 
+],
 ['block' => 'css']); ?>
 
 <?php $this->Html->script([
     'AdminLTE./plugins/ionslider/ion.rangeSlider.min',
     'AdminLTE./plugins/bootstrap-slider/bootstrap-slider',
      'AdminLTE./plugins/bootstrap-datepicker/bootstrap-datepicker.min'
-    
-], 
+
+],
 ['block' => 'script']); ?>
 
 <?php $this->start('scriptBotton'); ?>
 <script>
   function resizeMap()
 {
-	
-	
-	
+
+
+
 }
   $(function () {
-   
+
     $('.datepick input').datepicker({
     });
-    
+
   var slider=  $("#range_2").ionRangeSlider({
     min: 0,
     max: 24,
-   
+
     grid: true,
     grid_num: 1,
     postfix: 'hr'
-    
+
    });
 
     var updateSliderScale;
@@ -114,8 +126,8 @@ $(window).resize(function(){
     }, 100);
 });
 
-    
-    
+
+
   });
   var map= new ol.Map({
     layers: [
@@ -128,10 +140,6 @@ $(window).resize(function(){
      interactions: ol.interaction.defaults({mouseWheelZoom:false}),
     target: 'map'
   });
-  
-  
+
 </script>
-<?php $this->end(); ?>    
-    
-    
- 
+<?php $this->end(); ?>
