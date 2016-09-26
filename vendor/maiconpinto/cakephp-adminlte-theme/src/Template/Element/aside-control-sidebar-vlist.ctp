@@ -14,10 +14,13 @@ if (file_exists($file)) {
 		width:16px;
 		height:16px;
 	}
+  .noborder{
+    border:0
+  }
 </style>
 
 <aside class="control-sidebar control-sidebar-light" >
-   <div class="box">
+   <div class="box" style="padding:0;margin:0;border-bottom:2px solid #f4f4f4">
             <div class="box-header">
               <h3 class="box-title">Items Tracked</h3>
               <div class="box-tools">
@@ -31,26 +34,41 @@ if (file_exists($file)) {
               </div>
             </div>
             <!-- /.box-header -->
-            <div class="box-body">
+            <div class="box-body" style="padding:0;">
               <table id="vlist" class="table">
               	 <thead>
                 <tr>
-                  
                   <th width="40%">Name</th>
                   <th>Location</th>
-                 
+
                 </tr>
                  </thead>
                  <tbody>
-                
+
                 </tbody>
               </table>
             </div>
             <!-- /.box-body -->
-            
+
           </div>
           <!-- /.box -->
-    
+          <div class="box noborder">
+            <div class="box-body" style="padding:0;">
+      				<!-- /.details box body-->
+              <div id="trackinfo">
+                    <div class="crsl-items" class="col-md-3" >
+                        <div class="crsl-wrap">
+                          <?php echo $this->element('/tracking/vehicle'); ?>
+                          <?php echo $this->element('/tracking/driver'); ?>
+                          <?php echo $this->element('/tracking/sensor'); ?>
+                          <?php echo $this->element('/tracking/events'); ?>
+                              </div>
+                          </div>
+                        </div>
+      			</div>
+      			<!-- /.details-->
+                 </div>
+                 <!-- /.box -->
 </aside>
 <?php
 }

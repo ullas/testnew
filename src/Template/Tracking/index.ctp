@@ -144,7 +144,9 @@
 	 border-radius: 3px;
  }
 
-
+ .crsl-item{
+	 min-width:320px
+ }
 </style>
 <!-- Main content -->
 <section>
@@ -153,37 +155,7 @@
 		<div id="map" style="height:100%; width: 100%;"></div>
 	</div>
 </section>
-<section class="content">
-	<!-- /.row -->
-	<div class="row">
-		<div class="trackbox">
-			<!-- /.Details Box-->
-			<div class="box-body">
-				<!-- /.details box body-->
-				<div id="trackinfo" class="col-md-6">
-							<div id="trackinfo-nav" class="crsl-nav">
-												<a style="opacity: 0; left: 0px;" href="#" class="previous">&lt;</a>
-												<a style="opacity: 0; right: 0px;" href="#" class="next">&gt;</a>
-							</div>
-							<div class="trackinfo crsl-items" data-navigation="trackinfo-nav">
-									<div class="crsl-wrap">
-										<?php echo $this->element('/tracking/vehicle'); ?>
-										<?php echo $this->element('/tracking/driver'); ?>
-										<?php echo $this->element('/tracking/sensor'); ?>
-										<?php echo $this->element('/tracking/events'); ?>
-												</div>
-										</div>
-									</div>
-			</div>
-			<!-- /.details-->
-		</div>
-	</div>
-	<!-- /.row -->
-</section>
-
 <!-- /.content class content-->
-
-
 <?php
 $this->Html->css([
     'AdminLTE./plugins/datatables/dataTables.bootstrap',
@@ -213,25 +185,9 @@ $this->Html->script([
 	$(function() {
 
 		$('.crsl-items').sortable({
-		items : '.crsl-item'
+		items : '.crsl-item',
+		axis:'y'
 		});
-
-		$('.crsl-items').carousel({ visible: 3, itemMinWidth:250, itemEqualHeight: false });
-
-		$('.crsl-items').on('initCarousel', function(event, defaults, obj){
-			// Hide controls
-			$('#'+defaults.navigation).find('.previous, .next').css({ opacity: 0 });
-			// Show controls on gallery hover
-			// #trackinfo wraps .crsl-items and .crls-nav
-			// .stop() prevent queue
-			$('#trackinfo-nav').hover( function(){
-				$(this).find('.previous').css({ left: 0 }).stop(true, true).animate({ left: '10px', opacity: 1 });
-				$(this).find('.next').css({ right: 0 }).stop(true, true).animate({ right: '10px', opacity: 1 });
-				}, function(){
-					$(this).find('.previous').animate({ left: 0, opacity: 0 });
-					$(this).find('.next').animate({ right: 0, opacity: 0 });
-				});
-			});
 
 		var p =<?php print_r($loggedincustomer['initlong']) ?>;
 	    var q = <?php echo $loggedincustomer['initlat']?>;
