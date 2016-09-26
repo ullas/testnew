@@ -1,5 +1,5 @@
 <div class="crsl-item col-md-3">
-							<div class="box box-primary">
+							<div class="trackbox">
 								<div class="box-header lowpad" style="cursor:move;">
 										<h3 class="box-title">Events</h3>
 										<div class="box-tools pull-right">

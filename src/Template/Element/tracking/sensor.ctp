@@ -1,5 +1,5 @@
 <div class="crsl-item col-md-3">
-							<div class="box box-danger">
+							<div class="trackbox">
 								<div class="box-header lowpad" style="cursor:move;">
 										<h3 class="box-title">Sensors</h3>
 										<div class="box-tools pull-right">
