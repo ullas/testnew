@@ -13,8 +13,8 @@ var dragBox;
 var filterd=[];
 var styleCache = {};
 var OBJECTLIST={};
-
-
+var anim ;
+var animTab = [];
 
 function resizeMap()
 {
@@ -54,8 +54,8 @@ function unSelectAllTableItem(){
 function initMap(p,q)
 {
 	  
-	  var h=$(".sidebar").height();
-      $("#map").css("height",h +"px");
+	 // var h=$(".sidebar").height();
+     // $("#map").css("height",h +"px");
 	 duration = 3000;
      map = new ol.Map({
         layers: [
@@ -142,6 +142,23 @@ function initMap(p,q)
 			});
 			
 		/////////	
+		var transparent = [0,0,0,0.01];
+	var filltransparent = [0,0,0,0];
+	var transparentStyle = 
+	[	new ol.style.Style(
+			{	image: new ol.style.RegularShape({ radius: 10, radius2: 5, points: 5, fill: new ol.style.Fill({ color: transparent }) }),
+				stroke: new ol.style.Stroke({ color: transparent, width: 2 }),
+				fill: new ol.style.Fill({ color: filltransparent})
+			})
+	];
+	transparentStyle[0].getImage().getAnchor()[1] += 10;
+		anim = new ol.featureAnimation.Bounce(
+		{	duration: 800,
+			hiddenStyle: transparentStyle
+		});
+		anim.on('animationend', function(e)
+		{	if (!e.user) animTab[e.feature.get('nb')] = clusterLayer.animateFeature (e.feature, anim);
+		});
 			
 	  iconSVG = '<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 47.032 47.032" style="enable-background:new 0 0 47.032 47.032;" xml:space="preserve" width="24px" height="24px"><g><path d="M29.395,0H17.636c-3.117,0-5.643,3.467-5.643,6.584v34.804c0,3.116,2.526,5.644,5.643,5.644h11.759   c3.116,0,5.644-2.527,5.644-5.644V6.584C35.037,3.467,32.511,0,29.395,0z M34.05,14.188v11.665l-2.729,0.351v-4.806L34.05,14.188z    M32.618,10.773c-1.016,3.9-2.219,8.51-2.219,8.51H16.631l-2.222-8.51C14.41,10.773,23.293,7.755,32.618,10.773z M15.741,21.713   v4.492l-2.73-0.349V14.502L15.741,21.713z M13.011,37.938V27.579l2.73,0.343v8.196L13.011,37.938z M14.568,40.882l2.218-3.336   h13.771l2.219,3.336H14.568z M31.321,35.805v-7.872l2.729-0.355v10.048L31.321,35.805z" fill="#005500"/></g></svg>';
       imageElement = new Image();
@@ -167,16 +184,29 @@ function initMap(p,q)
 	  selectCluster.getFeatures().on(['add'], function (e)
 		{	var c = e.element.get('features');
 			if (c.length==1)
-			{	var feature = c[0];
-			    var props=feature.getProperties();
+			{	var f = c[0];
+			    var props=f.getProperties();
 			    
              	 $("#vname").text(props['name']);
              	 $("#loc").text(props['location']);
              	 $("#loc").text(props['location']);
              	 $(".mptl-trackdata").show();
              	 selectTableItem(props['name'],true);
-             	 map.render();
+             	// map.render();
+             	 // Create animation if doesn't exist
+			/*if (!animTab[f.get('nb')])
+			{	animTab[f.get('nb')] = clusterLayer.animateFeature (f, anim);
 			}
+			// Stop animation if playing 
+			else if (animTab[f.get('nb')].isPlaying())
+			{	animTab[f.get('nb')].stop({user: true});
+			}
+			else 
+			{	animTab[f.get('nb')].start();
+			}*/
+			
+          }	
+			
 			
 		});
 	    selectCluster.getFeatures().on(['remove'], function (e)
@@ -187,6 +217,8 @@ function initMap(p,q)
 				var feature = c[0];
 				var props=feature.getProperties();            	   
             	selectTableItem(props['name'],false);
+            	animTab[f.get('nb')].stop({user: false});
+            	
             	
             }
 		});
@@ -386,7 +418,7 @@ function getPointFromLongLat (long, lat) {
 }
 
 function addTrackingPosition(responseText){
-        console.log(responseText);
+      //  console.log(responseText);
        var rt = jQuery.parseJSON(responseText);
        var obj=rt.data;
        stime=rt.stime;
@@ -435,14 +467,15 @@ function addTrackingPosition(responseText){
 			   }));
 			OBJECTLIST[mobj['trackingobjects'].name]=iconFeature;
 			iconFeature.setId(mobj['trackingobjects'].name);
+			iconFeature.set("nb",id);
 			source.addFeature(iconFeature);
 			iconFeature.on('change', function(e) {
-	           flash(e.target);
+	          // flash(e.target);
 	          
 	           //console.log("Change");
 	        });
 	       
-	        	console.log("Adding...");
+	        	
 	        
 	         var row=vlist.row.add([mobj['trackingobjects'].name,mobj.location]).draw().node();
 	         
@@ -493,7 +526,7 @@ function getFeatureStyle (feature, sel)
 			if(s==3)stopped++;
 			total++;
 		}
-		console.log(s);
+		
 		var k = "donut"+"-"+ "classic"+"-"+(sel?"1-":"")+(parked+running+stopped);
 		var style = styleCache[k];
 		if (!style) 
