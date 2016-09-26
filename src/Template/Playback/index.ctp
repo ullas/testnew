@@ -71,7 +71,6 @@
     'AdminLTE./plugins/ionslider/ion.rangeSlider',
     'AdminLTE./plugins/ionslider/ion.rangeSlider.skinNice',
     'AdminLTE./plugins/bootstrap-slider/slider',
-    'AdminLTE./plugins/bootstrap-slider/slider',
     'AdminLTE./plugins/bootstrap-datepicker/bootstrap-datepicker.min'
 ], 
 ['block' => 'css']); ?>
@@ -79,10 +78,8 @@
 <?php $this->Html->script([
     'AdminLTE./plugins/ionslider/ion.rangeSlider.min',
     'AdminLTE./plugins/bootstrap-slider/bootstrap-slider',
-     'AdminLTE./plugins/bootstrap-datepicker/bootstrap-datepicker.min',
-     '/js/ol/ext/shadowstyle',
-     '/js/ol/ext/featureanimation/featureanimation',
-     '/js/ol/ext/featureanimation/pathanimation'
+     'AdminLTE./plugins/bootstrap-datepicker/bootstrap-datepicker.min'
+    
 ], 
 ['block' => 'script']); ?>
 
@@ -132,63 +129,6 @@ $(window).resize(function(){
     target: 'map'
   });
   
-  
-  var play = function(event) {
-        var vectorContext = event.vectorContext;
-        var frameState = event.frameState;
-        vectorContext.setStyle(style);
-
-        var features = source.getFeatures();
-        for (var i = 1; i < features.length; i++) {
-          var feature1 = features[i-1];
-          var feature2 = features[i-1];
-            // only draw the lines for which the animation has not finished yet
-            var coords1 = feature1.getGeometry().getCoordinates();
-            var coords2 = feature2.getGeometry().getCoordinates();
-
-            
-            var currentLine = new ol.geom.LineString([coords1,coords2]);
-
-            // directly draw the line with the vector context
-            vectorContext.drawGeometry(currentLine);
-          
-        }
-        // tell OL3 to continue the animation
-        map.render();
-      };
-  
-     source = new ol.source.Vector({
-        wrapX: false,
-        attributions: 'Flight data by ' +
-              '<a href="http://openflights.org/data.html">OpenFlights</a>,',
-        loader: function() {
-          var url = '/playback/livepoll';
-          fetch(url).then(function(response) {
-            return response.json();
-          }).then(function(json) {
-            var flightsData = json.flights;
-            for (var i = 0; i < flightsData.length; i++) {
-              var flight = flightsData[i];
-              var from = flight[0];
-              var to = flight[1];
-
-              
-                // add the feature with a delay so that the animation
-                // for all features does not start at the same time
-                addLater(feature, i * 50);
-              }
-            }
-            map.on('postcompose', play);
-          });
-        }
-      });
-
-      var vectorLayer = new ol.layer.Vector({
-        source: source,
-        style:
-        }
-      });
-      map.addLayer(vectorLayer);
   
 </script>
 <?php $this->end(); ?>    
