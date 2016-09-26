@@ -18,44 +18,44 @@ var OBJECTLIST={};
 
 function resizeMap()
 {
-	
+
 	map.removeLayer(clusterLayer);
 	 stime=0;
 	var poll_active=0;
     setTimeout( function() { map.updateSize();map.addLayer(clusterLayer);}, 2000);
-    
-	
+
+
 }
 
 function selectTableItem(name,act){
- 
+
  if(act){
 	 $('#vlist td').filter(function(){
 	    return $(this).text() === name;
 	 }).parent().addClass("selected");
  }else{
- 	
+
  	$('#vlist td').filter(function(){
 	    return $(this).text() === name;
 	 }).parent().removeClass("selected");
  }
-  
+
 }
 function unSelectAllTableItem(){
- 
- 
+
+
  	$('#vlist td').parent().removeClass("selected");
      $(".mptl-trackdata").hide();
      $("html, body").animate({ scrollTop: 0 }, 1000);
-  
+
 }
 
 
 function initMap(p,q)
 {
-	  
-	  var h=$(".sidebar").height();
-      $("#map").css("height",h +"px");
+
+	  //var h=$(".sidebar").height();
+      //$("#map").css("height",h +"px");
 	 duration = 3000;
      map = new ol.Map({
         layers: [
@@ -81,13 +81,13 @@ function initMap(p,q)
        source = new ol.source.Vector({
         wrapX: false
       });
-      
+
       var clusterSource=new ol.source.Cluster({
 			distance: 40,
 			source: source
 		});
-      
-      
+
+
 
       iconSVG = '<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 47.032 47.032" style="enable-background:new 0 0 47.032 47.032;" xml:space="preserve" width="24px" height="24px"><g><path d="M29.395,0H17.636c-3.117,0-5.643,3.467-5.643,6.584v34.804c0,3.116,2.526,5.644,5.643,5.644h11.759   c3.116,0,5.644-2.527,5.644-5.644V6.584C35.037,3.467,32.511,0,29.395,0z M34.05,14.188v11.665l-2.729,0.351v-4.806L34.05,14.188z    M32.618,10.773c-1.016,3.9-2.219,8.51-2.219,8.51H16.631l-2.222-8.51C14.41,10.773,23.293,7.755,32.618,10.773z M15.741,21.713   v4.492l-2.73-0.349V14.502L15.741,21.713z M13.011,37.938V27.579l2.73,0.343v8.196L13.011,37.938z M14.568,40.882l2.218-3.336   h13.771l2.219,3.336H14.568z M31.321,35.805v-7.872l2.729-0.355v10.048L31.321,35.805z" fill="#005500"/></g></svg>';
 
@@ -95,8 +95,8 @@ function initMap(p,q)
 	  imageElement = new Image();
 	  imageElement.src = 'data:image/svg+xml,' + escape( iconSVG );
 
-	  
-		
+
+
 		iconSVG_sel = '<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 47.032 47.032" style="enable-background:new 0 0 47.032 47.032;" xml:space="preserve" width="24px" height="24px"><g><path d="M29.395,0H17.636c-3.117,0-5.643,3.467-5.643,6.584v34.804c0,3.116,2.526,5.644,5.643,5.644h11.759   c3.116,0,5.644-2.527,5.644-5.644V6.584C35.037,3.467,32.511,0,29.395,0z M34.05,14.188v11.665l-2.729,0.351v-4.806L34.05,14.188z    M32.618,10.773c-1.016,3.9-2.219,8.51-2.219,8.51H16.631l-2.222-8.51C14.41,10.773,23.293,7.755,32.618,10.773z M15.741,21.713   v4.492l-2.73-0.349V14.502L15.741,21.713z M13.011,37.938V27.579l2.73,0.343v8.196L13.011,37.938z M14.568,40.882l2.218-3.336   h13.771l2.219,3.336H14.568z M31.321,35.805v-7.872l2.729-0.355v10.048L31.321,35.805z" fill="#ff5500"/></g></svg>';
 
 
@@ -113,46 +113,46 @@ function initMap(p,q)
 		map.addLayer(clusterLayer);
 
 
-        
-  
-     
+
+
+
        /////// Style for selection
 		var img = new ol.style.Circle(
 			{	radius: 5,
 				stroke: new ol.style.Stroke(
-				{	color:"rgba(255,0,0,0.3)", 
-					width:1 
+				{	color:"rgba(255,0,0,0.3)",
+					width:1
 				}),
 				fill: new ol.style.Fill(
 				{	color:"rgba(0,255,0,0)"
 				})
 			});
-		
-		var style1 = new ol.style.Style( 
+
+		var style1 = new ol.style.Style(
 			{	 image: img,
 				// Draw a link beetween points (or not)
 				stroke: new ol.style.Stroke(
-					{	color:"#fff", 
-						width:1 
-					}) 
+					{	color:"#fff",
+						width:1
+					})
 			});
-		var style0 = new ol.style.Style( 
+		var style0 = new ol.style.Style(
 			{	 image: img
-				
+
 			});
-			
-		/////////	
-			
+
+		/////////
+
 	  iconSVG = '<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 47.032 47.032" style="enable-background:new 0 0 47.032 47.032;" xml:space="preserve" width="24px" height="24px"><g><path d="M29.395,0H17.636c-3.117,0-5.643,3.467-5.643,6.584v34.804c0,3.116,2.526,5.644,5.643,5.644h11.759   c3.116,0,5.644-2.527,5.644-5.644V6.584C35.037,3.467,32.511,0,29.395,0z M34.05,14.188v11.665l-2.729,0.351v-4.806L34.05,14.188z    M32.618,10.773c-1.016,3.9-2.219,8.51-2.219,8.51H16.631l-2.222-8.51C14.41,10.773,23.293,7.755,32.618,10.773z M15.741,21.713   v4.492l-2.73-0.349V14.502L15.741,21.713z M13.011,37.938V27.579l2.73,0.343v8.196L13.011,37.938z M14.568,40.882l2.218-3.336   h13.771l2.219,3.336H14.568z M31.321,35.805v-7.872l2.729-0.355v10.048L31.321,35.805z" fill="#005500"/></g></svg>';
       imageElement = new Image();
 	  imageElement.src = 'data:image/svg+xml,' + escape( iconSVG );
-	  
+
 	  iconSVG_sel = '<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 47.032 47.032" style="enable-background:new 0 0 47.032 47.032;" xml:space="preserve" width="24px" height="24px"><g><path d="M29.395,0H17.636c-3.117,0-5.643,3.467-5.643,6.584v34.804c0,3.116,2.526,5.644,5.643,5.644h11.759   c3.116,0,5.644-2.527,5.644-5.644V6.584C35.037,3.467,32.511,0,29.395,0z M34.05,14.188v11.665l-2.729,0.351v-4.806L34.05,14.188z    M32.618,10.773c-1.016,3.9-2.219,8.51-2.219,8.51H16.631l-2.222-8.51C14.41,10.773,23.293,7.755,32.618,10.773z M15.741,21.713   v4.492l-2.73-0.349V14.502L15.741,21.713z M13.011,37.938V27.579l2.73,0.343v8.196L13.011,37.938z M14.568,40.882l2.218-3.336   h13.771l2.219,3.336H14.568z M31.321,35.805v-7.872l2.729-0.355v10.048L31.321,35.805z" fill="#ff5500"/></g></svg>';
       imageElement_sel = new Image();
 	  imageElement_sel.src = 'data:image/svg+xml,' + escape( iconSVG_sel );
-	  
-	  
-     
+
+
+
      // Select interaction to spread cluster out and select features
 		var selectCluster = new ol.interaction.SelectCluster(
 			{	// Point radius: to calculate distance between the features
@@ -160,16 +160,16 @@ function initMap(p,q)
 				animate: true,
 				 featureStyle: style1,
 				 style:getSelectedStyle
-	        
+
 			});
 	  map.addInteraction(selectCluster);
-	  
+
 	  selectCluster.getFeatures().on(['add'], function (e)
 		{	var c = e.element.get('features');
 			if (c.length==1)
 			{	var feature = c[0];
 			    var props=feature.getProperties();
-			    
+
              	 $("#vname").text(props['name']);
              	 $("#loc").text(props['location']);
              	 $("#loc").text(props['location']);
@@ -177,29 +177,29 @@ function initMap(p,q)
              	 selectTableItem(props['name'],true);
              	 map.render();
 			}
-			
+
 		});
 	    selectCluster.getFeatures().on(['remove'], function (e)
-		{	
+		{
 			var c = e.element.get('features');
 			if (c.length==1){
-				
+
 				var feature = c[0];
-				var props=feature.getProperties();            	   
+				var props=feature.getProperties();
             	selectTableItem(props['name'],false);
-            	
+
             }
 		});
-      
+
       dragBox = new ol.interaction.DragBox({
         condition: ol.events.condition.platformModifierKeyOnly
       });
 
       map.addInteraction(dragBox);
-      
-      
+
+
 	dragBox.on('boxend', function() {
-	
+
 	    var extent = dragBox.getGeometry().getExtent();
         source.forEachFeatureIntersectingExtent(extent, function(f) {
           /* var col = selectCluster.getFeatures();
@@ -209,13 +209,13 @@ function initMap(p,q)
 			$(".mptl-trackdata").show();*/
 			// $("html, body").animate({ scrollTop: $(document).height() }, 1000);
         });
-       
-	
+
+
 	});
-      
-      
+
+
       $(".mptl-trackdata").hide();
-     
+
 
       source.on('addfeature', function(e) {
         flash(e.feature);
@@ -237,26 +237,26 @@ function initMap(p,q)
            if($(this).hasClass("selected")){
            	   var id=$(this).children().first().html();
                var f=source.getFeatureById(id);
-               
+
                map.getView().fit(f.getGeometry().getExtent(),map.getSize());
-               
-               
-			   
+
+
+
 			}
         } );
-         
+
         $('input.table_search').on( 'keyup', function () {
             filterGlobal();
-           
+
          } );
-      
-      
+
+
 }
 
 
 
 function filterGlobal () {
-    
+
     $('#vlist').DataTable().column(0).search(
         $('#table_search').val()
      ).draw();
@@ -267,10 +267,10 @@ function filterGlobal () {
         	source.addFeature(OBJECTLIST[key]);
         }
      }
-     
-     
+
+
 }
-     
+
 
 
 //Style for selected
@@ -292,7 +292,7 @@ function getSelectedStyle(feature,resolution)
 						{	text: name,
 							fill: new ol.style.Fill(
 							{	color: '#ff0000'
-							    
+
 							 }),
                         stroke: new ol.style.Stroke({
                             color: '#fff',
@@ -301,9 +301,9 @@ function getSelectedStyle(feature,resolution)
                         scale:1.3,
 					    offsetX:2,
 					    offsetY:25,
-						
+
 				})
-			   
+
 			   });
 }
 
@@ -357,15 +357,15 @@ function trimString(data){
 		return data.replace(/^\s+|\s+$/g, "");
 }
 function checkForTracking(){
-	
+
 	if (tracking_timer != null) {
 		clearTimeout(tracking_timer);
 		tracking_timer = null;
 	}
 	poll_active++;
-	
-	
-	
+
+
+
 	var url = webroot + "tracking/livepoll/"+stime+"/"+"q="+$('input.table_search').val() ;
 
 	window.status = "Checking for update.... ";
@@ -374,12 +374,12 @@ function checkForTracking(){
 		poll_active--;
 		inter = 3000;
 		tracking_timer = setTimeout("checkForTracking()", inter);
-		
+
 		addTrackingPosition(responseText);
-		
+
 		window.status = "Done.";
 	});
-	
+
 }
 function getPointFromLongLat (long, lat) {
     return ol.proj.transform([long, lat], 'EPSG:4326', 'EPSG:3857')
@@ -391,22 +391,22 @@ function addTrackingPosition(responseText){
        var obj=rt.data;
        stime=rt.stime;
      for(var i=0;i<obj.length;i++){
-     	
+
      	var mobj=obj[i];
      	var id=mobj.id;
      	var f=OBJECTLIST[mobj['trackingobjects'].name];
-     
+
      	 if(!f){
-	       
+
 	     	 	var gm1=new ol.geom.Point(ol.proj.transform([mobj.longitude, mobj.latitude], 'EPSG:4326',
 			  'EPSG:3857'));
 			   var iconFeature = new ol.Feature({
 			  	geometry:gm1 ,
-			  	name: mobj['trackingobjects'].name,	
+			  	name: mobj['trackingobjects'].name,
 			  	location: mobj.location,
-			  	heading:mobj.heading,	    
+			  	heading:mobj.heading,
 			  	status: mobj.status,
-			  	
+
 			});
 			var name= mobj['trackingobjects'].name;
 			iconFeature.setStyle(new ol.style.Style({
@@ -421,7 +421,7 @@ function addTrackingPosition(responseText){
 						{	text: name,
 							fill: new ol.style.Fill(
 							{	color: '#0000ff'
-							    
+
 							 }),
                         stroke: new ol.style.Stroke({
                             color: '#fff',
@@ -430,7 +430,7 @@ function addTrackingPosition(responseText){
                         scale:1.3,
 					    offsetX:2,
 					    offsetY:25,
-						
+
 				})
 			   }));
 			OBJECTLIST[mobj['trackingobjects'].name]=iconFeature;
@@ -438,16 +438,16 @@ function addTrackingPosition(responseText){
 			source.addFeature(iconFeature);
 			iconFeature.on('change', function(e) {
 	           flash(e.target);
-	          
+
 	           //console.log("Change");
 	        });
-	       
+
 	        	console.log("Adding...");
-	        
+
 	         var row=vlist.row.add([mobj['trackingobjects'].name,mobj.location]).draw().node();
-	         
+
      	 }else{
-     	 	
+
      	 	var of=source.getFeatureById(mobj['trackingobjects'].name);
      	 	var coord =getPointFromLongLat(mobj.longitude,mobj.latitude);
      	 	var geom = of.getGeometry();
@@ -458,20 +458,20 @@ function addTrackingPosition(responseText){
      	 	//of.change();
      	 	map.render();
      	 }
-     	
-     }
-       
-  
 
-	
+     }
+
+
+
+
 }
 var animation=false;
 
 
-	
+
 function getFeatureStyle (feature, sel)
 
-	{	
+	{
 		var fs=feature.get('features');
 		var size = feature.get('features').length;
 		if(size==1){
@@ -480,10 +480,10 @@ function getFeatureStyle (feature, sel)
 	        	   var r=props['heading']?props['heading']*0.01745329251:0;
 	        	   var name=props['name']?props['name']:"";
 				return f[0].getStyle();
-			   
-			   
+
+
 			}else{
-		
+
 		var parked=0,running=0,stopped=0,total=0;
 		for(var i=0;i<fs.length;i++){
 			var props=fs[i].getProperties();
@@ -496,20 +496,20 @@ function getFeatureStyle (feature, sel)
 		console.log(s);
 		var k = "donut"+"-"+ "classic"+"-"+(sel?"1-":"")+(parked+running+stopped);
 		var style = styleCache[k];
-		if (!style) 
+		if (!style)
 		{	var radius = 50;
 			// area proportional to data size: s=PI*r^2
-			
+
 			 radius = 20* Math.sqrt (total / Math.PI);
-			
+
 			// Create chart style
 			var c = 'classic';
 			styleCache[k] = style = new ol.style.Style(
 			{	image: new ol.style.Chart(
-				{	type: 'donut', 
-					radius: (sel?1.2:1)*radius, 
+				{	type: 'donut',
+					radius: (sel?1.2:1)*radius,
 					offsetY:  0,
-					data:  [parked,running,stopped], 
+					data:  [parked,running,stopped],
 					colors:  c,
 					rotateWithView: true,
 					animation: animation,
@@ -548,4 +548,3 @@ function print(obj)
 	});
 	console.log(json);
 }
-

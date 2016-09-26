@@ -17,16 +17,25 @@ if (file_exists($file)) {
   .noborder{
     border:0
   }
-</style>
+  .aside-scroll{
+    max-height: 100%;
+    overflow: scroll;
+  }
+  .aside-box{
+    padding:0;
+    margin:0;
+    margin-top: auto;
+    border-bottom:2px solid #f4f4f4
+  }
 
-<aside class="control-sidebar control-sidebar-light" >
-   <div class="box" style="padding:0;margin:0;border-bottom:2px solid #f4f4f4">
+</style>
+<aside class="control-sidebar control-sidebar-light aside-scroll">
+   <div class="box box-solid aside-box">
             <div class="box-header">
               <h3 class="box-title">Items Tracked</h3>
               <div class="box-tools">
                 <div class="input-group input-group-sm" style="width: 150px;">
                   <input type="text" id='table_search' name="table_search" class="table_search form-control pull-right" placeholder="Search">
-
                   <div class="input-group-btn">
                     <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
                   </div>
@@ -40,7 +49,6 @@ if (file_exists($file)) {
                 <tr>
                   <th width="40%">Name</th>
                   <th>Location</th>
-
                 </tr>
                  </thead>
                  <tbody>
@@ -49,7 +57,6 @@ if (file_exists($file)) {
               </table>
             </div>
             <!-- /.box-body -->
-
           </div>
           <!-- /.box -->
           <div class="box noborder">
