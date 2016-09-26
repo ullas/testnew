@@ -158,8 +158,8 @@ function initMap(p,q)
 			{	// Point radius: to calculate distance between the features
 				pointRadius:60,
 				animate: true,
-				featureStyle: style1,
-				style:getSelectedStyle
+				 featureStyle: style1,
+				 style:getSelectedStyle
 	        
 			});
 	  map.addInteraction(selectCluster);
@@ -168,14 +168,14 @@ function initMap(p,q)
 		{	var c = e.element.get('features');
 			if (c.length==1)
 			{	var feature = c[0];
-				//$(".infos").html("One feature selected...<br/>(id="+feature.get('id')+")");
-				var props=feature.getProperties();
+			    var props=feature.getProperties();
+			    
              	 $("#vname").text(props['name']);
              	 $("#loc").text(props['location']);
              	 $("#loc").text(props['location']);
              	 $(".mptl-trackdata").show();
              	 selectTableItem(props['name'],true);
-             	 
+             	 map.render();
 			}
 			
 		});
@@ -183,9 +183,11 @@ function initMap(p,q)
 		{	
 			var c = e.element.get('features');
 			if (c.length==1){
+				
 				var feature = c[0];
 				var props=feature.getProperties();            	   
             	selectTableItem(props['name'],false);
+            	
             }
 		});
       
@@ -229,11 +231,17 @@ function initMap(p,q)
 	     pagingType:'simple',
 	     dom: '<"top">rt<"bottom"p><"clear">'
         });
+        var selections =[];
         $('#vlist tbody').on( 'click', 'tr', function () {
            $(this).toggleClass('selected');
-           if($this.hasClass(".selected")){
+           if($(this).hasClass("selected")){
            	   var id=$(this).children().first().html();
-               source.getFeatureById(id);
+               var f=source.getFeatureById(id);
+               
+               map.getView().fit(f.getGeometry().getExtent(),map.getSize());
+               
+               
+			   
 			}
         } );
          
@@ -264,51 +272,7 @@ function filterGlobal () {
 }
      
 
-// Style for the clusters
-		
-		function getStyle (feature, resolution)
-		{	var size = feature.get('features').length;
-			var style = styleCache[size];
-			
-			if(size==1){
-				var f=feature.get('features');
-					var props=f[0].getProperties();
-	        	   var r=props['heading']?props['heading']*0.01745329251:0;
-	        	   var name=props['name']?props['name']:"";
-				return f[0].getStyle();
-			   
-			   
-			}else{
-			
-			if (!style)
-			{	var color = size>25 ? "192,0,0" : size>8 ? "255,128,0" : "0,128,0";
-				var radius = Math.max(8, Math.min(size*0.75, 20));
-				var dash = 2*Math.PI*radius/6;
-				var dash = [ 0, dash, dash, dash, dash, dash, dash ];
-				style = styleCache[size] = [ new ol.style.Style(
-					{	image: new ol.style.Circle(
-						{	radius: radius,
-							stroke: new ol.style.Stroke(
-							{	color:"rgba("+color+",0.5)", 
-								width:15 ,
-								lineDash: dash
-							}),
-							fill: new ol.style.Fill(
-							{	color:"rgba("+color+",1)"
-							})
-						}),
-						text: new ol.style.Text(
-						{	text: size.toString(),
-							fill: new ol.style.Fill(
-							{	color: '#fff'
-							})
-						})
-					})
-				];
-			}
-			return style;
-			}
-}
+
 //Style for selected
 function getSelectedStyle(feature,resolution)
 {
