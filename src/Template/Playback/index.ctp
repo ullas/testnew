@@ -19,7 +19,6 @@
 .btn-app .fa{
   font-size:12px
 }
-
 </style>
     <!-- Main content -->
     <section >
@@ -80,7 +79,6 @@
     'AdminLTE./plugins/ionslider/ion.rangeSlider.min',
     'AdminLTE./plugins/bootstrap-slider/bootstrap-slider',
      'AdminLTE./plugins/bootstrap-datepicker/bootstrap-datepicker.min'
-
 ],
 ['block' => 'script']); ?>
 
@@ -88,25 +86,17 @@
 <script>
   function resizeMap()
 {
-
-
-
 }
   $(function () {
-
     $('.datepick input').datepicker({
     });
-
   var slider=  $("#range_2").ionRangeSlider({
     min: 0,
     max: 24,
-
     grid: true,
     grid_num: 1,
     postfix: 'hr'
-
    });
-
     var updateSliderScale;
 $(window).resize(function(){
     clearTimeout(updateSliderScale);
@@ -114,9 +104,6 @@ $(window).resize(function(){
         $(slider).ionRangeSlider('update');
     }, 100);
 });
-
-
-
   });
   var map= new ol.Map({
     layers: [
@@ -129,6 +116,5 @@ $(window).resize(function(){
      interactions: ol.interaction.defaults({mouseWheelZoom:false}),
     target: 'map'
   });
-
 </script>
 <?php $this->end(); ?>
