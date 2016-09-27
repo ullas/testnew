@@ -120,11 +120,11 @@ function initMap(p,q)
 		var img = new ol.style.Circle(
 			{	radius: 5,
 				stroke: new ol.style.Stroke(
-				{	color:"rgba(255,0,0,0.3)", 
+				{	color:"rgba(255,0,0,1)", 
 					width:1 
 				}),
 				fill: new ol.style.Fill(
-				{	color:"rgba(0,255,0,0)"
+				{	color:"rgba(0,255,0,1)"
 				})
 			});
 		
@@ -175,7 +175,7 @@ function initMap(p,q)
 			{	// Point radius: to calculate distance between the features
 				pointRadius:60,
 				animate: true,
-				 featureStyle: style1,
+				 //featureStyle: style1,
 				 style:getSelectedStyle
 	        
 			});
@@ -217,7 +217,7 @@ function initMap(p,q)
 				var feature = c[0];
 				var props=feature.getProperties();            	   
             	selectTableItem(props['name'],false);
-            	animTab[f.get('nb')].stop({user: false});
+            	//animTab[feature.get('nb')].stop({user: false});
             	
             	
             }
@@ -567,6 +567,7 @@ function getFeatureStyle (feature, sel)
 		return [style];
 	}
 }
+
 function print(obj)
 {
 	var seen = [];
