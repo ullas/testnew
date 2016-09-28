@@ -19,7 +19,14 @@
 .btn-app .fa{
   font-size:12px
 }
-
+#geo-marker{
+    width: 10px; height: 10px;
+    border: 1px solid #088;
+    border-radius: 5px;
+    background-color: #0b968f;
+    opacity: 0.8;
+    top:-100px;
+}
 </style>
     <!-- Main content -->
     <section >
@@ -38,7 +45,7 @@
 
 		            <div class="box-body nopadding">
 
-		              <a class="btn btn-app">
+		              <a class="btn btn-app mptl-play">
 		                <i class="fa fa-play"></i> Play
 		              </a>
                   <!-- <a class="btn btn-app">
@@ -64,6 +71,7 @@
       <!-- /.row -->
             <div class="mptl-map">
               <div id="map" style="height: 100%; width: 100%;"></div>
+              <div id="geo-marker"></div>
             </div>
     </section>
     <!-- /.content -->
@@ -80,7 +88,6 @@
     'AdminLTE./plugins/ionslider/ion.rangeSlider.min',
     'AdminLTE./plugins/bootstrap-slider/bootstrap-slider',
      'AdminLTE./plugins/bootstrap-datepicker/bootstrap-datepicker.min'
-
 ],
 ['block' => 'script']); ?>
 
@@ -88,25 +95,131 @@
 <script>
   function resizeMap()
 {
-
-
-
 }
-  $(function () {
 
+var data=[
+25.1929088,51.4572608,
+25.1974816,51.4658432,
+25.20128,51.4749568,
+25.2050992,51.4840672,
+25.208912,51.4932096,
+25.2153776,51.5002368,
+25.2225344,	51.5063072,
+25.2292768,	51.5131232,
+25.2353072,	51.5206272,
+25.237384,	51.5305152,
+25.2385184,	51.5404736,
+25.2385184,	51.5404736,
+25.2395216,	51.5499424,
+25.241528,	51.5598016,
+25.245648,	51.5684448,
+25.2539152,	51.5640992,
+25.2615904,	51.5587584,
+25.2675872,	51.5512736,
+25.2682224,	51.5506592,
+25.27652,	51.552544,
+25.2764976,	51.5525376,
+25.2767712,	51.5524928,
+25.2767712,	51.5524928,
+25.2767872,	51.5524928,
+25.2767872,	51.5525024,
+25.2767856,	51.5525184,
+25.2769696,	51.5525056,
+25.2770112,	51.5525024,
+25.2770048,	51.5525088,
+25.2769984,	51.5525216,
+25.2770848,	51.5525504,
+25.2770736,	51.5525472,
+25.2770848,	51.5525408,
+25.2770848,	51.5525408,
+25.2770848,	51.5525408,
+25.2771104,	51.5528032,
+25.2770976,	51.5528448,
+25.27708,	51.5528448,
+25.2770736,	51.5528256,
+25.2770864,	51.5528256,
+25.2770992,	51.5527968,
+25.2772624,	51.5529568,
+25.277256,	51.5530272,
+25.2777952,	51.5531648,
+25.2776816,	51.5538496,
+25.2776816,	51.5538496,
+25.2776864,	51.5538592,
+25.2776848,	51.553856,
+25.2776832,	51.5538336,
+25.2776928,	51.5538048,
+25.2776832,	51.5538048,
+25.2776912,	51.5537792,
+25.2777008,	51.5538208,
+25.2776816,	51.5538176,
+25.277712,	51.5537984,
+25.2777104,	51.5538144,
+25.2776832,	51.5538432,
+25.2777152,	51.553856,
+25.2776864,	51.5538336,
+25.277696,	51.5538304,
+25.2777152,	51.5538016,
+25.2777296,	51.5538336,
+25.27792,	51.5553344,
+25.2780928,	51.5552128,
+25.2780112,	51.5550496,
+25.2778592,	51.5535424,
+25.278128,	51.5524224,
+25.2872144,	51.5513536,
+25.292576,	51.546224,
+25.2971744,	51.5496896,
+25.2990336,	51.5535776,
+25.3053488,	51.5510144,
+25.3079936,	51.5582208,
+25.3074832,	51.5585632,
+25.3073984,	51.5584288,
+25.3071216,	51.5577472,
+25.307136,	51.5577664,
+25.3071392,	51.5577472,
+25.3071568,	51.5577664,
+25.3071712,	51.5577312,
+25.307192,	51.5577344,
+25.3071552,	51.557744,
+25.3072288,	51.5577856,
+25.3071456,	51.557696,
+25.3071424,	51.5576896,
+25.3071568,	51.5577568,
+25.3071536,	51.5577536,
+25.307152,	51.5577568,
+25.30716,	51.5577888,
+25.30716,	51.5577888,
+25.30716,	51.5577888,
+25.3071744,	51.5577856,
+25.3071856,	51.5577568,
+25.3071664,	51.5577408,
+25.3071232,	51.5576928,
+25.3071424,	51.5575104,
+25.3075296,	51.5570752,
+25.3052032,	51.5508512,
+25.2989248,	51.5531776,
+25.298856,	51.5525728,
+25.2993776,	51.5519136,
+25.2993776,	51.5519136];
+
+//a simulated path
+var path = [
+    
+];
+for(var i=0;i<data.length/2;i+=2){
+  		   var p=ol.proj.transform([data[i+1],data[i]], 'EPSG:4326', 'EPSG:3857');
+  		   path.push(p);
+}
+
+  $(function () {
     $('.datepick input').datepicker({
     });
-
   var slider=  $("#range_2").ionRangeSlider({
     min: 0,
     max: 24,
-
     grid: true,
     grid_num: 1,
     postfix: 'hr'
-
    });
-
     var updateSliderScale;
 $(window).resize(function(){
     clearTimeout(updateSliderScale);
@@ -114,21 +227,151 @@ $(window).resize(function(){
         $(slider).ionRangeSlider('update');
     }, 100);
 });
-
-
-
   });
-  var map= new ol.Map({
-    layers: [
-      new ol.layer.Tile({source: new ol.source.OSM()})
-    ],
-    view: new ol.View({
-      center: [0, 0],
-      zoom: 3
+ var
+	sourceFeatures = new ol.source.Vector(),
+    layerFeatures = new ol.layer.Vector({
+        source: sourceFeatures
+    })
+;
+
+var lineString = new ol.geom.LineString([]);
+
+var layerRoute =  new ol.layer.Vector({
+    source: new ol.source.Vector({
+        features: [
+            new ol.Feature({ geometry: lineString })
+        ]
     }),
-     interactions: ol.interaction.defaults({mouseWheelZoom:false}),
-    target: 'map'
-  });
+    style: [
+        new ol.style.Style({
+            stroke: new ol.style.Stroke({
+                width: 3, color: 'rgba(0, 0, 0, 1)',
+                lineDash: [.1, 5]
+            }),
+            zIndex: 2
+        })
+    ],
+    updateWhileAnimating: true
+});
 
+
+var map = new ol.Map({
+    target: 'map',
+    view: new ol.View({
+        center: ol.proj.transform([51.4572608,25.1929088], 'EPSG:4326', 'EPSG:3857'),
+        zoom: 16,
+        minZoom: 2,
+        maxZoom: 20
+    }),
+    layers: [
+      new ol.layer.Tile({ 
+          source: new ol.source.OSM(),
+          opacity: 0.6
+      }),
+      layerRoute, layerFeatures
+    ]
+});
+
+var markerEl = document.getElementById('geo-marker');
+var marker = new ol.Overlay({
+    positioning: 'center-center',
+    offset: [0, 0],
+    element: markerEl,
+    stopEvent: false
+});
+map.addOverlay(marker);
+
+var 
+	fill = new ol.style.Fill({color:'rgba(255,255,255,1)'}),
+    stroke = new ol.style.Stroke({color:'rgba(0,0,0,1)'}),
+    style1 = [
+        new ol.style.Style({
+            image: new ol.style.Icon(({
+                scale: .7, opacity: 1,
+                rotateWithView: false, anchor: [0.5, 1],
+                anchorXUnits: 'fraction', anchorYUnits: 'fraction',
+                src: '//cdn.rawgit.com/jonataswalker/map-utils/' + 						'master/images/marker.png'
+            })),
+            zIndex: 5
+        }),
+        new ol.style.Style({
+            image: new ol.style.Circle({
+                radius: 6, fill: fill, stroke: stroke
+            }),
+            zIndex: 4
+        })
+    ]
+;
+
+
+
+
+var
+	feature_start = new ol.Feature({
+        geometry: new ol.geom.Point(path[0])
+    }),
+    feature_end = new ol.Feature({
+        geometry: new ol.geom.Point(path[path.length - 1])
+    })
+;
+feature_start.setStyle(style1);
+feature_end.setStyle(style1);
+sourceFeatures.addFeatures([feature_start, feature_end]);
+
+lineString.setCoordinates(path);
+var timer;
+map.getView().fit(lineString.getExtent(), map.getSize());
+//fire the animation
+//map.once('postcompose', function(event) {
+   
+    
+//});
+
+
+function callAnimate()
+{
+	 if(timer){
+    	clearInterval(timer);
+    }
+    timer = setInterval(animation, 10);
+}
+
+var currentPos = 0,  start=0,dt=0.01;
+var px=0,py=0;
+var animation = function(){
+    
+    if(start==0){
+    	px=path[currentPos][0];
+    	py=path[currentPos][1];
+    	start++;
+    }
+    
+    if(currentPos == path.length){
+        clearInterval(timer);
+        console.log("Set Interval Called");
+    }
+    
+    
+    px += ( dt * (path[currentPos+1][0] - path[currentPos][0]) )  // the point's x is that same fraction between x0 and x1
+    py += ( dt * (path[currentPos+1][1]  - path[currentPos][1]) )
+
+    marker.setPosition([px,py]);
+    
+    var delx=path[currentPos+1][0]-px;
+    var dely=path[currentPos+1][1]-py;  
+    if(delx <dt || dely < dt){
+    	currentPos++;
+    	start=0;
+    	
+    }
+    
+    //console.log("Called" +delx + ":"+dely);
+};
+  $(".mptl-play").click( function(){
+  	 callAnimate();
+  });
+  
+    
 </script>
 <?php $this->end(); ?>
