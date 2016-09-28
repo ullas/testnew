@@ -12,16 +12,16 @@
   <div class="row">
   <div class="col-md-12">
     <div class="box pb-box">
-        <div class="row" style="margin-top:12px">
+        <div class="row" style="margin-top:5px">
           <!-- Date and time range -->
             <div class="form-group col-md-9">
-              <div class="input-group col-md-5" style="float:left;padding-left:10px">
+              <div class="input-group col-md-5" style="float:left;padding-top:7px;padding-left:10px">
                 <div class="input-group-addon">
                   <i class="fa fa-clock-o"></i>
                 </div>
                  <input id="messagedatetimerange" type="text" class="form-control">
               </div>
-              <div class="input-group col-md-4" style="float:left;padding-left:10px">
+              <div class="input-group col-md-4" style="float:left;padding-top:7px;padding-left:10px">
                  <div class="input-group-btn">
                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="true">Select Group
                      <span class="fa fa-caret-down"></span></button>
