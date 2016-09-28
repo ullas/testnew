@@ -37,6 +37,9 @@
                 <!-- /.input group -->
               </div>
               <!-- /.form group -->
+              <div>
+                <button id="linkButton" type="button" class="btn btn-default" >Link</button>
+              </div>
               </div>
               <!-- /.row -->
     </div>
@@ -50,13 +53,15 @@
 </section>
 <!-- /.content -->
 <?php $this->Html->css([
-    'AdminLTE./plugins/daterangepicker/daterangepicker'
+    'AdminLTE./plugins/daterangepicker/daterangepicker',
+    'AdminLTE./plugins/toastr/toastr.min'
 ],
 ['block' => 'css']); ?>
 
 <?php $this->Html->script([
     'AdminLTE./plugins/daterangepicker/moment.min',
     'AdminLTE./plugins/daterangepicker/daterangepicker',
+    'AdminLTE./plugins/toastr/toastr.min'
 ],
 ['block' => 'script']); ?>
 
@@ -66,6 +71,34 @@
 {
 }
 $(function () {
+
+  toastr.options = {
+    "closeButton": true,
+    "debug": false,
+    "newestOnTop": true,
+    "progressBar": false,
+    "positionClass": "toast-bottom-center",
+    "preventDuplicates": false,
+    "onclick": null,
+    "showDuration": "300",
+    "hideDuration": "1000",
+    "timeOut": "5000",
+    "extendedTimeOut": "1000",
+    "showEasing": "swing",
+    "hideEasing": "linear",
+    "showMethod": "fadeIn",
+    "hideMethod": "fadeOut"
+  }
+
+    // show when page load
+      toastr.info('Page Loaded!');
+
+      $('#linkButton').click(function() {
+         // show when the button is clicked
+         toastr.error('Harsh breaking from vehicle KL 01 BA 7478.');
+
+      });
+
 //Date range picker with time picker
   $('input[id="alertdatetimerange"]').daterangepicker({
     timePicker: true,
