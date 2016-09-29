@@ -13,7 +13,7 @@
     <!-- Ionicons -->
     <link rel="stylesheet" href="/css/ionicons.min.css">
      <link rel="stylesheet" href="/js/ol/ol.css">
-
+   <?php echo $this->Html->css('AdminLTE./plugins/select2/select2.min'); ?>
     <!-- Theme style -->
     <?php echo $this->Html->css('AdminLTE.AdminLTE.min'); ?>
 <!-- AdminLTE Skins. Choose a skin from the css/skins

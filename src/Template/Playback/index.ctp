@@ -203,7 +203,7 @@ var data=[
 
 //a simulated path
 var path = [
-    
+
 ];
 for(var i=0;i<data.length/2;i+=2){
   		   var p=ol.proj.transform([data[i+1],data[i]], 'EPSG:4326', 'EPSG:3857');
@@ -265,7 +265,7 @@ var map = new ol.Map({
         maxZoom: 20
     }),
     layers: [
-      new ol.layer.Tile({ 
+      new ol.layer.Tile({
           source: new ol.source.OSM(),
           opacity: 0.6
       }),
@@ -282,7 +282,7 @@ var marker = new ol.Overlay({
 });
 map.addOverlay(marker);
 
-var 
+var
 	fill = new ol.style.Fill({color:'rgba(255,255,255,1)'}),
     stroke = new ol.style.Stroke({color:'rgba(0,0,0,1)'}),
     style1 = [
@@ -291,7 +291,7 @@ var
                 scale: .7, opacity: 1,
                 rotateWithView: false, anchor: [0.5, 1],
                 anchorXUnits: 'fraction', anchorYUnits: 'fraction',
-                src: '//cdn.rawgit.com/jonataswalker/map-utils/' + 						'master/images/marker.png'
+                //src: '//cdn.rawgit.com/jonataswalker/map-utils/' + 						'master/images/marker.png'
             })),
             zIndex: 5
         }),
@@ -324,8 +324,8 @@ var timer;
 map.getView().fit(lineString.getExtent(), map.getSize());
 //fire the animation
 //map.once('postcompose', function(event) {
-   
-    
+
+
 //});
 
 
@@ -340,38 +340,38 @@ function callAnimate()
 var currentPos = 0,  start=0,dt=0.01;
 var px=0,py=0;
 var animation = function(){
-    
+
     if(start==0){
     	px=path[currentPos][0];
     	py=path[currentPos][1];
     	start++;
     }
-    
+
     if(currentPos == path.length){
         clearInterval(timer);
         console.log("Set Interval Called");
     }
-    
-    
+
+
     px += ( dt * (path[currentPos+1][0] - path[currentPos][0]) )  // the point's x is that same fraction between x0 and x1
     py += ( dt * (path[currentPos+1][1]  - path[currentPos][1]) )
 
     marker.setPosition([px,py]);
-    
+
     var delx=path[currentPos+1][0]-px;
-    var dely=path[currentPos+1][1]-py;  
+    var dely=path[currentPos+1][1]-py;
     if(delx <dt || dely < dt){
     	currentPos++;
     	start=0;
-    	
+
     }
-    
+
     //console.log("Called" +delx + ":"+dely);
 };
   $(".mptl-play").click( function(){
   	 callAnimate();
   });
-  
-    
+
+
 </script>
 <?php $this->end(); ?>
