@@ -13,7 +13,7 @@
     <!-- Ionicons -->
     <link rel="stylesheet" href="/css/ionicons.min.css">
      <link rel="stylesheet" href="/js/ol/ol.css">
-
+   <?php echo $this->Html->css('AdminLTE./plugins/select2/select2.min'); ?>
     <!-- Theme style -->
     <?php echo $this->Html->css('AdminLTE.AdminLTE.min'); ?>
 <!-- AdminLTE Skins. Choose a skin from the css/skins
@@ -22,7 +22,6 @@
     <?php echo $this->Html->css('AdminLTE.skins/weather-icons'); ?>
     <?php echo $this->fetch('css'); ?>
     <?php echo $this->fetch('scriptTop'); ?>
-
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
 <!--[if lt IE 9]>
