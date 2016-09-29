@@ -96,7 +96,6 @@
   function resizeMap()
 {
 }
-
 var data=[
 25.1929088,51.4572608,
 25.1974816,51.4658432,
@@ -200,7 +199,6 @@ var data=[
 25.298856,	51.5525728,
 25.2993776,	51.5519136,
 25.2993776,	51.5519136];
-
 //a simulated path
 var path = [
     
@@ -209,7 +207,6 @@ for(var i=0;i<data.length/2;i+=2){
   		   var p=ol.proj.transform([data[i+1],data[i]], 'EPSG:4326', 'EPSG:3857');
   		   path.push(p);
 }
-
   $(function () {
     $('.datepick input').datepicker({
     });
@@ -234,9 +231,7 @@ $(window).resize(function(){
         source: sourceFeatures
     })
 ;
-
 var lineString = new ol.geom.LineString([]);
-
 var layerRoute =  new ol.layer.Vector({
     source: new ol.source.Vector({
         features: [
@@ -254,8 +249,6 @@ var layerRoute =  new ol.layer.Vector({
     ],
     updateWhileAnimating: true
 });
-
-
 var map = new ol.Map({
     target: 'map',
     view: new ol.View({
@@ -272,7 +265,6 @@ var map = new ol.Map({
       layerRoute, layerFeatures
     ]
 });
-
 var markerEl = document.getElementById('geo-marker');
 var marker = new ol.Overlay({
     positioning: 'center-center',
@@ -281,7 +273,6 @@ var marker = new ol.Overlay({
     stopEvent: false
 });
 map.addOverlay(marker);
-
 var 
 	fill = new ol.style.Fill({color:'rgba(255,255,255,1)'}),
     stroke = new ol.style.Stroke({color:'rgba(0,0,0,1)'}),
@@ -303,10 +294,6 @@ var
         })
     ]
 ;
-
-
-
-
 var
 	feature_start = new ol.Feature({
         geometry: new ol.geom.Point(path[0])
@@ -318,7 +305,6 @@ var
 feature_start.setStyle(style1);
 feature_end.setStyle(style1);
 sourceFeatures.addFeatures([feature_start, feature_end]);
-
 lineString.setCoordinates(path);
 var timer;
 map.getView().fit(lineString.getExtent(), map.getSize());
@@ -327,48 +313,60 @@ map.getView().fit(lineString.getExtent(), map.getSize());
    
     
 //});
-
-
+var exppath=[];
+var counter=0;
+var distance=1000;
 function callAnimate()
 {
-	 if(timer){
+	counter=0;
+	exppath=extrapolate();
+	if(timer){
     	clearInterval(timer);
     }
     timer = setInterval(animation, 10);
 }
 
-var currentPos = 0,  start=0,dt=0.01;
-var px=0,py=0;
-var animation = function(){
-    
-    if(start==0){
-    	px=path[currentPos][0];
-    	py=path[currentPos][1];
-    	start++;
-    }
-    
-    if(currentPos == path.length){
-        clearInterval(timer);
-        console.log("Set Interval Called");
-    }
-    
-    
-    px += ( dt * (path[currentPos+1][0] - path[currentPos][0]) )  // the point's x is that same fraction between x0 and x1
-    py += ( dt * (path[currentPos+1][1]  - path[currentPos][1]) )
+function extrapolate()
+{
+	var i,
+        len = path.length,
+        chunkedLatLngs = [];
 
-    marker.setPosition([px,py]);
-    
-    var delx=path[currentPos+1][0]-px;
-    var dely=path[currentPos+1][1]-py;  
-    if(delx <dt || dely < dt){
-    	currentPos++;
-    	start=0;
-    	
+    for (i=1;i<len;i++) {
+      var cur = path[i-1],
+          next = path[i],
+          dist = Math.sqrt((next[0]-cur[0])*(next[0]-cur[0]) + (next[1]-cur[1])*(next[1]-cur[1])),
+          factor = distance / dist,
+          dy = factor * (next[1] - cur[1]),
+          dx = factor * (next[0] - cur[0]);
+
+      if (dist > distance) {
+        while (dist > distance) {
+          cur = [cur[0] + dx, cur[1] + dy];
+          dist = Math.sqrt((next[0]-cur[0])*(next[0]-cur[0])+ (next[1]-cur[1])*(next[1]-cur[1]));
+          chunkedLatLngs.push(cur);
+        }
+      } else {
+        chunkedLatLngs.push(cur);
+      }
     }
+    chunkedLatLngs.push(path[len-1]);
+
+return chunkedLatLngs;
+	
+}
+
+var animation = function(){
+   
     
+    marker.setPosition(exppath[counter]);
+    counter++;
+   
     //console.log("Called" +delx + ":"+dely);
 };
   $(".mptl-play").click( function(){
+  	 currentPos=0;
+  	 start=0;
   	 callAnimate();
   });
   
