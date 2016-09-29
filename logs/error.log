@@ -15134,3 +15134,94 @@ Stack Trace:
 #16 {main}
 
 
+2016-09-29 09:08:36 Error: [ParseError] syntax error, unexpected ''/js/ol/ext/featureanimation.j' (T_CONSTANT_ENCAPSED_STRING), expecting ']'
+Request URL: /alerts
+Referer URL: http://localhost:8765/pages/dashboard
+Stack Trace:
+#0 /Users/maptell/testgit/vendor/cakephp/cakephp/src/View/View.php(964): Cake\View\View->_evaluate('/Users/maptell/...', Array)
+#1 /Users/maptell/testgit/vendor/cakephp/cakephp/src/View/View.php(588): Cake\View\View->_render('/Users/maptell/...')
+#2 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Controller/Controller.php(617): Cake\View\View->render(NULL, NULL)
+#3 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Http/ActionDispatcher.php(130): Cake\Controller\Controller->render()
+#4 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Http/ActionDispatcher.php(98): Cake\Http\ActionDispatcher->_invoke(Object(App\Controller\AlertsController))
+#5 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Http/BaseApplication.php(83): Cake\Http\ActionDispatcher->dispatch(Object(Cake\Network\Request), Object(Cake\Network\Response))
+#6 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Http/Runner.php(65): Cake\Http\BaseApplication->__invoke(Object(Zend\Diactoros\ServerRequest), Object(Zend\Diactoros\Response), Object(Cake\Http\Runner))
+#7 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Routing/Middleware/RoutingMiddleware.php(52): Cake\Http\Runner->__invoke(Object(Zend\Diactoros\ServerRequest), Object(Zend\Diactoros\Response))
+#8 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Http/Runner.php(65): Cake\Routing\Middleware\RoutingMiddleware->__invoke(Object(Zend\Diactoros\ServerRequest), Object(Zend\Diactoros\Response), Object(Cake\Http\Runner))
+#9 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Routing/Middleware/AssetMiddleware.php(88): Cake\Http\Runner->__invoke(Object(Zend\Diactoros\ServerRequest), Object(Zend\Diactoros\Response))
+#10 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Http/Runner.php(65): Cake\Routing\Middleware\AssetMiddleware->__invoke(Object(Zend\Diactoros\ServerRequest), Object(Zend\Diactoros\Response), Object(Cake\Http\Runner))
+#11 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Error/Middleware/ErrorHandlerMiddleware.php(51): Cake\Http\Runner->__invoke(Object(Zend\Diactoros\ServerRequest), Object(Zend\Diactoros\Response))
+#12 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Http/Runner.php(65): Cake\Error\Middleware\ErrorHandlerMiddleware->__invoke(Object(Zend\Diactoros\ServerRequest), Object(Zend\Diactoros\Response), Object(Cake\Http\Runner))
+#13 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Http/Runner.php(51): Cake\Http\Runner->__invoke(Object(Zend\Diactoros\ServerRequest), Object(Zend\Diactoros\Response))
+#14 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Http/Server.php(82): Cake\Http\Runner->run(Object(Cake\Http\MiddlewareQueue), Object(Zend\Diactoros\ServerRequest), Object(Zend\Diactoros\Response))
+#15 /Users/maptell/testgit/webroot/index.php(37): Cake\Http\Server->run()
+#16 {main}
+
+
+2016-09-29 09:08:58 Error: [ParseError] syntax error, unexpected ''/js/ol/ext/featureanimation'' (T_CONSTANT_ENCAPSED_STRING), expecting ']'
+Request URL: /alerts
+Referer URL: http://localhost:8765/pages/dashboard
+Stack Trace:
+#0 /Users/maptell/testgit/vendor/cakephp/cakephp/src/View/View.php(964): Cake\View\View->_evaluate('/Users/maptell/...', Array)
+#1 /Users/maptell/testgit/vendor/cakephp/cakephp/src/View/View.php(588): Cake\View\View->_render('/Users/maptell/...')
+#2 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Controller/Controller.php(617): Cake\View\View->render(NULL, NULL)
+#3 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Http/ActionDispatcher.php(130): Cake\Controller\Controller->render()
+#4 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Http/ActionDispatcher.php(98): Cake\Http\ActionDispatcher->_invoke(Object(App\Controller\AlertsController))
+#5 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Http/BaseApplication.php(83): Cake\Http\ActionDispatcher->dispatch(Object(Cake\Network\Request), Object(Cake\Network\Response))
+#6 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Http/Runner.php(65): Cake\Http\BaseApplication->__invoke(Object(Zend\Diactoros\ServerRequest), Object(Zend\Diactoros\Response), Object(Cake\Http\Runner))
+#7 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Routing/Middleware/RoutingMiddleware.php(52): Cake\Http\Runner->__invoke(Object(Zend\Diactoros\ServerRequest), Object(Zend\Diactoros\Response))
+#8 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Http/Runner.php(65): Cake\Routing\Middleware\RoutingMiddleware->__invoke(Object(Zend\Diactoros\ServerRequest), Object(Zend\Diactoros\Response), Object(Cake\Http\Runner))
+#9 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Routing/Middleware/AssetMiddleware.php(88): Cake\Http\Runner->__invoke(Object(Zend\Diactoros\ServerRequest), Object(Zend\Diactoros\Response))
+#10 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Http/Runner.php(65): Cake\Routing\Middleware\AssetMiddleware->__invoke(Object(Zend\Diactoros\ServerRequest), Object(Zend\Diactoros\Response), Object(Cake\Http\Runner))
+#11 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Error/Middleware/ErrorHandlerMiddleware.php(51): Cake\Http\Runner->__invoke(Object(Zend\Diactoros\ServerRequest), Object(Zend\Diactoros\Response))
+#12 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Http/Runner.php(65): Cake\Error\Middleware\ErrorHandlerMiddleware->__invoke(Object(Zend\Diactoros\ServerRequest), Object(Zend\Diactoros\Response), Object(Cake\Http\Runner))
+#13 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Http/Runner.php(51): Cake\Http\Runner->__invoke(Object(Zend\Diactoros\ServerRequest), Object(Zend\Diactoros\Response))
+#14 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Http/Server.php(82): Cake\Http\Runner->run(Object(Cake\Http\MiddlewareQueue), Object(Zend\Diactoros\ServerRequest), Object(Zend\Diactoros\Response))
+#15 /Users/maptell/testgit/webroot/index.php(37): Cake\Http\Server->run()
+#16 {main}
+
+
+2016-09-29 09:10:07 Error: [ParseError] syntax error, unexpected ''/js/ol/ext/featureanimation'' (T_CONSTANT_ENCAPSED_STRING), expecting ']'
+Request URL: /alerts
+Referer URL: http://localhost:8765/pages/dashboard
+Stack Trace:
+#0 /Users/maptell/testgit/vendor/cakephp/cakephp/src/View/View.php(964): Cake\View\View->_evaluate('/Users/maptell/...', Array)
+#1 /Users/maptell/testgit/vendor/cakephp/cakephp/src/View/View.php(588): Cake\View\View->_render('/Users/maptell/...')
+#2 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Controller/Controller.php(617): Cake\View\View->render(NULL, NULL)
+#3 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Http/ActionDispatcher.php(130): Cake\Controller\Controller->render()
+#4 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Http/ActionDispatcher.php(98): Cake\Http\ActionDispatcher->_invoke(Object(App\Controller\AlertsController))
+#5 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Http/BaseApplication.php(83): Cake\Http\ActionDispatcher->dispatch(Object(Cake\Network\Request), Object(Cake\Network\Response))
+#6 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Http/Runner.php(65): Cake\Http\BaseApplication->__invoke(Object(Zend\Diactoros\ServerRequest), Object(Zend\Diactoros\Response), Object(Cake\Http\Runner))
+#7 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Routing/Middleware/RoutingMiddleware.php(52): Cake\Http\Runner->__invoke(Object(Zend\Diactoros\ServerRequest), Object(Zend\Diactoros\Response))
+#8 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Http/Runner.php(65): Cake\Routing\Middleware\RoutingMiddleware->__invoke(Object(Zend\Diactoros\ServerRequest), Object(Zend\Diactoros\Response), Object(Cake\Http\Runner))
+#9 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Routing/Middleware/AssetMiddleware.php(88): Cake\Http\Runner->__invoke(Object(Zend\Diactoros\ServerRequest), Object(Zend\Diactoros\Response))
+#10 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Http/Runner.php(65): Cake\Routing\Middleware\AssetMiddleware->__invoke(Object(Zend\Diactoros\ServerRequest), Object(Zend\Diactoros\Response), Object(Cake\Http\Runner))
+#11 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Error/Middleware/ErrorHandlerMiddleware.php(51): Cake\Http\Runner->__invoke(Object(Zend\Diactoros\ServerRequest), Object(Zend\Diactoros\Response))
+#12 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Http/Runner.php(65): Cake\Error\Middleware\ErrorHandlerMiddleware->__invoke(Object(Zend\Diactoros\ServerRequest), Object(Zend\Diactoros\Response), Object(Cake\Http\Runner))
+#13 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Http/Runner.php(51): Cake\Http\Runner->__invoke(Object(Zend\Diactoros\ServerRequest), Object(Zend\Diactoros\Response))
+#14 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Http/Server.php(82): Cake\Http\Runner->run(Object(Cake\Http\MiddlewareQueue), Object(Zend\Diactoros\ServerRequest), Object(Zend\Diactoros\Response))
+#15 /Users/maptell/testgit/webroot/index.php(37): Cake\Http\Server->run()
+#16 {main}
+
+
+2016-09-29 09:10:10 Error: [ParseError] syntax error, unexpected ''/js/ol/ext/featureanimation'' (T_CONSTANT_ENCAPSED_STRING), expecting ']'
+Request URL: /alerts
+Stack Trace:
+#0 /Users/maptell/testgit/vendor/cakephp/cakephp/src/View/View.php(964): Cake\View\View->_evaluate('/Users/maptell/...', Array)
+#1 /Users/maptell/testgit/vendor/cakephp/cakephp/src/View/View.php(588): Cake\View\View->_render('/Users/maptell/...')
+#2 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Controller/Controller.php(617): Cake\View\View->render(NULL, NULL)
+#3 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Http/ActionDispatcher.php(130): Cake\Controller\Controller->render()
+#4 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Http/ActionDispatcher.php(98): Cake\Http\ActionDispatcher->_invoke(Object(App\Controller\AlertsController))
+#5 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Http/BaseApplication.php(83): Cake\Http\ActionDispatcher->dispatch(Object(Cake\Network\Request), Object(Cake\Network\Response))
+#6 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Http/Runner.php(65): Cake\Http\BaseApplication->__invoke(Object(Zend\Diactoros\ServerRequest), Object(Zend\Diactoros\Response), Object(Cake\Http\Runner))
+#7 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Routing/Middleware/RoutingMiddleware.php(52): Cake\Http\Runner->__invoke(Object(Zend\Diactoros\ServerRequest), Object(Zend\Diactoros\Response))
+#8 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Http/Runner.php(65): Cake\Routing\Middleware\RoutingMiddleware->__invoke(Object(Zend\Diactoros\ServerRequest), Object(Zend\Diactoros\Response), Object(Cake\Http\Runner))
+#9 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Routing/Middleware/AssetMiddleware.php(88): Cake\Http\Runner->__invoke(Object(Zend\Diactoros\ServerRequest), Object(Zend\Diactoros\Response))
+#10 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Http/Runner.php(65): Cake\Routing\Middleware\AssetMiddleware->__invoke(Object(Zend\Diactoros\ServerRequest), Object(Zend\Diactoros\Response), Object(Cake\Http\Runner))
+#11 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Error/Middleware/ErrorHandlerMiddleware.php(51): Cake\Http\Runner->__invoke(Object(Zend\Diactoros\ServerRequest), Object(Zend\Diactoros\Response))
+#12 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Http/Runner.php(65): Cake\Error\Middleware\ErrorHandlerMiddleware->__invoke(Object(Zend\Diactoros\ServerRequest), Object(Zend\Diactoros\Response), Object(Cake\Http\Runner))
+#13 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Http/Runner.php(51): Cake\Http\Runner->__invoke(Object(Zend\Diactoros\ServerRequest), Object(Zend\Diactoros\Response))
+#14 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Http/Server.php(82): Cake\Http\Runner->run(Object(Cake\Http\MiddlewareQueue), Object(Zend\Diactoros\ServerRequest), Object(Zend\Diactoros\Response))
+#15 /Users/maptell/testgit/webroot/index.php(37): Cake\Http\Server->run()
+#16 {main}
+
+
