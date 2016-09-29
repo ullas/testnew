@@ -14,15 +14,49 @@
       <div class="box pb-box">
           <div class="row" style="margin-top:5px">
             <!-- Date and time range -->
-              <div class="form-group col-md-9">
-                <div class="input-group col-md-5" style="float:left;padding-top:7px;padding-left:10px">
+              <div class="form-group col-md-4" style="padding-right:0;">
+                <div class="input-group" style="padding-top:7px;padding-left:10px">
                   <div class="input-group-addon">
                     <i class="fa fa-clock-o"></i>
                   </div>
                    <input id="alertdatetimerange" type="text" class="form-control">
                 </div>
-                <div class="input-group col-md-4" style="float:left;padding-top:7px;padding-left:10px">
-                   <div class="input-group-btn">
+              </div>
+              <!-- /.form group -->
+              <div class="form-group col-md-3" style="float:left;padding-right:0;padding-top:7px;padding-left:10px">
+                <select class="form-control select2" multiple="multiple">
+                  <option value="0">All</option>
+		             <option value="10">Stop</option>
+		             <option value="7">No Movement</option>
+		             <option value="6">Start</option>
+		             <option value="2">Trip</option>
+		             <option value="8">POI Visited</option>
+		             <option value="5">Zone Alert</option>
+		             <option value="11">Route Violation</option>
+		             <option value="1">Over Speed</option>
+		             <option value="16">Excessive acceleration</option>
+		             <option value="15">Harsh Braking</option>
+		             <option value="22">Night Driving</option>
+		             <option value="9">Panic</option>
+		             <option value="23">Fatique</option>
+		             <option value="24">Exccess Time</option>
+		             <option value="3">License Alert</option>
+			           <option value="4">Maintenance Alert</option>
+			           <option value="18">Battery</option>
+			           <option value="19">Fuel level</option>
+			           <option value="20">Sensor Alerts</option>
+			           <option value="21">Relay Alerts</option>
+			           <option value="17">Security</option>
+			           <option value="12">Device Tamper</option>
+			           <option value="13">Towing Alert</option>
+			           <option value="25">Communication</option>
+			           <option value="14">General Alert</option>
+                </select>
+              </div>
+              <!-- /.form-group -->
+              <div class="form-group col-md-4">
+                <div class="input-group" style="float:left;padding-top:7px;padding-left:10px">
+                  <div class="input-group-btn">
                      <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="true">Select Group
                        <span class="fa fa-caret-down"></span></button>
                      <ul class="dropdown-menu">
@@ -35,10 +69,7 @@
                    <input class="form-control" type="text" placeholder="Vehicle">
                  </div>
                 <!-- /.input group -->
-              </div>
-              <!-- /.form group -->
-              <div>
-                <button id="linkButton" type="button" class="btn btn-default" >Link</button>
+            <!-- /.col -->
               </div>
               </div>
               <!-- /.row -->
@@ -73,6 +104,8 @@
     '/js/ol/ext/featureanimation/dropanimation',
     '/js/ol/ext/featureanimation/bounceanimation',
       '/js/maptell/notifications.js',
+    'AdminLTE./plugins/select2/select2.full.min',
+    'AdminLTE./plugins/toastr/toastr.min'
 ],
 ['block' => 'script']); ?>
 
@@ -82,6 +115,11 @@
 {
 }
 $(function () {
+
+  $(".select2").select2({
+    placeholder: "Select Alert Type",
+    allowClear: true
+  });
 
   toastr.options = {
     "closeButton": true,
