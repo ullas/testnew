@@ -54,14 +54,25 @@
 <!-- /.content -->
 <?php $this->Html->css([
     'AdminLTE./plugins/daterangepicker/daterangepicker',
-    'AdminLTE./plugins/toastr/toastr.min'
+    'AdminLTE./plugins/toastr/toastr.min',
+    '/css/font-awesome',
+    '/css/fontmaki'
 ],
 ['block' => 'css']); ?>
 
 <?php $this->Html->script([
     'AdminLTE./plugins/daterangepicker/moment.min',
     'AdminLTE./plugins/daterangepicker/daterangepicker',
-    'AdminLTE./plugins/toastr/toastr.min'
+    'AdminLTE./plugins/toastr/toastr.min',
+    '/js/ol/ext/utils/ol.ordering',
+    '/js/ol/ext/style/fontsymbol',
+    '/js/ol/ext/style/fontmaki.def',
+    '/js/ol/ext/style/fontawesome.def',
+   '/js/ol/ext/style/shadowstyle',
+    '/js/ol/ext/featureanimation/featureanimation',
+    '/js/ol/ext/featureanimation/dropanimation',
+    '/js/ol/ext/featureanimation/bounceanimation',
+      '/js/maptell/notifications.js',
 ],
 ['block' => 'script']); ?>
 
@@ -91,7 +102,7 @@ $(function () {
   }
 
     // show when page load
-      toastr.info('Page Loaded!');
+      
 
       $('#linkButton').click(function() {
          // show when the button is clicked
@@ -109,22 +120,6 @@ $(function () {
     });
 });
 
-  function CenterMap(long, lat,zoom) {
-     console.log("Long: " + long + " Lat: " + lat);
-     map.getView().setCenter(ol.proj.transform([long, lat], 'EPSG:4326', 'EPSG:3857'));
-     map.getView().setZoom(zoom);
-   }
-   var map=  new ol.Map({
-     layers: [
-       new ol.layer.Tile({source: new ol.source.OSM()})
-     ],
-     view: new ol.View({
-       center: [0, 0],
-       zoom: 0
-     }),
-     interactions: ol.interaction.defaults({mouseWheelZoom:false}),
-     target: 'map'
-   });
-   CenterMap(78.5,25.6,8);
+  
 </script>
 <?php $this->end(); ?>
