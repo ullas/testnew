@@ -54,7 +54,6 @@
                 </select>
               </div>
               <!-- /.form-group -->
-
               <div class="form-group col-md-4">
                 <div class="input-group" style="float:left;padding-top:7px;padding-left:10px">
                   <div class="input-group-btn">
