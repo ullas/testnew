@@ -83,7 +83,7 @@
 <?php echo $this->Html->script('AdminLTE./plugins/fastclick/fastclick'); ?>
 
 
-<?php echo $this->Html->script('ol/ol-debug'); ?>
+<?php echo $this->Html->script('ol/ol'); ?>
 
 <!-- AdminLTE for demo purposes -->
 <?php echo $this->fetch('script'); ?>
@@ -95,7 +95,7 @@
             alwaysVisible: false,
             size: "3px"
         }).css("width", "100%");
-
+       
         var a = $('a[href="<?php echo $this->request->webroot . $this->request->url ?>"]');
         if (!a.parent().hasClass('treeview')) {
             a.parent().addClass('active').parents('.treeview').addClass('active');
@@ -118,6 +118,7 @@
                  }
            });
     });
+     $('body').removeClass('sidebar-expanded-on-hover').addClass('sidebar-collapse');
 </script>
 <!-- AdminLTE App -->
 <?php echo $this->Html->script('AdminLTE.AdminLTE.min'); ?>
