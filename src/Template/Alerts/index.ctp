@@ -6,6 +6,23 @@
 .nopadding{
   padding:0
 }
+.mptl-download{
+	display: block;
+	margin: 1px;
+	padding-top: 4px;
+	color: #fff;
+	font-size: 1.14em;
+	font-weight: 700;
+	text-decoration: none;
+	text-align: center;
+	height: 1.375em;
+	width: 1.375em;
+	line-height: .4em;
+	background-color: rgba(0,60,136,.5);
+	border: none;
+	border-radius: 2px
+	
+}
 </style>
 <!-- Content Header (Page header) -->
 <section >
@@ -113,8 +130,9 @@
 '/js/ol/ext/control/overview',
 '/js/ol/ext/control/controlbar',
 '/js/ol/ext/control/togglecontrol',
+'/js/ol/ext/control/linkcontrol',
 '/js/ol/ext/layer/getpreview',
-'/js/ol/ext/utils/jspdfmin',
+'/js/ol/ext/utils/jspdf.min',
 '/js/ol/ext/utils/jQExportMap',
 '/js/maptell/notifications.js',
 

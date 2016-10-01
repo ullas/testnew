@@ -224,7 +224,7 @@ for(var i=0;i<data.length/2;i+=2){
     view: new ol.View({
         center: path[2],
         zoom: 12,
-        minZoom: 2,
+        minZoom: 3,
         maxZoom: 20
     }),
 	layers: [
@@ -273,11 +273,11 @@ for(var i=0;i<data.length/2;i+=2){
      
      var ov = new ol.control.Overview(
 			{	layers: ovlayer,
-				minZoom: 8,
+				minZoom: 1,
 				maxZoom: 12,
 				rotation: true,
 				align: 'top-left',
-				panAnimation: true,
+				panAnimation: false,
 				elasticPan: true
 			});
 		map.addControl(ov);
@@ -287,14 +287,12 @@ for(var i=0;i<data.length/2;i+=2){
 		map.addControl(mainbar);
 		
 		// Add a custom push button with onToggle function
-		mainbar.addControl ( new ol.control.Toggle(
-				{	html: '<i class="fa fa-file-pdf-o"></i>',
-					title: "Save as PDF",
-					className: "noToggle",
-					onToggle: function(active)
-						{	if (active) alert("Hello, I'm active"); 
-							else alert("Hello, I'm not active"); 
-						}
+		mainbar.addControl ( new ol.control.Link(
+				{	id: 'export-pdf',
+					download: "map.pdf",
+					target: "_new",
+					text:'<i class="fa fa-download"></i>'
+					
 				}));
 		mainbar.addControl ( new ol.control.Toggle(
 				{	html: '<i class="fa fa-envelope-o"></i>',
@@ -305,17 +303,7 @@ for(var i=0;i<data.length/2;i+=2){
 							else alert("Hello, I'm not active"); 
 						}
 				}));
-		// Add a save button with on active event
-		var save = new ol.control.Toggle(
-				{	html: '<i class="fa fa-download"></i>',
-					title: "Save",
-					className: "noToggle"
-				});
-		mainbar.addControl ( save );
-		save.on("change:active", function(e)
-		{	var json= new ol.format.GeoJSON().writeFeatures(vector.getSource().getFeatures());
-			$("#export").text(json);
-		});
+		
 		mainbar.setPosition("top");
      
     }

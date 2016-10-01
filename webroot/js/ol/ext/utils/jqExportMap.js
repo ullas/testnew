@@ -88,5 +88,5 @@ $.fn.exportMap = function(map, options)
 
 /** Export PNG / JPEG */
 $(document).ready(function()
-{	$("a[download]").exportMap(map);
+{	//$("a[download]").exportMap(map);
 });
