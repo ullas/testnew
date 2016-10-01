@@ -118,13 +118,13 @@
                  }
            });
             $('body').removeClass('sidebar-expanded-on-hover').addClass('sidebar-collapse');
-            if(map){
+            if(typeof(map)=='object'){
         	   resizeMap();
-           }
+             }
            
            $(".sidebar-toggle").click(function(){
            	  
-           	  if(map){
+           	  if(typeof(map)=='object'){
         	     
         	      resizeMap();
               }

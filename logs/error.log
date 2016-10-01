@@ -15313,3 +15313,28 @@ Cake\Http\Server::run() - CORE/src/Http/Server.php, line 82
 
 
 
+2016-10-01 07:25:20 Error: [ParseError] syntax error, unexpected '$expr' (T_VARIABLE)
+Request URL: /tracking/
+Referer URL: http://localhost:8765/vehicles
+Stack Trace:
+#0 /Users/maptell/testgit/vendor/composer/ClassLoader.php(301): Composer\Autoload\includeFile('/Users/maptell/...')
+#1 [internal function]: Composer\Autoload\ClassLoader->loadClass('App\\Controller\\...')
+#2 [internal function]: spl_autoload_call('App\\Controller\\...')
+#3 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Core/App.php(152): class_exists('App\\Controller\\...')
+#4 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Core/App.php(64): Cake\Core\App::_classExistsInBase('\\Controller\\Tra...', 'App')
+#5 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Http/ControllerFactory.php(70): Cake\Core\App::className('Tracking', 'Controller', 'Controller')
+#6 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Http/ActionDispatcher.php(95): Cake\Http\ControllerFactory->create(Object(Cake\Network\Request), Object(Cake\Network\Response))
+#7 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Http/BaseApplication.php(83): Cake\Http\ActionDispatcher->dispatch(Object(Cake\Network\Request), Object(Cake\Network\Response))
+#8 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Http/Runner.php(65): Cake\Http\BaseApplication->__invoke(Object(Zend\Diactoros\ServerRequest), Object(Zend\Diactoros\Response), Object(Cake\Http\Runner))
+#9 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Routing/Middleware/RoutingMiddleware.php(52): Cake\Http\Runner->__invoke(Object(Zend\Diactoros\ServerRequest), Object(Zend\Diactoros\Response))
+#10 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Http/Runner.php(65): Cake\Routing\Middleware\RoutingMiddleware->__invoke(Object(Zend\Diactoros\ServerRequest), Object(Zend\Diactoros\Response), Object(Cake\Http\Runner))
+#11 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Routing/Middleware/AssetMiddleware.php(88): Cake\Http\Runner->__invoke(Object(Zend\Diactoros\ServerRequest), Object(Zend\Diactoros\Response))
+#12 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Http/Runner.php(65): Cake\Routing\Middleware\AssetMiddleware->__invoke(Object(Zend\Diactoros\ServerRequest), Object(Zend\Diactoros\Response), Object(Cake\Http\Runner))
+#13 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Error/Middleware/ErrorHandlerMiddleware.php(51): Cake\Http\Runner->__invoke(Object(Zend\Diactoros\ServerRequest), Object(Zend\Diactoros\Response))
+#14 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Http/Runner.php(65): Cake\Error\Middleware\ErrorHandlerMiddleware->__invoke(Object(Zend\Diactoros\ServerRequest), Object(Zend\Diactoros\Response), Object(Cake\Http\Runner))
+#15 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Http/Runner.php(51): Cake\Http\Runner->__invoke(Object(Zend\Diactoros\ServerRequest), Object(Zend\Diactoros\Response))
+#16 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Http/Server.php(82): Cake\Http\Runner->run(Object(Cake\Http\MiddlewareQueue), Object(Zend\Diactoros\ServerRequest), Object(Zend\Diactoros\Response))
+#17 /Users/maptell/testgit/webroot/index.php(37): Cake\Http\Server->run()
+#18 {main}
+
+

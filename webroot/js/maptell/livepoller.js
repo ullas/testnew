@@ -64,7 +64,7 @@ function initMap(p,q)
             })
           })
         ],
-        interactions: ol.interaction.defaults({mouseWheelZoom:true}),
+        interactions: ol.interaction.defaults({mouseWheelZoom:false}),
         controls: ol.control.defaults({
           attributionOptions: /** @type {olx.control.AttributionOptions} */ ({
             collapsible: false
@@ -73,7 +73,7 @@ function initMap(p,q)
         target: 'map',
         view: new ol.View({
           center: getPointFromLongLat(p,q),
-          zoom: 3
+          zoom: 4
         })
       });
 
