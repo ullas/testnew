@@ -117,8 +117,22 @@
                      $(this).text("");
                  }
            });
+            $('body').removeClass('sidebar-expanded-on-hover').addClass('sidebar-collapse');
+            if(map){
+        	   resizeMap();
+           }
+           
+           $(".sidebar-toggle").click(function(){
+           	  
+           	  if(map){
+        	     
+        	      resizeMap();
+              }
+           	
+           });
     });
-     $('body').removeClass('sidebar-expanded-on-hover').addClass('sidebar-collapse');
+    
+    
 </script>
 <!-- AdminLTE App -->
 <?php echo $this->Html->script('AdminLTE.AdminLTE.min'); ?>

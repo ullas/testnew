@@ -41,8 +41,8 @@ class TrackingobjectsFixture extends TestFixture
             'id' => 1,
             'name' => 'Lorem ipsum dolor sit amet',
             'assettype_id' => 1,
-            'created_date' => 1472711694,
-            'modifield_date' => 1472711694,
+            'created_date' => 1475229116,
+            'modifield_date' => 1475229116,
             'public_asset' => 1,
             'is_active' => 1,
             'customer_id' => 1

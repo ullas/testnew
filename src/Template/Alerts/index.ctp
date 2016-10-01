@@ -6,6 +6,23 @@
 .nopadding{
   padding:0
 }
+.mptl-download{
+	display: block;
+	margin: 1px;
+	padding-top: 4px;
+	color: #fff;
+	font-size: 1.14em;
+	font-weight: 700;
+	text-decoration: none;
+	text-align: center;
+	height: 1.375em;
+	width: 1.375em;
+	line-height: .4em;
+	background-color: rgba(0,60,136,.5);
+	border: none;
+	border-radius: 2px
+	
+}
 </style>
 <!-- Content Header (Page header) -->
 <section >
@@ -23,7 +40,7 @@
                 </div>
               </div>
               <!-- /.form group -->
-              <div class="form-group col-md-3" style="float:left;padding-right:0;padding-top:7px;padding-left:10px">
+              <div class="form-group col-md-3" style="padding-right:0;padding-top:7px;padding-left:10px margin-left:10px">
                 <select class="form-control select2" multiple="multiple">
                   <option value="0">All</option>
 		             <option value="10">Stop</option>
@@ -59,10 +76,11 @@
                   <div class="input-group-btn">
                      <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="true">Select Group
                        <span class="fa fa-caret-down"></span></button>
-                     <ul class="dropdown-menu">
-                       <li><a href="#">Aerofreight</a></li>
-                       <li><a href="#">Aero Group</a></li>
-                       <li><a href="#">Volvo Trucks</a></li>
+                     <ul class="dropdown-menu mptl-group">
+                       <?php foreach ($groups as $object): ?>
+                           <li><a href="#"> <?php echo $object ?></a></li>
+                       
+                        <?php endforeach; ?>
                      </ul>
                    </div>
                    <!-- /btn-group -->
@@ -84,80 +102,102 @@
 </section>
 <!-- /.content -->
 <?php $this->Html->css([
-    'AdminLTE./plugins/daterangepicker/daterangepicker',
-    'AdminLTE./plugins/toastr/toastr.min',
-    '/css/font-awesome',
-    '/css/fontmaki'
+'AdminLTE./plugins/daterangepicker/daterangepicker',
+'AdminLTE./plugins/toastr/toastr.min',
+'/css/font-awesome',
+'/css/fontmaki',
+'/js/ol/ext/control/overview',
+'/js/ol/ext/control/controlbar',
+'/js/ol/ext/control/layerswitcherimagecontrol'
 ],
 ['block' => 'css']); ?>
 
 <?php $this->Html->script([
-    'AdminLTE./plugins/daterangepicker/moment.min',
-    'AdminLTE./plugins/daterangepicker/daterangepicker',
-    'AdminLTE./plugins/toastr/toastr.min',
-    '/js/ol/ext/utils/ol.ordering',
-    '/js/ol/ext/style/fontsymbol',
-    '/js/ol/ext/style/fontmaki.def',
-    '/js/ol/ext/style/fontawesome.def',
-   '/js/ol/ext/style/shadowstyle',
-    '/js/ol/ext/featureanimation/featureanimation',
-    '/js/ol/ext/featureanimation/dropanimation',
-    '/js/ol/ext/featureanimation/bounceanimation',
-      '/js/maptell/notifications.js',
-    'AdminLTE./plugins/select2/select2.full.min',
-    'AdminLTE./plugins/toastr/toastr.min'
+'AdminLTE./plugins/daterangepicker/moment.min',
+'AdminLTE./plugins/daterangepicker/daterangepicker',
+'AdminLTE./plugins/toastr/toastr.min',
+'/js/ol/ext/utils/ol.ordering',
+'/js/ol/ext/style/fontsymbol',
+'/js/ol/ext/style/fontmaki.def',
+'/js/ol/ext/style/fontawesome.def',
+'/js/ol/ext/style/shadowstyle',
+'/js/ol/ext/featureanimation/featureanimation',
+'/js/ol/ext/featureanimation/dropanimation',
+'/js/ol/ext/featureanimation/throwanimation',
+'/js/ol/ext/featureanimation/bounceanimation',
+'/js/ol/ext/control/layerswitchercontrol',
+'/js/ol/ext/control/layerswitcherimagecontrol',
+'/js/ol/ext/control/overview',
+'/js/ol/ext/control/controlbar',
+'/js/ol/ext/control/togglecontrol',
+'/js/ol/ext/control/linkcontrol',
+'/js/ol/ext/layer/getpreview',
+'/js/ol/ext/utils/jspdf.min',
+'/js/ol/ext/utils/jQExportMap',
+'/js/maptell/notifications.js',
+
+'AdminLTE./plugins/select2/select2.full.min',
+'AdminLTE./plugins/toastr/toastr.min'
 ],
 ['block' => 'script']); ?>
 
-<?php $this->start('scriptBotton'); ?>
+<?php $this -> start('scriptBotton'); ?>
 <script>
-  function resizeMap()
-{
-}
-$(function () {
+	function resizeMap() {
+	}
+   
+	$(function() {
+		$(".select2").select2({
+			placeholder : "Select Alert Type",
+			allowClear : true
+		});
+		toastr.options = {
+			"closeButton" : true,
+			"debug" : false,
+			"newestOnTop" : true,
+			"progressBar" : false,
+			"positionClass" : "toast-bottom-center",
+			"preventDuplicates" : false,
+			"onclick" : null,
+			"showDuration" : "300",
+			"hideDuration" : "1000",
+			"timeOut" : "5000",
+			"extendedTimeOut" : "1000",
+			"showEasing" : "swing",
+			"hideEasing" : "linear",
+			"showMethod" : "fadeIn",
+			"hideMethod" : "fadeOut"
+		}
+		// show when page load
 
-  $(".select2").select2({
-    placeholder: "Select Alert Type",
-    allowClear: true
-  });
+		
+		//Date range picker with time picker
+		$('input[id="alertdatetimerange"]').daterangepicker({
+			timePicker : true,
+			timePickerIncrement : 10,
+			locale : {
+				format : 'DD/MM/YYYY h:mm A'
+			}
+		});
+		
+		
+	    $(".mptl-group li a").click(function(){
+                 group= $(this).text();
+                 
+        });
+		
 
-  toastr.options = {
-    "closeButton": true,
-    "debug": false,
-    "newestOnTop": true,
-    "progressBar": false,
-    "positionClass": "toast-bottom-center",
-    "preventDuplicates": false,
-    "onclick": null,
-    "showDuration": "300",
-    "hideDuration": "1000",
-    "timeOut": "5000",
-    "extendedTimeOut": "1000",
-    "showEasing": "swing",
-    "hideEasing": "linear",
-    "showMethod": "fadeIn",
-    "hideMethod": "fadeOut"
-  }
+	});
 
-    // show when page load
-      
+	function resizeMap() {
 
-      $('#linkButton').click(function() {
-         // show when the button is clicked
-         toastr.error('Harsh breaking from vehicle KL 01 BA 7478.');
+		map.removeLayer(vector);
+		counter = 1;
+		setTimeout(function() {
+			map.updateSize();
+			map.addLayer(vector);
+		}, 2000);
 
-      });
-
-//Date range picker with time picker
-  $('input[id="alertdatetimerange"]').daterangepicker({
-    timePicker: true,
-    timePickerIncrement: 10,
-    locale: {
-        format: 'DD/MM/YYYY h:mm A'
-      }
-    });
-});
-
-  
+	}
 </script>
-<?php $this->end(); ?>
+<?php $this -> end(); ?>

@@ -23,8 +23,7 @@ function resizeMap()
 	 stime=0;
 	var poll_active=0;
     setTimeout( function() { map.updateSize();map.addLayer(clusterLayer);}, 2000);
-    
-	
+ 
 }
 
 function selectTableItem(name,act){

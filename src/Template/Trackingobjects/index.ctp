@@ -4,10 +4,14 @@
         <li><?= $this->Html->link(__('New Trackingobject'), ['action' => 'add']) ?></li>
         <li><?= $this->Html->link(__('List Assettypes'), ['controller' => 'Assettypes', 'action' => 'index']) ?></li>
         <li><?= $this->Html->link(__('New Assettype'), ['controller' => 'Assettypes', 'action' => 'add']) ?></li>
+        <li><?= $this->Html->link(__('List Customers'), ['controller' => 'Customers', 'action' => 'index']) ?></li>
+        <li><?= $this->Html->link(__('New Customer'), ['controller' => 'Customers', 'action' => 'add']) ?></li>
         <li><?= $this->Html->link(__('List Gpsdata'), ['controller' => 'Gpsdata', 'action' => 'index']) ?></li>
         <li><?= $this->Html->link(__('New Gpsdata'), ['controller' => 'Gpsdata', 'action' => 'add']) ?></li>
         <li><?= $this->Html->link(__('List Vehicles'), ['controller' => 'Vehicles', 'action' => 'index']) ?></li>
         <li><?= $this->Html->link(__('New Vehicle'), ['controller' => 'Vehicles', 'action' => 'add']) ?></li>
+        <li><?= $this->Html->link(__('List Groups'), ['controller' => 'Groups', 'action' => 'index']) ?></li>
+        <li><?= $this->Html->link(__('New Group'), ['controller' => 'Groups', 'action' => 'add']) ?></li>
     </ul>
 </nav>
 <div class="trackingobjects index large-9 medium-8 columns content">
@@ -36,7 +40,7 @@
                 <td><?= h($trackingobject->modifield_date) ?></td>
                 <td><?= h($trackingobject->public_asset) ?></td>
                 <td><?= h($trackingobject->is_active) ?></td>
-                <td><?= $this->Number->format($trackingobject->customer_id) ?></td>
+                <td><?= $trackingobject->has('customer') ? $this->Html->link($trackingobject->customer->name, ['controller' => 'Customers', 'action' => 'view', $trackingobject->customer->id]) : '' ?></td>
                 <td class="actions">
                     <?= $this->Html->link(__('View'), ['action' => 'view', $trackingobject->id]) ?>
                     <?= $this->Html->link(__('Edit'), ['action' => 'edit', $trackingobject->id]) ?>

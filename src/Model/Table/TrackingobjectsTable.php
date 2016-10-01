@@ -11,8 +11,16 @@ use Cake\Validation\Validator;
  *
  * @property \Cake\ORM\Association\BelongsTo $Assettypes
  * @property \Cake\ORM\Association\BelongsTo $Customers
+ * @property \Cake\ORM\Association\HasMany $Alerts
+ * @property \Cake\ORM\Association\HasMany $Assets
+ * @property \Cake\ORM\Association\HasMany $Fences
  * @property \Cake\ORM\Association\HasMany $Gpsdata
+ * @property \Cake\ORM\Association\HasMany $Jobs
+ * @property \Cake\ORM\Association\HasMany $People
+ * @property \Cake\ORM\Association\HasMany $Routes
+ * @property \Cake\ORM\Association\HasMany $Tracking
  * @property \Cake\ORM\Association\HasMany $Vehicles
+ * @property \Cake\ORM\Association\BelongsToMany $Groups
  *
  * @method \App\Model\Entity\Trackingobject get($primaryKey, $options = [])
  * @method \App\Model\Entity\Trackingobject newEntity($data = null, array $options = [])
@@ -45,13 +53,38 @@ class TrackingobjectsTable extends Table
         $this->belongsTo('Customers', [
             'foreignKey' => 'customer_id'
         ]);
+        $this->hasMany('Alerts', [
+            'foreignKey' => 'trackingobject_id'
+        ]);
+        $this->hasMany('Assets', [
+            'foreignKey' => 'trackingobject_id'
+        ]);
+        $this->hasMany('Fences', [
+            'foreignKey' => 'trackingobject_id'
+        ]);
         $this->hasMany('Gpsdata', [
+            'foreignKey' => 'trackingobject_id'
+        ]);
+        $this->hasMany('Jobs', [
+            'foreignKey' => 'trackingobject_id'
+        ]);
+        $this->hasMany('People', [
+            'foreignKey' => 'trackingobject_id'
+        ]);
+        $this->hasMany('Routes', [
+            'foreignKey' => 'trackingobject_id'
+        ]);
+        $this->hasMany('Tracking', [
             'foreignKey' => 'trackingobject_id'
         ]);
         $this->hasMany('Vehicles', [
             'foreignKey' => 'trackingobject_id'
         ]);
-		//$this->addBehavior('CustomerStamp');
+        $this->belongsToMany('Groups', [
+            'foreignKey' => 'trackingobject_id',
+            'targetForeignKey' => 'group_id',
+            'joinTable' => 'trackingobjects_groups'
+        ]);
     }
 
     /**
@@ -66,7 +99,7 @@ class TrackingobjectsTable extends Table
             ->allowEmpty('id', 'create');
 
         $validator
-            ->requirePresence('name')
+            ->requirePresence('name', 'create')
             ->notEmpty('name');
 
         $validator
