@@ -6,6 +6,10 @@ var data=[
 25.2872144,	51.5513536,
 25.30716,	51.5577888,
 25.2993776,	51.5519136];
+var theGlyph = "fa-plane";
+var map;
+var vector;
+var vectorSource;
 //a simulated path
 var path = [
     
@@ -16,52 +20,35 @@ for(var i=0;i<data.length/2;i+=2){
   		   
 }
 
+  
+
   function addData()
   {
   	 for(var i=0;i<path.length;i++){
-  	 	 var f= feature_start = new ol.Feature({
-            geometry: new ol.geom.Point(path[i])
+  	 	 var f=  new ol.Feature({
+            geometry: new ol.geom.Point(path[i]),
+            alertcat_id:i
          });
   	 	 addFeatureAt(f);
-  	 	 console.log("Called add Data");
+  	 	
   	 }
   }
-
-	
-	// The map
-	var map = new ol.Map({
-    target: 'map',
-    view: new ol.View({
-        center: path[2],
-        zoom: 12,
-        minZoom: 2,
-        maxZoom: 20
-    }),
-    layers: [
-      new ol.layer.Tile({ 
-          source: new ol.source.OSM(),
-          opacity: 0.6
-      })
-    ]
-});
-
-
-	// Get font glyph
-	var theGlyph = "fa-plane";
-	
-	
-	function addFeatureAt(f)
+  var counter=1;
+  function addLater(f){
+  	
+  	setTimeout(function()
+				{	addFeatureAt(f);
+				}, 100*counter);
+	counter++;
+  }
+  
+  function addFeatureAt(f)
 	{	
 		
-		//var f, r = map.getView().getResolution() *10;
-		////f = new ol.Feature(new ol.geom.Point(p));
-		f.on('click',function(e){
-			
-			
-		});
+		
 		vectorSource.addFeature(f);
 		vector.animateFeature (f, 
-			[	new ol.featureAnimation['Drop'](
+			[	new ol.featureAnimation['Throw'](
 				{	speed: 0.8, 
 					duration:1000-240,
 					side: false
@@ -74,9 +61,58 @@ for(var i=0;i<data.length/2;i+=2){
 			]);
 		
 	}
-
+	
+	function getGlyph(feature)
+	{
+		console.log("Calling..."+feature);
+		var props=feature.getProperties();
+		var id=props['alertcat_id'];
+		if(id){
+			
+			switch(id){
+				
+				case 1:
+				   return "fa-battery-1";
+				   break;
+				case 2:
+				   return "fa-exchange";
+				   break;
+				case 3:
+				   return "fa-unlock";
+				   break;
+				case 4:
+				   return "fa-clock-o";
+				case 4:
+				   return "fa-long-arraow-up";
+				case 5:
+				   return "fa-bed";
+				   
+				 case 6:
+				   return "maki-fuel";
+				   break;
+				case 7:
+				   return "info-circle";
+				   break;
+				case 8:
+				   return "fa-long-arraow-down";
+				   break;
+				
+				   
+				 default :
+				   return "fa-battery-1";
+				   break;
+				  
+				
+				
+			}
+			
+		}
+		  return "fa-flight";
+				   
+	}
+	
 	// Style function
-	function getDelectedFeatureStyle (feature,r)
+	function getSelectedFeatureStyle (feature,r)
 	{	var st= [];
 		// Shadow style
 		var p=new ol.style.Style(
@@ -96,9 +132,9 @@ for(var i=0;i<data.length/2;i+=2){
 					{	image: new ol.style.FontSymbol(
 						{	form: "poi", 
 							gradient: true,
-							glyph: theGlyph, 
-							fontSize: 1,
-							radius: 16, 
+							glyph: getGlyph(feature), 
+							fontSize: 0.5,
+							radius: 20, 
 							//offsetX: -15,
 							rotation: 0,
 							rotateWithView: false,
@@ -122,8 +158,6 @@ for(var i=0;i<data.length/2;i+=2){
 					}));
 			return st;
 	}
-
-	
 	
 	// Style function
 	function getFeatureStyle (feature)
@@ -146,9 +180,9 @@ for(var i=0;i<data.length/2;i+=2){
 					{	image: new ol.style.FontSymbol(
 						{	form: "poi", 
 							gradient: true,
-							glyph: theGlyph, 
-							fontSize: 1,
-							radius: 16, 
+							glyph: getGlyph(feature), 
+							fontSize: 0.5,
+							radius: 20, 
 							//offsetX: -15,
 							rotation: 0,
 							rotateWithView: false,
@@ -180,25 +214,49 @@ for(var i=0;i<data.length/2;i+=2){
 		return s;
 		
 	};
+	
+	
+
+	function init(){
+	// The map
+	 map = new ol.Map({
+    target: 'map',
+    view: new ol.View({
+        center: path[2],
+        zoom: 12,
+        minZoom: 2,
+        maxZoom: 20
+    }),
+	layers: [
+	      new ol.layer.Tile({ 
+	          source: new ol.source.OSM(),
+	          title: "OSM",
+			  baseLayer: true
+	      })
+	    ]
+	});
+
+    map.addControl (new ol.control.LayerSwitcherImage());
 
 	// GeoJSON layer
-	var vectorSource = new ol.source.Vector({
+	 vectorSource = new ol.source.Vector({
         wrapX: false
       });
 
-	var vector = new ol.layer.Vector(
-	{	name: '1914-18',
+	 vector = new ol.layer.Vector(
+	{	name: 'Alerts',
 		
 		source: vectorSource,
 		// y ordering
-		renderOrder: ol.ordering.yOrdering(),
-		style: getStyle()
+	   renderOrder: ol.ordering.yOrdering(),
+		style: getStyle
 	});
 
 	map.addLayer(vector);
+	
     var select_interaction = new ol.interaction.Select({
     	
-    	style: getDelectedFeatureStyle
+    	style: getSelectedFeatureStyle
     });
     
 	select_interaction.getFeatures().on("add", function (e) { 
@@ -207,7 +265,60 @@ for(var i=0;i<data.length/2;i+=2){
      });
 
      map.addInteraction(select_interaction);
+     
+     var ovlayer =
+		[	new ol.layer.Tile({	source: new ol.source.OSM()	})
+			
+		];
+     
+     var ov = new ol.control.Overview(
+			{	layers: ovlayer,
+				minZoom: 8,
+				maxZoom: 12,
+				rotation: true,
+				align: 'top-left',
+				panAnimation: true,
+				elasticPan: true
+			});
+		map.addControl(ov);
+		
+		// Main control bar
+		var mainbar = new ol.control.Bar();
+		map.addControl(mainbar);
+		
+		// Add a custom push button with onToggle function
+		mainbar.addControl ( new ol.control.Toggle(
+				{	html: '<i class="fa fa-file-pdf-o"></i>',
+					title: "Save as PDF",
+					className: "noToggle",
+					onToggle: function(active)
+						{	if (active) alert("Hello, I'm active"); 
+							else alert("Hello, I'm not active"); 
+						}
+				}));
+		mainbar.addControl ( new ol.control.Toggle(
+				{	html: '<i class="fa fa-envelope-o"></i>',
+					title: "e-mail",
+					className: "noToggle",
+					onToggle: function(active)
+						{	if (active) alert("Hello, I'm active"); 
+							else alert("Hello, I'm not active"); 
+						}
+				}));
+		// Add a save button with on active event
+		var save = new ol.control.Toggle(
+				{	html: '<i class="fa fa-download"></i>',
+					title: "Save",
+					className: "noToggle"
+				});
+		mainbar.addControl ( save );
+		save.on("change:active", function(e)
+		{	var json= new ol.format.GeoJSON().writeFeatures(vector.getSource().getFeatures());
+			$("#export").text(json);
+		});
+		mainbar.setPosition("top");
+     
+    }
 
 	// Redraw layer when fonts are loaded
-	$(window).on("load", function(){ console.log("loaded"); addData(); });
-	
+$(window).on("load", function(){ console.log("loaded");  init(); addData() });

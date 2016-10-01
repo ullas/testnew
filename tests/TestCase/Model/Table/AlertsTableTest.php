@@ -1,22 +1,22 @@
 <?php
 namespace App\Test\TestCase\Model\Table;
 
-use App\Model\Table\TrackingobjectsTable;
+use App\Model\Table\AlertsTable;
 use Cake\ORM\TableRegistry;
 use Cake\TestSuite\TestCase;
 
 /**
- * App\Model\Table\TrackingobjectsTable Test Case
+ * App\Model\Table\AlertsTable Test Case
  */
-class TrackingobjectsTableTest extends TestCase
+class AlertsTableTest extends TestCase
 {
 
     /**
      * Test subject
      *
-     * @var \App\Model\Table\TrackingobjectsTable
+     * @var \App\Model\Table\AlertsTable
      */
-    public $Trackingobjects;
+    public $Alerts;
 
     /**
      * Fixtures
@@ -24,6 +24,7 @@ class TrackingobjectsTableTest extends TestCase
      * @var array
      */
     public $fixtures = [
+        'app.alerts',
         'app.trackingobjects',
         'app.assettypes',
         'app.customers',
@@ -122,8 +123,8 @@ class TrackingobjectsTableTest extends TestCase
     public function setUp()
     {
         parent::setUp();
-        $config = TableRegistry::exists('Trackingobjects') ? [] : ['className' => 'App\Model\Table\TrackingobjectsTable'];
-        $this->Trackingobjects = TableRegistry::get('Trackingobjects', $config);
+        $config = TableRegistry::exists('Alerts') ? [] : ['className' => 'App\Model\Table\AlertsTable'];
+        $this->Alerts = TableRegistry::get('Alerts', $config);
     }
 
     /**
@@ -133,7 +134,7 @@ class TrackingobjectsTableTest extends TestCase
      */
     public function tearDown()
     {
-        unset($this->Trackingobjects);
+        unset($this->Alerts);
 
         parent::tearDown();
     }

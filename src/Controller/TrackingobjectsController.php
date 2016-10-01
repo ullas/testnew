@@ -37,7 +37,7 @@ class TrackingobjectsController extends AppController
     public function view($id = null)
     {
         $trackingobject = $this->Trackingobjects->get($id, [
-            'contain' => ['Assettypes', 'Customers', 'Gpsdata', 'Vehicles']
+            'contain' => ['Assettypes', 'Customers', 'Groups', 'Gpsdata', 'Vehicles']
         ]);
 
         $this->set('trackingobject', $trackingobject);
@@ -54,6 +54,7 @@ class TrackingobjectsController extends AppController
         $trackingobject = $this->Trackingobjects->newEntity();
         if ($this->request->is('post')) {
             $trackingobject = $this->Trackingobjects->patchEntity($trackingobject, $this->request->data);
+            $trackingobject['customer_id']=$this->currentuser['customer_id'];
             if ($this->Trackingobjects->save($trackingobject)) {
                 $this->Flash->success(__('The trackingobject has been saved.'));
 
@@ -64,7 +65,8 @@ class TrackingobjectsController extends AppController
         }
         $assettypes = $this->Trackingobjects->Assettypes->find('list', ['limit' => 200]);
         $customers = $this->Trackingobjects->Customers->find('list', ['limit' => 200]);
-        $this->set(compact('trackingobject', 'assettypes', 'customers'));
+        $groups = $this->Trackingobjects->Groups->find('list', ['limit' => 200]);
+        $this->set(compact('trackingobject', 'assettypes', 'customers', 'groups'));
         $this->set('_serialize', ['trackingobject']);
     }
 
@@ -78,7 +80,7 @@ class TrackingobjectsController extends AppController
     public function edit($id = null)
     {
         $trackingobject = $this->Trackingobjects->get($id, [
-            'contain' => []
+            'contain' => ['Groups']
         ]);
         if ($this->request->is(['patch', 'post', 'put'])) {
             $trackingobject = $this->Trackingobjects->patchEntity($trackingobject, $this->request->data);
@@ -92,7 +94,8 @@ class TrackingobjectsController extends AppController
         }
         $assettypes = $this->Trackingobjects->Assettypes->find('list', ['limit' => 200]);
         $customers = $this->Trackingobjects->Customers->find('list', ['limit' => 200]);
-        $this->set(compact('trackingobject', 'assettypes', 'customers'));
+        $groups = $this->Trackingobjects->Groups->find('list', ['limit' => 200]);
+        $this->set(compact('trackingobject', 'assettypes', 'customers', 'groups'));
         $this->set('_serialize', ['trackingobject']);
     }
 

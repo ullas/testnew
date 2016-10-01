@@ -7,10 +7,14 @@
         <li><?= $this->Html->link(__('New Trackingobject'), ['action' => 'add']) ?> </li>
         <li><?= $this->Html->link(__('List Assettypes'), ['controller' => 'Assettypes', 'action' => 'index']) ?> </li>
         <li><?= $this->Html->link(__('New Assettype'), ['controller' => 'Assettypes', 'action' => 'add']) ?> </li>
+        <li><?= $this->Html->link(__('List Customers'), ['controller' => 'Customers', 'action' => 'index']) ?> </li>
+        <li><?= $this->Html->link(__('New Customer'), ['controller' => 'Customers', 'action' => 'add']) ?> </li>
         <li><?= $this->Html->link(__('List Gpsdata'), ['controller' => 'Gpsdata', 'action' => 'index']) ?> </li>
         <li><?= $this->Html->link(__('New Gpsdata'), ['controller' => 'Gpsdata', 'action' => 'add']) ?> </li>
         <li><?= $this->Html->link(__('List Vehicles'), ['controller' => 'Vehicles', 'action' => 'index']) ?> </li>
         <li><?= $this->Html->link(__('New Vehicle'), ['controller' => 'Vehicles', 'action' => 'add']) ?> </li>
+        <li><?= $this->Html->link(__('List Groups'), ['controller' => 'Groups', 'action' => 'index']) ?> </li>
+        <li><?= $this->Html->link(__('New Group'), ['controller' => 'Groups', 'action' => 'add']) ?> </li>
     </ul>
 </nav>
 <div class="trackingobjects view large-9 medium-8 columns content">
@@ -25,12 +29,12 @@
             <td><?= $trackingobject->has('assettype') ? $this->Html->link($trackingobject->assettype->name, ['controller' => 'Assettypes', 'action' => 'view', $trackingobject->assettype->id]) : '' ?></td>
         </tr>
         <tr>
-            <th><?= __('Id') ?></th>
-            <td><?= $this->Number->format($trackingobject->id) ?></td>
+            <th><?= __('Customer') ?></th>
+            <td><?= $trackingobject->has('customer') ? $this->Html->link($trackingobject->customer->name, ['controller' => 'Customers', 'action' => 'view', $trackingobject->customer->id]) : '' ?></td>
         </tr>
         <tr>
-            <th><?= __('Customer Id') ?></th>
-            <td><?= $this->Number->format($trackingobject->customer_id) ?></td>
+            <th><?= __('Id') ?></th>
+            <td><?= $this->Number->format($trackingobject->id) ?></td>
         </tr>
         <tr>
             <th><?= __('Created Date') ?></th>
@@ -96,6 +100,7 @@
                 <th><?= __('Tripdistance') ?></th>
                 <th><?= __('Activesimid') ?></th>
                 <th><?= __('Additionalstat') ?></th>
+                <th><?= __('Updatetime') ?></th>
                 <th class="actions"><?= __('Actions') ?></th>
             </tr>
             <?php foreach ($trackingobject->gpsdata as $gpsdata): ?>
@@ -142,6 +147,7 @@
                 <td><?= h($gpsdata->tripdistance) ?></td>
                 <td><?= h($gpsdata->activesimid) ?></td>
                 <td><?= h($gpsdata->additionalstat) ?></td>
+                <td><?= h($gpsdata->updatetime) ?></td>
                 <td class="actions">
                     <?= $this->Html->link(__('View'), ['controller' => 'Gpsdata', 'action' => 'view', $gpsdata->id]) ?>
                     <?= $this->Html->link(__('Edit'), ['controller' => 'Gpsdata', 'action' => 'edit', $gpsdata->id]) ?>
@@ -167,7 +173,7 @@
                 <th><?= __('Model') ?></th>
                 <th><?= __('Trim') ?></th>
                 <th><?= __('Registationloc') ?></th>
-                <th><?= __('Status') ?></th>
+                <th><?= __('Vehiclestatus Id') ?></th>
                 <th><?= __('Driver Id') ?></th>
                 <th><?= __('Ownership Id') ?></th>
                 <th><?= __('Symbol Id') ?></th>
@@ -178,13 +184,14 @@
                 <th><?= __('Odometer') ?></th>
                 <th><?= __('Trackingobject Id') ?></th>
                 <th><?= __('Description') ?></th>
-                <th><?= __('Purpose Id') ?></th>
                 <th><?= __('Regstate') ?></th>
                 <th><?= __('Color') ?></th>
                 <th><?= __('Bodytype') ?></th>
                 <th><?= __('Bodysubtype') ?></th>
-                <th><?= __('MSRP') ?></th>
+                <th><?= __('Msrp') ?></th>
                 <th><?= __('Photo') ?></th>
+                <th><?= __('Purpose Id') ?></th>
+                <th><?= __('Name') ?></th>
                 <th class="actions"><?= __('Actions') ?></th>
             </tr>
             <?php foreach ($trackingobject->vehicles as $vehicles): ?>
@@ -199,7 +206,7 @@
                 <td><?= h($vehicles->model) ?></td>
                 <td><?= h($vehicles->trim) ?></td>
                 <td><?= h($vehicles->registationloc) ?></td>
-                <td><?= h($vehicles->status) ?></td>
+                <td><?= h($vehicles->vehiclestatus_id) ?></td>
                 <td><?= h($vehicles->driver_id) ?></td>
                 <td><?= h($vehicles->ownership_id) ?></td>
                 <td><?= h($vehicles->symbol_id) ?></td>
@@ -210,17 +217,43 @@
                 <td><?= h($vehicles->odometer) ?></td>
                 <td><?= h($vehicles->trackingobject_id) ?></td>
                 <td><?= h($vehicles->description) ?></td>
-                <td><?= h($vehicles->purpose_id) ?></td>
                 <td><?= h($vehicles->regstate) ?></td>
                 <td><?= h($vehicles->color) ?></td>
                 <td><?= h($vehicles->bodytype) ?></td>
                 <td><?= h($vehicles->bodysubtype) ?></td>
-                <td><?= h($vehicles->MSRP) ?></td>
+                <td><?= h($vehicles->msrp) ?></td>
                 <td><?= h($vehicles->photo) ?></td>
+                <td><?= h($vehicles->purpose_id) ?></td>
+                <td><?= h($vehicles->name) ?></td>
                 <td class="actions">
                     <?= $this->Html->link(__('View'), ['controller' => 'Vehicles', 'action' => 'view', $vehicles->id]) ?>
                     <?= $this->Html->link(__('Edit'), ['controller' => 'Vehicles', 'action' => 'edit', $vehicles->id]) ?>
                     <?= $this->Form->postLink(__('Delete'), ['controller' => 'Vehicles', 'action' => 'delete', $vehicles->id], ['confirm' => __('Are you sure you want to delete # {0}?', $vehicles->id)]) ?>
+                </td>
+            </tr>
+            <?php endforeach; ?>
+        </table>
+        <?php endif; ?>
+    </div>
+    <div class="related">
+        <h4><?= __('Related Groups') ?></h4>
+        <?php if (!empty($trackingobject->groups)): ?>
+        <table cellpadding="0" cellspacing="0">
+            <tr>
+                <th><?= __('Id') ?></th>
+                <th><?= __('Name') ?></th>
+                <th><?= __('Description') ?></th>
+                <th class="actions"><?= __('Actions') ?></th>
+            </tr>
+            <?php foreach ($trackingobject->groups as $groups): ?>
+            <tr>
+                <td><?= h($groups->id) ?></td>
+                <td><?= h($groups->name) ?></td>
+                <td><?= h($groups->description) ?></td>
+                <td class="actions">
+                    <?= $this->Html->link(__('View'), ['controller' => 'Groups', 'action' => 'view', $groups->id]) ?>
+                    <?= $this->Html->link(__('Edit'), ['controller' => 'Groups', 'action' => 'edit', $groups->id]) ?>
+                    <?= $this->Form->postLink(__('Delete'), ['controller' => 'Groups', 'action' => 'delete', $groups->id], ['confirm' => __('Are you sure you want to delete # {0}?', $groups->id)]) ?>
                 </td>
             </tr>
             <?php endforeach; ?>

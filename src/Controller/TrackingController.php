@@ -47,7 +47,7 @@ class TrackingController extends AppController
 		 $cid=$this->loggedinuser['customer_id'];	 
 		 if(strlen($flt)>0){
 		 	
-			$query = $trobjTable->find('all');
+			$query = $trobjTable->find('all')
 			$expr = $query->newExpr()->add("gpstime + interval '05:30'");
 		    $query->select(['id','trackingobjects.name','longitude','latitude','location','gpspwer','gsmsignal','odometer','heading','gpstime'=>$expr,'status'])
 		    ->where("gpsdata.customer_id=$cid and updatetime > $stime and trackingobjects.name ilike '%$flt%'")
