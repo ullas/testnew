@@ -1,13 +1,13 @@
 <?php
   $myTemplates = [
-    'inputContainer' => '<div class="form-group">{{content}}</div>',
+    'inputContainer' => '<div class="form-group">{{content}}<div class="col-sm-offset-3 col-sm-6 style="margin-top:18px">{{help}}</div></div>',
      'label' => '<label class="col-sm-3 control-label" {{attrs}}>{{text}}</label>',
     'input' => '<div class="col-sm-6"><input type="{{type}}" name="{{name}}"{{attrs}}/></div>',
      'select' => '<div class="col-sm-6"><select name="{{name}}"{{attrs}}>{{content}}</select></div>',
      'textarea' => '<div class="col-sm-6"><textarea name="{{name}}"{{attrs}}>{{value}}</textarea></div>'
 ];
 $this->Form->templates($myTemplates);
-
+ 
 ?>
 
 <!-- Content Header (Page header) -->
@@ -36,15 +36,15 @@ $this->Form->templates($myTemplates);
              <div class="form-horizontal">
 
         <?php
-            echo $this->Form->input('vehicle_id', ['options' => $vehicles, 'empty' => true,'class'=>'select2']);
-            echo $this->Form->input('date', ['empty' => true,'class'=>'datemask','type'=>'text']);
-            echo $this->Form->input('odometer');
-            echo $this->Form->input('priceperusnit');
-            echo $this->Form->input('fueltype');
-            echo $this->Form->input('vendor_id',['class'=>'select2']);
-            echo $this->Form->input('ref');
+            echo $this->Form->input('vehicle_id',[ 'options' => $vehicles, 'empty' => true,'class'=>'select2']);
+            echo $this->Form->input('date', ['label'=> 'Date *','empty' => true,'class'=>'datemask','type'=>'text','templateVars' => ['help' => 'YYYY-MM-DD hh:mm A (Ex: 2016-09-09 12:41 pm)']]);
+            echo $this->Form->input('odometer',['label'=> 'Odometer *','empty' => true,'type'=>'text','templateVars' => ['help' => 'Reading at time of fuel-up']]);
+            echo $this->Form->input('priceperusnit',['label'=> 'Price Per Unit','empty' => true,'type'=>'text','templateVars' => ['help' => 'Optional (e.g. 3.989)']]);
+            echo $this->Form->input('fueltype',['label'=>'Fuel Type']);
+            echo $this->Form->input('vendor_id',['options' => $vendors, 'empty' => true,'templateVars' => ['help' => 'Select an existing vendor or enter the name of a new one'],'class'=>'select2']);
+            echo $this->Form->input('ref',['label'=> 'Reference','empty' => true,'type'=>'text','templateVars' => ['help' => 'Optional (e.g. invoice number, transaction ID, etc.)']]);
             echo $this->Form->input('partialfill');
-            echo $this->Form->input('markaspersonal');
+            echo $this->Form->input('markaspersonal',['label'=>'Mark As Personal']);
         ?>
   </div>
  

@@ -18,10 +18,19 @@ if (file_exists($file)) {
             <li><a href="<?php echo $this->Url->build('/dashboard/operations'); ?>"><div class="pull-left image mptl-monitoring"></div>Operations</a></li> 
         </ul>
     </li>
-    <li class="header">MONITORING</li>
-    <li><a href="<?php echo $this->Url->build('/tracking/'); ?>"><i class="fa fa-eye "></i> <span>Tracking</span></a></li>
-    <li><a href="<?php echo $this->Url->build('/tripmonitor'); ?>"><i class="fa fa-desktop "></i> <span>Trip Monitoring</span></a></li>
-   
+    <li class="treeview">
+        <a href="#">
+            <i class="fa fa-eye"></i> <span>Live Monitoring</span>
+            <i class="fa fa-angle-left pull-right"></i>
+        </a>
+            <ul class="treeview-menu">
+            <li><a href="<?php echo $this->Url->build('/tracking/'); ?>"><i class="fa fa-eye "></i> <span>Tracking</span></a></li>
+             <li><a href="<?php echo $this->Url->build('/tripmonitor'); ?>"><i class="fa fa-desktop "></i> <span>Trip Monitoring</span></a></li>
+           </ul>
+        
+    </li>
+    
+    
      <li class="treeview">
         <a href="#">
             <i class="fa fa-history"></i> <span>Logs</span>
@@ -65,23 +74,16 @@ if (file_exists($file)) {
             <li><a href="<?php echo $this->Url->build('/drivers'); ?>"><div class="pull-left image mptl-driver"></div>Drivers </a></li>
         </ul>
     </li>
+    
+    
+    
     <li class="treeview">
         <a href="#">
-            <i class="fa fa-bell-o"></i> <span>Reminders</span>
+            <i class="fa fa-puzzle-piece"></i> <span>Administration</span>
             <i class="fa fa-angle-left pull-right"></i>
         </a>
         <ul class="treeview-menu">
-            <li><a href="<?php echo $this->Url->build('/servicereminders'); ?>"><i class="fa fa-wrench"></i> <span>Service</span></a></li>
-            <li><a href="<?php echo $this->Url->build('/renewalreminders'); ?>"><i class="fa fa-lightbulb-o"></i> <span>Renewal</span></a></li>
-          
-        </ul>
-    </li>
-    
-    <li class="header">ADMINISTRATION</li>
-    
-   <!-- 
-    
-    <li class="treeview">
+            <li class="treeview">
         <a href="#">
             <i class="fa fa-puzzle-piece"></i> <span>Tracking Items</span>
             <i class="fa fa-angle-left pull-right"></i>
@@ -144,24 +146,6 @@ if (file_exists($file)) {
             
         </ul>
     </li>
-     
-    
-    <!--
-    
-    <li>
-        <a href="<?php echo $this->Url->build('/pages/calendar'); ?>">
-            <i class="fa fa-calendar"></i> <span>Alerts</span>
-            <i class="fa fa-angle-left pull-right"></i>
-        </a>
-    </li>
-    
-    <li>
-        <a href="<?php echo $this->Url->build('/pages/calendar'); ?>">
-            <i class="fa fa-calendar"></i> <span>Messages</span>
-            <i class="fa fa-angle-left pull-right"></i>
-        </a>
-    </li>
-    
      <li class="treeview">
         <a href="#">
             <i class="fa fa-map-o"></i> <span>Geography</span>
@@ -174,8 +158,31 @@ if (file_exists($file)) {
             
         </ul>
     </li>
+    <li class="treeview">
+        <a href="#">
+            <i class="fa fa-bell-o"></i> <span>Reminders</span>
+            <i class="fa fa-angle-left pull-right"></i>
+        </a>
+        <ul class="treeview-menu">
+            <li><a href="<?php echo $this->Url->build('/servicereminders'); ?>"><i class="fa fa-wrench"></i> <span>Service</span></a></li>
+            <li><a href="<?php echo $this->Url->build('/renewalreminders'); ?>"><i class="fa fa-lightbulb-o"></i> <span>Renewal</span></a></li>
+          
+        </ul>
+    </li>
+              
     <li><a href="<?php echo $this->Url->build('/vendors'); ?>"><i class="fa fa-book"></i> <span>Vendors</span></a></li>
-    -->
+   
+        </ul>
+    </li>
+    
+    
+    
+    
+    
+    
+   
+    
+   
      <li class="header">REPORTS</li>
     
     <li class="treeview">
@@ -191,9 +198,6 @@ if (file_exists($file)) {
     </li>
     
    
-    
-    <li><a href="<?php echo $this->Url->build('/pages/documentation'); ?>"><i class="fa fa-book"></i> <span>Documentation</span></a></li>
-    
    
 </ul>
 <?php } ?>

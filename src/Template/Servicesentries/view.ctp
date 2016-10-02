@@ -20,7 +20,7 @@
     <table class="vertical-table">
         <tr>
             <th><?= __('Vehicle') ?></th>
-            <td><?= $servicesentry->has('vehicle') ? $this->Html->link($servicesentry->vehicle->id, ['controller' => 'Vehicles', 'action' => 'view', $servicesentry->vehicle->id]) : '' ?></td>
+            <td><?= $servicesentry->has('vehicle') ? $this->Html->link($servicesentry->vehicle->name, ['controller' => 'Vehicles', 'action' => 'view', $servicesentry->vehicle->id]) : '' ?></td>
         </tr>
         <tr>
             <th><?= __('Refer') ?></th>
@@ -49,6 +49,10 @@
         <tr>
             <th><?= __('Tax') ?></th>
             <td><?= $this->Number->format($servicesentry->tax) ?></td>
+        </tr>
+        <tr>
+            <th><?= __('Dateofservice') ?></th>
+            <td><?= h($servicesentry->dateofservice) ?></td>
         </tr>
         <tr>
             <th><?= __('Markasvoid') ?></th>

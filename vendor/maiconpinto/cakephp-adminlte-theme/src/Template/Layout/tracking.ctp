@@ -118,6 +118,20 @@
                      $(this).text("");
                  }
            });
+           
+            $('body').removeClass('sidebar-expanded-on-hover').addClass('sidebar-collapse');
+            if(typeof(map)=='object'){
+        	   resizeMap();
+             }
+           
+           $(".sidebar-toggle").click(function(){
+           	  
+           	  if(typeof(map)=='object'){
+        	     
+        	      resizeMap();
+              }
+           	
+           });
     });
 </script>
 <!-- AdminLTE App -->

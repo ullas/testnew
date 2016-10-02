@@ -227,6 +227,7 @@ for(var i=0;i<data.length/2;i+=2){
         minZoom: 3,
         maxZoom: 20
     }),
+     interactions: ol.interaction.defaults({mouseWheelZoom:false}),
 	layers: [
 	      new ol.layer.Tile({ 
 	          source: new ol.source.OSM(),
