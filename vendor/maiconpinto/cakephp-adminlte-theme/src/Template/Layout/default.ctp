@@ -83,7 +83,7 @@
 <?php echo $this->Html->script('AdminLTE./plugins/fastclick/fastclick'); ?>
 
 
-<?php echo $this->Html->script('ol/ol-debug'); ?>
+<?php echo $this->Html->script('ol/ol'); ?>
 
 <!-- AdminLTE for demo purposes -->
 <?php echo $this->fetch('script'); ?>
