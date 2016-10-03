@@ -119,7 +119,7 @@
                  }
            });
            
-            $('body').removeClass('sidebar-expanded-on-hover').addClass('sidebar-collapse');
+           /* $('body').removeClass('sidebar-expanded-on-hover').addClass('sidebar-collapse');
             if(typeof(map)=='object'){
         	   resizeMap();
              }
@@ -131,7 +131,7 @@
         	      resizeMap();
               }
            	
-           });
+           });*/
     });
 </script>
 <!-- AdminLTE App -->

@@ -122,7 +122,7 @@ ol.control.Overview = function(opt_options)
 				}
 				
 			}
-			self.map_.beforeRender(pan);
+			//self.map_.beforeRender(pan);
 			self.map_.getView().setCenter(evt.coordinate);
 			return false;
 		}
@@ -168,6 +168,7 @@ ol.control.Overview.prototype.setMap = function(map)
 	{	map.getView().on('propertychange', this.setView, this);
 		this.setView();
 	}
+	
 
 };
 

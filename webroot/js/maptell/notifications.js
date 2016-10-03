@@ -46,8 +46,8 @@ for(var i=0;i<data.length/2;i+=2){
 	{	
 		
 		
-		vectorSource.addFeature(f);
-		vector.animateFeature (f, 
+		//vectorSource.addFeature(f);
+		/*vector.animateFeature (f, 
 			[	new ol.featureAnimation['Throw'](
 				{	speed: 0.8, 
 					duration:1000-240,
@@ -58,7 +58,7 @@ for(var i=0;i<data.length/2;i+=2){
 					duration: 1000-240,
 					horizontal: false
 				})
-			]);
+			]);*/
 		
 	}
 	
@@ -237,7 +237,7 @@ for(var i=0;i<data.length/2;i+=2){
 	    ]
 	});
 
-    map.addControl (new ol.control.LayerSwitcherImage());
+   // map.addControl (new ol.control.LayerSwitcherImage());
 
 	// GeoJSON layer
 	 vectorSource = new ol.source.Vector({

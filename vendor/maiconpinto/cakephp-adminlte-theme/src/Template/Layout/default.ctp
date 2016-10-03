@@ -83,7 +83,7 @@
 <?php echo $this->Html->script('AdminLTE./plugins/fastclick/fastclick'); ?>
 
 
-<?php echo $this->Html->script('ol/ol'); ?>
+<?php echo $this->Html->script('ol/ol-debug'); ?>
 
 <!-- AdminLTE for demo purposes -->
 <?php echo $this->fetch('script'); ?>
@@ -117,7 +117,7 @@
                      $(this).text("");
                  }
            });
-            $('body').removeClass('sidebar-expanded-on-hover').addClass('sidebar-collapse');
+          /*  $('body').removeClass('sidebar-expanded-on-hover').addClass('sidebar-collapse');
             if(typeof(map)=='object'){
         	   resizeMap();
              }
@@ -129,7 +129,7 @@
         	      resizeMap();
               }
            	
-           });
+           });*/
     });
     
     
