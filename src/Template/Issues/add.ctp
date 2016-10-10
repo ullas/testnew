@@ -1,10 +1,11 @@
-<
+
 <?php
   $myTemplates = [
-    'inputContainer' => '<div class="form-group">{{content}}</div>',
+    'inputContainer' => '<div class="form-group">{{content}}<div class="col-sm-offset-3 col-sm-6 style="margin-top:18px">{{help}}</div></div>',
      'label' => '<label class="col-sm-3 control-label" {{attrs}}>{{text}}</label>',
     'input' => '<div class="col-sm-6"><input type="{{type}}" name="{{name}}"{{attrs}}/></div>',
      'select' => '<div class="col-sm-6"><select name="{{name}}"{{attrs}}>{{content}}</select></div>',
+     'selectMultiple' => '<div class="col-sm-6"><select name="{{name}}"{{attrs}}>{{content}}</select></div>',
      'textarea' => '<div class="col-sm-6"><textarea name="{{name}}"{{attrs}}>{{value}}</textarea></div>'
 ];
 $this->Form->templates($myTemplates);
@@ -14,20 +15,20 @@ $this->Form->templates($myTemplates);
 <!-- Content Header (Page header) -->
 <section class="content-header">
   <h1>
-    Add Issue
+    Issue
   </h1>
   <ol class="breadcrumb">
   	<li><a href="#"><i class="fa fa-dashboard"></i>Home</a></li>
-    <li><a href="#"> Fleet management </a></li>
-    <li><a href="/Issues/"> Issues</a></li>
+   
+    <li><a href="/Issues"> Issues</a></li>
     <li class="active">Add</li>
   </ol>
 </section>
 
 <!-- Main content -->
 <section class="content">
- <?= $this->Form->create($issue) ?>
-  <div class="row">
+    <?= $this->Form->create($issue) ?>
+   <div class="row">
     
     <div class="col-md-12">
       <div class="nav-tabs-custom">
@@ -36,17 +37,45 @@ $this->Form->templates($myTemplates);
           <div class="active tab-pane" id="details">
              <div class="form-horizontal">
         <?php
-            echo $this->Form->input('vehicle_id', ['options' => $vehicles, 'empty' => true,'class'=>'select2 required','label'=>'Vehicle*']);
-            echo $this->Form->input('reportedon', ['empty' => true,'type'=>'text','class'=>'datemask','label'=>'Reported On *']);
-            echo $this->Form->input('summary',['label'=>'Summary *']);
-            echo $this->Form->input('description',['type'=>'textarea']);
-            echo $this->Form->input('odometer');
-			echo $this->Form->input('tags');
-            echo $this->Form->input('reportedby_id',['label'=>'Reported By','class'=>'select2']);
-            echo $this->Form->input('assignedto_id',['label'=>'Assigned To','class'=>'select2']);
-            
+            echo $this->Form->input('vehicle_id', ['options' => $vehicles, 'empty' => true,'class'=>'select2']);
+                   echo $this->Form->input('reportedon', ['empty' => true,'type'=>'text', 'class'=>'datemask']);
+                   
+                	
+                  echo $this->Form->input('summary');
+
+                    
+                	
+                  echo $this->Form->input('description');
+
+                    
+                	
+                  echo $this->Form->input('odometer');
+
+                    
+                	
+                  echo $this->Form->input('reportedby_id',['class'=>'select2']);
+
+                    
+                	
+                  echo $this->Form->input('tags');
+
+                    
+                   echo $this->Form->input('duedate', ['empty' => true,'type'=>'text', 'class'=>'datemask']);
+                   
+                	
+                  echo $this->Form->input('overdueodometer');
+
+                    
+                	
+                  echo $this->Form->input('markasvoid');
+
+                    
+            echo $this->Form->input('workorder_id', ['options' => $workorders, 'empty' => true,'class'=>'select2']);
+            echo $this->Form->input('serviceentry_id', ['options' => $servicesentries, 'empty' => true,'class'=>'select2']);
+            echo $this->Form->input('addresses._ids', ['options' => $addresses,'class'=>'select2','label'=>'Assigned To']);
+	
         ?>
-      </div>
+    </div>
  
           </div>
           <!-- /.tab-pane -->
@@ -71,7 +100,6 @@ $this->Form->templates($myTemplates);
  <?= $this->Form->end() ?>
 </section>
 <!-- /.content -->
-
 <?php
 $this->Html->css([
     'AdminLTE./plugins/daterangepicker/daterangepicker-bs3',
@@ -87,7 +115,6 @@ $this->Html->script([
   'AdminLTE./plugins/input-mask/jquery.inputmask',
   'AdminLTE./plugins/input-mask/jquery.inputmask.date.extensions',
   'AdminLTE./plugins/input-mask/jquery.inputmask.extensions',
-  'AdminLTE./plugins/timepicker/bootstrap-timepicker.min',
   '/js/moment.min.js',
   'AdminLTE./plugins/daterangepicker/daterangepicker',
   'AdminLTE./plugins/colorpicker/bootstrap-colorpicker.min',
@@ -100,12 +127,13 @@ $this->Html->script([
 <script>
   $(function () {
     //Initialize Select2 Elements
-    $(".select2").select2();
-    $(".datemask").inputmask("yyyy/mm/dd", {"placeholder": "yyyy/mm/dd"});
+   $(".select2").select2({ width: '100%' });
+   $(".datemask").inputmask("yyyy/mm/dd", {"placeholder": "yyyy/mm/dd"});
     $(".timepicker").timepicker({
       showInputs: false
     });
 
   });
 </script>
-<?php $this->end(); ?>      	  
+<?php $this->end(); ?>
+       

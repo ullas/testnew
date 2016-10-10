@@ -13,13 +13,21 @@ use Cake\ORM\Entity;
  * @property string $description
  * @property float $odometer
  * @property int $reportedby_id
- * @property int $assignedto_id
  * @property string $tags
+ * @property \Cake\I18n\Time $duedate
+ * @property int $overdueodometer
+ * @property bool $markasvoid
+ * @property int $customer_id
+ * @property int $workorder_id
+ * @property int $serviceentry_id
  *
  * @property \App\Model\Entity\Vehicle $vehicle
  * @property \App\Model\Entity\Reportedby $reportedby
- * @property \App\Model\Entity\Assignedto $assignedto
+ * @property \App\Model\Entity\Customer $customer
+ * @property \App\Model\Entity\Workorder $workorder
+ * @property \App\Model\Entity\Servicesentry $servicesentry
  * @property \App\Model\Entity\Issuedocument[] $issuedocuments
+ * @property \App\Model\Entity\Address[] $addresses
  */
 class Issue extends Entity
 {

@@ -7,25 +7,49 @@ use App\Controller\AppController;
  * Issues Controller
  *
  * @property \App\Model\Table\IssuesTable $Issues
+ * @property \App\Controller\Component\DatatableComponent $Datatable
  */
 class IssuesController extends AppController
 {
+
+    /**
+     * Components
+     *
+     * @var array
+     */
+    public $components = ['Datatable'];
 
     /**
      * Index method
      *
      * @return \Cake\Network\Response|null
      */
-    public function index()
-    {
-        $this->paginate = [
-            'contain' => ['Vehicles', 'Reportedby', 'Assignedtos']
-        ];
-        $issues = $this->paginate($this->Issues);
-
-        $this->set(compact('issues'));
-        $this->set('_serialize', ['issues']);
-    }
+    public function index() {
+    	
+		
+	}
+	public function ajaxdata() {
+        $this->autoRender= false;
+      
+          
+       $this->loadModel('CreateConfigs');
+       $dbout=$this->CreateConfigs->find('all')->where(['table_name' => 'Issues'])->order(['id' => 'ASC'])->toArray();
+        
+        $fields = array();
+        foreach($dbout as $value){
+            $fields[] = array("name" => $value['field_name'] , "type" => $value['datatype'] );
+			
+        }
+      
+		                           
+        $output =$this->Datatable->getView($fields,['Vehicles', 'Reportedby', 'Customers', 'Workorders', 'Servicesentries']);
+        $out =json_encode($output);  
+	
+		$this->response->body($out);
+	    return $this->response;
+	     
+             
+ }  
 
     /**
      * View method
@@ -37,7 +61,7 @@ class IssuesController extends AppController
     public function view($id = null)
     {
         $issue = $this->Issues->get($id, [
-            'contain' => ['Vehicles', 'Reportedby', 'Assignedtos', 'Issuedocuments']
+            'contain' => ['Vehicles', 'Reportedby', 'Customers', 'Workorders', 'Servicesentries', 'Addresses', 'Issuedocuments']
         ]);
 
         $this->set('issue', $issue);
@@ -54,6 +78,7 @@ class IssuesController extends AppController
         $issue = $this->Issues->newEntity();
         if ($this->request->is('post')) {
             $issue = $this->Issues->patchEntity($issue, $this->request->data);
+            $issue['customer_id']=$this->currentuser['customer_id'];
             if ($this->Issues->save($issue)) {
                 $this->Flash->success(__('The issue has been saved.'));
 
@@ -62,12 +87,26 @@ class IssuesController extends AppController
                 $this->Flash->error(__('The issue could not be saved. Please, try again.'));
             }
         }
-        $vehicles = $this->Issues->Vehicles->find('list', ['limit' => 200]);
-		//print_r($vehicles);
-		//$vehicles = $this->Issues->Vehicles->getVehicleNames();
-        $reportedby = $this->Issues->Reportedby->find('list', ['limit' => 200]);
-        $assignedtos = $this->Issues->Assignedtos->find('list', ['limit' => 200]);
-        $this->set(compact('issue', 'vehicles', 'reportedby', 'assignedtos'));
+        
+        $vehicles = $this->Issues->Vehicles->find('list', ['limit' => 200])->where("customer_id=".$this->loggedinuser['customer_id'])->where("customer_id=0");
+        
+                
+        $reportedby = $this->Issues->Reportedby->find('list', ['limit' => 200])->where("customer_id=".$this->loggedinuser['customer_id'])->where("customer_id=0");
+        
+                        
+          $customers = $this->Issues->Customers->find('list', ['limit' => 200])->where("id=".$this->loggedinuser['customer_id']);
+      
+        
+                
+        $workorders = $this->Issues->Workorders->find('list', ['limit' => 200])->where("customer_id=".$this->loggedinuser['customer_id'])->where("customer_id=0");
+        
+                
+        $servicesentries = $this->Issues->Servicesentries->find('list', ['limit' => 200])->where("customer_id=".$this->loggedinuser['customer_id'])->where("customer_id=0");
+        
+                
+        $addresses = $this->Issues->Addresses->find('list', ['limit' => 200])->where("customer_id=".$this->loggedinuser['customer_id'])->where("customer_id=0");
+        
+                $this->set(compact('issue', 'vehicles', 'reportedby', 'customers', 'workorders', 'servicesentries', 'addresses'));
         $this->set('_serialize', ['issue']);
     }
 
@@ -81,10 +120,11 @@ class IssuesController extends AppController
     public function edit($id = null)
     {
         $issue = $this->Issues->get($id, [
-            'contain' => []
+            'contain' => ['Addresses']
         ]);
         if ($this->request->is(['patch', 'post', 'put'])) {
             $issue = $this->Issues->patchEntity($issue, $this->request->data);
+             $issue['customer_id']=$this->currentuser['customer_id'];
             if ($this->Issues->save($issue)) {
                 $this->Flash->success(__('The issue has been saved.'));
 
@@ -93,10 +133,13 @@ class IssuesController extends AppController
                 $this->Flash->error(__('The issue could not be saved. Please, try again.'));
             }
         }
-        $vehicles = $this->Issues->Vehicles->getVehicleNames();
+        $vehicles = $this->Issues->Vehicles->find('list', ['limit' => 200]);
         $reportedby = $this->Issues->Reportedby->find('list', ['limit' => 200]);
-        $assignedtos = $this->Issues->Assignedtos->find('list', ['limit' => 200]);
-        $this->set(compact('issue', 'vehicles', 'reportedby', 'assignedtos'));
+        $customers = $this->Issues->Customers->find('list', ['limit' => 200]);
+        $workorders = $this->Issues->Workorders->find('list', ['limit' => 200]);
+        $servicesentries = $this->Issues->Servicesentries->find('list', ['limit' => 200]);
+        $addresses = $this->Issues->Addresses->find('list', ['limit' => 200]);
+        $this->set(compact('issue', 'vehicles', 'reportedby', 'customers', 'workorders', 'servicesentries', 'addresses'));
         $this->set('_serialize', ['issue']);
     }
 

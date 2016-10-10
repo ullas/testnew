@@ -25,38 +25,44 @@ if (isset($modelObject) && $modelObject->behaviors()->has('Tree')) {
     });
 }
 ?>
-<nav class="large-3 medium-4 columns" id="actions-sidebar">
-    <ul class="side-nav">
-        <li class="heading"><CakePHPBakeOpenTag= __('Actions') CakePHPBakeCloseTag></li>
-<?php if (strpos($action, 'add') === false): ?>
-        <li><CakePHPBakeOpenTag= $this->Form->postLink(
-                __('Delete'),
-                ['action' => 'delete', $<?= $singularVar ?>-><?= $primaryKey[0] ?>],
-                ['confirm' => __('Are you sure you want to delete # {0}?', $<?= $singularVar ?>-><?= $primaryKey[0] ?>)]
-            )
-        CakePHPBakeCloseTag></li>
-<?php endif; ?>
-        <li><CakePHPBakeOpenTag= $this->Html->link(__('List <?= $pluralHumanName ?>'), ['action' => 'index']) CakePHPBakeCloseTag></li>
-<?php
-        $done = [];
-        foreach ($associations as $type => $data) {
-            foreach ($data as $alias => $details) {
-                if ($details['controller'] !== $this->name && !in_array($details['controller'], $done)) {
-?>
-        <li><CakePHPBakeOpenTag= $this->Html->link(__('List <?= $this->_pluralHumanName($alias) ?>'), ['controller' => '<?= $details['controller'] ?>', 'action' => 'index']) CakePHPBakeCloseTag></li>
-        <li><CakePHPBakeOpenTag= $this->Html->link(__('New <?= $this->_singularHumanName($alias) ?>'), ['controller' => '<?= $details['controller'] ?>', 'action' => 'add']) CakePHPBakeCloseTag></li>
-<?php
-                    $done[] = $details['controller'];
-                }
-            }
-        }
-?>
-    </ul>
-</nav>
-<div class="<?= $pluralVar ?> form large-9 medium-8 columns content">
+
+<CakePHPBakeOpenTagphp
+  $myTemplates = [
+    'inputContainer' => '<div class="form-group">{{content}}<div class="col-sm-offset-3 col-sm-6 style="margin-top:18px">{{help}}</div></div>',
+     'label' => '<label class="col-sm-3 control-label" {{attrs}}>{{text}}</label>',
+    'input' => '<div class="col-sm-6"><input type="{{type}}" name="{{name}}"{{attrs}}/></div>',
+     'select' => '<div class="col-sm-6"><select name="{{name}}"{{attrs}}>{{content}}</select></div>',
+     'textarea' => '<div class="col-sm-6"><textarea name="{{name}}"{{attrs}}>{{value}}</textarea></div>'
+];
+$this->Form->templates($myTemplates);
+
+CakePHPBakeCloseTag>
+
+<!-- Content Header (Page header) -->
+<section class="content-header">
+  <h1>
+    <?= $singularHumanName ?>
+
+  </h1>
+  <ol class="breadcrumb">
+  	<li><a href="#"><i class="fa fa-dashboard"></i>Home</a></li>
+   
+    <li><a href="/<?=$pluralHumanName ?>"> <?= $pluralHumanName ?></a></li>
+    <li class="active">Add</li>
+  </ol>
+</section>
+
+<!-- Main content -->
+<section class="content">
     <CakePHPBakeOpenTag= $this->Form->create($<?= $singularVar ?>) CakePHPBakeCloseTag>
-    <fieldset>
-        <legend><CakePHPBakeOpenTag= __('<?= Inflector::humanize($action) ?> <?= $singularHumanName ?>') CakePHPBakeCloseTag></legend>
+   <div class="row">
+    
+    <div class="col-md-12">
+      <div class="nav-tabs-custom">
+        
+        <div class="tab-content">
+          <div class="active tab-pane" id="details">
+             <div class="form-horizontal">
         <CakePHPBakeOpenTagphp
 <?php
         foreach ($fields as $field) {
@@ -67,38 +73,107 @@ if (isset($modelObject) && $modelObject->behaviors()->has('Tree')) {
                 $fieldData = $schema->column($field);
                 if (!empty($fieldData['null'])) {
 ?>
-            echo $this->Form->input('<?= $field ?>', ['options' => $<?= $keyFields[$field] ?>, 'empty' => true]);
+            echo $this->Form->input('<?= $field ?>', ['options' => $<?= $keyFields[$field] ?>, 'empty' => true,'class'=>'select2']);
 <?php
                 } else {
 ?>
-            echo $this->Form->input('<?= $field ?>', ['options' => $<?= $keyFields[$field] ?>]);
+            echo $this->Form->input('<?= $field ?>', ['options' => $<?= $keyFields[$field] ?>,'class'=>'select2']]);
 <?php
                 }
                 continue;
             }
             if (!in_array($field, ['created', 'modified', 'updated'])) {
                 $fieldData = $schema->column($field);
-                if (in_array($fieldData['type'], ['date', 'datetime', 'time']) && (!empty($fieldData['null']))) {
+                if (in_array($fieldData['type'], ['date', 'datetime']) && (!empty($fieldData['null']))) {
 ?>
-            echo $this->Form->input('<?= $field ?>', ['empty' => true]);
+                   echo $this->Form->input('<?= $field ?>', ['empty' => true,'type'=>'text', 'class'=>'datemask']);
+                   
 <?php
-                } else {
+                } elseif(in_array($fieldData['type'], [ 'time']) && (!empty($fieldData['null'])))  {
+                	
 ?>
-            echo $this->Form->input('<?= $field ?>');
+                    echo $this->Form->input('<?= $field ?>',['empty' => true,'type'=>'text', 'class'=>'timepicker']);
+					
 <?php
+                }else{
+?>                	
+                  echo $this->Form->input('<?= $field ?>');
+
+                    
+<?php
+					
                 }
             }
         }
         if (!empty($associations['BelongsToMany'])) {
             foreach ($associations['BelongsToMany'] as $assocName => $assocData) {
 ?>
-            echo $this->Form->input('<?= $assocData['property'] ?>._ids', ['options' => $<?= $assocData['variable'] ?>]);
+            echo $this->Form->input('<?= $assocData['property'] ?>._ids', ['options' => $<?= $assocData['variable'] ?>,'class'=>'select2']]);
 <?php
             }
         }
 ?>
+	
         CakePHPBakeCloseTag>
-    </fieldset>
-    <CakePHPBakeOpenTag= $this->Form->button(__('Submit')) CakePHPBakeCloseTag>
-    <CakePHPBakeOpenTag= $this->Form->end() CakePHPBakeCloseTag>
-</div>
+    </div>
+ 
+          </div>
+          <!-- /.tab-pane -->
+          
+          
+        </div>
+        <!-- /.tab-content -->
+      </div>
+      <!-- /.nav-tabs-custom -->
+    </div>
+    <!-- /.col -->
+  </div>
+  <!-- /.row -->
+  <div class="row">
+   <div class="form-group">
+                <div class="col-sm-offset-6 col-sm-10">
+                  <button type="submit" class="btn-success">Save</button>
+                </div>
+   </div>
+   </div>
+   <!-- /.row -->
+ <CakePHPBakeOpenTag= $this->Form->end() CakePHPBakeCloseTag>
+</section>
+<!-- /.content -->
+<CakePHPBakeOpenTagphp
+$this->Html->css([
+    'AdminLTE./plugins/daterangepicker/daterangepicker-bs3',
+    'AdminLTE./plugins/iCheck/all',
+    'AdminLTE./plugins/colorpicker/bootstrap-colorpicker.min',
+    'AdminLTE./plugins/timepicker/bootstrap-timepicker.min',
+    'AdminLTE./plugins/select2/select2.min',
+  ],
+  ['block' => 'css']);
+
+$this->Html->script([
+  'AdminLTE./plugins/select2/select2.full.min',
+  'AdminLTE./plugins/input-mask/jquery.inputmask',
+  'AdminLTE./plugins/input-mask/jquery.inputmask.date.extensions',
+  'AdminLTE./plugins/input-mask/jquery.inputmask.extensions',
+  '/js/moment.min.js',
+  'AdminLTE./plugins/daterangepicker/daterangepicker',
+  'AdminLTE./plugins/colorpicker/bootstrap-colorpicker.min',
+  'AdminLTE./plugins/timepicker/bootstrap-timepicker.min',
+  'AdminLTE./plugins/iCheck/icheck.min',
+],
+['block' => 'script']);
+CakePHPBakeCloseTag>
+<CakePHPBakeOpenTagphp $this->start('scriptBotton'); CakePHPBakeCloseTag>
+<script>
+  $(function () {
+    //Initialize Select2 Elements
+   $(".select2").select2({ width: '100%' });
+   $(".datemask").inputmask("yyyy/mm/dd", {"placeholder": "yyyy/mm/dd"});
+    $(".timepicker").timepicker({
+      showInputs: false
+    });
+
+  });
+</script>
+<CakePHPBakeOpenTagphp $this->end(); CakePHPBakeCloseTag>
+       

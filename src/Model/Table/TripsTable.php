@@ -16,9 +16,9 @@ use Cake\Validation\Validator;
  * @property \Cake\ORM\Association\BelongsTo $Startpoints
  * @property \Cake\ORM\Association\BelongsTo $Endpoints
  * @property \Cake\ORM\Association\BelongsTo $Schedules
- * @property \Cake\ORM\Association\BelongsTo $Passengergroups
  * @property \Cake\ORM\Association\BelongsTo $Tripstatuses
  * @property \Cake\ORM\Association\BelongsTo $Vehiclecategories
+ * @property \Cake\ORM\Association\BelongsTo $Triptypes
  *
  * @method \App\Model\Entity\Trip get($primaryKey, $options = [])
  * @method \App\Model\Entity\Trip newEntity($data = null, array $options = [])
@@ -58,24 +58,24 @@ class TripsTable extends Table
             'foreignKey' => 'route_id'
         ]);
         $this->belongsTo('Startpoints', [
-            'className' => 'Locations',
+            'className' =>'Locations',
             'foreignKey' => 'startpoint_id'
         ]);
         $this->belongsTo('Endpoints', [
-             'className' => 'Locations',
+            'className' =>'Locations',
             'foreignKey' => 'endpoint_id'
         ]);
         $this->belongsTo('Schedules', [
             'foreignKey' => 'schedule_id'
-        ]);
-        $this->belongsTo('Passengergroups', [
-            'foreignKey' => 'passengergroup_id'
         ]);
         $this->belongsTo('Tripstatuses', [
             'foreignKey' => 'tripstatus_id'
         ]);
         $this->belongsTo('Vehiclecategories', [
             'foreignKey' => 'vehiclecategory_id'
+        ]);
+        $this->belongsTo('Triptypes', [
+            'foreignKey' => 'triptype_id'
         ]);
     }
 
@@ -125,8 +125,8 @@ class TripsTable extends Table
             ->allowEmpty('active');
 
         $validator
-            ->boolean('fromitinerary')
-            ->allowEmpty('fromitinerary');
+            ->boolean('fromschedule')
+            ->allowEmpty('fromschedule');
 
         $validator
             ->integer('trackingcode')
@@ -171,9 +171,9 @@ class TripsTable extends Table
         $rules->add($rules->existsIn(['startpoint_id'], 'Startpoints'));
         $rules->add($rules->existsIn(['endpoint_id'], 'Endpoints'));
         $rules->add($rules->existsIn(['schedule_id'], 'Schedules'));
-        $rules->add($rules->existsIn(['passengergroup_id'], 'Passengergroups'));
         $rules->add($rules->existsIn(['tripstatus_id'], 'Tripstatuses'));
         $rules->add($rules->existsIn(['vehiclecategory_id'], 'Vehiclecategories'));
+        $rules->add($rules->existsIn(['triptype_id'], 'Triptypes'));
 
         return $rules;
     }

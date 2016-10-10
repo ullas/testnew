@@ -1,0 +1,270 @@
+2016-10-05 08:06:34 Notice: Notice (8): Undefined variable: belongsTo in [/Users/maptell/testgit/tmp/bake/Bake-Element-Controller-ajaxData-ctp.php, line 14]
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE/src/Error/BaseErrorHandler.php, line 146
+include - ROOT/tmp/bake/Bake-Element-Controller-ajaxData-ctp.php, line 14
+Bake\View\BakeView::_evaluate() - ROOT/vendor/cakephp/bake/src/View/BakeView.php, line 200
+Cake\View\View::_render() - CORE/src/View/View.php, line 964
+Cake\View\View::_renderElement() - CORE/src/View/View.php, line 1350
+Cake\View\View::element() - CORE/src/View/View.php, line 493
+include - ROOT/tmp/bake/Bake-Controller-controller-ctp.php, line 47
+Bake\View\BakeView::_evaluate() - ROOT/vendor/cakephp/bake/src/View/BakeView.php, line 200
+Cake\View\View::_render() - CORE/src/View/View.php, line 964
+Bake\View\BakeView::render() - ROOT/vendor/cakephp/bake/src/View/BakeView.php, line 136
+Bake\Shell\Task\BakeTemplateTask::generate() - ROOT/vendor/cakephp/bake/src/Shell/Task/BakeTemplateTask.php, line 89
+Bake\Shell\Task\ControllerTask::bakeController() - ROOT/vendor/cakephp/bake/src/Shell/Task/ControllerTask.php, line 179
+Bake\Shell\Task\ControllerTask::bake() - ROOT/vendor/cakephp/bake/src/Shell/Task/ControllerTask.php, line 151
+Bake\Shell\Task\ControllerTask::main() - ROOT/vendor/cakephp/bake/src/Shell/Task/ControllerTask.php, line 66
+Bake\Shell\BakeShell::Bake\Shell\{closure}() - ROOT/vendor/cakephp/bake/src/Shell/BakeShell.php, line 258
+Cake\Collection\Collection::each() - CORE/src/Collection/CollectionTrait.php, line 52
+Bake\Shell\BakeShell::all() - ROOT/vendor/cakephp/bake/src/Shell/BakeShell.php, line 260
+Cake\Console\Shell::runCommand() - CORE/src/Console/Shell.php, line 452
+Cake\Console\ShellDispatcher::_dispatch() - CORE/src/Console/ShellDispatcher.php, line 227
+Cake\Console\ShellDispatcher::dispatch() - CORE/src/Console/ShellDispatcher.php, line 182
+Cake\Console\ShellDispatcher::run() - CORE/src/Console/ShellDispatcher.php, line 128
+[main] - ROOT/bin/cake.php, line 34
+
+
+
+2016-10-05 08:11:53 Notice: Notice (8): Undefined variable: belongsTo in [/Users/maptell/testgit/tmp/bake/Bake-Element-Controller-ajaxData-ctp.php, line 14]
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE/src/Error/BaseErrorHandler.php, line 146
+include - ROOT/tmp/bake/Bake-Element-Controller-ajaxData-ctp.php, line 14
+Bake\View\BakeView::_evaluate() - ROOT/vendor/cakephp/bake/src/View/BakeView.php, line 200
+Cake\View\View::_render() - CORE/src/View/View.php, line 964
+Cake\View\View::_renderElement() - CORE/src/View/View.php, line 1350
+Cake\View\View::element() - CORE/src/View/View.php, line 493
+include - ROOT/tmp/bake/Bake-Controller-controller-ctp.php, line 47
+Bake\View\BakeView::_evaluate() - ROOT/vendor/cakephp/bake/src/View/BakeView.php, line 200
+Cake\View\View::_render() - CORE/src/View/View.php, line 964
+Bake\View\BakeView::render() - ROOT/vendor/cakephp/bake/src/View/BakeView.php, line 136
+Bake\Shell\Task\BakeTemplateTask::generate() - ROOT/vendor/cakephp/bake/src/Shell/Task/BakeTemplateTask.php, line 89
+Bake\Shell\Task\ControllerTask::bakeController() - ROOT/vendor/cakephp/bake/src/Shell/Task/ControllerTask.php, line 179
+Bake\Shell\Task\ControllerTask::bake() - ROOT/vendor/cakephp/bake/src/Shell/Task/ControllerTask.php, line 151
+Bake\Shell\Task\ControllerTask::main() - ROOT/vendor/cakephp/bake/src/Shell/Task/ControllerTask.php, line 66
+Bake\Shell\BakeShell::Bake\Shell\{closure}() - ROOT/vendor/cakephp/bake/src/Shell/BakeShell.php, line 258
+Cake\Collection\Collection::each() - CORE/src/Collection/CollectionTrait.php, line 52
+Bake\Shell\BakeShell::all() - ROOT/vendor/cakephp/bake/src/Shell/BakeShell.php, line 260
+Cake\Console\Shell::runCommand() - CORE/src/Console/Shell.php, line 452
+Cake\Console\ShellDispatcher::_dispatch() - CORE/src/Console/ShellDispatcher.php, line 227
+Cake\Console\ShellDispatcher::dispatch() - CORE/src/Console/ShellDispatcher.php, line 182
+Cake\Console\ShellDispatcher::run() - CORE/src/Console/ShellDispatcher.php, line 128
+[main] - ROOT/bin/cake.php, line 34
+
+
+
+2016-10-05 19:37:54 Notice: Notice (8): Undefined variable: belongsTo in [/Users/maptell/testgit/tmp/bake/Bake-Element-Controller-index-ctp.php, line 50]
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE/src/Error/BaseErrorHandler.php, line 146
+include - ROOT/tmp/bake/Bake-Element-Controller-index-ctp.php, line 50
+Bake\View\BakeView::_evaluate() - ROOT/vendor/cakephp/bake/src/View/BakeView.php, line 200
+Cake\View\View::_render() - CORE/src/View/View.php, line 964
+Cake\View\View::_renderElement() - CORE/src/View/View.php, line 1350
+Cake\View\View::element() - CORE/src/View/View.php, line 493
+include - ROOT/tmp/bake/Bake-Controller-controller-ctp.php, line 47
+Bake\View\BakeView::_evaluate() - ROOT/vendor/cakephp/bake/src/View/BakeView.php, line 200
+Cake\View\View::_render() - CORE/src/View/View.php, line 964
+Bake\View\BakeView::render() - ROOT/vendor/cakephp/bake/src/View/BakeView.php, line 136
+Bake\Shell\Task\BakeTemplateTask::generate() - ROOT/vendor/cakephp/bake/src/Shell/Task/BakeTemplateTask.php, line 89
+Bake\Shell\Task\ControllerTask::bakeController() - ROOT/vendor/cakephp/bake/src/Shell/Task/ControllerTask.php, line 179
+Bake\Shell\Task\ControllerTask::bake() - ROOT/vendor/cakephp/bake/src/Shell/Task/ControllerTask.php, line 151
+Bake\Shell\Task\ControllerTask::main() - ROOT/vendor/cakephp/bake/src/Shell/Task/ControllerTask.php, line 66
+Bake\Shell\BakeShell::Bake\Shell\{closure}() - ROOT/vendor/cakephp/bake/src/Shell/BakeShell.php, line 258
+Cake\Collection\Collection::each() - CORE/src/Collection/CollectionTrait.php, line 52
+Bake\Shell\BakeShell::all() - ROOT/vendor/cakephp/bake/src/Shell/BakeShell.php, line 260
+Cake\Console\Shell::runCommand() - CORE/src/Console/Shell.php, line 452
+Cake\Console\ShellDispatcher::_dispatch() - CORE/src/Console/ShellDispatcher.php, line 227
+Cake\Console\ShellDispatcher::dispatch() - CORE/src/Console/ShellDispatcher.php, line 182
+Cake\Console\ShellDispatcher::run() - CORE/src/Console/ShellDispatcher.php, line 128
+[main] - ROOT/bin/cake.php, line 34
+
+
+
+2016-10-05 19:38:32 Notice: Notice (8): Undefined variable: belongsTo in [/Users/maptell/testgit/tmp/bake/Bake-Element-Controller-index-ctp.php, line 50]
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE/src/Error/BaseErrorHandler.php, line 146
+include - ROOT/tmp/bake/Bake-Element-Controller-index-ctp.php, line 50
+Bake\View\BakeView::_evaluate() - ROOT/vendor/cakephp/bake/src/View/BakeView.php, line 200
+Cake\View\View::_render() - CORE/src/View/View.php, line 964
+Cake\View\View::_renderElement() - CORE/src/View/View.php, line 1350
+Cake\View\View::element() - CORE/src/View/View.php, line 493
+include - ROOT/tmp/bake/Bake-Controller-controller-ctp.php, line 47
+Bake\View\BakeView::_evaluate() - ROOT/vendor/cakephp/bake/src/View/BakeView.php, line 200
+Cake\View\View::_render() - CORE/src/View/View.php, line 964
+Bake\View\BakeView::render() - ROOT/vendor/cakephp/bake/src/View/BakeView.php, line 136
+Bake\Shell\Task\BakeTemplateTask::generate() - ROOT/vendor/cakephp/bake/src/Shell/Task/BakeTemplateTask.php, line 89
+Bake\Shell\Task\ControllerTask::bakeController() - ROOT/vendor/cakephp/bake/src/Shell/Task/ControllerTask.php, line 179
+Bake\Shell\Task\ControllerTask::bake() - ROOT/vendor/cakephp/bake/src/Shell/Task/ControllerTask.php, line 151
+Bake\Shell\Task\ControllerTask::main() - ROOT/vendor/cakephp/bake/src/Shell/Task/ControllerTask.php, line 66
+Bake\Shell\BakeShell::Bake\Shell\{closure}() - ROOT/vendor/cakephp/bake/src/Shell/BakeShell.php, line 258
+Cake\Collection\Collection::each() - CORE/src/Collection/CollectionTrait.php, line 52
+Bake\Shell\BakeShell::all() - ROOT/vendor/cakephp/bake/src/Shell/BakeShell.php, line 260
+Cake\Console\Shell::runCommand() - CORE/src/Console/Shell.php, line 452
+Cake\Console\ShellDispatcher::_dispatch() - CORE/src/Console/ShellDispatcher.php, line 227
+Cake\Console\ShellDispatcher::dispatch() - CORE/src/Console/ShellDispatcher.php, line 182
+Cake\Console\ShellDispatcher::run() - CORE/src/Console/ShellDispatcher.php, line 128
+[main] - ROOT/bin/cake.php, line 34
+
+
+
+2016-10-05 19:38:50 Notice: Notice (8): Undefined variable: belongsTo in [/Users/maptell/testgit/tmp/bake/Bake-Element-Controller-index-ctp.php, line 50]
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE/src/Error/BaseErrorHandler.php, line 146
+include - ROOT/tmp/bake/Bake-Element-Controller-index-ctp.php, line 50
+Bake\View\BakeView::_evaluate() - ROOT/vendor/cakephp/bake/src/View/BakeView.php, line 200
+Cake\View\View::_render() - CORE/src/View/View.php, line 964
+Cake\View\View::_renderElement() - CORE/src/View/View.php, line 1350
+Cake\View\View::element() - CORE/src/View/View.php, line 493
+include - ROOT/tmp/bake/Bake-Controller-controller-ctp.php, line 47
+Bake\View\BakeView::_evaluate() - ROOT/vendor/cakephp/bake/src/View/BakeView.php, line 200
+Cake\View\View::_render() - CORE/src/View/View.php, line 964
+Bake\View\BakeView::render() - ROOT/vendor/cakephp/bake/src/View/BakeView.php, line 136
+Bake\Shell\Task\BakeTemplateTask::generate() - ROOT/vendor/cakephp/bake/src/Shell/Task/BakeTemplateTask.php, line 89
+Bake\Shell\Task\ControllerTask::bakeController() - ROOT/vendor/cakephp/bake/src/Shell/Task/ControllerTask.php, line 179
+Bake\Shell\Task\ControllerTask::bake() - ROOT/vendor/cakephp/bake/src/Shell/Task/ControllerTask.php, line 151
+Bake\Shell\Task\ControllerTask::main() - ROOT/vendor/cakephp/bake/src/Shell/Task/ControllerTask.php, line 66
+Bake\Shell\BakeShell::Bake\Shell\{closure}() - ROOT/vendor/cakephp/bake/src/Shell/BakeShell.php, line 258
+Cake\Collection\Collection::each() - CORE/src/Collection/CollectionTrait.php, line 52
+Bake\Shell\BakeShell::all() - ROOT/vendor/cakephp/bake/src/Shell/BakeShell.php, line 260
+Cake\Console\Shell::runCommand() - CORE/src/Console/Shell.php, line 452
+Cake\Console\ShellDispatcher::_dispatch() - CORE/src/Console/ShellDispatcher.php, line 227
+Cake\Console\ShellDispatcher::dispatch() - CORE/src/Console/ShellDispatcher.php, line 182
+Cake\Console\ShellDispatcher::run() - CORE/src/Console/ShellDispatcher.php, line 128
+[main] - ROOT/bin/cake.php, line 34
+
+
+
+2016-10-05 19:39:37 Notice: Notice (8): Undefined variable: belongsTo in [/Users/maptell/testgit/tmp/bake/Bake-Element-Controller-index-ctp.php, line 49]
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE/src/Error/BaseErrorHandler.php, line 146
+include - ROOT/tmp/bake/Bake-Element-Controller-index-ctp.php, line 49
+Bake\View\BakeView::_evaluate() - ROOT/vendor/cakephp/bake/src/View/BakeView.php, line 200
+Cake\View\View::_render() - CORE/src/View/View.php, line 964
+Cake\View\View::_renderElement() - CORE/src/View/View.php, line 1350
+Cake\View\View::element() - CORE/src/View/View.php, line 493
+include - ROOT/tmp/bake/Bake-Controller-controller-ctp.php, line 47
+Bake\View\BakeView::_evaluate() - ROOT/vendor/cakephp/bake/src/View/BakeView.php, line 200
+Cake\View\View::_render() - CORE/src/View/View.php, line 964
+Bake\View\BakeView::render() - ROOT/vendor/cakephp/bake/src/View/BakeView.php, line 136
+Bake\Shell\Task\BakeTemplateTask::generate() - ROOT/vendor/cakephp/bake/src/Shell/Task/BakeTemplateTask.php, line 89
+Bake\Shell\Task\ControllerTask::bakeController() - ROOT/vendor/cakephp/bake/src/Shell/Task/ControllerTask.php, line 179
+Bake\Shell\Task\ControllerTask::bake() - ROOT/vendor/cakephp/bake/src/Shell/Task/ControllerTask.php, line 151
+Bake\Shell\Task\ControllerTask::main() - ROOT/vendor/cakephp/bake/src/Shell/Task/ControllerTask.php, line 66
+Bake\Shell\BakeShell::Bake\Shell\{closure}() - ROOT/vendor/cakephp/bake/src/Shell/BakeShell.php, line 258
+Cake\Collection\Collection::each() - CORE/src/Collection/CollectionTrait.php, line 52
+Bake\Shell\BakeShell::all() - ROOT/vendor/cakephp/bake/src/Shell/BakeShell.php, line 260
+Cake\Console\Shell::runCommand() - CORE/src/Console/Shell.php, line 452
+Cake\Console\ShellDispatcher::_dispatch() - CORE/src/Console/ShellDispatcher.php, line 227
+Cake\Console\ShellDispatcher::dispatch() - CORE/src/Console/ShellDispatcher.php, line 182
+Cake\Console\ShellDispatcher::run() - CORE/src/Console/ShellDispatcher.php, line 128
+[main] - ROOT/bin/cake.php, line 34
+
+
+
+2016-10-05 19:40:57 Notice: Notice (8): Undefined variable: belongsTo in [/Users/maptell/testgit/tmp/bake/Bake-Element-Controller-index-ctp.php, line 49]
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE/src/Error/BaseErrorHandler.php, line 146
+include - ROOT/tmp/bake/Bake-Element-Controller-index-ctp.php, line 49
+Bake\View\BakeView::_evaluate() - ROOT/vendor/cakephp/bake/src/View/BakeView.php, line 200
+Cake\View\View::_render() - CORE/src/View/View.php, line 964
+Cake\View\View::_renderElement() - CORE/src/View/View.php, line 1350
+Cake\View\View::element() - CORE/src/View/View.php, line 493
+include - ROOT/tmp/bake/Bake-Controller-controller-ctp.php, line 47
+Bake\View\BakeView::_evaluate() - ROOT/vendor/cakephp/bake/src/View/BakeView.php, line 200
+Cake\View\View::_render() - CORE/src/View/View.php, line 964
+Bake\View\BakeView::render() - ROOT/vendor/cakephp/bake/src/View/BakeView.php, line 136
+Bake\Shell\Task\BakeTemplateTask::generate() - ROOT/vendor/cakephp/bake/src/Shell/Task/BakeTemplateTask.php, line 89
+Bake\Shell\Task\ControllerTask::bakeController() - ROOT/vendor/cakephp/bake/src/Shell/Task/ControllerTask.php, line 179
+Bake\Shell\Task\ControllerTask::bake() - ROOT/vendor/cakephp/bake/src/Shell/Task/ControllerTask.php, line 151
+Bake\Shell\Task\ControllerTask::main() - ROOT/vendor/cakephp/bake/src/Shell/Task/ControllerTask.php, line 66
+Bake\Shell\BakeShell::Bake\Shell\{closure}() - ROOT/vendor/cakephp/bake/src/Shell/BakeShell.php, line 258
+Cake\Collection\Collection::each() - CORE/src/Collection/CollectionTrait.php, line 52
+Bake\Shell\BakeShell::all() - ROOT/vendor/cakephp/bake/src/Shell/BakeShell.php, line 260
+Cake\Console\Shell::runCommand() - CORE/src/Console/Shell.php, line 452
+Cake\Console\ShellDispatcher::_dispatch() - CORE/src/Console/ShellDispatcher.php, line 227
+Cake\Console\ShellDispatcher::dispatch() - CORE/src/Console/ShellDispatcher.php, line 182
+Cake\Console\ShellDispatcher::run() - CORE/src/Console/ShellDispatcher.php, line 128
+[main] - ROOT/bin/cake.php, line 34
+
+
+
+2016-10-05 19:42:54 Notice: Notice (8): Undefined variable: belongsTo in [/Users/maptell/testgit/tmp/bake/Bake-Element-Controller-index-ctp.php, line 26]
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE/src/Error/BaseErrorHandler.php, line 146
+include - ROOT/tmp/bake/Bake-Element-Controller-index-ctp.php, line 26
+Bake\View\BakeView::_evaluate() - ROOT/vendor/cakephp/bake/src/View/BakeView.php, line 200
+Cake\View\View::_render() - CORE/src/View/View.php, line 964
+Cake\View\View::_renderElement() - CORE/src/View/View.php, line 1350
+Cake\View\View::element() - CORE/src/View/View.php, line 493
+include - ROOT/tmp/bake/Bake-Controller-controller-ctp.php, line 47
+Bake\View\BakeView::_evaluate() - ROOT/vendor/cakephp/bake/src/View/BakeView.php, line 200
+Cake\View\View::_render() - CORE/src/View/View.php, line 964
+Bake\View\BakeView::render() - ROOT/vendor/cakephp/bake/src/View/BakeView.php, line 136
+Bake\Shell\Task\BakeTemplateTask::generate() - ROOT/vendor/cakephp/bake/src/Shell/Task/BakeTemplateTask.php, line 89
+Bake\Shell\Task\ControllerTask::bakeController() - ROOT/vendor/cakephp/bake/src/Shell/Task/ControllerTask.php, line 179
+Bake\Shell\Task\ControllerTask::bake() - ROOT/vendor/cakephp/bake/src/Shell/Task/ControllerTask.php, line 151
+Bake\Shell\Task\ControllerTask::main() - ROOT/vendor/cakephp/bake/src/Shell/Task/ControllerTask.php, line 66
+Bake\Shell\BakeShell::Bake\Shell\{closure}() - ROOT/vendor/cakephp/bake/src/Shell/BakeShell.php, line 258
+Cake\Collection\Collection::each() - CORE/src/Collection/CollectionTrait.php, line 52
+Bake\Shell\BakeShell::all() - ROOT/vendor/cakephp/bake/src/Shell/BakeShell.php, line 260
+Cake\Console\Shell::runCommand() - CORE/src/Console/Shell.php, line 452
+Cake\Console\ShellDispatcher::_dispatch() - CORE/src/Console/ShellDispatcher.php, line 227
+Cake\Console\ShellDispatcher::dispatch() - CORE/src/Console/ShellDispatcher.php, line 182
+Cake\Console\ShellDispatcher::run() - CORE/src/Console/ShellDispatcher.php, line 128
+[main] - ROOT/bin/cake.php, line 34
+
+
+
+2016-10-05 19:42:54 Notice: Notice (8): Undefined variable: belongsTo in [/Users/maptell/testgit/tmp/bake/Bake-Element-Controller-index-ctp.php, line 59]
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE/src/Error/BaseErrorHandler.php, line 146
+include - ROOT/tmp/bake/Bake-Element-Controller-index-ctp.php, line 59
+Bake\View\BakeView::_evaluate() - ROOT/vendor/cakephp/bake/src/View/BakeView.php, line 200
+Cake\View\View::_render() - CORE/src/View/View.php, line 964
+Cake\View\View::_renderElement() - CORE/src/View/View.php, line 1350
+Cake\View\View::element() - CORE/src/View/View.php, line 493
+include - ROOT/tmp/bake/Bake-Controller-controller-ctp.php, line 47
+Bake\View\BakeView::_evaluate() - ROOT/vendor/cakephp/bake/src/View/BakeView.php, line 200
+Cake\View\View::_render() - CORE/src/View/View.php, line 964
+Bake\View\BakeView::render() - ROOT/vendor/cakephp/bake/src/View/BakeView.php, line 136
+Bake\Shell\Task\BakeTemplateTask::generate() - ROOT/vendor/cakephp/bake/src/Shell/Task/BakeTemplateTask.php, line 89
+Bake\Shell\Task\ControllerTask::bakeController() - ROOT/vendor/cakephp/bake/src/Shell/Task/ControllerTask.php, line 179
+Bake\Shell\Task\ControllerTask::bake() - ROOT/vendor/cakephp/bake/src/Shell/Task/ControllerTask.php, line 151
+Bake\Shell\Task\ControllerTask::main() - ROOT/vendor/cakephp/bake/src/Shell/Task/ControllerTask.php, line 66
+Bake\Shell\BakeShell::Bake\Shell\{closure}() - ROOT/vendor/cakephp/bake/src/Shell/BakeShell.php, line 258
+Cake\Collection\Collection::each() - CORE/src/Collection/CollectionTrait.php, line 52
+Bake\Shell\BakeShell::all() - ROOT/vendor/cakephp/bake/src/Shell/BakeShell.php, line 260
+Cake\Console\Shell::runCommand() - CORE/src/Console/Shell.php, line 452
+Cake\Console\ShellDispatcher::_dispatch() - CORE/src/Console/ShellDispatcher.php, line 227
+Cake\Console\ShellDispatcher::dispatch() - CORE/src/Console/ShellDispatcher.php, line 182
+Cake\Console\ShellDispatcher::run() - CORE/src/Console/ShellDispatcher.php, line 128
+[main] - ROOT/bin/cake.php, line 34
+
+
+
+2016-10-05 19:47:41 Notice: Notice (8): Undefined variable: belongsTo in [/Users/maptell/testgit/tmp/bake/Bake-Element-Controller-index-ctp.php, line 52]
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE/src/Error/BaseErrorHandler.php, line 146
+include - ROOT/tmp/bake/Bake-Element-Controller-index-ctp.php, line 52
+Bake\View\BakeView::_evaluate() - ROOT/vendor/cakephp/bake/src/View/BakeView.php, line 200
+Cake\View\View::_render() - CORE/src/View/View.php, line 964
+Cake\View\View::_renderElement() - CORE/src/View/View.php, line 1350
+Cake\View\View::element() - CORE/src/View/View.php, line 493
+include - ROOT/tmp/bake/Bake-Controller-controller-ctp.php, line 47
+Bake\View\BakeView::_evaluate() - ROOT/vendor/cakephp/bake/src/View/BakeView.php, line 200
+Cake\View\View::_render() - CORE/src/View/View.php, line 964
+Bake\View\BakeView::render() - ROOT/vendor/cakephp/bake/src/View/BakeView.php, line 136
+Bake\Shell\Task\BakeTemplateTask::generate() - ROOT/vendor/cakephp/bake/src/Shell/Task/BakeTemplateTask.php, line 89
+Bake\Shell\Task\ControllerTask::bakeController() - ROOT/vendor/cakephp/bake/src/Shell/Task/ControllerTask.php, line 179
+Bake\Shell\Task\ControllerTask::bake() - ROOT/vendor/cakephp/bake/src/Shell/Task/ControllerTask.php, line 151
+Bake\Shell\Task\ControllerTask::main() - ROOT/vendor/cakephp/bake/src/Shell/Task/ControllerTask.php, line 66
+Bake\Shell\BakeShell::Bake\Shell\{closure}() - ROOT/vendor/cakephp/bake/src/Shell/BakeShell.php, line 258
+Cake\Collection\Collection::each() - CORE/src/Collection/CollectionTrait.php, line 52
+Bake\Shell\BakeShell::all() - ROOT/vendor/cakephp/bake/src/Shell/BakeShell.php, line 260
+Cake\Console\Shell::runCommand() - CORE/src/Console/Shell.php, line 452
+Cake\Console\ShellDispatcher::_dispatch() - CORE/src/Console/ShellDispatcher.php, line 227
+Cake\Console\ShellDispatcher::dispatch() - CORE/src/Console/ShellDispatcher.php, line 182
+Cake\Console\ShellDispatcher::run() - CORE/src/Console/ShellDispatcher.php, line 128
+[main] - ROOT/bin/cake.php, line 34
+
+
+

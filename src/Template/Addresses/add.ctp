@@ -1,99 +1,37 @@
-<?php
-  $myTemplates = [
-    'inputContainer' => '<div class="form-group">{{content}}</div>',
-     'label' => '<label class="col-sm-2 control-label" {{attrs}}>{{text}}</label>',
-    'input' => '<div class="col-sm-10"><input type="{{type}}" name="{{name}}"{{attrs}}/></div>',
-     'select' => '<div class="col-sm-10"><select name="{{name}}"{{attrs}}>{{content}}</select></div>',
-      'selectMultiple' => '<div class="col-sm-10"><select name="{{name}}[]" multiple="multiple"{{attrs}}>{{content}}</select></div>',
-     'textarea' => '<div class="col-sm-10"><textarea name="{{name}}"{{attrs}}>{{value}}</textarea></div>'
-];
-$this->Form->templates($myTemplates);
-
-?>
-
-<!-- Content Header (Page header) -->
-<section class="content-header">
-  <h1>
-    Add Addresses
-  </h1>
-  <ol class="breadcrumb">
-    <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-    <li><a href="#">Contacts</a></li>
-    <li><a href="/addresses/"> Addresses</a></li>
-    <li class="active">Add</li>
-  </ol>
-</section>
-
-<!-- Main content -->
-<section class="content">
- <?= $this->Form->create($address) ?>
-  <div class="row">
-    
-    <div class="col-md-12">
-      <div class="nav-tabs-custom">
-        
-        <div class="tab-content">
-          <div class="active tab-pane" id="details">
-             <div class="form-horizontal">
-  
+<nav class="large-3 medium-4 columns" id="actions-sidebar">
+    <ul class="side-nav">
+        <li class="heading"><?= __('Actions') ?></li>
+        <li><?= $this->Html->link(__('List Addresses'), ['action' => 'index']) ?></li>
+        <li><?= $this->Html->link(__('List Customers'), ['controller' => 'Customers', 'action' => 'index']) ?></li>
+        <li><?= $this->Html->link(__('New Customer'), ['controller' => 'Customers', 'action' => 'add']) ?></li>
+        <li><?= $this->Html->link(__('List Drivers'), ['controller' => 'Drivers', 'action' => 'index']) ?></li>
+        <li><?= $this->Html->link(__('New Driver'), ['controller' => 'Drivers', 'action' => 'add']) ?></li>
+        <li><?= $this->Html->link(__('List Distributionlists'), ['controller' => 'Distributionlists', 'action' => 'index']) ?></li>
+        <li><?= $this->Html->link(__('New Distributionlist'), ['controller' => 'Distributionlists', 'action' => 'add']) ?></li>
+    </ul>
+</nav>
+<div class="addresses form large-9 medium-8 columns content">
+    <?= $this->Form->create($address) ?>
+    <fieldset>
+        <legend><?= __('Add Address') ?></legend>
         <?php
             echo $this->Form->input('name');
             echo $this->Form->input('designation');
-            echo $this->Form->input('email');         
+            echo $this->Form->input('email');
+            echo $this->Form->input('customer_id', ['options' => $customers, 'empty' => true]);
             echo $this->Form->input('mobile');
-            echo $this->Form->input('distributionlists._ids', ['options' => $distributionlists,'label'=>'DL','class'=>'select2']);
+            echo $this->Form->input('apartment');
+            echo $this->Form->input('streetname');
+            echo $this->Form->input('landmark');
+            echo $this->Form->input('areaname');
+            echo $this->Form->input('countryshortcode');
+            echo $this->Form->input('stateshortcode');
+            echo $this->Form->input('city');
+            echo $this->Form->input('pincode');
+            echo $this->Form->input('iscurrentAddress');
+            echo $this->Form->input('distributionlists._ids', ['options' => $distributionlists]);
         ?>
-        
-          </div>
- 
-          </div>
-          <!-- /.tab-pane -->
-          
-          
-        </div>
-        <!-- /.tab-content -->
-      </div>
-      <!-- /.nav-tabs-custom -->
-    </div>
-    <!-- /.col -->
-  </div>
-  <!-- /.row -->
-  <div class="row">
-   <div class="form-group">
-                <div class="col-sm-offset-6 col-sm-10">
-                  <button type="submit" class="btn btn-success">Save</button>
-                </div>
-   </div>
-   </div>
-   <!-- /.row -->
- <?= $this->Form->end() ?>
-</section>
-<!-- /.content -->
-
-
-<?php
-$this->Html->css([
-    
-    'AdminLTE./plugins/select2/select2.min',
-  ],
-  ['block' => 'css']);
-
-$this->Html->script([
-  'AdminLTE./plugins/select2/select2.full.min',
-  
- 
-],
-['block' => 'script']);
-?>
-<?php $this->start('scriptBotton'); ?>
-<script>
-  $(function () {
-    //Initialize Select2 Elements
-    $(".select2").select2();
-    
-
-  });
-</script>
-<?php $this->end(); ?>
-
-   
+    </fieldset>
+    <?= $this->Form->button(__('Submit')) ?>
+    <?= $this->Form->end() ?>
+</div>

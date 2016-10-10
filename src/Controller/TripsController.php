@@ -19,7 +19,7 @@ class TripsController extends AppController
     public function index()
     {
         $this->paginate = [
-            'contain' => ['Customers', 'Vehicles', 'Timepolicies', 'Routes', 'Startpoints', 'Endpoints', 'Schedules', 'Passengergroups', 'Tripstatuses', 'Vehiclecategories']
+            'contain' => ['Customers', 'Vehicles', 'Timepolicies', 'Routes', 'Startpoints', 'Endpoints', 'Schedules', 'Tripstatuses', 'Vehiclecategories', 'Triptypes']
         ];
         $trips = $this->paginate($this->Trips);
 
@@ -37,7 +37,7 @@ class TripsController extends AppController
     public function view($id = null)
     {
         $trip = $this->Trips->get($id, [
-            'contain' => ['Customers', 'Vehicles', 'Timepolicies', 'Routes', 'Startpoints', 'Endpoints', 'Schedules', 'Passengergroups', 'Tripstatuses', 'Vehiclecategories']
+            'contain' => ['Customers', 'Vehicles', 'Timepolicies', 'Routes', 'Startpoints', 'Endpoints', 'Schedules', 'Tripstatuses', 'Vehiclecategories', 'Triptypes']
         ]);
 
         $this->set('trip', $trip);
@@ -54,6 +54,7 @@ class TripsController extends AppController
         $trip = $this->Trips->newEntity();
         if ($this->request->is('post')) {
             $trip = $this->Trips->patchEntity($trip, $this->request->data);
+            $trip['customer_id']=$this->currentuser['customer_id'];
             if ($this->Trips->save($trip)) {
                 $this->Flash->success(__('The trip has been saved.'));
 
@@ -69,10 +70,10 @@ class TripsController extends AppController
         $startpoints = $this->Trips->Startpoints->find('list', ['limit' => 200]);
         $endpoints = $this->Trips->Endpoints->find('list', ['limit' => 200]);
         $schedules = $this->Trips->Schedules->find('list', ['limit' => 200]);
-        $passengergroups = $this->Trips->Passengergroups->find('list', ['limit' => 200]);
         $tripstatuses = $this->Trips->Tripstatuses->find('list', ['limit' => 200]);
         $vehiclecategories = $this->Trips->Vehiclecategories->find('list', ['limit' => 200]);
-        $this->set(compact('trip', 'customers', 'vehicles', 'timepolicies', 'routes', 'startpoints', 'endpoints', 'schedules', 'passengergroups', 'tripstatuses', 'vehiclecategories'));
+        $triptypes = $this->Trips->Triptypes->find('list', ['limit' => 200]);
+        $this->set(compact('trip', 'customers', 'vehicles', 'timepolicies', 'routes', 'startpoints', 'endpoints', 'schedules', 'tripstatuses', 'vehiclecategories', 'triptypes'));
         $this->set('_serialize', ['trip']);
     }
 
@@ -105,10 +106,10 @@ class TripsController extends AppController
         $startpoints = $this->Trips->Startpoints->find('list', ['limit' => 200]);
         $endpoints = $this->Trips->Endpoints->find('list', ['limit' => 200]);
         $schedules = $this->Trips->Schedules->find('list', ['limit' => 200]);
-        $passengergroups = $this->Trips->Passengergroups->find('list', ['limit' => 200]);
         $tripstatuses = $this->Trips->Tripstatuses->find('list', ['limit' => 200]);
         $vehiclecategories = $this->Trips->Vehiclecategories->find('list', ['limit' => 200]);
-        $this->set(compact('trip', 'customers', 'vehicles', 'timepolicies', 'routes', 'startpoints', 'endpoints', 'schedules', 'passengergroups', 'tripstatuses', 'vehiclecategories'));
+        $triptypes = $this->Trips->Triptypes->find('list', ['limit' => 200]);
+        $this->set(compact('trip', 'customers', 'vehicles', 'timepolicies', 'routes', 'startpoints', 'endpoints', 'schedules', 'tripstatuses', 'vehiclecategories', 'triptypes'));
         $this->set('_serialize', ['trip']);
     }
 

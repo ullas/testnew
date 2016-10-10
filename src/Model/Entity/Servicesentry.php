@@ -8,7 +8,7 @@ use Cake\ORM\Entity;
  *
  * @property int $id
  * @property int $vehicle_id
- * @property float $odometer
+ * @property float $odo
  * @property string $refer
  * @property float $labour
  * @property string $parts
@@ -16,9 +16,13 @@ use Cake\ORM\Entity;
  * @property bool $markasvoid
  * @property int $vendor_id
  * @property string $comments
+ * @property int $customer_id
+ * @property \Cake\I18n\Time $dateofservice
+ * @property string $name
  *
  * @property \App\Model\Entity\Vehicle $vehicle
  * @property \App\Model\Entity\Vendor $vendor
+ * @property \App\Model\Entity\Customer $customer
  * @property \App\Model\Entity\Servicecompleted[] $servicecompleted
  * @property \App\Model\Entity\Servicedocument[] $servicedocuments
  */

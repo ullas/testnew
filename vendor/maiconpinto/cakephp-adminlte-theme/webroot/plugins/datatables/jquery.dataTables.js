@@ -2464,7 +2464,7 @@
 				if ( error ) {
 					_fnLog( oSettings, 0, error );
 				}
-	
+	           
 				oSettings.json = json;
 				callback( json );
 			},
@@ -2472,8 +2472,9 @@
 			"cache": false,
 			"type": oSettings.sServerMethod,
 			"error": function (xhr, error, thrown) {
+				console.log(error, thrown);
 				var ret = _fnCallbackFire( oSettings, null, 'xhr', [oSettings, null, oSettings.jqXHR] );
-	
+	             
 				if ( $.inArray( true, ret ) === -1 ) {
 					if ( error == "parsererror" ) {
 						_fnLog( oSettings, 0, 'Invalid JSON response', 1 );

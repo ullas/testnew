@@ -19,13 +19,12 @@ use Cake\ORM\Entity;
  * @property int $startpoint_id
  * @property int $endpoint_id
  * @property int $schedule_id
- * @property int $passengergroup_id
  * @property bool $autogen
  * @property int $tripstatus_id
  * @property string $last_location
  * @property bool $canceled
  * @property bool $active
- * @property bool $fromitinerary
+ * @property bool $fromschedule
  * @property int $trackingcode
  * @property \Cake\I18n\Time $adt
  * @property \Cake\I18n\Time $aat
@@ -33,6 +32,7 @@ use Cake\ORM\Entity;
  * @property \Cake\I18n\Time $eat
  * @property int $vehiclecategory_id
  * @property int $platform
+ * @property int $triptype_id
  *
  * @property \App\Model\Entity\Customer $customer
  * @property \App\Model\Entity\Vehicle $vehicle
@@ -41,7 +41,7 @@ use Cake\ORM\Entity;
  * @property \App\Model\Entity\Location $startpoint
  * @property \App\Model\Entity\Location $endpoint
  * @property \App\Model\Entity\Schedule $schedule
- * @property \App\Model\Entity\Paxgroup $paxgroup
+ * @property \App\Model\Entity\Passengergroup $passengergroup
  * @property \App\Model\Entity\Tripstatus $tripstatus
  * @property \App\Model\Entity\Vehiclecategory $vehiclecategory
  */

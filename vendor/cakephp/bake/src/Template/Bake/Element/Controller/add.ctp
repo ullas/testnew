@@ -44,7 +44,16 @@ $compact = ["'" . $singularName . "'"];
             $otherName = $association->target()->alias();
             $otherPlural = $this->_variableName($otherName);
 %>
-        $<%= $otherPlural %> = $this-><%= $currentModelName %>-><%= $otherName %>->find('list', ['limit' => 200]);
+        <% if($otherName!='Customers'): %>
+
+        $<%= $otherPlural %> = $this-><%= $currentModelName %>-><%= $otherName %>->find('list', ['limit' => 200])->where("customer_id=".$this->loggedinuser['customer_id'])->where("customer_id=0");
+        
+        <% else:   %>
+        
+          $<%= $otherPlural %> = $this-><%= $currentModelName %>-><%= $otherName %>->find('list', ['limit' => 200])->where("id=".$this->loggedinuser['customer_id']);
+      
+        
+        <% endif; %>
 <%
             $compact[] = "'$otherPlural'";
         endforeach;

@@ -51,32 +51,24 @@ $groupedFields = collection($fields)
 $groupedFields += ['number' => [], 'string' => [], 'boolean' => [], 'date' => [], 'text' => []];
 $pk = "\$$singularVar->{$primaryKey[0]}";
 ?>
-<nav class="large-3 medium-4 columns" id="actions-sidebar">
-    <ul class="side-nav">
-        <li class="heading"><CakePHPBakeOpenTag= __('Actions') CakePHPBakeCloseTag></li>
-        <li><CakePHPBakeOpenTag= $this->Html->link(__('Edit <?= $singularHumanName ?>'), ['action' => 'edit', <?= $pk ?>]) CakePHPBakeCloseTag> </li>
-        <li><CakePHPBakeOpenTag= $this->Form->postLink(__('Delete <?= $singularHumanName ?>'), ['action' => 'delete', <?= $pk ?>], ['confirm' => __('Are you sure you want to delete # {0}?', <?= $pk ?>)]) CakePHPBakeCloseTag> </li>
-        <li><CakePHPBakeOpenTag= $this->Html->link(__('List <?= $pluralHumanName ?>'), ['action' => 'index']) CakePHPBakeCloseTag> </li>
-        <li><CakePHPBakeOpenTag= $this->Html->link(__('New <?= $singularHumanName ?>'), ['action' => 'add']) CakePHPBakeCloseTag> </li>
-<?php
-    $done = [];
-    foreach ($associations as $type => $data) {
-        foreach ($data as $alias => $details) {
-            if ($details['controller'] !== $this->name && !in_array($details['controller'], $done)) {
-?>
-        <li><CakePHPBakeOpenTag= $this->Html->link(__('List <?= $this->_pluralHumanName($alias) ?>'), ['controller' => '<?= $details['controller'] ?>', 'action' => 'index']) CakePHPBakeCloseTag> </li>
-        <li><CakePHPBakeOpenTag= $this->Html->link(__('New <?= Inflector::humanize(Inflector::singularize(Inflector::underscore($alias))) ?>'), ['controller' => '<?= $details['controller'] ?>', 'action' => 'add']) CakePHPBakeCloseTag> </li>
-<?php
-                $done[] = $details['controller'];
-            }
-        }
-    }
-?>
-    </ul>
-</nav>
-<div class="<?= $pluralVar ?> view large-9 medium-8 columns content">
-    <h3><CakePHPBakeOpenTag= h($<?= $singularVar ?>-><?= $displayField ?>) CakePHPBakeCloseTag></h3>
-    <table class="vertical-table">
+<section class="content-header">
+  <h1>
+     <CakePHPBakeOpenTag= h($<?= $singularVar ?>-><?= $displayField ?>) CakePHPBakeCloseTag> Details
+  </h1>
+  <ol class="breadcrumb">
+  	<li><a href="#"><i class="fa fa-dashboard"></i>Home</a></li>
+   
+    <li><a href="/<?= $singularVar ?>/"> <?= $singularVar ?></a></li>
+    <li class="active">View</li>
+  </ol>
+</section>
+<section class="content">
+  <div class="row">
+  <div class="col-md-12">
+  	
+  	<div class="box box-primary">
+  		<div class="box-body">
+  		<table class="table table-hover">
 <?php if ($groupedFields['string']) : ?>
 <?php foreach ($groupedFields['string'] as $field) : ?>
 <?php if (isset($associationFields[$field])) :
@@ -126,12 +118,20 @@ $pk = "\$$singularVar->{$primaryKey[0]}";
         </tr>
 <?php endforeach; ?>
 <?php endif; ?>
-    </table>
+   </div><!--boxbody-->
+   </div><!-- box -->
+  
+  </div><!-- col12-->
+</div> </table>
 <?php if ($groupedFields['text']) : ?>
 <?php foreach ($groupedFields['text'] as $field) : ?>
     <div class="row">
+    	<div class="col-md-12">
+  	
+  	    <div class="box box-primary"><div class="box-body">
         <h4><CakePHPBakeOpenTag= __('<?= Inflector::humanize($field) ?>') CakePHPBakeCloseTag></h4>
         <CakePHPBakeOpenTag= $this->Text->autoParagraph(h($<?= $singularVar ?>-><?= $field ?>)); CakePHPBakeCloseTag>
+       </div></div></div>
     </div>
 <?php endforeach; ?>
 <?php endif; ?>
@@ -141,10 +141,15 @@ foreach ($relations as $alias => $details):
     $otherSingularVar = Inflector::variable($alias);
     $otherPluralHumanName = Inflector::humanize(Inflector::underscore($details['controller']));
     ?>
-    <div class="related">
+    <div class="row">
+    	<div class="col-md-12">
+  	
+  	     <div class="box box-primary"><div class="box-header">
         <h4><CakePHPBakeOpenTag= __('Related <?= $otherPluralHumanName ?>') CakePHPBakeCloseTag></h4>
         <CakePHPBakeOpenTagphp if (!empty($<?= $singularVar ?>-><?= $details['property'] ?>)): CakePHPBakeCloseTag>
-        <table cellpadding="0" cellspacing="0">
+        </div>
+  		<div class="box-body">
+  		<table class="table table-hover">
             <tr>
 <?php foreach ($details['fields'] as $field): ?>
                 <th><CakePHPBakeOpenTag= __('<?= Inflector::humanize($field) ?>') CakePHPBakeCloseTag></th>
@@ -165,6 +170,11 @@ foreach ($relations as $alias => $details):
             </tr>
             <CakePHPBakeOpenTagphp endforeach; CakePHPBakeCloseTag>
         </table>
+        </div><!--boxbody-->
+   </div><!-- box -->
+  
+  </div><!-- col12-->
+ 
         <CakePHPBakeOpenTagphp endif; CakePHPBakeCloseTag>
     </div>
 <?php endforeach; ?>
