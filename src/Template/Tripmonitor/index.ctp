@@ -1,61 +1,64 @@
+<style>
+.pb-box{
+  margin-bottom:1px;
+  margin-top:-2px
+}
+.nopadding{
+  padding:0
+}
+</style>
 <!-- Content Header (Page header) -->
-    <section class="content-header">
-      <h1>
-        Simple Tables
-        <small>preview of simple tables</small>
-      </h1>
-      <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li><a href="#">Tables</a></li>
-        <li class="active">Simple</li>
-      </ol>
-    </section>
+<section >
+  
+  <!-- /.row -->
+  <div class="mptl-map">
+    <div id="map" style="height:100%; width: 100%; padding=0";></div>
+  </div>
+</section>
+<!-- /.content -->
+<?php $this->Html->css([
+    'AdminLTE./plugins/daterangepicker/daterangepicker'
+],
+['block' => 'css']); ?>
 
-    <!-- Main content -->
-    <section class="content">
-   
-    
-      <div class="row">
-        <div class="col-xs-12">
-          <div class="box">
-            <div class="box-header">
-              <h3 class="box-title">Responsive Hover Table</h3>
+<?php $this->Html->script([
+    'AdminLTE./plugins/daterangepicker/moment.min',
+    'AdminLTE./plugins/daterangepicker/daterangepicker',
+],
+['block' => 'script']); ?>
 
-              <div class="box-tools">
-                <div class="input-group input-group-sm" style="width: 150px;">
-                  <input type="text" name="table_search" class="form-control pull-right" placeholder="Search">
+<?php $this->start('scriptBotton'); ?>
+<script>
+  function resizeMap()
+  {
+  }
+  $(function () {
+  //Date range picker with time picker
+    $('input[id="messagedatetimerange"]').daterangepicker({
+      timePicker: true,
+      timePickerIncrement: 10,
+      locale: {
+          format: 'DD/MM/YYYY h:mm A'
+        }
+      });
+  });
 
-                  <div class="input-group-btn">
-                    <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <!-- /.box-header -->
-            <div class="box-body table-responsive no-padding">
-              <table class="table table-hover">
-                <tr>
-                  <th>ID</th>
-                  <th>User</th>
-                  <th>Date</th>
-                  <th>Status</th>
-                  <th>Reason</th>
-                </tr>
-                <tr>
-                  <td>183</td>
-                  <td>John Doe</td>
-                  <td>11-7-2014</td>
-                  <td><span class="label label-success">Approved</span></td>
-                  <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
-                </tr>
-                
-              </table>
-            </div>
-            <!-- /.box-body -->
-          </div>
-          <!-- /.box -->
-        </div>
-      </div>
-    </section>
-    <!-- /.content -->
-
+  function CenterMap(long, lat,zoom) {
+     console.log("Long: " + long + " Lat: " + lat);
+     map.getView().setCenter(ol.proj.transform([long, lat], 'EPSG:4326', 'EPSG:3857'));
+     map.getView().setZoom(zoom);
+   }
+   var map=  new ol.Map({
+     layers: [
+       new ol.layer.Tile({source: new ol.source.OSM()})
+     ],
+     view: new ol.View({
+       center: [0, 0],
+       zoom: 0
+     }),
+     interactions: ol.interaction.defaults({mouseWheelZoom:false}),
+     target: 'map'
+   });
+   CenterMap(78.5,25.6,8);
+</script>
+<?php $this->end(); ?>
