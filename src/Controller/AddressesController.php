@@ -54,6 +54,7 @@ class AddressesController extends AppController
         $address = $this->Addresses->newEntity();
         if ($this->request->is('post')) {
             $address = $this->Addresses->patchEntity($address, $this->request->data);
+            $address['customer_id']=$this->currentuser['customer_id'];
             if ($this->Addresses->save($address)) {
                 $this->Flash->success(__('The address has been saved.'));
 

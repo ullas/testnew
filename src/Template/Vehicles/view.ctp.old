@@ -1,0 +1,745 @@
+<section class="content-header">
+  <h1>
+    <?php echo $this->request->params['controller'] ?>
+    <small>View</small>
+  </h1>
+  <ol class="breadcrumb">
+    <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+    <li><a href="#">Tracking Items</a></li>
+    <li> <a href="/vehicles/">Vehicles</a></li>
+    <li class="active">View </li>
+  </ol>
+</section>
+<section class="content">
+<div class="vehicles view large-9 medium-8 columns content">
+    <h3><?= h($vehicle->name) ?></h3>
+    <table class="vertical-table">
+        <tr>
+            <th><?= __('Code') ?></th>
+            <td><?= h($vehicle->code) ?></td>
+        </tr>
+        <tr>
+            <th><?= __('Plateno') ?></th>
+            <td><?= h($vehicle->plateno) ?></td>
+        </tr>
+        <tr>
+            <th><?= __('Vin') ?></th>
+            <td><?= h($vehicle->vin) ?></td>
+        </tr>
+        <tr>
+            <th><?= __('Vehicletype') ?></th>
+            <td><?= $vehicle->has('vehicletype') ? $this->Html->link($vehicle->vehicletype->name, ['controller' => 'Vehicletypes', 'action' => 'view', $vehicle->vehicletype->id]) : '' ?></td>
+        </tr>
+        <tr>
+            <th><?= __('Make') ?></th>
+            <td><?= h($vehicle->make) ?></td>
+        </tr>
+        <tr>
+            <th><?= __('Model') ?></th>
+            <td><?= h($vehicle->model) ?></td>
+        </tr>
+        <tr>
+            <th><?= __('Trim') ?></th>
+            <td><?= h($vehicle->trim) ?></td>
+        </tr>
+        <tr>
+            <th><?= __('Registationloc') ?></th>
+            <td><?= h($vehicle->registationloc) ?></td>
+        </tr>
+        <tr>
+            <th><?= __('Vehiclestatus') ?></th>
+            <td><?= $vehicle->has('vehiclestatus') ? $this->Html->link($vehicle->vehiclestatus->name, ['controller' => 'Vehiclestatuses', 'action' => 'view', $vehicle->vehiclestatus->id]) : '' ?></td>
+        </tr>
+        <tr>
+            <th><?= __('Ownership') ?></th>
+            <td><?= $vehicle->has('ownership') ? $this->Html->link($vehicle->ownership->name, ['controller' => 'Ownerships', 'action' => 'view', $vehicle->ownership->id]) : '' ?></td>
+        </tr>
+        <tr>
+            <th><?= __('Symbol') ?></th>
+            <td><?= $vehicle->has('symbol') ? $this->Html->link($vehicle->symbol->name, ['controller' => 'Symbols', 'action' => 'view', $vehicle->symbol->id]) : '' ?></td>
+        </tr>
+        <tr>
+            <th><?= __('Activedriver') ?></th>
+            <td><?= h($vehicle->activedriver) ?></td>
+        </tr>
+        <tr>
+            <th><?= __('Station') ?></th>
+            <td><?= $vehicle->has('station') ? $this->Html->link($vehicle->station->name, ['controller' => 'Stations', 'action' => 'view', $vehicle->station->id]) : '' ?></td>
+        </tr>
+        <tr>
+            <th><?= __('Department') ?></th>
+            <td><?= $vehicle->has('department') ? $this->Html->link($vehicle->department->name, ['controller' => 'Departments', 'action' => 'view', $vehicle->department->id]) : '' ?></td>
+        </tr>
+        <tr>
+            <th><?= __('Trackingobject') ?></th>
+            <td><?= $vehicle->has('trackingobject') ? $this->Html->link($vehicle->trackingobject->name, ['controller' => 'Trackingobjects', 'action' => 'view', $vehicle->trackingobject->id]) : '' ?></td>
+        </tr>
+        <tr>
+            <th><?= __('Description') ?></th>
+            <td><?= h($vehicle->description) ?></td>
+        </tr>
+        <tr>
+            <th><?= __('Regstate') ?></th>
+            <td><?= h($vehicle->regstate) ?></td>
+        </tr>
+        <tr>
+            <th><?= __('Color') ?></th>
+            <td><?= h($vehicle->color) ?></td>
+        </tr>
+        <tr>
+            <th><?= __('Bodytype') ?></th>
+            <td><?= h($vehicle->bodytype) ?></td>
+        </tr>
+        <tr>
+            <th><?= __('Bodysubtype') ?></th>
+            <td><?= h($vehicle->bodysubtype) ?></td>
+        </tr>
+        <tr>
+            <th><?= __('Msrp') ?></th>
+            <td><?= h($vehicle->msrp) ?></td>
+        </tr>
+        <tr>
+            <th><?= __('Purpose') ?></th>
+            <td><?= $vehicle->has('purpose') ? $this->Html->link($vehicle->purpose->name, ['controller' => 'Purposes', 'action' => 'view', $vehicle->purpose->id]) : '' ?></td>
+        </tr>
+        <tr>
+            <th><?= __('Name') ?></th>
+            <td><?= h($vehicle->name) ?></td>
+        </tr>
+        <tr>
+            <th><?= __('Id') ?></th>
+            <td><?= $this->Number->format($vehicle->id) ?></td>
+        </tr>
+        <tr>
+            <th><?= __('Year') ?></th>
+            <td><?= $this->Number->format($vehicle->year) ?></td>
+        </tr>
+        <tr>
+            <th><?= __('Driverdetectionmode') ?></th>
+            <td><?= $this->Number->format($vehicle->driverdetectionmode) ?></td>
+        </tr>
+        <tr>
+            <th><?= __('Odometer') ?></th>
+            <td><?= $this->Number->format($vehicle->odometer) ?></td>
+        </tr>
+        <tr>
+            <th><?= __('Transporter Id') ?></th>
+            <td><?= $this->Number->format($vehicle->transporter_id) ?></td>
+        </tr>
+    </table>
+    <div class="row">
+        <h4><?= __('Photo') ?></h4>
+        <?= $this->Text->autoParagraph(h($vehicle->photo)); ?>
+    </div>
+    <div class="related">
+        <h4><?= __('Related Fuelentries') ?></h4>
+        <?php if (!empty($vehicle->fuelentries)): ?>
+        <table cellpadding="0" cellspacing="0">
+            <tr>
+                <th><?= __('Id') ?></th>
+                <th><?= __('Vehicle Id') ?></th>
+                <th><?= __('Date') ?></th>
+                <th><?= __('Odometer') ?></th>
+                <th><?= __('Priceperusnit') ?></th>
+                <th><?= __('Fueltype') ?></th>
+                <th><?= __('Vendor Id') ?></th>
+                <th><?= __('Ref') ?></th>
+                <th><?= __('Partialfill') ?></th>
+                <th><?= __('Markaspersonal') ?></th>
+                <th class="actions"><?= __('Actions') ?></th>
+            </tr>
+            <?php foreach ($vehicle->fuelentries as $fuelentries): ?>
+            <tr>
+                <td><?= h($fuelentries->id) ?></td>
+                <td><?= h($fuelentries->vehicle_id) ?></td>
+                <td><?= h($fuelentries->date) ?></td>
+                <td><?= h($fuelentries->odometer) ?></td>
+                <td><?= h($fuelentries->priceperusnit) ?></td>
+                <td><?= h($fuelentries->fueltype) ?></td>
+                <td><?= h($fuelentries->vendor_id) ?></td>
+                <td><?= h($fuelentries->ref) ?></td>
+                <td><?= h($fuelentries->partialfill) ?></td>
+                <td><?= h($fuelentries->markaspersonal) ?></td>
+                <td class="actions">
+                    <?= $this->Html->link(__('View'), ['controller' => 'Fuelentries', 'action' => 'view', $fuelentries->id]) ?>
+                    <?= $this->Html->link(__('Edit'), ['controller' => 'Fuelentries', 'action' => 'edit', $fuelentries->id]) ?>
+                    <?= $this->Form->postLink(__('Delete'), ['controller' => 'Fuelentries', 'action' => 'delete', $fuelentries->id], ['confirm' => __('Are you sure you want to delete # {0}?', $fuelentries->id)]) ?>
+                </td>
+            </tr>
+            <?php endforeach; ?>
+        </table>
+        <?php endif; ?>
+    </div>
+    <div class="related">
+        <h4><?= __('Related Issues') ?></h4>
+        <?php if (!empty($vehicle->issues)): ?>
+        <table cellpadding="0" cellspacing="0">
+            <tr>
+                <th><?= __('Id') ?></th>
+                <th><?= __('Vehicle Id') ?></th>
+                <th><?= __('Reportedon') ?></th>
+                <th><?= __('Summary') ?></th>
+                <th><?= __('Description') ?></th>
+                <th><?= __('Odometer') ?></th>
+                <th><?= __('Reportedby Id') ?></th>
+                <th><?= __('Assignedto Id') ?></th>
+                <th><?= __('Tags') ?></th>
+                <th><?= __('Duedate') ?></th>
+                <th><?= __('Overdueodometer') ?></th>
+                <th><?= __('Markasvoid') ?></th>
+                <th><?= __('Customer Id') ?></th>
+                <th><?= __('Workorder Id') ?></th>
+                <th><?= __('Serviceentry Id') ?></th>
+                <th class="actions"><?= __('Actions') ?></th>
+            </tr>
+            <?php foreach ($vehicle->issues as $issues): ?>
+            <tr>
+                <td><?= h($issues->id) ?></td>
+                <td><?= h($issues->vehicle_id) ?></td>
+                <td><?= h($issues->reportedon) ?></td>
+                <td><?= h($issues->summary) ?></td>
+                <td><?= h($issues->description) ?></td>
+                <td><?= h($issues->odometer) ?></td>
+                <td><?= h($issues->reportedby_id) ?></td>
+                <td><?= h($issues->assignedto_id) ?></td>
+                <td><?= h($issues->tags) ?></td>
+                <td><?= h($issues->duedate) ?></td>
+                <td><?= h($issues->overdueodometer) ?></td>
+                <td><?= h($issues->markasvoid) ?></td>
+                <td><?= h($issues->customer_id) ?></td>
+                <td><?= h($issues->workorder_id) ?></td>
+                <td><?= h($issues->serviceentry_id) ?></td>
+                <td class="actions">
+                    <?= $this->Html->link(__('View'), ['controller' => 'Issues', 'action' => 'view', $issues->id]) ?>
+                    <?= $this->Html->link(__('Edit'), ['controller' => 'Issues', 'action' => 'edit', $issues->id]) ?>
+                    <?= $this->Form->postLink(__('Delete'), ['controller' => 'Issues', 'action' => 'delete', $issues->id], ['confirm' => __('Are you sure you want to delete # {0}?', $issues->id)]) ?>
+                </td>
+            </tr>
+            <?php endforeach; ?>
+        </table>
+        <?php endif; ?>
+    </div>
+    <div class="related">
+        <h4><?= __('Related Servicesentries') ?></h4>
+        <?php if (!empty($vehicle->servicesentries)): ?>
+        <table cellpadding="0" cellspacing="0">
+            <tr>
+                <th><?= __('Id') ?></th>
+                <th><?= __('Vehicle Id') ?></th>
+                <th><?= __('Odometer') ?></th>
+                <th><?= __('Refer') ?></th>
+                <th><?= __('Labour') ?></th>
+                <th><?= __('Parts') ?></th>
+                <th><?= __('Tax') ?></th>
+                <th><?= __('Markasvoid') ?></th>
+                <th><?= __('Vendor Id') ?></th>
+                <th><?= __('Comments') ?></th>
+                <th class="actions"><?= __('Actions') ?></th>
+            </tr>
+            <?php foreach ($vehicle->servicesentries as $servicesentries): ?>
+            <tr>
+                <td><?= h($servicesentries->id) ?></td>
+                <td><?= h($servicesentries->vehicle_id) ?></td>
+                <td><?= h($servicesentries->odometer) ?></td>
+                <td><?= h($servicesentries->refer) ?></td>
+                <td><?= h($servicesentries->labour) ?></td>
+                <td><?= h($servicesentries->parts) ?></td>
+                <td><?= h($servicesentries->tax) ?></td>
+                <td><?= h($servicesentries->markasvoid) ?></td>
+                <td><?= h($servicesentries->vendor_id) ?></td>
+                <td><?= h($servicesentries->comments) ?></td>
+                <td class="actions">
+                    <?= $this->Html->link(__('View'), ['controller' => 'Servicesentries', 'action' => 'view', $servicesentries->id]) ?>
+                    <?= $this->Html->link(__('Edit'), ['controller' => 'Servicesentries', 'action' => 'edit', $servicesentries->id]) ?>
+                    <?= $this->Form->postLink(__('Delete'), ['controller' => 'Servicesentries', 'action' => 'delete', $servicesentries->id], ['confirm' => __('Are you sure you want to delete # {0}?', $servicesentries->id)]) ?>
+                </td>
+            </tr>
+            <?php endforeach; ?>
+        </table>
+        <?php endif; ?>
+    </div>
+    <div class="related">
+        <h4><?= __('Related Trips') ?></h4>
+        <?php if (!empty($vehicle->trips)): ?>
+        <table cellpadding="0" cellspacing="0">
+            <tr>
+                <th><?= __('Id') ?></th>
+                <th><?= __('Name') ?></th>
+                <th><?= __('Start Date') ?></th>
+                <th><?= __('End Date') ?></th>
+                <th><?= __('Customer Id') ?></th>
+                <th><?= __('Vehicle Id') ?></th>
+                <th><?= __('Start Time') ?></th>
+                <th><?= __('End Time') ?></th>
+                <th><?= __('Timepolicy Id') ?></th>
+                <th><?= __('Route Id') ?></th>
+                <th><?= __('Startpoint Id') ?></th>
+                <th><?= __('Endpoint Id') ?></th>
+                <th><?= __('Schedule Id') ?></th>
+                <th><?= __('Autogen') ?></th>
+                <th><?= __('Tripstatus Id') ?></th>
+                <th><?= __('Last Location') ?></th>
+                <th><?= __('Canceled') ?></th>
+                <th><?= __('Active') ?></th>
+                <th><?= __('Fromschedule') ?></th>
+                <th><?= __('Trackingcode') ?></th>
+                <th><?= __('Adt') ?></th>
+                <th><?= __('Aat') ?></th>
+                <th><?= __('Edt') ?></th>
+                <th><?= __('Eat') ?></th>
+                <th><?= __('Vehiclecategory Id') ?></th>
+                <th><?= __('Platform') ?></th>
+                <th><?= __('Triptype Id') ?></th>
+                <th class="actions"><?= __('Actions') ?></th>
+            </tr>
+            <?php foreach ($vehicle->trips as $trips): ?>
+            <tr>
+                <td><?= h($trips->id) ?></td>
+                <td><?= h($trips->name) ?></td>
+                <td><?= h($trips->start_date) ?></td>
+                <td><?= h($trips->end_date) ?></td>
+                <td><?= h($trips->customer_id) ?></td>
+                <td><?= h($trips->vehicle_id) ?></td>
+                <td><?= h($trips->start_time) ?></td>
+                <td><?= h($trips->end_time) ?></td>
+                <td><?= h($trips->timepolicy_id) ?></td>
+                <td><?= h($trips->route_id) ?></td>
+                <td><?= h($trips->startpoint_id) ?></td>
+                <td><?= h($trips->endpoint_id) ?></td>
+                <td><?= h($trips->schedule_id) ?></td>
+                <td><?= h($trips->autogen) ?></td>
+                <td><?= h($trips->tripstatus_id) ?></td>
+                <td><?= h($trips->last_location) ?></td>
+                <td><?= h($trips->canceled) ?></td>
+                <td><?= h($trips->active) ?></td>
+                <td><?= h($trips->fromschedule) ?></td>
+                <td><?= h($trips->trackingcode) ?></td>
+                <td><?= h($trips->adt) ?></td>
+                <td><?= h($trips->aat) ?></td>
+                <td><?= h($trips->edt) ?></td>
+                <td><?= h($trips->eat) ?></td>
+                <td><?= h($trips->vehiclecategory_id) ?></td>
+                <td><?= h($trips->platform) ?></td>
+                <td><?= h($trips->triptype_id) ?></td>
+                <td class="actions">
+                    <?= $this->Html->link(__('View'), ['controller' => 'Trips', 'action' => 'view', $trips->id]) ?>
+                    <?= $this->Html->link(__('Edit'), ['controller' => 'Trips', 'action' => 'edit', $trips->id]) ?>
+                    <?= $this->Form->postLink(__('Delete'), ['controller' => 'Trips', 'action' => 'delete', $trips->id], ['confirm' => __('Are you sure you want to delete # {0}?', $trips->id)]) ?>
+                </td>
+            </tr>
+            <?php endforeach; ?>
+        </table>
+        <?php endif; ?>
+    </div>
+    <div class="related">
+        <h4><?= __('Related Vehicleengines') ?></h4>
+        <?php if (!empty($vehicle->vehicleengines)): ?>
+        <table cellpadding="0" cellspacing="0">
+            <tr>
+                <th><?= __('Id') ?></th>
+                <th><?= __('Enginesummary') ?></th>
+                <th><?= __('Brand') ?></th>
+                <th><?= __('Aspiration') ?></th>
+                <th><?= __('Blocktype') ?></th>
+                <th><?= __('Bore') ?></th>
+                <th><?= __('Camtype') ?></th>
+                <th><?= __('Vehicle Id') ?></th>
+                <th><?= __('Compression') ?></th>
+                <th><?= __('Cylinders') ?></th>
+                <th><?= __('Displacement') ?></th>
+                <th><?= __('Fuel Induction') ?></th>
+                <th><?= __('Fuel Quality') ?></th>
+                <th><?= __('Max Hp') ?></th>
+                <th><?= __('Max Torque') ?></th>
+                <th><?= __('Redline Rpm') ?></th>
+                <th><?= __('Stroke') ?></th>
+                <th><?= __('Valves') ?></th>
+                <th><?= __('Transmission Summary') ?></th>
+                <th><?= __('Trasmission Brand') ?></th>
+                <th><?= __('Transmission Type') ?></th>
+                <th><?= __('Traasmission Gears') ?></th>
+                <th class="actions"><?= __('Actions') ?></th>
+            </tr>
+            <?php foreach ($vehicle->vehicleengines as $vehicleengines): ?>
+            <tr>
+                <td><?= h($vehicleengines->id) ?></td>
+                <td><?= h($vehicleengines->enginesummary) ?></td>
+                <td><?= h($vehicleengines->brand) ?></td>
+                <td><?= h($vehicleengines->aspiration) ?></td>
+                <td><?= h($vehicleengines->blocktype) ?></td>
+                <td><?= h($vehicleengines->bore) ?></td>
+                <td><?= h($vehicleengines->camtype) ?></td>
+                <td><?= h($vehicleengines->vehicle_id) ?></td>
+                <td><?= h($vehicleengines->compression) ?></td>
+                <td><?= h($vehicleengines->cylinders) ?></td>
+                <td><?= h($vehicleengines->displacement) ?></td>
+                <td><?= h($vehicleengines->fuel_induction) ?></td>
+                <td><?= h($vehicleengines->fuel_quality) ?></td>
+                <td><?= h($vehicleengines->max_hp) ?></td>
+                <td><?= h($vehicleengines->max_torque) ?></td>
+                <td><?= h($vehicleengines->redline_rpm) ?></td>
+                <td><?= h($vehicleengines->stroke) ?></td>
+                <td><?= h($vehicleengines->valves) ?></td>
+                <td><?= h($vehicleengines->transmission_summary) ?></td>
+                <td><?= h($vehicleengines->trasmission_brand) ?></td>
+                <td><?= h($vehicleengines->transmission_type) ?></td>
+                <td><?= h($vehicleengines->traasmission_gears) ?></td>
+                <td class="actions">
+                    <?= $this->Html->link(__('View'), ['controller' => 'Vehicleengines', 'action' => 'view', $vehicleengines->id]) ?>
+                    <?= $this->Html->link(__('Edit'), ['controller' => 'Vehicleengines', 'action' => 'edit', $vehicleengines->id]) ?>
+                    <?= $this->Form->postLink(__('Delete'), ['controller' => 'Vehicleengines', 'action' => 'delete', $vehicleengines->id], ['confirm' => __('Are you sure you want to delete # {0}?', $vehicleengines->id)]) ?>
+                </td>
+            </tr>
+            <?php endforeach; ?>
+        </table>
+        <?php endif; ?>
+    </div>
+    <div class="related">
+        <h4><?= __('Related Vehiclefluids') ?></h4>
+        <?php if (!empty($vehicle->vehiclefluids)): ?>
+        <table cellpadding="0" cellspacing="0">
+            <tr>
+                <th><?= __('Id') ?></th>
+                <th><?= __('Vehicle Id') ?></th>
+                <th><?= __('Fueltype') ?></th>
+                <th><?= __('Fuelquality') ?></th>
+                <th><?= __('Fueltank1 Capacity') ?></th>
+                <th><?= __('Fueltank2 Capacity') ?></th>
+                <th><?= __('Oil Capacity') ?></th>
+                <th class="actions"><?= __('Actions') ?></th>
+            </tr>
+            <?php foreach ($vehicle->vehiclefluids as $vehiclefluids): ?>
+            <tr>
+                <td><?= h($vehiclefluids->id) ?></td>
+                <td><?= h($vehiclefluids->vehicle_id) ?></td>
+                <td><?= h($vehiclefluids->fueltype) ?></td>
+                <td><?= h($vehiclefluids->fuelquality) ?></td>
+                <td><?= h($vehiclefluids->fueltank1_capacity) ?></td>
+                <td><?= h($vehiclefluids->fueltank2_capacity) ?></td>
+                <td><?= h($vehiclefluids->oil_capacity) ?></td>
+                <td class="actions">
+                    <?= $this->Html->link(__('View'), ['controller' => 'Vehiclefluids', 'action' => 'view', $vehiclefluids->id]) ?>
+                    <?= $this->Html->link(__('Edit'), ['controller' => 'Vehiclefluids', 'action' => 'edit', $vehiclefluids->id]) ?>
+                    <?= $this->Form->postLink(__('Delete'), ['controller' => 'Vehiclefluids', 'action' => 'delete', $vehiclefluids->id], ['confirm' => __('Are you sure you want to delete # {0}?', $vehiclefluids->id)]) ?>
+                </td>
+            </tr>
+            <?php endforeach; ?>
+        </table>
+        <?php endif; ?>
+    </div>
+    <div class="related">
+        <h4><?= __('Related Vehiclepermits') ?></h4>
+        <?php if (!empty($vehicle->vehiclepermits)): ?>
+        <table cellpadding="0" cellspacing="0">
+            <tr>
+                <th><?= __('Id') ?></th>
+                <th><?= __('Vehicle Id') ?></th>
+                <th><?= __('Allowedstates') ?></th>
+                <th class="actions"><?= __('Actions') ?></th>
+            </tr>
+            <?php foreach ($vehicle->vehiclepermits as $vehiclepermits): ?>
+            <tr>
+                <td><?= h($vehiclepermits->id) ?></td>
+                <td><?= h($vehiclepermits->vehicle_id) ?></td>
+                <td><?= h($vehiclepermits->allowedstates) ?></td>
+                <td class="actions">
+                    <?= $this->Html->link(__('View'), ['controller' => 'Vehiclepermits', 'action' => 'view', $vehiclepermits->id]) ?>
+                    <?= $this->Html->link(__('Edit'), ['controller' => 'Vehiclepermits', 'action' => 'edit', $vehiclepermits->id]) ?>
+                    <?= $this->Form->postLink(__('Delete'), ['controller' => 'Vehiclepermits', 'action' => 'delete', $vehiclepermits->id], ['confirm' => __('Are you sure you want to delete # {0}?', $vehiclepermits->id)]) ?>
+                </td>
+            </tr>
+            <?php endforeach; ?>
+        </table>
+        <?php endif; ?>
+    </div>
+    <div class="related">
+        <h4><?= __('Related Vehiclepurchases') ?></h4>
+        <?php if (!empty($vehicle->vehiclepurchases)): ?>
+        <table cellpadding="0" cellspacing="0">
+            <tr>
+                <th><?= __('Id') ?></th>
+                <th><?= __('Vendor Id') ?></th>
+                <th><?= __('Price') ?></th>
+                <th><?= __('Currency Id') ?></th>
+                <th><?= __('Purchasedate') ?></th>
+                <th><?= __('Purchasepodometer') ?></th>
+                <th><?= __('Warrantyexpdate') ?></th>
+                <th><?= __('Warrentyexpmeter') ?></th>
+                <th><?= __('Comments') ?></th>
+                <th><?= __('Vehicle Id') ?></th>
+                <th><?= __('Financer Id') ?></th>
+                <th class="actions"><?= __('Actions') ?></th>
+            </tr>
+            <?php foreach ($vehicle->vehiclepurchases as $vehiclepurchases): ?>
+            <tr>
+                <td><?= h($vehiclepurchases->id) ?></td>
+                <td><?= h($vehiclepurchases->vendor_id) ?></td>
+                <td><?= h($vehiclepurchases->price) ?></td>
+                <td><?= h($vehiclepurchases->currency_id) ?></td>
+                <td><?= h($vehiclepurchases->purchasedate) ?></td>
+                <td><?= h($vehiclepurchases->purchasepodometer) ?></td>
+                <td><?= h($vehiclepurchases->warrantyexpdate) ?></td>
+                <td><?= h($vehiclepurchases->warrentyexpmeter) ?></td>
+                <td><?= h($vehiclepurchases->comments) ?></td>
+                <td><?= h($vehiclepurchases->vehicle_id) ?></td>
+                <td><?= h($vehiclepurchases->financer_id) ?></td>
+                <td class="actions">
+                    <?= $this->Html->link(__('View'), ['controller' => 'Vehiclepurchases', 'action' => 'view', $vehiclepurchases->id]) ?>
+                    <?= $this->Html->link(__('Edit'), ['controller' => 'Vehiclepurchases', 'action' => 'edit', $vehiclepurchases->id]) ?>
+                    <?= $this->Form->postLink(__('Delete'), ['controller' => 'Vehiclepurchases', 'action' => 'delete', $vehiclepurchases->id], ['confirm' => __('Are you sure you want to delete # {0}?', $vehiclepurchases->id)]) ?>
+                </td>
+            </tr>
+            <?php endforeach; ?>
+        </table>
+        <?php endif; ?>
+    </div>
+    <div class="related">
+        <h4><?= __('Related Vehiclespecifications') ?></h4>
+        <?php if (!empty($vehicle->vehiclespecifications)): ?>
+        <table cellpadding="0" cellspacing="0">
+            <tr>
+                <th><?= __('Id') ?></th>
+                <th><?= __('Width') ?></th>
+                <th><?= __('Height') ?></th>
+                <th><?= __('Length') ?></th>
+                <th><?= __('Interiorvolume') ?></th>
+                <th><?= __('Passengervolume') ?></th>
+                <th><?= __('Cargovolume') ?></th>
+                <th><?= __('Groudclearance') ?></th>
+                <th><?= __('Bedlength') ?></th>
+                <th><?= __('Curbweight') ?></th>
+                <th><?= __('Grossweight') ?></th>
+                <th><?= __('Towingcapacity') ?></th>
+                <th><?= __('Epacity') ?></th>
+                <th><?= __('Epahighway') ?></th>
+                <th><?= __('Epacombined') ?></th>
+                <th><?= __('Vehicle Id') ?></th>
+                <th><?= __('Maxpayload') ?></th>
+                <th class="actions"><?= __('Actions') ?></th>
+            </tr>
+            <?php foreach ($vehicle->vehiclespecifications as $vehiclespecifications): ?>
+            <tr>
+                <td><?= h($vehiclespecifications->id) ?></td>
+                <td><?= h($vehiclespecifications->width) ?></td>
+                <td><?= h($vehiclespecifications->height) ?></td>
+                <td><?= h($vehiclespecifications->length) ?></td>
+                <td><?= h($vehiclespecifications->interiorvolume) ?></td>
+                <td><?= h($vehiclespecifications->passengervolume) ?></td>
+                <td><?= h($vehiclespecifications->cargovolume) ?></td>
+                <td><?= h($vehiclespecifications->groudclearance) ?></td>
+                <td><?= h($vehiclespecifications->bedlength) ?></td>
+                <td><?= h($vehiclespecifications->curbweight) ?></td>
+                <td><?= h($vehiclespecifications->grossweight) ?></td>
+                <td><?= h($vehiclespecifications->towingcapacity) ?></td>
+                <td><?= h($vehiclespecifications->epacity) ?></td>
+                <td><?= h($vehiclespecifications->epahighway) ?></td>
+                <td><?= h($vehiclespecifications->epacombined) ?></td>
+                <td><?= h($vehiclespecifications->vehicle_id) ?></td>
+                <td><?= h($vehiclespecifications->maxpayload) ?></td>
+                <td class="actions">
+                    <?= $this->Html->link(__('View'), ['controller' => 'Vehiclespecifications', 'action' => 'view', $vehiclespecifications->id]) ?>
+                    <?= $this->Html->link(__('Edit'), ['controller' => 'Vehiclespecifications', 'action' => 'edit', $vehiclespecifications->id]) ?>
+                    <?= $this->Form->postLink(__('Delete'), ['controller' => 'Vehiclespecifications', 'action' => 'delete', $vehiclespecifications->id], ['confirm' => __('Are you sure you want to delete # {0}?', $vehiclespecifications->id)]) ?>
+                </td>
+            </tr>
+            <?php endforeach; ?>
+        </table>
+        <?php endif; ?>
+    </div>
+    <div class="related">
+        <h4><?= __('Related Vehiclewheelstyres') ?></h4>
+        <?php if (!empty($vehicle->vehiclewheelstyres)): ?>
+        <table cellpadding="0" cellspacing="0">
+            <tr>
+                <th><?= __('Id') ?></th>
+                <th><?= __('Vehicle Id') ?></th>
+                <th><?= __('Drivetype') ?></th>
+                <th><?= __('Breaksystem') ?></th>
+                <th><?= __('Fronttrackwidth') ?></th>
+                <th><?= __('Reartrackwidth') ?></th>
+                <th><?= __('Wheelbase') ?></th>
+                <th><?= __('Frontwheeldia') ?></th>
+                <th><?= __('Rearwheeldia') ?></th>
+                <th><?= __('Rearaxil') ?></th>
+                <th><?= __('Fronttyretype') ?></th>
+                <th><?= __('Fronttyrepsi') ?></th>
+                <th><?= __('Reartyretype') ?></th>
+                <th><?= __('Reartyrepsi') ?></th>
+                <th class="actions"><?= __('Actions') ?></th>
+            </tr>
+            <?php foreach ($vehicle->vehiclewheelstyres as $vehiclewheelstyres): ?>
+            <tr>
+                <td><?= h($vehiclewheelstyres->id) ?></td>
+                <td><?= h($vehiclewheelstyres->vehicle_id) ?></td>
+                <td><?= h($vehiclewheelstyres->drivetype) ?></td>
+                <td><?= h($vehiclewheelstyres->breaksystem) ?></td>
+                <td><?= h($vehiclewheelstyres->fronttrackwidth) ?></td>
+                <td><?= h($vehiclewheelstyres->reartrackwidth) ?></td>
+                <td><?= h($vehiclewheelstyres->wheelbase) ?></td>
+                <td><?= h($vehiclewheelstyres->frontwheeldia) ?></td>
+                <td><?= h($vehiclewheelstyres->rearwheeldia) ?></td>
+                <td><?= h($vehiclewheelstyres->rearaxil) ?></td>
+                <td><?= h($vehiclewheelstyres->fronttyretype) ?></td>
+                <td><?= h($vehiclewheelstyres->fronttyrepsi) ?></td>
+                <td><?= h($vehiclewheelstyres->reartyretype) ?></td>
+                <td><?= h($vehiclewheelstyres->reartyrepsi) ?></td>
+                <td class="actions">
+                    <?= $this->Html->link(__('View'), ['controller' => 'Vehiclewheelstyres', 'action' => 'view', $vehiclewheelstyres->id]) ?>
+                    <?= $this->Html->link(__('Edit'), ['controller' => 'Vehiclewheelstyres', 'action' => 'edit', $vehiclewheelstyres->id]) ?>
+                    <?= $this->Form->postLink(__('Delete'), ['controller' => 'Vehiclewheelstyres', 'action' => 'delete', $vehiclewheelstyres->id], ['confirm' => __('Are you sure you want to delete # {0}?', $vehiclewheelstyres->id)]) ?>
+                </td>
+            </tr>
+            <?php endforeach; ?>
+        </table>
+        <?php endif; ?>
+    </div>
+    <div class="related">
+        <h4><?= __('Related Workorders') ?></h4>
+        <?php if (!empty($vehicle->workorders)): ?>
+        <table cellpadding="0" cellspacing="0">
+            <tr>
+                <th><?= __('Id') ?></th>
+                <th><?= __('Issuedate') ?></th>
+                <th><?= __('Workorderstatus Id') ?></th>
+                <th><?= __('Vehicle Id') ?></th>
+                <th><?= __('Startdate') ?></th>
+                <th><?= __('Lables') ?></th>
+                <th><?= __('Odometer') ?></th>
+                <th><?= __('Void') ?></th>
+                <th><?= __('Vendor Id') ?></th>
+                <th><?= __('Completiondate') ?></th>
+                <th><?= __('Labour') ?></th>
+                <th><?= __('Parts') ?></th>
+                <th><?= __('Dicount') ?></th>
+                <th><?= __('Tax') ?></th>
+                <th><?= __('Issuedby Id') ?></th>
+                <th><?= __('Assignedby Id') ?></th>
+                <th><?= __('Assignto Id') ?></th>
+                <th><?= __('Invoicenumber') ?></th>
+                <th><?= __('POnumber') ?></th>
+                <th><?= __('Description') ?></th>
+                <th><?= __('Ponumber') ?></th>
+                <th class="actions"><?= __('Actions') ?></th>
+            </tr>
+            <?php foreach ($vehicle->workorders as $workorders): ?>
+            <tr>
+                <td><?= h($workorders->id) ?></td>
+                <td><?= h($workorders->issuedate) ?></td>
+                <td><?= h($workorders->workorderstatus_id) ?></td>
+                <td><?= h($workorders->vehicle_id) ?></td>
+                <td><?= h($workorders->startdate) ?></td>
+                <td><?= h($workorders->lables) ?></td>
+                <td><?= h($workorders->odometer) ?></td>
+                <td><?= h($workorders->void) ?></td>
+                <td><?= h($workorders->vendor_id) ?></td>
+                <td><?= h($workorders->completiondate) ?></td>
+                <td><?= h($workorders->labour) ?></td>
+                <td><?= h($workorders->parts) ?></td>
+                <td><?= h($workorders->dicount) ?></td>
+                <td><?= h($workorders->tax) ?></td>
+                <td><?= h($workorders->issuedby_id) ?></td>
+                <td><?= h($workorders->assignedby_id) ?></td>
+                <td><?= h($workorders->assignto_id) ?></td>
+                <td><?= h($workorders->invoicenumber) ?></td>
+                <td><?= h($workorders->POnumber) ?></td>
+                <td><?= h($workorders->description) ?></td>
+                <td><?= h($workorders->ponumber) ?></td>
+                <td class="actions">
+                    <?= $this->Html->link(__('View'), ['controller' => 'Workorders', 'action' => 'view', $workorders->id]) ?>
+                    <?= $this->Html->link(__('Edit'), ['controller' => 'Workorders', 'action' => 'edit', $workorders->id]) ?>
+                    <?= $this->Form->postLink(__('Delete'), ['controller' => 'Workorders', 'action' => 'delete', $workorders->id], ['confirm' => __('Are you sure you want to delete # {0}?', $workorders->id)]) ?>
+                </td>
+            </tr>
+            <?php endforeach; ?>
+        </table>
+        <?php endif; ?>
+    </div>
+    <div class="related">
+        <h4><?= __('Related Drivers') ?></h4>
+        <?php if (!empty($vehicle->drivers)): ?>
+        <table cellpadding="0" cellspacing="0">
+            <tr>
+                <th><?= __('Id') ?></th>
+                <th><?= __('Name') ?></th>
+                <th><?= __('Dob') ?></th>
+                <th><?= __('Sex') ?></th>
+                <th><?= __('Nationality') ?></th>
+                <th><?= __('Idcardno') ?></th>
+                <th><?= __('Licenceno') ?></th>
+                <th><?= __('Licenceexpdate') ?></th>
+                <th><?= __('Address Id') ?></th>
+                <th><?= __('Nextofkin') ?></th>
+                <th><?= __('Comments') ?></th>
+                <th><?= __('Photo') ?></th>
+                <th><?= __('Ibutton Id') ?></th>
+                <th><?= __('Drivingpassportno') ?></th>
+                <th><?= __('Drivingpassportexp') ?></th>
+                <th><?= __('Customer Id') ?></th>
+                <th><?= __('Vehicle Id') ?></th>
+                <th><?= __('Drivinglicenseclass') ?></th>
+                <th><?= __('Contractor Id') ?></th>
+                <th><?= __('Station Id') ?></th>
+                <th><?= __('Reporingtime') ?></th>
+                <th><?= __('Offday1') ?></th>
+                <th><?= __('Offday2') ?></th>
+                <th><?= __('Supervisor Id') ?></th>
+                <th><?= __('Isasupervisor') ?></th>
+                <th><?= __('Ragscore') ?></th>
+                <th><?= __('Ragsummary') ?></th>
+                <th><?= __('Salary') ?></th>
+                <th><?= __('Maritalstatus') ?></th>
+                <th><?= __('Experience') ?></th>
+                <th><?= __('Licenseissuedby') ?></th>
+                <th><?= __('Previouscompanyname') ?></th>
+                <th><?= __('Shift Id') ?></th>
+                <th><?= __('Ismarker') ?></th>
+                <th class="actions"><?= __('Actions') ?></th>
+            </tr>
+            <?php foreach ($vehicle->drivers as $drivers): ?>
+            <tr>
+                <td><?= h($drivers->id) ?></td>
+                <td><?= h($drivers->name) ?></td>
+                <td><?= h($drivers->dob) ?></td>
+                <td><?= h($drivers->sex) ?></td>
+                <td><?= h($drivers->nationality) ?></td>
+                <td><?= h($drivers->idcardno) ?></td>
+                <td><?= h($drivers->licenceno) ?></td>
+                <td><?= h($drivers->licenceexpdate) ?></td>
+                <td><?= h($drivers->address_id) ?></td>
+                <td><?= h($drivers->nextofkin) ?></td>
+                <td><?= h($drivers->comments) ?></td>
+                <td><?= h($drivers->photo) ?></td>
+                <td><?= h($drivers->ibutton_id) ?></td>
+                <td><?= h($drivers->drivingpassportno) ?></td>
+                <td><?= h($drivers->drivingpassportexp) ?></td>
+                <td><?= h($drivers->customer_id) ?></td>
+                <td><?= h($drivers->vehicle_id) ?></td>
+                <td><?= h($drivers->drivinglicenseclass) ?></td>
+                <td><?= h($drivers->contractor_id) ?></td>
+                <td><?= h($drivers->station_id) ?></td>
+                <td><?= h($drivers->reporingtime) ?></td>
+                <td><?= h($drivers->offday1) ?></td>
+                <td><?= h($drivers->offday2) ?></td>
+                <td><?= h($drivers->supervisor_id) ?></td>
+                <td><?= h($drivers->isasupervisor) ?></td>
+                <td><?= h($drivers->ragscore) ?></td>
+                <td><?= h($drivers->ragsummary) ?></td>
+                <td><?= h($drivers->salary) ?></td>
+                <td><?= h($drivers->maritalstatus) ?></td>
+                <td><?= h($drivers->experience) ?></td>
+                <td><?= h($drivers->licenseissuedby) ?></td>
+                <td><?= h($drivers->previouscompanyname) ?></td>
+                <td><?= h($drivers->shift_id) ?></td>
+                <td><?= h($drivers->ismarker) ?></td>
+                <td class="actions">
+                    <?= $this->Html->link(__('View'), ['controller' => 'Drivers', 'action' => 'view', $drivers->id]) ?>
+                    <?= $this->Html->link(__('Edit'), ['controller' => 'Drivers', 'action' => 'edit', $drivers->id]) ?>
+                    <?= $this->Form->postLink(__('Delete'), ['controller' => 'Drivers', 'action' => 'delete', $drivers->id], ['confirm' => __('Are you sure you want to delete # {0}?', $drivers->id)]) ?>
+                </td>
+            </tr>
+            <?php endforeach; ?>
+        </table>
+        <?php endif; ?>
+    </div>
+</div>
+</section>

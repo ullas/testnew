@@ -647,3 +647,708 @@ Stack Trace:
 #16 {main}
 
 
+2016-10-04 02:31:12 Error: [Cake\Database\Exception] Cannot describe vehicle. It has 0 columns.
+Stack Trace:
+#0 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Database/Schema/CachedCollection.php(63): Cake\Database\Schema\Collection->describe('vehicle', Array)
+#1 /Users/maptell/testgit/vendor/cakephp/cakephp/src/ORM/Table.php(440): Cake\Database\Schema\CachedCollection->describe('vehicle')
+#2 /Users/maptell/testgit/vendor/cakephp/cakephp/src/ORM/Table.php(518): Cake\ORM\Table->schema()
+#3 /Users/maptell/testgit/vendor/cakephp/bake/src/Shell/Task/TemplateTask.php(291): Cake\ORM\Table->primaryKey()
+#4 /Users/maptell/testgit/vendor/cakephp/bake/src/Shell/Task/TemplateTask.php(148): Bake\Shell\Task\TemplateTask->_loadController()
+#5 [internal function]: Bake\Shell\Task\TemplateTask->main('vehicle')
+#6 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Console/Shell.php(466): call_user_func_array(Array, Array)
+#7 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Console/Shell.php(459): Cake\Console\Shell->runCommand(Array, false, Array)
+#8 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Console/ShellDispatcher.php(227): Cake\Console\Shell->runCommand(Array, true, Array)
+#9 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Console/ShellDispatcher.php(182): Cake\Console\ShellDispatcher->_dispatch(Array)
+#10 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Console/ShellDispatcher.php(128): Cake\Console\ShellDispatcher->dispatch(Array)
+#11 /Users/maptell/testgit/bin/cake.php(34): Cake\Console\ShellDispatcher::run(Array)
+#12 {main}
+
+
+2016-10-05 06:33:09 Error: [Cake\Database\Exception] Cannot describe controller. It has 0 columns.
+Stack Trace:
+#0 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Database/Schema/CachedCollection.php(63): Cake\Database\Schema\Collection->describe('controller', Array)
+#1 /Users/maptell/testgit/vendor/cakephp/cakephp/src/ORM/Table.php(440): Cake\Database\Schema\CachedCollection->describe('controller')
+#2 /Users/maptell/testgit/vendor/cakephp/cakephp/src/ORM/Table.php(518): Cake\ORM\Table->schema()
+#3 /Users/maptell/testgit/vendor/cakephp/bake/src/Shell/Task/ModelTask.php(210): Cake\ORM\Table->primaryKey()
+#4 /Users/maptell/testgit/vendor/cakephp/bake/src/Shell/Task/ModelTask.php(127): Bake\Shell\Task\ModelTask->getAssociations(Object(Cake\ORM\Table))
+#5 /Users/maptell/testgit/vendor/cakephp/bake/src/Shell/Task/ModelTask.php(110): Bake\Shell\Task\ModelTask->getTableContext(Object(Cake\ORM\Table), 'controller', 'Controller')
+#6 /Users/maptell/testgit/vendor/cakephp/bake/src/Shell/Task/ModelTask.php(97): Bake\Shell\Task\ModelTask->bake('Controller')
+#7 [internal function]: Bake\Shell\Task\ModelTask->main('controller')
+#8 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Console/Shell.php(466): call_user_func_array(Array, Array)
+#9 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Console/Shell.php(459): Cake\Console\Shell->runCommand(Array, false, Array)
+#10 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Console/ShellDispatcher.php(227): Cake\Console\Shell->runCommand(Array, true, Array)
+#11 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Console/ShellDispatcher.php(182): Cake\Console\ShellDispatcher->_dispatch(Array)
+#12 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Console/ShellDispatcher.php(128): Cake\Console\ShellDispatcher->dispatch(Array)
+#13 /Users/maptell/testgit/bin/cake.php(34): Cake\Console\ShellDispatcher::run(Array)
+#14 {main}
+
+
+2016-10-05 06:35:07 Error: [Cake\Database\Exception] Cannot describe triptypes. It has 0 columns.
+Stack Trace:
+#0 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Database/Schema/CachedCollection.php(63): Cake\Database\Schema\Collection->describe('triptypes', Array)
+#1 /Users/maptell/testgit/vendor/cakephp/cakephp/src/ORM/Table.php(440): Cake\Database\Schema\CachedCollection->describe('triptypes')
+#2 /Users/maptell/testgit/vendor/cakephp/cakephp/src/ORM/Table.php(518): Cake\ORM\Table->schema()
+#3 /Users/maptell/testgit/vendor/cakephp/bake/src/Shell/Task/ModelTask.php(210): Cake\ORM\Table->primaryKey()
+#4 /Users/maptell/testgit/vendor/cakephp/bake/src/Shell/Task/ModelTask.php(127): Bake\Shell\Task\ModelTask->getAssociations(Object(Cake\ORM\Table))
+#5 /Users/maptell/testgit/vendor/cakephp/bake/src/Shell/Task/ModelTask.php(110): Bake\Shell\Task\ModelTask->getTableContext(Object(Cake\ORM\Table), 'triptypes', 'Triptypes')
+#6 /Users/maptell/testgit/vendor/cakephp/bake/src/Shell/Task/ModelTask.php(97): Bake\Shell\Task\ModelTask->bake('Triptypes')
+#7 [internal function]: Bake\Shell\Task\ModelTask->main('triptypes')
+#8 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Console/Shell.php(466): call_user_func_array(Array, Array)
+#9 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Console/Shell.php(459): Cake\Console\Shell->runCommand(Array, false, Array)
+#10 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Console/ShellDispatcher.php(227): Cake\Console\Shell->runCommand(Array, true, Array)
+#11 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Console/ShellDispatcher.php(182): Cake\Console\ShellDispatcher->_dispatch(Array)
+#12 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Console/ShellDispatcher.php(128): Cake\Console\ShellDispatcher->dispatch(Array)
+#13 /Users/maptell/testgit/bin/cake.php(34): Cake\Console\ShellDispatcher::run(Array)
+#14 {main}
+
+
+2016-10-05 08:06:34 Error: [TypeError] Argument 1 passed to Bake\View\Helper\BakeHelper::stringifyList() must be of the type array, null given, called in /Users/maptell/testgit/tmp/bake/Bake-Element-Controller-ajaxData-ctp.php on line 14
+Stack Trace:
+#0 /Users/maptell/testgit/tmp/bake/Bake-Element-Controller-ajaxData-ctp.php(14): Bake\View\Helper\BakeHelper->stringifyList(NULL, Array)
+#1 /Users/maptell/testgit/vendor/cakephp/bake/src/View/BakeView.php(200): include('/Users/maptell/...')
+#2 /Users/maptell/testgit/vendor/cakephp/cakephp/src/View/View.php(964): Bake\View\BakeView->_evaluate(Array)
+#3 /Users/maptell/testgit/vendor/cakephp/cakephp/src/View/View.php(1350): Cake\View\View->_render('/Users/maptell/...', Array)
+#4 /Users/maptell/testgit/vendor/cakephp/cakephp/src/View/View.php(493): Cake\View\View->_renderElement('/Users/maptell/...', Array, Array)
+#5 /Users/maptell/testgit/tmp/bake/Bake-Controller-controller-ctp.php(47): Cake\View\View->element('Controller/ajax...')
+#6 /Users/maptell/testgit/vendor/cakephp/bake/src/View/BakeView.php(200): include('/Users/maptell/...')
+#7 /Users/maptell/testgit/vendor/cakephp/cakephp/src/View/View.php(964): Bake\View\BakeView->_evaluate(Array)
+#8 /Users/maptell/testgit/vendor/cakephp/bake/src/View/BakeView.php(136): Cake\View\View->_render('/Users/maptell/...')
+#9 /Users/maptell/testgit/vendor/cakephp/bake/src/Shell/Task/BakeTemplateTask.php(89): Bake\View\BakeView->render('Controller/cont...')
+#10 /Users/maptell/testgit/vendor/cakephp/bake/src/Shell/Task/ControllerTask.php(179): Bake\Shell\Task\BakeTemplateTask->generate('Controller/cont...')
+#11 /Users/maptell/testgit/vendor/cakephp/bake/src/Shell/Task/ControllerTask.php(151): Bake\Shell\Task\ControllerTask->bakeController('Triptypes', Array)
+#12 /Users/maptell/testgit/vendor/cakephp/bake/src/Shell/Task/ControllerTask.php(66): Bake\Shell\Task\ControllerTask->bake('Triptypes')
+#13 /Users/maptell/testgit/vendor/cakephp/bake/src/Shell/BakeShell.php(258): Bake\Shell\Task\ControllerTask->main('Triptypes')
+#14 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Collection/CollectionTrait.php(52): Bake\Shell\BakeShell->Bake\Shell\{closure}('Triptypes', 0)
+#15 /Users/maptell/testgit/vendor/cakephp/bake/src/Shell/BakeShell.php(260): Cake\Collection\Collection->each(Object(Closure))
+#16 [internal function]: Bake\Shell\BakeShell->all('triptypes')
+#17 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Console/Shell.php(452): call_user_func_array(Array, Array)
+#18 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Console/ShellDispatcher.php(227): Cake\Console\Shell->runCommand(Array, true, Array)
+#19 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Console/ShellDispatcher.php(182): Cake\Console\ShellDispatcher->_dispatch(Array)
+#20 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Console/ShellDispatcher.php(128): Cake\Console\ShellDispatcher->dispatch(Array)
+#21 /Users/maptell/testgit/bin/cake.php(34): Cake\Console\ShellDispatcher::run(Array)
+#22 {main}
+
+
+2016-10-05 08:11:53 Error: [TypeError] Argument 1 passed to Bake\View\Helper\BakeHelper::stringifyList() must be of the type array, null given, called in /Users/maptell/testgit/tmp/bake/Bake-Element-Controller-ajaxData-ctp.php on line 14
+Stack Trace:
+#0 /Users/maptell/testgit/tmp/bake/Bake-Element-Controller-ajaxData-ctp.php(14): Bake\View\Helper\BakeHelper->stringifyList(NULL, Array)
+#1 /Users/maptell/testgit/vendor/cakephp/bake/src/View/BakeView.php(200): include('/Users/maptell/...')
+#2 /Users/maptell/testgit/vendor/cakephp/cakephp/src/View/View.php(964): Bake\View\BakeView->_evaluate(Array)
+#3 /Users/maptell/testgit/vendor/cakephp/cakephp/src/View/View.php(1350): Cake\View\View->_render('/Users/maptell/...', Array)
+#4 /Users/maptell/testgit/vendor/cakephp/cakephp/src/View/View.php(493): Cake\View\View->_renderElement('/Users/maptell/...', Array, Array)
+#5 /Users/maptell/testgit/tmp/bake/Bake-Controller-controller-ctp.php(47): Cake\View\View->element('Controller/ajax...')
+#6 /Users/maptell/testgit/vendor/cakephp/bake/src/View/BakeView.php(200): include('/Users/maptell/...')
+#7 /Users/maptell/testgit/vendor/cakephp/cakephp/src/View/View.php(964): Bake\View\BakeView->_evaluate(Array)
+#8 /Users/maptell/testgit/vendor/cakephp/bake/src/View/BakeView.php(136): Cake\View\View->_render('/Users/maptell/...')
+#9 /Users/maptell/testgit/vendor/cakephp/bake/src/Shell/Task/BakeTemplateTask.php(89): Bake\View\BakeView->render('Controller/cont...')
+#10 /Users/maptell/testgit/vendor/cakephp/bake/src/Shell/Task/ControllerTask.php(179): Bake\Shell\Task\BakeTemplateTask->generate('Controller/cont...')
+#11 /Users/maptell/testgit/vendor/cakephp/bake/src/Shell/Task/ControllerTask.php(151): Bake\Shell\Task\ControllerTask->bakeController('Triptypes', Array)
+#12 /Users/maptell/testgit/vendor/cakephp/bake/src/Shell/Task/ControllerTask.php(66): Bake\Shell\Task\ControllerTask->bake('Triptypes')
+#13 /Users/maptell/testgit/vendor/cakephp/bake/src/Shell/BakeShell.php(258): Bake\Shell\Task\ControllerTask->main('Triptypes')
+#14 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Collection/CollectionTrait.php(52): Bake\Shell\BakeShell->Bake\Shell\{closure}('Triptypes', 0)
+#15 /Users/maptell/testgit/vendor/cakephp/bake/src/Shell/BakeShell.php(260): Cake\Collection\Collection->each(Object(Closure))
+#16 [internal function]: Bake\Shell\BakeShell->all('triptypes')
+#17 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Console/Shell.php(452): call_user_func_array(Array, Array)
+#18 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Console/ShellDispatcher.php(227): Cake\Console\Shell->runCommand(Array, true, Array)
+#19 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Console/ShellDispatcher.php(182): Cake\Console\ShellDispatcher->_dispatch(Array)
+#20 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Console/ShellDispatcher.php(128): Cake\Console\ShellDispatcher->dispatch(Array)
+#21 /Users/maptell/testgit/bin/cake.php(34): Cake\Console\ShellDispatcher::run(Array)
+#22 {main}
+
+
+2016-10-05 09:08:06 Error: [ParseError] syntax error, unexpected '=>' (T_DOUBLE_ARROW)
+Stack Trace:
+#0 /Users/maptell/testgit/vendor/composer/ClassLoader.php(301): Composer\Autoload\includeFile('/Users/maptell/...')
+#1 [internal function]: Composer\Autoload\ClassLoader->loadClass('App\\Controller\\...')
+#2 [internal function]: spl_autoload_call('App\\Controller\\...')
+#3 /Users/maptell/testgit/vendor/cakephp/bake/src/Shell/Task/TestTask.php(223): class_exists('App\\Controller\\...')
+#4 /Users/maptell/testgit/vendor/cakephp/bake/src/Shell/Task/ControllerTask.php(206): Bake\Shell\Task\TestTask->bake('Controller', 'Triptypes')
+#5 /Users/maptell/testgit/vendor/cakephp/bake/src/Shell/Task/ControllerTask.php(152): Bake\Shell\Task\ControllerTask->bakeTest('Triptypes')
+#6 /Users/maptell/testgit/vendor/cakephp/bake/src/Shell/Task/ControllerTask.php(66): Bake\Shell\Task\ControllerTask->bake('Triptypes')
+#7 /Users/maptell/testgit/vendor/cakephp/bake/src/Shell/BakeShell.php(258): Bake\Shell\Task\ControllerTask->main('Triptypes')
+#8 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Collection/CollectionTrait.php(52): Bake\Shell\BakeShell->Bake\Shell\{closure}('Triptypes', 0)
+#9 /Users/maptell/testgit/vendor/cakephp/bake/src/Shell/BakeShell.php(260): Cake\Collection\Collection->each(Object(Closure))
+#10 [internal function]: Bake\Shell\BakeShell->all('triptypes')
+#11 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Console/Shell.php(452): call_user_func_array(Array, Array)
+#12 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Console/ShellDispatcher.php(227): Cake\Console\Shell->runCommand(Array, true, Array)
+#13 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Console/ShellDispatcher.php(182): Cake\Console\ShellDispatcher->_dispatch(Array)
+#14 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Console/ShellDispatcher.php(128): Cake\Console\ShellDispatcher->dispatch(Array)
+#15 /Users/maptell/testgit/bin/cake.php(34): Cake\Console\ShellDispatcher::run(Array)
+#16 {main}
+
+
+2016-10-05 09:09:00 Error: [ParseError] syntax error, unexpected '='
+Stack Trace:
+#0 /Users/maptell/testgit/vendor/composer/ClassLoader.php(301): Composer\Autoload\includeFile('/Users/maptell/...')
+#1 [internal function]: Composer\Autoload\ClassLoader->loadClass('App\\Controller\\...')
+#2 [internal function]: spl_autoload_call('App\\Controller\\...')
+#3 /Users/maptell/testgit/vendor/cakephp/bake/src/Shell/Task/TestTask.php(223): class_exists('App\\Controller\\...')
+#4 /Users/maptell/testgit/vendor/cakephp/bake/src/Shell/Task/ControllerTask.php(206): Bake\Shell\Task\TestTask->bake('Controller', 'Triptypes')
+#5 /Users/maptell/testgit/vendor/cakephp/bake/src/Shell/Task/ControllerTask.php(152): Bake\Shell\Task\ControllerTask->bakeTest('Triptypes')
+#6 /Users/maptell/testgit/vendor/cakephp/bake/src/Shell/Task/ControllerTask.php(66): Bake\Shell\Task\ControllerTask->bake('Triptypes')
+#7 /Users/maptell/testgit/vendor/cakephp/bake/src/Shell/BakeShell.php(258): Bake\Shell\Task\ControllerTask->main('Triptypes')
+#8 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Collection/CollectionTrait.php(52): Bake\Shell\BakeShell->Bake\Shell\{closure}('Triptypes', 0)
+#9 /Users/maptell/testgit/vendor/cakephp/bake/src/Shell/BakeShell.php(260): Cake\Collection\Collection->each(Object(Closure))
+#10 [internal function]: Bake\Shell\BakeShell->all('triptypes')
+#11 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Console/Shell.php(452): call_user_func_array(Array, Array)
+#12 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Console/ShellDispatcher.php(227): Cake\Console\Shell->runCommand(Array, true, Array)
+#13 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Console/ShellDispatcher.php(182): Cake\Console\ShellDispatcher->_dispatch(Array)
+#14 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Console/ShellDispatcher.php(128): Cake\Console\ShellDispatcher->dispatch(Array)
+#15 /Users/maptell/testgit/bin/cake.php(34): Cake\Console\ShellDispatcher::run(Array)
+#16 {main}
+
+
+2016-10-05 09:33:53 Error: [ParseError] syntax error, unexpected '='
+Stack Trace:
+#0 /Users/maptell/testgit/vendor/cakephp/cakephp/src/View/View.php(964): Bake\View\BakeView->_evaluate(Array)
+#1 /Users/maptell/testgit/vendor/cakephp/cakephp/src/View/View.php(1350): Cake\View\View->_render('/Users/maptell/...', Array)
+#2 /Users/maptell/testgit/vendor/cakephp/cakephp/src/View/View.php(493): Cake\View\View->_renderElement('/Users/maptell/...', Array, Array)
+#3 /Users/maptell/testgit/tmp/bake/Bake-Controller-controller-ctp.php(47): Cake\View\View->element('Controller/add')
+#4 /Users/maptell/testgit/vendor/cakephp/bake/src/View/BakeView.php(200): include('/Users/maptell/...')
+#5 /Users/maptell/testgit/vendor/cakephp/cakephp/src/View/View.php(964): Bake\View\BakeView->_evaluate(Array)
+#6 /Users/maptell/testgit/vendor/cakephp/bake/src/View/BakeView.php(136): Cake\View\View->_render('/Users/maptell/...')
+#7 /Users/maptell/testgit/vendor/cakephp/bake/src/Shell/Task/BakeTemplateTask.php(89): Bake\View\BakeView->render('Controller/cont...')
+#8 /Users/maptell/testgit/vendor/cakephp/bake/src/Shell/Task/ControllerTask.php(179): Bake\Shell\Task\BakeTemplateTask->generate('Controller/cont...')
+#9 /Users/maptell/testgit/vendor/cakephp/bake/src/Shell/Task/ControllerTask.php(151): Bake\Shell\Task\ControllerTask->bakeController('Triptypes', Array)
+#10 /Users/maptell/testgit/vendor/cakephp/bake/src/Shell/Task/ControllerTask.php(66): Bake\Shell\Task\ControllerTask->bake('Triptypes')
+#11 /Users/maptell/testgit/vendor/cakephp/bake/src/Shell/BakeShell.php(258): Bake\Shell\Task\ControllerTask->main('Triptypes')
+#12 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Collection/CollectionTrait.php(52): Bake\Shell\BakeShell->Bake\Shell\{closure}('Triptypes', 0)
+#13 /Users/maptell/testgit/vendor/cakephp/bake/src/Shell/BakeShell.php(260): Cake\Collection\Collection->each(Object(Closure))
+#14 [internal function]: Bake\Shell\BakeShell->all('triptypes')
+#15 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Console/Shell.php(452): call_user_func_array(Array, Array)
+#16 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Console/ShellDispatcher.php(227): Cake\Console\Shell->runCommand(Array, true, Array)
+#17 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Console/ShellDispatcher.php(182): Cake\Console\ShellDispatcher->_dispatch(Array)
+#18 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Console/ShellDispatcher.php(128): Cake\Console\ShellDispatcher->dispatch(Array)
+#19 /Users/maptell/testgit/bin/cake.php(34): Cake\Console\ShellDispatcher::run(Array)
+#20 {main}
+
+
+2016-10-05 09:37:15 Error: [ParseError] syntax error, unexpected '"'
+Stack Trace:
+#0 /Users/maptell/testgit/vendor/composer/ClassLoader.php(301): Composer\Autoload\includeFile('/Users/maptell/...')
+#1 [internal function]: Composer\Autoload\ClassLoader->loadClass('App\\Controller\\...')
+#2 [internal function]: spl_autoload_call('App\\Controller\\...')
+#3 /Users/maptell/testgit/vendor/cakephp/bake/src/Shell/Task/TestTask.php(223): class_exists('App\\Controller\\...')
+#4 /Users/maptell/testgit/vendor/cakephp/bake/src/Shell/Task/ControllerTask.php(206): Bake\Shell\Task\TestTask->bake('Controller', 'Triptypes')
+#5 /Users/maptell/testgit/vendor/cakephp/bake/src/Shell/Task/ControllerTask.php(152): Bake\Shell\Task\ControllerTask->bakeTest('Triptypes')
+#6 /Users/maptell/testgit/vendor/cakephp/bake/src/Shell/Task/ControllerTask.php(66): Bake\Shell\Task\ControllerTask->bake('Triptypes')
+#7 /Users/maptell/testgit/vendor/cakephp/bake/src/Shell/BakeShell.php(258): Bake\Shell\Task\ControllerTask->main('Triptypes')
+#8 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Collection/CollectionTrait.php(52): Bake\Shell\BakeShell->Bake\Shell\{closure}('Triptypes', 0)
+#9 /Users/maptell/testgit/vendor/cakephp/bake/src/Shell/BakeShell.php(260): Cake\Collection\Collection->each(Object(Closure))
+#10 [internal function]: Bake\Shell\BakeShell->all('triptypes')
+#11 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Console/Shell.php(452): call_user_func_array(Array, Array)
+#12 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Console/ShellDispatcher.php(227): Cake\Console\Shell->runCommand(Array, true, Array)
+#13 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Console/ShellDispatcher.php(182): Cake\Console\ShellDispatcher->_dispatch(Array)
+#14 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Console/ShellDispatcher.php(128): Cake\Console\ShellDispatcher->dispatch(Array)
+#15 /Users/maptell/testgit/bin/cake.php(34): Cake\Console\ShellDispatcher::run(Array)
+#16 {main}
+
+
+2016-10-05 09:54:30 Error: [ParseError] syntax error, unexpected '<'
+Stack Trace:
+#0 /Users/maptell/testgit/vendor/cakephp/cakephp/src/View/View.php(964): Bake\View\BakeView->_evaluate(Array)
+#1 /Users/maptell/testgit/vendor/cakephp/bake/src/View/BakeView.php(136): Cake\View\View->_render('/Users/maptell/...')
+#2 /Users/maptell/testgit/vendor/cakephp/bake/src/Shell/Task/BakeTemplateTask.php(89): Bake\View\BakeView->render('Template/index')
+#3 /Users/maptell/testgit/vendor/cakephp/bake/src/Shell/Task/TemplateTask.php(426): Bake\Shell\Task\BakeTemplateTask->generate('Template/index')
+#4 /Users/maptell/testgit/vendor/cakephp/bake/src/Shell/Task/TemplateTask.php(152): Bake\Shell\Task\TemplateTask->getContent('index', Array)
+#5 /Users/maptell/testgit/vendor/cakephp/bake/src/Shell/BakeShell.php(259): Bake\Shell\Task\TemplateTask->main('Triptypes')
+#6 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Collection/CollectionTrait.php(52): Bake\Shell\BakeShell->Bake\Shell\{closure}('Triptypes', 0)
+#7 /Users/maptell/testgit/vendor/cakephp/bake/src/Shell/BakeShell.php(260): Cake\Collection\Collection->each(Object(Closure))
+#8 [internal function]: Bake\Shell\BakeShell->all('triptypes')
+#9 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Console/Shell.php(452): call_user_func_array(Array, Array)
+#10 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Console/ShellDispatcher.php(227): Cake\Console\Shell->runCommand(Array, true, Array)
+#11 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Console/ShellDispatcher.php(182): Cake\Console\ShellDispatcher->_dispatch(Array)
+#12 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Console/ShellDispatcher.php(128): Cake\Console\ShellDispatcher->dispatch(Array)
+#13 /Users/maptell/testgit/bin/cake.php(34): Cake\Console\ShellDispatcher::run(Array)
+#14 {main}
+
+
+2016-10-05 10:40:25 Error: [ParseError] syntax error, unexpected '?>'
+Stack Trace:
+#0 /Users/maptell/testgit/vendor/cakephp/cakephp/src/View/View.php(964): Bake\View\BakeView->_evaluate(Array)
+#1 /Users/maptell/testgit/vendor/cakephp/cakephp/src/View/View.php(1350): Cake\View\View->_render('/Users/maptell/...', Array)
+#2 /Users/maptell/testgit/vendor/cakephp/cakephp/src/View/View.php(493): Cake\View\View->_renderElement('/Users/maptell/...', Array, Array)
+#3 /Users/maptell/testgit/tmp/bake/add-ctp.php(16): Cake\View\View->element('form')
+#4 /Users/maptell/testgit/vendor/cakephp/bake/src/View/BakeView.php(200): include('/Users/maptell/...')
+#5 /Users/maptell/testgit/vendor/cakephp/cakephp/src/View/View.php(964): Bake\View\BakeView->_evaluate(Array)
+#6 /Users/maptell/testgit/vendor/cakephp/bake/src/View/BakeView.php(136): Cake\View\View->_render('/Users/maptell/...')
+#7 /Users/maptell/testgit/vendor/cakephp/bake/src/Shell/Task/BakeTemplateTask.php(89): Bake\View\BakeView->render('Template/add')
+#8 /Users/maptell/testgit/vendor/cakephp/bake/src/Shell/Task/TemplateTask.php(426): Bake\Shell\Task\BakeTemplateTask->generate('Template/add')
+#9 /Users/maptell/testgit/vendor/cakephp/bake/src/Shell/Task/TemplateTask.php(152): Bake\Shell\Task\TemplateTask->getContent('add', Array)
+#10 /Users/maptell/testgit/vendor/cakephp/bake/src/Shell/BakeShell.php(259): Bake\Shell\Task\TemplateTask->main('Triptypes')
+#11 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Collection/CollectionTrait.php(52): Bake\Shell\BakeShell->Bake\Shell\{closure}('Triptypes', 0)
+#12 /Users/maptell/testgit/vendor/cakephp/bake/src/Shell/BakeShell.php(260): Cake\Collection\Collection->each(Object(Closure))
+#13 [internal function]: Bake\Shell\BakeShell->all('triptypes')
+#14 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Console/Shell.php(452): call_user_func_array(Array, Array)
+#15 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Console/ShellDispatcher.php(227): Cake\Console\Shell->runCommand(Array, true, Array)
+#16 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Console/ShellDispatcher.php(182): Cake\Console\ShellDispatcher->_dispatch(Array)
+#17 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Console/ShellDispatcher.php(128): Cake\Console\ShellDispatcher->dispatch(Array)
+#18 /Users/maptell/testgit/bin/cake.php(34): Cake\Console\ShellDispatcher::run(Array)
+#19 {main}
+
+
+2016-10-05 10:42:39 Error: [ParseError] syntax error, unexpected '?>'
+Stack Trace:
+#0 /Users/maptell/testgit/vendor/cakephp/cakephp/src/View/View.php(964): Bake\View\BakeView->_evaluate(Array)
+#1 /Users/maptell/testgit/vendor/cakephp/cakephp/src/View/View.php(1350): Cake\View\View->_render('/Users/maptell/...', Array)
+#2 /Users/maptell/testgit/vendor/cakephp/cakephp/src/View/View.php(493): Cake\View\View->_renderElement('/Users/maptell/...', Array, Array)
+#3 /Users/maptell/testgit/tmp/bake/add-ctp.php(16): Cake\View\View->element('form')
+#4 /Users/maptell/testgit/vendor/cakephp/bake/src/View/BakeView.php(200): include('/Users/maptell/...')
+#5 /Users/maptell/testgit/vendor/cakephp/cakephp/src/View/View.php(964): Bake\View\BakeView->_evaluate(Array)
+#6 /Users/maptell/testgit/vendor/cakephp/bake/src/View/BakeView.php(136): Cake\View\View->_render('/Users/maptell/...')
+#7 /Users/maptell/testgit/vendor/cakephp/bake/src/Shell/Task/BakeTemplateTask.php(89): Bake\View\BakeView->render('Template/add')
+#8 /Users/maptell/testgit/vendor/cakephp/bake/src/Shell/Task/TemplateTask.php(426): Bake\Shell\Task\BakeTemplateTask->generate('Template/add')
+#9 /Users/maptell/testgit/vendor/cakephp/bake/src/Shell/Task/TemplateTask.php(152): Bake\Shell\Task\TemplateTask->getContent('add', Array)
+#10 /Users/maptell/testgit/vendor/cakephp/bake/src/Shell/BakeShell.php(259): Bake\Shell\Task\TemplateTask->main('Triptypes')
+#11 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Collection/CollectionTrait.php(52): Bake\Shell\BakeShell->Bake\Shell\{closure}('Triptypes', 0)
+#12 /Users/maptell/testgit/vendor/cakephp/bake/src/Shell/BakeShell.php(260): Cake\Collection\Collection->each(Object(Closure))
+#13 [internal function]: Bake\Shell\BakeShell->all('triptypes')
+#14 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Console/Shell.php(452): call_user_func_array(Array, Array)
+#15 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Console/ShellDispatcher.php(227): Cake\Console\Shell->runCommand(Array, true, Array)
+#16 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Console/ShellDispatcher.php(182): Cake\Console\ShellDispatcher->_dispatch(Array)
+#17 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Console/ShellDispatcher.php(128): Cake\Console\ShellDispatcher->dispatch(Array)
+#18 /Users/maptell/testgit/bin/cake.php(34): Cake\Console\ShellDispatcher::run(Array)
+#19 {main}
+
+
+2016-10-05 12:02:09 Error: [Cake\Database\Exception] Cannot describe serviceentries. It has 0 columns.
+Stack Trace:
+#0 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Database/Schema/CachedCollection.php(63): Cake\Database\Schema\Collection->describe('serviceentries', Array)
+#1 /Users/maptell/testgit/vendor/cakephp/cakephp/src/ORM/Table.php(440): Cake\Database\Schema\CachedCollection->describe('serviceentries')
+#2 /Users/maptell/testgit/vendor/cakephp/cakephp/src/ORM/Table.php(518): Cake\ORM\Table->schema()
+#3 /Users/maptell/testgit/vendor/cakephp/bake/src/Shell/Task/ModelTask.php(210): Cake\ORM\Table->primaryKey()
+#4 /Users/maptell/testgit/vendor/cakephp/bake/src/Shell/Task/ModelTask.php(127): Bake\Shell\Task\ModelTask->getAssociations(Object(Cake\ORM\Table))
+#5 /Users/maptell/testgit/vendor/cakephp/bake/src/Shell/Task/ModelTask.php(110): Bake\Shell\Task\ModelTask->getTableContext(Object(Cake\ORM\Table), 'serviceentries', 'Serviceentries')
+#6 /Users/maptell/testgit/vendor/cakephp/bake/src/Shell/Task/ModelTask.php(97): Bake\Shell\Task\ModelTask->bake('Serviceentries')
+#7 /Users/maptell/testgit/vendor/cakephp/bake/src/Shell/BakeShell.php(257): Bake\Shell\Task\ModelTask->main('Serviceentries')
+#8 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Collection/CollectionTrait.php(52): Bake\Shell\BakeShell->Bake\Shell\{closure}('Serviceentries', 0)
+#9 /Users/maptell/testgit/vendor/cakephp/bake/src/Shell/BakeShell.php(260): Cake\Collection\Collection->each(Object(Closure))
+#10 [internal function]: Bake\Shell\BakeShell->all('serviceentries')
+#11 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Console/Shell.php(452): call_user_func_array(Array, Array)
+#12 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Console/ShellDispatcher.php(227): Cake\Console\Shell->runCommand(Array, true, Array)
+#13 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Console/ShellDispatcher.php(182): Cake\Console\ShellDispatcher->_dispatch(Array)
+#14 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Console/ShellDispatcher.php(128): Cake\Console\ShellDispatcher->dispatch(Array)
+#15 /Users/maptell/testgit/bin/cake.php(34): Cake\Console\ShellDispatcher::run(Array)
+#16 {main}
+
+
+2016-10-05 19:33:08 Error: [Error] Call to undefined method Bake\View\BakeView::loadModel()
+Stack Trace:
+#0 /Users/maptell/testgit/vendor/cakephp/bake/src/View/BakeView.php(200): include()
+#1 /Users/maptell/testgit/vendor/cakephp/cakephp/src/View/View.php(964): Bake\View\BakeView->_evaluate(Array)
+#2 /Users/maptell/testgit/vendor/cakephp/cakephp/src/View/View.php(1350): Cake\View\View->_render('/Users/maptell/...', Array)
+#3 /Users/maptell/testgit/vendor/cakephp/cakephp/src/View/View.php(493): Cake\View\View->_renderElement('/Users/maptell/...', Array, Array)
+#4 /Users/maptell/testgit/tmp/bake/Bake-Controller-controller-ctp.php(47): Cake\View\View->element('Controller/inde...')
+#5 /Users/maptell/testgit/vendor/cakephp/bake/src/View/BakeView.php(200): include('/Users/maptell/...')
+#6 /Users/maptell/testgit/vendor/cakephp/cakephp/src/View/View.php(964): Bake\View\BakeView->_evaluate(Array)
+#7 /Users/maptell/testgit/vendor/cakephp/bake/src/View/BakeView.php(136): Cake\View\View->_render('/Users/maptell/...')
+#8 /Users/maptell/testgit/vendor/cakephp/bake/src/Shell/Task/BakeTemplateTask.php(89): Bake\View\BakeView->render('Controller/cont...')
+#9 /Users/maptell/testgit/vendor/cakephp/bake/src/Shell/Task/ControllerTask.php(179): Bake\Shell\Task\BakeTemplateTask->generate('Controller/cont...')
+#10 /Users/maptell/testgit/vendor/cakephp/bake/src/Shell/Task/ControllerTask.php(151): Bake\Shell\Task\ControllerTask->bakeController('Triptypes', Array)
+#11 /Users/maptell/testgit/vendor/cakephp/bake/src/Shell/Task/ControllerTask.php(66): Bake\Shell\Task\ControllerTask->bake('Triptypes')
+#12 /Users/maptell/testgit/vendor/cakephp/bake/src/Shell/BakeShell.php(258): Bake\Shell\Task\ControllerTask->main('Triptypes')
+#13 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Collection/CollectionTrait.php(52): Bake\Shell\BakeShell->Bake\Shell\{closure}('Triptypes', 0)
+#14 /Users/maptell/testgit/vendor/cakephp/bake/src/Shell/BakeShell.php(260): Cake\Collection\Collection->each(Object(Closure))
+#15 [internal function]: Bake\Shell\BakeShell->all('triptypes')
+#16 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Console/Shell.php(452): call_user_func_array(Array, Array)
+#17 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Console/ShellDispatcher.php(227): Cake\Console\Shell->runCommand(Array, true, Array)
+#18 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Console/ShellDispatcher.php(182): Cake\Console\ShellDispatcher->_dispatch(Array)
+#19 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Console/ShellDispatcher.php(128): Cake\Console\ShellDispatcher->dispatch(Array)
+#20 /Users/maptell/testgit/bin/cake.php(34): Cake\Console\ShellDispatcher::run(Array)
+#21 {main}
+
+
+2016-10-05 19:34:02 Error: [Error] Call to undefined method Bake\View\BakeView::loadModel()
+Stack Trace:
+#0 /Users/maptell/testgit/vendor/cakephp/bake/src/View/BakeView.php(200): include()
+#1 /Users/maptell/testgit/vendor/cakephp/cakephp/src/View/View.php(964): Bake\View\BakeView->_evaluate(Array)
+#2 /Users/maptell/testgit/vendor/cakephp/cakephp/src/View/View.php(1350): Cake\View\View->_render('/Users/maptell/...', Array)
+#3 /Users/maptell/testgit/vendor/cakephp/cakephp/src/View/View.php(493): Cake\View\View->_renderElement('/Users/maptell/...', Array, Array)
+#4 /Users/maptell/testgit/tmp/bake/Bake-Controller-controller-ctp.php(47): Cake\View\View->element('Controller/inde...')
+#5 /Users/maptell/testgit/vendor/cakephp/bake/src/View/BakeView.php(200): include('/Users/maptell/...')
+#6 /Users/maptell/testgit/vendor/cakephp/cakephp/src/View/View.php(964): Bake\View\BakeView->_evaluate(Array)
+#7 /Users/maptell/testgit/vendor/cakephp/bake/src/View/BakeView.php(136): Cake\View\View->_render('/Users/maptell/...')
+#8 /Users/maptell/testgit/vendor/cakephp/bake/src/Shell/Task/BakeTemplateTask.php(89): Bake\View\BakeView->render('Controller/cont...')
+#9 /Users/maptell/testgit/vendor/cakephp/bake/src/Shell/Task/ControllerTask.php(179): Bake\Shell\Task\BakeTemplateTask->generate('Controller/cont...')
+#10 /Users/maptell/testgit/vendor/cakephp/bake/src/Shell/Task/ControllerTask.php(151): Bake\Shell\Task\ControllerTask->bakeController('Triptypes', Array)
+#11 /Users/maptell/testgit/vendor/cakephp/bake/src/Shell/Task/ControllerTask.php(66): Bake\Shell\Task\ControllerTask->bake('Triptypes')
+#12 /Users/maptell/testgit/vendor/cakephp/bake/src/Shell/BakeShell.php(258): Bake\Shell\Task\ControllerTask->main('Triptypes')
+#13 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Collection/CollectionTrait.php(52): Bake\Shell\BakeShell->Bake\Shell\{closure}('Triptypes', 0)
+#14 /Users/maptell/testgit/vendor/cakephp/bake/src/Shell/BakeShell.php(260): Cake\Collection\Collection->each(Object(Closure))
+#15 [internal function]: Bake\Shell\BakeShell->all('triptypes')
+#16 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Console/Shell.php(452): call_user_func_array(Array, Array)
+#17 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Console/ShellDispatcher.php(227): Cake\Console\Shell->runCommand(Array, true, Array)
+#18 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Console/ShellDispatcher.php(182): Cake\Console\ShellDispatcher->_dispatch(Array)
+#19 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Console/ShellDispatcher.php(128): Cake\Console\ShellDispatcher->dispatch(Array)
+#20 /Users/maptell/testgit/bin/cake.php(34): Cake\Console\ShellDispatcher::run(Array)
+#21 {main}
+
+
+2016-10-05 19:37:10 Error: [Error] Call to undefined method Bake\View\BakeView::loadModel()
+Stack Trace:
+#0 /Users/maptell/testgit/vendor/cakephp/bake/src/View/BakeView.php(200): include()
+#1 /Users/maptell/testgit/vendor/cakephp/cakephp/src/View/View.php(964): Bake\View\BakeView->_evaluate(Array)
+#2 /Users/maptell/testgit/vendor/cakephp/cakephp/src/View/View.php(1350): Cake\View\View->_render('/Users/maptell/...', Array)
+#3 /Users/maptell/testgit/vendor/cakephp/cakephp/src/View/View.php(493): Cake\View\View->_renderElement('/Users/maptell/...', Array, Array)
+#4 /Users/maptell/testgit/tmp/bake/Bake-Controller-controller-ctp.php(47): Cake\View\View->element('Controller/inde...')
+#5 /Users/maptell/testgit/vendor/cakephp/bake/src/View/BakeView.php(200): include('/Users/maptell/...')
+#6 /Users/maptell/testgit/vendor/cakephp/cakephp/src/View/View.php(964): Bake\View\BakeView->_evaluate(Array)
+#7 /Users/maptell/testgit/vendor/cakephp/bake/src/View/BakeView.php(136): Cake\View\View->_render('/Users/maptell/...')
+#8 /Users/maptell/testgit/vendor/cakephp/bake/src/Shell/Task/BakeTemplateTask.php(89): Bake\View\BakeView->render('Controller/cont...')
+#9 /Users/maptell/testgit/vendor/cakephp/bake/src/Shell/Task/ControllerTask.php(179): Bake\Shell\Task\BakeTemplateTask->generate('Controller/cont...')
+#10 /Users/maptell/testgit/vendor/cakephp/bake/src/Shell/Task/ControllerTask.php(151): Bake\Shell\Task\ControllerTask->bakeController('Triptypes', Array)
+#11 /Users/maptell/testgit/vendor/cakephp/bake/src/Shell/Task/ControllerTask.php(66): Bake\Shell\Task\ControllerTask->bake('Triptypes')
+#12 /Users/maptell/testgit/vendor/cakephp/bake/src/Shell/BakeShell.php(258): Bake\Shell\Task\ControllerTask->main('Triptypes')
+#13 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Collection/CollectionTrait.php(52): Bake\Shell\BakeShell->Bake\Shell\{closure}('Triptypes', 0)
+#14 /Users/maptell/testgit/vendor/cakephp/bake/src/Shell/BakeShell.php(260): Cake\Collection\Collection->each(Object(Closure))
+#15 [internal function]: Bake\Shell\BakeShell->all('triptypes')
+#16 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Console/Shell.php(452): call_user_func_array(Array, Array)
+#17 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Console/ShellDispatcher.php(227): Cake\Console\Shell->runCommand(Array, true, Array)
+#18 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Console/ShellDispatcher.php(182): Cake\Console\ShellDispatcher->_dispatch(Array)
+#19 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Console/ShellDispatcher.php(128): Cake\Console\ShellDispatcher->dispatch(Array)
+#20 /Users/maptell/testgit/bin/cake.php(34): Cake\Console\ShellDispatcher::run(Array)
+#21 {main}
+
+
+2016-10-05 19:37:54 Error: [TypeError] Argument 1 passed to Bake\View\Helper\BakeHelper::stringifyList() must be of the type array, null given, called in /Users/maptell/testgit/tmp/bake/Bake-Element-Controller-index-ctp.php on line 50
+Stack Trace:
+#0 /Users/maptell/testgit/tmp/bake/Bake-Element-Controller-index-ctp.php(50): Bake\View\Helper\BakeHelper->stringifyList(NULL, Array)
+#1 /Users/maptell/testgit/vendor/cakephp/bake/src/View/BakeView.php(200): include('/Users/maptell/...')
+#2 /Users/maptell/testgit/vendor/cakephp/cakephp/src/View/View.php(964): Bake\View\BakeView->_evaluate(Array)
+#3 /Users/maptell/testgit/vendor/cakephp/cakephp/src/View/View.php(1350): Cake\View\View->_render('/Users/maptell/...', Array)
+#4 /Users/maptell/testgit/vendor/cakephp/cakephp/src/View/View.php(493): Cake\View\View->_renderElement('/Users/maptell/...', Array, Array)
+#5 /Users/maptell/testgit/tmp/bake/Bake-Controller-controller-ctp.php(47): Cake\View\View->element('Controller/inde...')
+#6 /Users/maptell/testgit/vendor/cakephp/bake/src/View/BakeView.php(200): include('/Users/maptell/...')
+#7 /Users/maptell/testgit/vendor/cakephp/cakephp/src/View/View.php(964): Bake\View\BakeView->_evaluate(Array)
+#8 /Users/maptell/testgit/vendor/cakephp/bake/src/View/BakeView.php(136): Cake\View\View->_render('/Users/maptell/...')
+#9 /Users/maptell/testgit/vendor/cakephp/bake/src/Shell/Task/BakeTemplateTask.php(89): Bake\View\BakeView->render('Controller/cont...')
+#10 /Users/maptell/testgit/vendor/cakephp/bake/src/Shell/Task/ControllerTask.php(179): Bake\Shell\Task\BakeTemplateTask->generate('Controller/cont...')
+#11 /Users/maptell/testgit/vendor/cakephp/bake/src/Shell/Task/ControllerTask.php(151): Bake\Shell\Task\ControllerTask->bakeController('Triptypes', Array)
+#12 /Users/maptell/testgit/vendor/cakephp/bake/src/Shell/Task/ControllerTask.php(66): Bake\Shell\Task\ControllerTask->bake('Triptypes')
+#13 /Users/maptell/testgit/vendor/cakephp/bake/src/Shell/BakeShell.php(258): Bake\Shell\Task\ControllerTask->main('Triptypes')
+#14 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Collection/CollectionTrait.php(52): Bake\Shell\BakeShell->Bake\Shell\{closure}('Triptypes', 0)
+#15 /Users/maptell/testgit/vendor/cakephp/bake/src/Shell/BakeShell.php(260): Cake\Collection\Collection->each(Object(Closure))
+#16 [internal function]: Bake\Shell\BakeShell->all('triptypes')
+#17 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Console/Shell.php(452): call_user_func_array(Array, Array)
+#18 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Console/ShellDispatcher.php(227): Cake\Console\Shell->runCommand(Array, true, Array)
+#19 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Console/ShellDispatcher.php(182): Cake\Console\ShellDispatcher->_dispatch(Array)
+#20 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Console/ShellDispatcher.php(128): Cake\Console\ShellDispatcher->dispatch(Array)
+#21 /Users/maptell/testgit/bin/cake.php(34): Cake\Console\ShellDispatcher::run(Array)
+#22 {main}
+
+
+2016-10-05 19:38:32 Error: [TypeError] Argument 1 passed to Bake\View\Helper\BakeHelper::stringifyList() must be of the type array, null given, called in /Users/maptell/testgit/tmp/bake/Bake-Element-Controller-index-ctp.php on line 50
+Stack Trace:
+#0 /Users/maptell/testgit/tmp/bake/Bake-Element-Controller-index-ctp.php(50): Bake\View\Helper\BakeHelper->stringifyList(NULL, Array)
+#1 /Users/maptell/testgit/vendor/cakephp/bake/src/View/BakeView.php(200): include('/Users/maptell/...')
+#2 /Users/maptell/testgit/vendor/cakephp/cakephp/src/View/View.php(964): Bake\View\BakeView->_evaluate(Array)
+#3 /Users/maptell/testgit/vendor/cakephp/cakephp/src/View/View.php(1350): Cake\View\View->_render('/Users/maptell/...', Array)
+#4 /Users/maptell/testgit/vendor/cakephp/cakephp/src/View/View.php(493): Cake\View\View->_renderElement('/Users/maptell/...', Array, Array)
+#5 /Users/maptell/testgit/tmp/bake/Bake-Controller-controller-ctp.php(47): Cake\View\View->element('Controller/inde...')
+#6 /Users/maptell/testgit/vendor/cakephp/bake/src/View/BakeView.php(200): include('/Users/maptell/...')
+#7 /Users/maptell/testgit/vendor/cakephp/cakephp/src/View/View.php(964): Bake\View\BakeView->_evaluate(Array)
+#8 /Users/maptell/testgit/vendor/cakephp/bake/src/View/BakeView.php(136): Cake\View\View->_render('/Users/maptell/...')
+#9 /Users/maptell/testgit/vendor/cakephp/bake/src/Shell/Task/BakeTemplateTask.php(89): Bake\View\BakeView->render('Controller/cont...')
+#10 /Users/maptell/testgit/vendor/cakephp/bake/src/Shell/Task/ControllerTask.php(179): Bake\Shell\Task\BakeTemplateTask->generate('Controller/cont...')
+#11 /Users/maptell/testgit/vendor/cakephp/bake/src/Shell/Task/ControllerTask.php(151): Bake\Shell\Task\ControllerTask->bakeController('Triptypes', Array)
+#12 /Users/maptell/testgit/vendor/cakephp/bake/src/Shell/Task/ControllerTask.php(66): Bake\Shell\Task\ControllerTask->bake('Triptypes')
+#13 /Users/maptell/testgit/vendor/cakephp/bake/src/Shell/BakeShell.php(258): Bake\Shell\Task\ControllerTask->main('Triptypes')
+#14 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Collection/CollectionTrait.php(52): Bake\Shell\BakeShell->Bake\Shell\{closure}('Triptypes', 0)
+#15 /Users/maptell/testgit/vendor/cakephp/bake/src/Shell/BakeShell.php(260): Cake\Collection\Collection->each(Object(Closure))
+#16 [internal function]: Bake\Shell\BakeShell->all('triptypes')
+#17 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Console/Shell.php(452): call_user_func_array(Array, Array)
+#18 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Console/ShellDispatcher.php(227): Cake\Console\Shell->runCommand(Array, true, Array)
+#19 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Console/ShellDispatcher.php(182): Cake\Console\ShellDispatcher->_dispatch(Array)
+#20 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Console/ShellDispatcher.php(128): Cake\Console\ShellDispatcher->dispatch(Array)
+#21 /Users/maptell/testgit/bin/cake.php(34): Cake\Console\ShellDispatcher::run(Array)
+#22 {main}
+
+
+2016-10-05 19:38:50 Error: [TypeError] Argument 1 passed to Bake\View\Helper\BakeHelper::stringifyList() must be of the type array, null given, called in /Users/maptell/testgit/tmp/bake/Bake-Element-Controller-index-ctp.php on line 50
+Stack Trace:
+#0 /Users/maptell/testgit/tmp/bake/Bake-Element-Controller-index-ctp.php(50): Bake\View\Helper\BakeHelper->stringifyList(NULL, Array)
+#1 /Users/maptell/testgit/vendor/cakephp/bake/src/View/BakeView.php(200): include('/Users/maptell/...')
+#2 /Users/maptell/testgit/vendor/cakephp/cakephp/src/View/View.php(964): Bake\View\BakeView->_evaluate(Array)
+#3 /Users/maptell/testgit/vendor/cakephp/cakephp/src/View/View.php(1350): Cake\View\View->_render('/Users/maptell/...', Array)
+#4 /Users/maptell/testgit/vendor/cakephp/cakephp/src/View/View.php(493): Cake\View\View->_renderElement('/Users/maptell/...', Array, Array)
+#5 /Users/maptell/testgit/tmp/bake/Bake-Controller-controller-ctp.php(47): Cake\View\View->element('Controller/inde...')
+#6 /Users/maptell/testgit/vendor/cakephp/bake/src/View/BakeView.php(200): include('/Users/maptell/...')
+#7 /Users/maptell/testgit/vendor/cakephp/cakephp/src/View/View.php(964): Bake\View\BakeView->_evaluate(Array)
+#8 /Users/maptell/testgit/vendor/cakephp/bake/src/View/BakeView.php(136): Cake\View\View->_render('/Users/maptell/...')
+#9 /Users/maptell/testgit/vendor/cakephp/bake/src/Shell/Task/BakeTemplateTask.php(89): Bake\View\BakeView->render('Controller/cont...')
+#10 /Users/maptell/testgit/vendor/cakephp/bake/src/Shell/Task/ControllerTask.php(179): Bake\Shell\Task\BakeTemplateTask->generate('Controller/cont...')
+#11 /Users/maptell/testgit/vendor/cakephp/bake/src/Shell/Task/ControllerTask.php(151): Bake\Shell\Task\ControllerTask->bakeController('Servicesentries', Array)
+#12 /Users/maptell/testgit/vendor/cakephp/bake/src/Shell/Task/ControllerTask.php(66): Bake\Shell\Task\ControllerTask->bake('Servicesentries')
+#13 /Users/maptell/testgit/vendor/cakephp/bake/src/Shell/BakeShell.php(258): Bake\Shell\Task\ControllerTask->main('Servicesentries')
+#14 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Collection/CollectionTrait.php(52): Bake\Shell\BakeShell->Bake\Shell\{closure}('Servicesentries', 0)
+#15 /Users/maptell/testgit/vendor/cakephp/bake/src/Shell/BakeShell.php(260): Cake\Collection\Collection->each(Object(Closure))
+#16 [internal function]: Bake\Shell\BakeShell->all('Servicesentries')
+#17 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Console/Shell.php(452): call_user_func_array(Array, Array)
+#18 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Console/ShellDispatcher.php(227): Cake\Console\Shell->runCommand(Array, true, Array)
+#19 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Console/ShellDispatcher.php(182): Cake\Console\ShellDispatcher->_dispatch(Array)
+#20 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Console/ShellDispatcher.php(128): Cake\Console\ShellDispatcher->dispatch(Array)
+#21 /Users/maptell/testgit/bin/cake.php(34): Cake\Console\ShellDispatcher::run(Array)
+#22 {main}
+
+
+2016-10-05 19:39:37 Error: [TypeError] Argument 1 passed to Bake\View\Helper\BakeHelper::stringifyList() must be of the type array, null given, called in /Users/maptell/testgit/tmp/bake/Bake-Element-Controller-index-ctp.php on line 49
+Stack Trace:
+#0 /Users/maptell/testgit/tmp/bake/Bake-Element-Controller-index-ctp.php(49): Bake\View\Helper\BakeHelper->stringifyList(NULL, Array)
+#1 /Users/maptell/testgit/vendor/cakephp/bake/src/View/BakeView.php(200): include('/Users/maptell/...')
+#2 /Users/maptell/testgit/vendor/cakephp/cakephp/src/View/View.php(964): Bake\View\BakeView->_evaluate(Array)
+#3 /Users/maptell/testgit/vendor/cakephp/cakephp/src/View/View.php(1350): Cake\View\View->_render('/Users/maptell/...', Array)
+#4 /Users/maptell/testgit/vendor/cakephp/cakephp/src/View/View.php(493): Cake\View\View->_renderElement('/Users/maptell/...', Array, Array)
+#5 /Users/maptell/testgit/tmp/bake/Bake-Controller-controller-ctp.php(47): Cake\View\View->element('Controller/inde...')
+#6 /Users/maptell/testgit/vendor/cakephp/bake/src/View/BakeView.php(200): include('/Users/maptell/...')
+#7 /Users/maptell/testgit/vendor/cakephp/cakephp/src/View/View.php(964): Bake\View\BakeView->_evaluate(Array)
+#8 /Users/maptell/testgit/vendor/cakephp/bake/src/View/BakeView.php(136): Cake\View\View->_render('/Users/maptell/...')
+#9 /Users/maptell/testgit/vendor/cakephp/bake/src/Shell/Task/BakeTemplateTask.php(89): Bake\View\BakeView->render('Controller/cont...')
+#10 /Users/maptell/testgit/vendor/cakephp/bake/src/Shell/Task/ControllerTask.php(179): Bake\Shell\Task\BakeTemplateTask->generate('Controller/cont...')
+#11 /Users/maptell/testgit/vendor/cakephp/bake/src/Shell/Task/ControllerTask.php(151): Bake\Shell\Task\ControllerTask->bakeController('Servicesentries', Array)
+#12 /Users/maptell/testgit/vendor/cakephp/bake/src/Shell/Task/ControllerTask.php(66): Bake\Shell\Task\ControllerTask->bake('Servicesentries')
+#13 /Users/maptell/testgit/vendor/cakephp/bake/src/Shell/BakeShell.php(258): Bake\Shell\Task\ControllerTask->main('Servicesentries')
+#14 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Collection/CollectionTrait.php(52): Bake\Shell\BakeShell->Bake\Shell\{closure}('Servicesentries', 0)
+#15 /Users/maptell/testgit/vendor/cakephp/bake/src/Shell/BakeShell.php(260): Cake\Collection\Collection->each(Object(Closure))
+#16 [internal function]: Bake\Shell\BakeShell->all('Servicesentries')
+#17 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Console/Shell.php(452): call_user_func_array(Array, Array)
+#18 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Console/ShellDispatcher.php(227): Cake\Console\Shell->runCommand(Array, true, Array)
+#19 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Console/ShellDispatcher.php(182): Cake\Console\ShellDispatcher->_dispatch(Array)
+#20 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Console/ShellDispatcher.php(128): Cake\Console\ShellDispatcher->dispatch(Array)
+#21 /Users/maptell/testgit/bin/cake.php(34): Cake\Console\ShellDispatcher::run(Array)
+#22 {main}
+
+
+2016-10-05 19:40:57 Error: [TypeError] Argument 1 passed to Bake\View\Helper\BakeHelper::stringifyList() must be of the type array, null given, called in /Users/maptell/testgit/tmp/bake/Bake-Element-Controller-index-ctp.php on line 49
+Stack Trace:
+#0 /Users/maptell/testgit/tmp/bake/Bake-Element-Controller-index-ctp.php(49): Bake\View\Helper\BakeHelper->stringifyList(NULL, Array)
+#1 /Users/maptell/testgit/vendor/cakephp/bake/src/View/BakeView.php(200): include('/Users/maptell/...')
+#2 /Users/maptell/testgit/vendor/cakephp/cakephp/src/View/View.php(964): Bake\View\BakeView->_evaluate(Array)
+#3 /Users/maptell/testgit/vendor/cakephp/cakephp/src/View/View.php(1350): Cake\View\View->_render('/Users/maptell/...', Array)
+#4 /Users/maptell/testgit/vendor/cakephp/cakephp/src/View/View.php(493): Cake\View\View->_renderElement('/Users/maptell/...', Array, Array)
+#5 /Users/maptell/testgit/tmp/bake/Bake-Controller-controller-ctp.php(47): Cake\View\View->element('Controller/inde...')
+#6 /Users/maptell/testgit/vendor/cakephp/bake/src/View/BakeView.php(200): include('/Users/maptell/...')
+#7 /Users/maptell/testgit/vendor/cakephp/cakephp/src/View/View.php(964): Bake\View\BakeView->_evaluate(Array)
+#8 /Users/maptell/testgit/vendor/cakephp/bake/src/View/BakeView.php(136): Cake\View\View->_render('/Users/maptell/...')
+#9 /Users/maptell/testgit/vendor/cakephp/bake/src/Shell/Task/BakeTemplateTask.php(89): Bake\View\BakeView->render('Controller/cont...')
+#10 /Users/maptell/testgit/vendor/cakephp/bake/src/Shell/Task/ControllerTask.php(179): Bake\Shell\Task\BakeTemplateTask->generate('Controller/cont...')
+#11 /Users/maptell/testgit/vendor/cakephp/bake/src/Shell/Task/ControllerTask.php(151): Bake\Shell\Task\ControllerTask->bakeController('Servicesentries', Array)
+#12 /Users/maptell/testgit/vendor/cakephp/bake/src/Shell/Task/ControllerTask.php(66): Bake\Shell\Task\ControllerTask->bake('Servicesentries')
+#13 /Users/maptell/testgit/vendor/cakephp/bake/src/Shell/BakeShell.php(258): Bake\Shell\Task\ControllerTask->main('Servicesentries')
+#14 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Collection/CollectionTrait.php(52): Bake\Shell\BakeShell->Bake\Shell\{closure}('Servicesentries', 0)
+#15 /Users/maptell/testgit/vendor/cakephp/bake/src/Shell/BakeShell.php(260): Cake\Collection\Collection->each(Object(Closure))
+#16 [internal function]: Bake\Shell\BakeShell->all('Servicesentries')
+#17 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Console/Shell.php(452): call_user_func_array(Array, Array)
+#18 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Console/ShellDispatcher.php(227): Cake\Console\Shell->runCommand(Array, true, Array)
+#19 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Console/ShellDispatcher.php(182): Cake\Console\ShellDispatcher->_dispatch(Array)
+#20 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Console/ShellDispatcher.php(128): Cake\Console\ShellDispatcher->dispatch(Array)
+#21 /Users/maptell/testgit/bin/cake.php(34): Cake\Console\ShellDispatcher::run(Array)
+#22 {main}
+
+
+2016-10-05 19:42:54 Error: [TypeError] Argument 1 passed to Bake\View\Helper\BakeHelper::stringifyList() must be of the type array, null given, called in /Users/maptell/testgit/tmp/bake/Bake-Element-Controller-index-ctp.php on line 59
+Stack Trace:
+#0 /Users/maptell/testgit/tmp/bake/Bake-Element-Controller-index-ctp.php(59): Bake\View\Helper\BakeHelper->stringifyList(NULL, Array)
+#1 /Users/maptell/testgit/vendor/cakephp/bake/src/View/BakeView.php(200): include('/Users/maptell/...')
+#2 /Users/maptell/testgit/vendor/cakephp/cakephp/src/View/View.php(964): Bake\View\BakeView->_evaluate(Array)
+#3 /Users/maptell/testgit/vendor/cakephp/cakephp/src/View/View.php(1350): Cake\View\View->_render('/Users/maptell/...', Array)
+#4 /Users/maptell/testgit/vendor/cakephp/cakephp/src/View/View.php(493): Cake\View\View->_renderElement('/Users/maptell/...', Array, Array)
+#5 /Users/maptell/testgit/tmp/bake/Bake-Controller-controller-ctp.php(47): Cake\View\View->element('Controller/inde...')
+#6 /Users/maptell/testgit/vendor/cakephp/bake/src/View/BakeView.php(200): include('/Users/maptell/...')
+#7 /Users/maptell/testgit/vendor/cakephp/cakephp/src/View/View.php(964): Bake\View\BakeView->_evaluate(Array)
+#8 /Users/maptell/testgit/vendor/cakephp/bake/src/View/BakeView.php(136): Cake\View\View->_render('/Users/maptell/...')
+#9 /Users/maptell/testgit/vendor/cakephp/bake/src/Shell/Task/BakeTemplateTask.php(89): Bake\View\BakeView->render('Controller/cont...')
+#10 /Users/maptell/testgit/vendor/cakephp/bake/src/Shell/Task/ControllerTask.php(179): Bake\Shell\Task\BakeTemplateTask->generate('Controller/cont...')
+#11 /Users/maptell/testgit/vendor/cakephp/bake/src/Shell/Task/ControllerTask.php(151): Bake\Shell\Task\ControllerTask->bakeController('Servicesentries', Array)
+#12 /Users/maptell/testgit/vendor/cakephp/bake/src/Shell/Task/ControllerTask.php(66): Bake\Shell\Task\ControllerTask->bake('Servicesentries')
+#13 /Users/maptell/testgit/vendor/cakephp/bake/src/Shell/BakeShell.php(258): Bake\Shell\Task\ControllerTask->main('Servicesentries')
+#14 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Collection/CollectionTrait.php(52): Bake\Shell\BakeShell->Bake\Shell\{closure}('Servicesentries', 0)
+#15 /Users/maptell/testgit/vendor/cakephp/bake/src/Shell/BakeShell.php(260): Cake\Collection\Collection->each(Object(Closure))
+#16 [internal function]: Bake\Shell\BakeShell->all('Servicesentries')
+#17 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Console/Shell.php(452): call_user_func_array(Array, Array)
+#18 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Console/ShellDispatcher.php(227): Cake\Console\Shell->runCommand(Array, true, Array)
+#19 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Console/ShellDispatcher.php(182): Cake\Console\ShellDispatcher->_dispatch(Array)
+#20 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Console/ShellDispatcher.php(128): Cake\Console\ShellDispatcher->dispatch(Array)
+#21 /Users/maptell/testgit/bin/cake.php(34): Cake\Console\ShellDispatcher::run(Array)
+#22 {main}
+
+
+2016-10-05 19:47:42 Error: [TypeError] Argument 1 passed to Bake\View\Helper\BakeHelper::stringifyList() must be of the type array, null given, called in /Users/maptell/testgit/tmp/bake/Bake-Element-Controller-index-ctp.php on line 52
+Stack Trace:
+#0 /Users/maptell/testgit/tmp/bake/Bake-Element-Controller-index-ctp.php(52): Bake\View\Helper\BakeHelper->stringifyList(NULL, Array)
+#1 /Users/maptell/testgit/vendor/cakephp/bake/src/View/BakeView.php(200): include('/Users/maptell/...')
+#2 /Users/maptell/testgit/vendor/cakephp/cakephp/src/View/View.php(964): Bake\View\BakeView->_evaluate(Array)
+#3 /Users/maptell/testgit/vendor/cakephp/cakephp/src/View/View.php(1350): Cake\View\View->_render('/Users/maptell/...', Array)
+#4 /Users/maptell/testgit/vendor/cakephp/cakephp/src/View/View.php(493): Cake\View\View->_renderElement('/Users/maptell/...', Array, Array)
+#5 /Users/maptell/testgit/tmp/bake/Bake-Controller-controller-ctp.php(47): Cake\View\View->element('Controller/inde...')
+#6 /Users/maptell/testgit/vendor/cakephp/bake/src/View/BakeView.php(200): include('/Users/maptell/...')
+#7 /Users/maptell/testgit/vendor/cakephp/cakephp/src/View/View.php(964): Bake\View\BakeView->_evaluate(Array)
+#8 /Users/maptell/testgit/vendor/cakephp/bake/src/View/BakeView.php(136): Cake\View\View->_render('/Users/maptell/...')
+#9 /Users/maptell/testgit/vendor/cakephp/bake/src/Shell/Task/BakeTemplateTask.php(89): Bake\View\BakeView->render('Controller/cont...')
+#10 /Users/maptell/testgit/vendor/cakephp/bake/src/Shell/Task/ControllerTask.php(179): Bake\Shell\Task\BakeTemplateTask->generate('Controller/cont...')
+#11 /Users/maptell/testgit/vendor/cakephp/bake/src/Shell/Task/ControllerTask.php(151): Bake\Shell\Task\ControllerTask->bakeController('Servicesentries', Array)
+#12 /Users/maptell/testgit/vendor/cakephp/bake/src/Shell/Task/ControllerTask.php(66): Bake\Shell\Task\ControllerTask->bake('Servicesentries')
+#13 /Users/maptell/testgit/vendor/cakephp/bake/src/Shell/BakeShell.php(258): Bake\Shell\Task\ControllerTask->main('Servicesentries')
+#14 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Collection/CollectionTrait.php(52): Bake\Shell\BakeShell->Bake\Shell\{closure}('Servicesentries', 0)
+#15 /Users/maptell/testgit/vendor/cakephp/bake/src/Shell/BakeShell.php(260): Cake\Collection\Collection->each(Object(Closure))
+#16 [internal function]: Bake\Shell\BakeShell->all('Servicesentries')
+#17 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Console/Shell.php(452): call_user_func_array(Array, Array)
+#18 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Console/ShellDispatcher.php(227): Cake\Console\Shell->runCommand(Array, true, Array)
+#19 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Console/ShellDispatcher.php(182): Cake\Console\ShellDispatcher->_dispatch(Array)
+#20 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Console/ShellDispatcher.php(128): Cake\Console\ShellDispatcher->dispatch(Array)
+#21 /Users/maptell/testgit/bin/cake.php(34): Cake\Console\ShellDispatcher::run(Array)
+#22 {main}
+
+
+2016-10-05 20:02:59 Error: [ParseError] syntax error, unexpected '?>'
+Stack Trace:
+#0 /Users/maptell/testgit/vendor/cakephp/cakephp/src/View/View.php(964): Bake\View\BakeView->_evaluate(Array)
+#1 /Users/maptell/testgit/vendor/cakephp/cakephp/src/View/View.php(1350): Cake\View\View->_render('/Users/maptell/...', Array)
+#2 /Users/maptell/testgit/vendor/cakephp/cakephp/src/View/View.php(493): Cake\View\View->_renderElement('/Users/maptell/...', Array, Array)
+#3 /Users/maptell/testgit/tmp/bake/Bake-Controller-controller-ctp.php(47): Cake\View\View->element('Controller/inde...')
+#4 /Users/maptell/testgit/vendor/cakephp/bake/src/View/BakeView.php(200): include('/Users/maptell/...')
+#5 /Users/maptell/testgit/vendor/cakephp/cakephp/src/View/View.php(964): Bake\View\BakeView->_evaluate(Array)
+#6 /Users/maptell/testgit/vendor/cakephp/bake/src/View/BakeView.php(136): Cake\View\View->_render('/Users/maptell/...')
+#7 /Users/maptell/testgit/vendor/cakephp/bake/src/Shell/Task/BakeTemplateTask.php(89): Bake\View\BakeView->render('Controller/cont...')
+#8 /Users/maptell/testgit/vendor/cakephp/bake/src/Shell/Task/ControllerTask.php(179): Bake\Shell\Task\BakeTemplateTask->generate('Controller/cont...')
+#9 /Users/maptell/testgit/vendor/cakephp/bake/src/Shell/Task/ControllerTask.php(151): Bake\Shell\Task\ControllerTask->bakeController('Servicesentries', Array)
+#10 /Users/maptell/testgit/vendor/cakephp/bake/src/Shell/Task/ControllerTask.php(66): Bake\Shell\Task\ControllerTask->bake('Servicesentries')
+#11 /Users/maptell/testgit/vendor/cakephp/bake/src/Shell/BakeShell.php(258): Bake\Shell\Task\ControllerTask->main('Servicesentries')
+#12 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Collection/CollectionTrait.php(52): Bake\Shell\BakeShell->Bake\Shell\{closure}('Servicesentries', 0)
+#13 /Users/maptell/testgit/vendor/cakephp/bake/src/Shell/BakeShell.php(260): Cake\Collection\Collection->each(Object(Closure))
+#14 [internal function]: Bake\Shell\BakeShell->all('Servicesentries')
+#15 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Console/Shell.php(452): call_user_func_array(Array, Array)
+#16 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Console/ShellDispatcher.php(227): Cake\Console\Shell->runCommand(Array, true, Array)
+#17 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Console/ShellDispatcher.php(182): Cake\Console\ShellDispatcher->_dispatch(Array)
+#18 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Console/ShellDispatcher.php(128): Cake\Console\ShellDispatcher->dispatch(Array)
+#19 /Users/maptell/testgit/bin/cake.php(34): Cake\Console\ShellDispatcher::run(Array)
+#20 {main}
+
+
+2016-10-05 20:03:51 Error: [Error] Call to undefined method Bake\View\BakeView::loadModel()
+Stack Trace:
+#0 /Users/maptell/testgit/vendor/cakephp/bake/src/View/BakeView.php(200): include()
+#1 /Users/maptell/testgit/vendor/cakephp/cakephp/src/View/View.php(964): Bake\View\BakeView->_evaluate(Array)
+#2 /Users/maptell/testgit/vendor/cakephp/cakephp/src/View/View.php(1350): Cake\View\View->_render('/Users/maptell/...', Array)
+#3 /Users/maptell/testgit/vendor/cakephp/cakephp/src/View/View.php(493): Cake\View\View->_renderElement('/Users/maptell/...', Array, Array)
+#4 /Users/maptell/testgit/tmp/bake/Bake-Controller-controller-ctp.php(47): Cake\View\View->element('Controller/inde...')
+#5 /Users/maptell/testgit/vendor/cakephp/bake/src/View/BakeView.php(200): include('/Users/maptell/...')
+#6 /Users/maptell/testgit/vendor/cakephp/cakephp/src/View/View.php(964): Bake\View\BakeView->_evaluate(Array)
+#7 /Users/maptell/testgit/vendor/cakephp/bake/src/View/BakeView.php(136): Cake\View\View->_render('/Users/maptell/...')
+#8 /Users/maptell/testgit/vendor/cakephp/bake/src/Shell/Task/BakeTemplateTask.php(89): Bake\View\BakeView->render('Controller/cont...')
+#9 /Users/maptell/testgit/vendor/cakephp/bake/src/Shell/Task/ControllerTask.php(179): Bake\Shell\Task\BakeTemplateTask->generate('Controller/cont...')
+#10 /Users/maptell/testgit/vendor/cakephp/bake/src/Shell/Task/ControllerTask.php(151): Bake\Shell\Task\ControllerTask->bakeController('Servicesentries', Array)
+#11 /Users/maptell/testgit/vendor/cakephp/bake/src/Shell/Task/ControllerTask.php(66): Bake\Shell\Task\ControllerTask->bake('Servicesentries')
+#12 /Users/maptell/testgit/vendor/cakephp/bake/src/Shell/BakeShell.php(258): Bake\Shell\Task\ControllerTask->main('Servicesentries')
+#13 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Collection/CollectionTrait.php(52): Bake\Shell\BakeShell->Bake\Shell\{closure}('Servicesentries', 0)
+#14 /Users/maptell/testgit/vendor/cakephp/bake/src/Shell/BakeShell.php(260): Cake\Collection\Collection->each(Object(Closure))
+#15 [internal function]: Bake\Shell\BakeShell->all('Servicesentries')
+#16 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Console/Shell.php(452): call_user_func_array(Array, Array)
+#17 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Console/ShellDispatcher.php(227): Cake\Console\Shell->runCommand(Array, true, Array)
+#18 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Console/ShellDispatcher.php(182): Cake\Console\ShellDispatcher->_dispatch(Array)
+#19 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Console/ShellDispatcher.php(128): Cake\Console\ShellDispatcher->dispatch(Array)
+#20 /Users/maptell/testgit/bin/cake.php(34): Cake\Console\ShellDispatcher::run(Array)
+#21 {main}
+
+
+2016-10-05 20:05:01 Error: [Error] Call to undefined method Bake\View\BakeView::loadModel()
+Stack Trace:
+#0 /Users/maptell/testgit/vendor/cakephp/bake/src/View/BakeView.php(200): include()
+#1 /Users/maptell/testgit/vendor/cakephp/cakephp/src/View/View.php(964): Bake\View\BakeView->_evaluate(Array)
+#2 /Users/maptell/testgit/vendor/cakephp/cakephp/src/View/View.php(1350): Cake\View\View->_render('/Users/maptell/...', Array)
+#3 /Users/maptell/testgit/vendor/cakephp/cakephp/src/View/View.php(493): Cake\View\View->_renderElement('/Users/maptell/...', Array, Array)
+#4 /Users/maptell/testgit/tmp/bake/Bake-Controller-controller-ctp.php(47): Cake\View\View->element('Controller/inde...')
+#5 /Users/maptell/testgit/vendor/cakephp/bake/src/View/BakeView.php(200): include('/Users/maptell/...')
+#6 /Users/maptell/testgit/vendor/cakephp/cakephp/src/View/View.php(964): Bake\View\BakeView->_evaluate(Array)
+#7 /Users/maptell/testgit/vendor/cakephp/bake/src/View/BakeView.php(136): Cake\View\View->_render('/Users/maptell/...')
+#8 /Users/maptell/testgit/vendor/cakephp/bake/src/Shell/Task/BakeTemplateTask.php(89): Bake\View\BakeView->render('Controller/cont...')
+#9 /Users/maptell/testgit/vendor/cakephp/bake/src/Shell/Task/ControllerTask.php(179): Bake\Shell\Task\BakeTemplateTask->generate('Controller/cont...')
+#10 /Users/maptell/testgit/vendor/cakephp/bake/src/Shell/Task/ControllerTask.php(151): Bake\Shell\Task\ControllerTask->bakeController('Servicesentries', Array)
+#11 /Users/maptell/testgit/vendor/cakephp/bake/src/Shell/Task/ControllerTask.php(66): Bake\Shell\Task\ControllerTask->bake('Servicesentries')
+#12 /Users/maptell/testgit/vendor/cakephp/bake/src/Shell/BakeShell.php(258): Bake\Shell\Task\ControllerTask->main('Servicesentries')
+#13 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Collection/CollectionTrait.php(52): Bake\Shell\BakeShell->Bake\Shell\{closure}('Servicesentries', 0)
+#14 /Users/maptell/testgit/vendor/cakephp/bake/src/Shell/BakeShell.php(260): Cake\Collection\Collection->each(Object(Closure))
+#15 [internal function]: Bake\Shell\BakeShell->all('Servicesentries')
+#16 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Console/Shell.php(452): call_user_func_array(Array, Array)
+#17 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Console/ShellDispatcher.php(227): Cake\Console\Shell->runCommand(Array, true, Array)
+#18 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Console/ShellDispatcher.php(182): Cake\Console\ShellDispatcher->_dispatch(Array)
+#19 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Console/ShellDispatcher.php(128): Cake\Console\ShellDispatcher->dispatch(Array)
+#20 /Users/maptell/testgit/bin/cake.php(34): Cake\Console\ShellDispatcher::run(Array)
+#21 {main}
+
+
+2016-10-05 20:05:41 Error: [ParseError] syntax error, unexpected '<', expecting function (T_FUNCTION)
+Stack Trace:
+#0 /Users/maptell/testgit/vendor/composer/ClassLoader.php(301): Composer\Autoload\includeFile('/Users/maptell/...')
+#1 [internal function]: Composer\Autoload\ClassLoader->loadClass('App\\Controller\\...')
+#2 [internal function]: spl_autoload_call('App\\Controller\\...')
+#3 /Users/maptell/testgit/vendor/cakephp/bake/src/Shell/Task/TestTask.php(223): class_exists('App\\Controller\\...')
+#4 /Users/maptell/testgit/vendor/cakephp/bake/src/Shell/Task/ControllerTask.php(206): Bake\Shell\Task\TestTask->bake('Controller', 'Servicesentries')
+#5 /Users/maptell/testgit/vendor/cakephp/bake/src/Shell/Task/ControllerTask.php(152): Bake\Shell\Task\ControllerTask->bakeTest('Servicesentries')
+#6 /Users/maptell/testgit/vendor/cakephp/bake/src/Shell/Task/ControllerTask.php(66): Bake\Shell\Task\ControllerTask->bake('Servicesentries')
+#7 /Users/maptell/testgit/vendor/cakephp/bake/src/Shell/BakeShell.php(258): Bake\Shell\Task\ControllerTask->main('Servicesentries')
+#8 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Collection/CollectionTrait.php(52): Bake\Shell\BakeShell->Bake\Shell\{closure}('Servicesentries', 0)
+#9 /Users/maptell/testgit/vendor/cakephp/bake/src/Shell/BakeShell.php(260): Cake\Collection\Collection->each(Object(Closure))
+#10 [internal function]: Bake\Shell\BakeShell->all('Servicesentries')
+#11 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Console/Shell.php(452): call_user_func_array(Array, Array)
+#12 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Console/ShellDispatcher.php(227): Cake\Console\Shell->runCommand(Array, true, Array)
+#13 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Console/ShellDispatcher.php(182): Cake\Console\ShellDispatcher->_dispatch(Array)
+#14 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Console/ShellDispatcher.php(128): Cake\Console\ShellDispatcher->dispatch(Array)
+#15 /Users/maptell/testgit/bin/cake.php(34): Cake\Console\ShellDispatcher::run(Array)
+#16 {main}
+
+
+2016-10-06 08:39:33 Error: [ParseError] syntax error, unexpected '/'
+Stack Trace:
+#0 /Users/maptell/testgit/vendor/cakephp/cakephp/src/View/View.php(964): Bake\View\BakeView->_evaluate(Array)
+#1 /Users/maptell/testgit/vendor/cakephp/bake/src/View/BakeView.php(136): Cake\View\View->_render('/Users/maptell/...')
+#2 /Users/maptell/testgit/vendor/cakephp/bake/src/Shell/Task/BakeTemplateTask.php(89): Bake\View\BakeView->render('Template/view')
+#3 /Users/maptell/testgit/vendor/cakephp/bake/src/Shell/Task/TemplateTask.php(426): Bake\Shell\Task\BakeTemplateTask->generate('Template/view')
+#4 /Users/maptell/testgit/vendor/cakephp/bake/src/Shell/Task/TemplateTask.php(152): Bake\Shell\Task\TemplateTask->getContent('view', Array)
+#5 [internal function]: Bake\Shell\Task\TemplateTask->main('Servicesentries')
+#6 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Console/Shell.php(466): call_user_func_array(Array, Array)
+#7 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Console/Shell.php(459): Cake\Console\Shell->runCommand(Array, false, Array)
+#8 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Console/ShellDispatcher.php(227): Cake\Console\Shell->runCommand(Array, true, Array)
+#9 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Console/ShellDispatcher.php(182): Cake\Console\ShellDispatcher->_dispatch(Array)
+#10 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Console/ShellDispatcher.php(128): Cake\Console\ShellDispatcher->dispatch(Array)
+#11 /Users/maptell/testgit/bin/cake.php(34): Cake\Console\ShellDispatcher::run(Array)
+#12 {main}
+
+
+2016-10-06 08:40:51 Error: [ParseError] syntax error, unexpected '/'
+Stack Trace:
+#0 /Users/maptell/testgit/vendor/cakephp/cakephp/src/View/View.php(964): Bake\View\BakeView->_evaluate(Array)
+#1 /Users/maptell/testgit/vendor/cakephp/bake/src/View/BakeView.php(136): Cake\View\View->_render('/Users/maptell/...')
+#2 /Users/maptell/testgit/vendor/cakephp/bake/src/Shell/Task/BakeTemplateTask.php(89): Bake\View\BakeView->render('Template/view')
+#3 /Users/maptell/testgit/vendor/cakephp/bake/src/Shell/Task/TemplateTask.php(426): Bake\Shell\Task\BakeTemplateTask->generate('Template/view')
+#4 /Users/maptell/testgit/vendor/cakephp/bake/src/Shell/Task/TemplateTask.php(152): Bake\Shell\Task\TemplateTask->getContent('view', Array)
+#5 [internal function]: Bake\Shell\Task\TemplateTask->main('Servicesentries')
+#6 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Console/Shell.php(466): call_user_func_array(Array, Array)
+#7 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Console/Shell.php(459): Cake\Console\Shell->runCommand(Array, false, Array)
+#8 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Console/ShellDispatcher.php(227): Cake\Console\Shell->runCommand(Array, true, Array)
+#9 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Console/ShellDispatcher.php(182): Cake\Console\ShellDispatcher->_dispatch(Array)
+#10 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Console/ShellDispatcher.php(128): Cake\Console\ShellDispatcher->dispatch(Array)
+#11 /Users/maptell/testgit/bin/cake.php(34): Cake\Console\ShellDispatcher::run(Array)
+#12 {main}
+
+
+2016-10-06 11:45:32 Error: [Cake\Database\Exception] Cannot describe issuesaddresses. It has 0 columns.
+Stack Trace:
+#0 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Database/Schema/CachedCollection.php(63): Cake\Database\Schema\Collection->describe('issuesaddresses', Array)
+#1 /Users/maptell/testgit/vendor/cakephp/cakephp/src/ORM/Table.php(440): Cake\Database\Schema\CachedCollection->describe('issuesaddresses')
+#2 /Users/maptell/testgit/vendor/cakephp/cakephp/src/ORM/Table.php(518): Cake\ORM\Table->schema()
+#3 /Users/maptell/testgit/vendor/cakephp/bake/src/Shell/Task/ModelTask.php(210): Cake\ORM\Table->primaryKey()
+#4 /Users/maptell/testgit/vendor/cakephp/bake/src/Shell/Task/ModelTask.php(127): Bake\Shell\Task\ModelTask->getAssociations(Object(Cake\ORM\Table))
+#5 /Users/maptell/testgit/vendor/cakephp/bake/src/Shell/Task/ModelTask.php(110): Bake\Shell\Task\ModelTask->getTableContext(Object(Cake\ORM\Table), 'issuesaddresses', 'Issuesaddresses')
+#6 /Users/maptell/testgit/vendor/cakephp/bake/src/Shell/Task/ModelTask.php(97): Bake\Shell\Task\ModelTask->bake('Issuesaddresses')
+#7 /Users/maptell/testgit/vendor/cakephp/bake/src/Shell/BakeShell.php(257): Bake\Shell\Task\ModelTask->main('Issuesaddresses')
+#8 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Collection/CollectionTrait.php(52): Bake\Shell\BakeShell->Bake\Shell\{closure}('Issuesaddresses', 0)
+#9 /Users/maptell/testgit/vendor/cakephp/bake/src/Shell/BakeShell.php(260): Cake\Collection\Collection->each(Object(Closure))
+#10 [internal function]: Bake\Shell\BakeShell->all('issuesaddresses')
+#11 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Console/Shell.php(452): call_user_func_array(Array, Array)
+#12 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Console/ShellDispatcher.php(227): Cake\Console\Shell->runCommand(Array, true, Array)
+#13 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Console/ShellDispatcher.php(182): Cake\Console\ShellDispatcher->_dispatch(Array)
+#14 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Console/ShellDispatcher.php(128): Cake\Console\ShellDispatcher->dispatch(Array)
+#15 /Users/maptell/testgit/bin/cake.php(34): Cake\Console\ShellDispatcher::run(Array)
+#16 {main}
+
+

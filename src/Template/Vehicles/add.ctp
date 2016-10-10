@@ -4,6 +4,7 @@
      'label' => '<label class="col-sm-3 control-label" {{attrs}}>{{text}}</label>',
     'input' => '<div class="col-sm-6"><input type="{{type}}" name="{{name}}"{{attrs}}/></div>',
      'select' => '<div class="col-sm-6"><select name="{{name}}"{{attrs}}>{{content}}</select></div>',
+     'selectMultiple' => '<div class="col-sm-6"><select name="{{name}}[]" multiple="multiple"{{attrs}}>{{content}}</select></div>',
      'textarea' => '<div class="col-sm-6"><textarea name="{{name}}"{{attrs}}>{{value}}</textarea></div>'
 ];
 $this->Form->templates($myTemplates);
@@ -13,13 +14,14 @@ $this->Form->templates($myTemplates);
 <!-- Content Header (Page header) -->
 <section class="content-header">
   <h1>
-    Vehicle Details
+    Add Vehicle
   </h1>
   <ol class="breadcrumb">
     <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+    <li><a href="#">Administration</a></li>
     <li><a href="#">Tracking Items</a></li>
     <li> <a href="/vehicles/">Vehicles</a></li>
-    <li class="active">View </li>
+    <li class="active">Add </li>
   </ol>
 </section>
 
@@ -40,7 +42,7 @@ $this->Form->templates($myTemplates);
           <li><a href="#fluids" data-toggle="tab">Fluids</a></li>
           <li ><a href="#purchase" data-toggle="tab">Purchase</a></li> 
           <li ><a href="#lease" data-toggle="tab">Lease</a></li>        
-          <li><a href="#attach" data-toggle="tab">Attachments</a></li>
+          <li><a href="#docs" data-toggle="tab">Attachments</a></li>
           
           
            
@@ -66,7 +68,7 @@ $this->Form->templates($myTemplates);
 		            echo $this->Form->input('vehiclestatus_id',['label'=>'Status*','options'=>$vehiclestatuses, 'class' =>'select2', 'empty' => false,'templateVars' => ['help' => 'Current status of this vehicle']]);
 		            //echo $this->Form->input('vehiclestatus_id', ['options' => $vehiclestatuses, 'empty' => true]);
           
-		            echo $this->Form->input('driver_id', ['options' => $drivers, 'empty' => true,'class'=>'select2']);
+		            
 		            echo $this->Form->input('ownership_id', ['label'=>'Ownership*','options' => $ownerships, 'empty' => false,'class'=>'select2']);
 		            echo $this->Form->input('symbol_id', ['options' => $symbols, 'empty' => true,'class'=>'select2']);
 		            
@@ -78,7 +80,13 @@ $this->Form->templates($myTemplates);
 		            echo $this->Form->input('color');
 		            echo $this->Form->input('bodytype',['label'=>'Body Type','templateVars' => ['help' => 'Body type (XUV, Sedan, etc...)']]);
 		            echo $this->Form->input('bodysubtype',['label'=>'Body Subtype','templateVars' => ['help' => 'Extended Cab, Crew Cab, etc...']]);
-		            
+		             echo $this->Form->input('driverdetectionmode',['class'=>'select2']);
+                    echo $this->Form->input('activedriver',['class'=>'select2']);
+           
+                    echo $this->Form->input('purpose_id', ['options' => $purposes, 'empty' => true,'class'=>'select2']);
+           
+                    echo $this->Form->input('transporter_id',['class'=>'select2']);
+                    echo $this->Form->input('drivers._ids', ['options' => $drivers,'class'=>'select2']);
 					?>
 					<div class="form-group">
 		                <label class="col-sm-3 control-label">MSRP</label>
@@ -524,8 +532,7 @@ $this->Form->templates($myTemplates);
 		                <!-- /.input group -->
 		            </div>
             
-             <div class="tab-pane" id="lease">
-            <div class="form-horizontal">
+            
             	
             	
             	

@@ -16,10 +16,13 @@ use Cake\Validation\Validator;
  * @property \Cake\ORM\Association\BelongsTo $Contractors
  * @property \Cake\ORM\Association\BelongsTo $Stations
  * @property \Cake\ORM\Association\BelongsTo $Supervisors
+ * @property \Cake\ORM\Association\BelongsTo $Shifts
+ * @property \Cake\ORM\Association\HasMany $Alerts
  * @property \Cake\ORM\Association\HasMany $Ibuttons
  * @property \Cake\ORM\Association\HasMany $Rfids
- * @property \Cake\ORM\Association\HasMany $Vehicles
  * @property \Cake\ORM\Association\BelongsToMany $Drivergroups
+ * @property \Cake\ORM\Association\BelongsToMany $Languages
+ * @property \Cake\ORM\Association\BelongsToMany $Vehicles
  *
  * @method \App\Model\Entity\Driver get($primaryKey, $options = [])
  * @method \App\Model\Entity\Driver newEntity($data = null, array $options = [])
@@ -65,8 +68,14 @@ class DriversTable extends Table
             'foreignKey' => 'station_id'
         ]);
         $this->belongsTo('Supervisors', [
-            'className' =>'Drivers',
+            'className' =>  'Drivers',
             'foreignKey' => 'supervisor_id'
+        ]);
+        $this->belongsTo('Shifts', [
+            'foreignKey' => 'shift_id'
+        ]);
+        $this->hasMany('Alerts', [
+            'foreignKey' => 'driver_id'
         ]);
         $this->hasMany('Ibuttons', [
             'foreignKey' => 'driver_id'
@@ -74,13 +83,20 @@ class DriversTable extends Table
         $this->hasMany('Rfids', [
             'foreignKey' => 'driver_id'
         ]);
-        $this->hasMany('Vehicles', [
-            'foreignKey' => 'driver_id'
-        ]);
         $this->belongsToMany('Drivergroups', [
             'foreignKey' => 'driver_id',
             'targetForeignKey' => 'drivergroup_id',
             'joinTable' => 'drivers_drivergroups'
+        ]);
+        $this->belongsToMany('Languages', [
+            'foreignKey' => 'driver_id',
+            'targetForeignKey' => 'language_id',
+            'joinTable' => 'drivers_languages'
+        ]);
+        $this->belongsToMany('Vehicles', [
+            'foreignKey' => 'driver_id',
+            'targetForeignKey' => 'vehicle_id',
+            'joinTable' => 'vehicles_drivers'
         ]);
     }
 
@@ -97,12 +113,6 @@ class DriversTable extends Table
 
         $validator
             ->allowEmpty('name');
-
-        $validator
-            ->allowEmpty('middlename');
-
-        $validator
-            ->allowEmpty('lastname');
 
         $validator
             ->date('dob')
@@ -155,6 +165,39 @@ class DriversTable extends Table
             ->integer('offday2')
             ->allowEmpty('offday2');
 
+        $validator
+            ->boolean('isasupervisor')
+            ->allowEmpty('isasupervisor');
+
+        $validator
+            ->numeric('ragscore')
+            ->allowEmpty('ragscore');
+
+        $validator
+            ->allowEmpty('ragsummary');
+
+        $validator
+            ->numeric('salary')
+            ->allowEmpty('salary');
+
+        $validator
+            ->integer('maritalstatus')
+            ->allowEmpty('maritalstatus');
+
+        $validator
+            ->numeric('experience')
+            ->allowEmpty('experience');
+
+        $validator
+            ->allowEmpty('licenseissuedby');
+
+        $validator
+            ->allowEmpty('previouscompanyname');
+
+        $validator
+            ->boolean('ismarker')
+            ->allowEmpty('ismarker');
+
         return $validator;
     }
 
@@ -174,6 +217,7 @@ class DriversTable extends Table
         $rules->add($rules->existsIn(['contractor_id'], 'Contractors'));
         $rules->add($rules->existsIn(['station_id'], 'Stations'));
         $rules->add($rules->existsIn(['supervisor_id'], 'Supervisors'));
+        $rules->add($rules->existsIn(['shift_id'], 'Shifts'));
 
         return $rules;
     }

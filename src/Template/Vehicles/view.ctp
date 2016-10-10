@@ -85,7 +85,8 @@
     <div class="col-md-9">
       <div class="nav-tabs-custom">
         <ul class="nav nav-tabs">
-          <li class="active"><a href="#activity" data-toggle="tab">Specifications</a></li>
+          <li class="details"><a href="#details" data-toggle="tab">Details</a></li>
+          <li ><a href="#activity" data-toggle="tab">Specifications</a></li>
           <li><a href="#engine" data-toggle="tab">Engine Details</a></li>
           <li><a href="#wheel" data-toggle="tab">Wheel&Tyre</a></li>
           <li><a href="#fuel" data-toggle="tab">Fluids</a></li>
@@ -103,11 +104,17 @@
           <li><a href="#timeline" data-toggle="tab">Reminders</a></li>
           <li><a href="#timeline" data-toggle="tab">Comments</a></li>
           <li><a href="#timeline" data-toggle="tab">Assigment History</a></li>
-           <li><a href="#timeline" data-toggle="tab">Odometer History</a></li>
-           <li><a href="#timeline" data-toggle="tab">Status Changes</a></li>
-           <li><a href="#limits" data-toggle="tab">Settings</a></li>
+          <li><a href="#timeline" data-toggle="tab">Odometer History</a></li>
+          <li><a href="#timeline" data-toggle="tab">Status Changes</a></li>
+          <li><a href="#limits" data-toggle="tab">Settings</a></li>
            
         </ul>
+        <div class="tab-content">
+          <div class="active tab-pane" id="activity">
+          	
+          </div>
+          
+        </div>
         <div class="tab-content">
           <div class="active tab-pane" id="activity">
              <form class="form-horizontal">

@@ -11,6 +11,7 @@ use Cake\Validation\Validator;
  *
  * @property \Cake\ORM\Association\BelongsTo $Vehicles
  * @property \Cake\ORM\Association\BelongsTo $Vendors
+ * @property \Cake\ORM\Association\BelongsTo $Customers
  * @property \Cake\ORM\Association\HasMany $Servicecompleted
  * @property \Cake\ORM\Association\HasMany $Servicedocuments
  *
@@ -45,6 +46,9 @@ class ServicesentriesTable extends Table
         $this->belongsTo('Vendors', [
             'foreignKey' => 'vendor_id'
         ]);
+        $this->belongsTo('Customers', [
+            'foreignKey' => 'customer_id'
+        ]);
         $this->hasMany('Servicecompleted', [
             'foreignKey' => 'servicesentry_id'
         ]);
@@ -65,8 +69,8 @@ class ServicesentriesTable extends Table
             ->allowEmpty('id', 'create');
 
         $validator
-            ->numeric('odometer')
-            ->allowEmpty('odometer');
+            ->numeric('odo')
+            ->allowEmpty('odo');
 
         $validator
             ->allowEmpty('refer');
@@ -89,6 +93,13 @@ class ServicesentriesTable extends Table
         $validator
             ->allowEmpty('comments');
 
+        $validator
+            ->date('dateofservice')
+            ->allowEmpty('dateofservice');
+
+        $validator
+            ->allowEmpty('name');
+
         return $validator;
     }
 
@@ -103,6 +114,7 @@ class ServicesentriesTable extends Table
     {
         $rules->add($rules->existsIn(['vehicle_id'], 'Vehicles'));
         $rules->add($rules->existsIn(['vendor_id'], 'Vendors'));
+        $rules->add($rules->existsIn(['customer_id'], 'Customers'));
 
         return $rules;
     }

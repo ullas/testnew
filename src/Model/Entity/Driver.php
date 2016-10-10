@@ -8,8 +8,6 @@ use Cake\ORM\Entity;
  *
  * @property int $id
  * @property string $name
- * @property string $middlename
- * @property string $lastname
  * @property \Cake\I18n\Time $dob
  * @property int $sex
  * @property string $nationality
@@ -32,6 +30,16 @@ use Cake\ORM\Entity;
  * @property int $offday1
  * @property int $offday2
  * @property int $supervisor_id
+ * @property bool $isasupervisor
+ * @property float $ragscore
+ * @property string $ragsummary
+ * @property float $salary
+ * @property int $maritalstatus
+ * @property float $experience
+ * @property string $licenseissuedby
+ * @property string $previouscompanyname
+ * @property int $shift_id
+ * @property bool $ismarker
  *
  * @property \App\Model\Entity\Address $address
  * @property \App\Model\Entity\Ibutton[] $ibuttons
@@ -39,8 +47,12 @@ use Cake\ORM\Entity;
  * @property \App\Model\Entity\Vehicle[] $vehicles
  * @property \App\Model\Entity\Contractor $contractor
  * @property \App\Model\Entity\Station $station
+ * @property \App\Model\Entity\Supervisor $supervisor
+ * @property \App\Model\Entity\Shift $shift
+ * @property \App\Model\Entity\Alert[] $alerts
  * @property \App\Model\Entity\Rfid[] $rfids
  * @property \App\Model\Entity\Drivergroup[] $drivergroups
+ * @property \App\Model\Entity\Language[] $languages
  */
 class Driver extends Entity
 {

@@ -75,6 +75,34 @@ class AddressesTable extends Table
         $validator
             ->allowEmpty('mobile');
 
+        $validator
+            ->allowEmpty('apartment');
+
+        $validator
+            ->allowEmpty('streetname');
+
+        $validator
+            ->allowEmpty('landmark');
+
+        $validator
+            ->allowEmpty('areaname');
+
+        $validator
+            ->allowEmpty('countryshortcode');
+
+        $validator
+            ->allowEmpty('stateshortcode');
+
+        $validator
+            ->allowEmpty('city');
+
+        $validator
+            ->allowEmpty('pincode');
+
+        $validator
+            ->boolean('iscurrentAddress')
+            ->allowEmpty('iscurrentAddress');
+
         return $validator;
     }
 

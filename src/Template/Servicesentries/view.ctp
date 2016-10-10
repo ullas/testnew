@@ -1,23 +1,21 @@
-<nav class="large-3 medium-4 columns" id="actions-sidebar">
-    <ul class="side-nav">
-        <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Html->link(__('Edit Servicesentry'), ['action' => 'edit', $servicesentry->id]) ?> </li>
-        <li><?= $this->Form->postLink(__('Delete Servicesentry'), ['action' => 'delete', $servicesentry->id], ['confirm' => __('Are you sure you want to delete # {0}?', $servicesentry->id)]) ?> </li>
-        <li><?= $this->Html->link(__('List Servicesentries'), ['action' => 'index']) ?> </li>
-        <li><?= $this->Html->link(__('New Servicesentry'), ['action' => 'add']) ?> </li>
-        <li><?= $this->Html->link(__('List Vehicles'), ['controller' => 'Vehicles', 'action' => 'index']) ?> </li>
-        <li><?= $this->Html->link(__('New Vehicle'), ['controller' => 'Vehicles', 'action' => 'add']) ?> </li>
-        <li><?= $this->Html->link(__('List Vendors'), ['controller' => 'Vendors', 'action' => 'index']) ?> </li>
-        <li><?= $this->Html->link(__('New Vendor'), ['controller' => 'Vendors', 'action' => 'add']) ?> </li>
-        <li><?= $this->Html->link(__('List Servicecompleted'), ['controller' => 'Servicecompleted', 'action' => 'index']) ?> </li>
-        <li><?= $this->Html->link(__('New Servicecompleted'), ['controller' => 'Servicecompleted', 'action' => 'add']) ?> </li>
-        <li><?= $this->Html->link(__('List Servicedocuments'), ['controller' => 'Servicedocuments', 'action' => 'index']) ?> </li>
-        <li><?= $this->Html->link(__('New Servicedocument'), ['controller' => 'Servicedocuments', 'action' => 'add']) ?> </li>
-    </ul>
-</nav>
-<div class="servicesentries view large-9 medium-8 columns content">
-    <h3><?= h($servicesentry->id) ?></h3>
-    <table class="vertical-table">
+<section class="content-header">
+  <h1>
+     <?= h($servicesentry->name) ?> Details
+  </h1>
+  <ol class="breadcrumb">
+  	<li><a href="#"><i class="fa fa-dashboard"></i>Home</a></li>
+   
+    <li><a href="/servicesentries/"> servicesentries</a></li>
+    <li class="active">View</li>
+  </ol>
+</section>
+<section class="content">
+  <div class="row">
+  <div class="col-md-12">
+  	
+  	<div class="box box-primary">
+  		<div class="box-body">
+  		<table class="table table-hover">
         <tr>
             <th><?= __('Vehicle') ?></th>
             <td><?= $servicesentry->has('vehicle') ? $this->Html->link($servicesentry->vehicle->name, ['controller' => 'Vehicles', 'action' => 'view', $servicesentry->vehicle->id]) : '' ?></td>
@@ -35,12 +33,20 @@
             <td><?= $servicesentry->has('vendor') ? $this->Html->link($servicesentry->vendor->name, ['controller' => 'Vendors', 'action' => 'view', $servicesentry->vendor->id]) : '' ?></td>
         </tr>
         <tr>
+            <th><?= __('Customer') ?></th>
+            <td><?= $servicesentry->has('customer') ? $this->Html->link($servicesentry->customer->name, ['controller' => 'Customers', 'action' => 'view', $servicesentry->customer->id]) : '' ?></td>
+        </tr>
+        <tr>
+            <th><?= __('Name') ?></th>
+            <td><?= h($servicesentry->name) ?></td>
+        </tr>
+        <tr>
             <th><?= __('Id') ?></th>
             <td><?= $this->Number->format($servicesentry->id) ?></td>
         </tr>
         <tr>
-            <th><?= __('Odometer') ?></th>
-            <td><?= $this->Number->format($servicesentry->odometer) ?></td>
+            <th><?= __('Odo') ?></th>
+            <td><?= $this->Number->format($servicesentry->odo) ?></td>
         </tr>
         <tr>
             <th><?= __('Labour') ?></th>
@@ -58,19 +64,33 @@
             <th><?= __('Markasvoid') ?></th>
             <td><?= $servicesentry->markasvoid ? __('Yes') : __('No'); ?></td>
         </tr>
-    </table>
+   </div><!--boxbody-->
+   </div><!-- box -->
+  
+  </div><!-- col12-->
+</div> </table>
     <div class="row">
+    	<div class="col-md-12">
+  	
+  	    <div class="box box-primary"><div class="box-body">
         <h4><?= __('Comments') ?></h4>
         <?= $this->Text->autoParagraph(h($servicesentry->comments)); ?>
+       </div></div></div>
     </div>
-    <div class="related">
+    <div class="row">
+    	<div class="col-md-12">
+  	
+  	     <div class="box box-primary"><div class="box-header">
         <h4><?= __('Related Servicecompleted') ?></h4>
         <?php if (!empty($servicesentry->servicecompleted)): ?>
-        <table cellpadding="0" cellspacing="0">
+        </div>
+  		<div class="box-body">
+  		<table class="table table-hover">
             <tr>
                 <th><?= __('Id') ?></th>
                 <th><?= __('Servicesentry Id') ?></th>
                 <th><?= __('Servicescompleted') ?></th>
+                <th><?= __('Customer Id') ?></th>
                 <th class="actions"><?= __('Actions') ?></th>
             </tr>
             <?php foreach ($servicesentry->servicecompleted as $servicecompleted): ?>
@@ -78,6 +98,7 @@
                 <td><?= h($servicecompleted->id) ?></td>
                 <td><?= h($servicecompleted->servicesentry_id) ?></td>
                 <td><?= h($servicecompleted->servicescompleted) ?></td>
+                <td><?= h($servicecompleted->customer_id) ?></td>
                 <td class="actions">
                     <?= $this->Html->link(__('View'), ['controller' => 'Servicecompleted', 'action' => 'view', $servicecompleted->id]) ?>
                     <?= $this->Html->link(__('Edit'), ['controller' => 'Servicecompleted', 'action' => 'edit', $servicecompleted->id]) ?>
@@ -86,16 +107,27 @@
             </tr>
             <?php endforeach; ?>
         </table>
+        </div><!--boxbody-->
+   </div><!-- box -->
+  
+  </div><!-- col12-->
+ 
         <?php endif; ?>
     </div>
-    <div class="related">
+    <div class="row">
+    	<div class="col-md-12">
+  	
+  	     <div class="box box-primary"><div class="box-header">
         <h4><?= __('Related Servicedocuments') ?></h4>
         <?php if (!empty($servicesentry->servicedocuments)): ?>
-        <table cellpadding="0" cellspacing="0">
+        </div>
+  		<div class="box-body">
+  		<table class="table table-hover">
             <tr>
                 <th><?= __('Id') ?></th>
                 <th><?= __('Servicesentry Id') ?></th>
                 <th><?= __('Data') ?></th>
+                <th><?= __('Customer Id') ?></th>
                 <th class="actions"><?= __('Actions') ?></th>
             </tr>
             <?php foreach ($servicesentry->servicedocuments as $servicedocuments): ?>
@@ -103,6 +135,7 @@
                 <td><?= h($servicedocuments->id) ?></td>
                 <td><?= h($servicedocuments->servicesentry_id) ?></td>
                 <td><?= h($servicedocuments->data) ?></td>
+                <td><?= h($servicedocuments->customer_id) ?></td>
                 <td class="actions">
                     <?= $this->Html->link(__('View'), ['controller' => 'Servicedocuments', 'action' => 'view', $servicedocuments->id]) ?>
                     <?= $this->Html->link(__('Edit'), ['controller' => 'Servicedocuments', 'action' => 'edit', $servicedocuments->id]) ?>
@@ -111,6 +144,11 @@
             </tr>
             <?php endforeach; ?>
         </table>
+        </div><!--boxbody-->
+   </div><!-- box -->
+  
+  </div><!-- col12-->
+ 
         <?php endif; ?>
     </div>
 </div>

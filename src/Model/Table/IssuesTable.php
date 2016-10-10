@@ -6,14 +6,16 @@ use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
 use Cake\Validation\Validator;
 
-
 /**
  * Issues Model
  *
  * @property \Cake\ORM\Association\BelongsTo $Vehicles
  * @property \Cake\ORM\Association\BelongsTo $Reportedbies
- * @property \Cake\ORM\Association\BelongsTo $Assignedtos
+ * @property \Cake\ORM\Association\BelongsTo $Customers
+ * @property \Cake\ORM\Association\BelongsTo $Workorders
+ * @property \Cake\ORM\Association\BelongsTo $Serviceentries
  * @property \Cake\ORM\Association\HasMany $Issuedocuments
+ * @property \Cake\ORM\Association\BelongsToMany $Addresses
  *
  * @method \App\Model\Entity\Issue get($primaryKey, $options = [])
  * @method \App\Model\Entity\Issue newEntity($data = null, array $options = [])
@@ -44,15 +46,25 @@ class IssuesTable extends Table
             'foreignKey' => 'vehicle_id'
         ]);
         $this->belongsTo('Reportedby', [
-            'className' => 'Addresses',
+            'className' =>'Addresses',
             'foreignKey' => 'reportedby_id'
         ]);
-        $this->belongsTo('Assignedtos', [
-            'className' => 'Addresses',
-            'foreignKey' => 'assignedto_id'
+        $this->belongsTo('Customers', [
+            'foreignKey' => 'customer_id'
+        ]);
+        $this->belongsTo('Workorders', [
+            'foreignKey' => 'workorder_id'
+        ]);
+        $this->belongsTo('Servicesentries', [
+            'foreignKey' => 'serviceentry_id'
         ]);
         $this->hasMany('Issuedocuments', [
             'foreignKey' => 'issue_id'
+        ]);
+        $this->belongsToMany('Addresses', [
+            'foreignKey' => 'issue_id',
+            'targetForeignKey' => 'address_id',
+            'joinTable' => 'issues_addresses'
         ]);
     }
 
@@ -84,6 +96,18 @@ class IssuesTable extends Table
         $validator
             ->allowEmpty('tags');
 
+        $validator
+            ->date('duedate')
+            ->allowEmpty('duedate');
+
+        $validator
+            ->integer('overdueodometer')
+            ->allowEmpty('overdueodometer');
+
+        $validator
+            ->boolean('markasvoid')
+            ->allowEmpty('markasvoid');
+
         return $validator;
     }
 
@@ -97,10 +121,11 @@ class IssuesTable extends Table
     public function buildRules(RulesChecker $rules)
     {
         $rules->add($rules->existsIn(['vehicle_id'], 'Vehicles'));
-        $rules->add($rules->existsIn(['reportedby_id'], 'Reportedby'));
-        $rules->add($rules->existsIn(['assignedto_id'], 'Assignedtos'));
+        $rules->add($rules->existsIn(['reportedby_id'], 'Reportedbies'));
+        $rules->add($rules->existsIn(['customer_id'], 'Customers'));
+        $rules->add($rules->existsIn(['workorder_id'], 'Workorders'));
+        $rules->add($rules->existsIn(['serviceentry_id'], 'Serviceentries'));
 
         return $rules;
     }
-	
 }

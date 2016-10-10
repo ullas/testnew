@@ -1,105 +1,71 @@
-
-
-<!-- Content Header (Page header) -->
 <section class="content-header">
   <h1>
-    Service Entries 
-    <small>The log book of your vehicle services</small>
+    Service Entries
+    <small>Your vehicle service log book</small>
   </h1>
   <ol class="breadcrumb">
     <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-    <li class="active">Fleet Management</li>
-      <li class="active">Service Entries</li>
+    <li><a href="#"></a>Fleet Management</li>
+    <li class="active">Servicesentries</li>
+    
   </ol>
 </section>
-
+                
 <!-- Main content -->
 <section class="content">
-
-
-  
-  <!-- Main row -->
-  <div class="row">
-    <!-- Left col -->
-    <div class="col-md-12">
-      
-      
-     
-      <div class="box box-info">
-        <div class="box-header with-border">
-          <h3 class="box-title">List of Service Entries</h3>
-
-          <div class="box-tools pull-right">
-            <a href="/servicesentries/add/" class="btn btn-sm btn-info btn-flat pull-left">Add a new Service Entry</a>
-         
-          </div>
-        </div>
-        <!-- /.box-header -->
-        <div class="box-body">
-          <div class="table-responsive">
-            <table class="table no-margin table-hover">
+    <div class="row">
+        <div class="col-xs-12">
+  <div class="box box-primary">
+      <div class="box-body">
+    <table id="mptlindextbl" class="table table-hover  table-bordered ">
         <thead>
             <tr>
-                <th><?= $this->Paginator->sort('id') ?></th>
-                <th><?= $this->Paginator->sort('vehicle_id') ?></th>
-                <th><?= $this->Paginator->sort('odometer') ?></th>
-                <th><?= $this->Paginator->sort('refer') ?></th>
-                <th><?= $this->Paginator->sort('labour') ?></th>
-                <th><?= $this->Paginator->sort('parts') ?></th>
-                <th><?= $this->Paginator->sort('tax') ?></th>
-                <th><?= $this->Paginator->sort('markasvoid') ?></th>
-                <th><?= $this->Paginator->sort('vendor_id') ?></th>
-                <th class="actions"><?= __('Actions') ?></th>
+                <?php foreach ($configs as $field): ?>
+                
+                <th><?php echo $field['title']  ?></th>
+                
+                <?php endforeach ?>
+                
+                <th data-orderable="false">Actions</th>
             </tr>
         </thead>
-        <tbody>
-            <?php foreach ($servicesentries as $servicesentry): ?>
-            <tr>
-                <td><?= $this->Number->format($servicesentry->id) ?></td>
-                <td><?= $servicesentry->has('vehicle') ? $this->Html->link($servicesentry->vehicle->id, ['controller' => 'Vehicles', 'action' => 'view', $servicesentry->vehicle->id]) : '' ?></td>
-                <td><?= $this->Number->format($servicesentry->odometer) ?></td>
-                <td><?= h($servicesentry->refer) ?></td>
-                <td><?= $this->Number->format($servicesentry->labour) ?></td>
-                <td><?= h($servicesentry->parts) ?></td>
-                <td><?= $this->Number->format($servicesentry->tax) ?></td>
-                <td><?= h($servicesentry->markasvoid) ?></td>
-                <td><?= $servicesentry->has('vendor') ? $this->Html->link($servicesentry->vendor->name, ['controller' => 'Vendors', 'action' => 'view', $servicesentry->vendor->id]) : '' ?></td>
-                <td class="actions">
-                    <?= $this->Html->link(__('View'), ['action' => 'view', $servicesentry->id]) ?>
-                    <?= $this->Html->link(__('Edit'), ['action' => 'edit', $servicesentry->id]) ?>
-                    <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $servicesentry->id], ['confirm' => __('Are you sure you want to delete # {0}?', $servicesentry->id)]) ?>
-                </td>
-            </tr>
-            <?php endforeach; ?>
-        </tbody>
-    </table>
-     </div>
-          <!-- /.table-responsive -->
-        </div>
-        <!-- /.box-body -->
-        <div class="box-footer clearfix">
-          <div class="paginator">
-        <ul class="pagination pagination-sm no-margin pull-right">
-            <?= $this->Paginator->prev('< ' . __('previous')) ?>
-            <?= $this->Paginator->numbers() ?>
-            <?= $this->Paginator->next(__('next') . ' >') ?>
-        </ul>
-        <p><?= $this->Paginator->counter() ?></p>
-    </div>	
-         
-        </div>
-        <!-- /.box-footer -->
-      </div>
-      <!-- /.box -->
-    </div>
-    <!-- /.col -->
-
+        <tbody></tbody>
+    </table></div></div>
+    </div></div>
    
-    <!-- /.col -->
-  </div>
-  <!-- /.row -->
+ 
+
 </section>
-<!-- /.content -->
 
+<?php
+$this->Html->css([ 'AdminLTE./plugins/datatables/dataTables.bootstrap',  ], ['block' => 'css']);
 
+$this->Html->script([
+  'AdminLTE./plugins/datatables/jquery.dataTables.min',
+  'AdminLTE./plugins/datatables/dataTables.bootstrap.min',
+], ['block' => 'script']); ?>
 
+<?php $this->start('scriptBotton'); ?>
+<script>
+  $(function () {
+       
+      
+      
+    $('#mptlindextbl').DataTable({
+          "paging": true,
+          "lengthChange": true,
+          "searching": true,
+          "ordering": true,
+          "info": true,
+          "autoWidth": false,
+          //server side processing
+          "processing": true,
+          "serverSide": true,
+          "ajax": "/<?php echo $this->request->params['controller'] ?>/ajaxData"
+  
+    });
+     $('<a href="/<?php echo $this->request->params['controller'] ?>/add/" class="btn btn-sm btn-success" style="margin-left:5px;"><i class="fa fa-plus" aria-hidden="true"></i></a>').appendTo('div.dataTables_filter');
+    
+  });
+</script>
+<?php $this->end(); ?>

@@ -12,6 +12,15 @@ use Cake\ORM\Entity;
  * @property string $email
  * @property int $customer_id
  * @property string $mobile
+ * @property string $apartment
+ * @property string $streetname
+ * @property string $landmark
+ * @property string $areaname
+ * @property string $countryshortcode
+ * @property string $stateshortcode
+ * @property string $city
+ * @property string $pincode
+ * @property bool $iscurrentAddress
  *
  * @property \App\Model\Entity\Customer $customer
  * @property \App\Model\Entity\Driver[] $drivers

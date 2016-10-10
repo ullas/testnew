@@ -19,7 +19,7 @@ class DriversController extends AppController
     public function index()
     {
         $this->paginate = [
-            'contain' => ['Addresses', 'Customers', 'Contractors', 'Stations', 'Supervisors']
+            'contain' => ['Addresses', 'Customers', 'Contractors', 'Stations', 'Supervisors', 'Shifts']
         ];
         $drivers = $this->paginate($this->Drivers);
 
@@ -37,7 +37,7 @@ class DriversController extends AppController
     public function view($id = null)
     {
         $driver = $this->Drivers->get($id, [
-            'contain' => ['Addresses', 'Customers', 'Contractors', 'Stations', 'Supervisors', 'Drivergroups', 'Ibuttons', 'Vehicles', 'Rfids']
+            'contain' => ['Addresses', 'Customers', 'Contractors', 'Stations', 'Supervisors', 'Shifts', 'Vehicles', 'Drivergroups', 'Languages', 'Ibuttons', 'Alerts', 'Rfids']
         ]);
 
         $this->set('driver', $driver);
@@ -54,6 +54,7 @@ class DriversController extends AppController
         $driver = $this->Drivers->newEntity();
         if ($this->request->is('post')) {
             $driver = $this->Drivers->patchEntity($driver, $this->request->data);
+            $driver['customer_id']=$this->currentuser['customer_id'];
             if ($this->Drivers->save($driver)) {
                 $this->Flash->success(__('The driver has been saved.'));
 
@@ -66,9 +67,12 @@ class DriversController extends AppController
         $customers = $this->Drivers->Customers->find('list', ['limit' => 200]);
         $contractors = $this->Drivers->Contractors->find('list', ['limit' => 200]);
         $stations = $this->Drivers->Stations->find('list', ['limit' => 200]);
-        $supervisors = $this->Drivers->find('list', ['limit' => 200]);
+        $supervisors = $this->Drivers->Supervisors->find('list', ['limit' => 200]);
+        $shifts = $this->Drivers->Shifts->find('list', ['limit' => 200]);
+        $vehicles = $this->Drivers->Vehicles->find('list', ['limit' => 200]);
         $drivergroups = $this->Drivers->Drivergroups->find('list', ['limit' => 200]);
-        $this->set(compact('driver', 'addresses', 'customers', 'contractors', 'stations', 'supervisors', 'drivergroups'));
+        $languages = $this->Drivers->Languages->find('list', ['limit' => 200]);
+        $this->set(compact('driver', 'addresses', 'customers', 'contractors', 'stations', 'supervisors', 'shifts', 'vehicles', 'drivergroups', 'languages'));
         $this->set('_serialize', ['driver']);
     }
 
@@ -82,7 +86,7 @@ class DriversController extends AppController
     public function edit($id = null)
     {
         $driver = $this->Drivers->get($id, [
-            'contain' => ['Drivergroups']
+            'contain' => ['Vehicles', 'Drivergroups', 'Languages']
         ]);
         if ($this->request->is(['patch', 'post', 'put'])) {
             $driver = $this->Drivers->patchEntity($driver, $this->request->data);
@@ -99,8 +103,11 @@ class DriversController extends AppController
         $contractors = $this->Drivers->Contractors->find('list', ['limit' => 200]);
         $stations = $this->Drivers->Stations->find('list', ['limit' => 200]);
         $supervisors = $this->Drivers->Supervisors->find('list', ['limit' => 200]);
+        $shifts = $this->Drivers->Shifts->find('list', ['limit' => 200]);
+        $vehicles = $this->Drivers->Vehicles->find('list', ['limit' => 200]);
         $drivergroups = $this->Drivers->Drivergroups->find('list', ['limit' => 200]);
-        $this->set(compact('driver', 'addresses', 'customers', 'contractors', 'stations', 'supervisors', 'drivergroups'));
+        $languages = $this->Drivers->Languages->find('list', ['limit' => 200]);
+        $this->set(compact('driver', 'addresses', 'customers', 'contractors', 'stations', 'supervisors', 'shifts', 'vehicles', 'drivergroups', 'languages'));
         $this->set('_serialize', ['driver']);
     }
 

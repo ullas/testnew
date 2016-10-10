@@ -7,9 +7,17 @@ use App\Controller\AppController;
  * Servicesentries Controller
  *
  * @property \App\Model\Table\ServicesentriesTable $Servicesentries
+ * @property \App\Controller\Component\DatatableComponent $Datatable
  */
 class ServicesentriesController extends AppController
 {
+
+    /**
+     * Components
+     *
+     * @var array
+     */
+    public $components = ['Datatable'];
 
     /**
      * Index method
@@ -18,14 +26,42 @@ class ServicesentriesController extends AppController
      */
     public function index()
     {
-        $this->paginate = [
-            'contain' => ['Vehicles', 'Vendors']
-        ];
-        $servicesentries = $this->paginate($this->Servicesentries);
-
-        $this->set(compact('servicesentries'));
-        $this->set('_serialize', ['servicesentries']);
+    	/*
+      		    
+        */
+       
+         $this->loadModel('CreateConfigs');
+         $configs=$this->CreateConfigs->find('all')->where(['table_name' => 'Servicesentries'])->order(['id' => 'ASC'])->toArray();
+        
+         $this->set('configs',$configs);	
+         $this->set('_serialize', ['configs']);
+       
+       
     }
+    
+    
+public function ajaxdata() {
+        $this->autoRender= false;
+      
+          
+       $this->loadModel('CreateConfigs');
+       $dbout=$this->CreateConfigs->find('all')->where(['table_name' => 'Servicesentries'])->order(['id' => 'ASC'])->toArray();
+        
+        $fields = array();
+        foreach($dbout as $value){
+            $fields[] = array("name" => $value['field_name'] , "type" => $value['datatype'] );
+			
+        }
+      
+		                           
+        $output =$this->Datatable->getView($fields,['Vehicles', 'Vendors', 'Customers']);
+        $out =json_encode($output);  
+	
+		$this->response->body($out);
+	    return $this->response;
+	     
+             
+ }  
 
     /**
      * View method
@@ -37,7 +73,7 @@ class ServicesentriesController extends AppController
     public function view($id = null)
     {
         $servicesentry = $this->Servicesentries->get($id, [
-            'contain' => ['Vehicles', 'Vendors', 'Servicecompleted', 'Servicedocuments']
+            'contain' => ['Vehicles', 'Vendors', 'Customers', 'Servicecompleted', 'Servicedocuments']
         ]);
 
         $this->set('servicesentry', $servicesentry);
@@ -54,6 +90,7 @@ class ServicesentriesController extends AppController
         $servicesentry = $this->Servicesentries->newEntity();
         if ($this->request->is('post')) {
             $servicesentry = $this->Servicesentries->patchEntity($servicesentry, $this->request->data);
+            $servicesentry['customer_id']=$this->currentuser['customer_id'];
             if ($this->Servicesentries->save($servicesentry)) {
                 $this->Flash->success(__('The servicesentry has been saved.'));
 
@@ -62,9 +99,17 @@ class ServicesentriesController extends AppController
                 $this->Flash->error(__('The servicesentry could not be saved. Please, try again.'));
             }
         }
-        $vehicles = $this->Servicesentries->Vehicles->find('list', ['limit' => 200]);
-        $vendors = $this->Servicesentries->Vendors->find('list', ['limit' => 200]);
-        $this->set(compact('servicesentry', 'vehicles', 'vendors'));
+        
+        $vehicles = $this->Servicesentries->Vehicles->find('list', ['limit' => 200])->where("customer_id=".$this->loggedinuser['customer_id'])->where("customer_id=0");
+        
+                
+        $vendors = $this->Servicesentries->Vendors->find('list', ['limit' => 200])->where("customer_id=".$this->loggedinuser['customer_id'])->where("customer_id=0");
+        
+                        
+          $customers = $this->Servicesentries->Customers->find('list', ['limit' => 200])->where("id=".$this->loggedinuser['customer_id']);
+      
+        
+                $this->set(compact('servicesentry', 'vehicles', 'vendors', 'customers'));
         $this->set('_serialize', ['servicesentry']);
     }
 
@@ -82,6 +127,7 @@ class ServicesentriesController extends AppController
         ]);
         if ($this->request->is(['patch', 'post', 'put'])) {
             $servicesentry = $this->Servicesentries->patchEntity($servicesentry, $this->request->data);
+             $servicesentry['customer_id']=$this->currentuser['customer_id'];
             if ($this->Servicesentries->save($servicesentry)) {
                 $this->Flash->success(__('The servicesentry has been saved.'));
 
@@ -92,7 +138,8 @@ class ServicesentriesController extends AppController
         }
         $vehicles = $this->Servicesentries->Vehicles->find('list', ['limit' => 200]);
         $vendors = $this->Servicesentries->Vendors->find('list', ['limit' => 200]);
-        $this->set(compact('servicesentry', 'vehicles', 'vendors'));
+        $customers = $this->Servicesentries->Customers->find('list', ['limit' => 200]);
+        $this->set(compact('servicesentry', 'vehicles', 'vendors', 'customers'));
         $this->set('_serialize', ['servicesentry']);
     }
 

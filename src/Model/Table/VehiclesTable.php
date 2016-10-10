@@ -11,22 +11,28 @@ use Cake\Validation\Validator;
  *
  * @property \Cake\ORM\Association\BelongsTo $Vehicletypes
  * @property \Cake\ORM\Association\BelongsTo $Vehiclestatuses
- * @property \Cake\ORM\Association\BelongsTo $Drivers
  * @property \Cake\ORM\Association\BelongsTo $Ownerships
  * @property \Cake\ORM\Association\BelongsTo $Symbols
+ * @property \Cake\ORM\Association\BelongsTo $Driverdetectionmodes
  * @property \Cake\ORM\Association\BelongsTo $Stations
  * @property \Cake\ORM\Association\BelongsTo $Departments
  * @property \Cake\ORM\Association\BelongsTo $Trackingobjects
  * @property \Cake\ORM\Association\BelongsTo $Purposes
+ * @property \Cake\ORM\Association\BelongsTo $Transporters
+ * @property \Cake\ORM\Association\BelongsTo $Activedrivers
+ * @property \Cake\ORM\Association\HasMany $Drivers
  * @property \Cake\ORM\Association\HasMany $Fuelentries
  * @property \Cake\ORM\Association\HasMany $Issues
  * @property \Cake\ORM\Association\HasMany $Servicesentries
+ * @property \Cake\ORM\Association\HasMany $Trips
  * @property \Cake\ORM\Association\HasMany $Vehicleengines
  * @property \Cake\ORM\Association\HasMany $Vehiclefluids
+ * @property \Cake\ORM\Association\HasMany $Vehiclepermits
  * @property \Cake\ORM\Association\HasMany $Vehiclepurchases
  * @property \Cake\ORM\Association\HasMany $Vehiclespecifications
  * @property \Cake\ORM\Association\HasMany $Vehiclewheelstyres
  * @property \Cake\ORM\Association\HasMany $Workorders
+ * @property \Cake\ORM\Association\BelongsToMany $Drivers
  *
  * @method \App\Model\Entity\Vehicle get($primaryKey, $options = [])
  * @method \App\Model\Entity\Vehicle newEntity($data = null, array $options = [])
@@ -59,14 +65,14 @@ class VehiclesTable extends Table
         $this->belongsTo('Vehiclestatuses', [
             'foreignKey' => 'vehiclestatus_id'
         ]);
-        $this->belongsTo('Drivers', [
-            'foreignKey' => 'driver_id'
-        ]);
         $this->belongsTo('Ownerships', [
             'foreignKey' => 'ownership_id'
         ]);
         $this->belongsTo('Symbols', [
             'foreignKey' => 'symbol_id'
+        ]);
+        $this->belongsTo('Driverdetectionmodes', [
+            'foreignKey' => 'driverdetectionmode_id'
         ]);
         $this->belongsTo('Stations', [
             'foreignKey' => 'station_id'
@@ -80,6 +86,17 @@ class VehiclesTable extends Table
         $this->belongsTo('Purposes', [
             'foreignKey' => 'purpose_id'
         ]);
+        $this->belongsTo('Transporters', [
+            'className' => 'Vendors',
+            'foreignKey' => 'transporter_id'
+        ]);
+        $this->belongsTo('Activedrivers', [
+            'className' => 'Drivers',
+            'foreignKey' => 'activedriver_id'
+        ]);
+        $this->hasMany('Drivers', [
+            'foreignKey' => 'vehicle_id'
+        ]);
         $this->hasMany('Fuelentries', [
             'foreignKey' => 'vehicle_id'
         ]);
@@ -89,23 +106,37 @@ class VehiclesTable extends Table
         $this->hasMany('Servicesentries', [
             'foreignKey' => 'vehicle_id'
         ]);
-        $this->hasOne('Vehicleengines', [
+        $this->hasMany('Trips', [
             'foreignKey' => 'vehicle_id'
         ]);
-        $this->hasOne('Vehiclefluids', [
+        $this->hasMany('Vehicleengines', [
             'foreignKey' => 'vehicle_id'
         ]);
-        $this->hasOne('Vehiclepurchases', [
+        $this->hasMany('Vehiclefluids', [
             'foreignKey' => 'vehicle_id'
         ]);
-        $this->hasOne('Vehiclespecifications', [
+        $this->hasMany('Vehiclepermits', [
             'foreignKey' => 'vehicle_id'
         ]);
-        $this->hasOne('Vehiclewheelstyres', [
+        $this->hasMany('Vehiclepurchases', [
+            'foreignKey' => 'vehicle_id'
+        ]);
+        $this->hasMany('Vehiclespecifications', [
+            'foreignKey' => 'vehicle_id'
+        ]);
+        $this->hasMany('Vehiclewheelstyres', [
             'foreignKey' => 'vehicle_id'
         ]);
         $this->hasMany('Workorders', [
             'foreignKey' => 'vehicle_id'
+        ]);
+        $this->belongsToMany('Drivers', [
+            'foreignKey' => 'vehicle_id',
+            'targetForeignKey' => 'driver_id',
+            'joinTable' => 'vehicles_drivers'
+        ]);
+		$this->belongsTo('Customers', [
+            'foreignKey' => 'customer_id'
         ]);
     }
 
@@ -127,9 +158,6 @@ class VehiclesTable extends Table
             ->allowEmpty('plateno');
 
         $validator
-            ->allowEmpty('vin');
-
-        $validator
             ->integer('year')
             ->allowEmpty('year');
 
@@ -144,13 +172,6 @@ class VehiclesTable extends Table
 
         $validator
             ->allowEmpty('registationloc');
-
-        $validator
-            ->integer('driverdetectionmode')
-            ->allowEmpty('driverdetectionmode');
-
-        $validator
-            ->allowEmpty('activedriver');
 
         $validator
             ->numeric('odometer')
@@ -195,13 +216,15 @@ class VehiclesTable extends Table
     {
         $rules->add($rules->existsIn(['vehicletype_id'], 'Vehicletypes'));
         $rules->add($rules->existsIn(['vehiclestatus_id'], 'Vehiclestatuses'));
-        $rules->add($rules->existsIn(['driver_id'], 'Drivers'));
         $rules->add($rules->existsIn(['ownership_id'], 'Ownerships'));
         $rules->add($rules->existsIn(['symbol_id'], 'Symbols'));
+        $rules->add($rules->existsIn(['driverdetectionmode_id'], 'Driverdetectionmodes'));
         $rules->add($rules->existsIn(['station_id'], 'Stations'));
         $rules->add($rules->existsIn(['department_id'], 'Departments'));
         $rules->add($rules->existsIn(['trackingobject_id'], 'Trackingobjects'));
         $rules->add($rules->existsIn(['purpose_id'], 'Purposes'));
+        $rules->add($rules->existsIn(['transporter_id'], 'Transporters'));
+        $rules->add($rules->existsIn(['activedriver_id'], 'Activedrivers'));
 
         return $rules;
     }
