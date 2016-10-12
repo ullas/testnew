@@ -10,9 +10,10 @@ use Cake\Validation\Validator;
  * Parts Model
  *
  * @property \Cake\ORM\Association\BelongsTo $Partcategories
- * @property \Cake\ORM\Association\BelongsTo $Manufacturers
  * @property \Cake\ORM\Association\BelongsTo $Measurementunits
  * @property \Cake\ORM\Association\BelongsTo $Stations
+ * @property \Cake\ORM\Association\BelongsTo $Manufacturers
+ * @property \Cake\ORM\Association\BelongsTo $Customers
  *
  * @method \App\Model\Entity\Part get($primaryKey, $options = [])
  * @method \App\Model\Entity\Part newEntity($data = null, array $options = [])
@@ -42,14 +43,17 @@ class PartsTable extends Table
         $this->belongsTo('Partcategories', [
             'foreignKey' => 'partcategory_id'
         ]);
-        $this->belongsTo('Manufacturers', [
-            'foreignKey' => 'manufacturer_id'
-        ]);
         $this->belongsTo('Measurementunits', [
             'foreignKey' => 'measurementunit_id'
         ]);
         $this->belongsTo('Stations', [
             'foreignKey' => 'station_id'
+        ]);
+        $this->belongsTo('Manufacturers', [
+            'foreignKey' => 'manufacturer_id'
+        ]);
+        $this->belongsTo('Customers', [
+            'foreignKey' => 'customer_id'
         ]);
     }
 
@@ -94,9 +98,10 @@ class PartsTable extends Table
     public function buildRules(RulesChecker $rules)
     {
         $rules->add($rules->existsIn(['partcategory_id'], 'Partcategories'));
-        $rules->add($rules->existsIn(['manufacturer_id'], 'Manufacturers'));
         $rules->add($rules->existsIn(['measurementunit_id'], 'Measurementunits'));
         $rules->add($rules->existsIn(['station_id'], 'Stations'));
+        $rules->add($rules->existsIn(['manufacturer_id'], 'Manufacturers'));
+        $rules->add($rules->existsIn(['customer_id'], 'Customers'));
 
         return $rules;
     }

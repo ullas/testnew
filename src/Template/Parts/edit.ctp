@@ -1,39 +1,111 @@
-<nav class="large-3 medium-4 columns" id="actions-sidebar">
-    <ul class="side-nav">
-        <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Form->postLink(
-                __('Delete'),
-                ['action' => 'delete', $part->id],
-                ['confirm' => __('Are you sure you want to delete # {0}?', $part->id)]
-            )
-        ?></li>
-        <li><?= $this->Html->link(__('List Parts'), ['action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('List Partcategories'), ['controller' => 'Partcategories', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Partcategory'), ['controller' => 'Partcategories', 'action' => 'add']) ?></li>
-        <li><?= $this->Html->link(__('List Manufacturers'), ['controller' => 'Manufacturers', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Manufacturer'), ['controller' => 'Manufacturers', 'action' => 'add']) ?></li>
-        <li><?= $this->Html->link(__('List Measurementunits'), ['controller' => 'Measurementunits', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Measurementunit'), ['controller' => 'Measurementunits', 'action' => 'add']) ?></li>
-        <li><?= $this->Html->link(__('List Stations'), ['controller' => 'Stations', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Station'), ['controller' => 'Stations', 'action' => 'add']) ?></li>
-    </ul>
-</nav>
-<div class="parts form large-9 medium-8 columns content">
-    <?= $this->Form->create($part) ?>
-    <fieldset>
-        <legend><?= __('Edit Part') ?></legend>
+<?php
+  $myTemplates = [
+    'inputContainer' => '<div class="form-group">{{content}}<div class="col-sm-offset-3 col-sm-6 style="margin-top:18px">{{help}}</div></div>',
+     'label' => '<label class="col-sm-3 control-label" {{attrs}}>{{text}}</label>',
+    'input' => '<div class="col-sm-6"><input type="{{type}}" name="{{name}}"{{attrs}}/></div>',
+     'select' => '<div class="col-sm-6"><select name="{{name}}"{{attrs}}>{{content}}</select></div>',
+     'textarea' => '<div class="col-sm-6"><textarea name="{{name}}"{{attrs}}>{{value}}</textarea></div>'
+];
+$this->Form->templates($myTemplates);
+
+?>
+
+<!-- Content Header (Page header) -->
+<section class="content-header">
+  <h1>
+    Add Parts
+  </h1>
+  <ol class="breadcrumb">
+  	<li><a href="#"><i class="fa fa-dashboard"></i>Home</a></li>
+   
+    <li><a href="/Parts/"> Parts</a></li>
+    <li class="active">Add</li>
+  </ol>
+</section>
+
+<!-- Main content -->
+<section class="content">
+ <?= $this->Form->create($part)?>
+  <div class="row">
+    
+    <div class="col-md-12">
+      <div class="nav-tabs-custom">
+        
+        <div class="tab-content">
+          <div class="active tab-pane" id="details">
+             <div class="form-horizontal">
         <?php
-            echo $this->Form->input('partno');
-            echo $this->Form->input('partcategory_id', ['options' => $partcategories, 'empty' => true]);
-            echo $this->Form->input('manufacturer_id', ['options' => $manufacturers, 'empty' => true]);
-            echo $this->Form->input('manufacturerpartno');
+            
+            echo $this->Form->input('partno',['label'=>'Part Number *','templateVars' => ['help' => 'Internal part identifier. Must be unique per part.']]);
+            echo $this->Form->input('partcategory_id', ['options' => $partcategories, 'empty' => true,'label'=>'Part Category','class'=>'select2']);
+            echo $this->Form->input('manufacturer_id', ['options' => $manufacturers, 'empty' => true,'class'=>'select2']);
+            echo $this->Form->input('manufacturerpartno',['label'=>'Manufacturer Part Number *','templateVars' => ['help' => 'Manufacturer specific part number that can differentiate the part from an internal number.']]);
             echo $this->Form->input('description');
-            echo $this->Form->input('measurementunit_id', ['options' => $measurementunits, 'empty' => true]);
+            echo $this->Form->input('measurementunit_id', ['options' => $measurementunits, 'empty' => true,'label'=>'Measurement Unit','class'=>'select2']);
             echo $this->Form->input('upc');
             echo $this->Form->input('cost');
-            echo $this->Form->input('station_id', ['options' => $stations, 'empty' => true]);
+            echo $this->Form->input('station_id', ['options' => $stations, 'empty' => true,'class'=>'select2']);
         ?>
-    </fieldset>
-    <?= $this->Form->button(__('Submit')) ?>
-    <?= $this->Form->end() ?>
-</div>
+   </div>
+ 
+          </div>
+          <!-- /.tab-pane -->
+          
+          
+        </div>
+        <!-- /.tab-content -->
+      </div>
+      <!-- /.nav-tabs-custom -->
+    </div>
+    <!-- /.col -->
+  </div>
+  <!-- /.row -->
+  <div class="row">
+   <div class="form-group">
+                <div class="col-sm-offset-6 col-sm-10">
+                  <button type="submit" class="btn-success">Save</button>
+                </div>
+   </div>
+   </div>
+   <!-- /.row -->
+ <?= $this->Form->end() ?>
+</section>
+<!-- /.content -->
+
+<?php
+$this->Html->css([
+    'AdminLTE./plugins/daterangepicker/daterangepicker-bs3',
+    'AdminLTE./plugins/iCheck/all',
+    'AdminLTE./plugins/colorpicker/bootstrap-colorpicker.min',
+    'AdminLTE./plugins/timepicker/bootstrap-timepicker.min',
+    'AdminLTE./plugins/select2/select2.min',
+  ],
+  ['block' => 'css']);
+
+$this->Html->script([
+  'AdminLTE./plugins/select2/select2.full.min',
+  'AdminLTE./plugins/input-mask/jquery.inputmask',
+  'AdminLTE./plugins/input-mask/jquery.inputmask.date.extensions',
+  'AdminLTE./plugins/input-mask/jquery.inputmask.extensions',
+  'AdminLTE./plugins/timepicker/bootstrap-timepicker.min',
+  '/js/moment.min.js',
+  'AdminLTE./plugins/daterangepicker/daterangepicker',
+  'AdminLTE./plugins/colorpicker/bootstrap-colorpicker.min',
+  'AdminLTE./plugins/timepicker/bootstrap-timepicker.min',
+  'AdminLTE./plugins/iCheck/icheck.min',
+],
+['block' => 'script']);
+?>
+<?php $this->start('scriptBotton'); ?>
+<script>
+  $(function () {
+    //Initialize Select2 Elements
+    $(".select2").select2();
+    $(".datemask").inputmask("yyyy/mm/dd", {"placeholder": "yyyy/mm/dd"});
+    $(".timepicker").timepicker({
+      showInputs: false
+    });
+
+  });
+</script>
+<?php $this->end(); ?>      	  

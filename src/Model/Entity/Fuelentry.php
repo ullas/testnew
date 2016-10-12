@@ -9,16 +9,19 @@ use Cake\ORM\Entity;
  * @property int $id
  * @property int $vehicle_id
  * @property \Cake\I18n\Time $date
- * @property float $odometer
+ * @property float $odo
  * @property float $priceperusnit
  * @property string $fueltype
  * @property int $vendor_id
  * @property string $ref
  * @property bool $partialfill
  * @property string $markaspersonal
+ * @property int $customer_id
+ * @property string $name
  *
  * @property \App\Model\Entity\Vehicle $vehicle
- * @property \App\Model\Entity\Vender $vender
+ * @property \App\Model\Entity\Vendor $vendor
+ * @property \App\Model\Entity\Customer $customer
  * @property \App\Model\Entity\Fueldoument[] $fueldouments
  * @property \App\Model\Entity\Fuelphoto[] $fuelphotos
  */

@@ -100,10 +100,10 @@ public function ajaxdata() {
             }
         }
         
-        $vehicles = $this->Servicesentries->Vehicles->find('list', ['limit' => 200])->where("customer_id=".$this->loggedinuser['customer_id'])->where("customer_id=0");
+        $vehicles = $this->Servicesentries->Vehicles->find('list', ['limit' => 200])->where("customer_id=".$this->loggedinuser['customer_id']);
         
                 
-        $vendors = $this->Servicesentries->Vendors->find('list', ['limit' => 200])->where("customer_id=".$this->loggedinuser['customer_id'])->where("customer_id=0");
+        $vendors = $this->Servicesentries->Vendors->find('list', ['limit' => 200])->where("customer_id=".$this->loggedinuser['customer_id']);
         
                         
           $customers = $this->Servicesentries->Customers->find('list', ['limit' => 200])->where("id=".$this->loggedinuser['customer_id']);
@@ -136,9 +136,14 @@ public function ajaxdata() {
                 $this->Flash->error(__('The servicesentry could not be saved. Please, try again.'));
             }
         }
-        $vehicles = $this->Servicesentries->Vehicles->find('list', ['limit' => 200]);
-        $vendors = $this->Servicesentries->Vendors->find('list', ['limit' => 200]);
-        $customers = $this->Servicesentries->Customers->find('list', ['limit' => 200]);
+        $vehicles = $this->Servicesentries->Vehicles->find('list', ['limit' => 200])->where("customer_id=".$this->loggedinuser['customer_id']);
+        
+                
+        $vendors = $this->Servicesentries->Vendors->find('list', ['limit' => 200])->where("customer_id=".$this->loggedinuser['customer_id']);
+        
+                        
+          $customers = $this->Servicesentries->Customers->find('list', ['limit' => 200])->where("id=".$this->loggedinuser['customer_id']);
+      
         $this->set(compact('servicesentry', 'vehicles', 'vendors', 'customers'));
         $this->set('_serialize', ['servicesentry']);
     }

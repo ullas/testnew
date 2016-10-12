@@ -11,6 +11,8 @@ use Cake\Validation\Validator;
  *
  * @property \Cake\ORM\Association\BelongsTo $Inspectionfoms
  * @property \Cake\ORM\Association\BelongsTo $Customers
+ * @property \Cake\ORM\Association\BelongsTo $Inspectionstatuses
+ * @property \Cake\ORM\Association\BelongsTo $Vehicles
  *
  * @method \App\Model\Entity\Inspection get($primaryKey, $options = [])
  * @method \App\Model\Entity\Inspection newEntity($data = null, array $options = [])
@@ -43,6 +45,12 @@ class InspectionsTable extends Table
         $this->belongsTo('Customers', [
             'foreignKey' => 'customer_id'
         ]);
+        $this->belongsTo('Inspectionstatuses', [
+            'foreignKey' => 'inspectionstatus_id'
+        ]);
+        $this->belongsTo('Vehicles', [
+            'foreignKey' => 'vehicle_id'
+        ]);
     }
 
     /**
@@ -62,6 +70,10 @@ class InspectionsTable extends Table
         $validator
             ->allowEmpty('descriptions');
 
+        $validator
+            ->date('date')
+            ->allowEmpty('date');
+
         return $validator;
     }
 
@@ -76,6 +88,8 @@ class InspectionsTable extends Table
     {
         $rules->add($rules->existsIn(['inspectionfom_id'], 'Inspectionfoms'));
         $rules->add($rules->existsIn(['customer_id'], 'Customers'));
+        $rules->add($rules->existsIn(['inspectionstatus_id'], 'Inspectionstatuses'));
+        $rules->add($rules->existsIn(['vehicle_id'], 'Vehicles'));
 
         return $rules;
     }

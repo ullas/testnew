@@ -11,6 +11,7 @@ use Cake\Validation\Validator;
  *
  * @property \Cake\ORM\Association\BelongsTo $Vehicles
  * @property \Cake\ORM\Association\BelongsTo $Vendors
+ * @property \Cake\ORM\Association\BelongsTo $Customers
  * @property \Cake\ORM\Association\HasMany $Fueldouments
  * @property \Cake\ORM\Association\HasMany $Fuelphotos
  *
@@ -45,6 +46,9 @@ class FuelentriesTable extends Table
         $this->belongsTo('Vendors', [
             'foreignKey' => 'vendor_id'
         ]);
+        $this->belongsTo('Customers', [
+            'foreignKey' => 'customer_id'
+        ]);
         $this->hasMany('Fueldouments', [
             'foreignKey' => 'fuelentry_id'
         ]);
@@ -69,8 +73,8 @@ class FuelentriesTable extends Table
             ->allowEmpty('date');
 
         $validator
-            ->numeric('odometer')
-            ->allowEmpty('odometer');
+            ->numeric('odo')
+            ->allowEmpty('odo');
 
         $validator
             ->numeric('priceperusnit')
@@ -89,6 +93,9 @@ class FuelentriesTable extends Table
         $validator
             ->allowEmpty('markaspersonal');
 
+        $validator
+            ->allowEmpty('name');
+
         return $validator;
     }
 
@@ -103,6 +110,7 @@ class FuelentriesTable extends Table
     {
         $rules->add($rules->existsIn(['vehicle_id'], 'Vehicles'));
         $rules->add($rules->existsIn(['vendor_id'], 'Vendors'));
+        $rules->add($rules->existsIn(['customer_id'], 'Customers'));
 
         return $rules;
     }

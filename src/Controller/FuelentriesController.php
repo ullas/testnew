@@ -7,9 +7,17 @@ use App\Controller\AppController;
  * Fuelentries Controller
  *
  * @property \App\Model\Table\FuelentriesTable $Fuelentries
+ * @property \App\Controller\Component\DatatableComponent $Datatable
  */
 class FuelentriesController extends AppController
 {
+
+    /**
+     * Components
+     *
+     * @var array
+     */
+    public $components = ['Datatable'];
 
     /**
      * Index method
@@ -18,14 +26,42 @@ class FuelentriesController extends AppController
      */
     public function index()
     {
-        $this->paginate = [
-            'contain' => ['Vehicles', 'Vendors']
-        ];
-        $fuelentries = $this->paginate($this->Fuelentries);
-
-        $this->set(compact('fuelentries'));
-        $this->set('_serialize', ['fuelentries']);
+    	/*
+      		    
+        */
+       
+         $this->loadModel('CreateConfigs');
+         $configs=$this->CreateConfigs->find('all')->where(['table_name' => 'Fuelentries'])->order(['id' => 'ASC'])->toArray();
+        
+         $this->set('configs',$configs);	
+         $this->set('_serialize', ['configs']);
+       
+       
     }
+    
+    
+public function ajaxdata() {
+        $this->autoRender= false;
+      
+          
+       $this->loadModel('CreateConfigs');
+       $dbout=$this->CreateConfigs->find('all')->where(['table_name' => 'Fuelentries'])->order(['id' => 'ASC'])->toArray();
+        
+        $fields = array();
+        foreach($dbout as $value){
+            $fields[] = array("name" => $value['field_name'] , "type" => $value['datatype'] );
+			
+        }
+      
+		                           
+        $output =$this->Datatable->getView($fields,['Vehicles', 'Vendors', 'Customers']);
+        $out =json_encode($output);  
+	
+		$this->response->body($out);
+	    return $this->response;
+	     
+             
+ }  
 
     /**
      * View method
@@ -37,7 +73,7 @@ class FuelentriesController extends AppController
     public function view($id = null)
     {
         $fuelentry = $this->Fuelentries->get($id, [
-            'contain' => ['Vehicles', 'Vendors', 'Fueldouments', 'Fuelphotos']
+            'contain' => ['Vehicles', 'Vendors', 'Customers', 'Fueldouments', 'Fuelphotos']
         ]);
 
         $this->set('fuelentry', $fuelentry);
@@ -54,6 +90,7 @@ class FuelentriesController extends AppController
         $fuelentry = $this->Fuelentries->newEntity();
         if ($this->request->is('post')) {
             $fuelentry = $this->Fuelentries->patchEntity($fuelentry, $this->request->data);
+            $fuelentry['customer_id']=$this->currentuser['customer_id'];
             if ($this->Fuelentries->save($fuelentry)) {
                 $this->Flash->success(__('The fuelentry has been saved.'));
 
@@ -62,9 +99,17 @@ class FuelentriesController extends AppController
                 $this->Flash->error(__('The fuelentry could not be saved. Please, try again.'));
             }
         }
-        $vehicles = $this->Fuelentries->Vehicles->find('list', ['limit' => 200]);
-        $vendors = $this->Fuelentries->Vendors->find('list', ['limit' => 200]);
-        $this->set(compact('fuelentry', 'vehicles', 'vendors'));
+        
+        $vehicles = $this->Fuelentries->Vehicles->find('list', ['limit' => 200])->where("customer_id=".$this->loggedinuser['customer_id']);
+        
+                
+        $vendors = $this->Fuelentries->Vendors->find('list', ['limit' => 200])->where("customer_id=".$this->loggedinuser['customer_id']);
+        
+                        
+          $customers = $this->Fuelentries->Customers->find('list', ['limit' => 200])->where("id=".$this->loggedinuser['customer_id']);
+      
+        
+                $this->set(compact('fuelentry', 'vehicles', 'vendors', 'customers'));
         $this->set('_serialize', ['fuelentry']);
     }
 
@@ -82,6 +127,7 @@ class FuelentriesController extends AppController
         ]);
         if ($this->request->is(['patch', 'post', 'put'])) {
             $fuelentry = $this->Fuelentries->patchEntity($fuelentry, $this->request->data);
+             $fuelentry['customer_id']=$this->currentuser['customer_id'];
             if ($this->Fuelentries->save($fuelentry)) {
                 $this->Flash->success(__('The fuelentry has been saved.'));
 
@@ -92,7 +138,8 @@ class FuelentriesController extends AppController
         }
         $vehicles = $this->Fuelentries->Vehicles->find('list', ['limit' => 200]);
         $vendors = $this->Fuelentries->Vendors->find('list', ['limit' => 200]);
-        $this->set(compact('fuelentry', 'vehicles', 'vendors'));
+        $customers = $this->Fuelentries->Customers->find('list', ['limit' => 200]);
+        $this->set(compact('fuelentry', 'vehicles', 'vendors', 'customers'));
         $this->set('_serialize', ['fuelentry']);
     }
 

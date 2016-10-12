@@ -77,7 +77,7 @@ CakePHPBakeCloseTag>
 <?php
                 } else {
 ?>
-            echo $this->Form->input('<?= $field ?>', ['options' => $<?= $keyFields[$field] ?>,'class'=>'select2']]);
+            echo $this->Form->input('<?= $field ?>', ['options' => $<?= $keyFields[$field] ?>,'class'=>'select2']);
 <?php
                 }
                 continue;

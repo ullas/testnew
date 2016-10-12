@@ -11,9 +11,13 @@ use Cake\ORM\Entity;
  * @property string $descriptions
  * @property int $inspectionfom_id
  * @property int $customer_id
+ * @property \Cake\I18n\Time $date
+ * @property int $inspectionstatus_id
+ * @property int $vehicle_id
  *
  * @property \App\Model\Entity\Inspectionfom $inspectionfom
  * @property \App\Model\Entity\Customer $customer
+ * @property \App\Model\Entity\Inspectionstatus $inspectionstatus
  */
 class Inspection extends Entity
 {

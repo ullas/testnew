@@ -1352,3 +1352,81 @@ Stack Trace:
 #16 {main}
 
 
+2016-10-12 05:24:27 Error: [Cake\Database\Exception] Cannot describe fuele. It has 0 columns.
+Stack Trace:
+#0 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Database/Schema/CachedCollection.php(63): Cake\Database\Schema\Collection->describe('fuele', Array)
+#1 /Users/maptell/testgit/vendor/cakephp/cakephp/src/ORM/Table.php(440): Cake\Database\Schema\CachedCollection->describe('fuele')
+#2 /Users/maptell/testgit/vendor/cakephp/cakephp/src/ORM/Table.php(518): Cake\ORM\Table->schema()
+#3 /Users/maptell/testgit/vendor/cakephp/bake/src/Shell/Task/ModelTask.php(210): Cake\ORM\Table->primaryKey()
+#4 /Users/maptell/testgit/vendor/cakephp/bake/src/Shell/Task/ModelTask.php(127): Bake\Shell\Task\ModelTask->getAssociations(Object(Cake\ORM\Table))
+#5 /Users/maptell/testgit/vendor/cakephp/bake/src/Shell/Task/ModelTask.php(110): Bake\Shell\Task\ModelTask->getTableContext(Object(Cake\ORM\Table), 'fuele', 'Fuele')
+#6 /Users/maptell/testgit/vendor/cakephp/bake/src/Shell/Task/ModelTask.php(97): Bake\Shell\Task\ModelTask->bake('Fuele')
+#7 [internal function]: Bake\Shell\Task\ModelTask->main('fuele')
+#8 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Console/Shell.php(466): call_user_func_array(Array, Array)
+#9 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Console/Shell.php(459): Cake\Console\Shell->runCommand(Array, false, Array)
+#10 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Console/ShellDispatcher.php(227): Cake\Console\Shell->runCommand(Array, true, Array)
+#11 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Console/ShellDispatcher.php(182): Cake\Console\ShellDispatcher->_dispatch(Array)
+#12 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Console/ShellDispatcher.php(128): Cake\Console\ShellDispatcher->dispatch(Array)
+#13 /Users/maptell/testgit/bin/cake.php(34): Cake\Console\ShellDispatcher::run(Array)
+#14 {main}
+
+
+2016-10-12 06:14:13 Error: [Cake\Database\Exception] Cannot describe inspection. It has 0 columns.
+Stack Trace:
+#0 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Database/Schema/CachedCollection.php(63): Cake\Database\Schema\Collection->describe('inspection', Array)
+#1 /Users/maptell/testgit/vendor/cakephp/cakephp/src/ORM/Table.php(440): Cake\Database\Schema\CachedCollection->describe('inspection')
+#2 /Users/maptell/testgit/vendor/cakephp/cakephp/src/ORM/Table.php(518): Cake\ORM\Table->schema()
+#3 /Users/maptell/testgit/vendor/cakephp/bake/src/Shell/Task/ModelTask.php(210): Cake\ORM\Table->primaryKey()
+#4 /Users/maptell/testgit/vendor/cakephp/bake/src/Shell/Task/ModelTask.php(127): Bake\Shell\Task\ModelTask->getAssociations(Object(Cake\ORM\Table))
+#5 /Users/maptell/testgit/vendor/cakephp/bake/src/Shell/Task/ModelTask.php(110): Bake\Shell\Task\ModelTask->getTableContext(Object(Cake\ORM\Table), 'inspection', 'Inspection')
+#6 /Users/maptell/testgit/vendor/cakephp/bake/src/Shell/Task/ModelTask.php(97): Bake\Shell\Task\ModelTask->bake('Inspection')
+#7 /Users/maptell/testgit/vendor/cakephp/bake/src/Shell/BakeShell.php(257): Bake\Shell\Task\ModelTask->main('Inspection')
+#8 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Collection/CollectionTrait.php(52): Bake\Shell\BakeShell->Bake\Shell\{closure}('Inspection', 0)
+#9 /Users/maptell/testgit/vendor/cakephp/bake/src/Shell/BakeShell.php(260): Cake\Collection\Collection->each(Object(Closure))
+#10 [internal function]: Bake\Shell\BakeShell->all('inspection', 'statuses')
+#11 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Console/Shell.php(452): call_user_func_array(Array, Array)
+#12 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Console/ShellDispatcher.php(227): Cake\Console\Shell->runCommand(Array, true, Array)
+#13 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Console/ShellDispatcher.php(182): Cake\Console\ShellDispatcher->_dispatch(Array)
+#14 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Console/ShellDispatcher.php(128): Cake\Console\ShellDispatcher->dispatch(Array)
+#15 /Users/maptell/testgit/bin/cake.php(34): Cake\Console\ShellDispatcher::run(Array)
+#16 {main}
+
+
+2016-10-12 06:14:51 Error: [Cake\Database\Exception] Cannot describe inpections. It has 0 columns.
+Stack Trace:
+#0 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Database/Schema/CachedCollection.php(63): Cake\Database\Schema\Collection->describe('inpections', Array)
+#1 /Users/maptell/testgit/vendor/cakephp/cakephp/src/ORM/Table.php(440): Cake\Database\Schema\CachedCollection->describe('inpections')
+#2 /Users/maptell/testgit/vendor/cakephp/cakephp/src/ORM/Table.php(518): Cake\ORM\Table->schema()
+#3 /Users/maptell/testgit/vendor/cakephp/bake/src/Shell/Task/ModelTask.php(210): Cake\ORM\Table->primaryKey()
+#4 /Users/maptell/testgit/vendor/cakephp/bake/src/Shell/Task/ModelTask.php(127): Bake\Shell\Task\ModelTask->getAssociations(Object(Cake\ORM\Table))
+#5 /Users/maptell/testgit/vendor/cakephp/bake/src/Shell/Task/ModelTask.php(110): Bake\Shell\Task\ModelTask->getTableContext(Object(Cake\ORM\Table), 'inpections', 'Inpections')
+#6 /Users/maptell/testgit/vendor/cakephp/bake/src/Shell/Task/ModelTask.php(97): Bake\Shell\Task\ModelTask->bake('Inpections')
+#7 [internal function]: Bake\Shell\Task\ModelTask->main('inpections')
+#8 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Console/Shell.php(466): call_user_func_array(Array, Array)
+#9 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Console/Shell.php(459): Cake\Console\Shell->runCommand(Array, false, Array)
+#10 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Console/ShellDispatcher.php(227): Cake\Console\Shell->runCommand(Array, true, Array)
+#11 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Console/ShellDispatcher.php(182): Cake\Console\ShellDispatcher->_dispatch(Array)
+#12 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Console/ShellDispatcher.php(128): Cake\Console\ShellDispatcher->dispatch(Array)
+#13 /Users/maptell/testgit/bin/cake.php(34): Cake\Console\ShellDispatcher::run(Array)
+#14 {main}
+
+
+2016-10-12 06:14:58 Error: [Cake\Database\Exception] Cannot describe inpections. It has 0 columns.
+Stack Trace:
+#0 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Database/Schema/CachedCollection.php(63): Cake\Database\Schema\Collection->describe('inpections', Array)
+#1 /Users/maptell/testgit/vendor/cakephp/cakephp/src/ORM/Table.php(440): Cake\Database\Schema\CachedCollection->describe('inpections')
+#2 /Users/maptell/testgit/vendor/cakephp/cakephp/src/ORM/Table.php(518): Cake\ORM\Table->schema()
+#3 /Users/maptell/testgit/vendor/cakephp/bake/src/Shell/Task/ModelTask.php(210): Cake\ORM\Table->primaryKey()
+#4 /Users/maptell/testgit/vendor/cakephp/bake/src/Shell/Task/ModelTask.php(127): Bake\Shell\Task\ModelTask->getAssociations(Object(Cake\ORM\Table))
+#5 /Users/maptell/testgit/vendor/cakephp/bake/src/Shell/Task/ModelTask.php(110): Bake\Shell\Task\ModelTask->getTableContext(Object(Cake\ORM\Table), 'inpections', 'Inpections')
+#6 /Users/maptell/testgit/vendor/cakephp/bake/src/Shell/Task/ModelTask.php(97): Bake\Shell\Task\ModelTask->bake('Inpections')
+#7 [internal function]: Bake\Shell\Task\ModelTask->main('inpections')
+#8 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Console/Shell.php(466): call_user_func_array(Array, Array)
+#9 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Console/Shell.php(459): Cake\Console\Shell->runCommand(Array, false, Array)
+#10 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Console/ShellDispatcher.php(227): Cake\Console\Shell->runCommand(Array, true, Array)
+#11 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Console/ShellDispatcher.php(182): Cake\Console\ShellDispatcher->_dispatch(Array)
+#12 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Console/ShellDispatcher.php(128): Cake\Console\ShellDispatcher->dispatch(Array)
+#13 /Users/maptell/testgit/bin/cake.php(34): Cake\Console\ShellDispatcher::run(Array)
+#14 {main}
+
+

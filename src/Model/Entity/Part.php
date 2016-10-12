@@ -9,13 +9,14 @@ use Cake\ORM\Entity;
  * @property int $id
  * @property string $partno
  * @property int $partcategory_id
- * @property string $manufacturer_id
  * @property string $manufacturerpartno
  * @property string $description
  * @property int $measurementunit_id
  * @property float $upc
  * @property float $cost
  * @property int $station_id
+ * @property int $manufacturer_id
+ * @property int $customer_id
  *
  * @property \App\Model\Entity\Partcategory $partcategory
  * @property \App\Model\Entity\Manufacturer $manufacturer

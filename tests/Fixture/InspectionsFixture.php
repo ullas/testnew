@@ -22,6 +22,9 @@ class InspectionsFixture extends TestFixture
         'descriptions' => ['type' => 'string', 'length' => null, 'default' => null, 'null' => true, 'collate' => null, 'comment' => null, 'precision' => null, 'fixed' => null],
         'inspectionfom_id' => ['type' => 'integer', 'length' => 10, 'default' => null, 'null' => true, 'comment' => null, 'precision' => null, 'unsigned' => null, 'autoIncrement' => null],
         'customer_id' => ['type' => 'integer', 'length' => 10, 'default' => null, 'null' => true, 'comment' => null, 'precision' => null, 'unsigned' => null, 'autoIncrement' => null],
+        'date' => ['type' => 'date', 'length' => null, 'default' => null, 'null' => true, 'comment' => null, 'precision' => null],
+        'inspectionstatus_id' => ['type' => 'integer', 'length' => 10, 'default' => null, 'null' => true, 'comment' => null, 'precision' => null, 'unsigned' => null, 'autoIncrement' => null],
+        'vehicle_id' => ['type' => 'integer', 'length' => 10, 'default' => null, 'null' => true, 'comment' => null, 'precision' => null, 'unsigned' => null, 'autoIncrement' => null],
         '_constraints' => [
             'primary' => ['type' => 'primary', 'columns' => ['id'], 'length' => []],
         ],
@@ -39,7 +42,10 @@ class InspectionsFixture extends TestFixture
             'name' => 'Lorem ipsum dolor sit amet',
             'descriptions' => 'Lorem ipsum dolor sit amet',
             'inspectionfom_id' => 1,
-            'customer_id' => 1
+            'customer_id' => 1,
+            'date' => '2016-10-12',
+            'inspectionstatus_id' => 1,
+            'vehicle_id' => 1
         ],
     ];
 }

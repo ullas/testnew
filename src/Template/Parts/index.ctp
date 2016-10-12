@@ -1,107 +1,321 @@
-
-
-<!-- Content Header (Page header) -->
 <section class="content-header">
   <h1>
-    Parts 
-    <small>Vehicle parts management</small>
+    Parts
+    <small>Manage your vehicle parts usage</small>
   </h1>
   <ol class="breadcrumb">
     <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-    <li class="active">Fleet Management</li>
-      <li class="active">Parts</li>
+    <li><a href="#"></a>Fleet Management</li>
+    <li class="active">Parts</li>
+    
   </ol>
 </section>
-
+                
 <!-- Main content -->
 <section class="content">
-
-
-  
-  <!-- Main row -->
   <div class="row">
-    <!-- Left col -->
-    <div class="col-md-12">
-      
-      
+        <div class="col-md-4">
+  <div class="box box-primary" style="min-height:134px">
+  	  <div class="box-header">
+      	 <h3 class="box-title">Manage Parts</h3>
+      </div>
+      <div class="box-body" >
+      	      
+			  <button type="button" class="mptl mptl-assign btn btn-primary btn-sm" data-toggle="modal" data-target="#assign">
+			  	<span class="badge bg-aqua">0</span>
+				  Delete
+			  </button>
+			  
+      </div>
+     </div>
+     </div>
+      <div class="col-md-8">
+      	 <div class="nav-tabs-custom">
+	        <ul class="nav nav-tabs">
+	          <li  class="active"><a href="#details" data-toggle="tab">Filter</a></li>	
+	            
+	        </ul>
+	         <div class=" tab-content">
+             <div class="active tab-pane" id="details">
+                
+						
+							 <div class="box-body">
+							      	       <div class="form-group">
+							                
+							                <label>
+							                  <input type="checkbox" class="minimal" checked disabled>
+							                  All
+							                </label>
+							               
+							                
+							              </div>
+							              
+							      </div>  	  
+							     
+						    
+				   
+				</div> <!-- tab pane -->
+				
+				
+			   </div>
+			</div>
+     </div> <!-- COL-7-->
      
-      <div class="box box-info">
-        <div class="box-header with-border">
-          <h3 class="box-title">List of Parts</h3>
-
-          <div class="box-tools pull-right">
-            <a href="/parts/add/" class="btn btn-sm btn-info btn-flat pull-left">Add a new Part</a>
-         
-          </div>
-        </div>
-        <!-- /.box-header -->
-        <div class="box-body">
-          <div class="table-responsive">
-            <table class="table no-margin table-hover">
+     
+  </div> <!--Row -->
+	
+  <div class="row">
+        <div class="col-md-12">
+  <div class="box box-primary">
+      <div class="box-body">
+    <table id="mptlindextbl" class="table table-hover  table-bordered ">
         <thead>
             <tr>
-                <th><?= $this->Paginator->sort('id') ?></th>
-                <th><?= $this->Paginator->sort('partno') ?></th>
-                <th><?= $this->Paginator->sort('partcategory_id') ?></th>
-                <th><?= $this->Paginator->sort('manufacturer_id') ?></th>
-                <th><?= $this->Paginator->sort('manufacturerpartno') ?></th>
-                <th><?= $this->Paginator->sort('description') ?></th>
-                <th><?= $this->Paginator->sort('measurementunit_id') ?></th>
-                <th><?= $this->Paginator->sort('upc') ?></th>
-                <th><?= $this->Paginator->sort('cost') ?></th>
-                <th><?= $this->Paginator->sort('station_id') ?></th>
-                <th class="actions"><?= __('Actions') ?></th>
+            	<th><input type="checkbox" name="select_all" value="1" id="select-all"></th>
+                <th>Part No</th>
+                <th>Category</th>
+                <th>Manufacturer PartNo</th>
+                <th>Description</th>
+                <th>Unit</th>
+                <th>Cost</th>
+                <th>Station</th>
+                <th>Manufacturer</th>
+                
+                <th>Actions</th>
+               
             </tr>
         </thead>
-        <tbody>
-            <?php foreach ($parts as $part): ?>
-            <tr>
-                <td><?= $this->Number->format($part->id) ?></td>
-                <td><?= h($part->partno) ?></td>
-                <td><?= $part->has('partcategory') ? $this->Html->link($part->partcategory->name, ['controller' => 'Partcategories', 'action' => 'view', $part->partcategory->id]) : '' ?></td>
-                <td><?= $part->has('manufacturer') ? $this->Html->link($part->manufacturer->name, ['controller' => 'Manufacturers', 'action' => 'view', $part->manufacturer->id]) : '' ?></td>
-                <td><?= h($part->manufacturerpartno) ?></td>
-                <td><?= h($part->description) ?></td>
-                <td><?= $part->has('measurementunit') ? $this->Html->link($part->measurementunit->name, ['controller' => 'Measurementunits', 'action' => 'view', $part->measurementunit->id]) : '' ?></td>
-                <td><?= $this->Number->format($part->upc) ?></td>
-                <td><?= $this->Number->format($part->cost) ?></td>
-                <td><?= $part->has('station') ? $this->Html->link($part->station->name, ['controller' => 'Stations', 'action' => 'view', $part->station->id]) : '' ?></td>
-                <td class="actions">
-                    <?= $this->Html->link(__('View'), ['action' => 'view', $part->id]) ?>
-                    <?= $this->Html->link(__('Edit'), ['action' => 'edit', $part->id]) ?>
-                    <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $part->id], ['confirm' => __('Are you sure you want to delete # {0}?', $part->id)]) ?>
-                </td>
-            </tr>
-            <?php endforeach; ?>
-        </tbody>
-    </table>
-      </div>
-          <!-- /.table-responsive -->
-        </div>
-        <!-- /.box-body -->
-        <div class="box-footer clearfix">
-          <div class="paginator">
-        <ul class="pagination pagination-sm no-margin pull-right">
-            <?= $this->Paginator->prev('< ' . __('previous')) ?>
-            <?= $this->Paginator->numbers() ?>
-            <?= $this->Paginator->next(__('next') . ' >') ?>
-        </ul>
-        <p><?= $this->Paginator->counter() ?></p>
-    </div>	
-         
-        </div>
-        <!-- /.box-footer -->
-      </div>
-      <!-- /.box -->
-    </div>
-    <!-- /.col -->
-
+        <tbody></tbody>
+    </table></div></div>
+    </div></div>
    
-    <!-- /.col -->
-  </div>
-  <!-- /.row -->
+ 
+
 </section>
-<!-- /.content -->
+<div class="modal fade" id="assign" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+      </div>
+      <div class="modal-body">
+        
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
 
+<div class="modal fade" id="settings" tabindex="-1" role="dialog" aria-labelledby="modalSettings">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="modalSettings">Settings</h4><small>Select the colums to display</small>
+      </div>
+      <div class="modal-body">
+      	<div class="box box-primary">
+        <table class="mptl-tbl-settings table table-hover" >
+        	<thead>
+        		<tr>
+        			<th style="width:20px"><input type="checkbox" id="mptl_settings_chk_all" ></th>
+        		    <th>Column Name</th>
+        		</tr>
+        		
+        	</thead>
+        	<tbody>
+        		<tr style="text-align:left">
+        	    	<td style="width:20px"><input type="checkbox" class="mptl_settings_chk" id="mptl_settings_chk_1" checked=""></td>
+        			<td>Part No</td>
+        		</tr>
+        		<tr>
+        	    	<td><input type="checkbox" class="mptl_settings_chk" id="mptl_settings_chk_2"></td>
+        			<td>Category</td>
+        		</tr><tr>
+        	    	<td><input type="checkbox" class="mptl_settings_chk" id="mptl_settings_chk_3"></td>
+        			<td>Manufacturer PartNo</td>
+        		</tr><tr>
+        	    	<td><input type="checkbox" class="mptl_settings_chk" id="mptl_settings_chk_4"></td>
+        			<td>Description</td>
+        		</tr><tr>
+        	    	<td><input type="checkbox" class="mptl_settings_chk" id="mptl_settings_chk_5"></td>
+        			<td>Unit</td>
+        		</tr>
+        		</tr><tr>
+        	    	<td><input type="checkbox" class="mptl_settings_chk" id="mptl_settings_chk_6"></td>
+        			<td>Cost</td>
+        		</tr>
+        		</tr><tr>
+        	    	<td><input type="checkbox" class="mptl_settings_chk" id="mptl_settings_chk_7"></td>
+        			<td>Station</td>
+        		</tr>
+        		</tr><tr>
+        	    	<td><input type="checkbox" class="mptl_settings_chk" id="mptl_settings_chk_8"></td>
+        			<td>Manufacturer</td>
+        		</tr>
+        		
+        		
+        	</tbody>
+        	   
+        </table>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
 
+<?php $this->start('css'); ?>
+  <style>
+   
 
+  </style>
+<?php $this->end(); ?>
+<?php
+$this->Html->css([ 'AdminLTE./plugins/datatables/dataTables.bootstrap',  ], ['block' => 'css']);
+
+$this->Html->script([
+  'AdminLTE./plugins/datatables/jquery.dataTables.min',
+  'AdminLTE./plugins/datatables/dataTables.bootstrap.min',
+], ['block' => 'script']); ?>
+
+<?php $this->start('scriptBotton'); ?>
+<script>
+  $(function () {
+      
+      // $.fn.dataTable.ext.errMode=throw;
+      
+   var table= $('#mptlindextbl').DataTable({
+          "paging": true,
+          "lengthChange": true,
+          "searching": true,
+          "ordering": true,
+          "info": true,
+          "autoWidth": false,
+        //server side processing
+          "processing": true,
+          "serverSide": true,
+          "ajax": "/<?php echo $this->request->params['controller'] ?>/ajaxData",
+          'columnDefs': [{
+        'targets': 0,      
+        'className': 'dt-body-center',
+        'render': function (data, type, full, meta){console.log(data);
+            return '<input type="checkbox" class="mptl-lst-chkbox" name="chk' + data + '" value="' + $('<div/>').text(data).html() + '">';
+        }
+     },{
+     	/*'targets': [4,6,7,8,10],
+     	"visible": false,*/
+     	
+     },
+     {
+     	'targets': [0],
+     	"searchable": false,
+     	'orderable': false,
+     }]
+  
+    });
+     $('<a href="/<?php echo $this->request->params['controller'] ?>/add/" class="btn btn-sm btn-success" style="margin-left:5px;"><i class="fa fa-plus" aria-hidden="true"></i></a>').appendTo('div.dataTables_filter');
+     $('<a href="#" class="btn btn-sm btn-success" data-toggle="modal" data-target="#settings" style="margin-left:5px;"><i class="fa fa-gear" aria-hidden="true"></i></a>').appendTo('div.dataTables_filter');
+  
+      
+     $('.dataTables_filter input').unbind().on('keyup', function() {
+	var searchTerm = this.value.toLowerCase();
+    $.fn.dataTable.ext.search.push(function(settings, data, dataIndex) {
+       //search only the following columns
+	   if (~data[1].toLowerCase().indexOf(searchTerm)) return true;
+	   if (~data[2].toLowerCase().indexOf(searchTerm)) return true;
+	   if (~data[3].toLowerCase().indexOf(searchTerm)) return true;
+	   if (~data[4].toLowerCase().indexOf(searchTerm)) return true;
+	   if (~data[5].toLowerCase().indexOf(searchTerm)) return true;
+	   if (~data[6].toLowerCase().indexOf(searchTerm)) return true;
+	   if (~data[7].toLowerCase().indexOf(searchTerm)) return true;
+	   if (~data[8].toLowerCase().indexOf(searchTerm)) return true;
+	   
+       return false;
+   })
+   table.draw(); 
+   $.fn.dataTable.ext.search.pop();
+})
+  
+  // Handle click on "Select all" control
+   $('#select-all').on('click', function(){
+      // Get all rows with search applied
+      var rows = table.rows({ 'search': 'applied' }).nodes();
+      // Check/uncheck checkboxes for all rows in the table
+      $('input[type="checkbox"]', rows).prop('checked', this.checked);
+   });
+
+   // Handle click on checkbox to set state of "Select all" control
+   $('#mptlindextbl tbody').on('change', 'input[type="checkbox"]', function(){
+      // If checkbox is not checked
+      if(!this.checked){
+         var el = $('#select-all').get(0);
+         // If "Select all" control is checked and has 'indeterminate' property
+         if(el && el.checked && ('indeterminate' in el)){
+            // Set visual state of "Select all" control 
+            // as 'indeterminate'
+            el.indeterminate = true;
+         }
+      }
+     
+       var c=$(".mptl-lst-chkbox:checked").length;
+       $(".mptl span").html(c);
+   });  
+   
+   
+   // Handle click on " Settings Select all" control
+   $('#mptl_settings_chk_all').on('click', function(){
+      
+      // Check/uncheck checkboxes for all rows in the table
+      $('.mptl_settings_chk').prop('checked', true);
+   });
+
+   // Handle click on checkbox to set state of "Settings Select all" control
+   $('mptl-tbl-settings tbody').on('change', 'input[type="checkbox"]', function(){
+      // If checkbox is not checked
+      if(!this.checked){
+         var el = $('#mptl_settings_chk_all').get(0);
+         // If "Select all" control is checked and has 'indeterminate' property
+         if(el && el.checked && ('indeterminate' in el)){
+            // Set visual state of "Select all" control 
+            // as 'indeterminate'
+            el.indeterminate = true;
+         }
+      }
+     
+      
+   });  
+   
+   
+  
+ /*  $(".mptl-close").click(function(){
+  	
+  	alert("Do you want to close the issue?");
+  });
+  
+  $(".mptl-assign").click(function(){
+  	
+        $(".assign-modal").show();
+  
+  });  
+  $(".mptl-unassign").click(function(){
+  	
+  	alert("Do you want to Un Assign?");
+  });  */
+
+  
+  
+  
+  });
+  
+  
+  
+</script>
+<?php $this->end(); ?>

@@ -1,85 +1,376 @@
-<nav class="large-3 medium-4 columns" id="actions-sidebar">
-    <ul class="side-nav">
-        <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Html->link(__('New Workorder'), ['action' => 'add']) ?></li>
-        <li><?= $this->Html->link(__('List Vehicles'), ['controller' => 'Vehicles', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Vehicle'), ['controller' => 'Vehicles', 'action' => 'add']) ?></li>
-        <li><?= $this->Html->link(__('List Vendors'), ['controller' => 'Vendors', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Vendor'), ['controller' => 'Vendors', 'action' => 'add']) ?></li>
-        <li><?= $this->Html->link(__('List Issues'), ['controller' => 'Issues', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Issue'), ['controller' => 'Issues', 'action' => 'add']) ?></li>
-        <li><?= $this->Html->link(__('List Worklorderlineitems'), ['controller' => 'Worklorderlineitems', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Worklorderlineitem'), ['controller' => 'Worklorderlineitems', 'action' => 'add']) ?></li>
-        <li><?= $this->Html->link(__('List Workorderdocuments'), ['controller' => 'Workorderdocuments', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Workorderdocument'), ['controller' => 'Workorderdocuments', 'action' => 'add']) ?></li>
-    </ul>
-</nav>
-<div class="workorders index large-9 medium-8 columns content">
-    <h3><?= __('Workorders') ?></h3>
-    <table cellpadding="0" cellspacing="0">
+<section class="content-header">
+  <h1>
+    <?php echo $this->request->params['controller'] ?>
+    <small></small>
+  </h1>
+  <ol class="breadcrumb">
+    <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+    <li><a href="#"></a>Fleet Management</li>
+    <li class="active">Work Orders</li>
+    
+  </ol>
+</section>
+                
+<!-- Main content -->
+<section class="content">
+  <div class="row">
+        <div class="col-md-4">
+  <div class="box box-primary" style="min-height:134px">
+  	  <div class="box-header">
+      	 <h3 class="box-title">Manage Work Orders</h3>
+      </div>
+      <div class="box-body" >
+      	       <button type="button" class="mptl mptl-assign btn btn-primary btn-sm" data-toggle="modal" data-target="#assign">
+              	 <span class="badge bg-aqua">0</span>
+				  Assign
+			  </button>
+              <button type="button" class="mptl mptl-assign btn btn-primary btn-sm" data-toggle="modal" data-target="#assign">
+              	<span class="badge bg-aqua">0</span>
+				 Unassign
+			  </button>
+			  <button type="button" class="mptl mptl-assign btn btn-primary btn-sm" data-toggle="modal" data-target="#assign">
+			  	<span class="badge bg-aqua">0</span>
+				  Close
+			  </button>
+			  
+      </div>
+     </div>
+     </div>
+      <div class="col-md-8">
+      	 <div class="nav-tabs-custom">
+	        <ul class="nav nav-tabs">
+	          <li  class="active"><a href="#details" data-toggle="tab">Filter</a></li>	
+	            <li><a href="#specs" data-toggle="tab">Additional Filters</a></li>
+	        </ul>
+	         <div class=" tab-content">
+             <div class="active tab-pane" id="details">
+                
+						
+							 <div class="box-body">
+							      	       <div class="form-group">
+							                
+							                <label>
+							                  <input type="checkbox" class="minimal" checked>
+							                  Open
+							                </label>
+							                <label>
+							                  <input type="checkbox" class="minimal">
+							                  Overdue
+							                </label>
+							                <label>
+							                  <input type="checkbox" class="minimal" disabled>
+							                  Resolved
+							                </label>
+							                <label>
+							                  <input type="checkbox" class="minimal" disabled>
+							                  Closed
+							                </label>
+							                
+							              </div>
+							              
+							      </div>  	  
+							     
+						    
+				   
+				</div> <!-- tab pane -->
+				<div class="tab-pane" id="specs">
+                 
+						
+							  <div class="box-body">
+							      	       <div class="form-group">
+							      	       	<label>
+							                  Issued Date
+							                  <input type="date" class="minimal">
+							                  
+							                </label>
+							                <label>
+							                 Start Date:
+							                  <input type="date" class="minimal">
+							                  
+							                </label>
+							                 <label>
+							                 Completion Date
+							                  <input type="date" class="minimal">
+							                  
+							                </label>
+							                
+							              </div>
+							              
+							      	       	
+							                
+							                
+							              
+							              
+							      </div>
+						
+				 
+				</div>
+				
+			   </div>
+			</div>
+     </div> <!-- COL-7-->
+     
+     
+  </div> <!--Row -->
+	
+  <div class="row">
+        <div class="col-md-12">
+  <div class="box box-primary">
+      <div class="box-body">
+    <table id="mptlindextbl" class="table table-hover  table-bordered ">
         <thead>
             <tr>
-                <th><?= $this->Paginator->sort('id') ?></th>
-                <th><?= $this->Paginator->sort('issuedate') ?></th>
-                <th><?= $this->Paginator->sort('workorderstatus_id') ?></th>
-                <th><?= $this->Paginator->sort('vehicle_id') ?></th>
-                <th><?= $this->Paginator->sort('startdate') ?></th>
-                <th><?= $this->Paginator->sort('lables') ?></th>
-                <th><?= $this->Paginator->sort('odometer') ?></th>
-                <th><?= $this->Paginator->sort('void') ?></th>
-                <th><?= $this->Paginator->sort('vendor_id') ?></th>
-                <th><?= $this->Paginator->sort('completiondate') ?></th>
-                <th><?= $this->Paginator->sort('labour') ?></th>
-                <th><?= $this->Paginator->sort('parts') ?></th>
-                <th><?= $this->Paginator->sort('dicount') ?></th>
-                <th><?= $this->Paginator->sort('tax') ?></th>
-                <th><?= $this->Paginator->sort('issuedby_id') ?></th>
-                <th><?= $this->Paginator->sort('assignedby_id') ?></th>
-                <th><?= $this->Paginator->sort('assignto_id') ?></th>
-                <th><?= $this->Paginator->sort('invoicenumber') ?></th>
-                <th><?= $this->Paginator->sort('POnumber') ?></th>
-                <th><?= $this->Paginator->sort('description') ?></th>
-                <th class="actions"><?= __('Actions') ?></th>
+            	<th><input type="checkbox" name="select_all" value="1" id="select-all"></th>
+                <th>Vehicle</th>
+                <th>PO</th>
+                <th>Invoice Number</th>
+                <th>Start Date</th>
+                <th>Odometer</th>
+                <th>Issued By</th>   
+                <th>Assigned By</th>
+                <th>Addign To</th>              
+                <th>Labour</th>
+               <th>Parts</th>
+                <th>Discount</th>
+                <th>Tax</th>
+                <th>Issued Date</th>
+                <th>Completion Date</th>
+                <th>Vendor</th>   
+                <th>Void</th>
+                <th>Status</th>              
+                <th>Description</th>
+                <th>Actions</th>
+               
             </tr>
         </thead>
-        <tbody>
-            <?php foreach ($workorders as $workorder): ?>
-            <tr>
-                <td><?= $this->Number->format($workorder->id) ?></td>
-                <td><?= h($workorder->issuedate) ?></td>
-                <td><?= $this->Number->format($workorder->workorderstatus_id) ?></td>
-                <td><?= $workorder->has('vehicle') ? $this->Html->link($workorder->vehicle->name, ['controller' => 'Vehicles', 'action' => 'view', $workorder->vehicle->id]) : '' ?></td>
-                <td><?= h($workorder->startdate) ?></td>
-                <td><?= h($workorder->lables) ?></td>
-                <td><?= $this->Number->format($workorder->odometer) ?></td>
-                <td><?= h($workorder->void) ?></td>
-                <td><?= $workorder->has('vendor') ? $this->Html->link($workorder->vendor->name, ['controller' => 'Vendors', 'action' => 'view', $workorder->vendor->id]) : '' ?></td>
-                <td><?= h($workorder->completiondate) ?></td>
-                <td><?= $this->Number->format($workorder->labour) ?></td>
-                <td><?= $this->Number->format($workorder->parts) ?></td>
-                <td><?= $this->Number->format($workorder->dicount) ?></td>
-                <td><?= $this->Number->format($workorder->tax) ?></td>
-                <td><?= $this->Number->format($workorder->issuedby_id) ?></td>
-                <td><?= $this->Number->format($workorder->assignedby_id) ?></td>
-                <td><?= $this->Number->format($workorder->assignto_id) ?></td>
-                <td><?= h($workorder->invoicenumber) ?></td>
-                <td><?= h($workorder->POnumber) ?></td>
-                <td><?= h($workorder->description) ?></td>
-                <td class="actions">
-                    <?= $this->Html->link(__('View'), ['action' => 'view', $workorder->id]) ?>
-                    <?= $this->Html->link(__('Edit'), ['action' => 'edit', $workorder->id]) ?>
-                    <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $workorder->id], ['confirm' => __('Are you sure you want to delete # {0}?', $workorder->id)]) ?>
-                </td>
-            </tr>
-            <?php endforeach; ?>
-        </tbody>
-    </table>
-    <div class="paginator">
-        <ul class="pagination">
-            <?= $this->Paginator->prev('< ' . __('previous')) ?>
-            <?= $this->Paginator->numbers() ?>
-            <?= $this->Paginator->next(__('next') . ' >') ?>
-        </ul>
-        <p><?= $this->Paginator->counter() ?></p>
+        <tbody></tbody>
+    </table></div></div>
+    </div></div>
+   
+ 
+
+</section>
+<div class="modal fade" id="assign" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+      </div>
+      <div class="modal-body">
+        
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
     </div>
+  </div>
 </div>
+
+<div class="modal fade" id="settings" tabindex="-1" role="dialog" aria-labelledby="modalSettings">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="modalSettings">Settings</h4><small>Select the colums to display</small>
+      </div>
+      <div class="modal-body">
+      	<div class="box box-primary">
+        <table class="mptl-tbl-settings table table-hover" >
+        	<thead>
+        		<tr>
+        			<th style="width:20px"><input type="checkbox" id="mptl_settings_chk_all" ></th>
+        		    <th>Column Name</th>
+        		</tr>
+        		
+        	</thead>
+        	<tbody>
+        		<tr style="text-align:left">
+        	    	<td style="width:20px"><input type="checkbox" class="mptl_settings_chk" id="mptl_settings_chk_1" checked=""></td>
+        			<td>Vehicle</td>
+        		</tr>
+        		<tr>
+        	    	<td><input type="checkbox" class="mptl_settings_chk" id="mptl_settings_chk_2"></td>
+        			<td>Summary</td>
+        		</tr><tr>
+        	    	<td><input type="checkbox" class="mptl_settings_chk" id="mptl_settings_chk_3"></td>
+        			<td>Reported On</td>
+        		</tr><tr>
+        	    	<td><input type="checkbox" class="mptl_settings_chk" id="mptl_settings_chk_4"></td>
+        			<td>Odometer</td>
+        		</tr><tr>
+        	    	<td><input type="checkbox" class="mptl_settings_chk" id="mptl_settings_chk_5"></td>
+        			<td>Due Date</td>
+        		</tr>
+        		</tr><tr>
+        	    	<td><input type="checkbox" class="mptl_settings_chk" id="mptl_settings_chk_6"></td>
+        			<td>Reported By</td>
+        		</tr>
+        		</tr><tr>
+        	    	<td><input type="checkbox" class="mptl_settings_chk" id="mptl_settings_chk_7"></td>
+        			<td>Status</td>
+        		</tr>
+        		</tr><tr>
+        	    	<td><input type="checkbox" class="mptl_settings_chk" id="mptl_settings_chk_8"></td>
+        			<td>Tags</td>
+        		</tr>
+        		
+        	</tbody>
+        	   
+        </table>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<?php $this->start('css'); ?>
+  <style>
+   
+
+  </style>
+<?php $this->end(); ?>
+<?php
+$this->Html->css([ 'AdminLTE./plugins/datatables/dataTables.bootstrap',  ], ['block' => 'css']);
+
+$this->Html->script([
+  'AdminLTE./plugins/datatables/jquery.dataTables.min',
+  'AdminLTE./plugins/datatables/dataTables.bootstrap.min',
+], ['block' => 'script']); ?>
+
+<?php $this->start('scriptBotton'); ?>
+<script>
+  $(function () {
+      
+      // $.fn.dataTable.ext.errMode=throw;
+      
+   var table= $('#mptlindextbl').DataTable({
+          "paging": true,
+          "lengthChange": true,
+          "searching": true,
+          "ordering": true,
+          "info": true,
+          "autoWidth": false,
+        //server side processing
+          "processing": true,
+          "serverSide": true,
+          "ajax": "/<?php echo $this->request->params['controller'] ?>/ajaxData",
+          'columnDefs': [{
+        'targets': 0,      
+        'className': 'dt-body-center',
+        'render': function (data, type, full, meta){console.log(data);
+            return '<input type="checkbox" class="mptl-lst-chkbox" name="chk' + data + '" value="' + $('<div/>').text(data).html() + '">';
+        }
+     },{
+     	'targets': [4,5,7,9],
+     	"visible": false,
+     	
+     },
+     {
+     	'targets': [0],
+     	"searchable": false,
+     	'orderable': false,
+     }]
+  
+    });
+     $('<a href="/<?php echo $this->request->params['controller'] ?>/add/" class="btn btn-sm btn-success" style="margin-left:5px;"><i class="fa fa-plus" aria-hidden="true"></i></a>').appendTo('div.dataTables_filter');
+     $('<a href="#" class="btn btn-sm btn-success" data-toggle="modal" data-target="#settings" style="margin-left:5px;"><i class="fa fa-gear" aria-hidden="true"></i></a>').appendTo('div.dataTables_filter');
+  
+      
+     $('.dataTables_filter input').unbind().on('keyup', function() {
+	var searchTerm = this.value.toLowerCase();
+    $.fn.dataTable.ext.search.push(function(settings, data, dataIndex) {
+       //search only the following columns
+	   if (~data[1].toLowerCase().indexOf(searchTerm)) return true;
+	   if (~data[2].toLowerCase().indexOf(searchTerm)) return true;
+	   if (~data[3].toLowerCase().indexOf(searchTerm)) return true;
+	   if (~data[5].toLowerCase().indexOf(searchTerm)) return true;
+	   if (~data[7].toLowerCase().indexOf(searchTerm)) return true;
+	   if (~data[8].toLowerCase().indexOf(searchTerm)) return true;
+	   if (~data[9].toLowerCase().indexOf(searchTerm)) return true;
+       return false;
+   })
+   table.draw(); 
+   $.fn.dataTable.ext.search.pop();
+})
+  
+  // Handle click on "Select all" control
+   $('#select-all').on('click', function(){
+      // Get all rows with search applied
+      var rows = table.rows({ 'search': 'applied' }).nodes();
+      // Check/uncheck checkboxes for all rows in the table
+      $('input[type="checkbox"]', rows).prop('checked', this.checked);
+   });
+
+   // Handle click on checkbox to set state of "Select all" control
+   $('#mptlindextbl tbody').on('change', 'input[type="checkbox"]', function(){
+      // If checkbox is not checked
+      if(!this.checked){
+         var el = $('#select-all').get(0);
+         // If "Select all" control is checked and has 'indeterminate' property
+         if(el && el.checked && ('indeterminate' in el)){
+            // Set visual state of "Select all" control 
+            // as 'indeterminate'
+            el.indeterminate = true;
+         }
+      }
+     
+       var c=$(".mptl-lst-chkbox:checked").length;
+       $(".mptl span").html(c);
+   });  
+   
+   
+   // Handle click on " Settings Select all" control
+   $('#mptl_settings_chk_all').on('click', function(){
+      
+      // Check/uncheck checkboxes for all rows in the table
+      $('.mptl_settings_chk').prop('checked', true);
+   });
+
+   // Handle click on checkbox to set state of "Settings Select all" control
+   $('mptl-tbl-settings tbody').on('change', 'input[type="checkbox"]', function(){
+      // If checkbox is not checked
+      if(!this.checked){
+         var el = $('#mptl_settings_chk_all').get(0);
+         // If "Select all" control is checked and has 'indeterminate' property
+         if(el && el.checked && ('indeterminate' in el)){
+            // Set visual state of "Select all" control 
+            // as 'indeterminate'
+            el.indeterminate = true;
+         }
+      }
+     
+      
+   });  
+   
+   
+  
+ /*  $(".mptl-close").click(function(){
+  	
+  	alert("Do you want to close the issue?");
+  });
+  
+  $(".mptl-assign").click(function(){
+  	
+        $(".assign-modal").show();
+  
+  });  
+  $(".mptl-unassign").click(function(){
+  	
+  	alert("Do you want to Un Assign?");
+  });  */
+
+  
+  
+  
+  });
+  
+  
+  
+</script>
+<?php $this->end(); ?>
