@@ -274,7 +274,7 @@ $this->Html->script([
 	   if (~data[2].toLowerCase().indexOf(searchTerm)) return true;
 	   if (~data[4].toLowerCase().indexOf(searchTerm)) return true;
 	   if (~data[5].toLowerCase().indexOf(searchTerm)) return true;
-	   if (~data[6].toLowerCase().indexOf(searchTerm)) return true;
+	   
 	  
        return false;
    })

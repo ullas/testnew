@@ -128,7 +128,7 @@
                 <th>Odometer</th>
                 <th>Issued By</th>   
                 <th>Assigned By</th>
-                <th>Addign To</th>              
+                <th>Assign To</th>              
                 <th>Labour</th>
                <th>Parts</th>
                 <th>Discount</th>
@@ -192,30 +192,65 @@
         		</tr>
         		<tr>
         	    	<td><input type="checkbox" class="mptl_settings_chk" id="mptl_settings_chk_2"></td>
-        			<td>Summary</td>
+        			<td>PO</td>
         		</tr><tr>
         	    	<td><input type="checkbox" class="mptl_settings_chk" id="mptl_settings_chk_3"></td>
-        			<td>Reported On</td>
+        			<td>Invoice Number</td>
         		</tr><tr>
         	    	<td><input type="checkbox" class="mptl_settings_chk" id="mptl_settings_chk_4"></td>
-        			<td>Odometer</td>
+        			<td>Start Date</td>
         		</tr><tr>
         	    	<td><input type="checkbox" class="mptl_settings_chk" id="mptl_settings_chk_5"></td>
-        			<td>Due Date</td>
+        			<td>Odometer</td>
         		</tr>
         		</tr><tr>
         	    	<td><input type="checkbox" class="mptl_settings_chk" id="mptl_settings_chk_6"></td>
-        			<td>Reported By</td>
+        			<td>Issued By</td>
         		</tr>
         		</tr><tr>
         	    	<td><input type="checkbox" class="mptl_settings_chk" id="mptl_settings_chk_7"></td>
+        			<td>Assigned By</td>
+        		</tr>
+        		</tr><tr>
+        	    	<td><input type="checkbox" class="mptl_settings_chk" id="mptl_settings_chk_8"></td>
+        			<td>Labour</td>
+        		</tr>
+        		</tr><tr>
+        	    	<td><input type="checkbox" class="mptl_settings_chk" id="mptl_settings_chk_8"></td>
+        			<td>Parts</td>
+        		</tr>
+        		</tr><tr>
+        	    	<td><input type="checkbox" class="mptl_settings_chk" id="mptl_settings_chk_6"></td>
+        			<td>Discount</td>
+        		</tr>
+        		</tr><tr>
+        	    	<td><input type="checkbox" class="mptl_settings_chk" id="mptl_settings_chk_7"></td>
+        			<td>Tax</td>
+        		</tr>
+        		</tr><tr>
+        	    	<td><input type="checkbox" class="mptl_settings_chk" id="mptl_settings_chk_8"></td>
+        			<td>Issued Date</td>
+        		</tr>
+        		</tr><tr>
+        	    	<td><input type="checkbox" class="mptl_settings_chk" id="mptl_settings_chk_8"></td>
+        			<td>Completion Date</td>
+        		</tr>
+        		</tr><tr>
+        	    	<td><input type="checkbox" class="mptl_settings_chk" id="mptl_settings_chk_7"></td>
+        			<td>Vendor</td>
+        		</tr>
+        		</tr><tr>
+        	    	<td><input type="checkbox" class="mptl_settings_chk" id="mptl_settings_chk_8"></td>
+        			<td>Void</td>
+        		</tr>
+        		</tr><tr>
+        	    	<td><input type="checkbox" class="mptl_settings_chk" id="mptl_settings_chk_8"></td>
         			<td>Status</td>
         		</tr>
         		</tr><tr>
         	    	<td><input type="checkbox" class="mptl_settings_chk" id="mptl_settings_chk_8"></td>
-        			<td>Tags</td>
+        			<td>Description</td>
         		</tr>
-        		
         	</tbody>
         	   
         </table>
@@ -267,7 +302,7 @@ $this->Html->script([
             return '<input type="checkbox" class="mptl-lst-chkbox" name="chk' + data + '" value="' + $('<div/>').text(data).html() + '">';
         }
      },{
-     	'targets': [4,5,7,9],
+     	'targets': [4,5,7,9,10,11,12,13,14,15,16,17,18],
      	"visible": false,
      	
      },
@@ -293,6 +328,14 @@ $this->Html->script([
 	   if (~data[7].toLowerCase().indexOf(searchTerm)) return true;
 	   if (~data[8].toLowerCase().indexOf(searchTerm)) return true;
 	   if (~data[9].toLowerCase().indexOf(searchTerm)) return true;
+	   if (~data[10].toLowerCase().indexOf(searchTerm)) return true;
+	   if (~data[11].toLowerCase().indexOf(searchTerm)) return true;
+	   if (~data[12].toLowerCase().indexOf(searchTerm)) return true;
+	   if (~data[14].toLowerCase().indexOf(searchTerm)) return true;
+	   if (~data[15].toLowerCase().indexOf(searchTerm)) return true;
+	   if (~data[17].toLowerCase().indexOf(searchTerm)) return true;
+	   if (~data[18].toLowerCase().indexOf(searchTerm)) return true;
+	   if (~data[19].toLowerCase().indexOf(searchTerm)) return true;
        return false;
    })
    table.draw(); 

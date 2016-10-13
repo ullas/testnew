@@ -47,7 +47,7 @@ use Cake\ORM\Entity;
  * @property \App\Model\Entity\Vehicle[] $vehicles
  * @property \App\Model\Entity\Contractor $contractor
  * @property \App\Model\Entity\Station $station
- * @property \App\Model\Entity\Supervisor $supervisor
+ * @property \App\Model\Entity\Driver $supervisor
  * @property \App\Model\Entity\Shift $shift
  * @property \App\Model\Entity\Alert[] $alerts
  * @property \App\Model\Entity\Rfid[] $rfids

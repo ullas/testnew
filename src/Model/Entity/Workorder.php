@@ -24,15 +24,16 @@ use Cake\ORM\Entity;
  * @property int $assignedby_id
  * @property int $assignto_id
  * @property string $invoicenumber
- * @property string $POnumber
  * @property string $description
+ * @property string $phonenumber
+ * @property int $customer_id
  *
  * @property \App\Model\Entity\Workorderstatus $workorderstatus
  * @property \App\Model\Entity\Vehicle $vehicle
  * @property \App\Model\Entity\Vendor $vendor
- * @property \App\Model\Entity\Issuedby $issuedby
- * @property \App\Model\Entity\Assignedby $assignedby
- * @property \App\Model\Entity\Assignto $assignto
+ * @property \App\Model\Entity\Address $issuedby
+ * @property \App\Model\Entity\Address $assignedby
+ * @property \App\Model\Entity\Address $assignto
  * @property \App\Model\Entity\Issue[] $issues
  * @property \App\Model\Entity\Worklorderlineitem[] $worklorderlineitems
  * @property \App\Model\Entity\Workorderdocument[] $workorderdocuments

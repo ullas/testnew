@@ -52,17 +52,16 @@ class DriversControllerTest extends IntegrationTestCase
         'app.trips',
         'app.startpoints',
         'app.endpoints',
-        'app.passengergroups',
-        'app.passengers',
-        'app.passengergroups_passengers',
         'app.tripstatuses',
         'app.vehiclecategories',
+        'app.triptypes',
         'app.default_drivers',
         'app.ibuttons',
         'app.vehicles_drivers',
         'app.supervisors',
         'app.shifts',
         'app.rfids',
+        'app.passengers',
         'app.drivergroups',
         'app.defaultdrivers',
         'app.drivers_drivergroups',
@@ -81,16 +80,6 @@ class DriversControllerTest extends IntegrationTestCase
         'app.reportedby',
         'app.distributionlists',
         'app.distributionlists_addresses',
-        'app.assignedtos',
-        'app.issuedocuments',
-        'app.servicesentries',
-        'app.servicecompleted',
-        'app.servicedocuments',
-        'app.vehicleengines',
-        'app.vehiclefluids',
-        'app.vehiclepermits',
-        'app.vehiclespecifications',
-        'app.vehiclewheelstyres',
         'app.workorders',
         'app.workorderstatuses',
         'app.issuedbies',
@@ -98,6 +87,16 @@ class DriversControllerTest extends IntegrationTestCase
         'app.assigntos',
         'app.worklorderlineitems',
         'app.workorderdocuments',
+        'app.servicesentries',
+        'app.servicecompleted',
+        'app.servicedocuments',
+        'app.issuedocuments',
+        'app.issues_addresses',
+        'app.vehicleengines',
+        'app.vehiclefluids',
+        'app.vehiclepermits',
+        'app.vehiclespecifications',
+        'app.vehiclewheelstyres',
         'app.templates',
         'app.templatetypes',
         'app.zonetypes',
@@ -109,10 +108,13 @@ class DriversControllerTest extends IntegrationTestCase
         'app.tracking',
         'app.inspections',
         'app.inspectionfoms',
+        'app.inspectionstatuses',
         'app.manufacturers',
         'app.parts',
         'app.partcategories',
         'app.measurementunits',
+        'app.passengergroups',
+        'app.passengergroups_passengers',
         'app.renewalreminders',
         'app.renewalstypes',
         'app.servicereminders',
@@ -125,6 +127,16 @@ class DriversControllerTest extends IntegrationTestCase
      * @return void
      */
     public function testIndex()
+    {
+        $this->markTestIncomplete('Not implemented yet.');
+    }
+
+    /**
+     * Test ajaxdata method
+     *
+     * @return void
+     */
+    public function testAjaxdata()
     {
         $this->markTestIncomplete('Not implemented yet.');
     }

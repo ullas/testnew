@@ -85,7 +85,7 @@
     	<div class="col-md-12">
   	
   	     <div class="box box-primary"><div class="box-header">
-        <h4><?= __('Related Issuedocuments') ?></h4>
+        <h4><?= __('Related Documents') ?></h4>
         <?php if (!empty($issue->issuedocuments)): ?>
         </div>
   		<div class="box-body">
@@ -124,7 +124,7 @@
     	<div class="col-md-12">
   	
   	     <div class="box box-primary"><div class="box-header">
-        <h4><?= __('Related Addresses') ?></h4>
+        <h4><?= __('Related Contacts') ?></h4>
         <?php if (!empty($issue->addresses)): ?>
         </div>
   		<div class="box-body">
