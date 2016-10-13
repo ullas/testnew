@@ -35,8 +35,9 @@ class WorkordersFixture extends TestFixture
         'assignedby_id' => ['type' => 'integer', 'length' => 10, 'default' => null, 'null' => true, 'comment' => null, 'precision' => null, 'unsigned' => null, 'autoIncrement' => null],
         'assignto_id' => ['type' => 'integer', 'length' => 10, 'default' => null, 'null' => true, 'comment' => null, 'precision' => null, 'unsigned' => null, 'autoIncrement' => null],
         'invoicenumber' => ['type' => 'string', 'length' => null, 'default' => null, 'null' => true, 'collate' => null, 'comment' => null, 'precision' => null, 'fixed' => null],
-        'POnumber' => ['type' => 'string', 'length' => null, 'default' => null, 'null' => true, 'collate' => null, 'comment' => null, 'precision' => null, 'fixed' => null],
         'description' => ['type' => 'string', 'length' => null, 'default' => null, 'null' => true, 'collate' => null, 'comment' => null, 'precision' => null, 'fixed' => null],
+        'phonenumber' => ['type' => 'string', 'length' => null, 'default' => null, 'null' => true, 'collate' => null, 'comment' => null, 'precision' => null, 'fixed' => null],
+        'customer_id' => ['type' => 'integer', 'length' => 10, 'default' => null, 'null' => true, 'comment' => null, 'precision' => null, 'unsigned' => null, 'autoIncrement' => null],
         '_constraints' => [
             'primary' => ['type' => 'primary', 'columns' => ['id'], 'length' => []],
         ],
@@ -51,15 +52,15 @@ class WorkordersFixture extends TestFixture
     public $records = [
         [
             'id' => 1,
-            'issuedate' => '2016-09-07',
+            'issuedate' => '2016-10-13',
             'workorderstatus_id' => 1,
             'vehicle_id' => 1,
-            'startdate' => '2016-09-07',
+            'startdate' => '2016-10-13',
             'lables' => 'Lorem ipsum dolor sit amet',
             'odometer' => 1,
             'void' => 1,
             'vendor_id' => 1,
-            'completiondate' => '2016-09-07',
+            'completiondate' => '2016-10-13',
             'labour' => 1,
             'parts' => 1,
             'dicount' => 1,
@@ -68,8 +69,9 @@ class WorkordersFixture extends TestFixture
             'assignedby_id' => 1,
             'assignto_id' => 1,
             'invoicenumber' => 'Lorem ipsum dolor sit amet',
-            'POnumber' => 'Lorem ipsum dolor sit amet',
-            'description' => 'Lorem ipsum dolor sit amet'
+            'description' => 'Lorem ipsum dolor sit amet',
+            'phonenumber' => 'Lorem ipsum dolor sit amet',
+            'customer_id' => 1
         ],
     ];
 }

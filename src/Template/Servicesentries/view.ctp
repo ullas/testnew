@@ -77,48 +77,12 @@
         <?= $this->Text->autoParagraph(h($servicesentry->comments)); ?>
        </div></div></div>
     </div>
+    
     <div class="row">
     	<div class="col-md-12">
   	
   	     <div class="box box-primary"><div class="box-header">
-        <h4><?= __('Related Servicecompleted') ?></h4>
-        <?php if (!empty($servicesentry->servicecompleted)): ?>
-        </div>
-  		<div class="box-body">
-  		<table class="table table-hover">
-            <tr>
-                <th><?= __('Id') ?></th>
-                <th><?= __('Servicesentry Id') ?></th>
-                <th><?= __('Servicescompleted') ?></th>
-                <th><?= __('Customer Id') ?></th>
-                <th class="actions"><?= __('Actions') ?></th>
-            </tr>
-            <?php foreach ($servicesentry->servicecompleted as $servicecompleted): ?>
-            <tr>
-                <td><?= h($servicecompleted->id) ?></td>
-                <td><?= h($servicecompleted->servicesentry_id) ?></td>
-                <td><?= h($servicecompleted->servicescompleted) ?></td>
-                <td><?= h($servicecompleted->customer_id) ?></td>
-                <td class="actions">
-                    <?= $this->Html->link(__('View'), ['controller' => 'Servicecompleted', 'action' => 'view', $servicecompleted->id]) ?>
-                    <?= $this->Html->link(__('Edit'), ['controller' => 'Servicecompleted', 'action' => 'edit', $servicecompleted->id]) ?>
-                    <?= $this->Form->postLink(__('Delete'), ['controller' => 'Servicecompleted', 'action' => 'delete', $servicecompleted->id], ['confirm' => __('Are you sure you want to delete # {0}?', $servicecompleted->id)]) ?>
-                </td>
-            </tr>
-            <?php endforeach; ?>
-        </table>
-        </div><!--boxbody-->
-   </div><!-- box -->
-  
-  </div><!-- col12-->
- 
-        <?php endif; ?>
-    </div>
-    <div class="row">
-    	<div class="col-md-12">
-  	
-  	     <div class="box box-primary"><div class="box-header">
-        <h4><?= __('Related Servicedocuments') ?></h4>
+        <h4><?= __('Related Service Documents') ?></h4>
         <?php if (!empty($servicesentry->servicedocuments)): ?>
         </div>
   		<div class="box-body">

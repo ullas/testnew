@@ -68,7 +68,7 @@ class DriversTable extends Table
             'foreignKey' => 'station_id'
         ]);
         $this->belongsTo('Supervisors', [
-            'className' =>  'Drivers',
+            'className' => 'Drivers',
             'foreignKey' => 'supervisor_id'
         ]);
         $this->belongsTo('Shifts', [

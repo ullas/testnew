@@ -1,21 +1,21 @@
-<nav class="large-3 medium-4 columns" id="actions-sidebar">
-    <ul class="side-nav">
-        <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Html->link(__('Edit Fuelentry'), ['action' => 'edit', $fuelentry->id]) ?> </li>
-        <li><?= $this->Form->postLink(__('Delete Fuelentry'), ['action' => 'delete', $fuelentry->id], ['confirm' => __('Are you sure you want to delete # {0}?', $fuelentry->id)]) ?> </li>
-        <li><?= $this->Html->link(__('List Fuelentries'), ['action' => 'index']) ?> </li>
-        <li><?= $this->Html->link(__('New Fuelentry'), ['action' => 'add']) ?> </li>
-        <li><?= $this->Html->link(__('List Vehicles'), ['controller' => 'Vehicles', 'action' => 'index']) ?> </li>
-        <li><?= $this->Html->link(__('New Vehicle'), ['controller' => 'Vehicles', 'action' => 'add']) ?> </li>
-        <li><?= $this->Html->link(__('List Fueldouments'), ['controller' => 'Fueldouments', 'action' => 'index']) ?> </li>
-        <li><?= $this->Html->link(__('New Fueldoument'), ['controller' => 'Fueldouments', 'action' => 'add']) ?> </li>
-        <li><?= $this->Html->link(__('List Fuelphotos'), ['controller' => 'Fuelphotos', 'action' => 'index']) ?> </li>
-        <li><?= $this->Html->link(__('New Fuelphoto'), ['controller' => 'Fuelphotos', 'action' => 'add']) ?> </li>
-    </ul>
-</nav>
-<div class="fuelentries view large-9 medium-8 columns content">
-    <h3><?= h($fuelentry->id) ?></h3>
-    <table class="vertical-table">
+<section class="content-header">
+  <h1>
+     <?= h($fuelentry->name) ?> Details
+  </h1>
+  <ol class="breadcrumb">
+  	<li><a href="#"><i class="fa fa-dashboard"></i>Home</a></li>
+   
+    <li><a href="/fuelentries/"> Fuel Entries</a></li>
+    <li class="active">View</li>
+  </ol>
+</section>
+<section class="content">
+  <div class="row">
+  <div class="col-md-12">
+  	
+  	<div class="box box-primary">
+  		<div class="box-body">
+  		<table class="table table-hover">
         <tr>
             <th><?= __('Vehicle') ?></th>
             <td><?= $fuelentry->has('vehicle') ? $this->Html->link($fuelentry->vehicle->id, ['controller' => 'Vehicles', 'action' => 'view', $fuelentry->vehicle->id]) : '' ?></td>
@@ -56,11 +56,20 @@
             <th><?= __('Partialfill') ?></th>
             <td><?= $fuelentry->partialfill ? __('Yes') : __('No'); ?></td>
         </tr>
-    </table>
-    <div class="related">
-        <h4><?= __('Related Fueldouments') ?></h4>
-        <?php if (!empty($fuelentry->fueldouments)): ?>
-        <table cellpadding="0" cellspacing="0">
+ </div><!--boxbody-->
+   </div><!-- box -->
+  
+  </div><!-- col12-->
+</div> </table>
+<div class="row">
+    	<div class="col-md-12">
+  	
+  	     <div class="box box-primary"><div class="box-header">
+		        <h4><?= __('Related Documents') ?></h4>
+		        <?php if (!empty($fuelentry->fueldouments)): ?>
+         </div>
+  		<div class="box-body">
+  		<table class="table table-hover">
             <tr>
                 <th><?= __('Id') ?></th>
                 <th><?= __('Data') ?></th>
@@ -81,11 +90,22 @@
             <?php endforeach; ?>
         </table>
         <?php endif; ?>
-    </div>
-    <div class="related">
-        <h4><?= __('Related Fuelphotos') ?></h4>
+  </table>
+        </div><!--boxbody-->
+   </div><!-- box -->
+  
+  </div><!-- col12-->
+  </div>
+    <div class="row">
+    	<div class="col-md-12">
+  	
+  	     <div class="box box-primary"><div class="box-header">
+  	     	
+        <h4><?= __('Related Photos') ?></h4>
         <?php if (!empty($fuelentry->fuelphotos)): ?>
-        <table cellpadding="0" cellspacing="0">
+         </div>
+  		<div class="box-body">
+  		<table class="table table-hover">
             <tr>
                 <th><?= __('Id') ?></th>
                 <th><?= __('Photo') ?></th>
@@ -105,6 +125,10 @@
             </tr>
             <?php endforeach; ?>
         </table>
+        </div><!--boxbody-->
+   </div><!-- box -->
+  
+  </div><!-- col12-->
         <?php endif; ?>
     </div>
 </div>

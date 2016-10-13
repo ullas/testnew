@@ -48,9 +48,10 @@
             <th><?= __('Date') ?></th>
             <td><?= h($inspection->date) ?></td>
         </tr>
+       </table>
    </div><!--boxbody-->
    </div><!-- box -->
   
   </div><!-- col12-->
-</div> </table>
-</div>
+</div> 
+</section>

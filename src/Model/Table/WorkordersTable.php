@@ -15,6 +15,7 @@ use Cake\Validation\Validator;
  * @property \Cake\ORM\Association\BelongsTo $Issuedbies
  * @property \Cake\ORM\Association\BelongsTo $Assignedbies
  * @property \Cake\ORM\Association\BelongsTo $Assigntos
+ * @property \Cake\ORM\Association\BelongsTo $Customers
  * @property \Cake\ORM\Association\HasMany $Issues
  * @property \Cake\ORM\Association\HasMany $Worklorderlineitems
  * @property \Cake\ORM\Association\HasMany $Workorderdocuments
@@ -54,16 +55,19 @@ class WorkordersTable extends Table
             'foreignKey' => 'vendor_id'
         ]);
         $this->belongsTo('Issuedbies', [
-            'className' =>'Addresses',
+             'className' =>'Addresses',
             'foreignKey' => 'issuedby_id'
         ]);
         $this->belongsTo('Assignedbies', [
-            'foreignKey' => 'assignedby_id',
-            'className' =>'Addresses'
+             'className' =>'Addresses',
+            'foreignKey' => 'assignedby_id'
         ]);
         $this->belongsTo('Assigntos', [
-            'foreignKey' => 'assignto_id',
-            'className' =>'Addresses'
+            'className' =>'Addresses',
+            'foreignKey' => 'assignto_id'
+        ]);
+        $this->belongsTo('Customers', [
+            'foreignKey' => 'customer_id'
         ]);
         $this->hasMany('Issues', [
             'foreignKey' => 'workorder_id'
@@ -130,10 +134,10 @@ class WorkordersTable extends Table
             ->allowEmpty('invoicenumber');
 
         $validator
-            ->allowEmpty('POnumber');
+            ->allowEmpty('description');
 
         $validator
-            ->allowEmpty('description');
+            ->allowEmpty('phonenumber');
 
         return $validator;
     }
@@ -153,6 +157,7 @@ class WorkordersTable extends Table
         $rules->add($rules->existsIn(['issuedby_id'], 'Issuedbies'));
         $rules->add($rules->existsIn(['assignedby_id'], 'Assignedbies'));
         $rules->add($rules->existsIn(['assignto_id'], 'Assigntos'));
+        $rules->add($rules->existsIn(['customer_id'], 'Customers'));
 
         return $rules;
     }
