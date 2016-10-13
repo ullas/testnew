@@ -193,15 +193,15 @@
         			<td>Tax</td>
         		</tr>
         		</tr><tr>
-        	    	<td><input type="checkbox" class="mptl_settings_chk" id="mptl_settings_chk_6"></td>
+        	    	<td><input type="checkbox" class="mptl_settings_chk" id="mptl_settings_chk_9"></td>
         			<td>Vendor</td>
         		</tr>
         		</tr><tr>
-        	    	<td><input type="checkbox" class="mptl_settings_chk" id="mptl_settings_chk_7"></td>
+        	    	<td><input type="checkbox" class="mptl_settings_chk" id="mptl_settings_chk_10"></td>
         			<td>Void</td>
         		</tr>
         		</tr><tr>
-        	    	<td><input type="checkbox" class="mptl_settings_chk" id="mptl_settings_chk_8"></td>
+        	    	<td><input type="checkbox" class="mptl_settings_chk" id="mptl_settings_chk_11"></td>
         			<td>Comments</td>
         		</tr>
         		
@@ -212,7 +212,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
+        <button type="button" id="changeList" class="btn btn-primary">Save changes</button>
       </div>
     </div>
   </div>
@@ -237,6 +237,11 @@ $this->Html->script([
   $(function () {
       
       // $.fn.dataTable.ext.errMode=throw;
+      
+   $("#changeList").click(function(){
+   	
+   	   
+   });
       
    var table= $('#mptlindextbl').DataTable({
           "paging": true,
