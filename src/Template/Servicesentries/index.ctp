@@ -164,44 +164,44 @@
         	</thead>
         	<tbody>
         		<tr style="text-align:left">
-        	    	<td style="width:20px"><input type="checkbox" class="mptl_settings_chk" id="mptl_settings_chk_1" checked=""></td>
+        	    	<td style="width:20px"><input type="checkbox" class="mptl_settings_chk" id="mptl_settings_chk_0" checked=""></td>
         			<td>Name</td>
         		</tr>
         		<tr>
-        	    	<td><input type="checkbox" class="mptl_settings_chk" id="mptl_settings_chk_2"></td>
+        	    	<td><input type="checkbox" class="mptl_settings_chk" id="mptl_settings_chk_1"></td>
         			<td>Vehicle</td>
         		</tr><tr>
-        	    	<td><input type="checkbox" class="mptl_settings_chk" id="mptl_settings_chk_3"></td>
+        	    	<td><input type="checkbox" class="mptl_settings_chk" id="mptl_settings_chk_2"></td>
         			<td>Service Date</td>
         		</tr><tr>
-        	    	<td><input type="checkbox" class="mptl_settings_chk" id="mptl_settings_chk_4"></td>
+        	    	<td><input type="checkbox" class="mptl_settings_chk" id="mptl_settings_chk_3"></td>
         			<td>Odometer</td>
         		</tr><tr>
-        	    	<td><input type="checkbox" class="mptl_settings_chk" id="mptl_settings_chk_5"></td>
+        	    	<td><input type="checkbox" class="mptl_settings_chk" id="mptl_settings_chk_4"></td>
         			<td>Reference</td>
         		</tr>
         		</tr><tr>
-        	    	<td><input type="checkbox" class="mptl_settings_chk" id="mptl_settings_chk_6"></td>
+        	    	<td><input type="checkbox" class="mptl_settings_chk" id="mptl_settings_chk_5"></td>
         			<td>Labour</td>
         		</tr>
         		</tr><tr>
-        	    	<td><input type="checkbox" class="mptl_settings_chk" id="mptl_settings_chk_7"></td>
+        	    	<td><input type="checkbox" class="mptl_settings_chk" id="mptl_settings_chk_6"></td>
         			<td>Parts</td>
         		</tr>
         		</tr><tr>
-        	    	<td><input type="checkbox" class="mptl_settings_chk" id="mptl_settings_chk_8"></td>
+        	    	<td><input type="checkbox" class="mptl_settings_chk" id="mptl_settings_chk_7"></td>
         			<td>Tax</td>
         		</tr>
         		</tr><tr>
-        	    	<td><input type="checkbox" class="mptl_settings_chk" id="mptl_settings_chk_9"></td>
+        	    	<td><input type="checkbox" class="mptl_settings_chk" id="mptl_settings_chk_8"></td>
         			<td>Vendor</td>
         		</tr>
         		</tr><tr>
-        	    	<td><input type="checkbox" class="mptl_settings_chk" id="mptl_settings_chk_10"></td>
+        	    	<td><input type="checkbox" class="mptl_settings_chk" id="mptl_settings_chk_9"></td>
         			<td>Void</td>
         		</tr>
         		</tr><tr>
-        	    	<td><input type="checkbox" class="mptl_settings_chk" id="mptl_settings_chk_11"></td>
+        	    	<td><input type="checkbox" class="mptl_settings_chk" id="mptl_settings_chk_10"></td>
         			<td>Comments</td>
         		</tr>
         		
@@ -239,9 +239,25 @@ $this->Html->script([
       // $.fn.dataTable.ext.errMode=throw;
       
    $("#changeList").click(function(){
-   	
+   	  var cols=[];
+   	  $('input:checkbox.mptl_settings_chk').each(function () {
+       var sThisVal = (this.checked ? $(this).val() : "");
+        
+        var id=$(this).attr('id');
+        var vals=id.split('_');
+        var col=vals[3];
+        if(sThisVal){
+         table.column(col).visible(true).draw();
+         console.log("Colums:"+col);
+        }else{
+          table.column(col).visible(false).draw();	
+        }
+       
+     });
+
    	   
    });
+   
       
    var table= $('#mptlindextbl').DataTable({
           "paging": true,
