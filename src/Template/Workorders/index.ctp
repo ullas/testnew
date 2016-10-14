@@ -7,19 +7,19 @@
     <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
     <li><a href="#"></a>Fleet Management</li>
     <li class="active">Work Orders</li>
-    
+
   </ol>
 </section>
-                
 <!-- Main content -->
 <section class="content">
   <div class="row">
         <div class="col-md-4">
-  <div class="box box-primary" style="min-height:134px">
+  <div class="box box-primary">
   	  <div class="box-header">
       	 <h3 class="box-title">Manage Work Orders</h3>
       </div>
       <div class="box-body" >
+          <div style="padding-top:5px;min-height:65px">
       	       <button type="button" class="mptl mptl-assign btn btn-primary btn-sm" data-toggle="modal" data-target="#assign">
               	 <span class="badge bg-aqua">0</span>
 				  Assign
@@ -32,87 +32,69 @@
 			  	<span class="badge bg-aqua">0</span>
 				  Close
 			  </button>
-			  
+      </div>
       </div>
      </div>
      </div>
       <div class="col-md-8">
       	 <div class="nav-tabs-custom">
 	        <ul class="nav nav-tabs">
-	          <li  class="active"><a href="#details" data-toggle="tab">Filter</a></li>	
+	          <li  class="active"><a href="#details" data-toggle="tab">Filter</a></li>
 	            <li><a href="#specs" data-toggle="tab">Additional Filters</a></li>
+              <span id="filterstatus" class="label label-success pull-right" style="margin-right:10px;margin-top:10px" disabled>Filter Active</span>
 	        </ul>
-	         <div class=" tab-content">
+	         <div class=" tab-content" style="min-height:85px">
              <div class="active tab-pane" id="details">
-                
-						
 							 <div class="box-body">
 							      	       <div class="form-group">
-							                
-							                <label>
-							                  <input type="checkbox" class="minimal" checked>
-							                  Open
-							                </label>
-							                <label>
-							                  <input type="checkbox" class="minimal">
-							                  Overdue
-							                </label>
-							                <label>
-							                  <input type="checkbox" class="minimal" disabled>
-							                  Resolved
-							                </label>
-							                <label>
-							                  <input type="checkbox" class="minimal" disabled>
-							                  Closed
-							                </label>
-							                
+							                  <input type="checkbox" class="flat-blue" checked>
+							                  <span style="padding-right:10px">Open</span>
+							                  <input type="checkbox" class="flat-blue">
+                                <span style="padding-right:10px">Overdue</span>
+							                  <input type="checkbox" class="flat-blue" disabled>
+                                <span style="padding-right:10px">Resolved</span>
+							                  <input type="checkbox" class="flat-blue" disabled>
+                                <span style="padding-right:10px">Closed</span>
 							              </div>
-							              
-							      </div>  	  
-							     
-						    
-				   
+							      </div>
 				</div> <!-- tab pane -->
 				<div class="tab-pane" id="specs">
-                 
-						
-							  <div class="box-body">
-							      	       <div class="form-group">
-							      	       	<label>
+							  <div>
+                  		 <div>
+							      	       	<div class="col-md-4" style="display:inline-block">
 							                  Issued Date
-							                  <input type="date" class="minimal">
-							                  
-							                </label>
-							                <label>
-							                 Start Date:
-							                  <input type="date" class="minimal">
-							                  
-							                </label>
-							                 <label>
+                                <div class="input-group date">
+                                    <div class="input-group-addon">
+                                        <i class="fa fa-calendar"></i>
+                                      </div>
+                                      <input class="form-control pull-right" id="issueddate" type="date">
+                                    </div>
+							                </div>
+							                <div class="col-md-4" style="display:inline-block">
+							                 Start Date
+                               <div class="input-group date">
+                                   <div class="input-group-addon">
+                                       <i class="fa fa-calendar"></i>
+                                     </div>
+                                     <input class="form-control pull-right" id="startdate" type="date">
+                                   </div>
+							                </div>
+							                 <div class="col-md-4" style="display:inline-block">
 							                 Completion Date
-							                  <input type="date" class="minimal">
-							                  
-							                </label>
-							                
+                               <div class="input-group date">
+                                   <div class="input-group-addon">
+                                       <i class="fa fa-calendar"></i>
+                                     </div>
+                                     <input class="form-control pull-right" id="completiondate" type="date">
+                                   </div>
+							                </div>
 							              </div>
-							              
-							      	       	
-							                
-							                
-							              
-							              
 							      </div>
-						
-				 
 				</div>
-				
 			   </div>
 			</div>
      </div> <!-- COL-7-->
-     
-     
   </div> <!--Row -->
-	
   <div class="row">
         <div class="col-md-12">
   <div class="box box-primary">
@@ -126,28 +108,28 @@
                 <th>Invoice Number</th>
                 <th>Start Date</th>
                 <th>Odometer</th>
-                <th>Issued By</th>   
+                <th>Issued By</th>
                 <th>Assigned By</th>
-                <th>Assign To</th>              
+                <th>Assign To</th>
                 <th>Labour</th>
                <th>Parts</th>
                 <th>Discount</th>
                 <th>Tax</th>
                 <th>Issued Date</th>
                 <th>Completion Date</th>
-                <th>Vendor</th>   
+                <th>Vendor</th>
                 <th>Void</th>
-                <th>Status</th>              
+                <th>Status</th>
                 <th>Description</th>
                 <th>Actions</th>
-               
+
             </tr>
         </thead>
         <tbody></tbody>
     </table></div></div>
     </div></div>
-   
- 
+
+
 
 </section>
 <div class="modal fade" id="assign" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -158,7 +140,7 @@
         <h4 class="modal-title" id="myModalLabel">Modal title</h4>
       </div>
       <div class="modal-body">
-        
+
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -183,7 +165,7 @@
         			<th style="width:20px"><input type="checkbox" id="mptl_settings_chk_all" ></th>
         		    <th>Column Name</th>
         		</tr>
-        		
+
         	</thead>
         	<tbody>
         		<tr style="text-align:left">
@@ -252,7 +234,7 @@
         			<td>Description</td>
         		</tr>
         	</tbody>
-        	   
+
         </table>
         </div>
       </div>
@@ -266,24 +248,38 @@
 
 <?php $this->start('css'); ?>
   <style>
-   
+
 
   </style>
 <?php $this->end(); ?>
 <?php
-$this->Html->css([ 'AdminLTE./plugins/datatables/dataTables.bootstrap',  ], ['block' => 'css']);
+$this->Html->css([
+  'AdminLTE./plugins/datatables/dataTables.bootstrap',
+  'AdminLTE./plugins/daterangepicker/daterangepicker',
+  'AdminLTE./plugins/iCheck/all',
+], ['block' => 'css']);
 
 $this->Html->script([
   'AdminLTE./plugins/datatables/jquery.dataTables.min',
-  'AdminLTE./plugins/datatables/dataTables.bootstrap.min',
+  'AdminLTE./plugins/daterangepicker/moment.min',
+  'AdminLTE./plugins/daterangepicker/daterangepicker',
+  'AdminLTE./plugins/iCheck/iCheck.min',
 ], ['block' => 'script']); ?>
 
 <?php $this->start('scriptBotton'); ?>
 <script>
   $(function () {
-      
+
+    //Flat blue color scheme for iCheck
+    $('input[type="checkbox"].flat-blue, input[type="radio"].flat-blue').iCheck({
+      checkboxClass: 'icheckbox_flat-blue',
+      radioClass: 'iradio_flat-blue'
+    });
+    //daterangepicker for advanced filtering
+    $('input[id="issueddate"],input[id="startdate"],input[id="completiondate"').daterangepicker({});
+
       // $.fn.dataTable.ext.errMode=throw;
-      
+
    var table= $('#mptlindextbl').DataTable({
           "paging": true,
           "lengthChange": true,
@@ -296,7 +292,7 @@ $this->Html->script([
           "serverSide": true,
           "ajax": "/<?php echo $this->request->params['controller'] ?>/ajaxData",
           'columnDefs': [{
-        'targets': 0,      
+        'targets': 0,
         'className': 'dt-body-center',
         'render': function (data, type, full, meta){console.log(data);
             return '<input type="checkbox" class="mptl-lst-chkbox" name="chk' + data + '" value="' + $('<div/>').text(data).html() + '">';
@@ -304,19 +300,19 @@ $this->Html->script([
      },{
      	'targets': [4,5,7,9,10,11,12,13,14,15,16,17,18],
      	"visible": false,
-     	
+
      },
      {
      	'targets': [0],
      	"searchable": false,
      	'orderable': false,
      }]
-  
+
     });
      $('<a href="/<?php echo $this->request->params['controller'] ?>/add/" class="btn btn-sm btn-success" style="margin-left:5px;"><i class="fa fa-plus" aria-hidden="true"></i></a>').appendTo('div.dataTables_filter');
      $('<a href="#" class="btn btn-sm btn-success" data-toggle="modal" data-target="#settings" style="margin-left:5px;"><i class="fa fa-gear" aria-hidden="true"></i></a>').appendTo('div.dataTables_filter');
-  
-      
+
+
      $('.dataTables_filter input').unbind().on('keyup', function() {
 	var searchTerm = this.value.toLowerCase();
     $.fn.dataTable.ext.search.push(function(settings, data, dataIndex) {
@@ -338,10 +334,10 @@ $this->Html->script([
 	   if (~data[19].toLowerCase().indexOf(searchTerm)) return true;
        return false;
    })
-   table.draw(); 
+   table.draw();
    $.fn.dataTable.ext.search.pop();
 })
-  
+
   // Handle click on "Select all" control
    $('#select-all').on('click', function(){
       // Get all rows with search applied
@@ -357,20 +353,20 @@ $this->Html->script([
          var el = $('#select-all').get(0);
          // If "Select all" control is checked and has 'indeterminate' property
          if(el && el.checked && ('indeterminate' in el)){
-            // Set visual state of "Select all" control 
+            // Set visual state of "Select all" control
             // as 'indeterminate'
             el.indeterminate = true;
          }
       }
-     
+
        var c=$(".mptl-lst-chkbox:checked").length;
        $(".mptl span").html(c);
-   });  
-   
-   
+   });
+
+
    // Handle click on " Settings Select all" control
    $('#mptl_settings_chk_all').on('click', function(){
-      
+
       // Check/uncheck checkboxes for all rows in the table
       $('.mptl_settings_chk').prop('checked', true);
    });
@@ -382,38 +378,33 @@ $this->Html->script([
          var el = $('#mptl_settings_chk_all').get(0);
          // If "Select all" control is checked and has 'indeterminate' property
          if(el && el.checked && ('indeterminate' in el)){
-            // Set visual state of "Select all" control 
+            // Set visual state of "Select all" control
             // as 'indeterminate'
             el.indeterminate = true;
          }
       }
-     
-      
-   });  
-   
-   
-  
+
+
+   });
+
+
+
  /*  $(".mptl-close").click(function(){
-  	
+
   	alert("Do you want to close the issue?");
   });
-  
+
   $(".mptl-assign").click(function(){
-  	
+
         $(".assign-modal").show();
-  
-  });  
+
+  });
   $(".mptl-unassign").click(function(){
-  	
+
   	alert("Do you want to Un Assign?");
   });  */
 
-  
-  
-  
   });
-  
-  
-  
+
 </script>
 <?php $this->end(); ?>
