@@ -1,3 +1,42 @@
+<style>
+.fmactions{
+  padding-top:5px;
+  min-height:65px;
+}
+.fmactions > button{
+    margin-right: 10px;
+  }
+
+.fmactions > button > .label{
+    top: -22px;
+    right:-22px;
+    font-size:10px;
+    font-weight:bold;
+  }
+
+  .fmactions > button:hover {
+    animation: shake 0.82s cubic-bezier(.36,.07,.19,.97) both;
+    transform: translate3d(0, 0, 0);
+    backface-visibility: hidden;
+    perspective: 1000px;
+}
+
+  @keyframes shake {
+    10%, 90% {
+      transform: translate3d(-1px, 0, 0);
+    }
+    20%, 80% {
+      transform: translate3d(2px, 0, 0);
+    }
+    30%, 50%, 70% {
+      transform: translate3d(-4px, 0, 0);
+    }
+    40%, 60% {
+      transform: translate3d(4px, 0, 0);
+    }
+  }
+
+</style>
 <section class="content-header">
   <h1>
     <?php echo $this->request->params['controller'] ?>
@@ -19,18 +58,18 @@
       	 <h3 class="box-title">Manage Work Orders</h3>
       </div>
       <div class="box-body" >
-          <div style="padding-top:5px;min-height:65px">
+          <div class="fmactions">
       	       <button type="button" class="mptl mptl-assign btn btn-primary btn-sm" data-toggle="modal" data-target="#assign">
-              	 <span class="badge bg-aqua">0</span>
 				  Assign
+          <span class="label label-success">0</span>
 			  </button>
               <button type="button" class="mptl mptl-assign btn btn-primary btn-sm" data-toggle="modal" data-target="#assign">
-              	<span class="badge bg-aqua">0</span>
 				 Unassign
+         <span class="label label-warning">0</span>
 			  </button>
 			  <button type="button" class="mptl mptl-assign btn btn-primary btn-sm" data-toggle="modal" data-target="#assign">
-			  	<span class="badge bg-aqua">0</span>
 				  Close
+          <span class="label label-danger">0</span>
 			  </button>
       </div>
       </div>
@@ -276,7 +315,9 @@ $this->Html->script([
       radioClass: 'iradio_flat-blue'
     });
     //daterangepicker for advanced filtering
-    $('input[id="issueddate"],input[id="startdate"],input[id="completiondate"').daterangepicker({});
+    $('input[id="issueddate"],input[id="startdate"],input[id="completiondate"').daterangepicker({locale : {
+      format : 'DD/MM/YY'
+    }});
 
       // $.fn.dataTable.ext.errMode=throw;
 
@@ -361,6 +402,7 @@ $this->Html->script([
 
        var c=$(".mptl-lst-chkbox:checked").length;
        $(".mptl span").html(c);
+       //$(".mptl span").html(c);
    });
 
 
