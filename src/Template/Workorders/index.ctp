@@ -161,15 +161,11 @@
                 <th>Status</th>
                 <th>Description</th>
                 <th>Actions</th>
-
             </tr>
         </thead>
         <tbody></tbody>
     </table></div></div>
     </div></div>
-
-
-
 </section>
 <div class="modal fade" id="assign" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
   <div class="modal-dialog" role="document">
@@ -179,7 +175,6 @@
         <h4 class="modal-title" id="myModalLabel">Modal title</h4>
       </div>
       <div class="modal-body">
-
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -188,7 +183,6 @@
     </div>
   </div>
 </div>
-
 <div class="modal fade" id="settings" tabindex="-1" role="dialog" aria-labelledby="modalSettings">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -287,8 +281,6 @@
 
 <?php $this->start('css'); ?>
   <style>
-
-
   </style>
 <?php $this->end(); ?>
 <?php
@@ -297,14 +289,12 @@ $this->Html->css([
   'AdminLTE./plugins/daterangepicker/daterangepicker',
   'AdminLTE./plugins/iCheck/all',
 ], ['block' => 'css']);
-
 $this->Html->script([
   'AdminLTE./plugins/datatables/jquery.dataTables.min',
   'AdminLTE./plugins/daterangepicker/moment.min',
   'AdminLTE./plugins/daterangepicker/daterangepicker',
   'AdminLTE./plugins/iCheck/iCheck.min',
 ], ['block' => 'script']); ?>
-
 <?php $this->start('scriptBotton'); ?>
 <script>
   $(function () {
