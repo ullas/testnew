@@ -8,9 +8,6 @@
 }
 
 /*------------OL 3 customisation---------------------*/
-.ol-control.ol-bar{
-	left:98%;
-}
 
 .mptl-download{
 	display: block;
