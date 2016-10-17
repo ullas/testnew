@@ -20,8 +20,6 @@ for(var i=0;i<data.length/2;i+=2){
 
 }
 
-
-
   function addData()
   {
   	 for(var i=0;i<path.length;i++){
@@ -101,9 +99,6 @@ for(var i=0;i<data.length/2;i+=2){
 				 default :
 				   return "fa-battery-1";
 				   break;
-
-
-
 			}
 
 		}
@@ -214,8 +209,6 @@ for(var i=0;i<data.length/2;i+=2){
 		return s;
 
 	};
-
-
 
 	function init(){
 	// The map

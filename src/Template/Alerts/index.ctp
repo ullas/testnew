@@ -6,9 +6,7 @@
 .nopadding{
   padding:0
 }
-
 /*------------OL 3 customisation---------------------*/
-
 .mptl-download{
 	display: block;
 	margin: 1px;
@@ -171,8 +169,6 @@
 			"hideMethod" : "fadeOut"
 		}
 		// show when page load
-
-
 		//Date range picker with time picker
 		$('input[id="alertdatetimerange"]').daterangepicker({
 			timePicker : true,
