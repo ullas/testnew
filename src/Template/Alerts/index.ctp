@@ -6,6 +6,7 @@
 .nopadding{
   padding:0
 }
+/*------------OL 3 customisation---------------------*/
 .mptl-download{
 	display: block;
 	margin: 1px;
@@ -21,7 +22,6 @@
 	background-color: rgba(0,60,136,.5);
 	border: none;
 	border-radius: 2px
-	
 }
 </style>
 <!-- Content Header (Page header) -->
@@ -79,7 +79,7 @@
                      <ul class="dropdown-menu mptl-group">
                        <?php foreach ($groups as $object): ?>
                            <li><a href="#"> <?php echo $object ?></a></li>
-                       
+
                         <?php endforeach; ?>
                      </ul>
                    </div>
@@ -145,7 +145,7 @@
 <script>
 	function resizeMap() {
 	}
-   
+
 	$(function() {
 		$(".select2").select2({
 			placeholder : "Select Alert Type",
@@ -169,8 +169,6 @@
 			"hideMethod" : "fadeOut"
 		}
 		// show when page load
-
-		
 		//Date range picker with time picker
 		$('input[id="alertdatetimerange"]').daterangepicker({
 			timePicker : true,
@@ -179,13 +177,13 @@
 				format : 'DD/MM/YYYY h:mm A'
 			}
 		});
-		
-		
+
+
 	    $(".mptl-group li a").click(function(){
                  group= $(this).text();
-                 
+
         });
-		
+
 
 	});
 
