@@ -3,6 +3,7 @@
   padding-top:5px;
   min-height:65px;
 }
+
 .fmactions .fmaction{
     float:left;
     padding-bottom: 15px
@@ -17,12 +18,12 @@
   }
 
   .fmactions .fmaction > button:hover {
+
     animation: shake 0.82s cubic-bezier(.36,.07,.19,.97) both;
     transform: translate3d(0, 0, 0);
     backface-visibility: hidden;
     perspective: 1000px;
 }
-
   @keyframes shake {
     10%, 90% {
       transform: translate3d(-1px, 0, 0);
@@ -37,7 +38,6 @@
       transform: translate3d(4px, 0, 0);
     }
   }
-
 </style>
 <section class="content-header">
   <h1>
@@ -149,26 +149,15 @@
     <table id="mptlindextbl" class="table table-hover  table-bordered ">
         <thead>
             <tr>
-            	<th><input type="checkbox" name="select_all" value="1" id="select-all"></th>
-                <th>Vehicle</th>
-                <th>PO</th>
-                <th>Invoice Number</th>
-                <th>Start Date</th>
-                <th>Odometer</th>
-                <th>Issued By</th>
-                <th>Assigned By</th>
-                <th>Assign To</th>
-                <th>Labour</th>
-               <th>Parts</th>
-                <th>Discount</th>
-                <th>Tax</th>
-                <th>Issued Date</th>
-                <th>Completion Date</th>
-                <th>Vendor</th>
-                <th>Void</th>
-                <th>Status</th>
-                <th>Description</th>
-                <th>Actions</th>
+            	<th data-orderable="false"><input type="checkbox" name="select_all" value="1" id="select-all" ></th>
+            	
+                <?php
+                  for($i=1;$i<count($configs);$i++){
+                  		
+                  	echo "<th>". $configs[$i]['title'] ."</th>";
+                  }
+                ?>
+                <th data-orderable="false">Actions</th>
             </tr>
         </thead>
         <tbody></tbody>
@@ -191,122 +180,26 @@
     </div>
   </div>
 </div>
-<div class="modal fade" id="settings" tabindex="-1" role="dialog" aria-labelledby="modalSettings">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="modalSettings">Settings</h4><small>Select the colums to display</small>
-      </div>
-      <div class="modal-body">
-      	<div class="box box-primary">
-        <table class="mptl-tbl-settings table table-hover" >
-        	<thead>
-        		<tr>
-        			<th style="width:20px"><input type="checkbox" id="mptl_settings_chk_all" ></th>
-        		    <th>Column Name</th>
-        		</tr>
-
-        	</thead>
-        	<tbody>
-        		<tr style="text-align:left">
-        	    	<td style="width:20px"><input type="checkbox" class="mptl_settings_chk" id="mptl_settings_chk_1" checked=""></td>
-        			<td>Vehicle</td>
-        		</tr>
-        		<tr>
-        	    	<td><input type="checkbox" class="mptl_settings_chk" id="mptl_settings_chk_2"></td>
-        			<td>PO</td>
-        		</tr><tr>
-        	    	<td><input type="checkbox" class="mptl_settings_chk" id="mptl_settings_chk_3"></td>
-        			<td>Invoice Number</td>
-        		</tr><tr>
-        	    	<td><input type="checkbox" class="mptl_settings_chk" id="mptl_settings_chk_4"></td>
-        			<td>Start Date</td>
-        		</tr><tr>
-        	    	<td><input type="checkbox" class="mptl_settings_chk" id="mptl_settings_chk_5"></td>
-        			<td>Odometer</td>
-        		</tr>
-        		</tr><tr>
-        	    	<td><input type="checkbox" class="mptl_settings_chk" id="mptl_settings_chk_6"></td>
-        			<td>Issued By</td>
-        		</tr>
-        		</tr><tr>
-        	    	<td><input type="checkbox" class="mptl_settings_chk" id="mptl_settings_chk_7"></td>
-        			<td>Assigned By</td>
-        		</tr>
-        		</tr><tr>
-        	    	<td><input type="checkbox" class="mptl_settings_chk" id="mptl_settings_chk_8"></td>
-        			<td>Labour</td>
-        		</tr>
-        		</tr><tr>
-        	    	<td><input type="checkbox" class="mptl_settings_chk" id="mptl_settings_chk_8"></td>
-        			<td>Parts</td>
-        		</tr>
-        		</tr><tr>
-        	    	<td><input type="checkbox" class="mptl_settings_chk" id="mptl_settings_chk_6"></td>
-        			<td>Discount</td>
-        		</tr>
-        		</tr><tr>
-        	    	<td><input type="checkbox" class="mptl_settings_chk" id="mptl_settings_chk_7"></td>
-        			<td>Tax</td>
-        		</tr>
-        		</tr><tr>
-        	    	<td><input type="checkbox" class="mptl_settings_chk" id="mptl_settings_chk_8"></td>
-        			<td>Issued Date</td>
-        		</tr>
-        		</tr><tr>
-        	    	<td><input type="checkbox" class="mptl_settings_chk" id="mptl_settings_chk_8"></td>
-        			<td>Completion Date</td>
-        		</tr>
-        		</tr><tr>
-        	    	<td><input type="checkbox" class="mptl_settings_chk" id="mptl_settings_chk_7"></td>
-        			<td>Vendor</td>
-        		</tr>
-        		</tr><tr>
-        	    	<td><input type="checkbox" class="mptl_settings_chk" id="mptl_settings_chk_8"></td>
-        			<td>Void</td>
-        		</tr>
-        		</tr><tr>
-        	    	<td><input type="checkbox" class="mptl_settings_chk" id="mptl_settings_chk_8"></td>
-        			<td>Status</td>
-        		</tr>
-        		</tr><tr>
-        	    	<td><input type="checkbox" class="mptl_settings_chk" id="mptl_settings_chk_8"></td>
-        			<td>Description</td>
-        		</tr>
-        	</tbody>
-
-        </table>
-        </div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-<?php $this->start('css'); ?>
-  <style>
-  </style>
-<?php $this->end(); ?>
+ <?php echo $this->element('settings',[$configs,$usersettings]) ?>
 <?php
-$this->Html->css([
-  'AdminLTE./plugins/datatables/dataTables.bootstrap',
-  'AdminLTE./plugins/daterangepicker/daterangepicker',
-  'AdminLTE./plugins/iCheck/all',
-], ['block' => 'css']);
+$this->Html->css([ 'AdminLTE./plugins/datatables/dataTables.bootstrap', 
+'AdminLTE./plugins/daterangepicker/daterangepicker',
+  'AdminLTE./plugins/iCheck/all'
+
+ ], ['block' => 'css']);
+
 $this->Html->script([
   'AdminLTE./plugins/datatables/jquery.dataTables.min',
+  'AdminLTE./plugins/datatables/dataTables.bootstrap.min',
   'AdminLTE./plugins/daterangepicker/moment.min',
   'AdminLTE./plugins/daterangepicker/daterangepicker',
   'AdminLTE./plugins/iCheck/iCheck.min',
 ], ['block' => 'script']); ?>
+
 <?php $this->start('scriptBotton'); ?>
 <script>
   $(function () {
-
+      
     //Flat blue color scheme for iCheck
     $('input[type="checkbox"].flat-blue, input[type="radio"].flat-blue').iCheck({
       checkboxClass: 'icheckbox_flat-blue',
@@ -316,16 +209,15 @@ $this->Html->script([
     $('input[id="issueddate"],input[id="startdate"],input[id="completiondate"').daterangepicker({locale : {
       format : 'DD/MM/YY'
     }});
-
-      // $.fn.dataTable.ext.errMode=throw;
-
-   var table= $('#mptlindextbl').DataTable({
+      
+    var table= $('#mptlindextbl').DataTable({
           "paging": true,
           "lengthChange": true,
           "searching": true,
           "ordering": true,
           "info": true,
           "autoWidth": false,
+          "scrollX":true,
         //server side processing
           "processing": true,
           "serverSide": true,
@@ -337,21 +229,13 @@ $this->Html->script([
             return '<input type="checkbox" class="mptl-lst-chkbox" name="chk' + data + '" value="' + $('<div/>').text(data).html() + '">';
         }
      },{
-     	'targets': [4,5,7,9,10,11,12,13,14,15,16,17,18],
+     	'targets': [<?php echo $usersettings['0']['value'] ;?>],
      	"visible": false,
-
-     },
-     {
-     	'targets': [0],
-     	"searchable": false,
-     	'orderable': false,
-     }]
-
+     }
+     ]
     });
      $('<a href="/<?php echo $this->request->params['controller'] ?>/add/" class="btn btn-sm btn-success" style="margin-left:5px;"><i class="fa fa-plus" aria-hidden="true"></i></a>').appendTo('div.dataTables_filter');
      $('<a href="#" class="btn btn-sm btn-success" data-toggle="modal" data-target="#settings" style="margin-left:5px;"><i class="fa fa-gear" aria-hidden="true"></i></a>').appendTo('div.dataTables_filter');
-
-
      $('.dataTables_filter input').unbind().on('keyup', function() {
 	var searchTerm = this.value.toLowerCase();
     $.fn.dataTable.ext.search.push(function(settings, data, dataIndex) {
@@ -376,7 +260,7 @@ $this->Html->script([
    table.draw();
    $.fn.dataTable.ext.search.pop();
 })
-
+  
   // Handle click on "Select all" control
    $('#select-all').on('click', function(){
       // Get all rows with search applied
@@ -384,7 +268,6 @@ $this->Html->script([
       // Check/uncheck checkboxes for all rows in the table
       $('input[type="checkbox"]', rows).prop('checked', this.checked);
    });
-
    // Handle click on checkbox to set state of "Select all" control
    $('#mptlindextbl tbody').on('change', 'input[type="checkbox"]', function(){
       // If checkbox is not checked
@@ -397,21 +280,17 @@ $this->Html->script([
             el.indeterminate = true;
          }
       }
-
        var c=$(".mptl-lst-chkbox:checked").length;
        $(".mptl span").html(c);
-       //$(".mptl span").html(c);
+       
    });
-
-
    // Handle click on " Settings Select all" control
    $('#mptl_settings_chk_all').on('click', function(){
-
       // Check/uncheck checkboxes for all rows in the table
       $('.mptl_settings_chk').prop('checked', true);
    });
-
    // Handle click on checkbox to set state of "Settings Select all" control
+  
    $('mptl-tbl-settings tbody').on('change', 'input[type="checkbox"]', function(){
       // If checkbox is not checked
       if(!this.checked){
@@ -422,29 +301,44 @@ $this->Html->script([
             // as 'indeterminate'
             el.indeterminate = true;
          }
+      
       }
-
-
+     
+   });
+   $(".mptl-settings-save").click(function(){
+       var hiddencols="";
+       $('.mptl_settings_chk').each(function () {
+		    var sThisVal = (this.checked ? $(this).val() : "");
+		    var id=$(this).attr("id");
+		    var col=id.split("_")[3];
+		    if(sThisVal){
+	    	
+		    	table.column(col).visible(true);
+		    	
+		    }else{
+		    	hiddencols.length>0? hiddencols+="," :hiddencols;
+		    	hiddencols+=col;
+		    	table.column(col).visible(false);
+		    }
+	   });
+	   
+	   $.post("/<?php echo $this->request->params['controller'] ?>/updateSettings",
+   		 {
+       		 columns: hiddencols,
+       		 
+   		 },
+	    function(data, status){
+	        $('#settings').modal('hide');
+	    });
+  
    });
 
-
-
- /*  $(".mptl-close").click(function(){
-
-  	alert("Do you want to close the issue?");
+  
+  
+  
   });
-
-  $(".mptl-assign").click(function(){
-
-        $(".assign-modal").show();
-
-  });
-  $(".mptl-unassign").click(function(){
-
-  	alert("Do you want to Un Assign?");
-  });  */
-
-  });
-
+  
+  
+  
 </script>
 <?php $this->end(); ?>

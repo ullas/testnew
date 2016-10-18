@@ -307,4 +307,4 @@ for(var i=0;i<data.length/2;i+=2){
     }
 
 	// Redraw layer when fonts are loaded
-$(window).on("load", function(){ console.log("loaded");  init(); addData() });
+$(window).on("load", function(){ console.log("loaded"); init(); addData() });

@@ -1,51 +1,72 @@
-<nav class="large-3 medium-4 columns" id="actions-sidebar">
-    <ul class="side-nav">
-        <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Html->link(__('New Createconfig'), ['action' => 'add']) ?></li>
-    </ul>
-</nav>
-<div class="createconfigs index large-9 medium-8 columns content">
-    <h3><?= __('Createconfigs') ?></h3>
-    <table cellpadding="0" cellspacing="0">
+<section class="content-header">
+  <h1>
+    <?php echo $this->request->params['controller'] ?>
+    <small></small>
+  </h1>
+  <ol class="breadcrumb">
+    <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+    <li><a href="#"></a>Fleet Management</li>
+    <li class="active">Createconfigs</li>
+    
+  </ol>
+</section>
+                
+<!-- Main content -->
+<section class="content">
+    <div class="row">
+        <div class="col-xs-12">
+  <div class="box box-primary">
+      <div class="box-body">
+    <table id="mptlindextbl" class="table table-hover  table-bordered ">
         <thead>
             <tr>
-                <th><?= $this->Paginator->sort('id') ?></th>
-                <th><?= $this->Paginator->sort('table_name') ?></th>
-                <th><?= $this->Paginator->sort('field_name') ?></th>
-                <th><?= $this->Paginator->sort('datatype') ?></th>
-                <th><?= $this->Paginator->sort('has_datefield') ?></th>
-                <th><?= $this->Paginator->sort('has_select') ?></th>
-                <th><?= $this->Paginator->sort('customer_id') ?></th>
-                <th><?= $this->Paginator->sort('title') ?></th>
-                <th class="actions"><?= __('Actions') ?></th>
+                <?php foreach ($configs as $field): ?>
+                
+                <th><?php echo $field['title']  ?></th>
+                
+                <?php endforeach ?>
+                
+                <th>Actions</th>
             </tr>
         </thead>
-        <tbody>
-            <?php foreach ($createconfigs as $createconfig): ?>
-            <tr>
-                <td><?= $this->Number->format($createconfig->id) ?></td>
-                <td><?= h($createconfig->table_name) ?></td>
-                <td><?= h($createconfig->field_name) ?></td>
-                <td><?= h($createconfig->datatype) ?></td>
-                <td><?= h($createconfig->has_datefield) ?></td>
-                <td><?= h($createconfig->has_select) ?></td>
-                <td><?= $this->Number->format($createconfig->customer_id) ?></td>
-                <td><?= h($createconfig->title) ?></td>
-                <td class="actions">
-                    <?= $this->Html->link(__('View'), ['action' => 'view', $createconfig->id]) ?>
-                    <?= $this->Html->link(__('Edit'), ['action' => 'edit', $createconfig->id]) ?>
-                    <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $createconfig->id], ['confirm' => __('Are you sure you want to delete # {0}?', $createconfig->id)]) ?>
-                </td>
-            </tr>
-            <?php endforeach; ?>
-        </tbody>
-    </table>
-    <div class="paginator">
-        <ul class="pagination">
-            <?= $this->Paginator->prev('< ' . __('previous')) ?>
-            <?= $this->Paginator->numbers() ?>
-            <?= $this->Paginator->next(__('next') . ' >') ?>
-        </ul>
-        <p><?= $this->Paginator->counter() ?></p>
-    </div>
-</div>
+        <tbody></tbody>
+    </table></div></div>
+    </div></div>
+   
+ 
+
+</section>
+
+<?php
+$this->Html->css([ 'AdminLTE./plugins/datatables/dataTables.bootstrap',  ], ['block' => 'css']);
+
+$this->Html->script([
+  'AdminLTE./plugins/datatables/jquery.dataTables.min',
+  'AdminLTE./plugins/datatables/dataTables.bootstrap.min',
+], ['block' => 'script']); ?>
+
+<?php $this->start('scriptBotton'); ?>
+<script>
+  $(function () {
+      
+      // $.fn.dataTable.ext.errMode=throw;
+      
+    $('#mptlindextbl').DataTable({
+          "paging": true,
+          "lengthChange": true,
+          "searching": true,
+          "ordering": true,
+          "info": true,
+          "autoWidth": false,
+     
+          //server side processing
+          "processing": true,
+          "serverSide": true,
+          "ajax": "/<?php echo $this->request->params['controller'] ?>/ajaxData"
+  
+    });
+     $('<a href="/<?php echo $this->request->params['controller'] ?>/add/" class="btn btn-sm btn-success" style="margin-left:5px;"><i class="fa fa-plus" aria-hidden="true"></i></a>').appendTo('div.dataTables_filter');
+    
+  });
+</script>
+<?php $this->end(); ?>

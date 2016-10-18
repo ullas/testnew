@@ -155,7 +155,6 @@
 '/js/ol/ext/utils/jspdf.min',
 '/js/ol/ext/utils/jQExportMap',
 '/js/maptell/notifications.js',
-
 'AdminLTE./plugins/select2/select2.full.min',
 'AdminLTE./plugins/toastr/toastr.min'
 ],
@@ -165,7 +164,6 @@
 <script>
 	function resizeMap() {
 	}
-
 	$(function() {
 		$(".select2").select2({
 			placeholder : "Select Alert Type",
@@ -197,25 +195,17 @@
 				format : 'DD/MM/YYYY h:mm A'
 			}
 		});
-
-
 	    $(".mptl-group li a").click(function(){
                  group= $(this).text();
-
         });
-
-
 	});
-
 	function resizeMap() {
-
 		map.removeLayer(vector);
 		counter = 1;
 		setTimeout(function() {
 			map.updateSize();
 			map.addLayer(vector);
 		}, 2000);
-
 	}
 </script>
 <?php $this -> end(); ?>
