@@ -12,7 +12,7 @@
                 <input id="mptl_settings_chk_all" type="checkbox">
                 <span class="text">Column Name</span>
                 <small class="label label-success"><i class="fa fa-check-square"></i>
-                  Check Column Name checkbox to select all columns. Drag <i class="fa fa-ellipsis-v"></i> <i class="fa fa-ellipsis-v"></i> to re-order the columns.
+                  Check Column Name checkbox to select all columns. Drag <i class="fa fa-ellipsis-v"></i>&nbsp;<i class="fa fa-ellipsis-v"></i> to re-order the columns.
                 </small>
               </li>
             </ul>
@@ -21,8 +21,7 @@
                 for($i=1;$i<count($configs);$i++){
                   echo '<li style="padding:7px;"><span class="handle"><i class="fa fa-ellipsis-v"></i>&nbsp;<i class="fa fa-ellipsis-v"></i></span>';
   						    echo '<input type="checkbox" class="mptl_settings_chk" id="mptl_settings_chk_', $i .'" >';
-  						    echo '<span>' . $configs[$i]['title'] . '</span>';
-  						    echo "</li>";
+  						    echo '<span>' . $configs[$i]['title'] . '</span></li>';
           		     }
 	            ?>
           </ul>

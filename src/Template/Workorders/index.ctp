@@ -153,7 +153,6 @@
 
                 <?php
                   for($i=1;$i<count($configs);$i++){
-
                   	echo "<th>". $configs[$i]['title'] ."</th>";
                   }
                 ?>
