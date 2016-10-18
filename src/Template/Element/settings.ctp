@@ -6,10 +6,10 @@
         <h3 class="modal-title" id="modalSettings">Settings</h3><small>Select the columns to display. You can order the columns based on your preference.</small>
       </div>
       <div class="modal-body" style="padding-bottom:0">
-        <div class="box box-primary">
-            <ul class="todo-list" style="margin-bottom:2px">
+      	<div class="box box-primary">
+          <ul class="todo-list" style="margin-bottom:2px">
               <li>
-                <input type="checkbox" id="mptl_settings_chk_all" >
+                <input id="mptl_settings_chk_all" type="checkbox">
                 <span class="text">Column Name</span>
                 <small class="label label-success"><i class="fa fa-check-square"></i>
                   Check Column Name checkbox to select all columns. Drag <i class="fa fa-ellipsis-v"></i> <i class="fa fa-ellipsis-v"></i> to re-order the columns.
@@ -17,16 +17,15 @@
               </li>
             </ul>
             <ul class="todo-list column-list">
-            <?php
-        		     for($i=1;$i<count($configs);$i++){
+              <?php
+                for($i=1;$i<count($configs);$i++){
                   echo '<li style="padding:7px;"><span class="handle"><i class="fa fa-ellipsis-v"></i>&nbsp;<i class="fa fa-ellipsis-v"></i></span>';
-						      echo '<input type="checkbox" class="mptl_settings_chk" id="mptl_settings_chk_', $i .'" >';
-						      echo '<span>' . $configs[$i]['title'] . '</span>';
-                  echo "</li>";
-        		     }
-        		?>
+  						    echo '<input type="checkbox" class="mptl_settings_chk" id="mptl_settings_chk_', $i .'" >';
+  						    echo '<span>' . $configs[$i]['title'] . '</span>';
+  						    echo "</li>";
+          		     }
+	            ?>
           </ul>
-        <!--  </div> box-->
         </div>
       </div>
       <div class="modal-footer">

@@ -216,7 +216,6 @@ $this->Html->script([
         forcePlaceholderSize: true,
         zIndex: 999999
     });
-
     var table= $('#mptlindextbl').DataTable({
           "paging": true,
           "lengthChange": true,
