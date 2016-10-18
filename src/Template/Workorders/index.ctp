@@ -150,10 +150,10 @@
         <thead>
             <tr>
             	<th data-orderable="false"><input type="checkbox" name="select_all" value="1" id="select-all" ></th>
-            	
+
                 <?php
                   for($i=1;$i<count($configs);$i++){
-                  		
+
                   	echo "<th>". $configs[$i]['title'] ."</th>";
                   }
                 ?>
@@ -182,7 +182,7 @@
 </div>
  <?php echo $this->element('settings',[$configs,$usersettings]) ?>
 <?php
-$this->Html->css([ 'AdminLTE./plugins/datatables/dataTables.bootstrap', 
+$this->Html->css([ 'AdminLTE./plugins/datatables/dataTables.bootstrap',
 'AdminLTE./plugins/daterangepicker/daterangepicker',
   'AdminLTE./plugins/iCheck/all'
 
@@ -199,7 +199,7 @@ $this->Html->script([
 <?php $this->start('scriptBotton'); ?>
 <script>
   $(function () {
-      
+
     //Flat blue color scheme for iCheck
     $('input[type="checkbox"].flat-blue, input[type="radio"].flat-blue').iCheck({
       checkboxClass: 'icheckbox_flat-blue',
@@ -209,7 +209,14 @@ $this->Html->script([
     $('input[id="issueddate"],input[id="startdate"],input[id="completiondate"').daterangepicker({locale : {
       format : 'DD/MM/YY'
     }});
-      
+    //jQuery UI sortable for the settings modal
+    $(".column-list").sortable({
+        placeholder: "sort-highlight",
+        handle: ".handle",
+        forcePlaceholderSize: true,
+        zIndex: 999999
+    });
+
     var table= $('#mptlindextbl').DataTable({
           "paging": true,
           "lengthChange": true,
@@ -260,7 +267,7 @@ $this->Html->script([
    table.draw();
    $.fn.dataTable.ext.search.pop();
 })
-  
+
   // Handle click on "Select all" control
    $('#select-all').on('click', function(){
       // Get all rows with search applied
@@ -282,7 +289,7 @@ $this->Html->script([
       }
        var c=$(".mptl-lst-chkbox:checked").length;
        $(".mptl span").html(c);
-       
+
    });
    // Handle click on " Settings Select all" control
    $('#mptl_settings_chk_all').on('click', function(){
@@ -290,7 +297,7 @@ $this->Html->script([
       $('.mptl_settings_chk').prop('checked', true);
    });
    // Handle click on checkbox to set state of "Settings Select all" control
-  
+
    $('mptl-tbl-settings tbody').on('change', 'input[type="checkbox"]', function(){
       // If checkbox is not checked
       if(!this.checked){
@@ -301,9 +308,9 @@ $this->Html->script([
             // as 'indeterminate'
             el.indeterminate = true;
          }
-      
+
       }
-     
+
    });
    $(".mptl-settings-save").click(function(){
        var hiddencols="";
@@ -312,33 +319,33 @@ $this->Html->script([
 		    var id=$(this).attr("id");
 		    var col=id.split("_")[3];
 		    if(sThisVal){
-	    	
+
 		    	table.column(col).visible(true);
-		    	
+
 		    }else{
 		    	hiddencols.length>0? hiddencols+="," :hiddencols;
 		    	hiddencols+=col;
 		    	table.column(col).visible(false);
 		    }
 	   });
-	   
+
 	   $.post("/<?php echo $this->request->params['controller'] ?>/updateSettings",
    		 {
        		 columns: hiddencols,
-       		 
+
    		 },
 	    function(data, status){
 	        $('#settings').modal('hide');
 	    });
-  
+
    });
 
-  
-  
-  
+
+
+
   });
-  
-  
-  
+
+
+
 </script>
 <?php $this->end(); ?>
