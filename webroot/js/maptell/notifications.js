@@ -12,15 +12,13 @@ var vector;
 var vectorSource;
 //a simulated path
 var path = [
-    
+
 ];
 for(var i=0;i<data.length/2;i+=2){
   		   var p=ol.proj.transform([data[i+1],data[i]], 'EPSG:4326', 'EPSG:3857');
   		   path.push(p);
-  		   
-}
 
-  
+}
 
   function addData()
   {
@@ -30,47 +28,47 @@ for(var i=0;i<data.length/2;i+=2){
             alertcat_id:i
          });
   	 	 addFeatureAt(f);
-  	 	
+
   	 }
   }
   var counter=1;
   function addLater(f){
-  	
+
   	setTimeout(function()
 				{	addFeatureAt(f);
 				}, 100*counter);
 	counter++;
   }
-  
+
   function addFeatureAt(f)
-	{	
-		
-		
+	{
+
+
 		vectorSource.addFeature(f);
-		vector.animateFeature (f, 
+		vector.animateFeature (f,
 			[	new ol.featureAnimation['Throw'](
-				{	speed: 0.8, 
+				{	speed: 0.8,
 					duration:1000-240,
 					side: false
 				}),
 				new ol.featureAnimation['Bounce'](
-				{	speed: 0.8, 
+				{	speed: 0.8,
 					duration: 1000-240,
 					horizontal: false
 				})
 			]);
-		
+
 	}
-	
+
 	function getGlyph(feature)
 	{
 		console.log("Calling..."+feature);
 		var props=feature.getProperties();
 		var id=props['alertcat_id'];
 		if(id){
-			
+
 			switch(id){
-				
+
 				case 1:
 				   return "fa-battery-1";
 				   break;
@@ -86,7 +84,7 @@ for(var i=0;i<data.length/2;i+=2){
 				   return "fa-long-arraow-up";
 				case 5:
 				   return "fa-bed";
-				   
+
 				 case 6:
 				   return "maki-fuel";
 				   break;
@@ -96,21 +94,18 @@ for(var i=0;i<data.length/2;i+=2){
 				case 8:
 				   return "fa-long-arraow-down";
 				   break;
-				
-				   
+
+
 				 default :
 				   return "fa-battery-1";
 				   break;
-				  
-				
-				
 			}
-			
+
 		}
 		  return "fa-flight";
-				   
+
 	}
-	
+
 	// Style function
 	function getSelectedFeatureStyle (feature,r)
 	{	var st= [];
@@ -130,11 +125,11 @@ for(var i=0;i<data.length/2;i+=2){
 		// Font style
 		st.push ( new ol.style.Style(
 					{	image: new ol.style.FontSymbol(
-						{	form: "poi", 
+						{	form: "poi",
 							gradient: true,
-							glyph: getGlyph(feature), 
+							glyph: getGlyph(feature),
 							fontSize: 0.5,
-							radius: 20, 
+							radius: 20,
 							//offsetX: -15,
 							rotation: 0,
 							rotateWithView: false,
@@ -158,7 +153,7 @@ for(var i=0;i<data.length/2;i+=2){
 					}));
 			return st;
 	}
-	
+
 	// Style function
 	function getFeatureStyle (feature)
 	{	var st= [];
@@ -178,11 +173,11 @@ for(var i=0;i<data.length/2;i+=2){
 		// Font style
 		st.push ( new ol.style.Style(
 					{	image: new ol.style.FontSymbol(
-						{	form: "poi", 
+						{	form: "poi",
 							gradient: true,
-							glyph: getGlyph(feature), 
+							glyph: getGlyph(feature),
 							fontSize: 0.5,
-							radius: 20, 
+							radius: 20,
 							//offsetX: -15,
 							rotation: 0,
 							rotateWithView: false,
@@ -207,15 +202,13 @@ for(var i=0;i<data.length/2;i+=2){
 			return st;
 	}
 
-	function getStyle(feature, resolution) 
+	function getStyle(feature, resolution)
 	{	var s = getFeatureStyle(feature);
 		// Ne pas recalculer
 		//feature.setStyle(s);
 		return s;
-		
+
 	};
-	
-	
 
 	function init(){
 	// The map
@@ -229,7 +222,7 @@ for(var i=0;i<data.length/2;i+=2){
     }),
      interactions: ol.interaction.defaults({mouseWheelZoom:false}),
 	layers: [
-	      new ol.layer.Tile({ 
+	      new ol.layer.Tile({
 	          source: new ol.source.OSM(),
 	          title: "OSM",
 			  baseLayer: true
@@ -246,7 +239,7 @@ for(var i=0;i<data.length/2;i+=2){
 
 	 vector = new ol.layer.Vector(
 	{	name: 'Alerts',
-		
+
 		source: vectorSource,
 		// y ordering
 	   renderOrder: ol.ordering.yOrdering(),
@@ -254,24 +247,24 @@ for(var i=0;i<data.length/2;i+=2){
 	});
 
 	map.addLayer(vector);
-	
+
     var select_interaction = new ol.interaction.Select({
-    	
+
     	style: getSelectedFeatureStyle
     });
-    
-	select_interaction.getFeatures().on("add", function (e) { 
+
+	select_interaction.getFeatures().on("add", function (e) {
          var feature = e.element; //the feature selected
          toastr.info('Alert Clicked..');
      });
 
      map.addInteraction(select_interaction);
-     
+
      var ovlayer =
 		[	new ol.layer.Tile({	source: new ol.source.OSM()	})
-			
+
 		];
-     
+
      var ov = new ol.control.Overview(
 			{	layers: ovlayer,
 				minZoom: 1,
@@ -281,33 +274,37 @@ for(var i=0;i<data.length/2;i+=2){
 				panAnimation: false,
 				elasticPan: true
 			});
+
+    ov.setPosition("bottom-left");
 		map.addControl(ov);
-		
+
 		// Main control bar
 		var mainbar = new ol.control.Bar();
 		map.addControl(mainbar);
-		
+
 		// Add a custom push button with onToggle function
 		mainbar.addControl ( new ol.control.Link(
 				{	id: 'export-pdf',
 					download: "map.pdf",
 					target: "_new",
-					text:'<i class="fa fa-download"></i>'
-					
+					text:'<i class="fa fa-download" style="cursor:pointer" title="Download PDF Map"></i>'
 				}));
-		mainbar.addControl ( new ol.control.Toggle(
+  mainbar.addControl ( new ol.control.Link(
+    				{	id: 'email-map',
+    					target: "_new",
+    					text:'<i class="fa fa-envelope-o" style="cursor:pointer" title="Send Map to E-mail"></i>'
+    				}));
+		/*mainbar.addControl ( new ol.control.Toggle(
 				{	html: '<i class="fa fa-envelope-o"></i>',
-					title: "e-mail",
+					title: "Send Map to E-mail",
 					className: "noToggle",
 					onToggle: function(active)
-						{	if (active) alert("Hello, I'm active"); 
-							else alert("Hello, I'm not active"); 
+						{	if (active) alert("Hello, I'm active");
+							else alert("Hello, I'm not active");
 						}
-				}));
-		
-		mainbar.setPosition("top");
-     
+				}));*/
+		mainbar.setPosition("top-left");
     }
 
 	// Redraw layer when fonts are loaded
-$(window).on("load", function(){ console.log("loaded");  init(); addData() });
+$(window).on("load", function(){ console.log("loaded"); init(); addData() });

@@ -3,16 +3,22 @@
   padding-top:5px;
   min-height:65px;
 }
-.fmactions > button{
-    margin-right: 10px;
-  }
-.fmactions > button > .label{
-    top: -22px;
-    right:-22px;
+
+.fmactions .fmaction{
+    float:left;
+    padding-bottom: 15px
+}
+
+.fmactions .fmaction span{
+    position: relative;
+    top: -20px;
+    right:10px;
     font-size:10px;
     font-weight:bold;
   }
-  .fmactions > button:hover {
+
+  .fmactions .fmaction > button:hover {
+
     animation: shake 0.82s cubic-bezier(.36,.07,.19,.97) both;
     transform: translate3d(0, 0, 0);
     backface-visibility: hidden;
@@ -55,18 +61,24 @@
       </div>
       <div class="box-body" >
           <div class="fmactions">
+            <div class="fmaction">
       	       <button type="button" class="mptl mptl-assign btn btn-primary btn-sm" data-toggle="modal" data-target="#assign">
 				  Assign
+          </button>
           <span class="label label-success">0</span>
-			  </button>
+      </div>
+        <div class="fmaction">
               <button type="button" class="mptl mptl-assign btn btn-primary btn-sm" data-toggle="modal" data-target="#assign">
 				 Unassign
-         <span class="label label-warning">0</span>
 			  </button>
+         <span class="label label-warning">0</span>
+         </div>
+           <div class="fmaction">
 			  <button type="button" class="mptl mptl-assign btn btn-primary btn-sm" data-toggle="modal" data-target="#assign">
 				  Close
-          <span class="label label-danger">0</span>
 			  </button>
+          <span class="label label-danger">0</span>
+          </div>
       </div>
       </div>
      </div>

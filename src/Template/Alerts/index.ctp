@@ -6,11 +6,22 @@
 .nopadding{
   padding:0
 }
+/*------------OL 3 customisation---------------------*/
+.ol-control button{
+  color:#fff;
+  background-color: rgba(0,0,0,.5);
+}
+.ol-control button:focus, .ol-control button:hover{
+  color:#000;
+  background-color: rgba(255,255,255,.5);
+}
+.ol-control.ol-overview .panel{
+  border: 1px solid rgba(0,0,0,.5);
+}
 .mptl-download{
 	display: block;
 	margin: 1px;
 	padding-top: 4px;
-	color: #fff;
 	font-size: 1.14em;
 	font-weight: 700;
 	text-decoration: none;
@@ -18,10 +29,19 @@
 	height: 1.375em;
 	width: 1.375em;
 	line-height: .4em;
-	background-color: rgba(0,60,136,.5);
 	border: none;
 	border-radius: 2px
-	
+}
+.noToggle a{
+  color: #fff;
+  background-color: rgba(0,0,0,.5);
+}
+.noToggle a:focus, .noToggle a:hover{
+  color:#000;
+  background-color: rgba(255,255,255,.2);
+}
+.ol-layerswitcher-image button{
+  background-image:url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYBAMAAAASWSDLAAAAIVBMVEUAAAD////////////////////////////////////////PIev5AAAACnRSTlMAAQVoaYaJnb7DmI7ZQwAAAC9JREFUGNNjYMAJqlbBwUQGBHvVIlSORwccJDAQCSwQegLwGI3iAnIA6fZMINJkALlKWFV3B5+DAAAAAElFTkSuQmCC')
 }
 </style>
 <!-- Content Header (Page header) -->
@@ -79,7 +99,7 @@
                      <ul class="dropdown-menu mptl-group">
                        <?php foreach ($groups as $object): ?>
                            <li><a href="#"> <?php echo $object ?></a></li>
-                       
+
                         <?php endforeach; ?>
                      </ul>
                    </div>
@@ -135,7 +155,6 @@
 '/js/ol/ext/utils/jspdf.min',
 '/js/ol/ext/utils/jQExportMap',
 '/js/maptell/notifications.js',
-
 'AdminLTE./plugins/select2/select2.full.min',
 'AdminLTE./plugins/toastr/toastr.min'
 ],
@@ -145,7 +164,6 @@
 <script>
 	function resizeMap() {
 	}
-   
 	$(function() {
 		$(".select2").select2({
 			placeholder : "Select Alert Type",
@@ -169,8 +187,6 @@
 			"hideMethod" : "fadeOut"
 		}
 		// show when page load
-
-		
 		//Date range picker with time picker
 		$('input[id="alertdatetimerange"]').daterangepicker({
 			timePicker : true,
@@ -179,25 +195,17 @@
 				format : 'DD/MM/YYYY h:mm A'
 			}
 		});
-		
-		
 	    $(".mptl-group li a").click(function(){
                  group= $(this).text();
-                 
         });
-		
-
 	});
-
 	function resizeMap() {
-
 		map.removeLayer(vector);
 		counter = 1;
 		setTimeout(function() {
 			map.updateSize();
 			map.addLayer(vector);
 		}, 2000);
-
 	}
 </script>
 <?php $this -> end(); ?>
