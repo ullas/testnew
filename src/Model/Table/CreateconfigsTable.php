@@ -62,15 +62,18 @@ class CreateconfigsTable extends Table
             ->allowEmpty('datatype');
 
         $validator
-            ->boolean('has_datefield')
-            ->allowEmpty('has_datefield');
-
-        $validator
-            ->boolean('has_select')
-            ->allowEmpty('has_select');
-
-        $validator
             ->allowEmpty('title');
+
+        $validator
+            ->allowEmpty('helpmessage');
+
+        $validator
+            ->integer('order')
+            ->allowEmpty('order');
+
+        $validator
+            ->boolean('isselect')
+            ->allowEmpty('isselect');
 
         return $validator;
     }

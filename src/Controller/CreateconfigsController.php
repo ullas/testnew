@@ -7,9 +7,17 @@ use App\Controller\AppController;
  * Createconfigs Controller
  *
  * @property \App\Model\Table\CreateconfigsTable $Createconfigs
+ * @property \App\Controller\Component\DatatableComponent $Datatable
  */
 class CreateconfigsController extends AppController
 {
+
+    /**
+     * Components
+     *
+     * @var array
+     */
+    public $components = ['Datatable'];
 
     /**
      * Index method
@@ -18,11 +26,42 @@ class CreateconfigsController extends AppController
      */
     public function index()
     {
-        $createconfigs = $this->paginate($this->Createconfigs);
-
-        $this->set(compact('createconfigs'));
-        $this->set('_serialize', ['createconfigs']);
+    	/*
+      		    
+        */
+       
+         $this->loadModel('CreateConfigs');
+         $configs=$this->CreateConfigs->find('all')->where(['table_name' => 'Createconfigs'])->order(['id' => 'ASC'])->toArray();
+        
+         $this->set('configs',$configs);	
+         $this->set('_serialize', ['configs']);
+       
+       
     }
+    
+    
+public function ajaxdata() {
+        $this->autoRender= false;
+      
+          
+       $this->loadModel('CreateConfigs');
+       $dbout=$this->CreateConfigs->find('all')->where(['table_name' => 'Createconfigs'])->order(['id' => 'ASC'])->toArray();
+        
+        $fields = array();
+        foreach($dbout as $value){
+            $fields[] = array("name" => $value['field_name'] , "type" => $value['datatype'] );
+			
+        }
+      
+		                           
+        $output =$this->Datatable->getView($fields,['Customers']);
+        $out =json_encode($output);  
+	
+		$this->response->body($out);
+	    return $this->response;
+	     
+             
+ }  
 
     /**
      * View method
@@ -34,7 +73,7 @@ class CreateconfigsController extends AppController
     public function view($id = null)
     {
         $createconfig = $this->Createconfigs->get($id, [
-            'contain' => []
+            'contain' => ['Customers']
         ]);
 
         $this->set('createconfig', $createconfig);
@@ -60,7 +99,11 @@ class CreateconfigsController extends AppController
                 $this->Flash->error(__('The createconfig could not be saved. Please, try again.'));
             }
         }
-        $this->set(compact('createconfig'));
+                
+          $customers = $this->Createconfigs->Customers->find('list', ['limit' => 200])->where("id=".$this->loggedinuser['customer_id']);
+      
+        
+                $this->set(compact('createconfig', 'customers'));
         $this->set('_serialize', ['createconfig']);
     }
 
@@ -78,6 +121,7 @@ class CreateconfigsController extends AppController
         ]);
         if ($this->request->is(['patch', 'post', 'put'])) {
             $createconfig = $this->Createconfigs->patchEntity($createconfig, $this->request->data);
+             $createconfig['customer_id']=$this->currentuser['customer_id'];
             if ($this->Createconfigs->save($createconfig)) {
                 $this->Flash->success(__('The createconfig has been saved.'));
 
@@ -86,7 +130,8 @@ class CreateconfigsController extends AppController
                 $this->Flash->error(__('The createconfig could not be saved. Please, try again.'));
             }
         }
-        $this->set(compact('createconfig'));
+        $customers = $this->Createconfigs->Customers->find('list', ['limit' => 200]);
+        $this->set(compact('createconfig', 'customers'));
         $this->set('_serialize', ['createconfig']);
     }
 

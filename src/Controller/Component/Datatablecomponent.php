@@ -5,19 +5,25 @@ use Cake\Controller\Component;
                                           
         public function getView($fields,$contains) 
         {
-            
+           
+			
             $length = count($fields);
             $colmns = array();
 			
             $i = 0;
 			// $colmns[] = array("db" => '0' , "dt" => $i++);
             foreach($fields as $value){
+            
+			  
+			
                 if(is_array($value)) {
                       $colmns[] = array("db" => $value['name'] , "dt" => $i++);
                 }else{
                     $colmns[] = array("db" => $value , "dt" => $i++);
                 }
             }
+			
+			
     
             $colmns[] =array( 
                 'db' => 'id', 
@@ -33,6 +39,7 @@ use Cake\Controller\Component;
                     return $buttons;
                 }
                );
+			 
             //getting orderby
                $order = $this->Order( $colmns );
             //getting filter

@@ -2,6 +2,8 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
+use Cake\ORM\TableRegistry;
+
 
 /**
  * Workorders Controller
@@ -31,13 +33,75 @@ class WorkordersController extends AppController
         */
        
          $this->loadModel('CreateConfigs');
-         $configs=$this->CreateConfigs->find('all')->where(['table_name' => 'Workorders'])->order(['id' => 'ASC'])->toArray();
-        
+         $configs=$this->CreateConfigs->find('all')->where(['table_name' => 'Workorders'])->order(['"order"' => 'ASC'])->toArray();
+		 $this->loadModel('Usersettings');
+		 $usersettings=$this->Usersettings->find('all')->where(['user_id' => $this->loggedinuser['id']])->where(['module' => 'Workorders'])->where(['key' => 'INIT_VISIBLE_COLUMNS_WORKORDERS'])->toArray();
+         if(isset($usersettings[0]['value'])){
+         	$this->set('usersettings',$usersettings);	
+         }else{
+         	
+         	$this->loadModel('Globalusersettings');
+		    $usersettings=$this->Globalusersettings->find('all')->where(['module' => 'Workorders'])->where(['key' => 'INIT_VISIBLE_COLUMNS_WORKORDERS'])->toArray();
+            $this->set('usersettings',$usersettings);
+			
+         }
+		 
+         
+		 
+		 
          $this->set('configs',$configs);	
-         $this->set('_serialize', ['configs']);
+         $this->set('_serialize', ['configs','usersettings']);
        
        
     }
+
+public function updateSettings()
+{
+   	
+	$this->autoRender= false;	
+	$columns=$_POST['columns'];
+	
+	
+	$columns=isset($columns)?$columns:6;
+	$userSettings = TableRegistry::get('Usersettings');
+	$count = $userSettings->find('all')
+	   ->where(['key' => 'INIT_VISIBLE_COLUMNS_WORKORDERS'])
+	  ->where(['user_id' => $this->loggedinuser['id']])
+	   ->count();
+	   
+	  
+	   
+	  
+	
+	if($count>0)	{	 
+	
+	$query = $userSettings->query();
+	$res=$query->update()
+	    ->set(['value' => $columns])
+	    ->where(['key' => 'INIT_VISIBLE_COLUMNS_WORKORDERS'])
+	    ->where(['user_id' => $this->loggedinuser['id']])
+	    ->execute();
+	$this->response->body($res);
+	
+   }else{
+   	  
+	   $query1 = $userSettings->query();
+	   $res=$query1->insert(['key','value','user_id','module'])
+	   ->values(
+	       ['key'=>'INIT_VISIBLE_COLUMNS_WORKORDERS',
+	        'value'=>$columns,
+	        'user_id'=>$this->loggedinuser['id'],
+	        'module'=>'Workorders'])
+	    ->execute();
+	   $this->response->body($res);
+	
+	   
+   }
+	
+	
+	
+	
+}
     
     
 public function ajaxdata() {
@@ -45,7 +109,7 @@ public function ajaxdata() {
       
           
        $this->loadModel('CreateConfigs');
-       $dbout=$this->CreateConfigs->find('all')->where(['table_name' => 'Workorders'])->order(['id' => 'ASC'])->toArray();
+       $dbout=$this->CreateConfigs->find('all')->where(['table_name' => 'Workorders'])->order(['"order"' => 'ASC'])->toArray();
         
         $fields = array();
         foreach($dbout as $value){

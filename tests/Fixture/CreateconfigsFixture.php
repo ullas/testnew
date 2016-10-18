@@ -21,10 +21,11 @@ class CreateconfigsFixture extends TestFixture
         'table_name' => ['type' => 'string', 'length' => null, 'default' => null, 'null' => true, 'collate' => null, 'comment' => null, 'precision' => null, 'fixed' => null],
         'field_name' => ['type' => 'string', 'length' => null, 'default' => null, 'null' => true, 'collate' => null, 'comment' => null, 'precision' => null, 'fixed' => null],
         'datatype' => ['type' => 'string', 'length' => null, 'default' => null, 'null' => true, 'collate' => null, 'comment' => null, 'precision' => null, 'fixed' => null],
-        'has_datefield' => ['type' => 'boolean', 'length' => null, 'default' => null, 'null' => true, 'comment' => null, 'precision' => null],
-        'has_select' => ['type' => 'boolean', 'length' => null, 'default' => null, 'null' => true, 'comment' => null, 'precision' => null],
         'customer_id' => ['type' => 'integer', 'length' => 10, 'default' => null, 'null' => true, 'comment' => null, 'precision' => null, 'unsigned' => null, 'autoIncrement' => null],
         'title' => ['type' => 'string', 'length' => null, 'default' => null, 'null' => true, 'collate' => null, 'comment' => null, 'precision' => null, 'fixed' => null],
+        'helpmessage' => ['type' => 'string', 'length' => null, 'default' => null, 'null' => true, 'collate' => null, 'comment' => null, 'precision' => null, 'fixed' => null],
+        'order' => ['type' => 'integer', 'length' => 10, 'default' => null, 'null' => true, 'comment' => null, 'precision' => null, 'unsigned' => null, 'autoIncrement' => null],
+        'isselect' => ['type' => 'boolean', 'length' => null, 'default' => 0, 'null' => true, 'comment' => null, 'precision' => null],
         '_constraints' => [
             'primary' => ['type' => 'primary', 'columns' => ['id'], 'length' => []],
         ],
@@ -42,10 +43,11 @@ class CreateconfigsFixture extends TestFixture
             'table_name' => 'Lorem ipsum dolor sit amet',
             'field_name' => 'Lorem ipsum dolor sit amet',
             'datatype' => 'Lorem ipsum dolor sit amet',
-            'has_datefield' => 1,
-            'has_select' => 1,
             'customer_id' => 1,
-            'title' => 'Lorem ipsum dolor sit amet'
+            'title' => 'Lorem ipsum dolor sit amet',
+            'helpmessage' => 'Lorem ipsum dolor sit amet',
+            'order' => 1,
+            'isselect' => 1
         ],
     ];
 }

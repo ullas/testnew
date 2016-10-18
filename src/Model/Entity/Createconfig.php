@@ -10,10 +10,13 @@ use Cake\ORM\Entity;
  * @property string $table_name
  * @property string $field_name
  * @property string $datatype
- * @property bool $has_datefield
- * @property bool $has_select
  * @property int $customer_id
  * @property string $title
+ * @property string $helpmessage
+ * @property int $order
+ * @property bool $isselect
+ *
+ * @property \App\Model\Entity\Customer $customer
  */
 class Createconfig extends Entity
 {

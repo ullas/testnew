@@ -213,12 +213,7 @@
   </div>
 </div>
 
-<?php $this->start('css'); ?>
-  <style>
-   
 
-  </style>
-<?php $this->end(); ?>
 <?php
 $this->Html->css([ 'AdminLTE./plugins/datatables/dataTables.bootstrap',  ], ['block' => 'css']);
 
