@@ -1,103 +1,40 @@
 <div class="modal fade" id="settings" tabindex="-1" role="dialog" aria-labelledby="modalSettings">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
-      <div class="modal-header">
+      <div class="modal-header" style="padding-bottom:0">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="modalSettings">Settings</h4><small>Select the colums to display</small>
+        <h3 class="modal-title" id="modalSettings">Settings</h3><small>Select the columns to display. You can order the columns based on your preference.</small>
       </div>
-      <div class="modal-body">
+      <div class="modal-body" style="padding-bottom:0">
       	<div class="box box-primary">
-        <table class="mptl-tbl-settings table table-hover" >
-        	<thead>
-        		<tr>
-        			<th style="width:20px"><input type="checkbox" id="mptl_settings_chk_all" ></th>
-        		    <th>Column Name</th>
-        		</tr>
-
-        	</thead>
-        	<tbody>
-        		
-        		<!--<tr>
-        	    	<td><input type="checkbox" class="mptl_settings_chk" id="mptl_settings_chk_2"></td>
-        			<td>PO</td>
-        		</tr><tr>
-        	    	<td><input type="checkbox" class="mptl_settings_chk" id="mptl_settings_chk_3"></td>
-        			<td>Invoice Number</td>
-        		</tr><tr>
-        	    	<td><input type="checkbox" class="mptl_settings_chk" id="mptl_settings_chk_4"></td>
-        			<td>Start Date</td>
-        		</tr><tr>
-        	    	<td><input type="checkbox" class="mptl_settings_chk" id="mptl_settings_chk_5"></td>
-        			<td>Odometer</td>
-        		</tr>
-        		</tr><tr>
-        	    	<td><input type="checkbox" class="mptl_settings_chk" id="mptl_settings_chk_6"></td>
-        			<td>Issued By</td>
-        		</tr>
-        		</tr><tr>
-        	    	<td><input type="checkbox" class="mptl_settings_chk" id="mptl_settings_chk_7"></td>
-        			<td>Assigned By</td>
-        		</tr>
-        		</tr><tr>
-        	    	<td><input type="checkbox" class="mptl_settings_chk" id="mptl_settings_chk_8"></td>
-        			<td>Labour</td>
-        		</tr>
-        		</tr><tr>
-        	    	<td><input type="checkbox" class="mptl_settings_chk" id="mptl_settings_chk_8"></td>
-        			<td>Parts</td>
-        		</tr>
-        		</tr><tr>
-        	    	<td><input type="checkbox" class="mptl_settings_chk" id="mptl_settings_chk_6"></td>
-        			<td>Discount</td>
-        		</tr>
-        		</tr><tr>
-        	    	<td><input type="checkbox" class="mptl_settings_chk" id="mptl_settings_chk_7"></td>
-        			<td>Tax</td>
-        		</tr>
-        		</tr><tr>
-        	    	<td><input type="checkbox" class="mptl_settings_chk" id="mptl_settings_chk_8"></td>
-        			<td>Issued Date</td>
-        		</tr>
-        		</tr><tr>
-        	    	<td><input type="checkbox" class="mptl_settings_chk" id="mptl_settings_chk_8"></td>
-        			<td>Completion Date</td>
-        		</tr>
-        		</tr><tr>
-        	    	<td><input type="checkbox" class="mptl_settings_chk" id="mptl_settings_chk_7"></td>
-        			<td>Vendor</td>
-        		</tr>
-        		</tr><tr>
-        	    	<td><input type="checkbox" class="mptl_settings_chk" id="mptl_settings_chk_8"></td>
-        			<td>Void</td>
-        		</tr>
-        		</tr><tr>
-        	    	<td><input type="checkbox" class="mptl_settings_chk" id="mptl_settings_chk_8"></td>
-        			<td>Status</td>
-        		</tr>
-        		</tr><tr>
-        	    	<td><input type="checkbox" class="mptl_settings_chk" id="mptl_settings_chk_8"></td>
-        			<td>Description</td>
-        		</tr> -->
-        		
-        		<?php
-        		   // print_r($configs);
-        		     for($i=1;$i<count($configs);$i++){
-        		     		
-        		     	 echo "</tr><tr>";
-						 echo '<td><input type="checkbox" class="mptl_settings_chk" id="mptl_settings_chk_', $i .'" ></td>';
-						 echo '<td>' . $configs[$i]['title'] . '</td>';
-						 echo "</tr>";
-        		     }
-        		
-        		?>
-        	</tbody>
-
-        </table>
+          <ul class="todo-list" style="margin-bottom:2px">
+              <li>
+                <input id="mptl_settings_chk_all" type="checkbox">
+                <span class="text">Column Name</span>
+                <small class="label label-success"><i class="fa fa-check-square"></i>
+                  Check Column Name checkbox to select all columns. Drag <i class="fa fa-ellipsis-v"></i>&nbsp;<i class="fa fa-ellipsis-v"></i> to re-order the columns.
+                </small>
+              </li>
+            </ul>
+            <ul class="todo-list column-list">
+              <?php
+               
+                $usa=explode(',',$usersettings[0]['value']);
+                
+                foreach ($configs as $key) {
+                	$check=in_array($key['order'],$usa)?"":"checked";
+                    if($key['order']==0) continue;
+                  echo '<li style="padding:7px;"><span class="handle"><i class="fa fa-ellipsis-v"></i>&nbsp;<i class="fa fa-ellipsis-v"></i></span>';
+  						    echo '<input type="checkbox" class="mptl_settings_chk" ' . $check .  ' id="mptl_settings_chk_'.  $key['order'] .'" >';
+  						    echo '<span>' . $key['title'] . '</span></li>';
+          		     }
+	            ?>
+          </ul>
         </div>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="button" class="mptl-settings-save btn btn-primary">Save changes</button>
+        <button type="button" class="mptl-settings-save btn btn-success">Save changes</button>
       </div>
     </div>
   </div>

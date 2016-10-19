@@ -44,6 +44,7 @@
     <?php echo $this->request->params['controller'] ?>
     <small></small>
   </h1>
+  <input type="hidden" value="1"  id="basicfilter"/>
   <ol class="breadcrumb">
     <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
     <li><a href="#"></a>Fleet Management</li>
@@ -65,19 +66,19 @@
       	       <button type="button" class="mptl mptl-assign btn btn-primary btn-sm" data-toggle="modal" data-target="#assign">
 				  Assign
           </button>
-          <span class="label label-success">0</span>
+          <span class="mptl-itemsel mptl-itemsel-assign label label-success">0</span>
       </div>
         <div class="fmaction">
               <button type="button" class="mptl mptl-assign btn btn-primary btn-sm" data-toggle="modal" data-target="#assign">
 				 Unassign
 			  </button>
-         <span class="label label-warning">0</span>
+         <span class="mptl-itemsel mptl-itemsel-unassign label label-warning">0</span>
          </div>
            <div class="fmaction">
 			  <button type="button" class="mptl mptl-assign btn btn-primary btn-sm" data-toggle="modal" data-target="#assign">
 				  Close
 			  </button>
-          <span class="label label-danger">0</span>
+          <span class="mptl-itemsel mptl-itemsel-close label label-danger">0</span>
           </div>
       </div>
       </div>
@@ -94,13 +95,13 @@
              <div class="active tab-pane" id="details">
 							 <div class="box-body">
 							      	       <div class="form-group">
-							                  <input type="checkbox" class="flat-blue" checked>
+							                  <input type="checkbox" class="mptl-filter-base flat flat-blue" checked id="mptl_filter_add_1">
 							                  <span style="padding-right:10px">Open</span>
-							                  <input type="checkbox" class="flat-blue">
+							                  <input type="checkbox" class="mptl-filter-base flat flat-blue" id="mptl_filter_add_2">
                                 <span style="padding-right:10px">Overdue</span>
-							                  <input type="checkbox" class="flat-blue" disabled>
+							                  <input type="checkbox" class="mptl-filter-base  flat flat-blue"  id="mptl_filter_add_3">
                                 <span style="padding-right:10px">Resolved</span>
-							                  <input type="checkbox" class="flat-blue" disabled>
+							                  <input type="checkbox" class="mptl-filter-base flat flat-blue"  id="mptl_filter_add_4">
                                 <span style="padding-right:10px">Closed</span>
 							              </div>
 							      </div>
@@ -114,7 +115,7 @@
                                     <div class="input-group-addon">
                                         <i class="fa fa-calendar"></i>
                                       </div>
-                                      <input class="form-control pull-right" id="issueddate" type="date">
+                                      <input class="mptl-daterange form-control pull-right" id="issueddate" type="date">
                                     </div>
 							                </div>
 							                <div class="col-md-4" style="display:inline-block">
@@ -123,7 +124,7 @@
                                    <div class="input-group-addon">
                                        <i class="fa fa-calendar"></i>
                                      </div>
-                                     <input class="form-control pull-right" id="startdate" type="date">
+                                     <input class="mptl-daterange form-control pull-right" id="startdate" type="date">
                                    </div>
 							                </div>
 							                 <div class="col-md-4" style="display:inline-block">
@@ -132,7 +133,7 @@
                                    <div class="input-group-addon">
                                        <i class="fa fa-calendar"></i>
                                      </div>
-                                     <input class="form-control pull-right" id="completiondate" type="date">
+                                     <input class="mptl-daterange form-control pull-right" id="completiondate" type="date">
                                    </div>
 							                </div>
 							              </div>
@@ -150,6 +151,9 @@
         <thead>
             <tr>
             	<th data-orderable="false"><input type="checkbox" name="select_all" value="1" id="select-all" ></th>
+            	
+            	
+            	
             	
                 <?php
                   for($i=1;$i<count($configs);$i++){
@@ -184,13 +188,14 @@
 <?php
 $this->Html->css([ 'AdminLTE./plugins/datatables/dataTables.bootstrap', 
 'AdminLTE./plugins/daterangepicker/daterangepicker',
-  'AdminLTE./plugins/iCheck/all'
-
+  'AdminLTE./plugins/iCheck/all',
+   'AdminLTE./plugins/datatables/extensions/ColReorder/css/dataTables.colReorder.min',
  ], ['block' => 'css']);
 
 $this->Html->script([
   'AdminLTE./plugins/datatables/jquery.dataTables.min',
   'AdminLTE./plugins/datatables/dataTables.bootstrap.min',
+  'AdminLTE./plugins/datatables/extensions/ColReorder/js/dataTables.colReorder.min',
   'AdminLTE./plugins/daterangepicker/moment.min',
   'AdminLTE./plugins/daterangepicker/daterangepicker',
   'AdminLTE./plugins/iCheck/iCheck.min',
@@ -198,6 +203,7 @@ $this->Html->script([
 
 <?php $this->start('scriptBotton'); ?>
 <script>
+  var table; var order;
   $(function () {
       
     //Flat blue color scheme for iCheck
@@ -206,11 +212,13 @@ $this->Html->script([
       radioClass: 'iradio_flat-blue'
     });
     //daterangepicker for advanced filtering
-    $('input[id="issueddate"],input[id="startdate"],input[id="completiondate"').daterangepicker({locale : {
+    $('input[id="issueddate"],input[id="startdate"],input[id="completiondate"').daterangepicker(
+    	{locale : {
       format : 'DD/MM/YY'
-    }});
+    }}).val('');
+    
       
-    var table= $('#mptlindextbl').DataTable({
+     table= $('#mptlindextbl').DataTable({
           "paging": true,
           "lengthChange": true,
           "searching": true,
@@ -218,6 +226,13 @@ $this->Html->script([
           "info": true,
           "autoWidth": false,
           "scrollX":true,
+          colReorder: true,
+          responsive: true,
+          "fnServerParams": function ( aoData ) {
+            
+            aoData.additional = $("#issueddate").val()+","+$("#startdate").val()+ "," +$("#completiondate").val(),
+            aoData.basic=$("#basicfilter").val()?$("#basicfilter").val():"-1";
+          },
         //server side processing
           "processing": true,
           "serverSide": true,
@@ -231,7 +246,8 @@ $this->Html->script([
      },{
      	'targets': [<?php echo $usersettings['0']['value'] ;?>],
      	"visible": false,
-     }
+     },
+     
      ]
     });
      $('<a href="/<?php echo $this->request->params['controller'] ?>/add/" class="btn btn-sm btn-success" style="margin-left:5px;"><i class="fa fa-plus" aria-hidden="true"></i></a>').appendTo('div.dataTables_filter');
@@ -260,13 +276,21 @@ $this->Html->script([
    table.draw();
    $.fn.dataTable.ext.search.pop();
 })
-  
+ order= new $.fn.dataTable.ColReorder( table );
+ var svdodr=[<?php echo $usersettings[0]['value1'] ?>];
+ if(svdodr.length>1){
+ 	order.fnOrder(svdodr);
+ 	//alert(fnSettings().aoColumns.length);
+ }
+ 
   // Handle click on "Select all" control
    $('#select-all').on('click', function(){
       // Get all rows with search applied
       var rows = table.rows({ 'search': 'applied' }).nodes();
       // Check/uncheck checkboxes for all rows in the table
       $('input[type="checkbox"]', rows).prop('checked', this.checked);
+      var c=$(".mptl-lst-chkbox:checked").length;
+      $(".mptl-itemsel").html(c);
    });
    // Handle click on checkbox to set state of "Select all" control
    $('#mptlindextbl tbody').on('change', 'input[type="checkbox"]', function(){
@@ -281,13 +305,20 @@ $this->Html->script([
          }
       }
        var c=$(".mptl-lst-chkbox:checked").length;
-       $(".mptl span").html(c);
+       
+       $(".mptl-itemsel").html(c);
+        
+       
        
    });
    // Handle click on " Settings Select all" control
    $('#mptl_settings_chk_all').on('click', function(){
       // Check/uncheck checkboxes for all rows in the table
-      $('.mptl_settings_chk').prop('checked', true);
+      if( $(this).is(':checked') ){
+         $('.mptl_settings_chk').prop('checked', true);
+      }else{
+      	$('.mptl_settings_chk').prop('checked', false);
+      }
    });
    // Handle click on checkbox to set state of "Settings Select all" control
   
@@ -307,6 +338,7 @@ $this->Html->script([
    });
    $(".mptl-settings-save").click(function(){
        var hiddencols="";
+      
        $('.mptl_settings_chk').each(function () {
 		    var sThisVal = (this.checked ? $(this).val() : "");
 		    var id=$(this).attr("id");
@@ -325,20 +357,100 @@ $this->Html->script([
 	   $.post("/<?php echo $this->request->params['controller'] ?>/updateSettings",
    		 {
        		 columns: hiddencols,
-       		 
+       		 visorder:  order.fnOrder().toString() 
    		 },
 	    function(data, status){
 	        $('#settings').modal('hide');
 	    });
+	    repositionSettings();
   
    });
 
+    $('input[id="issueddate"],input[id="startdate"],input[id="completiondate"').change(function(){
+    	 table.ajax.reload();
+    });
   
-  
+        //jQuery UI sortable for the settings modal
+    $(".column-list").sortable({
+        placeholder: "sort-highlight",
+        handle: ".handle",
+        forcePlaceholderSize: true,
+        zIndex: 999999
+    });
+    
+    
+    
   
   });
+  
+
+
+$('.mptl-filter-base').on('ifChecked', function(event){ 
+	
+	setBasicFilter();
+
+});
+$('.mptl-filter-base').on('ifUnchecked', function(event){ 
+	
+	setBasicFilter();
+
+});
+  
+ function setBasicFilter()
+  {
+  	  var filter="";
+  	  var factive=false;
+       $('.mptl-filter-base').each(function () {
+		    var sThisVal = (this.checked ? $(this).val() : "");
+		    var id=$(this).attr("id");
+		    var col=id.split("_")[3];
+		    if(sThisVal){
+	    	
+		    	filter.length>0? filter+="," :filter;
+		    	filter+=col;
+		    	factive=true;
+		    }
+	   });
+  	  $("#basicfilter").val(filter);
+  	  if(factive){
+  	  	
+  	  	$("#filterstatus").show();
+  	  }else{
+  	  	$("#filterstatus").hide();
+  	  }
+  	  
+  	  table.ajax.reload();
+  }
+  function getAdditionalFilter()
+  {
+  	var filter="";
+  	filter+=($("#issueddate").val()+",");
+  	filter+=($("#startdate").val()+",");
+  	filter+=($("#completiondate").val()+",");
+  	
+  	return filter;
+  	
+  }
+  
+  function repositionSettings(){
+  
+  	var listItems = $(".todo-list li input.mptl_settings_chk");
+		var cols=[0];
+		listItems.each(function(idx, li) {
+   			var id= $(this).attr("id").split("_")[3];
+            cols.push(id);
+    		// and the rest of your code
+		});
+		cols.push(cols.length);
+		table.colReorder.reset();
+  	    order.fnOrder(cols);
+  	  
+  	    table.draw();
+  	
+  }
   
   
   
 </script>
 <?php $this->end(); ?>
+

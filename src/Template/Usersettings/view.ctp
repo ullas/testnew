@@ -33,6 +33,10 @@
             <td><?= h($usersetting->module) ?></td>
         </tr>
         <tr>
+            <th><?= __('Value1') ?></th>
+            <td><?= h($usersetting->value1) ?></td>
+        </tr>
+        <tr>
             <th><?= __('Id') ?></th>
             <td><?= $this->Number->format($usersetting->id) ?></td>
         </tr>

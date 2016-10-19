@@ -38,6 +38,12 @@ class WorkordersController extends AppController
 		 $usersettings=$this->Usersettings->find('all')->where(['user_id' => $this->loggedinuser['id']])->where(['module' => 'Workorders'])->where(['key' => 'INIT_VISIBLE_COLUMNS_WORKORDERS'])->toArray();
          if(isset($usersettings[0]['value'])){
          	$this->set('usersettings',$usersettings);	
+			if(isset($usersettings[0]['value'])){
+			 	$t=explode(",",$usersettings[0]['value1']);
+				$configs=$this->sortArrayByArray($configs,$t);
+				
+			
+		    }
          }else{
          	
          	$this->loadModel('Globalusersettings');
@@ -55,12 +61,15 @@ class WorkordersController extends AppController
        
     }
 
+
+
 public function updateSettings()
 {
    	
 	$this->autoRender= false;	
 	$columns=$_POST['columns'];
-	
+	$visorder = $_POST['visorder'];
+		
 	
 	$columns=isset($columns)?$columns:6;
 	$userSettings = TableRegistry::get('Usersettings');
@@ -78,6 +87,7 @@ public function updateSettings()
 	$query = $userSettings->query();
 	$res=$query->update()
 	    ->set(['value' => $columns])
+		->set(['value1' => $visorder])
 	    ->where(['key' => 'INIT_VISIBLE_COLUMNS_WORKORDERS'])
 	    ->where(['user_id' => $this->loggedinuser['id']])
 	    ->execute();
@@ -102,11 +112,74 @@ public function updateSettings()
 	
 	
 }
-    
+
+private function toPostDBDate($date){
+	
+		 $ret="";
+		 $parts=explode("/",$date);
+		 if(count($parts)==3){
+		 	$ret= $date= '20' .trim($parts[2]) . "-" . trim($parts[1]) . "-" . trim($parts[0]);
+			
+		 }
+		
+	  return $ret;
+}
+
+private  function sortArrayByArray(array $array, array $orderArray) {
+    $ordered = array();
+    foreach ($orderArray as $key) {
+        if (array_key_exists($key, $array)) {
+             	
+            $ordered[$key] = $array[$key];
+            unset($array[$key]);
+        }
+    }
+	
+    return $ordered ;
+}
+
+private function getDateRangeFilters($dates)  {
+	
+	$sql="";	
+		
+	$alldates=explode(",",$dates);
+	
+	
+	
+	$datecol=explode("-",$alldates[0]);
+	
+	$sql .=  count($datecol)>1? " and issuedate between '" . $this->toPostDBDate($datecol[0]) . "' and '" . $this->toPostDBDate($datecol[1]) . "'": "" ;
+	
+	$datecol=explode("-",$alldates[1]);
+	
+	$sql .=  count($datecol)>1? " and startdate between '" . $this->toPostDBDate($datecol[0]) . "' and '" . $this->toPostDBDate($datecol[1]) . "'": "" ;
+	
+	$datecol=explode("-",$alldates[2]);
+	
+	$sql .= count($datecol)>1? " and completiondate between '" . $this->toPostDBDate($datecol[0]) . "' and '" . $this->toPostDBDate($datecol[1]) . "'": "" ;
+	
+	
+	return $sql;
+}  
     
 public function ajaxdata() {
         $this->autoRender= false;
-      
+		$usrfiter="";
+		$basic = isset($this->request->query['basic'])?$this->request->query['basic']:"" ;
+		$additional = isset($this->request->query['additional'])?$this->request->query['additional']:"";
+		
+		
+        if($basic != -1){
+        	$options=explode(",",$basic);
+			
+        	for($i=0;$i<sizeof($options);$i++){
+        	    $i==0?$usrfiter.="   (workorderstatus_id=" .$options[$i]
+				:$usrfiter.=" or  workorderstatus_id=" .$options[$i];
+        	}
+			$usrfiter.=(") ");
+        }
+		$usrfiter.=$this->getDateRangeFilters($additional);
+		
           
        $this->loadModel('CreateConfigs');
        $dbout=$this->CreateConfigs->find('all')->where(['table_name' => 'Workorders'])->order(['"order"' => 'ASC'])->toArray();
@@ -116,11 +189,13 @@ public function ajaxdata() {
             $fields[] = array("name" => $value['field_name'] , "type" => $value['datatype'] );
 			
         }
-      
+        
+		
+		
 		                           
-        $output =$this->Datatable->getView($fields,['Workorderstatuses', 'Vehicles', 'Vendors', 'Issuedbies', 'Assignedbies', 'Assigntos', 'Customers']);
+        $output =$this->Datatable->getView($fields,['Workorderstatuses', 'Vehicles', 'Vendors', 'Issuedbies', 'Assignedbies', 'Assigntos', 'Customers'],$usrfiter);
         $out =json_encode($output);  
-	
+	   
 		$this->response->body($out);
 	    return $this->response;
 	     
