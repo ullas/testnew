@@ -18,6 +18,7 @@
             </ul>
             <ul class="todo-list column-list">
               <?php
+
                
                 $usa=explode(',',$usersettings[0]['value']);
                 
@@ -27,6 +28,7 @@
                   echo '<li style="padding:7px;"><span class="handle"><i class="fa fa-ellipsis-v"></i>&nbsp;<i class="fa fa-ellipsis-v"></i></span>';
   						    echo '<input type="checkbox" class="mptl_settings_chk" ' . $check .  ' id="mptl_settings_chk_'.  $key['order'] .'" >';
   						    echo '<span>' . $key['title'] . '</span></li>';
+
           		     }
 	            ?>
           </ul>

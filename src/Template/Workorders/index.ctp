@@ -433,19 +433,15 @@ $('.mptl-filter-base').on('ifUnchecked', function(event){
   }
   
   function repositionSettings(){
-  
-  	var listItems = $(".todo-list li input.mptl_settings_chk");
-		var cols=[0];
+  	
+  	var listItems = $("#todo-list li");
 		listItems.each(function(idx, li) {
-   			var id= $(this).attr("id").split("_")[3];
-            cols.push(id);
+   			 var columm = $(li);
+   			 console.log("hello");
+
     		// and the rest of your code
 		});
-		cols.push(cols.length);
-		table.colReorder.reset();
-  	    order.fnOrder(cols);
-  	  
-  	    table.draw();
+  	
   	
   }
   
