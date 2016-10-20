@@ -18,10 +18,17 @@
             </ul>
             <ul class="todo-list column-list">
               <?php
-                for($i=1;$i<count($configs);$i++){
+
+               
+                $usa=explode(',',$usersettings[0]['value']);
+                
+                foreach ($configs as $key) {
+                	$check=in_array($key['order'],$usa)?"":"checked";
+                    if($key['order']==0) continue;
                   echo '<li style="padding:7px;"><span class="handle"><i class="fa fa-ellipsis-v"></i>&nbsp;<i class="fa fa-ellipsis-v"></i></span>';
-  						    echo '<input type="checkbox" class="mptl_settings_chk" id="mptl_settings_chk_', $i .'" >';
-  						    echo '<span>' . $configs[$i]['title'] . '</span></li>';
+  						    echo '<input type="checkbox" class="mptl_settings_chk" ' . $check .  ' id="mptl_settings_chk_'.  $key['order'] .'" >';
+  						    echo '<span>' . $key['title'] . '</span></li>';
+
           		     }
 	            ?>
           </ul>

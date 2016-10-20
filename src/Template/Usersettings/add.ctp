@@ -49,6 +49,10 @@ $this->Form->templates($myTemplates);
                   echo $this->Form->input('module');
 
                     
+                	
+                  echo $this->Form->input('value1');
+
+                    
 	
         ?>
     </div>

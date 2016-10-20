@@ -114,7 +114,7 @@
                   <!-- checkbox -->
                   <input type="checkbox" value="" name="">
                   <!-- todo text -->
-                  <span class="text">Design a nice theme</span>
+                  <span class="text">Vehicle 354 Started</span>
                   <!-- Emphasis label -->
                   <small class="label label-danger"><i class="fa fa-clock-o"></i> 2 mins</small>
                   <!-- General tools such as edit or delete-->
@@ -129,8 +129,8 @@
                         <i class="fa fa-ellipsis-v"></i>
                       </span>
                   <input type="checkbox" value="" name="">
-                  <span class="text">Make the theme responsive</span>
-                  <small class="label label-info"><i class="fa fa-clock-o"></i> 4 hours</small>
+                  <span class="text">Harsh Braking (Mohd Asharaf)</span>
+                  <small class="label label-info"><i class="fa fa-clock-o"></i> 30 mintues</small>
                   <div class="tools">
                     <i class="fa fa-edit"></i>
                     <i class="fa fa-trash-o"></i>
@@ -142,8 +142,8 @@
                         <i class="fa fa-ellipsis-v"></i>
                       </span>
                   <input type="checkbox" value="" name="">
-                  <span class="text">Let theme shine like a star</span>
-                  <small class="label label-warning"><i class="fa fa-clock-o"></i> 1 day</small>
+                  <span class="text">Vehicle KL-60 6714 Started</span>
+                  <small class="label label-warning"><i class="fa fa-clock-o"></i> 1 dhouray</small>
                   <div class="tools">
                     <i class="fa fa-edit"></i>
                     <i class="fa fa-trash-o"></i>
@@ -155,8 +155,8 @@
                         <i class="fa fa-ellipsis-v"></i>
                       </span>
                   <input type="checkbox" value="" name="">
-                  <span class="text">Let theme shine like a star</span>
-                  <small class="label label-success"><i class="fa fa-clock-o"></i> 3 days</small>
+                  <span class="text">Trip Strated for Vehicle KL01-3124</span>
+                  <small class="label label-success"><i class="fa fa-clock-o"></i> 1 hour</small>
                   <div class="tools">
                     <i class="fa fa-edit"></i>
                     <i class="fa fa-trash-o"></i>
@@ -168,8 +168,8 @@
                         <i class="fa fa-ellipsis-v"></i>
                       </span>
                   <input type="checkbox" value="" name="">
-                  <span class="text">Check your messages and notifications</span>
-                  <small class="label label-primary"><i class="fa fa-clock-o"></i> 1 week</small>
+                  <span class="text">Vehicle KL-12 6743 Reacching in 30 Minutes</span>
+                  <small class="label label-primary"><i class="fa fa-clock-o"></i> 2 hour</small>
                   <div class="tools">
                     <i class="fa fa-edit"></i>
                     <i class="fa fa-trash-o"></i>
@@ -181,8 +181,8 @@
                         <i class="fa fa-ellipsis-v"></i>
                       </span>
                   <input type="checkbox" value="" name="">
-                  <span class="text">Let theme shine like a star</span>
-                  <small class="label label-default"><i class="fa fa-clock-o"></i> 1 month</small>
+                  <span class="text">Continious Drive Detected for Vehicle KL-01 5465 </span>
+                  <small class="label label-default"><i class="fa fa-clock-o"></i> 3 hour</small>
                   <div class="tools">
                     <i class="fa fa-edit"></i>
                     <i class="fa fa-trash-o"></i>

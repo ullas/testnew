@@ -61,6 +61,9 @@ class UsersettingsTable extends Table
         $validator
             ->allowEmpty('module');
 
+        $validator
+            ->allowEmpty('value1');
+
         return $validator;
     }
 
