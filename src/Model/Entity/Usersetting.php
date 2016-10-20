@@ -11,6 +11,7 @@ use Cake\ORM\Entity;
  * @property string $value
  * @property int $user_id
  * @property string $module
+ * @property string $value1
  *
  * @property \App\Model\Entity\User $user
  */
