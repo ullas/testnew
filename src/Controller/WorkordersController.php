@@ -38,12 +38,7 @@ class WorkordersController extends AppController
 		 $usersettings=$this->Usersettings->find('all')->where(['user_id' => $this->loggedinuser['id']])->where(['module' => 'Workorders'])->where(['key' => 'INIT_VISIBLE_COLUMNS_WORKORDERS'])->toArray();
          if(isset($usersettings[0]['value'])){
          	$this->set('usersettings',$usersettings);	
-			if(isset($usersettings[0]['value'])){
-			 	$t=explode(",",$usersettings[0]['value1']);
-				$configs=$this->sortArrayByArray($configs,$t);
-				
 			
-		    }
          }else{
          	
          	$this->loadModel('Globalusersettings');
@@ -51,12 +46,22 @@ class WorkordersController extends AppController
             $this->set('usersettings',$usersettings);
 			
          }
-		 
-         
-		 
-		 
+		 $actions =[
+                ['name'=>'assign','title'=>'Assign','class'=>'label-success'],
+                ['name'=>'unassign','title'=>'Unassign','class'=>'label-warning'],
+                ['name'=>'close','title'=>'Close','class'=>' label-danger ']
+                ];
+         $additional= [
+      	                          'basic'=>['Open','OverDue','Resolved','Closed'],
+      	                          'additional'=>[
+      	                                ['name'=>'issueddate','title'=>'Issued Date'],
+      	                                ['name'=>'startdate','title' =>'Start Date'],
+      	                                ['name'=>'completiondate','title'=>'Completion Date']   	                          
+      	                          ]];
+		 $this->set('additional',$additional);
+		 $this->set('actions',$actions);	
          $this->set('configs',$configs);	
-         $this->set('_serialize', ['configs','usersettings']);
+         $this->set('_serialize', ['configs','usersettings','actions','additional']);
        
        
     }
@@ -125,38 +130,29 @@ private function toPostDBDate($date){
 	  return $ret;
 }
 
-private  function sortArrayByArray(array $array, array $orderArray) {
-    $ordered = array();
-    foreach ($orderArray as $key) {
-        if (array_key_exists($key, $array)) {
-             	
-            $ordered[$key] = $array[$key];
-            unset($array[$key]);
-        }
-    }
-	
-    return $ordered ;
-}
 
-private function getDateRangeFilters($dates)  {
+private function getDateRangeFilters($dates,$basic)  {
 	
 	$sql="";	
 		
 	$alldates=explode(",",$dates);
 	
-	
+	$pre=($basic>0)?" and ":"";
 	
 	$datecol=explode("-",$alldates[0]);
 	
-	$sql .=  count($datecol)>1? " and issuedate between '" . $this->toPostDBDate($datecol[0]) . "' and '" . $this->toPostDBDate($datecol[1]) . "'": "" ;
+	$sql .=  count($datecol)>1? " $pre issuedate between '" . $this->toPostDBDate($datecol[0]) . "' and '" . $this->toPostDBDate($datecol[1]) . "'": "" ;
 	
 	$datecol=explode("-",$alldates[1]);
 	
-	$sql .=  count($datecol)>1? " and startdate between '" . $this->toPostDBDate($datecol[0]) . "' and '" . $this->toPostDBDate($datecol[1]) . "'": "" ;
+	$pre=(strlen($sql)>0)?" and ":"";
+	
+	$sql .=  count($datecol)>1? " $pre startdate between '" . $this->toPostDBDate($datecol[0]) . "' and '" . $this->toPostDBDate($datecol[1]) . "'": "" ;
 	
 	$datecol=explode("-",$alldates[2]);
+	$pre=(strlen($sql)>0)?" and ":"";
 	
-	$sql .= count($datecol)>1? " and completiondate between '" . $this->toPostDBDate($datecol[0]) . "' and '" . $this->toPostDBDate($datecol[1]) . "'": "" ;
+	$sql .= count($datecol)>1? " $pre completiondate between '" . $this->toPostDBDate($datecol[0]) . "' and '" . $this->toPostDBDate($datecol[1]) . "'": "" ;
 	
 	
 	return $sql;
@@ -178,7 +174,7 @@ public function ajaxdata() {
         	}
 			$usrfiter.=(") ");
         }
-		$usrfiter.=$this->getDateRangeFilters($additional);
+		$usrfiter.=$this->getDateRangeFilters($additional,$basic);
 		
           
        $this->loadModel('CreateConfigs');

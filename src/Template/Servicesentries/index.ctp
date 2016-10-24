@@ -1,420 +1,388 @@
-<section class="content-header">
-	<h1> Service Entries <small>Your vehicle service log book</small></h1>
-	<ol class="breadcrumb">
-		<li>
-			<a href="#"><i class="fa fa-dashboard"></i> Home</a>
-		</li>
-		<li>
-			<a href="#"></a>Fleet Management
-		</li>
-		<li class="active">
-			Service Entries
-		</li>
-
-	</ol>
-</section>
-
-<!-- Main content -->
-<section class="content">
-	<div class="row">
-		<div class="col-md-4">
-			<div class="box box-primary" style="min-height:134px">
-				<div class="box-header">
-					<h3 class="box-title">Manage Service Entries</h3>
-				</div>
-				<div class="box-body" >
-
-					<button type="button" class="mptl mptl-assign btn btn-primary btn-sm" data-toggle="modal" data-target="#assign">
-						<span class="badge bg-aqua">0</span>
-						Delete
-					</button>
-
-				</div>
-			</div>
-		</div>
-		<div class="col-md-8">
-			<div class="nav-tabs-custom">
-				<ul class="nav nav-tabs">
-					<li  class="active">
-						<a href="#details" data-toggle="tab">Filter</a>
-					</li>
-					<li>
-						<a href="#specs" data-toggle="tab">Additional Filters</a>
-					</li>
-				</ul>
-				<div class=" tab-content">
-					<div class="active tab-pane" id="details">
-
-						<div class="box-body">
-							<div class="form-group">
-
-								<label>
-									<input type="checkbox" class="minimal" checked>
-									Open </label>
-								<label>
-									<input type="checkbox" class="minimal">
-									Overdue </label>
-								<label>
-									<input type="checkbox" class="minimal" disabled>
-									Resolved </label>
-								<label>
-									<input type="checkbox" class="minimal" disabled>
-									Closed </label>
-
-							</div>
-
-						</div>
-
-					</div>
-					<!-- tab pane -->
-					<div class="tab-pane" id="specs">
-
-						<div class="box-body">
-							<div class="form-group">
-								<label> Date of Service
-									<input type="date" class="minimal">
-								</label>
-
-							</div>
-
-						</div>
-
-					</div>
-
-				</div>
-			</div>
-		</div>
-		<!-- COL-7-->
-
-	</div>
-	<!--Row -->
-
-	<div class="row">
-		<div class="col-md-12">
-			<div class="box box-primary">
-				<div class="box-body">
-					<table id="mptlindextbl" class="table table-hover  table-bordered ">
-						<thead>
-							<tr>
-								<th>
-								<input type="checkbox" name="select_all" value="1" id="select-all">
-								</th>
-								<th>Name</th>
-								<th>Vehicle</th>
-								<th>Date</th>
-								<th>Odometer</th>
-								<th>Reference</th>
-								<th>Labour</th>
-								<th>Parts</th>
-								<th>Tax</th>
-								<th>Vendor</th>
-								<th>Void</th>
-								<th>Comments</th>
-								<th>Actions</th>
-
-							</tr>
-						</thead>
-						<tbody></tbody>
-					</table>
-				</div>
-			</div>
-		</div>
-	</div>
-
-</section>
-<div class="modal fade" id="assign" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-	<div class="modal-dialog" role="document">
-		<div class="modal-content">
-			<div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-					<span aria-hidden="true">&times;</span>
-				</button>
-				<h4 class="modal-title" id="myModalLabel">Modal title</h4>
-			</div>
-			<div class="modal-body">
-
-			</div>
-			<div class="modal-footer">
-				<button type="button" class="btn btn-default" data-dismiss="modal">
-					Close
-				</button>
-				<button type="button" class="btn btn-primary">
-					Save changes
-				</button>
-			</div>
-		</div>
-	</div>
-</div>
-
-<div class="modal fade" id="settings" tabindex="-1" role="dialog" aria-labelledby="modalSettings">
-	<div class="modal-dialog" role="document">
-		<div class="modal-content">
-			<div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-					<span aria-hidden="true">&times;</span>
-				</button>
-				<h4 class="modal-title" id="modalSettings">Settings</h4><small>Select the colums to display</small>
-			</div>
-			<div class="modal-body">
-				<div class="box box-primary">
-					<table class="mptl-tbl-settings table table-hover" >
-						<thead>
-							<tr>
-								<th style="width:20px">
-								<input type="checkbox" id="mptl_settings_chk_all" >
-								</th>
-								<th>Column Name</th>
-							</tr>
-
-						</thead>
-						<tbody>
-							<tr style="text-align:left">
-								<td style="width:20px">
-								<input type="checkbox" class="mptl_settings_chk" id="mptl_settings_chk_0" checked="">
-								</td>
-								<td>Name</td>
-							</tr>
-							<tr>
-								<td>
-								<input type="checkbox" class="mptl_settings_chk" id="mptl_settings_chk_1">
-								</td>
-								<td>Vehicle</td>
-							</tr>
-							<tr>
-								<td>
-								<input type="checkbox" class="mptl_settings_chk" id="mptl_settings_chk_2">
-								</td>
-								<td>Service Date</td>
-							</tr>
-							<tr>
-								<td>
-								<input type="checkbox" class="mptl_settings_chk" id="mptl_settings_chk_3">
-								</td>
-								<td>Odometer</td>
-							</tr>
-							<tr>
-								<td>
-								<input type="checkbox" class="mptl_settings_chk" id="mptl_settings_chk_4">
-								</td>
-								<td>Reference</td>
-							</tr>
-							</tr>
-							<tr>
-								<td>
-								<input type="checkbox" class="mptl_settings_chk" id="mptl_settings_chk_5">
-								</td>
-								<td>Labour</td>
-							</tr>
-							</tr>
-							<tr>
-								<td>
-								<input type="checkbox" class="mptl_settings_chk" id="mptl_settings_chk_6">
-								</td>
-								<td>Parts</td>
-							</tr>
-							</tr>
-							<tr>
-								<td>
-								<input type="checkbox" class="mptl_settings_chk" id="mptl_settings_chk_7">
-								</td>
-								<td>Tax</td>
-							</tr>
-							</tr>
-							<tr>
-								<td>
-								<input type="checkbox" class="mptl_settings_chk" id="mptl_settings_chk_8">
-								</td>
-								<td>Vendor</td>
-							</tr>
-							</tr>
-							<tr>
-								<td>
-								<input type="checkbox" class="mptl_settings_chk" id="mptl_settings_chk_9">
-								</td>
-								<td>Void</td>
-							</tr>
-							</tr>
-							<tr>
-								<td>
-								<input type="checkbox" class="mptl_settings_chk" id="mptl_settings_chk_10">
-								</td>
-								<td>Comments</td>
-							</tr>
-
-						</tbody>
-
-					</table>
-				</div>
-			</div>
-			<div class="modal-footer">
-				<button type="button" class="btn btn-default" data-dismiss="modal">
-					Close
-				</button>
-				<button type="button" id="changeList" class="btn btn-primary">
-					Save changes
-				</button>
-			</div>
-		</div>
-	</div>
-</div>
-
-<?php $this -> start('css'); ?>
 <style>
-</style>
-<?php $this -> end(); ?>
-<?php
-$this->Html->css([ 'AdminLTE./plugins/datatables/dataTables.bootstrap',  ], ['block' => 'css']);
-
-$this->Html->script([
-'AdminLTE./plugins/datatables/jquery.dataTables.min',
-'AdminLTE./plugins/datatables/dataTables.bootstrap.min',
-], ['block' => 'script']); ?>
-
-<?php $this -> start('scriptBotton'); ?>
-<script>
-	$(function () {
-
-// $.fn.dataTable.ext.errMode=throw;
-
-$("#changeList").click(function(){
-var cols=[];
-$('input:checkbox.mptl_settings_chk').each(function () {
-var sThisVal = (this.checked ? $(this).val() : "");
-
-var id=$(this).attr('id');
-var vals=id.split('_');
-var col=vals[3];
-if(sThisVal){
-table.column(col).visible(true).draw();
-console.log("Colums:"+col);
-}else{
-table.column(col).visible(false).draw();
+.fmactions{
+  padding-top:5px;
+  min-height:65px;
 }
 
-});
+.fmactions .fmaction{
+    float:left;
+    padding-bottom: 15px
+}
 
-});
+.fmactions .fmaction span{
+    position: relative;
+    top: -20px;
+    right:10px;
+    font-size:10px;
+    font-weight:bold;
+  }
 
-var table= $('#mptlindextbl').DataTable({
-"paging": true,
-"lengthChange": true,
-"searching": true,
-"ordering": true,
-"info": true,
-"autoWidth": false,
-//server side processing
-"processing": true,
-"serverSide": true,
-"ajax": "/<?php echo $this->request->params['controller'] ?>
-	/ajaxData",
-	'columnDefs': [{
-	'targets': 0,
-	'className': 'dt-body-center',
-	'render': function (data, type, full, meta){console.log(data);
-	return '<input type="checkbox" class="mptl-lst-chkbox" name="chk' + data + '" value="' + $('<div/>').text(data).html() + '">';
-	}
-	},{
-	'targets': [4,6,7,8,10],
-	"visible": false,
+  .fmactions .fmaction > button:hover {
 
-	},
-	{
-	'targets': [0],
-	"searchable": false,
-	'orderable': false,
-	}]
+    animation: shake 0.82s cubic-bezier(.36,.07,.19,.97) both;
+    transform: translate3d(0, 0, 0);
+    backface-visibility: hidden;
+    perspective: 1000px;
+}
+  @keyframes shake {
+    10%, 90% {
+      transform: translate3d(-1px, 0, 0);
+    }
+    20%, 80% {
+      transform: translate3d(2px, 0, 0);
+    }
+    30%, 50%, 70% {
+      transform: translate3d(-4px, 0, 0);
+    }
+    40%, 60% {
+      transform: translate3d(4px, 0, 0);
+    }
+  }
+  .mptl-viz-hidebadge{
+  	opacity:0
+  }
+  
+</style>
+<section class="content-header">
+  <h1>
+    <?php echo $this->request->params['controller'] ?>
+    <small></small>
+  </h1>
+  <input type="hidden" value="1"  id="basicfilter"/>
+  <ol class="breadcrumb">
+    <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+    <li><a href="#"></a>Fleet Management</li>
+    <li class="active">Service Entries</li>
 
-	});
-	$('<a href="/
-<?php echo $this->request->params['controller'] ?>
-	/add/" class="btn
-	btn - sm
-	btn - success" style="margin-left:5px;"><i class="fa
-	fa - plus" aria-hidden="true"></i></a>').appendTo('div.dataTables_filter');
-	$('<a href="#" class="btn btn-sm btn-success" data-toggle="modal" data-target="#settings" style="margin-left:5px;"><i class="fa fa-gear" aria-hidden="true"></i></a>').appendTo('div.dataTables_filter');
+  </ol>
+</section>
+<!-- Main content -->
+<section class="content">
+  <div class="row">
+        <div class="col-md-4">
+      <?php 
+      $title="Manage Servce Entry";
+      echo $this->element('actions',[$actions,'title'=>$title]);
+	  
+	   ?>
+     </div>
+      <div class="col-md-8">
+      	<?php echo  $this->element('filters',$additional) ?>
+     </div> <!-- COL-7-->
+  </div> <!--Row -->
+  <div class="row">
+        <div class="col-md-12">
+  <div class="box box-primary">
+      <div class="box-body">
+    <table id="mptlindextbl" class="table table-hover  table-bordered ">
+        <thead>
+            <tr>
+            	<th data-orderable="false"><input type="checkbox" name="select_all" value="1" id="select-all" ></th>
+           	
+                <?php
+                  for($i=1;$i<count($configs);$i++){
+                  		
+                  	echo "<th>". $configs[$i]['title'] ."</th>";
+                  }
+                ?>
+                <th data-orderable="false">Actions</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table></div></div>
+    </div></div>
+</section>
+<div class="modal fade" id="assign" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+      </div>
+      <div class="modal-body">
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+ <?php echo $this->element('settings',[$configs,$usersettings]) ?>
+<?php
+$this->Html->css([ 'AdminLTE./plugins/datatables/dataTables.bootstrap', 
+'AdminLTE./plugins/daterangepicker/daterangepicker',
+  'AdminLTE./plugins/iCheck/all',
+   'AdminLTE./plugins/datatables/extensions/ColReorder/css/dataTables.colReorder.min',
+ ], ['block' => 'css']);
 
-	$('.dataTables_filter input').unbind().on('keyup', function() {
+$this->Html->script([
+  'AdminLTE./plugins/datatables/jquery.dataTables.min',
+  'AdminLTE./plugins/datatables/dataTables.bootstrap.min',
+  'AdminLTE./plugins/datatables/extensions/ColReorder/js/dataTables.colReorder.min',
+  'AdminLTE./plugins/daterangepicker/moment.min',
+  'AdminLTE./plugins/daterangepicker/daterangepicker',
+  'AdminLTE./plugins/iCheck/iCheck.min',
+], ['block' => 'script']); ?>
+
+<?php $this->start('scriptBotton'); ?>
+<script>
+  var table; var order; 
+  $(function () {
+      
+    $('#settings').on('shown.bs.modal', function() {
+       setOrder();
+    })  
+      
+    //Flat blue color scheme for iCheck
+    $('input[type="checkbox"].flat-blue, input[type="radio"].flat-blue').iCheck({
+      checkboxClass: 'icheckbox_flat-blue',
+      radioClass: 'iradio_flat-blue'
+    });
+    //daterangepicker for advanced filtering
+    $('.mptl-daterange').daterangepicker(
+    	{locale : {
+      format : 'DD/MM/YY'
+    }}).val('');
+    
+      
+     table= $('#mptlindextbl').DataTable({
+          "paging": true,
+          "lengthChange": true,
+          "searching": true,
+          "ordering": true,
+          "info": true,
+          "autoWidth": false,
+          "scrollX":true,
+          colReorder: true,
+          stateSave:true,
+          responsive: true,
+          "fnServerParams": function ( aoData ) {
+            
+            aoData.additional = $("#issueddate").val(),
+         
+            aoData.basic=$("#basicfilter").val()?$("#basicfilter").val():"-1";
+          },
+        //server side processing
+          "processing": true,
+          "serverSide": true,
+          "ajax": "/<?php echo $this->request->params['controller'] ?>/ajaxData",
+          'columnDefs': [{
+        'targets': 0,
+        'className': 'dt-body-center',
+        'render': function (data, type, full, meta){console.log(data);
+            return '<input type="checkbox" class="mptl-lst-chkbox" name="chk' + data + '" value="' + $('<div/>').text(data).html() + '">';
+        }
+     },{
+     	'targets': [<?php echo $usersettings['0']['value'] ;?>],
+     	"visible": false,
+     },
+     
+     ]
+    });
+     
+     $('<a href="/<?php echo $this->request->params['controller'] ?>/add/" class="btn btn-sm btn-success" style="margin-left:5px;" title="Add New Work Order"><i class="fa fa-plus" aria-hidden="true"></i></a>').appendTo('div.dataTables_filter');
+    $('<a href="#" class="btn btn-sm btn-success" style="margin-left:5px;" title="Export to PDF"><i class="fa fa-file-pdf-o" aria-hidden="true"></i></a>').appendTo('div.dataTables_filter');
+    $('<a href="#" class="btn btn-sm btn-success" style="margin-left:5px;" title="Export to CSV"><i class="fa fa-file-excel-o" aria-hidden="true"></i></a>').appendTo('div.dataTables_filter');
+    $('<a href="#" class="btn btn-sm btn-success" data-toggle="modal" data-target="#settings" style="margin-left:5px;" title="Table Settings"><i class="fa fa-gear" aria-hidden="true"></i></a>').appendTo('div.dataTables_filter');
+     
+       $('.dataTables_filter input').unbind().on('keyup', function() {
+	 
 	var searchTerm = this.value.toLowerCase();
-	$.fn.dataTable.ext.search.push(function(settings, data, dataIndex) {
-	//search only the following columns
-	if (~data[1].toLowerCase().indexOf(searchTerm)) return true;
-	if (~data[2].toLowerCase().indexOf(searchTerm)) return true;
-	if (~data[4].toLowerCase().indexOf(searchTerm)) return true;
-	if (~data[5].toLowerCase().indexOf(searchTerm)) return true;
-	if (~data[6].toLowerCase().indexOf(searchTerm)) return true;
-	if (~data[7].toLowerCase().indexOf(searchTerm)) return true;
-	if (~data[8].toLowerCase().indexOf(searchTerm)) return true;
-	if (~data[9].toLowerCase().indexOf(searchTerm)) return true;
+   
+   table.draw();
+   $.fn.dataTable.ext.search.pop();
+})
+ order= new $.fn.dataTable.ColReorder( table );
+ 
+ 
+  // Handle click on "Select all" control
+   $('#select-all').on('click', function(){
+      // Get all rows with search applied
+     
+      var rows = table.rows({ 'search': 'applied' }).nodes();
+      // Check/uncheck checkboxes for all rows in the table
+      $('input[type="checkbox"]', rows).prop('checked', this.checked);
+      
+   });
+   // Handle click on checkbox to set state of "Select all" control
+   $('#mptlindextbl tbody').on('change', 'input[type="checkbox"]', function(){
+      // If checkbox is not checked
+      if(!this.checked){
+         var el = $('#select-all').get(0);
+         // If "Select all" control is checked and has 'indeterminate' property
+         if(el && el.checked && ('indeterminate' in el)){
+            // Set visual state of "Select all" control
+            // as 'indeterminate'
+            el.indeterminate = true;
+         }
+      }
+      setTurben();
+        
+       
+       
+   });
+   // Handle click on " Settings Select all" control
+   $('#mptl_settings_chk_all').on('click', function(){
+      // Check/uncheck checkboxes for all rows in the table
+      if( $(this).is(':checked') ){
+         $('.mptl_settings_chk').prop('checked', true);
+      }else{
+      	$('.mptl_settings_chk').prop('checked', false);
+      }
+   });
+   // Handle click on checkbox to set state of "Settings Select all" control
+  
+   $('mptl-tbl-settings tbody').on('change', 'input[type="checkbox"]', function(){
+      // If checkbox is not checked
+      if(!this.checked){
+         var el = $('#mptl_settings_chk_all').get(0);
+         // If "Select all" control is checked and has 'indeterminate' property
+         if(el && el.checked && ('indeterminate' in el)){
+            // Set visual state of "Select all" control
+            // as 'indeterminate'
+            el.indeterminate = true;
+         }
+      
+      }
+     
+   });
+   $(".mptl-settings-save").click(function(){
+       var hiddencols="";
+       
+	   
+       $('.mptl_settings_chk').each(function () {
+		    var sThisVal = (this.checked ? $(this).val() : "");
+		    var id=$(this).attr("id");
+		    var col=id.split("_")[3];
+		    if(sThisVal){
+	    	
+		    	table.column(col).visible(true);
+		    	
+		    }else{
+		    	hiddencols.length>0? hiddencols+="," :hiddencols;
+		    	hiddencols+=col;
+		    	table.column(col).visible(false);
+		    }
+	   });
+	   
+	   
+	   window.location.reload(); 
+	   //$.post("/<?php echo $this->request->params['controller'] ?>/updateSettings",
+   		// {
+       	//	 columns: hiddencols,
+       	//	 visorder:  table.colReorder.order().toString() 
+   		// },
+	    //function(data, status){
+	    //    $('#settings').modal('hide');
+	    //});
+	  
+	     $('#settings').modal('hide');
+  
+   });
 
-	return false;
-	})
-	table.draw();
-	$.fn.dataTable.ext.search.pop();
-	})
-
-	// Handle click on "Select all" control
-	$('#select-all').on('click', function(){
-	// Get all rows with search applied
-	var rows = table.rows({ 'search': 'applied' }).nodes();
-	// Check/uncheck checkboxes for all rows in the table
-	$('input[type="checkbox"]', rows).prop('checked', this.checked);
-	});
-
-	// Handle click on checkbox to set state of "Select all" control
-	$('#mptlindextbl tbody').on('change', 'input[type="checkbox"]', function(){
-	// If checkbox is not checked
-	if(!this.checked){
-	var el = $('#select-all').get(0);
-	// If "Select all" control is checked and has 'indeterminate' property
-	if(el && el.checked && ('indeterminate' in el)){
-	// Set visual state of "Select all" control
-	// as 'indeterminate'
-	el.indeterminate = true;
-	}
-	}
-
+    $('.mptl-daterange').change(function(){
+    	 table.ajax.reload();
+    });
+  
+        //jQuery UI sortable for the settings modal
+    $(".column-list").sortable({
+        placeholder: "sort-highlight",
+        handle: ".handle",
+        forcePlaceholderSize: true,
+        zIndex: 999999
+    });
+    
+     $(".mptl-daterange").change(function(){
+          updateFilterActiveFlag();
+     });
+     
+     setTurben();
+  });
+function setTurben()
+{
 	var c=$(".mptl-lst-chkbox:checked").length;
-	$(".mptl span").html(c);
-	});
+      $(".mptl-itemsel").html(c);
+      if(c==0){
+      	   $( ".mptl-itemsel" ).fadeTo( "slow" , 0, function() {
+		    // Animation complete.
+		  });
+      }else{
+      	  $( ".mptl-itemsel" ).fadeTo( "slow" , 1, function() {
+		    // Animation complete.
+		  });
+      }
+}  
+  
+function updateFilterActiveFlag()
+{
+	    var flagActive=false;
+	    
+	    $('.mptl-daterange').each(function () {
+		    var l= $(this).val().length;
+		    if(l>3){
+		    	flagActive=true;
+		    }
+	   });
+	 	$('.mptl-filter-base').each(function (){
+    		
+    		if(this.checked){
+    			flagActive=true;
+    		}
+    	});
+    	
+    	
+    	  flagActive  ? $("#filterstatus").show() : 	$("#filterstatus").hide();
+    	
+    	
+    
+}
 
-	// Handle click on " Settings Select all" control
-	$('#mptl_settings_chk_all').on('click', function(){
+$('.mptl-filter-base').on('ifChecked', function(event){ 
+	
+	setBasicFilter();
 
-	// Check/uncheck checkboxes for all rows in the table
-	$('.mptl_settings_chk').prop('checked', true);
-	});
+});
+$('.mptl-filter-base').on('ifUnchecked', function(event){ 
+	
+	setBasicFilter();
 
-	// Handle click on checkbox to set state of "Settings Select all" control
-	$('mptl-tbl-settings tbody').on('change', 'input[type="checkbox"]', function(){
-	// If checkbox is not checked
-	if(!this.checked){
-	var el = $('#mptl_settings_chk_all').get(0);
-	// If "Select all" control is checked and has 'indeterminate' property
-	if(el && el.checked && ('indeterminate' in el)){
-	// Set visual state of "Select all" control
-	// as 'indeterminate'
-	el.indeterminate = true;
-	}
-	}
-
-	});
-
-	/*  $(".mptl-close").click(function(){
-
-	alert("Do you want to close the issue?");
-	});
-
-	$(".mptl-assign").click(function(){
-
-	$(".assign-modal").show();
-
-	});
-	$(".mptl-unassign").click(function(){
-
-	alert("Do you want to Un Assign?");
-	});  */
-
-	});
-
+});
+  
+ function setBasicFilter()
+  {
+  	  var filter="";
+  	 // factive=false;
+       $('.mptl-filter-base').each(function () {
+		    var sThisVal = (this.checked ? $(this).val() : "");
+		    var id=$(this).attr("id");
+		    var col=id.split("_")[3];
+		    if(sThisVal){
+	    	
+		    	filter.length>0? filter+="," :filter;
+		    	filter+=col;
+		    	//factive=true;
+		    }
+	   });
+  	  $("#basicfilter").val(filter);
+  	 /* if(factive){
+  	  	
+  	  	$("#filterstatus").show();
+  	  }else{
+  	  	$("#filterstatus").hide();
+  	  }*/
+  	  updateFilterActiveFlag();
+  	  table.ajax.reload();
+  }
+  
+  
+  function setOrder()
+  {
+  	
+  }
+  
+  
+  
 </script>
-<?php $this -> end(); ?>
+<?php $this->end(); ?>
+

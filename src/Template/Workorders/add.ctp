@@ -7,8 +7,7 @@
      'textarea' => '<div class="col-sm-6"><textarea name="{{name}}"{{attrs}}>{{value}}</textarea></div>'
 ];
 $this->Form->templates($myTemplates);
-  
-
+ 
 ?>
 
 <!-- Content Header (Page header) -->
@@ -111,7 +110,7 @@ $this->Html->script([
   $(function () {
     //Initialize Select2 Elements
     $(".select2").select2();
-    $(".datemask").inputmask("yyyy/mm/dd", {"placeholder": "yyyy/mm/dd"});
+    $(".datemask").inputmask("YYYY/MM/DD", {"placeholder": "yyyy/mm/dd"});
     $(".timepicker").timepicker({
       showInputs: false
     });

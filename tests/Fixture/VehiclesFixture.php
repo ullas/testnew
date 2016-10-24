@@ -45,6 +45,7 @@ class VehiclesFixture extends TestFixture
         'name' => ['type' => 'string', 'length' => null, 'default' => null, 'null' => false, 'collate' => null, 'comment' => null, 'precision' => null, 'fixed' => null],
         'transporter_id' => ['type' => 'integer', 'length' => 10, 'default' => null, 'null' => true, 'comment' => null, 'precision' => null, 'unsigned' => null, 'autoIncrement' => null],
         'activedriver_id' => ['type' => 'integer', 'length' => 10, 'default' => null, 'null' => true, 'comment' => null, 'precision' => null, 'unsigned' => null, 'autoIncrement' => null],
+        'customer_id' => ['type' => 'integer', 'length' => 10, 'default' => null, 'null' => true, 'comment' => null, 'precision' => null, 'unsigned' => null, 'autoIncrement' => null],
         '_constraints' => [
             'primary' => ['type' => 'primary', 'columns' => ['id'], 'length' => []],
         ],
@@ -85,7 +86,8 @@ class VehiclesFixture extends TestFixture
             'purpose_id' => 1,
             'name' => 'Lorem ipsum dolor sit amet',
             'transporter_id' => 1,
-            'activedriver_id' => 1
+            'activedriver_id' => 1,
+            'customer_id' => 1
         ],
     ];
 }

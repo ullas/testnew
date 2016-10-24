@@ -21,7 +21,7 @@
 
                
                 $usa=explode(',',$usersettings[0]['value']);
-                
+                echo '<li><input type="hidden" class="mptl_settings_chk" id="mptl_settings_chk_0"></l>';
                 foreach ($configs as $key) {
                 	$check=in_array($key['order'],$usa)?"":"checked";
                     if($key['order']==0) continue;
@@ -30,6 +30,7 @@
   						    echo '<span>' . $key['title'] . '</span></li>';
 
           		     }
+				  echo '<li><input type="hidden" class="mptl_settings_chk" id="mptl_settings_chk_"' . count($configs) .'></l>';
 	            ?>
           </ul>
         </div>

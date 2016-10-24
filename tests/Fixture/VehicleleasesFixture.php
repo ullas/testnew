@@ -29,6 +29,8 @@ class VehicleleasesFixture extends TestFixture
         'ifsccode' => ['type' => 'string', 'length' => null, 'default' => null, 'null' => true, 'collate' => null, 'comment' => null, 'precision' => null, 'fixed' => null],
         'swiftcode' => ['type' => 'string', 'length' => null, 'default' => null, 'null' => true, 'collate' => null, 'comment' => null, 'precision' => null, 'fixed' => null],
         'notes' => ['type' => 'string', 'length' => null, 'default' => null, 'null' => true, 'collate' => null, 'comment' => null, 'precision' => null, 'fixed' => null],
+        'customer_id' => ['type' => 'integer', 'length' => 10, 'default' => null, 'null' => true, 'comment' => null, 'precision' => null, 'unsigned' => null, 'autoIncrement' => null],
+        'vehicle_id' => ['type' => 'integer', 'length' => 10, 'default' => null, 'null' => true, 'comment' => null, 'precision' => null, 'unsigned' => null, 'autoIncrement' => null],
         '_constraints' => [
             'primary' => ['type' => 'primary', 'columns' => ['id'], 'length' => []],
         ],
@@ -44,8 +46,8 @@ class VehicleleasesFixture extends TestFixture
         [
             'id' => 1,
             'maonthypayment' => 1,
-            'startdate' => '2016-09-07',
-            'enddate' => '2016-09-07',
+            'startdate' => '2016-10-21',
+            'enddate' => '2016-10-21',
             'amountfinanced' => 1,
             'interestrate' => 1,
             'residualvalue' => 1,
@@ -53,7 +55,9 @@ class VehicleleasesFixture extends TestFixture
             'accountnumber' => 1.5,
             'ifsccode' => 'Lorem ipsum dolor sit amet',
             'swiftcode' => 'Lorem ipsum dolor sit amet',
-            'notes' => 'Lorem ipsum dolor sit amet'
+            'notes' => 'Lorem ipsum dolor sit amet',
+            'customer_id' => 1,
+            'vehicle_id' => 1
         ],
     ];
 }

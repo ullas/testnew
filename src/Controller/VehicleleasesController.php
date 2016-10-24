@@ -7,9 +7,17 @@ use App\Controller\AppController;
  * Vehicleleases Controller
  *
  * @property \App\Model\Table\VehicleleasesTable $Vehicleleases
+ * @property \App\Controller\Component\DatatableComponent $Datatable
  */
 class VehicleleasesController extends AppController
 {
+
+    /**
+     * Components
+     *
+     * @var array
+     */
+    public $components = ['Datatable'];
 
     /**
      * Index method
@@ -18,14 +26,42 @@ class VehicleleasesController extends AppController
      */
     public function index()
     {
-        $this->paginate = [
-            'contain' => ['Vendors']
-        ];
-        $vehicleleases = $this->paginate($this->Vehicleleases);
-
-        $this->set(compact('vehicleleases'));
-        $this->set('_serialize', ['vehicleleases']);
+    	/*
+      		    
+        */
+       
+         $this->loadModel('CreateConfigs');
+         $configs=$this->CreateConfigs->find('all')->where(['table_name' => 'Vehicleleases'])->order(['id' => 'ASC'])->toArray();
+        
+         $this->set('configs',$configs);	
+         $this->set('_serialize', ['configs']);
+       
+       
     }
+    
+    
+public function ajaxdata() {
+        $this->autoRender= false;
+      
+          
+       $this->loadModel('CreateConfigs');
+       $dbout=$this->CreateConfigs->find('all')->where(['table_name' => 'Vehicleleases'])->order(['id' => 'ASC'])->toArray();
+        
+        $fields = array();
+        foreach($dbout as $value){
+            $fields[] = array("name" => $value['field_name'] , "type" => $value['datatype'] );
+			
+        }
+      
+		                           
+        $output =$this->Datatable->getView($fields,['Vendors']);
+        $out =json_encode($output);  
+	
+		$this->response->body($out);
+	    return $this->response;
+	     
+             
+ }  
 
     /**
      * View method
@@ -54,6 +90,7 @@ class VehicleleasesController extends AppController
         $vehiclelease = $this->Vehicleleases->newEntity();
         if ($this->request->is('post')) {
             $vehiclelease = $this->Vehicleleases->patchEntity($vehiclelease, $this->request->data);
+            $vehiclelease['customer_id']=$this->currentuser['customer_id'];
             if ($this->Vehicleleases->save($vehiclelease)) {
                 $this->Flash->success(__('The vehiclelease has been saved.'));
 
@@ -62,8 +99,10 @@ class VehicleleasesController extends AppController
                 $this->Flash->error(__('The vehiclelease could not be saved. Please, try again.'));
             }
         }
-        $vendors = $this->Vehicleleases->Vendors->find('list', ['limit' => 200]);
-        $this->set(compact('vehiclelease', 'vendors'));
+        
+        $vendors = $this->Vehicleleases->Vendors->find('list', ['limit' => 200])->where("customer_id=".$this->loggedinuser['customer_id'])->where("customer_id=0");
+        
+                $this->set(compact('vehiclelease', 'vendors'));
         $this->set('_serialize', ['vehiclelease']);
     }
 
@@ -81,6 +120,7 @@ class VehicleleasesController extends AppController
         ]);
         if ($this->request->is(['patch', 'post', 'put'])) {
             $vehiclelease = $this->Vehicleleases->patchEntity($vehiclelease, $this->request->data);
+             $vehiclelease['customer_id']=$this->currentuser['customer_id'];
             if ($this->Vehicleleases->save($vehiclelease)) {
                 $this->Flash->success(__('The vehiclelease has been saved.'));
 

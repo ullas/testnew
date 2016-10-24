@@ -20,13 +20,16 @@ use Cake\Validation\Validator;
  * @property \Cake\ORM\Association\BelongsTo $Purposes
  * @property \Cake\ORM\Association\BelongsTo $Transporters
  * @property \Cake\ORM\Association\BelongsTo $Activedrivers
+ * @property \Cake\ORM\Association\BelongsTo $Customers
  * @property \Cake\ORM\Association\HasMany $Drivers
  * @property \Cake\ORM\Association\HasMany $Fuelentries
+ * @property \Cake\ORM\Association\HasMany $Inspections
  * @property \Cake\ORM\Association\HasMany $Issues
  * @property \Cake\ORM\Association\HasMany $Servicesentries
  * @property \Cake\ORM\Association\HasMany $Trips
  * @property \Cake\ORM\Association\HasMany $Vehicleengines
  * @property \Cake\ORM\Association\HasMany $Vehiclefluids
+ * @property \Cake\ORM\Association\HasMany $Vehicleleases
  * @property \Cake\ORM\Association\HasMany $Vehiclepermits
  * @property \Cake\ORM\Association\HasMany $Vehiclepurchases
  * @property \Cake\ORM\Association\HasMany $Vehiclespecifications
@@ -87,17 +90,21 @@ class VehiclesTable extends Table
             'foreignKey' => 'purpose_id'
         ]);
         $this->belongsTo('Transporters', [
-            'className' => 'Vendors',
             'foreignKey' => 'transporter_id'
         ]);
         $this->belongsTo('Activedrivers', [
-            'className' => 'Drivers',
             'foreignKey' => 'activedriver_id'
+        ]);
+        $this->belongsTo('Customers', [
+            'foreignKey' => 'customer_id'
         ]);
         $this->hasMany('Drivers', [
             'foreignKey' => 'vehicle_id'
         ]);
         $this->hasMany('Fuelentries', [
+            'foreignKey' => 'vehicle_id'
+        ]);
+        $this->hasMany('Inspections', [
             'foreignKey' => 'vehicle_id'
         ]);
         $this->hasMany('Issues', [
@@ -109,22 +116,25 @@ class VehiclesTable extends Table
         $this->hasMany('Trips', [
             'foreignKey' => 'vehicle_id'
         ]);
-        $this->hasMany('Vehicleengines', [
+        $this->hasOne('Vehicleengines', [
             'foreignKey' => 'vehicle_id'
         ]);
-        $this->hasMany('Vehiclefluids', [
+        $this->hasOne('Vehiclefluids', [
+            'foreignKey' => 'vehicle_id'
+        ]);
+        $this->hasMany('Vehicleleases', [
             'foreignKey' => 'vehicle_id'
         ]);
         $this->hasMany('Vehiclepermits', [
             'foreignKey' => 'vehicle_id'
         ]);
-        $this->hasMany('Vehiclepurchases', [
+        $this->hasOne('Vehiclepurchases', [
             'foreignKey' => 'vehicle_id'
         ]);
-        $this->hasMany('Vehiclespecifications', [
+        $this->hasOne('Vehiclespecifications', [
             'foreignKey' => 'vehicle_id'
         ]);
-        $this->hasMany('Vehiclewheelstyres', [
+        $this->hasOne('Vehiclewheelstyres', [
             'foreignKey' => 'vehicle_id'
         ]);
         $this->hasMany('Workorders', [
@@ -134,9 +144,6 @@ class VehiclesTable extends Table
             'foreignKey' => 'vehicle_id',
             'targetForeignKey' => 'driver_id',
             'joinTable' => 'vehicles_drivers'
-        ]);
-		$this->belongsTo('Customers', [
-            'foreignKey' => 'customer_id'
         ]);
     }
 
@@ -225,6 +232,7 @@ class VehiclesTable extends Table
         $rules->add($rules->existsIn(['purpose_id'], 'Purposes'));
         $rules->add($rules->existsIn(['transporter_id'], 'Transporters'));
         $rules->add($rules->existsIn(['activedriver_id'], 'Activedrivers'));
+        $rules->add($rules->existsIn(['customer_id'], 'Customers'));
 
         return $rules;
     }
