@@ -24,9 +24,9 @@
                 echo '<li><input type="hidden" class="mptl_settings_chk" id="mptl_settings_chk_0"></l>';
                 foreach ($configs as $key) {
                 	$check=in_array($key['order'],$usa)?"":"checked";
-                    if($key['order']==0) continue;
+                    $disable=($key['order']==0) ?"disabled":"";
                   echo '<li style="padding:7px;"><span class="handle"><i class="fa fa-ellipsis-v"></i>&nbsp;<i class="fa fa-ellipsis-v"></i></span>';
-  						    echo '<input type="checkbox" class="mptl_settings_chk" ' . $check .  ' id="mptl_settings_chk_'.  $key['order'] .'" >';
+  						    echo '<input type="checkbox" class="mptl_settings_chk " ' .  $disable . ' ' . $check .  ' id="mptl_settings_chk_'.  $key['order'] .'" >';
   						    echo '<span>' . $key['title'] . '</span></li>';
 
           		     }

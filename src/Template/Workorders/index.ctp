@@ -14,10 +14,11 @@
 </section>
 <!-- Main content -->
 <section class="content">
+<?php echo $this->Form->create($this->request->params['controller'],array('url' => array('controller' => $this->request->params['controller'], 'action' => 'deleteAll')));?>
   <div class="row">
         <div class="col-md-4">
       <?php 
-      $title="Manage Work Order";
+      $title= "Manage ".  $this->request->params['controller'];
       echo $this->element('actions',[$actions,'title'=>$title]);
 	  
 	   ?>
@@ -47,23 +48,10 @@
         <tbody></tbody>
     </table></div></div>
     </div></div>
+     <?= $this->Form->end() ?>
 </section>
-<div class="modal fade" id="assign" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
-      </div>
-      <div class="modal-body">
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div>
-    </div>
-  </div>
-</div>
+
+
  <?php echo $this->element('settings',[$configs,$usersettings]) ?>
 <?php
 $this->Html->css([ 'AdminLTE./plugins/datatables/dataTables.bootstrap', 
@@ -83,8 +71,28 @@ $this->Html->script([
 
 <?php $this->start('scriptBotton'); ?>
 <script>
-  var table; var order; 
+  var table; var order;
+  function deleteRecord(btn){
+  	
+  	    if (btn == 'yes') {
+            
+            jQuery("form")[0].submit();
+        }
+  }
+  
+   
   $(function () {
+  	
+  	 $("#delete").click(function(){
+  		
+  	   if($(".mptl-lst-chkbox:checked").length==0){
+      	alert("No item selected. Please select at least one item ");
+      	return;
+      }
+       if (confirm("Do you want to delete the record?")) {
+	   	deleteRecord('yes');
+	   }
+  	});
       
     $('#settings').on('shown.bs.modal', function() {
        setOrder();
@@ -115,7 +123,22 @@ $this->Html->script([
           responsive: true,
           "fnServerParams": function ( aoData ) {
             
-            aoData.additional = $("#issueddate").val()+","+$("#startdate").val()+ "," +$("#completiondate").val(),
+            aoData.additional =<?php 
+              
+                $str=""; $c=0;
+                foreach($additional['additional'] as $colms){
+                	$plus="";	
+                	if($c>0){
+                		
+						$str.= " + ',' + ";
+                	}
+                	$str.= '$("#' . $colms['name']    .'").val()' ;
+                	$c++;
+                }
+				echo $str;
+                
+             ?>
+            ,
          
             aoData.basic=$("#basicfilter").val()?$("#basicfilter").val():"-1";
           },
@@ -127,7 +150,7 @@ $this->Html->script([
         'targets': 0,
         'className': 'dt-body-center',
         'render': function (data, type, full, meta){console.log(data);
-            return '<input type="checkbox" class="mptl-lst-chkbox" name="chk' + data + '" value="' + $('<div/>').text(data).html() + '">';
+            return '<input type="checkbox" class="mptl-lst-chkbox" name="chk-' + data + '" value="' + $('<div/>').text(data).html() + '">';
         }
      },{
      	'targets': [<?php echo $usersettings['0']['value'] ;?>],
@@ -286,8 +309,10 @@ function updateFilterActiveFlag()
 	   });
 	 	$('.mptl-filter-base').each(function (){
     		
-    		if(this.checked){
+    		
+    		if(this.checked  && !($(this).is(':disabled'))){
     			flagActive=true;
+    			
     		}
     	});
     	

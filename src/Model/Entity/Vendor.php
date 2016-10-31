@@ -19,8 +19,10 @@ use Cake\ORM\Entity;
  * @property string $contactname
  * @property string $email
  * @property string $contactphone
+ * @property int $customer_id
  *
  * @property \App\Model\Entity\Vehiclepurchase[] $vehiclepurchases
+ * @property \App\Model\Entity\Customer $customer
  */
 class Vendor extends Entity
 {

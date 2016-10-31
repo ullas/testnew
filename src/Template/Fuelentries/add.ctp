@@ -88,7 +88,6 @@ $this->Html->script([
   'AdminLTE./plugins/input-mask/jquery.inputmask.date.extensions',
   'AdminLTE./plugins/input-mask/jquery.inputmask.extensions',
   'AdminLTE./plugins/timepicker/bootstrap-timepicker.min',
-  '/js/moment.min.js',
   'AdminLTE./plugins/daterangepicker/daterangepicker',
   'AdminLTE./plugins/colorpicker/bootstrap-colorpicker.min',
   'AdminLTE./plugins/timepicker/bootstrap-timepicker.min',

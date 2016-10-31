@@ -20,7 +20,7 @@
 
         <div class="info-box-content">
           <span class="info-box-text"> Total Items</span>
-          <span class="info-box-number">110</span>
+          <span class="info-box-number"><?php echo $totalcount ?></span>
         </div>
         <!-- /.info-box-content -->
       </div>
@@ -33,7 +33,7 @@
 
         <div class="info-box-content">
           <span class="info-box-text">Vehicles Tracked</span>
-          <span class="info-box-number">108</span>
+          <span class="info-box-number"><?php echo $vehiclescount ?></span>
         </div>
         <!-- /.info-box-content -->
       </div>
@@ -50,7 +50,7 @@
 
         <div class="info-box-content">
           <span class="info-box-text">People Tracked</span>
-          <span class="info-box-number">60</span>
+          <span class="info-box-number"><?php echo $peoplecount ?></span>
         </div>
         <!-- /.info-box-content -->
       </div>
@@ -62,8 +62,8 @@
         <span class="info-box-icon bg-green"><i class="ion ion-ios-people-outline"></i></span>
 
         <div class="info-box-content">
-          <span class="info-box-text">Active Today</span>
-          <span class="info-box-number">21</span>
+          <span class="info-box-text">Assets Tracked</span>
+          <span class="info-box-number"><?php echo $assetcount ?></span>
         </div>
         <!-- /.info-box-content -->
       </div>

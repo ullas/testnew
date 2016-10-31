@@ -13,8 +13,10 @@ use Cake\Validation\Validator;
  * @property \Cake\ORM\Association\BelongsTo $Reportedbies
  * @property \Cake\ORM\Association\BelongsTo $Customers
  * @property \Cake\ORM\Association\BelongsTo $Workorders
- * @property \Cake\ORM\Association\BelongsTo $Serviceentries
+ * @property \Cake\ORM\Association\BelongsTo $Servicesentries
+ * @property \Cake\ORM\Association\BelongsTo $Issuestatuses
  * @property \Cake\ORM\Association\HasMany $Issuedocuments
+ * @property \Cake\ORM\Association\HasMany $Workorderlineitems
  * @property \Cake\ORM\Association\BelongsToMany $Addresses
  *
  * @method \App\Model\Entity\Issue get($primaryKey, $options = [])
@@ -39,13 +41,13 @@ class IssuesTable extends Table
         parent::initialize($config);
 
         $this->table('issues');
-        $this->displayField('id');
+        $this->displayField('summary');
         $this->primaryKey('id');
 
         $this->belongsTo('Vehicles', [
             'foreignKey' => 'vehicle_id'
         ]);
-        $this->belongsTo('Reportedby', [
+        $this->belongsTo('Reportedbies', [
             'className' =>'Addresses',
             'foreignKey' => 'reportedby_id'
         ]);
@@ -56,9 +58,15 @@ class IssuesTable extends Table
             'foreignKey' => 'workorder_id'
         ]);
         $this->belongsTo('Servicesentries', [
-            'foreignKey' => 'serviceentry_id'
+            'foreignKey' => 'servicesentry_id'
+        ]);
+        $this->belongsTo('Issuestatuses', [
+            'foreignKey' => 'issuestatus_id'
         ]);
         $this->hasMany('Issuedocuments', [
+            'foreignKey' => 'issue_id'
+        ]);
+        $this->hasMany('Workorderlineitems', [
             'foreignKey' => 'issue_id'
         ]);
         $this->belongsToMany('Addresses', [
@@ -108,6 +116,14 @@ class IssuesTable extends Table
             ->boolean('markasvoid')
             ->allowEmpty('markasvoid');
 
+        $validator
+            ->integer('documentcount')
+            ->allowEmpty('documentcount');
+
+        $validator
+            ->integer('commentscount')
+            ->allowEmpty('commentscount');
+
         return $validator;
     }
 
@@ -124,7 +140,8 @@ class IssuesTable extends Table
         $rules->add($rules->existsIn(['reportedby_id'], 'Reportedbies'));
         $rules->add($rules->existsIn(['customer_id'], 'Customers'));
         $rules->add($rules->existsIn(['workorder_id'], 'Workorders'));
-        $rules->add($rules->existsIn(['serviceentry_id'], 'Serviceentries'));
+        $rules->add($rules->existsIn(['servicesentry_id'], 'Servicesentries'));
+        $rules->add($rules->existsIn(['issuestatus_id'], 'Issuestatuses'));
 
         return $rules;
     }

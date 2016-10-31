@@ -12,9 +12,9 @@ use Cake\ORM\Entity;
  * @property string $description
  * @property int $templatetype_id
  * @property int $alertcategory_id
- * @property string $template
  * @property string $subject
  * @property string $templatecat
+ * @property string $templatetext
  *
  * @property \App\Model\Entity\Customer $customer
  * @property \App\Model\Entity\Templatetype $templatetype

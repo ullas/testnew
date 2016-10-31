@@ -52,15 +52,15 @@ class WorkordersFixture extends TestFixture
     public $records = [
         [
             'id' => 1,
-            'issuedate' => '2016-10-13',
+            'issuedate' => '2016-10-25',
             'workorderstatus_id' => 1,
             'vehicle_id' => 1,
-            'startdate' => '2016-10-13',
+            'startdate' => '2016-10-25',
             'lables' => 'Lorem ipsum dolor sit amet',
             'odometer' => 1,
             'void' => 1,
             'vendor_id' => 1,
-            'completiondate' => '2016-10-13',
+            'completiondate' => '2016-10-25',
             'labour' => 1,
             'parts' => 1,
             'dicount' => 1,

@@ -38,11 +38,12 @@ class PeopleTable extends Table
         $this->displayField('name');
         $this->primaryKey('id');
 
-        $this->belongsTo('Trackingobjects', [
-            'foreignKey' => 'trackingobject_id'
-        ]);
+        
         $this->belongsTo('Departments', [
             'foreignKey' => 'department_id'
+        ]);
+		 $this->belongsTo('Customers', [
+            'foreignKey' => 'customer_id'
         ]);
         $this->belongsTo('Stations', [
             'foreignKey' => 'station_id'
@@ -102,7 +103,7 @@ class PeopleTable extends Table
     public function buildRules(RulesChecker $rules)
     {
         $rules->add($rules->isUnique(['email']));
-        $rules->add($rules->existsIn(['trackingobject_id'], 'Trackingobjects'));
+       
         $rules->add($rules->existsIn(['department_id'], 'Departments'));
         $rules->add($rules->existsIn(['station_id'], 'Stations'));
 

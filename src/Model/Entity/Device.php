@@ -17,10 +17,15 @@ use Cake\ORM\Entity;
  * @property int $distance_type
  * @property bool $odometersupport
  * @property int $initodometer
+ * @property int $devicemodel_id
+ * @property int $simcard_id
  *
  * @property \App\Model\Entity\Customer $customer
  * @property \App\Model\Entity\Provider $provider
+ * @property \App\Model\Entity\Devicemodel $devicemodel
+ * @property \App\Model\Entity\Simcard $simcard
  * @property \App\Model\Entity\Gpsdata[] $gpsdata
+ * @property \App\Model\Entity\Tracking[] $tracking
  */
 class Device extends Entity
 {

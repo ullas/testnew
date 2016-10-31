@@ -1,7 +1,9 @@
  <div class="nav-tabs-custom">
 	        <ul class="nav nav-tabs">
 	          <li  class="active"><a href="#details" data-toggle="tab">Filter</a></li>
+	            <?php if(count($additional)>0) : ?>
 	            <li><a href="#specs" data-toggle="tab">Additional Filters</a></li>
+	            <?php endif ; ?>
               <span id="filterstatus" class="label label-success pull-right" style="margin-right:10px;margin-top:10px" disabled>Filter Active</span>
 	        </ul>
 	         <div class=" tab-content" style="min-height:85px">
@@ -10,7 +12,13 @@
 							      	       <div class="form-group">
 							      	       	
 							      	       	  <?php  $count=0 ;foreach($basic as $item ):   ?>
-							                  <input type="checkbox" class="mptl-filter-base flat flat-blue" <?php echo $count==0 ?  "checked": "" ?> id="mptl_filter_add_1">
+							                  <input type="checkbox" class="mptl-filter-base flat flat-blue" <?php echo $count==0 ?  "checked": "" ?>
+							                   <?php 
+							                     if($item=='All'){
+							                     	echo "disabled";
+							                     }
+							                   ?>
+							                   id="mptl_filter_add_<?php echo $count+1   ?>">
 							                  <span style="padding-right:10px"><?php echo $item ; $count++?></span>
 							                  
 							                  <?php  endforeach ?>
@@ -18,6 +26,7 @@
 							              </div>
 							      </div>
 				</div> <!-- tab pane -->
+				<?php if(count($additional)>0) : ?>
 				<div class="tab-pane" id="specs">
 							
 					     <?php  foreach($additional as $item ):  ?>
@@ -34,5 +43,6 @@
 							               
 							 <?php  endforeach ?>          
 				</div>
+				<?php endif ; ?>
 			   </div>
 			</div>

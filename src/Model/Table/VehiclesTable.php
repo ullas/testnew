@@ -16,7 +16,7 @@ use Cake\Validation\Validator;
  * @property \Cake\ORM\Association\BelongsTo $Driverdetectionmodes
  * @property \Cake\ORM\Association\BelongsTo $Stations
  * @property \Cake\ORM\Association\BelongsTo $Departments
- * @property \Cake\ORM\Association\BelongsTo $Trackingobjects
+
  * @property \Cake\ORM\Association\BelongsTo $Purposes
  * @property \Cake\ORM\Association\BelongsTo $Transporters
  * @property \Cake\ORM\Association\BelongsTo $Activedrivers
@@ -83,16 +83,16 @@ class VehiclesTable extends Table
         $this->belongsTo('Departments', [
             'foreignKey' => 'department_id'
         ]);
-        $this->belongsTo('Trackingobjects', [
-            'foreignKey' => 'trackingobject_id'
-        ]);
+       
         $this->belongsTo('Purposes', [
             'foreignKey' => 'purpose_id'
         ]);
         $this->belongsTo('Transporters', [
+            'className' =>'Vendors',
             'foreignKey' => 'transporter_id'
         ]);
         $this->belongsTo('Activedrivers', [
+            'className' =>'Drivers',
             'foreignKey' => 'activedriver_id'
         ]);
         $this->belongsTo('Customers', [
@@ -228,7 +228,7 @@ class VehiclesTable extends Table
         $rules->add($rules->existsIn(['driverdetectionmode_id'], 'Driverdetectionmodes'));
         $rules->add($rules->existsIn(['station_id'], 'Stations'));
         $rules->add($rules->existsIn(['department_id'], 'Departments'));
-        $rules->add($rules->existsIn(['trackingobject_id'], 'Trackingobjects'));
+        
         $rules->add($rules->existsIn(['purpose_id'], 'Purposes'));
         $rules->add($rules->existsIn(['transporter_id'], 'Transporters'));
         $rules->add($rules->existsIn(['activedriver_id'], 'Activedrivers'));

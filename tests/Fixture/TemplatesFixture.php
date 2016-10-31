@@ -23,9 +23,9 @@ class TemplatesFixture extends TestFixture
         'description' => ['type' => 'string', 'length' => 250, 'default' => null, 'null' => true, 'collate' => null, 'comment' => null, 'precision' => null, 'fixed' => null],
         'templatetype_id' => ['type' => 'integer', 'length' => 10, 'default' => null, 'null' => false, 'comment' => null, 'precision' => null, 'unsigned' => null, 'autoIncrement' => null],
         'alertcategory_id' => ['type' => 'integer', 'length' => 10, 'default' => null, 'null' => true, 'comment' => null, 'precision' => null, 'unsigned' => null, 'autoIncrement' => null],
-        'template' => ['type' => 'string', 'length' => 160, 'default' => null, 'null' => true, 'collate' => null, 'comment' => null, 'precision' => null, 'fixed' => null],
         'subject' => ['type' => 'string', 'length' => 50, 'default' => 'Maptell Alert', 'null' => true, 'collate' => null, 'comment' => null, 'precision' => null, 'fixed' => null],
         'templatecat' => ['type' => 'string', 'fixed' => true, 'length' => 1, 'default' => 'A', 'null' => true, 'collate' => null, 'comment' => null, 'precision' => null],
+        'templatetext' => ['type' => 'string', 'length' => null, 'default' => null, 'null' => true, 'collate' => null, 'comment' => null, 'precision' => null, 'fixed' => null],
         '_constraints' => [
             'primary' => ['type' => 'primary', 'columns' => ['id'], 'length' => []],
         ],
@@ -45,9 +45,9 @@ class TemplatesFixture extends TestFixture
             'description' => 'Lorem ipsum dolor sit amet',
             'templatetype_id' => 1,
             'alertcategory_id' => 1,
-            'template' => 'Lorem ipsum dolor sit amet',
             'subject' => 'Lorem ipsum dolor sit amet',
-            'templatecat' => 'Lorem ipsum dolor sit ame'
+            'templatecat' => 'Lorem ipsum dolor sit ame',
+            'templatetext' => 'Lorem ipsum dolor sit amet'
         ],
     ];
 }

@@ -43,6 +43,9 @@ class NotificationsTable extends Table
         $this->hasMany('Subscriptions', [
             'foreignKey' => 'notification_id'
         ]);
+		$this->belongsTo('Customers', [
+            'foreignKey' => 'customer_id'
+        ]);
     }
 
     /**

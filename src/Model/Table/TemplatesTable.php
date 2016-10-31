@@ -74,13 +74,13 @@ class TemplatesTable extends Table
             ->allowEmpty('description');
 
         $validator
-            ->allowEmpty('template');
-
-        $validator
             ->allowEmpty('subject');
 
         $validator
             ->allowEmpty('templatecat');
+
+        $validator
+            ->allowEmpty('templatetext');
 
         return $validator;
     }
@@ -97,7 +97,6 @@ class TemplatesTable extends Table
         $rules->add($rules->existsIn(['customer_id'], 'Customers'));
         $rules->add($rules->existsIn(['templatetype_id'], 'Templatetypes'));
         $rules->add($rules->existsIn(['alertcategory_id'], 'Alertcategories'));
-		$rules->add($rules->isUnique(['name'],"Name already exists"));
 
         return $rules;
     }

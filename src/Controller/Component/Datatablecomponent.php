@@ -1,6 +1,8 @@
 <?php
 namespace App\Controller\Component;
 use Cake\Controller\Component;
+use Cake\Utility\Inflector;
+
    class DatatableComponent extends Component {
 
        public function getView($fields,$contains,$usrFlier)
@@ -9,13 +11,29 @@ use Cake\Controller\Component;
            $length = count($fields);
            $colmns = array();
            $i = 0;
+		   
+		   
            foreach($fields as $value){
-               if(is_array($value)) {
-                     $colmns[] = array("db" => $value['name'] , "dt" => $i++);
-               }else{
-                   $colmns[] = array("db" => $value , "dt" => $i++);
-               }
-           }
+                if($value['type']=='boolean'){
+                    
+                    $colmns[] =array( 
+                    'db' => $value['name'], 
+                    'dt' => $i++,
+                    'formatter' => function( $d, $row ,$modalname) {
+                        $div='<div class="mptldtbool">'.$d.'</div>';
+                        return $div;
+                    }
+                       );
+                    
+                }else{
+                    if(is_array($value)) {
+                          $colmns[] = array("db" => $value['name'] , "dt" => $i++);
+                    }else{
+                        $colmns[] = array("db" => $value , "dt" => $i++);
+                    }
+                }
+                
+            }
 
            $colmns[] =array(
                'db' => 'id',
@@ -49,22 +67,28 @@ $model=$controller->loadModel($controller->modelClass);
            $wherestr="";
            foreach($where  as $key => $value){
                if($wherestr != ''){$wherestr.=" OR ";}
+               
                $wherestr.=$key. " '". $value. "'";
            }
-           if(strlen($wherestr)>3){
-           	 $wherestr.= " and ";
+           if(strlen($wherestr)>3 && strlen($usrFlier)>3){
+           	 $wherestr.= " and ".$usrFlier;
+           }else{
+           	  if(strlen($usrFlier)>3){
+           	    $wherestr=$usrFlier;
+           	  }
            }
-           $wherestr.=$usrFlier;
+          
            $data = $model->find('all')->contain($contains)->where($wherestr)->order($order)->limit($limit)->page($page)->toArray();
+           
 
            //getting totalcount
-           $totalCount = $model->find() ->count();
+           $totalCount = $model->find() ->contain($contains)->count();
            //getting filteredcount
-           $filteredCount = $model->find()->where($wherestr)->count();
+           $filteredCount = $model->find()->contain($contains)->where($wherestr)->count();
 
            $output =$this->GetData($colmns,$data,$totalCount,$filteredCount);
 
-           return $output;
+           return  $output;
        }
        public function Limit(){
            $limit = '';
@@ -101,10 +125,14 @@ $model=$controller->loadModel($controller->modelClass);
                        foreach ($fields as $rowval) {
                            if( ($rowval['name']==$column['db']) && ($rowval['type']=="char") ){
                                $globalSearch[$column['db'].' ILIKE'] = "%" . $str. "%";
+                           }else if( ($rowval['name']==$column['db']) && ($rowval['type']=="num") ){
+                               if(is_numeric($str))	{
+                                  $globalSearch[$column['db']. '='] = "" . $str. "";
+							   }
                            }
                            else if( ($rowval['name']==$column['db']) && ($rowval['type']=="date") ){
-if($this->validateDate($str,'m/d/y')){
-$globalSearch[$column['db'].'::date ='] = $str;
+								if($this->validateDate($str,'m/d/y')){
+								$globalSearch[$column['db'].'::date ='] = $str;
                                }
                            }
                            else if( ($rowval['name']==$column['db']) && ($rowval['type']=="boolean") ){
@@ -119,44 +147,7 @@ $globalSearch[$column['db'].'::date ='] = $str;
            }
 
 
-           // if ( isset($this->request->query['search']) && $this->request->query['search']['value'] != '' ) {
-               // $str = $this->request->query['search']['value'];
-               // $globalSearch["name LIKE"] = "%" . $str. "%";
-           // }
-
-           // Individual column filtering
-           // for ( $i=0, $ien=count($this->request->query['columns']) ; $i<$ien ; $i++ ) {
-               // $requestColumn = $this->request->query['columns'][$i];
-               // $columnIdx = array_search( $requestColumn['data'], $dtColumns );
-               // $column = $columns[ $columnIdx ];
-               // $str = $requestColumn['search']['value'];
-               // $str = pg_escape_string($str);
-               // if ( $requestColumn['searchable'] == 'true' && $str != '' ) {
-                   // $columnSearch[] = " {$column['db']}::varchar ILIKE '%$str%'";
-               // }
-           // }
-           // Combine the filters into a single string
-           // $where = '';
-           // if ( count( $globalSearch ) ) {
-               // $where = '('.implode(' OR ', $globalSearch).')';
-           // }
-           // if ( count( $columnSearch ) ) {
-               // $where = $where === '' ?
-                   // implode(' AND ', $columnSearch) :
-                   // $where .' AND '. implode(' AND ', $columnSearch);
-           // }
-           //Agrega filtro general personalizado
-           // if ($filtroAdd !== NULL ){
-               // if ( $where !== '' ) {
-                   // $where = $filtroAdd.' AND '.$where;
-               // } else {
-                   // $where = $filtroAdd;
-               // }
-           // }
-
-           // if ( $where !== '' ) {
-               // $where = 'WHERE '.$where;
-           // }
+          
            return $globalSearch;
        }
        public function Order ( $columns )
@@ -219,7 +210,16 @@ $globalSearch[$column['db'].'::date ='] = $str;
                        if(strpos($c, '.') !== false){
                            $colname="";
                            $colname[]=explode(".",$c);
-                           $row[ $column['dt'] ] = utf8_encode($data[$i][$colname[0][0]][$colname[0][1]]);
+						   
+						   $secmodal=strtolower(Inflector::singularize( $colname[0][0]));
+						   if ($secmodal=='template'){
+						     $secmodal=$colname[0][0];
+						   }
+                           $row[ $column['dt'] ] = utf8_encode($data[$i][$secmodal][$colname[0][1]]);
+                           //if it is null check the second value from dot seperated in data
+                           if($row[ $column['dt'] ]=="" && $colname[0][0]==$controller->name){
+                               $row[ $column['dt'] ] = utf8_encode($data[$i][$colname[0][1]]);
+                           }
                        }else{
                            $row[ $column['dt'] ] = utf8_encode($data[$i][$c]);
                        }

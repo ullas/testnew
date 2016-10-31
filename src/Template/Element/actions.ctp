@@ -6,7 +6,7 @@
           <div class="fmactions">
           	<?php foreach($actions as $action ): ?>
             <div class="fmaction">
-      	       <button type="button" class="mptl mptl-assign btn btn-primary btn-sm" data-toggle="modal" data-target="#<?php echo $action['name'] ?>">
+      	       <button id="<?php echo $action['name']  ?>" type="button" class="mptl mptl-assign btn btn-primary btn-sm" />
 				 <?php echo  $action['title']; ?>
 				 
           </button>

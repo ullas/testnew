@@ -35,6 +35,10 @@ class GroupsTable extends Table
         $this->table('groups');
         $this->displayField('name');
         $this->primaryKey('id');
+		$this->belongsTo('Customers', [
+            'foreignKey' => 'customer_id',
+            'joinType' => 'INNER'
+        ]);
 
         $this->belongsToMany('Trackingobjects', [
             'foreignKey' => 'group_id',

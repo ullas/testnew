@@ -1,6 +1,14 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<style >
+		label.mandatory:after {
+   content: ' *';
+   color: #ff5a4d;
+   display: inline;
+}
+		
+	</style>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title><?php echo isset($theme['title']) ? $theme['title'] : 'Maptell Zorba'; ?></title>
@@ -100,6 +108,10 @@
         if (!a.parent().hasClass('treeview')) {
             a.parent().addClass('active').parents('.treeview').addClass('active');
         }
+        var a = $('a[href="/<?php echo $this->request->params['controller'] ?>"]');
+       if (!a.parent().hasClass('treeview')) {
+			a.parent().addClass('active').parents('.treeview').addClass('active');
+       }
         $(".actions a").each(function(){
                  if($(this).text()=='View')
                  {
@@ -117,19 +129,10 @@
                      $(this).text("");
                  }
            });
-          /*  $('body').removeClass('sidebar-expanded-on-hover').addClass('sidebar-collapse');
-            if(typeof(map)=='object'){
-        	   resizeMap();
-             }
-           
-           $(".sidebar-toggle").click(function(){
-           	  
-           	  if(typeof(map)=='object'){
-        	     
-        	      resizeMap();
-              }
-           	
-           });*/
+	   $( ':input[required]' ).each( function () {
+	       $("label[for='" + this.id + "']").addClass('mandatory');
+	   });
+          
     });
     
     
