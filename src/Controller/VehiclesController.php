@@ -196,7 +196,7 @@ private function getDateRangeFilters($dates,$basic)  {
     public function view($id = null)
     {
         $vehicle = $this->Vehicles->get($id, [
-            'contain' => ['Vehicletypes', 'Vehiclestatuses', 'Ownerships', 'Symbols', 'Stations', 'Departments', 'Trackingobjects', 'Purposes', 'Transporters', 'Drivers', 'Fuelentries', 'Issues', 'Servicesentries', 'Trips', 'Vehicleengines', 'Vehiclefluids', 'Vehiclepermits', 'Vehiclepurchases', 'Vehiclespecifications', 'Vehiclewheelstyres', 'Workorders']
+            'contain' => ['Vehicletypes', 'Vehiclestatuses', 'Ownerships', 'Symbols', 'Stations', 'Departments',  'Purposes', 'Transporters', 'Drivers', 'Fuelentries', 'Issues', 'Servicesentries', 'Trips', 'Vehicleengines', 'Vehiclefluids', 'Vehiclepermits', 'Vehiclepurchases', 'Vehiclespecifications', 'Vehiclewheelstyres', 'Workorders']
         ]);
 
         $this->set('vehicle', $vehicle);
@@ -244,11 +244,11 @@ private function getDateRangeFilters($dates,$basic)  {
         $symbols = $this->Vehicles->Symbols->find('list', ['limit' => 200]);
         $stations = $this->Vehicles->Stations->find('list', ['limit' => 200]);
         $departments = $this->Vehicles->Departments->find('list', ['limit' => 200]);
-        $trackingobjects = $this->Vehicles->Trackingobjects->find('list', ['limit' => 200]);
+        
         $purposes = $this->Vehicles->Purposes->find('list', ['limit' => 200]);
         $transporters = $this->Vehicles->Transporters->find('list', ['limit' => 200]);
         $drivers = $this->Vehicles->Drivers->find('list', ['limit' => 200]);
-        $this->set(compact('vehicle', 'vehicletypes', 'vehiclestatuses', 'ownerships', 'symbols', 'stations', 'departments', 'trackingobjects', 'purposes', 'transporters', 'drivers'));
+        $this->set(compact('vehicle', 'vehicletypes', 'vehiclestatuses', 'ownerships', 'symbols', 'stations', 'departments',  'purposes', 'transporters', 'drivers'));
         $this->set('_serialize', ['vehicle']);
     }
 
@@ -290,11 +290,11 @@ private function getDateRangeFilters($dates,$basic)  {
         $symbols = $this->Vehicles->Symbols->find('list', ['limit' => 200]);
         $stations = $this->Vehicles->Stations->find('list', ['limit' => 200]);
         $departments = $this->Vehicles->Departments->find('list', ['limit' => 200]);
-        $trackingobjects = $this->Vehicles->Trackingobjects->find('list', ['limit' => 200]);
+        
         $purposes = $this->Vehicles->Purposes->find('list', ['limit' => 200]);
         $transporters = $this->Vehicles->Transporters->find('list', ['limit' => 200]);
         $drivers = $this->Vehicles->Drivers->find('list', ['limit' => 200]);
-        $this->set(compact('vehicle', 'vehicletypes', 'vehiclestatuses', 'ownerships', 'symbols', 'stations', 'departments', 'trackingobjects', 'purposes', 'transporters', 'drivers'));
+        $this->set(compact('vehicle', 'vehicletypes', 'vehiclestatuses', 'ownerships', 'symbols', 'stations', 'departments',  'purposes', 'transporters', 'drivers'));
         $this->set('_serialize', ['vehicle']);
     }
 
@@ -308,8 +308,14 @@ private function getDateRangeFilters($dates,$basic)  {
     public function delete($id = null)
     {
         $this->request->allowMethod(['post', 'delete']);
+		$trackingObjTable = TableRegistry::get('Trackingobjects');
         $vehicle = $this->Vehicles->get($id);
+		
+		 
+		
         if ($this->Vehicles->delete($vehicle)) {
+        	$trobj=$trackingObjTable->get($vehicle['trackingobject_id']);
+			$trackingObjTable->delete($trobj);
             $this->Flash->success(__('The vehicle has been deleted.'));
         } else {
             $this->Flash->error(__('The vehicle could not be deleted. Please, try again.'));
@@ -336,6 +342,8 @@ private function getDateRangeFilters($dates,$basic)  {
 					 if($record['customer_id']== $this->loggedinuser['customer_id']) {
 					 	
 						   if ($this->Vehicles->delete($record)) {
+						   	$trobj=$trackingObjTable->get($record['trackingobject_id']);
+							$trackingObjTable->delete($trobj);
 					           $sucess= $sucess | true;
 					        } else {
 					           $failure= $failure | true;

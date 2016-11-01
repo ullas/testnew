@@ -1,7 +1,6 @@
-<!-- Content Header (Page header) -->
 <section class="content-header">
   <h1>
-    View Person 
+     <?php echo $this->request->params['controller'] ?> Details
   </h1>
   <ol class="breadcrumb">
     <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
@@ -10,26 +9,13 @@
     <li class="active">View</li>
   </ol>
 </section>
-
-
-<!-- Main content -->
 <section class="content">
-
-    <div class="row">
-    <div class="col-md-12">
-     <div class="box box-info">
-        <div class="box-header with-border">
-          <h3 class="box-title"></h3>
-
-          <div class="box-tools pull-right">
-            <a href="/people/add/" class="btn btn-sm btn-info btn-flat pull-left">Add a new Person</a>
-         
-          </div>
-        </div>
-        <!-- /.box-header -->
-        <div class="box-body">
-          <div class="table-responsive">
-            <table class="table no-margin">
+  <div class="row">
+  <div class="col-md-12">
+  	
+  	<div class="box box-primary">
+  		<div class="box-body">
+  		<table class="table table-hover">
         
         <tr>
             <th><?= __('Name') ?></th>
@@ -44,7 +30,7 @@
             <td><?= h($person->address) ?></td>
         </tr>
         <tr>
-            <th><?= __('Addressline1') ?></th>
+            <th><?= __('Address Line1') ?></th>
             <td><?= h($person->addressline1) ?></td>
         </tr>
         <tr>
@@ -79,11 +65,10 @@
             <th><?= __('Age') ?></th>
             <td><?= $this->Number->format($person->age) ?></td>
         </tr>
-    </table>
-</div>
- </div> <!-- table responsive -->
-    </div> <!-- box body -->
-     </div> <!-- box -->
-    </div> <!--col -->
- </div> <!--row-->
- </section>
+     </table>
+   </div><!--boxbody-->
+   </div><!-- box -->
+  
+  </div><!-- col12-->
+</div> 
+</section>

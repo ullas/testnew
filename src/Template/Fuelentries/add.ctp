@@ -36,16 +36,37 @@ $this->Form->templates($myTemplates);
              <div class="form-horizontal">
 
         <?php
-            echo $this->Form->input('vehicle_id',[ 'options' => $vehicles, 'empty' => true,'class'=>'select2']);
-            echo $this->Form->input('date', ['label'=> 'Date *','empty' => true,'class'=>'datemask','type'=>'text','templateVars' => ['help' => 'YYYY-MM-DD hh:mm A (Ex: 2016-09-09 12:41 pm)']]);
-            echo $this->Form->input('odometer',['label'=> 'Odometer *','empty' => true,'type'=>'text','templateVars' => ['help' => 'Reading at time of fuel-up']]);
+            echo $this->Form->input('vehicle_id',[ 'options' => $vehicles, 'empty' => true,'class'=>'select2','required' => 'required']);
+            echo $this->Form->input('date', ['label'=> 'Date ','empty' => true,'class'=>'datemask','type'=>'text','templateVars' => ['help' => 'YYYY-MM-DD hh:mm A (Ex: 2016-09-09 12:41 pm)'],'required' => 'required']);
+            echo $this->Form->input('odometer',['label'=> 'Odometer ','empty' => true,'type'=>'text','templateVars' => ['help' => 'Reading at time of fuel-up'],'required' => 'required']);
             echo $this->Form->input('priceperusnit',['label'=> 'Price Per Unit','empty' => true,'type'=>'text','templateVars' => ['help' => 'Optional (e.g. 3.989)']]);
             echo $this->Form->input('fueltype',['label'=>'Fuel Type']);
             echo $this->Form->input('vendor_id',['options' => $vendors, 'empty' => true,'templateVars' => ['help' => 'Select an existing vendor or enter the name of a new one'],'class'=>'select2']);
             echo $this->Form->input('ref',['label'=> 'Reference','empty' => true,'type'=>'text','templateVars' => ['help' => 'Optional (e.g. invoice number, transaction ID, etc.)']]);
-            echo $this->Form->input('partialfill');
-            echo $this->Form->input('markaspersonal',['label'=>'Mark As Personal']);
+           // echo $this->Form->input('partialfill');
+           // echo $this->Form->input('markaspersonal',['label'=>'Mark As Personal']);
         ?>
+        <div class="form-group">
+                  	 
+                   	  <label for="partialfill" class="col-sm-3 control-label" style="padding-top:0" >Partial Fill</label>
+				  <div class="col-sm-6">
+				    <input name="partialfill" value="1" id="partialfill" class="" type="checkbox">
+                   	
+				  </div>
+				  <div class="col-sm-offset-3 col-sm-6" style="margin-top:18px" >
+				  </div>
+				</div>
+         <div class="form-group">
+                  	 
+                   	  <label for="markaspersonal" class="col-sm-3 control-label" style="padding-top:0" >Mark as Personal</label>
+				  <div class="col-sm-6">
+				    <input name="markaspersonal" value="1" id="markaspersonal" class="" type="checkbox">
+                   	
+				  </div>
+				  <div class="col-sm-offset-3 col-sm-6" style="margin-top:18px" >
+				  </div>
+				</div>
+        
   </div>
  
           </div>
@@ -63,7 +84,7 @@ $this->Form->templates($myTemplates);
   <div class="row">
    <div class="form-group">
                 <div class="col-sm-offset-6 col-sm-10">
-                  <button type="submit" class="btn-success">Save</button>
+                  <button type="submit" class="btn btn-success">Save</button>
                 </div>
    </div>
    </div>
@@ -74,36 +95,29 @@ $this->Form->templates($myTemplates);
 
 <?php
 $this->Html->css([
-    'AdminLTE./plugins/daterangepicker/daterangepicker-bs3',
-    'AdminLTE./plugins/iCheck/all',
-    'AdminLTE./plugins/colorpicker/bootstrap-colorpicker.min',
-    'AdminLTE./plugins/timepicker/bootstrap-timepicker.min',
-    'AdminLTE./plugins/select2/select2.min',
+    'AdminLTE./plugins/datepicker/datepicker3',
+ 	'AdminLTE./plugins/select2/select2.min'
   ],
   ['block' => 'css']);
 
 $this->Html->script([
-  'AdminLTE./plugins/select2/select2.full.min',
-  'AdminLTE./plugins/input-mask/jquery.inputmask',
-  'AdminLTE./plugins/input-mask/jquery.inputmask.date.extensions',
-  'AdminLTE./plugins/input-mask/jquery.inputmask.extensions',
-  'AdminLTE./plugins/timepicker/bootstrap-timepicker.min',
-  'AdminLTE./plugins/daterangepicker/daterangepicker',
-  'AdminLTE./plugins/colorpicker/bootstrap-colorpicker.min',
-  'AdminLTE./plugins/timepicker/bootstrap-timepicker.min',
-  'AdminLTE./plugins/iCheck/icheck.min',
+   	'AdminLTE./plugins/select2/select2.full.min',
+  	'AdminLTE./plugins/datepicker/bootstrap-datepicker',
+  	'/js/dropzone/dropzone',
+	'AdminLTE./plugins/iCheck/icheck.min'
 ],
 ['block' => 'script']);
 ?>
 <?php $this->start('scriptBotton'); ?>
 <script>
   $(function () {
-    //Initialize Select2 Elements
+    
     $(".select2").select2();
-    $(".datemask").inputmask("yyyy/mm/dd", {"placeholder": "yyyy/mm/dd"});
-    $(".timepicker").timepicker({
-      showInputs: false
-    });
+    
+     $('.datemask').datepicker({
+            format:"dd/mm/yy",
+              autoclose: true
+   });
 
   });
 </script>

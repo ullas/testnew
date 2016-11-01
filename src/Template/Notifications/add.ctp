@@ -14,7 +14,7 @@
 <!-- Content Header (Page header) -->
 <section class="content-header">
   <h1>
-    Add Notification
+    Add Notification  <small>Please fill the details to create a new Notification</small>
   </h1>
   <ol class="breadcrumb">
     <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>

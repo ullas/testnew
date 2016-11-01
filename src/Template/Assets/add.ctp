@@ -1,12 +1,14 @@
 <?php
   $myTemplates = [
-    'inputContainer' => '<div class="form-group">{{content}}</div>',
-     'label' => '<label class="col-sm-2 control-label" {{attrs}}>{{text}}</label>',
-    'input' => '<div class="col-sm-10"><input type="{{type}}" name="{{name}}"{{attrs}}/></div>',
-     'select' => '<div class="col-sm-10"><select name="{{name}}"{{attrs}}>{{content}}</select></div>',
-      'selectMultiple' => '<div class="col-sm-10"><select name="{{name}}[]" multiple="multiple"{{attrs}}>{{content}}</select></div>',
-     'textarea' => '<div class="col-sm-10"><textarea name="{{name}}"{{attrs}}>{{value}}</textarea></div>'
+    'inputContainer' => '<div class="form-group">{{content}}<div class="col-sm-offset-3 col-sm-6" style="margin-top:4px">{{help}}</div></div>',
+     'label' => '<label class="col-sm-3 control-label" {{attrs}}>{{text}}</label>',
+    'input' => '<div class="col-sm-6"><input type="{{type}}" name="{{name}}"{{attrs}}/></div>',
+    
+     'select' => '<div class="col-sm-6"><select name="{{name}}"{{attrs}}>{{content}}</select></div>',
+     'textarea' => '<div class="col-sm-6"><textarea name="{{name}}"{{attrs}}>{{value}}</textarea></div>'
 ];
+
+ 
 $this->Form->templates($myTemplates);
 
 ?>
@@ -14,7 +16,7 @@ $this->Form->templates($myTemplates);
 <!-- Content Header (Page header) -->
 <section class="content-header">
   <h1>
-    Add Asset
+    Add Asset <small>Please fill the details to create a new Asset</small>
   </h1>
   <ol class="breadcrumb">
     <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
@@ -37,12 +39,22 @@ $this->Form->templates($myTemplates);
              <div class="form-horizontal">
   
         <?php
-            echo $this->Form->input('Trackingobject.name');
+            echo $this->Form->input('Trackingobject.name',['required' => 'required']);
            
-            echo $this->Form->input('assettype_id', ['options' => $assettypes, 'empty' => true,'class'=>'select2' ]);
+            echo $this->Form->input('assettype_id', ['options' => $assettypes, 'empty' => true,'class'=>'select2' ,'required' => 'required' ]);
             echo $this->Form->input('location');
-            echo $this->Form->input('isstationary');
-            echo $this->Form->input('symbol_id', ['options' => $symbols, 'empty' => true,'class'=>'select2' ]);
+		 ?>
+		  <div class="form-group">
+                  	<label for="isstationary" class="col-sm-3 control-label" style="padding-top:0" >Is Stationary</label>
+				  	<div class="col-sm-6">
+				    	<input name="isstationary" value="1" id="isstationary" class="" type="checkbox">
+                   	</div>
+				  	<div class="col-sm-offset-3 col-sm-6" style="margin-top:18px" >
+				  	</div>
+			</div>
+		 <?php	
+            
+            echo $this->Form->input('symbol_id', ['options' => $symbols, 'empty' => true,'class'=>'select2' ,'required' => 'required' ]);
             echo $this->Form->input('department_id', ['options' => $departments, 'empty' => true,'class'=>'select2' ]);
             echo $this->Form->input('station_id', ['options' => $stations, 'empty' => true,'class'=>'select2' ]);
             echo $this->Form->input('purpose_id', ['options' => $purposes, 'empty' => true,'class'=>'select2']);

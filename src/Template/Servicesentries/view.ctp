@@ -1,11 +1,11 @@
 <section class="content-header">
   <h1>
-     <?= h($servicesentry->name) ?> Details
+     <?php echo $this->request->params['controller'] ?> Details
   </h1>
   <ol class="breadcrumb">
   	<li><a href="#"><i class="fa fa-dashboard"></i>Home</a></li>
-   
-    <li><a href="/servicesentries/"> servicesentries</a></li>
+    <li><a href="#"> Fleet Management</a></li>
+    <li><a href="/servicesentries/"> Service Entries</a></li>
     <li class="active">View</li>
   </ol>
 </section>
@@ -21,7 +21,7 @@
             <td><?= $servicesentry->has('vehicle') ? $this->Html->link($servicesentry->vehicle->name, ['controller' => 'Vehicles', 'action' => 'view', $servicesentry->vehicle->id]) : '' ?></td>
         </tr>
         <tr>
-            <th><?= __('Refer') ?></th>
+            <th><?= __('Reference') ?></th>
             <td><?= h($servicesentry->refer) ?></td>
         </tr>
         <tr>
@@ -45,7 +45,7 @@
             <td><?= $this->Number->format($servicesentry->id) ?></td>
         </tr>
         <tr>
-            <th><?= __('Odo') ?></th>
+            <th><?= __('Odometer') ?></th>
             <td><?= $this->Number->format($servicesentry->odo) ?></td>
         </tr>
         <tr>
@@ -57,62 +57,23 @@
             <td><?= $this->Number->format($servicesentry->tax) ?></td>
         </tr>
         <tr>
-            <th><?= __('Dateofservice') ?></th>
+            <th><?= __('Date Of Service') ?></th>
             <td><?= h($servicesentry->dateofservice) ?></td>
         </tr>
         <tr>
-            <th><?= __('Markasvoid') ?></th>
+            <th><?= __('Mark As Void') ?></th>
             <td><?= $servicesentry->markasvoid ? __('Yes') : __('No'); ?></td>
         </tr>
+        <tr>
+            <th><?= __('Comments') ?></th>
+            <td> <?= $this->Text->autoParagraph(h($servicesentry->comments)); ?></td>
+        </tr>
+        </table>
    </div><!--boxbody-->
    </div><!-- box -->
   
   </div><!-- col12-->
-</div> </table>
-    <div class="row">
-    	<div class="col-md-12">
-  	
-  	    <div class="box box-primary"><div class="box-body">
-        <h4><?= __('Comments') ?></h4>
-        <?= $this->Text->autoParagraph(h($servicesentry->comments)); ?>
-       </div></div></div>
-    </div>
-    
-    <div class="row">
-    	<div class="col-md-12">
-  	
-  	     <div class="box box-primary"><div class="box-header">
-        <h4><?= __('Related Service Documents') ?></h4>
-        <?php if (!empty($servicesentry->servicedocuments)): ?>
-        </div>
-  		<div class="box-body">
-  		<table class="table table-hover">
-            <tr>
-                <th><?= __('Id') ?></th>
-                <th><?= __('Servicesentry Id') ?></th>
-                <th><?= __('Data') ?></th>
-                <th><?= __('Customer Id') ?></th>
-                <th class="actions"><?= __('Actions') ?></th>
-            </tr>
-            <?php foreach ($servicesentry->servicedocuments as $servicedocuments): ?>
-            <tr>
-                <td><?= h($servicedocuments->id) ?></td>
-                <td><?= h($servicedocuments->servicesentry_id) ?></td>
-                <td><?= h($servicedocuments->data) ?></td>
-                <td><?= h($servicedocuments->customer_id) ?></td>
-                <td class="actions">
-                    <?= $this->Html->link(__('View'), ['controller' => 'Servicedocuments', 'action' => 'view', $servicedocuments->id]) ?>
-                    <?= $this->Html->link(__('Edit'), ['controller' => 'Servicedocuments', 'action' => 'edit', $servicedocuments->id]) ?>
-                    <?= $this->Form->postLink(__('Delete'), ['controller' => 'Servicedocuments', 'action' => 'delete', $servicedocuments->id], ['confirm' => __('Are you sure you want to delete # {0}?', $servicedocuments->id)]) ?>
-                </td>
-            </tr>
-            <?php endforeach; ?>
-        </table>
-        </div><!--boxbody-->
-   </div><!-- box -->
+  </div>
+  </section>
   
-  </div><!-- col12-->
- 
-        <?php endif; ?>
-    </div>
-</div>
+  

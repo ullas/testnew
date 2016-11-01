@@ -44,7 +44,7 @@ $this->Form->templates($myTemplates);
             echo $this->Form->input('alertcategory_id',['label'=>'Alert Category','class'=>'select2']);
             echo $this->Form->input('template',['type'=>'textarea']);
             echo $this->Form->input('subject');
-			
+			echo $this->Form->input('customer_id', ['options' => $customers,'class'=>'select2']);
             
           
         ?>

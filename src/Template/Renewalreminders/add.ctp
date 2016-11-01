@@ -1,29 +1,99 @@
-<nav class="large-3 medium-4 columns" id="actions-sidebar">
-    <ul class="side-nav">
-        <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Html->link(__('List Renewalreminders'), ['action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('List Distributionlists'), ['controller' => 'Distributionlists', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Distributionlist'), ['controller' => 'Distributionlists', 'action' => 'add']) ?></li>
-        <li><?= $this->Html->link(__('List Groups'), ['controller' => 'Groups', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Group'), ['controller' => 'Groups', 'action' => 'add']) ?></li>
-        <li><?= $this->Html->link(__('List Customers'), ['controller' => 'Customers', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Customer'), ['controller' => 'Customers', 'action' => 'add']) ?></li>
-    </ul>
-</nav>
-<div class="renewalreminders form large-9 medium-8 columns content">
+<?php
+  $myTemplates = [
+    'inputContainer' => '<div class="form-group">{{content}}<div class="col-sm-offset-3 col-sm-6" style="margin-top:4px">{{help}}</div></div>',
+     'label' => '<label class="col-sm-3 control-label" {{attrs}}>{{text}}</label>',
+    'input' => '<div class="col-sm-6"><input type="{{type}}" name="{{name}}"{{attrs}}/></div>',
+    
+     'select' => '<div class="col-sm-6"><select name="{{name}}"{{attrs}}>{{content}}</select></div>',
+     'textarea' => '<div class="col-sm-6"><textarea name="{{name}}"{{attrs}}>{{value}}</textarea></div>'
+];
+
+ 
+$this->Form->templates($myTemplates);
+
+?>
+
+<!-- Content Header (Page header) -->
+<section class="content-header">
+  <h1>
+    New Renewal Reminders<small>Please fill the details to create a new Renewal Reminders</small>
+  </h1>
+  <ol class="breadcrumb">
+  	<li><a href="#"><i class="fa fa-dashboard"></i>Home</a></li>
+   
+    <li><a href="/Servicesentries/"> RenewalReminders</a></li>
+    <li class="active">Add</li>
+  </ol>
+</section>
+
+<!-- Main content -->
+<section class="content">
     <?= $this->Form->create($renewalreminder) ?>
-    <fieldset>
-        <legend><?= __('Add Renewalreminder') ?></legend>
+   <div class="row">
+    
+    <div class="col-md-12">
+      <div class="nav-tabs-custom">
+        
+        <div class="tab-content" style="padding-top:45px">
+          <div class="active tab-pane" id="details">
+             <div class="form-horizontal">
         <?php
-            echo $this->Form->input('renewalstype_id');
-            echo $this->Form->input('duedate');
-            echo $this->Form->input('timethreashold');
-            echo $this->Form->input('notificationrequired');
-            echo $this->Form->input('distributionlist_id', ['options' => $distributionlists, 'empty' => true]);
-            echo $this->Form->input('group_id', ['options' => $groups, 'empty' => true]);
-            echo $this->Form->input('customer_id', ['options' => $customers, 'empty' => true]);
+            echo $this->Form->input('renewalstype_id',['label'=>'Renewal Type','required' => 'required']);
+            echo $this->Form->input('duedate',['label'=>'Due Date']);
+            echo $this->Form->input('timethreashold',['label'=>'Time Threshold']);
+		?>
+		<div class="form-group">
+                  	<label for="notificationrequired" class="col-sm-3 control-label" style="padding-top:0" >Notification Required</label>
+				  	<div class="col-sm-6">
+				    	<input name="notificationrequired" value="1" id="notificationrequired" class="" type="checkbox">
+                   	</div>
+				  	<div class="col-sm-offset-3 col-sm-6" style="margin-top:18px" >
+				  	</div>
+			</div>
+		<?php	
+			
+            echo $this->Form->input('distributionlist_id', ['label'=>'Distribution List','options' => $distributionlists, 'empty' => true]);
+            echo $this->Form->input('group_id', ['label'=>'Group','options' => $groups, 'empty' => true]);
+            echo $this->Form->input('customer_id', ['label'=>'Customer','options' => $customers, 'empty' => true]);
         ?>
-    </fieldset>
-    <?= $this->Form->button(__('Submit')) ?>
-    <?= $this->Form->end() ?>
-</div>
+   <div class="row">
+   <div class="form-group">
+                <div class="col-sm-offset-6 col-sm-10">
+                  <button type="submit" class="btn btn-success">Save</button>
+                </div>
+   </div>
+   </div>
+   <!-- /.row -->
+ <?= $this->Form->end() ?>
+</section>
+<!-- /.content -->
+<?php
+$this->Html->css([
+  'AdminLTE./plugins/datepicker/datepicker3',
+  'AdminLTE./plugins/select2/select2.min'
+  ],
+  ['block' => 'css']);
+
+$this->Html->script([
+ 'AdminLTE./plugins/select2/select2.full.min',
+ 'AdminLTE./plugins/datepicker/bootstrap-datepicker',
+ '/js/dropzone/dropzone',
+ 'AdminLTE./plugins/iCheck/icheck.min'
+],
+['block' => 'script']);
+?>
+<?php $this->start('scriptBotton'); ?>
+<script>
+  $(function () {
+   
+   $(".select2").select2({ width: '100%' });
+   $('.datemask').datepicker({
+            format:"dd/mm/yy",
+              autoclose: true
+   });
+  
+
+  });
+</script>
+<?php $this->end(); ?>
+       

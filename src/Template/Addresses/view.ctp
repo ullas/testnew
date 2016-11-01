@@ -1,11 +1,11 @@
 <section class="content-header">
   <h1>
-    Address Details
+    <?php echo $this->request->params['controller'] ?> Details
   </h1>
-  <ol class="breadcrumb">
-  	<li><a href="#"><i class="fa fa-dashboard"></i>Home</a></li>
-    <li><a href="#"> Administration</a></li>
-    <li><a href="/inspection/"> address</a></li>
+   <ol class="breadcrumb">
+    <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+    <li><a href="#"> Contacts</a></li>
+     <li><a href="/addresses/"> Addresses</a></li>
     <li class="active">View</li>
   </ol>
 </section>
@@ -41,23 +41,23 @@
             <td><?= h($address->apartment) ?></td>
         </tr>
         <tr>
-            <th><?= __('Streetname') ?></th>
+            <th><?= __('Street Name') ?></th>
             <td><?= h($address->streetname) ?></td>
         </tr>
         <tr>
-            <th><?= __('Landmark') ?></th>
+            <th><?= __('Land Mark') ?></th>
             <td><?= h($address->landmark) ?></td>
         </tr>
         <tr>
-            <th><?= __('Areaname') ?></th>
+            <th><?= __('Area Name') ?></th>
             <td><?= h($address->areaname) ?></td>
         </tr>
         <tr>
-            <th><?= __('Countryshortcode') ?></th>
+            <th><?= __('Country Short Code') ?></th>
             <td><?= h($address->countryshortcode) ?></td>
         </tr>
         <tr>
-            <th><?= __('Stateshortcode') ?></th>
+            <th><?= __('State Short Code') ?></th>
             <td><?= h($address->stateshortcode) ?></td>
         </tr>
         <tr>
@@ -73,11 +73,11 @@
             <td><?= $this->Number->format($address->id) ?></td>
         </tr>
         <tr>
-            <th><?= __('IscurrentAddress') ?></th>
+            <th><?= __('Is Current Address') ?></th>
             <td><?= $address->iscurrentAddress ? __('Yes') : __('No'); ?></td>
         </tr>
-    </table>
-    </div><!--boxbody-->
+   </table>
+   </div><!--boxbody-->
    </div><!-- box -->
   
   </div><!-- col12-->
