@@ -17,7 +17,7 @@ $this->Form->templates($myTemplates);
 <!-- Content Header (Page header) -->
 <section class="content-header">
   <h1>
-    Add Passenger Group <small>Please fill the details to create a new Passenger Group</small>
+    New Passenger Group <small>Please fill the details to create a new Passenger Group</small>
   </h1>
   </h1>
   <ol class="breadcrumb">
@@ -65,7 +65,7 @@ $this->Form->templates($myTemplates);
 		
 		<?php	
           
-            echo $this->Form->input('passengers.ids', ['label'=>'Passengers','options' => $passengers]);
+            echo $this->Form->input('passengers.ids', ['label'=>'Passengers','options' => $passengers,'class'=>'select2']);
         ?>
    </div>
  

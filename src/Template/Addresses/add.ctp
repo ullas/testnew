@@ -41,7 +41,7 @@ $this->Form->templates($myTemplates);
             echo $this->Form->input('name',['required' => 'required']);
             echo $this->Form->input('designation');
             echo $this->Form->input('email');
-            echo $this->Form->input('customer_id', ['options' => $customers, 'empty' => true]);
+           
             echo $this->Form->input('mobile');
             echo $this->Form->input('apartment');
             echo $this->Form->input('streetname',['label'=>'Street Name']);
@@ -52,7 +52,7 @@ $this->Form->templates($myTemplates);
             echo $this->Form->input('city');
             echo $this->Form->input('pincode',['label'=>'Pin Code']);
             echo $this->Form->input('iscurrentAddress',['label'=>'Is Current Address']);
-            echo $this->Form->input('distributionlists.ids', ['label'=>'Distribution List','options' => $distributionlists]);
+            echo $this->Form->input('distributionlists.ids', ['label'=>'Distribution List','options' => $distributionlists,'class'=>'select2']);
         ?>
    <div class="row">
    <div class="form-group">

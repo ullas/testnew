@@ -13,13 +13,13 @@ $this->Form->templates($myTemplates);
 <!-- Content Header (Page header) -->
 <section class="content-header">
   <h1>
-    Add Fuel Entries
+    New Fuel Entry <small>Please fill the details to create a new Fuel Entry</small>
   </h1>
   <ol class="breadcrumb">
   	<li><a href="#"><i class="fa fa-dashboard"></i>Home</a></li>
    
     <li><a href="/Fuelentries/"> Fuel Entries</a></li>
-    <li class="active">Add</li>
+    <li class="active">Edit</li>
   </ol>
 </section>
 
@@ -38,7 +38,7 @@ $this->Form->templates($myTemplates);
         <?php
             echo $this->Form->input('vehicle_id',[ 'options' => $vehicles, 'empty' => true,'class'=>'select2','required' => 'required']);
             echo $this->Form->input('date', ['label'=> 'Date ','empty' => true,'class'=>'datemask','type'=>'text','templateVars' => ['help' => 'YYYY-MM-DD hh:mm A (Ex: 2016-09-09 12:41 pm)'],'required' => 'required']);
-            echo $this->Form->input('odometer',['label'=> 'Odometer ','empty' => true,'type'=>'text','templateVars' => ['help' => 'Reading at time of fuel-up'],'required' => 'required']);
+            echo $this->Form->input('odo',['label'=> 'Odometer ','empty' => true,'type'=>'text','templateVars' => ['help' => 'Reading at time of fuel-up'],'required' => 'required']);
             echo $this->Form->input('priceperusnit',['label'=> 'Price Per Unit','empty' => true,'type'=>'text','templateVars' => ['help' => 'Optional (e.g. 3.989)']]);
             echo $this->Form->input('fueltype',['label'=>'Fuel Type']);
             echo $this->Form->input('vendor_id',['options' => $vendors, 'empty' => true,'templateVars' => ['help' => 'Select an existing vendor or enter the name of a new one'],'class'=>'select2']);

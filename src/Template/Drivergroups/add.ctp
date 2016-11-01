@@ -15,7 +15,7 @@ $this->Form->templates($myTemplates);
 <!-- Content Header (Page header) -->
 <section class="content-header">
   <h1>
-    Add Driver Group
+    New Driver Group <small>Please fill the details to create a new Driver Group</small>
   </h1>
    <ol class="breadcrumb">
     <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
@@ -39,8 +39,8 @@ $this->Form->templates($myTemplates);
         <?php
             echo $this->Form->input('name');
             echo $this->Form->input('description');
-            echo $this->Form->input('defaultdriver_id', ['label'=>'Default Driver','options' => $defaultdrivers, 'empty' => true]);
-            echo $this->Form->input('drivers.ids', ['options' => $drivers]);
+            echo $this->Form->input('defaultdriver_id', ['label'=>'Default Driver','options' => $defaultdrivers, 'empty' => true,'class'=>'select2']);
+            echo $this->Form->input('drivers.ids', ['options' => $drivers,'class'=>'select2']);
         ?>
     
  </div>

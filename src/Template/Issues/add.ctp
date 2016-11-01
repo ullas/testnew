@@ -38,7 +38,7 @@ $this->Form->templates($myTemplates);
              <div class="form-horizontal">
         <?php
             echo $this->Form->input('vehicle_id', ['options' => $vehicles, 'empty' => true,'class'=>'select2','required' => 'required']);
-                   echo $this->Form->input('reportedon', ['label'=>'Reported On','empty' => true,'type'=>'text', 'class'=>'datemask','required' => 'required']);
+                   echo $this->Form->input('reportedon', ['label'=>'Reported On','empty' => true,'type'=>'text', 'class'=>'datemask','required' => 'required','templateVars' => ['help' => 'YYYY-MM-DD (Ex: 2016-09-09)']]);
                    
                 	
                   echo $this->Form->input('summary',['required' => 'required']);

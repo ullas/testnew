@@ -216,7 +216,7 @@ public function ajaxdata() {
         $part = $this->Parts->newEntity();
         if ($this->request->is('post')) {
             $part = $this->Parts->patchEntity($part, $this->request->data);
-            $part['customer_id']=$this->currentuser['customer_id'];
+            $part['customer_id']=$this->loggedinuser['customer_id'];
             if ($this->Parts->save($part)) {
                 $this->Flash->success(__('The part has been saved.'));
 
@@ -237,7 +237,9 @@ public function ajaxdata() {
                 
         $stations = $this->Parts->Stations->find('list', ['limit' => 200])->where("customer_id=".$this->loggedinuser['customer_id']);
         
-                $this->set(compact('part', 'partcategories', 'manufacturers', 'measurementunits', 'stations'));
+				
+		
+                $this->set(compact('part', 'partcategories', 'manufacturers', 'measurementunits', 'stations','customers'));
         $this->set('_serialize', ['part']);
     }
 
@@ -255,7 +257,7 @@ public function ajaxdata() {
         ]);
         if ($this->request->is(['patch', 'post', 'put'])) {
             $part = $this->Parts->patchEntity($part, $this->request->data);
-             $part['customer_id']=$this->currentuser['customer_id'];
+             $part['customer_id']=$this->loggedinuser['customer_id'];
             if ($this->Parts->save($part)) {
                 $this->Flash->success(__('The part has been saved.'));
 
@@ -304,14 +306,14 @@ public function ajaxdata() {
 		$this->request->allowMethod(['post', 'deleteall']);
         $sucess=false;$failure=false;
         $data=$this->request->data;
-			
+		
 		if(isset($data)){
 		   foreach($data as $key =>$value){
-		   	   		
+		   	   			
 		   	   	$itemna=explode("-",$key);
 			    
 			    if(count($itemna)== 2 && $itemna[0]=='chk'){
-			    	
+			    	print_r($value);
 					$record = $this->Parts->get($value);
 					
 					 if($record['customer_id']== $this->loggedinuser['customer_id']) {

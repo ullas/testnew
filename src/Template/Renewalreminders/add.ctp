@@ -38,9 +38,9 @@ $this->Form->templates($myTemplates);
           <div class="active tab-pane" id="details">
              <div class="form-horizontal">
         <?php
-            echo $this->Form->input('renewalstype_id',['label'=>'Renewal Type','required' => 'required']);
-            echo $this->Form->input('duedate',['label'=>'Due Date']);
-            echo $this->Form->input('timethreashold',['label'=>'Time Threshold']);
+            echo $this->Form->input('renewalstype_id',['label'=>'Renewal Type','required' => 'required','class'=>'select2']);
+            echo $this->Form->input('duedate',['label'=>'Due Date','required' => 'required']);
+            echo $this->Form->input('timethreashold',['label'=>'Time Threshold','required' => 'required']);
 		?>
 		<div class="form-group">
                   	<label for="notificationrequired" class="col-sm-3 control-label" style="padding-top:0" >Notification Required</label>
@@ -52,9 +52,9 @@ $this->Form->templates($myTemplates);
 			</div>
 		<?php	
 			
-            echo $this->Form->input('distributionlist_id', ['label'=>'Distribution List','options' => $distributionlists, 'empty' => true]);
-            echo $this->Form->input('group_id', ['label'=>'Group','options' => $groups, 'empty' => true]);
-            echo $this->Form->input('customer_id', ['label'=>'Customer','options' => $customers, 'empty' => true]);
+            echo $this->Form->input('distributionlist_id', ['label'=>'Distribution List','options' => $distributionlists, 'empty' => true,'class'=>'select2']);
+            echo $this->Form->input('group_id', ['label'=>'Group','options' => $groups, 'empty' => true,'class'=>'select2']);
+           
         ?>
    <div class="row">
    <div class="form-group">
