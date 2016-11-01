@@ -195,7 +195,7 @@ private function getDateRangeFilters($dates,$basic)  {
     public function view($id = null)
     {
         $issue = $this->Issues->get($id, [
-            'contain' => ['Vehicles', 'Reportedby', 'Customers', 'Workorders', 'Servicesentries', 'Addresses', 'Issuedocuments']
+            'contain' => ['Vehicles', 'Reportedbies', 'Customers', 'Workorders', 'Servicesentries', 'Addresses', 'Issuedocuments']
         ]);
 
         $this->set('issue', $issue);
@@ -222,25 +222,25 @@ private function getDateRangeFilters($dates,$basic)  {
             }
         }
         
-        $vehicles = $this->Issues->Vehicles->find('list', ['limit' => 200])->where("customer_id=".$this->loggedinuser['customer_id'])->where("customer_id=0");
         
+        $vehicles = $this->Issues->Vehicles->find('list', ['limit' => 200])->where("customer_id=".$this->loggedinuser['customer_id']);
                 
-        $reportedby = $this->Issues->Reportedby->find('list', ['limit' => 200])->where("customer_id=".$this->loggedinuser['customer_id'])->where("customer_id=0");
+        $reportedbies = $this->Issues->Reportedbies->find('list', ['limit' => 200])->where("customer_id=".$this->loggedinuser['customer_id']);
         
                         
-          $customers = $this->Issues->Customers->find('list', ['limit' => 200])->where("id=".$this->loggedinuser['customer_id']);
+        $customers = $this->Issues->Customers->find('list', ['limit' => 200])->where("id=".$this->loggedinuser['customer_id']);
       
         
                 
-        $workorders = $this->Issues->Workorders->find('list', ['limit' => 200])->where("customer_id=".$this->loggedinuser['customer_id'])->where("customer_id=0");
+        $workorders = $this->Issues->Workorders->find('list', ['limit' => 200])->where("customer_id=".$this->loggedinuser['customer_id']);
         
                 
-        $servicesentries = $this->Issues->Servicesentries->find('list', ['limit' => 200])->where("customer_id=".$this->loggedinuser['customer_id'])->where("customer_id=0");
+        $servicesentries = $this->Issues->Servicesentries->find('list', ['limit' => 200])->where("customer_id=".$this->loggedinuser['customer_id']);
         
                 
-        $addresses = $this->Issues->Addresses->find('list', ['limit' => 200])->where("customer_id=".$this->loggedinuser['customer_id'])->where("customer_id=0");
+        $addresses = $this->Issues->Addresses->find('list', ['limit' => 200])->where("customer_id=".$this->loggedinuser['customer_id']);
         
-                $this->set(compact('issue', 'vehicles', 'reportedby', 'customers', 'workorders', 'servicesentries', 'addresses'));
+                $this->set(compact('issue', 'vehicles', 'reportedbies', 'customers', 'workorders', 'servicesentries', 'addresses'));
         $this->set('_serialize', ['issue']);
     }
 
@@ -268,12 +268,12 @@ private function getDateRangeFilters($dates,$basic)  {
             }
         }
         $vehicles = $this->Issues->Vehicles->find('list', ['limit' => 200]);
-        $reportedby = $this->Issues->Reportedby->find('list', ['limit' => 200]);
+        $reportedbies = $this->Issues->Reportedbies->find('list', ['limit' => 200]);
         $customers = $this->Issues->Customers->find('list', ['limit' => 200]);
         $workorders = $this->Issues->Workorders->find('list', ['limit' => 200]);
         $servicesentries = $this->Issues->Servicesentries->find('list', ['limit' => 200]);
         $addresses = $this->Issues->Addresses->find('list', ['limit' => 200]);
-        $this->set(compact('issue', 'vehicles', 'reportedby', 'customers', 'workorders', 'servicesentries', 'addresses'));
+        $this->set(compact('issue', 'vehicles', 'reportedbies', 'customers', 'workorders', 'servicesentries', 'addresses'));
         $this->set('_serialize', ['issue']);
     }
 

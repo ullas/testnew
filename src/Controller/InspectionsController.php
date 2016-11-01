@@ -208,7 +208,7 @@ public function ajaxdata() {
         $inspection = $this->Inspections->newEntity();
         if ($this->request->is('post')) {
             $inspection = $this->Inspections->patchEntity($inspection, $this->request->data);
-            $inspection['customer_id']=$this->currentuser['customer_id'];
+            $inspection['customer_id']=$this->loggedinuser['customer_id'];
             if ($this->Inspections->save($inspection)) {
                 $this->Flash->success(__('The inspection has been saved.'));
 
@@ -248,7 +248,7 @@ public function ajaxdata() {
         ]);
         if ($this->request->is(['patch', 'post', 'put'])) {
             $inspection = $this->Inspections->patchEntity($inspection, $this->request->data);
-             $inspection['customer_id']=$this->currentuser['customer_id'];
+             $inspection['customer_id']=$this->loggedinuser['customer_id'];
             if ($this->Inspections->save($inspection)) {
                 $this->Flash->success(__('The inspection has been saved.'));
 

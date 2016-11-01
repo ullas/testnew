@@ -18,7 +18,7 @@ $this->Form->templates($myTemplates);
 <!-- Content Header (Page header) -->
 <section class="content-header">
   <h1>
-    Add RFID  <small>Please fill the details to create a new RFID</small>
+    New RFID  <small>Please fill the details to create a new RFID</small>
   </h1>
   <ol class="breadcrumb">
     <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>

@@ -14,7 +14,7 @@
 <!-- Content Header (Page header) -->
 <section class="content-header">
   <h1>
-    Add Notification  <small>Please fill the details to create a new Notification</small>
+    New Notification  <small>Please fill the details to create a new Notification</small>
   </h1>
   <ol class="breadcrumb">
     <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
@@ -290,7 +290,7 @@
     
    <div class="form-group">
                 <div class="col-sm-offset-6 col-sm-10">
-                  <button type="submit" class="btn btn-danger">Save</button>
+                  <button type="submit" class="btn btn-success">Save</button>
                 </div>
    </div>
    </div>

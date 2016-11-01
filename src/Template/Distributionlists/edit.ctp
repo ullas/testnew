@@ -16,7 +16,7 @@ $this->Form->templates($myTemplates);
 <!-- Content Header (Page header) -->
 <section class="content-header">
   <h1>
-    Edit DL <small>Please fill the details to create a new Distribution List</small>
+    Edit DL <small>Please fill the details to edit a Distribution List</small>
   </h1>
   <ol class="breadcrumb">
     <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
@@ -39,14 +39,31 @@ $this->Form->templates($myTemplates);
              <div class="form-horizontal">
   
         <?php
-            echo $this->Form->input('name',['required']);
+            echo $this->Form->input('name');
             echo $this->Form->input('description');
         ?> 
-       
+        <div class="form-group">
+                  	<label for="system" class="col-sm-3 control-label" style="padding-top:0" >System</label>
+				  	<div class="col-sm-6">
+				    	<input name="system" value="1" id="system" class="" type="checkbox">
+                   	</div>
+				  	<div class="col-sm-offset-3 col-sm-6" style="margin-top:18px" >
+				  	</div>
+			</div>
+			
+			<div class="form-group">
+                  	<label for="enabled" class="col-sm-3 control-label" style="padding-top:0" >Enabled</label>
+				  	<div class="col-sm-6">
+				    	<input name="enabled" value="1" id="enabled" class="" type="checkbox">
+                   	</div>
+				  	<div class="col-sm-offset-3 col-sm-6" style="margin-top:18px" >
+				  	</div>
+			</div>
         
         <?php   
-          
-            echo $this->Form->input('addresses.ids', ['options' => $addresses,'label'=>'Address','class'=>'select2']);
+           // echo $this->Form->input('system');
+           // echo $this->Form->input('enabled');
+            echo $this->Form->input('addresses.ids', ['options' => $addresses,'label'=>'Address']);
         ?>
      </div>
  
@@ -73,33 +90,3 @@ $this->Form->templates($myTemplates);
  <?= $this->Form->end() ?>
 </section>
 <!-- /.content -->
-<?php
-$this->Html->css([
-
-  'AdminLTE./plugins/select2/select2.min',
-   'AdminLTE./plugins/iCheck/all'
-  ],
-  ['block' => 'css']);
-
-$this->Html->script([
- 'AdminLTE./plugins/select2/select2.full.min',
-
- 'AdminLTE./plugins/iCheck/icheck.min'
-],
-['block' => 'script']);
-?>
-<?php $this->start('scriptBotton'); ?>
-<script>
-  $(function () {
-   
-   $(".select2").select2({ width: '100%' });
-   $('input[type="checkbox"].flat-blue, input[type="radio"].flat-blue').iCheck({
-      checkboxClass: 'icheckbox_flat-blue',
-      radioClass: 'iradio_flat-blue'
-    });
-
-  });
-</script>
-<?php $this->end(); ?>
-  
-

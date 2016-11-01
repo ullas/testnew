@@ -200,7 +200,7 @@ public function ajaxdata() {
         $fuelentry = $this->Fuelentries->newEntity();
         if ($this->request->is('post')) {
             $fuelentry = $this->Fuelentries->patchEntity($fuelentry, $this->request->data);
-            $fuelentry['customer_id']=$this->currentuser['customer_id'];
+            $fuelentry['customer_id']=$this->loggedinuser['customer_id'];
             if ($this->Fuelentries->save($fuelentry)) {
                 $this->Flash->success(__('The fuelentry has been saved.'));
 
@@ -237,7 +237,7 @@ public function ajaxdata() {
         ]);
         if ($this->request->is(['patch', 'post', 'put'])) {
             $fuelentry = $this->Fuelentries->patchEntity($fuelentry, $this->request->data);
-             $fuelentry['customer_id']=$this->currentuser['customer_id'];
+             $fuelentry['customer_id']=$this->loggedinuser['customer_id'];
             if ($this->Fuelentries->save($fuelentry)) {
                 $this->Flash->success(__('The fuelentry has been saved.'));
 

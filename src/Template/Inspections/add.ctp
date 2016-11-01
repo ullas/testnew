@@ -14,8 +14,8 @@ $this->Form->templates($myTemplates);
 <!-- Content Header (Page header) -->
 <section class="content-header">
   <h1>
-    Inspection
-  </h1>
+    New Inspection <small>Please fill the details to create a new Inspection</small>
+  </h1> 
   <ol class="breadcrumb">
   	<li><a href="#"><i class="fa fa-dashboard"></i>Home</a></li>
    
@@ -44,7 +44,7 @@ $this->Form->templates($myTemplates);
                   echo $this->Form->input('descriptions');
 
                     
-            echo $this->Form->input('inspectionfom_id', ['label'=>'Inspection Form','options' => $inspectionfoms, 'empty' => true,'class'=>'select2']);
+            echo $this->Form->input('inspectionform_id', ['label'=>'Inspection Form','options' => $inspectionforms, 'empty' => true,'class'=>'select2']);
                    echo $this->Form->input('date', ['empty' => true,'type'=>'text', 'class'=>'datemask']);
                    
             echo $this->Form->input('inspectionstatus_id', ['label'=>'Inspection Status','options' => $inspectionstatuses, 'empty' => true,'class'=>'select2']);

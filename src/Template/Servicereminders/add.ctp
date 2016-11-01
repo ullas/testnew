@@ -39,7 +39,7 @@ $this->Form->templates($myTemplates);
              <div class="form-horizontal">
         <?php
         
-            echo $this->Form->input('servicetask_id',['label'=>'Service Task','required' => 'required']);
+            echo $this->Form->input('servicetask_id',['label'=>'Service Task','required' => 'required','class'=>'select2']);
             echo $this->Form->input('meterinterval',['label'=>'Meter Interval']);
             echo $this->Form->input('daysinterval',['label'=>'Days Interval']);
             echo $this->Form->input('meterthreshold',['label'=>'Meter Threshold']);
@@ -56,9 +56,9 @@ $this->Form->templates($myTemplates);
 		
 		<?php
         	//echo $this->Form->input('notificationrequired');
-            echo $this->Form->input('distributionlist_id', ['options' => $distributionlists, 'empty' => true]);
-            echo $this->Form->input('group_id', ['options' => $groups, 'empty' => true]);
-            echo $this->Form->input('customer_id', ['options' => $customers, 'empty' => true]);
+            echo $this->Form->input('distributionlist_id', ['options' => $distributionlists, 'empty' => true,'class'=>'select2']);
+            echo $this->Form->input('group_id', ['options' => $groups, 'empty' => true,'class'=>'select2']);
+           
         ?>
    <div class="row">
    <div class="form-group">

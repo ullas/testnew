@@ -16,7 +16,7 @@ $this->Form->templates($myTemplates);
 <!-- Content Header (Page header) -->
 <section class="content-header">
   <h1>
-    Add People <small>Please fill the details to create People</small>
+    New People <small>Please fill the details to create People</small>
   </h1>
   <ol class="breadcrumb">
   	<li><a href="#"><i class="fa fa-dashboard"></i>Home</a></li>

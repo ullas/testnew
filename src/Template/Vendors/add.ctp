@@ -21,7 +21,7 @@ $this->Form->templates($myTemplates);
     <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
    
     <li> <a href="/vendors/">Vendors</a></li>
-    <li class="active">View </li>
+    <li class="active">Add </li>
   </ol>
 </section>
 
@@ -44,10 +44,10 @@ $this->Form->templates($myTemplates);
           <div class="active tab-pane" id="details">
              <div class="form-horizontal">
                 <?php 
-            echo $this->Form->input('name',['label'=>'Vendor Name ']);
-            echo $this->Form->input('phone',['label'=>'Phone Number']);
+            echo $this->Form->input('name',['label'=>'Vendor Name ','required' => 'required']);
+            echo $this->Form->input('phone',['label'=>'Phone Number','required' => 'required']);
             echo $this->Form->input('website');
-            echo $this->Form->input('address');
+            echo $this->Form->input('address',['required' => 'required']);
             echo $this->Form->input('addressline2',['title'=>'Address Line 2','label'=>'Address Line 2']);
             echo $this->Form->input('city');
             echo $this->Form->input('state',['label'=>'State/Province/Region']);

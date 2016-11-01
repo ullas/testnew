@@ -13,7 +13,7 @@ $this->Form->templates($myTemplates);
 <!-- Content Header (Page header) -->
 <section class="content-header">
   <h1>
-    Add Workorders
+    New Work Order <small>Please fill the details to create a new Work Order</small>
   </h1>
   <ol class="breadcrumb">
   	<li><a href="#"><i class="fa fa-dashboard"></i>Home</a></li>
@@ -54,10 +54,10 @@ $this->Form->templates($myTemplates);
             
 		 <?php	
             echo $this->Form->input('vendor_id', ['options' => $vendors, 'empty' => true,'class'=>'select2']);
-            echo $this->Form->input('completiondate', ['empty' => true,'type'=>'text','class'=>'datemask','label'=>'Completion Date *','templateVars' => ['help' => 'YYYY-MM-DD (Ex: 2016-09-09)']]);
+            echo $this->Form->input('completiondate', ['empty' => true,'type'=>'text','class'=>'datemask','label'=>'Completion Date','templateVars' => ['help' => 'YYYY-MM-DD (Ex: 2016-09-09)'],'required' => 'required']);
             echo $this->Form->input('labour');
             echo $this->Form->input('parts');
-            echo $this->Form->input('dicount');
+            echo $this->Form->input('dicount',['label'=>'Discount']);
             echo $this->Form->input('tax');
             echo $this->Form->input('issuedby_id',['label'=>'Issued By','class'=>'select2']);
             echo $this->Form->input('assignedby_id',['label'=>'Assigned By','class'=>'select2']);

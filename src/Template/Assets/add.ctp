@@ -16,7 +16,7 @@ $this->Form->templates($myTemplates);
 <!-- Content Header (Page header) -->
 <section class="content-header">
   <h1>
-    Add Asset <small>Please fill the details to create a new Asset</small>
+    New Asset <small>Please fill the details to create a new Asset</small>
   </h1>
   <ol class="breadcrumb">
     <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
@@ -41,7 +41,7 @@ $this->Form->templates($myTemplates);
         <?php
             echo $this->Form->input('Trackingobject.name',['required' => 'required']);
            
-            echo $this->Form->input('assettype_id', ['options' => $assettypes, 'empty' => true,'class'=>'select2' ,'required' => 'required' ]);
+            echo $this->Form->input('assettype_id', ['label'=>'Asset Type','options' => $assettypes, 'empty' => true,'class'=>'select2' ,'required' => 'required' ]);
             echo $this->Form->input('location');
 		 ?>
 		  <div class="form-group">

@@ -13,6 +13,7 @@ $this->Form->templates($myTemplates);
 
 ?>
 
+
 <!-- Content Header (Page header) -->
 <section class="content-header">
   <h1>
@@ -52,7 +53,7 @@ $this->Form->templates($myTemplates);
 				  	</div>
 			</div>
 		<?php	 
-            echo $this->Form->input('dateofpurchase', ['empty' => true,'type'=>'text','class'=>'datemask']);
+            echo $this->Form->input('dateofpurchase', ['label'=>'Date Of Purchase','empty' => true,'type'=>'text','class'=>'datemask']);
         ?>
   </div>
  
@@ -84,17 +85,16 @@ $this->Form->templates($myTemplates);
 
 <?php
 $this->Html->css([
-    
-    'AdminLTE./plugins/select2/select2.min',
+  'AdminLTE./plugins/datepicker/datepicker3',
+  'AdminLTE./plugins/select2/select2.min'
   ],
   ['block' => 'css']);
 
 $this->Html->script([
-  'AdminLTE./plugins/select2/select2.full.min',
-  'AdminLTE./plugins/input-mask/jquery.inputmask',
-  'AdminLTE./plugins/input-mask/jquery.inputmask.date.extensions',
-  'AdminLTE./plugins/input-mask/jquery.inputmask.extensions',
- 
+ 'AdminLTE./plugins/select2/select2.full.min',
+ 'AdminLTE./plugins/datepicker/bootstrap-datepicker',
+ '/js/dropzone/dropzone',
+ 'AdminLTE./plugins/iCheck/icheck.min'
 ],
 ['block' => 'script']);
 ?>
@@ -103,7 +103,10 @@ $this->Html->script([
   $(function () {
     //Initialize Select2 Elements
     $(".select2").select2();
-     $(".datemask").inputmask("yyyy/mm/dd", {"placeholder": "yyyy/mm/dd"});
+    $('.datemask').datepicker({
+            format:"dd/mm/yy",
+              autoclose: true
+   });
 
   });
 </script>
