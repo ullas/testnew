@@ -193,7 +193,7 @@ private function getDateRangeFilters($dates,$basic)  {
     public function view($id = null)
     {
         $passengergroup = $this->Passengergroups->get($id, [
-            'contain' => ['Customers', 'Passengers', 'Trips']
+            'contain' => ['Customers', 'Passengers']
         ]);
 
         $this->set('passengergroup', $passengergroup);
@@ -210,6 +210,7 @@ private function getDateRangeFilters($dates,$basic)  {
         $passengergroup = $this->Passengergroups->newEntity();
         if ($this->request->is('post')) {
             $passengergroup = $this->Passengergroups->patchEntity($passengergroup, $this->request->data);
+			$passengergroup['customer_id']=$this->loggedinuser['customer_id'];
             if ($this->Passengergroups->save($passengergroup)) {
                 $this->Flash->success(__('The passengergroup has been saved.'));
 
@@ -218,7 +219,7 @@ private function getDateRangeFilters($dates,$basic)  {
                 $this->Flash->error(__('The passengergroup could not be saved. Please, try again.'));
             }
         }
-        $customers = $this->Passengergroups->Customers->find('list', ['limit' => 200]);
+        $customers = $this->Passengergroups->Customers->find('list', ['limit' => 200])->where("customer_id=".$this->loggedinuser['customer_id']);;
         $passengers = $this->Passengergroups->Passengers->find('list', ['limit' => 200]);
         $this->set(compact('passengergroup', 'customers', 'passengers'));
         $this->set('_serialize', ['passengergroup']);

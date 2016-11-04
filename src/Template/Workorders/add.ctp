@@ -1,14 +1,15 @@
 <?php
-   $myTemplates = [
-    'inputContainer' => '<div class="form-group">{{content}}<div class="col-sm-offset-3 col-sm-6 style="margin-top:18px">{{help}}</div></div>',
+  $myTemplates = [
+    'inputContainer' => '<div class="form-group">{{content}}<div class="col-sm-offset-3 col-sm-6" style="margin-top:4px">{{help}}</div></div>',
      'label' => '<label class="col-sm-3 control-label" {{attrs}}>{{text}}</label>',
-    'input' => '<div class="col-sm-6"><input type="{{type}}" name="{{name}}"{{attrs}}/></div>',
+    'input' => '<div class="col-sm-6"><div class="input-group">{{icon}}<input type="{{type}}" name="{{name}}"{{attrs}}/></div></div>',
+    
      'select' => '<div class="col-sm-6"><select name="{{name}}"{{attrs}}>{{content}}</select></div>',
      'textarea' => '<div class="col-sm-6"><textarea name="{{name}}"{{attrs}}>{{value}}</textarea></div>'
 ];
 $this->Form->templates($myTemplates);
- 
 ?>
+
 
 <!-- Content Header (Page header) -->
 <section class="content-header">
@@ -34,11 +35,11 @@ $this->Form->templates($myTemplates);
         <div class="tab-content">
           <div class="active tab-pane" id="details">
              <div class="form-horizontal">
-        <?php
-            echo $this->Form->input('issuedate', ['empty' => true,'type'=>'text','class'=>'datemask','label'=>'Issue Date ','templateVars' => ['help' => 'YYYY-MM-DD (Ex: 2016-09-09)'],'required' => 'required']);
+               <?php
+            echo $this->Form->input('issuedate', ['empty' => true,'type'=>'text','class'=>'datemask','label'=>'Issue Date ','templateVars' => ['icon' => '<div class="input-group-addon"><i class="fa fa-calendar"></i></div>'],'required' => 'required']);
             echo $this->Form->input('workorderstatus_id',['label'=>'Work Order Status ','class'=>'select2','required' => 'required']);
-            echo $this->Form->input('vehicle_id', ['options' => $vehicles, 'empty' => true,'class'=>'select2']);
-            echo $this->Form->input('startdate', ['empty' => true,'type'=>'text','class'=>'datemask','label'=>'Start Date ','templateVars' => ['help' => 'YYYY-MM-DD (Ex: 2016-09-09) Required when a meter reading is present'],'required' => 'required']);
+            echo $this->Form->input('vehicle_id', ['options' => $vehicles, 'empty' => true,'class'=>'select2','required' => 'required']);
+            echo $this->Form->input('startdate', ['empty' => true,'type'=>'text','class'=>'datemask','label'=>'Start Date ','templateVars' => ['icon' => '<div class="input-group-addon"><i class="fa fa-calendar"></i></div>'],'required' => 'required']);
             echo $this->Form->input('lables');
             echo $this->Form->input('odometer');
              ?>
@@ -54,7 +55,7 @@ $this->Form->templates($myTemplates);
             
 		 <?php	
             echo $this->Form->input('vendor_id', ['options' => $vendors, 'empty' => true,'class'=>'select2']);
-            echo $this->Form->input('completiondate', ['empty' => true,'type'=>'text','class'=>'datemask','label'=>'Completion Date','templateVars' => ['help' => 'YYYY-MM-DD (Ex: 2016-09-09)'],'required' => 'required']);
+            echo $this->Form->input('completiondate', ['empty' => true,'type'=>'text','class'=>'datemask','label'=>'Completion Date','templateVars' => ['icon' => '<div class="input-group-addon"><i class="fa fa-calendar"></i></div>']]);
             echo $this->Form->input('labour');
             echo $this->Form->input('parts');
             echo $this->Form->input('dicount',['label'=>'Discount']);
@@ -63,7 +64,7 @@ $this->Form->templates($myTemplates);
             echo $this->Form->input('assignedby_id',['label'=>'Assigned By','class'=>'select2']);
             echo $this->Form->input('assignto_id',['label'=>'Assigned To','class'=>'select2']);
             echo $this->Form->input('invoicenumber',['label'=>'Invoice Number']);
-            echo $this->Form->input('POnumber',['label'=>'PO Number']);
+            echo $this->Form->input('phonenumber',['label'=>'Phone Number']);
             echo $this->Form->input('description');
         ?>
     </div>

@@ -39,7 +39,7 @@ $this->Form->templates($myTemplates);
              <div class="form-horizontal">
                 
            <?php
-            echo $this->Form->input('Trackingobject.name',['required' => 'required']);
+            echo $this->Form->input('name',['required' => 'required']);
             echo $this->Form->input('age');
             echo $this->Form->input('designation');
             echo $this->Form->input('address');

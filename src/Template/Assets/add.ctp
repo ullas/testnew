@@ -39,7 +39,7 @@ $this->Form->templates($myTemplates);
              <div class="form-horizontal">
   
         <?php
-            echo $this->Form->input('Trackingobject.name',['required' => 'required']);
+            echo $this->Form->input('name',['required' => 'required']);
            
             echo $this->Form->input('assettype_id', ['label'=>'Asset Type','options' => $assettypes, 'empty' => true,'class'=>'select2' ,'required' => 'required' ]);
             echo $this->Form->input('location');

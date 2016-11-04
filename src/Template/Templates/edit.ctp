@@ -42,7 +42,7 @@ $this->Form->templates($myTemplates);
             echo $this->Form->input('description');
             echo $this->Form->input('templatetype_id',['label'=>'Template Type','class'=>'select2']);
             echo $this->Form->input('alertcategory_id',['label'=>'Alert Category','class'=>'select2']);
-            echo $this->Form->input('template',['type'=>'textarea']);
+            echo $this->Form->input('templatetext',['label'=>'Template Text','type'=>'textarea']);
             echo $this->Form->input('subject');
 			
             

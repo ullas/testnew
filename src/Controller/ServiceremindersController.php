@@ -210,6 +210,7 @@ public function ajaxdata() {
         $servicereminder = $this->Servicereminders->newEntity();
         if ($this->request->is('post')) {
             $servicereminder = $this->Servicereminders->patchEntity($servicereminder, $this->request->data);
+			$servicereminder['customer_id']=$this->loggedinuser['customer_id'];
             if ($this->Servicereminders->save($servicereminder)) {
                 $this->Flash->success(__('The servicereminder has been saved.'));
 

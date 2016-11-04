@@ -208,6 +208,7 @@ public function ajaxdata() {
         $device = $this->Devices->newEntity();
         if ($this->request->is('post')) {
             $device = $this->Devices->patchEntity($device, $this->request->data);
+			$device['customer_id']=$this->loggedinuser['customer_id'];
             if ($this->Devices->save($device)) {
                 $this->Flash->success(__('The device has been saved.'));
 

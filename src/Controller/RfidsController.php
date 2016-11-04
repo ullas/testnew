@@ -208,6 +208,7 @@ private function getDateRangeFilters($dates,$basic)  {
         $rfid = $this->Rfids->newEntity();
         if ($this->request->is('post')) {
             $rfid = $this->Rfids->patchEntity($rfid, $this->request->data);
+			$rfid['customer_id']=$this->loggedinuser['customer_id'];
             if ($this->Rfids->save($rfid)) {
                 $this->Flash->success(__('The rfid has been saved.'));
 

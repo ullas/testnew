@@ -42,29 +42,6 @@ $this->Form->templates($myTemplates);
         <?php
             echo $this->Form->input('name',['required' => 'required']);
             echo $this->Form->input('description');
-            echo $this->Form->input('customer_id', ['options' => $customers, 'empty' => false,'class'=>'select2']);
-		?>
-		 <div class="form-group">
-                  	<label for="system" class="col-sm-3 control-label" style="padding-top:0" >System</label>
-				  	<div class="col-sm-6">
-				    	<input name="system" value="1" id="markasvoid" class="" type="checkbox">
-                   	</div>
-				  	<div class="col-sm-offset-3 col-sm-6" style="margin-top:18px" >
-				  	</div>
-			</div>
-			
-			 <div class="form-group">
-                  	<label for="enabled" class="col-sm-3 control-label" style="padding-top:0" >Enabled</label>
-				  	<div class="col-sm-6">
-				    	<input name="enabled" value="1" id="markasvoid" class="" type="checkbox">
-                   	</div>
-				  	<div class="col-sm-offset-3 col-sm-6" style="margin-top:18px" >
-				  	</div>
-			</div>
-		
-		
-		<?php	
-          
             echo $this->Form->input('passengers.ids', ['label'=>'Passengers','options' => $passengers,'class'=>'select2']);
         ?>
    </div>

@@ -32,10 +32,10 @@
             <th><?= __('Vendor') ?></th>
             <td><?= $servicesentry->has('vendor') ? $this->Html->link($servicesentry->vendor->name, ['controller' => 'Vendors', 'action' => 'view', $servicesentry->vendor->id]) : '' ?></td>
         </tr>
-        <tr>
+        <!-- <tr>
             <th><?= __('Customer') ?></th>
             <td><?= $servicesentry->has('customer') ? $this->Html->link($servicesentry->customer->name, ['controller' => 'Customers', 'action' => 'view', $servicesentry->customer->id]) : '' ?></td>
-        </tr>
+        </tr> -->
         <tr>
             <th><?= __('Name') ?></th>
             <td><?= h($servicesentry->name) ?></td>

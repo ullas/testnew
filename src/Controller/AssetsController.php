@@ -212,10 +212,13 @@ public function ajaxdata() {
         $asset = $this->Assets->newEntity();
         if ($this->request->is('post')) {
             $asset = $this->Assets->patchEntity($asset, $this->request->data);
+			
+			$asset['customer_id']=$this->loggedinuser['customer_id'];
+			
 			$trobjTable = TableRegistry::get('Trackingobjects');
 			
 			$trobj=$trobjTable->newEntity();
-			$trobj->name=$this->request->data['Trackingobject']['name'];
+			$trobj->name=$this->request->data['name'];
 		    $trobjTable->save($trobj);
 			$asset['trackingobject_id']=$trobj->id;
 			
@@ -262,8 +265,11 @@ public function ajaxdata() {
 		
         if ($this->request->is(['patch', 'post', 'put'])) {
             $asset = $this->Assets->patchEntity($asset, $this->request->data);
+			
+			$asset['customer_id']=$this->loggedinuser['customer_id'];
+			
 			$trobjTable = TableRegistry::get('Trackingobjects');
-			$trobj->name=$this->request->data['Trackingobject']['name'];
+			$trobj->name=$this->request->data['name'];
 			$trobjTable->save($trobj);
             if ($this->Assets->save($asset)) {
                 $this->Flash->success(__('The asset has been saved.'));

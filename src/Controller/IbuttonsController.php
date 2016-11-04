@@ -206,6 +206,7 @@ public function ajaxdata() {
         $ibutton = $this->Ibuttons->newEntity();
         if ($this->request->is('post')) {
             $ibutton = $this->Ibuttons->patchEntity($ibutton, $this->request->data);
+			$ibutton['customer_id']=$this->loggedinuser['customer_id'];
             if ($this->Ibuttons->save($ibutton)) {
                 $this->Flash->success(__('The ibutton has been saved.'));
 

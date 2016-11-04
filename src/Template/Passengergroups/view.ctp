@@ -1,4 +1,4 @@
-<section class="content-header">
+f<section class="content-header">
   <h1>
     <?php echo $this->request->params['controller'] ?> Details
   </h1>
@@ -32,14 +32,7 @@
             <th><?= __('Id') ?></th>
             <td><?= $this->Number->format($passengergroup->id) ?></td>
         </tr>
-        <tr>
-            <th><?= __('System') ?></th>
-            <td><?= $passengergroup->system ? __('Yes') : __('No'); ?></td>
-        </tr>
-        <tr>
-            <th><?= __('Enabled') ?></th>
-            <td><?= $passengergroup->enabled ? __('Yes') : __('No'); ?></td>
-        </tr>
+       
     </table>
    </div><!--boxbody-->
    </div><!-- box -->

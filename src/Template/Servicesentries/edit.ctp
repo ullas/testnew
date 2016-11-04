@@ -2,26 +2,23 @@
   $myTemplates = [
     'inputContainer' => '<div class="form-group">{{content}}<div class="col-sm-offset-3 col-sm-6" style="margin-top:4px">{{help}}</div></div>',
      'label' => '<label class="col-sm-3 control-label" {{attrs}}>{{text}}</label>',
-    'input' => '<div class="col-sm-6"><input type="{{type}}" name="{{name}}"{{attrs}}/></div>',
+    'input' => '<div class="col-sm-6"><div class="input-group">{{icon}}<input type="{{type}}" name="{{name}}"{{attrs}}/></div></div>',
     
      'select' => '<div class="col-sm-6"><select name="{{name}}"{{attrs}}>{{content}}</select></div>',
      'textarea' => '<div class="col-sm-6"><textarea name="{{name}}"{{attrs}}>{{value}}</textarea></div>'
 ];
-
- 
 $this->Form->templates($myTemplates);
-
 ?>
 
 <!-- Content Header (Page header) -->
 <section class="content-header">
   <h1>
-    Edit Service Entry <small>Please fill the details to edit new Service Entry</small>
+    Edit Service Entry <small>Please fill the details to edit a Service Entry</small>
   </h1>
   <ol class="breadcrumb">
   	<li><a href="#"><i class="fa fa-dashboard"></i>Home</a></li>
-   
-    <li><a href="/Servicesentries/"> Servicesentries</a></li>
+    <li><a href="#"><i class="fa fa-bus"></i>Fleet Management</a></li> 
+    <li><a href="/Servicesentries/"> Service Entries</a></li>
     <li class="active">Edit</li>
   </ol>
 </section>
@@ -38,8 +35,8 @@ $this->Form->templates($myTemplates);
           <div class="active tab-pane" id="details">
              <div class="form-horizontal">
         <?php
-            echo $this->Form->input('name',['label'=>'Name','templateVars' => ['help' => 'A short name for your entry'],'required' => 'required']);             
-            echo $this->Form->input('dateofservice', ['type'=>'text','empty' => true,'label'=>'Date Of Service','class'=>'datemask','templateVars' => ['help' => 'YYYY-MM-DD (Ex: 2016-09-09)'],'required' => 'required']);
+             echo $this->Form->input('name',['label'=>'Name','templateVars' => ['help' => 'A short name for your entry'],'required' => 'required']);             
+            echo $this->Form->input('dateofservice', ['type'=>'text','empty' => true,'label'=>'Date Of Service','required' => 'required','class'=>'datemask','templateVars' => ['icon' => '<div class="input-group-addon"><i class="fa fa-calendar"></i></div>']]);
             echo $this->Form->input('vehicle_id', ['options' => $vehicles, 'empty' => true,'class'=>'select2','required' => 'required']);
             echo $this->Form->input('odo',['label'=>'Odometer','templateVars' => ['help' => 'Meter reading at the time of service'],'required' => 'required']); 
             echo $this->Form->input('refer',['templateVars' => ['help' => 'Optional (e.g. invoice number, etc.)']]);

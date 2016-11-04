@@ -210,6 +210,7 @@ public function ajaxdata() {
         $distributionlist = $this->Distributionlists->newEntity();
         if ($this->request->is('post')) {
             $distributionlist = $this->Distributionlists->patchEntity($distributionlist, $this->request->data);
+			$distributionlist['customer_id']=$this->loggedinuser['customer_id'];
             if ($this->Distributionlists->save($distributionlist)) {
                 $this->Flash->success(__('The distributionlist has been saved.'));
 

@@ -17,7 +17,7 @@
   		<div class="box-body">
   		<table class="table table-hover">
             <th><?= __('Vehicle') ?></th>
-            <td><?= $fuelentry->has('vehicle') ? $this->Html->link($fuelentry->vehicle->id, ['controller' => 'Vehicles', 'action' => 'view', $fuelentry->vehicle->id]) : '' ?></td>
+            <td><?= $fuelentry->has('vehicle') ? $this->Html->link($fuelentry->vehicle->name, ['controller' => 'Vehicles', 'action' => 'view', $fuelentry->vehicle->id]) : '' ?></td>
         </tr>
         <tr>
             <th><?= __('Fuel Type') ?></th>
@@ -44,8 +44,9 @@
             <td><?= $this->Number->format($fuelentry->priceperusnit) ?></td>
         </tr>
         <tr>
-            <th><?= __('Vendor Id') ?></th>
-            <td><?= $this->Number->format($fuelentry->vendor_id) ?></td>
+            <th><?= __('Vendor') ?></th>
+             <td><?= $fuelentry->has('vendor') ? $this->Html->link($fuelentry->vendor->name, ['controller' => 'Vendors', 'action' => 'view', $fuelentry->vendor->id]) : '' ?></td>
+            <!-- <td><?= $this->Number->format($fuelentry->vendor_id) ?></td> -->
         </tr>
         <tr>
             <th><?= __('Date') ?></th>

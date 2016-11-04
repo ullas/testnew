@@ -7,8 +7,12 @@
    color: #ff5a4d;
    display: inline;
 }
+.input-group{
+	width:100%;
+}
 		
-	</style>
+</style>
+	
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title><?php echo isset($theme['title']) ? $theme['title'] : 'Maptell Zorba'; ?></title>

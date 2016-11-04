@@ -209,6 +209,7 @@ public function ajaxdata() {
         $notification = $this->Notifications->newEntity();
         if ($this->request->is('post')) {
             $notification = $this->Notifications->patchEntity($notification, $this->request->data);
+			$notification['customer_id']=$this->loggedinuser['customer_id'];
             if ($this->Notifications->save($notification)) {
                 $this->Flash->success(__('The notification has been saved.'));
 
