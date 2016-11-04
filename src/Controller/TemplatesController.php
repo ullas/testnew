@@ -245,7 +245,7 @@ public function ajaxdata() {
         ]);
         if ($this->request->is(['patch', 'post', 'put'])) {
             $template = $this->Templates->patchEntity($template, $this->request->data);
-			$template['customer_id']=$this->currentuser['customer_id'];
+			$template['customer_id']=$this->loggedinuser['customer_id'];
             if ($this->Templates->save($template)) {
                 $this->Flash->success(__('The template has been saved.'));
 

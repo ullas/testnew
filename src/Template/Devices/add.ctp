@@ -2,16 +2,14 @@
   $myTemplates = [
     'inputContainer' => '<div class="form-group">{{content}}<div class="col-sm-offset-3 col-sm-6" style="margin-top:4px">{{help}}</div></div>',
      'label' => '<label class="col-sm-3 control-label" {{attrs}}>{{text}}</label>',
-    'input' => '<div class="col-sm-6"><input type="{{type}}" name="{{name}}"{{attrs}}/></div>',
+    'input' => '<div class="col-sm-6"><div class="input-group">{{icon}}<input type="{{type}}" name="{{name}}"{{attrs}}/></div></div>',
     
      'select' => '<div class="col-sm-6"><select name="{{name}}"{{attrs}}>{{content}}</select></div>',
      'textarea' => '<div class="col-sm-6"><textarea name="{{name}}"{{attrs}}>{{value}}</textarea></div>'
 ];
-
- 
 $this->Form->templates($myTemplates);
-
 ?>
+
 
 <!-- Content Header (Page header) -->
 <section class="content-header">
@@ -38,9 +36,8 @@ $this->Form->templates($myTemplates);
           <div class="active tab-pane" id="details">
              <div class="form-horizontal">
         <?php
-            echo $this->Form->input('code',['required' =>'required']);
-            echo $this->Form->input('customer_id', ['options' => $customers,'class'=>'select2' , 'required' =>'required']);
-            echo $this->Form->input('install_date', ['empty' => true,'type'=>'text','class'=>'datemask' , 'required' =>'required']);
+             echo $this->Form->input('code',['required' =>'required']);
+            echo $this->Form->input('install_date', ['empty' => true,'type'=>'text','class'=>'datemask' , 'required' =>'required','templateVars' => ['icon' => '<div class="input-group-addon"><i class="fa fa-calendar"></i></div>']]);
             echo $this->Form->input('installed_by');
             echo $this->Form->input('certified_by');
             echo $this->Form->input('comments');

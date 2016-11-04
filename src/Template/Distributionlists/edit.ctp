@@ -38,32 +38,10 @@ $this->Form->templates($myTemplates);
           <div class="active tab-pane" id="details">
              <div class="form-horizontal">
   
-        <?php
+       <?php
             echo $this->Form->input('name');
             echo $this->Form->input('description');
-        ?> 
-        <div class="form-group">
-                  	<label for="system" class="col-sm-3 control-label" style="padding-top:0" >System</label>
-				  	<div class="col-sm-6">
-				    	<input name="system" value="1" id="system" class="" type="checkbox">
-                   	</div>
-				  	<div class="col-sm-offset-3 col-sm-6" style="margin-top:18px" >
-				  	</div>
-			</div>
-			
-			<div class="form-group">
-                  	<label for="enabled" class="col-sm-3 control-label" style="padding-top:0" >Enabled</label>
-				  	<div class="col-sm-6">
-				    	<input name="enabled" value="1" id="enabled" class="" type="checkbox">
-                   	</div>
-				  	<div class="col-sm-offset-3 col-sm-6" style="margin-top:18px" >
-				  	</div>
-			</div>
-        
-        <?php   
-           // echo $this->Form->input('system');
-           // echo $this->Form->input('enabled');
-            echo $this->Form->input('addresses.ids', ['options' => $addresses,'label'=>'Address']);
+       		echo $this->Form->input('addresses.ids', ['class'=>'select2','options' => $addresses,'label'=>'Address']);
         ?>
      </div>
  
@@ -90,3 +68,32 @@ $this->Form->templates($myTemplates);
  <?= $this->Form->end() ?>
 </section>
 <!-- /.content -->
+<?php
+$this->Html->css([
+  'AdminLTE./plugins/datepicker/datepicker3',
+  'AdminLTE./plugins/select2/select2.min'
+  ],
+  ['block' => 'css']);
+
+$this->Html->script([
+ 'AdminLTE./plugins/select2/select2.full.min',
+ 'AdminLTE./plugins/datepicker/bootstrap-datepicker',
+ '/js/dropzone/dropzone',
+ 'AdminLTE./plugins/iCheck/icheck.min'
+],
+['block' => 'script']);
+?>
+<?php $this->start('scriptBotton'); ?>
+<script>
+  $(function () {
+   
+   $(".select2").select2({ width: '100%' });
+   $('.datemask').datepicker({
+            format:"dd/mm/yy",
+              autoclose: true
+   });
+  
+
+  });
+</script>
+<?php $this->end(); ?>

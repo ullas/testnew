@@ -211,6 +211,7 @@ public function ajaxdata() {
         $drivergroup = $this->Drivergroups->newEntity();
         if ($this->request->is('post')) {
             $drivergroup = $this->Drivergroups->patchEntity($drivergroup, $this->request->data);
+			$drivergroup['customer_id']=$this->loggedinuser['customer_id'];
             if ($this->Drivergroups->save($drivergroup)) {
                 $this->Flash->success(__('The drivergroup has been saved.'));
 

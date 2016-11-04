@@ -125,11 +125,11 @@ $this->Html->script([
           "initComplete": function(settings, json) {
                 //set bool value
                 var innerHtml = $('.mptldtbool').html();
-                if(innerHtml=="1"){
-                    $('.mptldtbool').html("True");
-                }else{
-                    $('.mptldtbool').html("False");
-                }
+                // if(innerHtml=="1"){
+                    // $('.mptldtbool').html("True");
+                // }else{
+                    // $('.mptldtbool').html("False");
+                // }
           },
           "fnServerParams": function ( aoData ) {
             

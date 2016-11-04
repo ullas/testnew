@@ -209,6 +209,7 @@ public function ajaxdata() {
         $renewalreminder = $this->Renewalreminders->newEntity();
         if ($this->request->is('post')) {
             $renewalreminder = $this->Renewalreminders->patchEntity($renewalreminder, $this->request->data);
+			$renewalreminder['customer_id']=$this->loggedinuser['customer_id'];
             if ($this->Renewalreminders->save($renewalreminder)) {
                 $this->Flash->success(__('The renewalreminder has been saved.'));
 

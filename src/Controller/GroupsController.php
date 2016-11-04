@@ -206,6 +206,7 @@ public function ajaxdata() {
         $group = $this->Groups->newEntity();
         if ($this->request->is('post')) {
             $group = $this->Groups->patchEntity($group, $this->request->data);
+			$group['customer_id']=$this->loggedinuser['customer_id'];
             if ($this->Groups->save($group)) {
                 $this->Flash->success(__('The group has been saved.'));
 

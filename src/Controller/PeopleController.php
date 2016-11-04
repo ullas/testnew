@@ -205,11 +205,14 @@ public function ajaxdata() {
         $person = $this->People->newEntity();
         if ($this->request->is('post')) {
             $person = $this->People->patchEntity($person, $this->request->data);
+			
+			$person['customer_id']=$this->loggedinuser['customer_id'];
+			
 			$trobjTable = TableRegistry::get('Trackingobjects');
 			
 			$trobj=$trobjTable->newEntity();
 			print_r($this->request->data);
-			$trobj->name=$this->request->data['Trackingobject']['name'];
+			$trobj->name=$this->request->data['name'];
 		    $trobjTable->save($trobj);
 			$person['trackingobject_id']=$trobj->id;
 			
@@ -248,7 +251,9 @@ public function ajaxdata() {
         if ($this->request->is(['patch', 'post', 'put'])) {
             $person = $this->People->patchEntity($person, $this->request->data);
 			
-			$trobj->name=$this->request->data['Trackingobject']['name'];
+			$person['customer_id']=$this->loggedinuser['customer_id'];
+			
+			$trobj->name=$this->request->data['name'];
 			$trobjTable->save($trobj);
             if ($this->People->save($person)) {
                 $this->Flash->success(__('The person has been saved.'));

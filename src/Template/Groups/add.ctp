@@ -39,7 +39,7 @@ $this->Form->templates($myTemplates);
         <?php
             echo $this->Form->input('name');
             echo $this->Form->input('description');
-            echo $this->Form->input('trackingobjects.ids', ['options' => $trackingobjects,'class'=>'select2']);
+            echo $this->Form->input('trackingobjects.ids', ['label'=>'Tracking Objects','options' => $trackingobjects,'class'=>'select2']);
         ?>
      </div>
  

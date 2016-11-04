@@ -32,14 +32,7 @@
             <th><?= __('Id') ?></th>
             <td><?= $this->Number->format($distributionlist->id) ?></td>
         </tr>
-        <tr>
-            <th><?= __('System') ?></th>
-            <td><?= $distributionlist->system ? __('Yes') : __('No'); ?></td>
-        </tr>
-        <tr>
-            <th><?= __('Enabled') ?></th>
-            <td><?= $distributionlist->enabled ? __('Yes') : __('No'); ?></td>
-        </tr>
+       
     </table>
    </div><!--boxbody-->
    </div><!-- box -->

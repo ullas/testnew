@@ -1,39 +1,108 @@
-<nav class="large-3 medium-4 columns" id="actions-sidebar">
-    <ul class="side-nav">
-        <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Form->postLink(
-                __('Delete'),
-                ['action' => 'delete', $schedule->id],
-                ['confirm' => __('Are you sure you want to delete # {0}?', $schedule->id)]
-            )
-        ?></li>
-        <li><?= $this->Html->link(__('List Schedules'), ['action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('List Customers'), ['controller' => 'Customers', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Customer'), ['controller' => 'Customers', 'action' => 'add']) ?></li>
-    </ul>
-</nav>
-<div class="schedules form large-9 medium-8 columns content">
-    <?= $this->Form->create($schedule) ?>
-    <fieldset>
-        <legend><?= __('Edit Schedule') ?></legend>
-        <?php
-            echo $this->Form->input('validfrom', ['empty' => true]);
-            echo $this->Form->input('validtill', ['empty' => true]);
-            echo $this->Form->input('startloc_id');
-            echo $this->Form->input('endloc_id');
-            echo $this->Form->input('route_id');
-            echo $this->Form->input('start_time', ['empty' => true]);
-            echo $this->Form->input('end_time', ['empty' => true]);
-            echo $this->Form->input('customer_id', ['options' => $customers, 'empty' => true]);
-            echo $this->Form->input('timepolicy_id');
-            echo $this->Form->input('default_driver_id');
-            echo $this->Form->input('default_veh_id');
-            echo $this->Form->input('name');
-            echo $this->Form->input('nodays');
-            echo $this->Form->input('brktime_bfr_nxt_trip');
-            echo $this->Form->input('default_paxgrpid');
+<?php
+  $myTemplates = [
+    'inputContainer' => '<div class="form-group">{{content}}<div class="col-sm-offset-3 col-sm-6" style="margin-top:4px">{{help}}</div></div>',
+     'label' => '<label class="col-sm-3 control-label" {{attrs}}>{{text}}</label>',
+    'input' => '<div class="col-sm-6"><div class="input-group">{{icon}}<input type="{{type}}" name="{{name}}"{{attrs}}/></div></div>',
+    
+     'select' => '<div class="col-sm-6"><select name="{{name}}"{{attrs}}>{{content}}</select></div>',
+     'textarea' => '<div class="col-sm-6"><textarea name="{{name}}"{{attrs}}>{{value}}</textarea></div>'
+];
+$this->Form->templates($myTemplates);
+?>
+
+
+<!-- Content Header (Page header) -->
+<section class="content-header">
+  <h1>
+     Edit Schedule <small>Please fill the details to edit a Schedule</small>
+  </h1>
+  <ol class="breadcrumb">
+  	<li><a href="#"><i class="fa fa-dashboard"></i>Home</a></li>
+    <li><a href="#"> Trip Management </a></li>
+    <li><a href="/schedules/"> Schedules</a></li>
+    <li class="active">Edit</li>
+  </ol>
+</section>
+
+<!-- Main content -->
+<section class="content">
+ <?= $this->Form->create($schedule) ?>
+  <div class="row">
+    
+    <div class="col-md-12">
+      <div class="nav-tabs-custom">
+        
+        <div class="tab-content">
+          <div class="active tab-pane" id="details">
+             <div class="form-horizontal">
+         <?php
+            echo $this->Form->input('name',['required' => 'required']);
+            echo $this->Form->input('validfrom', ['required' => 'required','label'=>'Valid From','empty' => true,'class'=>'datemask','type'=>'text','templateVars' => ['icon' => '<div class="input-group-addon"><i class="fa fa-calendar"></i></div>']]);
+            echo $this->Form->input('validtill', ['required' => 'required','label'=>'Valid Till','empty' => true,'class'=>'datemask','type'=>'text','templateVars' => ['icon' => '<div class="input-group-addon"><i class="fa fa-calendar"></i></div>']]);
+            echo $this->Form->input('startloc_id',['label'=>'Start Location','class'=>'select2','empty' => true]);
+            echo $this->Form->input('endloc_id',['label'=>'End Location','class'=>'select2','empty' => true]);
+            echo $this->Form->input('route_id',['class'=>'select2','empty' => true]);
+            echo $this->Form->input('start_time', ['empty' => true,'class'=>'datemask','type'=>'text','class'=>'timepicker']);
+            echo $this->Form->input('end_time', ['empty' => true,'type'=>'text','class'=>'timepicker']);
+            echo $this->Form->input('timepolicy_id',['label'=>'Time Policy','class'=>'select2','empty' => true]);
+            echo $this->Form->input('default_driver_id',['label'=>'Default Driver','class'=>'select2','empty' => true]);
+            echo $this->Form->input('default_veh_id',['label'=>'Default Vehicle','class'=>'select2','empty' => true]);
+            echo $this->Form->input('nodays',['label'=>'No Of Days',]);
+            echo $this->Form->input('brktime_bfr_nxt_trip',['label'=>'Break Time Before Next Trip',]);
+            echo $this->Form->input('default_paxgrpid',['label'=>'Default Passenger Group','empty' => true]);
         ?>
-    </fieldset>
-    <?= $this->Form->button(__('Submit')) ?>
-    <?= $this->Form->end() ?>
-</div>
+       </div>
+ 
+          </div>
+          <!-- /.tab-pane -->
+          
+          
+        </div>
+        <!-- /.tab-content -->
+      </div>
+      <!-- /.nav-tabs-custom -->
+    </div>
+    <!-- /.col -->
+  </div>
+  <!-- /.row -->
+  <div class="row">
+   <div class="form-group">
+                <div class="col-sm-offset-6 col-sm-10">
+                  <button type="submit" class="btn btn-success">Save</button>
+                </div>
+   </div>
+   </div>
+   <!-- /.row -->
+ <?= $this->Form->end() ?>
+</section>
+<!-- /.content -->
+<?php
+$this->Html->css([
+  'AdminLTE./plugins/datepicker/datepicker3',
+  'AdminLTE./plugins/select2/select2.min'
+  ],
+  ['block' => 'css']);
+
+$this->Html->script([
+ 'AdminLTE./plugins/select2/select2.full.min',
+ 'AdminLTE./plugins/datepicker/bootstrap-datepicker',
+ '/js/dropzone/dropzone',
+ 'AdminLTE./plugins/iCheck/icheck.min'
+],
+['block' => 'script']);
+?>
+<?php $this->start('scriptBotton'); ?>
+<script>
+  $(function () {
+   
+   $(".select2").select2({ width: '100%' });
+   $('.datemask').datepicker({
+            format:"dd/mm/yy",
+              autoclose: true
+   });
+  
+
+  });
+</script>
+<?php $this->end(); ?>
+       

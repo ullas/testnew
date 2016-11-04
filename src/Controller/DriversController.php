@@ -227,7 +227,7 @@ public function ajaxdata() {
         $driver = $this->Drivers->newEntity();
         if ($this->request->is('post')) {
             $driver = $this->Drivers->patchEntity($driver, $this->request->data);
-            $driver['customer_id']=$this->currentuser['customer_id'];
+            $driver['customer_id']=$this->loggedinuser['customer_id'];
             if ($this->Drivers->save($driver)) {
                 $this->Flash->success(__('The driver has been saved.'));
 
@@ -282,7 +282,7 @@ public function ajaxdata() {
         ]);
         if ($this->request->is(['patch', 'post', 'put'])) {
             $driver = $this->Drivers->patchEntity($driver, $this->request->data);
-             $driver['customer_id']=$this->currentuser['customer_id'];
+             $driver['customer_id']=$this->loggedinuser['customer_id'];
             if ($this->Drivers->save($driver)) {
                 $this->Flash->success(__('The driver has been saved.'));
 

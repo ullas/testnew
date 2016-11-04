@@ -51,7 +51,17 @@ $this->Form->templates($myTemplates);
             echo $this->Form->input('stateshortcode',['label'=>'State Short Code']);
             echo $this->Form->input('city');
             echo $this->Form->input('pincode',['label'=>'Pin Code']);
-            echo $this->Form->input('iscurrentAddress',['label'=>'Is Current Address']);
+             ?>
+        
+             <div class="form-group">
+                  	<label for="iscurrentaddress" class="col-sm-3 control-label" style="padding-top:0" >Is Current Address ?</label>
+				  	<div class="col-sm-6">
+				    	<input name="iscurrentaddress" value="1" id="iscurrentaddress" class="" type="checkbox">
+                   	</div>
+				  	<div class="col-sm-offset-3 col-sm-6" style="margin-top:18px" >
+				  	</div>
+			</div>
+			<?php
             echo $this->Form->input('distributionlists.ids', ['label'=>'Distribution List','options' => $distributionlists,'class'=>'select2']);
         ?>
    <div class="row">
