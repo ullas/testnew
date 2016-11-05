@@ -11,7 +11,10 @@ use Cake\Validation\Validator;
  *
  * @property \Cake\ORM\Association\BelongsTo $Customers
  * @property \Cake\ORM\Association\BelongsTo $Providers
+ * @property \Cake\ORM\Association\BelongsTo $Devicemodels
+ * @property \Cake\ORM\Association\BelongsTo $Simcards
  * @property \Cake\ORM\Association\HasMany $Gpsdata
+ * @property \Cake\ORM\Association\HasMany $Tracking
  *
  * @method \App\Model\Entity\Device get($primaryKey, $options = [])
  * @method \App\Model\Entity\Device newEntity($data = null, array $options = [])
@@ -45,7 +48,18 @@ class DevicesTable extends Table
         $this->belongsTo('Providers', [
             'foreignKey' => 'provider_id'
         ]);
-       
+        $this->belongsTo('Devicemodels', [
+            'foreignKey' => 'devicemodel_id'
+        ]);
+        $this->belongsTo('Simcards', [
+            'foreignKey' => 'simcard_id'
+        ]);
+        $this->hasMany('Gpsdata', [
+            'foreignKey' => 'device_id'
+        ]);
+        $this->hasMany('Tracking', [
+            'foreignKey' => 'device_id'
+        ]);
     }
 
     /**
@@ -101,6 +115,8 @@ class DevicesTable extends Table
     {
         $rules->add($rules->existsIn(['customer_id'], 'Customers'));
         $rules->add($rules->existsIn(['provider_id'], 'Providers'));
+        $rules->add($rules->existsIn(['devicemodel_id'], 'Devicemodels'));
+        $rules->add($rules->existsIn(['simcard_id'], 'Simcards'));
 
         return $rules;
     }

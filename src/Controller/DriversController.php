@@ -2,7 +2,7 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
-
+use Cake\ORM\TableRegistry;
 /**
  * Drivers Controller
  *
@@ -31,21 +31,158 @@ class DriversController extends AppController
         */
        
          $this->loadModel('CreateConfigs');
-         $configs=$this->CreateConfigs->find('all')->where(['table_name' => 'Drivers'])->order(['id' => 'ASC'])->toArray();
+         $configs=$this->CreateConfigs->find('all')->where(['table_name' => 'Drivers'])->order(['"order"' => 'ASC'])->toArray();
         
+       $this->loadModel('Usersettings');
+		 $usersettings=$this->Usersettings->find('all')->where(['user_id' => $this->loggedinuser['id']])->where(['module' => 'Drivers'])->where(['key' => 'INIT_VISIBLE_COLUMNS_DRIVERS'])->toArray();
+         if(isset($usersettings[0]['value'])){
+         	$this->set('usersettings',$usersettings);	
+			
+         }else{
+         	
+         	$this->loadModel('Globalusersettings');
+		    $usersettings=$this->Globalusersettings->find('all')->where(['module' => 'Drivers'])->where(['key' => 'INIT_VISIBLE_COLUMNS_DRIVERS'])->toArray();
+            $this->set('usersettings',$usersettings);
+			
+         }
+		 $actions =[
+                
+                ['name'=>'delete','title'=>'Delete','class'=>' label-danger ']
+                ];
+         $additional= [
+      	                          'basic'=>['Active','OnLeave'],
+      	                          'additional'=>[
+      	                                ['name'=>'dob','title'=>'Date Of Birth'],
+      	                                ['name'=>'licenceexpdate','title' =>'Licence Expiry Date'],
+      	                                ['name'=>'drivingpassportexp','title'=>'Passport Expiry Date']   	                          
+      	                          ]];
+		 $this->set('additional',$additional);
+		 $this->set('actions',$actions);	
          $this->set('configs',$configs);	
-         $this->set('_serialize', ['configs']);
+         $this->set('_serialize', ['configs','usersettings','actions','additional']);
+       
        
        
     }
     
-    
+public function updateSettings()
+{
+   	
+	$this->autoRender= false;	
+	$columns=$_POST['columns'];
+	$visorder = $_POST['visorder'];
+		
+	
+	$columns=isset($columns)?$columns:6;
+	$userSettings = TableRegistry::get('Usersettings');
+	$count = $userSettings->find('all')
+	   ->where(['key' => 'INIT_VISIBLE_COLUMNS_DRIVERS'])
+	  ->where(['user_id' => $this->loggedinuser['id']])
+	   ->count();
+	
+	if($count>0)	{	 
+	
+	$query = $userSettings->query();
+	$res=$query->update()
+	    ->set(['value' => $columns])
+		->set(['value1' => $visorder])
+	    ->where(['key' => 'INIT_VISIBLE_COLUMNS_DRIVERS'])
+	    ->where(['user_id' => $this->loggedinuser['id']])
+	    ->execute();
+	$this->response->body($res);
+	
+   }else{
+   	  
+	   $query1 = $userSettings->query();
+	   $res=$query1->insert(['key','value','user_id','module'])
+	   ->values(
+	       ['key'=>'INIT_VISIBLE_COLUMNS_DRIVERS',
+	        'value'=>$columns,
+	        'user_id'=>$this->loggedinuser['id'],
+	        'module'=>'Drivers'])
+	    ->execute();
+	   $this->response->body($res);
+	
+	   
+   }
+}
+
+private function toPostDBDate($date){
+	
+		 $ret="";
+		 $parts=explode("/",$date);
+		 if(count($parts)==3){
+		 	$ret= $date= '20' .trim($parts[2]) . "-" . trim($parts[1]) . "-" . trim($parts[0]);
+			
+		 }
+		
+	  return $ret;
+}
+
+
+private function getDateRangeFilters($dates,$basic)  {
+	
+	$sql="";	
+		
+	$alldates=explode(",",$dates);
+	
+	$pre=($basic>0)?" and ":"";
+	
+	$datecol=explode("-",$alldates[0]);
+	
+	$sql .=  count($datecol)>1? " $pre dob between '" . $this->toPostDBDate($datecol[0]) . "' and '" . $this->toPostDBDate($datecol[1]) . "'": "" ;
+	
+	$datecol=explode("-",$alldates[1]);
+	
+	$pre=(strlen($sql)>0)?" and ":"";
+	
+	$sql .=  count($datecol)>1? " $pre licenceexpdate between '" . $this->toPostDBDate($datecol[0]) . "' and '" . $this->toPostDBDate($datecol[1]) . "'": "" ;
+	
+	$datecol=explode("-",$alldates[2]);
+	$pre=(strlen($sql)>0)?" and ":"";
+	
+	$sql .= count($datecol)>1? " $pre drivingpassportexp between '" . $this->toPostDBDate($datecol[0]) . "' and '" . $this->toPostDBDate($datecol[1]) . "'": "" ;
+	
+	
+	return $sql;
+}      
+	
+	
 public function ajaxdata() {
-        $this->autoRender= false;
-      
+          $this->autoRender= false;
+		$usrfilter="";
+		$basic = isset($this->request->query['basic'])?$this->request->query['basic']:"" ;
+		$additional = isset($this->request->query['additional'])?$this->request->query['additional']:"";
+		
+		
+        if($basic != -1){
+        	$options=explode(",",$basic);
+			
+        	for($i=0;$i<count($options);$i++){
+        		
+        	    if($options[$i]==1){
+        	    	if(strlen($usrfilter)>0){
+        	    		$usrfilter.= " and ";
+        	    	}
+					$usrfilter.= " drivers.active='true' ";
+        	    }
+				if($options[$i]==2){
+        	    	if(strlen($usrfilter)>0){
+        	    		$usrfilter.= " and ";
+        	    	}
+					$usrfilter.= " drivers.onleave='true' ";
+        	    }
+        	}
+			
+        }else{
+        	$usrfilter.= " drivers.active='false' ";
+        }
+		$usrfilter.=$this->getDateRangeFilters($additional,$basic);
+		
+		
           
        $this->loadModel('CreateConfigs');
-       $dbout=$this->CreateConfigs->find('all')->where(['table_name' => 'Drivers'])->order(['id' => 'ASC'])->toArray();
+       $dbout=$this->CreateConfigs->find('all')->where(['table_name' => 'Drivers'])->order(['"order"' => 'ASC'])->toArray();
         
         $fields = array();
         foreach($dbout as $value){
@@ -54,7 +191,7 @@ public function ajaxdata() {
         }
       
 		                           
-        $output =$this->Datatable->getView($fields,['Addresses', 'Customers', 'Contractors', 'Stations', 'Supervisors', 'Shifts']);
+        $output =$this->Datatable->getView($fields,['Addresses','Ibuttons', 'Customers','Vehicles', 'Contractors', 'Stations', 'Supervisors', 'Shifts'],$usrfilter);
         $out =json_encode($output);  
 	
 		$this->response->body($out);
@@ -90,7 +227,7 @@ public function ajaxdata() {
         $driver = $this->Drivers->newEntity();
         if ($this->request->is('post')) {
             $driver = $this->Drivers->patchEntity($driver, $this->request->data);
-            $driver['customer_id']=$this->currentuser['customer_id'];
+            $driver['customer_id']=$this->loggedinuser['customer_id'];
             if ($this->Drivers->save($driver)) {
                 $this->Flash->success(__('The driver has been saved.'));
 
@@ -145,7 +282,7 @@ public function ajaxdata() {
         ]);
         if ($this->request->is(['patch', 'post', 'put'])) {
             $driver = $this->Drivers->patchEntity($driver, $this->request->data);
-             $driver['customer_id']=$this->currentuser['customer_id'];
+             $driver['customer_id']=$this->loggedinuser['customer_id'];
             if ($this->Drivers->save($driver)) {
                 $this->Flash->success(__('The driver has been saved.'));
 
@@ -186,4 +323,43 @@ public function ajaxdata() {
 
         return $this->redirect(['action' => 'index']);
     }
+	
+	public function deleteAll($id=null)
+	{
+    	$this->request->allowMethod(['post', 'deleteall']);
+        $sucess=false;$failure=false;
+        $data=$this->request->data;
+			
+		if(isset($data)){
+		   foreach($data as $key =>$value){
+		   	   		
+		   	   	$itemna=explode("-",$key);
+			    
+			    if(count($itemna)== 2 && $itemna[0]=='chk'){
+			    	
+					$record = $this->Drivers->get($value);
+					
+					 if($record['customer_id']== $this->loggedinuser['customer_id']) {
+					 	
+						   if ($this->Drivers->delete($record)) {
+					           $sucess= $sucess | true;
+					        } else {
+					           $failure= $failure | true;
+					        }
+					}
+				}  	  
+			}
+		   		        
+		
+				if($sucess){
+					$this->Flash->success(__('Selected Service entries has been deleted.'));
+				}
+		        if($failure){
+					$this->Flash->error(__('The Service entries could not be deleted. Please, try again.'));
+				}
+		
+		   }
+
+             return $this->redirect(['action' => 'index']);	
+     }
 }

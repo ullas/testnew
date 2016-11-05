@@ -1,11 +1,11 @@
 <section class="content-header">
   <h1>
-     <?= h($part->id) ?> Details
+     <?php echo $this->request->params['controller'] ?> Details
   </h1>
   <ol class="breadcrumb">
   	<li><a href="#"><i class="fa fa-dashboard"></i>Home</a></li>
    
-    <li><a href="/part/"> part</a></li>
+    <li><a href="/parts/"> Parts</a></li>
     <li class="active">View</li>
   </ol>
 </section>
@@ -17,15 +17,15 @@
   		<div class="box-body">
   		<table class="table table-hover">
         <tr>
-            <th><?= __('Partno') ?></th>
+            <th><?= __('Part No') ?></th>
             <td><?= h($part->partno) ?></td>
         </tr>
         <tr>
-            <th><?= __('Partcategory') ?></th>
+            <th><?= __('Part Category') ?></th>
             <td><?= $part->has('partcategory') ? $this->Html->link($part->partcategory->name, ['controller' => 'Partcategories', 'action' => 'view', $part->partcategory->id]) : '' ?></td>
         </tr>
         <tr>
-            <th><?= __('Manufacturerpartno') ?></th>
+            <th><?= __('Manufacturer Part No') ?></th>
             <td><?= h($part->manufacturerpartno) ?></td>
         </tr>
         <tr>
@@ -33,7 +33,7 @@
             <td><?= h($part->description) ?></td>
         </tr>
         <tr>
-            <th><?= __('Measurementunit') ?></th>
+            <th><?= __('Measurement Unit') ?></th>
             <td><?= $part->has('measurementunit') ? $this->Html->link($part->measurementunit->name, ['controller' => 'Measurementunits', 'action' => 'view', $part->measurementunit->id]) : '' ?></td>
         </tr>
         <tr>
@@ -57,7 +57,7 @@
             <td><?= $this->Number->format($part->cost) ?></td>
         </tr>
         <tr>
-            <th><?= __('Customer Id') ?></th>
+            <th><?= __('Customer') ?></th>
             <td><?= $this->Number->format($part->customer_id) ?></td>
         </tr>
    </div><!--boxbody-->
@@ -66,3 +66,4 @@
   </div><!-- col12-->
 </div> </table>
 </div>
+</section>

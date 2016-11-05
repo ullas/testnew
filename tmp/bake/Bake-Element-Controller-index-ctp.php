@@ -31,6 +31,39 @@
         
          $this->set('configs',$configs);	
          $this->set('_serialize', ['configs']);
+         
+         
+         
+         $this->loadModel('CreateConfigs');
+         $configs=$this->CreateConfigs->find('all')->where(['table_name' => '<?= $currentModelName ?>'])->order(['"order"' => 'ASC'])->toArray();
+		 $this->loadModel('Usersettings');
+		 $usersettings=$this->Usersettings->find('all')->where(['user_id' => $this->loggedinuser['id']])->where(['module' => 'Workorders'])->where(['key' => 'INIT_VISIBLE_COLUMNS_<?= $currentModelName ?>'])->toArray();
+         if(isset($usersettings[0]['value'])){
+         	$this->set('usersettings',$usersettings);	
+			
+         }else{
+         	
+         	$this->loadModel('Globalusersettings');
+		    $usersettings=$this->Globalusersettings->find('all')->where(['module' => 'Workorders'])->where(['key' => 'INIT_VISIBLE_COLUMNS_WORKORDERS'])->toArray();
+            $this->set('usersettings',$usersettings);
+			
+         }
+		 $actions =[
+                ['name'=>'assign','title'=>'Assign','class'=>'label-success'],
+                ['name'=>'unassign','title'=>'Unassign','class'=>'label-warning'],
+                ['name'=>'close','title'=>'Close','class'=>' label-danger ']
+                ];
+         $additional= [
+      	                          'basic'=>['Open','OverDue','Resolved','Closed'],
+      	                          'additional'=>[
+      	                                ['name'=>'issueddate','title'=>'Issued Date'],
+      	                                ['name'=>'startdate','title' =>'Start Date'],
+      	                                ['name'=>'completiondate','title'=>'Completion Date']   	                          
+      	                          ]];
+		 $this->set('additional',$additional);
+		 $this->set('actions',$actions);	
+         $this->set('configs',$configs);	
+         $this->set('_serialize', ['configs','usersettings','actions','additional']);
        
        
     }

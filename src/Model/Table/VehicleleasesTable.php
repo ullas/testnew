@@ -10,6 +10,8 @@ use Cake\Validation\Validator;
  * Vehicleleases Model
  *
  * @property \Cake\ORM\Association\BelongsTo $Vendors
+ * @property \Cake\ORM\Association\BelongsTo $Customers
+ * @property \Cake\ORM\Association\BelongsTo $Vehicles
  *
  * @method \App\Model\Entity\Vehiclelease get($primaryKey, $options = [])
  * @method \App\Model\Entity\Vehiclelease newEntity($data = null, array $options = [])
@@ -38,6 +40,12 @@ class VehicleleasesTable extends Table
 
         $this->belongsTo('Vendors', [
             'foreignKey' => 'vendor_id'
+        ]);
+        $this->belongsTo('Customers', [
+            'foreignKey' => 'customer_id'
+        ]);
+        $this->belongsTo('Vehicles', [
+            'foreignKey' => 'vehicle_id'
         ]);
     }
 
@@ -102,6 +110,8 @@ class VehicleleasesTable extends Table
     public function buildRules(RulesChecker $rules)
     {
         $rules->add($rules->existsIn(['vendor_id'], 'Vendors'));
+        $rules->add($rules->existsIn(['customer_id'], 'Customers'));
+        $rules->add($rules->existsIn(['vehicle_id'], 'Vehicles'));
 
         return $rules;
     }

@@ -9,7 +9,12 @@ use Cake\Validation\Validator;
 /**
  * Vendors Model
  *
+ * @property \Cake\ORM\Association\BelongsTo $Customers
+ * @property \Cake\ORM\Association\HasMany $Fuelentries
+ * @property \Cake\ORM\Association\HasMany $Servicesentries
+ * @property \Cake\ORM\Association\HasMany $Vehicleleases
  * @property \Cake\ORM\Association\HasMany $Vehiclepurchases
+ * @property \Cake\ORM\Association\HasMany $Workorders
  *
  * @method \App\Model\Entity\Vendor get($primaryKey, $options = [])
  * @method \App\Model\Entity\Vendor newEntity($data = null, array $options = [])
@@ -36,7 +41,22 @@ class VendorsTable extends Table
         $this->displayField('name');
         $this->primaryKey('id');
 
+        $this->belongsTo('Customers', [
+            'foreignKey' => 'customer_id'
+        ]);
+        $this->hasMany('Fuelentries', [
+            'foreignKey' => 'vendor_id'
+        ]);
+        $this->hasMany('Servicesentries', [
+            'foreignKey' => 'vendor_id'
+        ]);
+        $this->hasMany('Vehicleleases', [
+            'foreignKey' => 'vendor_id'
+        ]);
         $this->hasMany('Vehiclepurchases', [
+            'foreignKey' => 'vendor_id'
+        ]);
+        $this->hasMany('Workorders', [
             'foreignKey' => 'vendor_id'
         ]);
     }
@@ -53,8 +73,7 @@ class VendorsTable extends Table
             ->allowEmpty('id', 'create');
 
         $validator
-           ->notEmpty('name', 'Please fill this field');
-			
+            ->allowEmpty('name');
 
         $validator
             ->allowEmpty('phone');
@@ -85,7 +104,6 @@ class VendorsTable extends Table
 
         $validator
             ->email('email')
-			//->notEmpty('email', 'Please fill this field');
             ->allowEmpty('email');
 
         $validator
@@ -103,7 +121,8 @@ class VendorsTable extends Table
      */
     public function buildRules(RulesChecker $rules)
     {
-       // $rules->add($rules->isUnique(['email']));
+        $rules->add($rules->isUnique(['email']));
+        $rules->add($rules->existsIn(['customer_id'], 'Customers'));
 
         return $rules;
     }

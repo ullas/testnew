@@ -1,25 +1,26 @@
 <?php
   $myTemplates = [
-    'inputContainer' => '<div class="form-group">{{content}}</div>',
-     'label' => '<label class="col-sm-2 control-label" {{attrs}}>{{text}}</label>',
-    'input' => '<div class="col-sm-10"><input type="{{type}}" name="{{name}}"{{attrs}}/></div>',
-     'select' => '<div class="col-sm-10"><select name="{{name}}"{{attrs}}>{{content}}</select></div>',
-      'selectMultiple' => '<div class="col-sm-10"><select name="{{name}}[]" multiple="multiple"{{attrs}}>{{content}}</select></div>',
-     'textarea' => '<div class="col-sm-10"><textarea name="{{name}}"{{attrs}}>{{value}}</textarea></div>'
+    'inputContainer' => '<div class="form-group">{{content}}<div class="col-sm-offset-3 col-sm-6" style="margin-top:4px">{{help}}</div></div>',
+     'label' => '<label class="col-sm-3 control-label" {{attrs}}>{{text}}</label>',
+    'input' => '<div class="col-sm-6"><input type="{{type}}" name="{{name}}"{{attrs}}/></div>',
+    
+     'select' => '<div class="col-sm-6"><select name="{{name}}"{{attrs}}>{{content}}</select></div>',
+     'textarea' => '<div class="col-sm-6"><textarea name="{{name}}"{{attrs}}>{{value}}</textarea></div>'
 ];
+
+ 
 $this->Form->templates($myTemplates);
 
 ?>
-
 <!-- Content Header (Page header) -->
 <section class="content-header">
   <h1>
-    Add Driver Group
+    New Driver Group <small>Please fill the details to create a new Driver Group</small>
   </h1>
    <ol class="breadcrumb">
     <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
     <li><a href="#">Groups</a></li>
-    <li><a href="/drivers/"> Driver Groups</a></li>
+    <li><a href="/drivergroups/"> Driver Groups</a></li>
     <li class="active">Add</li>
   </ol>
 </section>
@@ -38,8 +39,8 @@ $this->Form->templates($myTemplates);
         <?php
             echo $this->Form->input('name');
             echo $this->Form->input('description');
-            echo $this->Form->input('defaultdriver_id', ['options' => $defaultdrivers, 'empty' => true]);
-            echo $this->Form->input('drivers._ids', ['options' => $drivers]);
+            echo $this->Form->input('defaultdriver_id', ['label'=>'Default Driver','options' => $defaultdrivers, 'empty' => true,'class'=>'select2']);
+            echo $this->Form->input('drivers.ids', ['label'=>'Driver','options' => $drivers,'class'=>'select2']);
         ?>
     
  </div>

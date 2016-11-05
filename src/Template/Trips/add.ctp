@@ -1,58 +1,120 @@
-<nav class="large-3 medium-4 columns" id="actions-sidebar">
-    <ul class="side-nav">
-        <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Html->link(__('List Trips'), ['action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('List Customers'), ['controller' => 'Customers', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Customer'), ['controller' => 'Customers', 'action' => 'add']) ?></li>
-        <li><?= $this->Html->link(__('List Vehicles'), ['controller' => 'Vehicles', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Vehicle'), ['controller' => 'Vehicles', 'action' => 'add']) ?></li>
-        <li><?= $this->Html->link(__('List Timepolicies'), ['controller' => 'Timepolicies', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Timepolicy'), ['controller' => 'Timepolicies', 'action' => 'add']) ?></li>
-        <li><?= $this->Html->link(__('List Routes'), ['controller' => 'Routes', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Route'), ['controller' => 'Routes', 'action' => 'add']) ?></li>
-        <li><?= $this->Html->link(__('List Startpoints'), ['controller' => 'Locations', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Startpoint'), ['controller' => 'Locations', 'action' => 'add']) ?></li>
-        <li><?= $this->Html->link(__('List Schedules'), ['controller' => 'Schedules', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Schedule'), ['controller' => 'Schedules', 'action' => 'add']) ?></li>
-        <li><?= $this->Html->link(__('List Tripstatuses'), ['controller' => 'Tripstatuses', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Tripstatus'), ['controller' => 'Tripstatuses', 'action' => 'add']) ?></li>
-        <li><?= $this->Html->link(__('List Vehiclecategories'), ['controller' => 'Vehiclecategories', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Vehiclecategory'), ['controller' => 'Vehiclecategories', 'action' => 'add']) ?></li>
-    </ul>
-</nav>
-<div class="trips form large-9 medium-8 columns content">
+<?php
+  $myTemplates = [
+    'inputContainer' => '<div class="form-group">{{content}}<div class="col-sm-offset-3 col-sm-6" style="margin-top:4px">{{help}}</div></div>',
+     'label' => '<label class="col-sm-3 control-label" {{attrs}}>{{text}}</label>',
+    'input' => '<div class="col-sm-6"><div class="input-group">{{icon}}<input type="{{type}}" name="{{name}}"{{attrs}}/></div></div>',
+    
+     'select' => '<div class="col-sm-6"><select name="{{name}}"{{attrs}}>{{content}}</select></div>',
+     'textarea' => '<div class="col-sm-6"><textarea name="{{name}}"{{attrs}}>{{value}}</textarea></div>'
+];
+$this->Form->templates($myTemplates);
+?>
+
+<!-- Content Header (Page header) -->
+<section class="content-header">
+  <h1>
+    New Trip <small>Please fill the details to create a new Trip</small>
+  </h1>
+  <ol class="breadcrumb">
+  	<li><a href="#"><i class="fa fa-dashboard"></i>Home</a></li>
+   
+    <li><a href="/trips/"> Trips</a></li>
+    <li class="active">Add</li>
+  </ol>
+</section>
+
+<!-- Main content -->
+<section class="content">
     <?= $this->Form->create($trip) ?>
-    <fieldset>
-        <legend><?= __('Add Trip') ?></legend>
+   <div class="row">
+    
+    <div class="col-md-12">
+      <div class="nav-tabs-custom">
+        
+        <div class="tab-content" style="padding-top:45px">
+          <div class="active tab-pane" id="details">
+             <div class="form-horizontal">
         <?php
-            echo $this->Form->input('name');
-            echo $this->Form->input('start_date', ['empty' => true]);
-            echo $this->Form->input('end_date', ['empty' => true]);
-            echo $this->Form->input('customer_id', ['options' => $customers, 'empty' => true]);
-            echo $this->Form->input('vehicle_id', ['options' => $vehicles, 'empty' => true]);
-            echo $this->Form->input('start_time', ['empty' => true]);
-            echo $this->Form->input('end_time', ['empty' => true]);
-            echo $this->Form->input('timepolicy_id', ['options' => $timepolicies, 'empty' => true]);
-            echo $this->Form->input('route_id', ['options' => $routes, 'empty' => true]);
-            echo $this->Form->input('startpoint_id', ['options' => $startpoints, 'empty' => true]);
-            echo $this->Form->input('endpoint_id', ['options' => $endpoints, 'empty' => true]);
-            echo $this->Form->input('schedule_id', ['options' => $schedules, 'empty' => true]);
-            echo $this->Form->input('passengergroup_id');
+            echo $this->Form->input('name',['required' => 'required']);
+            echo $this->Form->input('start_date', ['type'=>'text','empty' => true,'class'=>'datemask','required' => 'required','templateVars' => ['icon' => '<div class="input-group-addon"><i class="fa fa-calendar"></i></div>']]);
+            echo $this->Form->input('end_date', ['type'=>'text','empty' => true,'class'=>'datemask','required' => 'required','templateVars' => ['icon' => '<div class="input-group-addon"><i class="fa fa-calendar"></i></div>']]);
+            echo $this->Form->input('vehicle_id', ['options' => $vehicles, 'empty' => true,'class'=>'select2','required' => 'required']);
+            echo $this->Form->input('start_time', ['type'=>'text','empty' => true]);
+            echo $this->Form->input('end_time', ['type'=>'text','empty' => true]);
+            echo $this->Form->input('timepolicy_id', ['options' => $timepolicies, 'empty' => true,'class'=>'select2']);
+            echo $this->Form->input('route_id', ['options' => $routes, 'empty' => true,'class'=>'select2']);
+            echo $this->Form->input('startpoint_id', ['label'=>'Start Point','type'=>'text','options' => $startpoints, 'empty' => true,'class'=>'select2']);
+            echo $this->Form->input('endpoint_id', ['label'=>'End Point','type'=>'text','options' => $endpoints, 'empty' => true,'class'=>'select2']);
+            echo $this->Form->input('schedule_id', ['options' => $schedules,'empty' => true, 'class'=>'select2']);
             echo $this->Form->input('autogen');
-            echo $this->Form->input('tripstatus_id', ['options' => $tripstatuses, 'empty' => true]);
-            echo $this->Form->input('last_location');
-            echo $this->Form->input('canceled');
+            echo $this->Form->input('tripstatus_id', ['label'=>'Trip Status','options' => $tripstatuses, 'empty' => true]);
+            echo $this->Form->input('last_location',['label'=>'Last Location']);
+            echo $this->Form->input('canceled',['label'=>'Cancelled']);
             echo $this->Form->input('active');
-            echo $this->Form->input('fromitinerary');
-            echo $this->Form->input('trackingcode');
-            echo $this->Form->input('adt');
-            echo $this->Form->input('aat');
-            echo $this->Form->input('edt');
-            echo $this->Form->input('eat');
-            echo $this->Form->input('vehiclecategory_id', ['options' => $vehiclecategories, 'empty' => true]);
+            echo $this->Form->input('fromschedule',['label'=>'From Schedule']);
+            echo $this->Form->input('trackingcode',['label'=>'Tracking Code']);
+            echo $this->Form->input('adt',['type'=>'text','label'=>'ADT','empty' => true]);
+            echo $this->Form->input('aat',['type'=>'text','label'=>'AAT','empty' => true]);
+            echo $this->Form->input('edt',['type'=>'text','label'=>'EDT','empty' => true]);
+            echo $this->Form->input('eat',['type'=>'text','label'=>'EAT','empty' => true]);
+            echo $this->Form->input('vehiclecategory_id', ['label'=>'Vehicle Category','options' => $vehiclecategories, 'empty' => true,'class'=>'select2']);
             echo $this->Form->input('platform');
+			echo $this->Form->input('triptype_id', ['label'=>'Trip Type','options' => $triptypes, 'empty' => true,'class'=>'select2']);
+        	echo $this->Form->input('softwaretriggered',['label'=>'Software Triggered']);
+			echo $this->Form->input('hwtriggered',['label'=>'Hardware Triggered']);
         ?>
-    </fieldset>
-    <?= $this->Form->button(__('Submit')) ?>
-    <?= $this->Form->end() ?>
-</div>
+  </div>
+  
+          </div>
+          <!-- /.tab-pane -->
+         
+          
+        </div>
+         
+        <!-- /.tab-content -->
+      </div>
+      <!-- /.nav-tabs-custom -->
+    </div>
+    <!-- /.col -->
+  </div>
+  <!-- /.row -->
+  <div class="row">
+   <div class="form-group">
+                <div class="col-sm-offset-6 col-sm-10">
+                  <button type="submit" class="btn btn-success">Save</button>
+                </div>
+   </div>
+   </div>
+   <!-- /.row -->
+ <?= $this->Form->end() ?>
+</section>
+<!-- /.content -->
+<?php
+$this->Html->css([
+  'AdminLTE./plugins/datepicker/datepicker3',
+  'AdminLTE./plugins/select2/select2.min'
+  ],
+  ['block' => 'css']);
+
+$this->Html->script([
+ 'AdminLTE./plugins/select2/select2.full.min',
+ 'AdminLTE./plugins/datepicker/bootstrap-datepicker',
+ '/js/dropzone/dropzone',
+ 'AdminLTE./plugins/iCheck/icheck.min'
+],
+['block' => 'script']);
+?>
+<?php $this->start('scriptBotton'); ?>
+<script>
+  $(function () {
+   
+   $(".select2").select2({ width: '100%' });
+   $('.datemask').datepicker({
+            format:"dd/mm/yy",
+              autoclose: true
+   });
+  
+
+  });
+</script>
+<?php $this->end(); ?>

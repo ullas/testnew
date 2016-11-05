@@ -12,7 +12,6 @@ use Cake\Validation\Validator;
  * @property \Cake\ORM\Association\BelongsTo $Customers
  * @property \Cake\ORM\Association\BelongsTo $Drivers
  * @property \Cake\ORM\Association\BelongsTo $Passengers
- * @property \Cake\ORM\Association\HasMany $Drivers
  *
  * @method \App\Model\Entity\Rfid get($primaryKey, $options = [])
  * @method \App\Model\Entity\Rfid newEntity($data = null, array $options = [])
@@ -48,9 +47,6 @@ class RfidsTable extends Table
         ]);
         $this->belongsTo('Passengers', [
             'foreignKey' => 'passenger_id'
-        ]);
-        $this->hasMany('Drivers', [
-            'foreignKey' => 'rfid_id'
         ]);
     }
 

@@ -1,7 +1,6 @@
-<!-- Content Header (Page header) -->
 <section class="content-header">
   <h1>
-    View Asset 
+     <?php echo $this->request->params['controller'] ?> Details
   </h1>
   <ol class="breadcrumb">
     <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
@@ -10,36 +9,23 @@
     <li class="active">View</li>
   </ol>
 </section>
-
-
-<!-- Main content -->
 <section class="content">
-
-    <div class="row">
-    <div class="col-md-12">
-     <div class="box box-info">
-        <div class="box-header with-border">
-          <h3 class="box-title"></h3>
-
-          <div class="box-tools pull-right">
-            <a href="/assets/add/" class="btn btn-sm btn-info btn-flat pull-left">Add a new Asset</a>
-         
-          </div>
-        </div>
-        <!-- /.box-header -->
-        <div class="box-body">
-          <div class="table-responsive">
-            <table class="table no-margin">
+  <div class="row">
+  <div class="col-md-12">
+  	
+  	<div class="box box-primary">
+  		<div class="box-body">
+  		<table class="table table-hover">
         <tr>
             <th><?= __('Name') ?></th>
             <td><?= h($asset->name) ?></td>
         </tr>
         <tr>
-            <th><?= __('Trackingobject') ?></th>
+            <th><?= __('Tracking Object') ?></th>
             <td><?= $asset->has('trackingobject') ? $this->Html->link($asset->trackingobject->name, ['controller' => 'Trackingobjects', 'action' => 'view', $asset->trackingobject->id]) : '' ?></td>
         </tr>
         <tr>
-            <th><?= __('Assettype') ?></th>
+            <th><?= __('Asset Type') ?></th>
             <td><?= $asset->has('assettype') ? $this->Html->link($asset->assettype->name, ['controller' => 'Assettypes', 'action' => 'view', $asset->assettype->id]) : '' ?></td>
         </tr>
         <tr>
@@ -67,13 +53,13 @@
             <td><?= $this->Number->format($asset->id) ?></td>
         </tr>
         <tr>
-            <th><?= __('Isstationary') ?></th>
+            <th><?= __('Is Stationary') ?></th>
             <td><?= $asset->isstationary ? __('Yes') : __('No'); ?></td>
         </tr>
-    </table>
-</div> <!-- table responsive -->
-    </div> <!-- box body -->
-     </div> <!-- box -->
-    </div> <!--col -->
- </div> <!--row-->
+   </table>
+   </div><!--boxbody-->
+   </div><!-- box -->
+  
+  </div><!-- col12-->
+</div> 
 </section>

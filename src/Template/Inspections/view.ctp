@@ -1,11 +1,11 @@
 <section class="content-header">
   <h1>
-     <?= h($inspection->name) ?> Details
+     <?php echo $this->request->params['controller'] ?> Details
   </h1>
   <ol class="breadcrumb">
   	<li><a href="#"><i class="fa fa-dashboard"></i>Home</a></li>
-   
-    <li><a href="/inspection/"> inspection</a></li>
+    <li><a href="#"> Fleet Management</a></li>
+    <li><a href="/inspections/"> Inspections</a></li>
     <li class="active">View</li>
   </ol>
 </section>
@@ -25,7 +25,7 @@
             <td><?= h($inspection->descriptions) ?></td>
         </tr>
         <tr>
-            <th><?= __('Inspectionfom') ?></th>
+            <th><?= __('Inspection Form') ?></th>
             <td><?= $inspection->has('inspectionfom') ? $this->Html->link($inspection->inspectionfom->name, ['controller' => 'Inspectionfoms', 'action' => 'view', $inspection->inspectionfom->id]) : '' ?></td>
         </tr>
         <tr>
@@ -33,7 +33,7 @@
             <td><?= $inspection->has('customer') ? $this->Html->link($inspection->customer->name, ['controller' => 'Customers', 'action' => 'view', $inspection->customer->id]) : '' ?></td>
         </tr>
         <tr>
-            <th><?= __('Inspectionstatus') ?></th>
+            <th><?= __('Inspection Status') ?></th>
             <td><?= $inspection->has('inspectionstatus') ? $this->Html->link($inspection->inspectionstatus->name, ['controller' => 'Inspectionstatuses', 'action' => 'view', $inspection->inspectionstatus->id]) : '' ?></td>
         </tr>
         <tr>

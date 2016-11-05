@@ -17,8 +17,9 @@ use Cake\Validation\Validator;
  * @property \Cake\ORM\Association\BelongsTo $Assigntos
  * @property \Cake\ORM\Association\BelongsTo $Customers
  * @property \Cake\ORM\Association\HasMany $Issues
- * @property \Cake\ORM\Association\HasMany $Worklorderlineitems
  * @property \Cake\ORM\Association\HasMany $Workorderdocuments
+ * @property \Cake\ORM\Association\HasMany $Workorderlabourlineitems
+ * @property \Cake\ORM\Association\HasMany $Workorderpartslineitems
  *
  * @method \App\Model\Entity\Workorder get($primaryKey, $options = [])
  * @method \App\Model\Entity\Workorder newEntity($data = null, array $options = [])
@@ -55,11 +56,11 @@ class WorkordersTable extends Table
             'foreignKey' => 'vendor_id'
         ]);
         $this->belongsTo('Issuedbies', [
-             'className' =>'Addresses',
+            'className' =>'Addresses',
             'foreignKey' => 'issuedby_id'
         ]);
         $this->belongsTo('Assignedbies', [
-             'className' =>'Addresses',
+            'className' =>'Addresses',
             'foreignKey' => 'assignedby_id'
         ]);
         $this->belongsTo('Assigntos', [
@@ -72,10 +73,13 @@ class WorkordersTable extends Table
         $this->hasMany('Issues', [
             'foreignKey' => 'workorder_id'
         ]);
-        $this->hasMany('Worklorderlineitems', [
+        $this->hasMany('Workorderdocuments', [
             'foreignKey' => 'workorder_id'
         ]);
-        $this->hasMany('Workorderdocuments', [
+        $this->hasMany('Workorderlabourlineitems', [
+            'foreignKey' => 'workorder_id'
+        ]);
+        $this->hasMany('Workorderpartslineitems', [
             'foreignKey' => 'workorder_id'
         ]);
     }

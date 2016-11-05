@@ -41,6 +41,9 @@ class DrivergroupsTable extends Table
             'className'=>'Drivers',
             'foreignKey' => 'defaultdriver_id'
         ]);
+		$this->belongsTo('Customers', [
+            'foreignKey' => 'customer_id'
+        ]);
         $this->belongsToMany('Drivers', [
             'foreignKey' => 'drivergroup_id',
             'targetForeignKey' => 'driver_id',

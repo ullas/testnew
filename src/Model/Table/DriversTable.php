@@ -77,10 +77,10 @@ class DriversTable extends Table
         $this->hasMany('Alerts', [
             'foreignKey' => 'driver_id'
         ]);
-        $this->hasMany('Ibuttons', [
+        $this->hasOne('Ibuttons', [
             'foreignKey' => 'driver_id'
         ]);
-        $this->hasMany('Rfids', [
+        $this->hasOne('Rfids', [
             'foreignKey' => 'driver_id'
         ]);
         $this->belongsToMany('Drivergroups', [

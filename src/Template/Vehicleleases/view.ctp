@@ -1,17 +1,21 @@
-<nav class="large-3 medium-4 columns" id="actions-sidebar">
-    <ul class="side-nav">
-        <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Html->link(__('Edit Vehiclelease'), ['action' => 'edit', $vehiclelease->id]) ?> </li>
-        <li><?= $this->Form->postLink(__('Delete Vehiclelease'), ['action' => 'delete', $vehiclelease->id], ['confirm' => __('Are you sure you want to delete # {0}?', $vehiclelease->id)]) ?> </li>
-        <li><?= $this->Html->link(__('List Vehicleleases'), ['action' => 'index']) ?> </li>
-        <li><?= $this->Html->link(__('New Vehiclelease'), ['action' => 'add']) ?> </li>
-        <li><?= $this->Html->link(__('List Vendors'), ['controller' => 'Vendors', 'action' => 'index']) ?> </li>
-        <li><?= $this->Html->link(__('New Vendor'), ['controller' => 'Vendors', 'action' => 'add']) ?> </li>
-    </ul>
-</nav>
-<div class="vehicleleases view large-9 medium-8 columns content">
-    <h3><?= h($vehiclelease->id) ?></h3>
-    <table class="vertical-table">
+<section class="content-header">
+  <h1>
+     <?= h($vehiclelease->id) ?> Details
+  </h1>
+  <ol class="breadcrumb">
+  	<li><a href="#"><i class="fa fa-dashboard"></i>Home</a></li>
+   
+    <li><a href="/vehiclelease/"> vehiclelease</a></li>
+    <li class="active">View</li>
+  </ol>
+</section>
+<section class="content">
+  <div class="row">
+  <div class="col-md-12">
+  	
+  	<div class="box box-primary">
+  		<div class="box-body">
+  		<table class="table table-hover">
         <tr>
             <th><?= __('Vendor') ?></th>
             <td><?= $vehiclelease->has('vendor') ? $this->Html->link($vehiclelease->vendor->name, ['controller' => 'Vendors', 'action' => 'view', $vehiclelease->vendor->id]) : '' ?></td>
@@ -53,6 +57,14 @@
             <td><?= $this->Number->format($vehiclelease->accountnumber) ?></td>
         </tr>
         <tr>
+            <th><?= __('Customer Id') ?></th>
+            <td><?= $this->Number->format($vehiclelease->customer_id) ?></td>
+        </tr>
+        <tr>
+            <th><?= __('Vehicle Id') ?></th>
+            <td><?= $this->Number->format($vehiclelease->vehicle_id) ?></td>
+        </tr>
+        <tr>
             <th><?= __('Startdate') ?></th>
             <td><?= h($vehiclelease->startdate) ?></td>
         </tr>
@@ -60,5 +72,9 @@
             <th><?= __('Enddate') ?></th>
             <td><?= h($vehiclelease->enddate) ?></td>
         </tr>
-    </table>
+   </div><!--boxbody-->
+   </div><!-- box -->
+  
+  </div><!-- col12-->
+</div> </table>
 </div>

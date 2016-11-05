@@ -63,17 +63,21 @@ class AddressesTable extends Table
             ->allowEmpty('id', 'create');
 
         $validator
-            ->allowEmpty('name');
+            ->requirePresence('name')
+			->notEmpty('name');
+			
 
         $validator
             ->allowEmpty('designation');
 
         $validator
             ->email('email')
-            ->allowEmpty('email');
+			->requirePresence('name')
+            ->notEmpty('email');
 
         $validator
-            ->allowEmpty('mobile');
+            ->requirePresence('mobile')
+            ->notEmpty('mobile');
 
         $validator
             ->allowEmpty('apartment');

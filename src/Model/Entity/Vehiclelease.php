@@ -18,6 +18,8 @@ use Cake\ORM\Entity;
  * @property string $ifsccode
  * @property string $swiftcode
  * @property string $notes
+ * @property int $customer_id
+ * @property int $vehicle_id
  *
  * @property \App\Model\Entity\Vendor $vendor
  */

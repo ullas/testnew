@@ -38,12 +38,7 @@ class WorkordersController extends AppController
 		 $usersettings=$this->Usersettings->find('all')->where(['user_id' => $this->loggedinuser['id']])->where(['module' => 'Workorders'])->where(['key' => 'INIT_VISIBLE_COLUMNS_WORKORDERS'])->toArray();
          if(isset($usersettings[0]['value'])){
          	$this->set('usersettings',$usersettings);	
-			if(isset($usersettings[0]['value'])){
-			 	$t=explode(",",$usersettings[0]['value1']);
-				$configs=$this->sortArrayByArray($configs,$t);
-				
 			
-		    }
          }else{
          	
          	$this->loadModel('Globalusersettings');
@@ -51,12 +46,23 @@ class WorkordersController extends AppController
             $this->set('usersettings',$usersettings);
 			
          }
-		 
-         
-		 
-		 
+		 $actions =[
+                ['name'=>'assign','title'=>'Assign','class'=>'label-success'],
+                ['name'=>'unassign','title'=>'Unassign','class'=>'label-warning'],
+                ['name'=>'close','title'=>'Close','class'=>' label-danger '],
+                ['name'=>'delete','title'=>'Delete','class'=>' label-danger ']
+                ];
+         $additional= [
+      	                          'basic'=>['Open','OverDue','Resolved','Closed'],
+      	                          'additional'=>[
+      	                                ['name'=>'issueddate','title'=>'Issued Date'],
+      	                                ['name'=>'startdate','title' =>'Start Date'],
+      	                                ['name'=>'completiondate','title'=>'Completion Date']   	                          
+      	                          ]];
+		 $this->set('additional',$additional);
+		 $this->set('actions',$actions);	
          $this->set('configs',$configs);	
-         $this->set('_serialize', ['configs','usersettings']);
+         $this->set('_serialize', ['configs','usersettings','actions','additional']);
        
        
     }
@@ -125,38 +131,29 @@ private function toPostDBDate($date){
 	  return $ret;
 }
 
-private  function sortArrayByArray(array $array, array $orderArray) {
-    $ordered = array();
-    foreach ($orderArray as $key) {
-        if (array_key_exists($key, $array)) {
-             	
-            $ordered[$key] = $array[$key];
-            unset($array[$key]);
-        }
-    }
-	
-    return $ordered ;
-}
 
-private function getDateRangeFilters($dates)  {
+private function getDateRangeFilters($dates,$basic)  {
 	
 	$sql="";	
 		
 	$alldates=explode(",",$dates);
 	
-	
+	$pre=($basic>0)?" and ":"";
 	
 	$datecol=explode("-",$alldates[0]);
 	
-	$sql .=  count($datecol)>1? " and issuedate between '" . $this->toPostDBDate($datecol[0]) . "' and '" . $this->toPostDBDate($datecol[1]) . "'": "" ;
+	$sql .=  count($datecol)>1? " $pre issuedate between '" . $this->toPostDBDate($datecol[0]) . "' and '" . $this->toPostDBDate($datecol[1]) . "'": "" ;
 	
 	$datecol=explode("-",$alldates[1]);
 	
-	$sql .=  count($datecol)>1? " and startdate between '" . $this->toPostDBDate($datecol[0]) . "' and '" . $this->toPostDBDate($datecol[1]) . "'": "" ;
+	$pre=(strlen($sql)>0)?" and ":"";
+	
+	$sql .=  count($datecol)>1? " $pre startdate between '" . $this->toPostDBDate($datecol[0]) . "' and '" . $this->toPostDBDate($datecol[1]) . "'": "" ;
 	
 	$datecol=explode("-",$alldates[2]);
+	$pre=(strlen($sql)>0)?" and ":"";
 	
-	$sql .= count($datecol)>1? " and completiondate between '" . $this->toPostDBDate($datecol[0]) . "' and '" . $this->toPostDBDate($datecol[1]) . "'": "" ;
+	$sql .= count($datecol)>1? " $pre completiondate between '" . $this->toPostDBDate($datecol[0]) . "' and '" . $this->toPostDBDate($datecol[1]) . "'": "" ;
 	
 	
 	return $sql;
@@ -178,7 +175,7 @@ public function ajaxdata() {
         	}
 			$usrfiter.=(") ");
         }
-		$usrfiter.=$this->getDateRangeFilters($additional);
+		$usrfiter.=$this->getDateRangeFilters($additional,$basic);
 		
           
        $this->loadModel('CreateConfigs');
@@ -212,7 +209,8 @@ public function ajaxdata() {
     public function view($id = null)
     {
         $workorder = $this->Workorders->get($id, [
-            'contain' => ['Workorderstatuses', 'Vehicles', 'Vendors', 'Issuedbies', 'Assignedbies', 'Assigntos', 'Customers', 'Issues', 'Worklorderlineitems', 'Workorderdocuments']
+            'contain' => ['Workorderstatuses', 'Vehicles', 'Vendors', 'Issuedbies', 'Assignedbies', 'Assigntos', 'Customers', 'Issues', 'Workorderdocuments']
+            
         ]);
 
         $this->set('workorder', $workorder);
@@ -227,13 +225,50 @@ public function ajaxdata() {
     public function add()
     {
         $workorder = $this->Workorders->newEntity();
+		$liteitemTable = TableRegistry::get('Workorderlineitems');
+		$servicetasksTable = TableRegistry::get('Servicetasks');
+		$issuesTable = TableRegistry::get('Issues');
+			
         if ($this->request->is('post')) {
+        	
+			
+			
             $workorder = $this->Workorders->patchEntity($workorder, $this->request->data);
-            $workorder['customer_id']=$this->currentuser['customer_id'];
+			
+				//print_r($this->request->data);
+			
+            $workorder['customer_id']=$this->loggedinuser['customer_id'];
+			
+			
             if ($this->Workorders->save($workorder)) {
+            	
+			   if(isset($this->request->data['workorderlineitem'])){
+				$lineitems=$this->request->data['workorderlineitem'];
+				for($i=0;$i<count($lineitems);$i++)
+				{
+					$lineitem= $liteitemTable->newEntity();
+					$lineitem['labour']=$lineitems[$i]['labour'];
+					$lineitem['parts']=$lineitems[$i]['parts'];
+					$lineitem['numitems']=isset($lineitems[$i]['numitems'])?$lineitems[$i]['numitems']:0;
+					$lineitem['customer_id']=$this->loggedinuser['customer_id'];
+					$lineitem['servicetask_id']=isset($lineitems[$i]['servicetask_id'])?$lineitems[$i]['servicetask_id']:null;
+					$lineitem['issue_id']=isset($lineitems[$i]['issue_id'])?$lineitems[$i]['issue_id']:null;
+					if($lineitem['servicetask_id']!=null){
+						$lineitem['workordertype_id']=1;
+					}else{
+						$lineitem['workordertype_id']=2;
+					}
+					$lineitem['workorder_id']=$workorder->id;
+					
+					$liteitemTable->save($lineitem);
+					
+				 }
+				  
+			    }	
+				
                 $this->Flash->success(__('The workorder has been saved.'));
 
-                return $this->redirect(['action' => 'index']);
+                 return $this->redirect(['action' => 'index']);
             } else {
                 $this->Flash->error(__('The workorder could not be saved. Please, try again.'));
             }
@@ -257,11 +292,13 @@ public function ajaxdata() {
         $assigntos = $this->Workorders->Assigntos->find('list', ['limit' => 200])->where("customer_id=".$this->loggedinuser['customer_id']);
         
                         
-          $customers = $this->Workorders->Customers->find('list', ['limit' => 200])->where("id=".$this->loggedinuser['customer_id']);
-      
+         $servicetasks=$servicetasksTable->find('list', ['limit' => 200])->where("customer_id=".$this->loggedinuser['customer_id'])->orwhere("customer_id=0")->all()->toArray();
+		 $issues=$issuesTable->find('list', ['limit' => 200])->where("customer_id=".$this->loggedinuser['customer_id'])->all()->toArray();
+		 
+		
         
-                $this->set(compact('workorder', 'workorderstatuses', 'vehicles', 'vendors', 'issuedbies', 'assignedbies', 'assigntos', 'customers'));
-        $this->set('_serialize', ['workorder']);
+        $this->set(compact('workorder', 'workorderstatuses', 'vehicles', 'vendors', 'issuedbies', 'assignedbies', 'assigntos', 'customers','servicetasks','issues'));
+        $this->set('_serialize', ['workorder','workorderstatuses', 'vehicles', 'vendors', 'issuedbies', 'assignedbies', 'assigntos', 'customers','servicetasks','issues']);
     }
 
     /**
@@ -278,7 +315,7 @@ public function ajaxdata() {
         ]);
         if ($this->request->is(['patch', 'post', 'put'])) {
             $workorder = $this->Workorders->patchEntity($workorder, $this->request->data);
-             $workorder['customer_id']=$this->currentuser['customer_id'];
+             $workorder['customer_id']=$this->loggedinuser['customer_id'];
             if ($this->Workorders->save($workorder)) {
                 $this->Flash->success(__('The workorder has been saved.'));
 
@@ -328,4 +365,46 @@ public function ajaxdata() {
 
         return $this->redirect(['action' => 'index']);
     }
+
+    public function deleteAll($id=null){
+    	
+		$this->request->allowMethod(['post', 'deleteall']);
+        $sucess=false;$failure=false;
+        
+        $data=$this->request->data;
+			
+		if(isset($data)){
+		   foreach($data as $key =>$value){
+		   	   
+			     $itemna=explode("-",$key);
+			    if(count($itemna)== 2 && $itemna[0]=='chk'){
+			    	
+					$workorder = $this->Workorders->get($value);
+					
+					 if($workorder['customer_id']== $this->loggedinuser['customer_id']) {
+					 	
+						   if ($this->Workorders->delete($workorder)) {
+					           $sucess= $sucess | true;
+					        } else {
+					           $failure= $failure | true;
+					        }
+						
+					 }
+					
+			    }  	  
+			   
+		   }
+		   		        
+		
+			if($sucess){
+				$this->Flash->success(__('Selected workorders has been deleted.'));
+			}
+	        if($failure){
+				$this->Flash->error(__('The workorder could not be deleted. Please, try again.'));
+			}
+		
+		   }
+
+             return $this->redirect(['action' => 'index']);	
+     }
 }

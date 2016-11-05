@@ -1,20 +1,19 @@
 <?php
   $myTemplates = [
-    'inputContainer' => '<div class="form-group">{{content}}</div>',
-     'label' => '<label class="col-sm-2 control-label" {{attrs}}>{{text}}</label>',
-    'input' => '<div class="col-sm-10"><input type="{{type}}" name="{{name}}"{{attrs}}/></div>',
-     'select' => '<div class="col-sm-10"><select name="{{name}}"{{attrs}}>{{content}}</select></div>',
-      'selectMultiple' => '<div class="col-sm-10"><select name="{{name}}[]" multiple="multiple"{{attrs}}>{{content}}</select></div>',
-     'textarea' => '<div class="col-sm-10"><textarea name="{{name}}"{{attrs}}>{{value}}</textarea></div>'
+    'inputContainer' => '<div class="form-group">{{content}}<div class="col-sm-offset-3 col-sm-6" style="margin-top:4px">{{help}}</div></div>',
+     'label' => '<label class="col-sm-3 control-label" {{attrs}}>{{text}}</label>',
+    'input' => '<div class="col-sm-6"><div class="input-group">{{icon}}<input type="{{type}}" name="{{name}}"{{attrs}}/></div></div>',
+    
+     'select' => '<div class="col-sm-6"><select name="{{name}}"{{attrs}}>{{content}}</select></div>',
+     'textarea' => '<div class="col-sm-6"><textarea name="{{name}}"{{attrs}}>{{value}}</textarea></div>'
 ];
 $this->Form->templates($myTemplates);
-
 ?>
 
 <!-- Content Header (Page header) -->
 <section class="content-header">
   <h1>
-    Edit Device
+    Edit Device <small>Please fill the details to edit a Device</small>
   </h1>
   <ol class="breadcrumb">
     <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
@@ -36,16 +35,25 @@ $this->Form->templates($myTemplates);
           <div class="active tab-pane" id="details">
              <div class="form-horizontal">
         <?php
-            echo $this->Form->input('code');
-            echo $this->Form->input('customer_id', ['options' => $customers,'class'=>'select2']);
-            echo $this->Form->input('install_date', ['empty' => true,'type'=>'text','class'=>'datemask']);
+            echo $this->Form->input('code',['required' =>'required']);
+            echo $this->Form->input('install_date', ['empty' => true,'type'=>'text','class'=>'datemask' , 'required' =>'required','templateVars' => ['icon' => '<div class="input-group-addon"><i class="fa fa-calendar"></i></div>']]);
             echo $this->Form->input('installed_by');
             echo $this->Form->input('certified_by');
             echo $this->Form->input('comments');
             echo $this->Form->input('provider_id', ['options' => $providers, 'empty' => true,'class'=>'select2']);
             echo $this->Form->input('distance_type');
-            echo $this->Form->input('odometersupport');
-            echo $this->Form->input('initodometer');
+		?>	
+		<div class="form-group">
+                  	<label for="odometersupport" class="col-sm-3 control-label" style="padding-top:0" >Odometer Support</label>
+				  	<div class="col-sm-6">
+				    	<input name="odometersupport" value="1" id="odometersupport" class="" type="checkbox">
+                   	</div>
+				  	<div class="col-sm-offset-3 col-sm-6" style="margin-top:18px" >
+				  	</div>
+			</div>
+		<?php	
+            
+            echo $this->Form->input('initodometer',['label'=>'Initial Odometer']);
         ?>
     </div>
  
@@ -77,15 +85,16 @@ $this->Form->templates($myTemplates);
 <?php
 $this->Html->css([
     
-    'AdminLTE./plugins/select2/select2.min',
+    'AdminLTE./plugins/datepicker/datepicker3',
+ 	'AdminLTE./plugins/select2/select2.min'
   ],
   ['block' => 'css']);
 
 $this->Html->script([
-  'AdminLTE./plugins/select2/select2.full.min',
-  'AdminLTE./plugins/input-mask/jquery.inputmask',
-  'AdminLTE./plugins/input-mask/jquery.inputmask.date.extensions',
-  'AdminLTE./plugins/input-mask/jquery.inputmask.extensions',
+ 'AdminLTE./plugins/select2/select2.full.min',
+  	'AdminLTE./plugins/datepicker/bootstrap-datepicker',
+  	'/js/dropzone/dropzone',
+	'AdminLTE./plugins/iCheck/icheck.min'
  
 ],
 ['block' => 'script']);
@@ -95,7 +104,10 @@ $this->Html->script([
   $(function () {
     //Initialize Select2 Elements
     $(".select2").select2();
-     $(".datemask").inputmask("yyyy/mm/dd", {"placeholder": "yyyy/mm/dd"});
+     $('.datemask').datepicker({
+            format:"dd/mm/yy",
+              autoclose: true
+   });
 
   });
 </script>

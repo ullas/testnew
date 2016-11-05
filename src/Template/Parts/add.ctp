@@ -13,7 +13,7 @@ $this->Form->templates($myTemplates);
 <!-- Content Header (Page header) -->
 <section class="content-header">
   <h1>
-    Add Parts
+    New Parts <small>Please fill the details to create a new Part</small>
   </h1>
   <ol class="breadcrumb">
   	<li><a href="#"><i class="fa fa-dashboard"></i>Home</a></li>
@@ -36,10 +36,10 @@ $this->Form->templates($myTemplates);
              <div class="form-horizontal">
         <?php
             
-            echo $this->Form->input('partno',['label'=>'Part Number *','templateVars' => ['help' => 'Internal part identifier. Must be unique per part.']]);
+            echo $this->Form->input('partno',['label'=>'Part Number ','templateVars' => ['help' => 'Internal part identifier. Must be unique per part.'],'required' => 'required']);
             echo $this->Form->input('partcategory_id', ['options' => $partcategories, 'empty' => true,'label'=>'Part Category','class'=>'select2']);
             echo $this->Form->input('manufacturer_id', ['options' => $manufacturers, 'empty' => true,'class'=>'select2']);
-            echo $this->Form->input('manufacturerpartno',['label'=>'Manufacturer Part Number *','templateVars' => ['help' => 'Manufacturer specific part number that can differentiate the part from an internal number.']]);
+            echo $this->Form->input('manufacturerpartno',['label'=>'Manufacturer Part Number','templateVars' => ['help' => 'Manufacturer specific part number that can differentiate the part from an internal number.']]);
             echo $this->Form->input('description');
             echo $this->Form->input('measurementunit_id', ['options' => $measurementunits, 'empty' => true,'label'=>'Measurement Unit','class'=>'select2']);
             echo $this->Form->input('upc');
@@ -63,7 +63,7 @@ $this->Form->templates($myTemplates);
   <div class="row">
    <div class="form-group">
                 <div class="col-sm-offset-6 col-sm-10">
-                  <button type="submit" class="btn-success">Save</button>
+                  <button type="submit" class="btn btn-success">Save</button>
                 </div>
    </div>
    </div>

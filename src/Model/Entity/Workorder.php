@@ -34,9 +34,10 @@ use Cake\ORM\Entity;
  * @property \App\Model\Entity\Address $issuedby
  * @property \App\Model\Entity\Address $assignedby
  * @property \App\Model\Entity\Address $assignto
+ * @property \App\Model\Entity\Customer $customer
  * @property \App\Model\Entity\Issue[] $issues
- * @property \App\Model\Entity\Worklorderlineitem[] $worklorderlineitems
  * @property \App\Model\Entity\Workorderdocument[] $workorderdocuments
+ * @property \App\Model\Entity\Workorderlineitem[] $workorderlineitems
  */
 class Workorder extends Entity
 {

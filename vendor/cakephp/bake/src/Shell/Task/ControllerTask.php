@@ -132,6 +132,8 @@ class ControllerTask extends BakeTask
         $pluralHumanName = $this->_variableName($controllerName);
 		
 		
+		$modelConfigs = TableRegistry::get("CreateConfigs");
+		
         $data = compact(
             'actions',
             'admin',
@@ -145,7 +147,8 @@ class ControllerTask extends BakeTask
             'pluralName',
             'prefix',
             'singularHumanName',
-            'singularName'
+            'singularName',
+            'modelConfigs'
             
         );
         $data['name'] = $controllerName;

@@ -45,7 +45,7 @@ class RfidsFixture extends TestFixture
             'driver_id' => 1,
             'passenger_id' => 1,
             'privatekey' => 1,
-            'dateofpurchase' => '2016-09-03'
+            'dateofpurchase' => '2016-10-28'
         ],
     ];
 }

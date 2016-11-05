@@ -1,44 +1,4 @@
-<style>
-.fmactions{
-  padding-top:5px;
-  min-height:65px;
-}
-
-.fmactions .fmaction{
-    float:left;
-    padding-bottom: 15px
-}
-
-.fmactions .fmaction span{
-    position: relative;
-    top: -20px;
-    right:10px;
-    font-size:10px;
-    font-weight:bold;
-  }
-
-  .fmactions .fmaction > button:hover {
-
-    animation: shake 0.82s cubic-bezier(.36,.07,.19,.97) both;
-    transform: translate3d(0, 0, 0);
-    backface-visibility: hidden;
-    perspective: 1000px;
-}
-  @keyframes shake {
-    10%, 90% {
-      transform: translate3d(-1px, 0, 0);
-    }
-    20%, 80% {
-      transform: translate3d(2px, 0, 0);
-    }
-    30%, 50%, 70% {
-      transform: translate3d(-4px, 0, 0);
-    }
-    40%, 60% {
-      transform: translate3d(4px, 0, 0);
-    }
-  }
-</style>
+<?php echo $this->element('indexstyles') ; ?>
 <section class="content-header">
   <h1>
     <?php echo $this->request->params['controller'] ?>
@@ -54,93 +14,17 @@
 </section>
 <!-- Main content -->
 <section class="content">
+<?php echo $this->Form->create($this->request->params['controller'],array('url' => array('controller' => $this->request->params['controller'], 'action' => 'deleteAll')));?>
   <div class="row">
         <div class="col-md-4">
-  <div class="box box-primary">
-  	  <div class="box-header">
-      	 <h3 class="box-title">Manage Work Orders</h3>
-      </div>
-      <div class="box-body" >
-          <div class="fmactions">
-            <div class="fmaction">
-      	       <button type="button" class="mptl mptl-assign btn btn-primary btn-sm" data-toggle="modal" data-target="#assign">
-				  Assign
-          </button>
-          <span class="mptl-itemsel mptl-itemsel-assign label label-success">0</span>
-      </div>
-        <div class="fmaction">
-              <button type="button" class="mptl mptl-assign btn btn-primary btn-sm" data-toggle="modal" data-target="#assign">
-				 Unassign
-			  </button>
-         <span class="mptl-itemsel mptl-itemsel-unassign label label-warning">0</span>
-         </div>
-           <div class="fmaction">
-			  <button type="button" class="mptl mptl-assign btn btn-primary btn-sm" data-toggle="modal" data-target="#assign">
-				  Close
-			  </button>
-          <span class="mptl-itemsel mptl-itemsel-close label label-danger">0</span>
-          </div>
-      </div>
-      </div>
-     </div>
+      <?php 
+      $title= "Manage ".  $this->request->params['controller'];
+      echo $this->element('actions',[$actions,'title'=>$title]);
+	  
+	   ?>
      </div>
       <div class="col-md-8">
-      	 <div class="nav-tabs-custom">
-	        <ul class="nav nav-tabs">
-	          <li  class="active"><a href="#details" data-toggle="tab">Filter</a></li>
-	            <li><a href="#specs" data-toggle="tab">Additional Filters</a></li>
-              <span id="filterstatus" class="label label-success pull-right" style="margin-right:10px;margin-top:10px" disabled>Filter Active</span>
-	        </ul>
-	         <div class=" tab-content" style="min-height:85px">
-             <div class="active tab-pane" id="details">
-							 <div class="box-body">
-							      	       <div class="form-group">
-							                  <input type="checkbox" class="mptl-filter-base flat flat-blue" checked id="mptl_filter_add_1">
-							                  <span style="padding-right:10px">Open</span>
-							                  <input type="checkbox" class="mptl-filter-base flat flat-blue" id="mptl_filter_add_2">
-                                <span style="padding-right:10px">Overdue</span>
-							                  <input type="checkbox" class="mptl-filter-base  flat flat-blue"  id="mptl_filter_add_3">
-                                <span style="padding-right:10px">Resolved</span>
-							                  <input type="checkbox" class="mptl-filter-base flat flat-blue"  id="mptl_filter_add_4">
-                                <span style="padding-right:10px">Closed</span>
-							              </div>
-							      </div>
-				</div> <!-- tab pane -->
-				<div class="tab-pane" id="specs">
-							  <div>
-                  		 <div>
-							      	       	<div class="col-md-4" style="display:inline-block">
-							                  Issued Date
-                                <div class="input-group date">
-                                    <div class="input-group-addon">
-                                        <i class="fa fa-calendar"></i>
-                                      </div>
-                                      <input class="mptl-daterange form-control pull-right" id="issueddate" type="date">
-                                    </div>
-							                </div>
-							                <div class="col-md-4" style="display:inline-block">
-							                 Start Date
-                               <div class="input-group date">
-                                   <div class="input-group-addon">
-                                       <i class="fa fa-calendar"></i>
-                                     </div>
-                                     <input class="mptl-daterange form-control pull-right" id="startdate" type="date">
-                                   </div>
-							                </div>
-							                 <div class="col-md-4" style="display:inline-block">
-							                 Completion Date
-                               <div class="input-group date">
-                                   <div class="input-group-addon">
-                                       <i class="fa fa-calendar"></i>
-                                     </div>
-                                     <input class="mptl-daterange form-control pull-right" id="completiondate" type="date">
-                                   </div>
-							                </div>
-							              </div>
-							      </div>
-				</div>
-			   </div>
-			</div>
+      	<?php echo  $this->element('filters',$additional) ?>
      </div> <!-- COL-7-->
   </div> <!--Row -->
   <div class="row">
@@ -151,10 +35,7 @@
         <thead>
             <tr>
             	<th data-orderable="false"><input type="checkbox" name="select_all" value="1" id="select-all" ></th>
-            	
-            	
-            	
-            	
+           	
                 <?php
                   for($i=1;$i<count($configs);$i++){
                   		
@@ -167,23 +48,10 @@
         <tbody></tbody>
     </table></div></div>
     </div></div>
+     <?= $this->Form->end() ?>
 </section>
-<div class="modal fade" id="assign" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
-      </div>
-      <div class="modal-body">
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div>
-    </div>
-  </div>
-</div>
+
+
  <?php echo $this->element('settings',[$configs,$usersettings]) ?>
 <?php
 $this->Html->css([ 'AdminLTE./plugins/datatables/dataTables.bootstrap', 
@@ -204,7 +72,31 @@ $this->Html->script([
 <?php $this->start('scriptBotton'); ?>
 <script>
   var table; var order;
+  function deleteRecord(btn){
+  	
+  	    if (btn == 'yes') {
+            
+            jQuery("form")[0].submit();
+        }
+  }
+  
+   
   $(function () {
+  	
+  	 $("#delete").click(function(){
+  		
+  	   if($(".mptl-lst-chkbox:checked").length==0){
+      	alert("No item selected. Please select at least one item ");
+      	return;
+      }
+       if (confirm("Do you want to delete the record?")) {
+	   	deleteRecord('yes');
+	   }
+  	});
+      
+    $('#settings').on('shown.bs.modal', function() {
+       setOrder();
+    })  
       
     //Flat blue color scheme for iCheck
     $('input[type="checkbox"].flat-blue, input[type="radio"].flat-blue').iCheck({
@@ -212,7 +104,7 @@ $this->Html->script([
       radioClass: 'iradio_flat-blue'
     });
     //daterangepicker for advanced filtering
-    $('input[id="issueddate"],input[id="startdate"],input[id="completiondate"').daterangepicker(
+    $('.mptl-daterange').daterangepicker(
     	{locale : {
       format : 'DD/MM/YY'
     }}).val('');
@@ -227,10 +119,27 @@ $this->Html->script([
           "autoWidth": false,
           "scrollX":true,
           colReorder: true,
+          stateSave:true,
           responsive: true,
           "fnServerParams": function ( aoData ) {
             
-            aoData.additional = $("#issueddate").val()+","+$("#startdate").val()+ "," +$("#completiondate").val(),
+            aoData.additional =<?php 
+              
+                $str=""; $c=0;
+                foreach($additional['additional'] as $colms){
+                	$plus="";	
+                	if($c>0){
+                		
+						$str.= " + ',' + ";
+                	}
+                	$str.= '$("#' . $colms['name']    .'").val()' ;
+                	$c++;
+                }
+				echo $str;
+                
+             ?>
+            ,
+         
             aoData.basic=$("#basicfilter").val()?$("#basicfilter").val():"-1";
           },
         //server side processing
@@ -241,7 +150,7 @@ $this->Html->script([
         'targets': 0,
         'className': 'dt-body-center',
         'render': function (data, type, full, meta){console.log(data);
-            return '<input type="checkbox" class="mptl-lst-chkbox" name="chk' + data + '" value="' + $('<div/>').text(data).html() + '">';
+            return '<input type="checkbox" class="mptl-lst-chkbox" name="chk-' + data + '" value="' + $('<div/>').text(data).html() + '">';
         }
      },{
      	'targets': [<?php echo $usersettings['0']['value'] ;?>],
@@ -250,47 +159,30 @@ $this->Html->script([
      
      ]
     });
-     $('<a href="/<?php echo $this->request->params['controller'] ?>/add/" class="btn btn-sm btn-success" style="margin-left:5px;"><i class="fa fa-plus" aria-hidden="true"></i></a>').appendTo('div.dataTables_filter');
-     $('<a href="#" class="btn btn-sm btn-success" data-toggle="modal" data-target="#settings" style="margin-left:5px;"><i class="fa fa-gear" aria-hidden="true"></i></a>').appendTo('div.dataTables_filter');
-     $('.dataTables_filter input').unbind().on('keyup', function() {
+     
+     $('<a href="/<?php echo $this->request->params['controller'] ?>/add/" class="btn btn-sm btn-success" style="margin-left:5px;" title="Add New Work Order"><i class="fa fa-plus" aria-hidden="true"></i></a>').appendTo('div.dataTables_filter');
+    $('<a href="#" class="btn btn-sm btn-success" style="margin-left:5px;" title="Export to PDF"><i class="fa fa-file-pdf-o" aria-hidden="true"></i></a>').appendTo('div.dataTables_filter');
+    $('<a href="#" class="btn btn-sm btn-success" style="margin-left:5px;" title="Export to CSV"><i class="fa fa-file-excel-o" aria-hidden="true"></i></a>').appendTo('div.dataTables_filter');
+    $('<a href="#" class="btn btn-sm btn-success" data-toggle="modal" data-target="#settings" style="margin-left:5px;" title="Table Settings"><i class="fa fa-gear" aria-hidden="true"></i></a>').appendTo('div.dataTables_filter');
+     
+       $('.dataTables_filter input').unbind().on('keyup', function() {
+	 
 	var searchTerm = this.value.toLowerCase();
-    $.fn.dataTable.ext.search.push(function(settings, data, dataIndex) {
-       //search only the following columns
-	   if (~data[1].toLowerCase().indexOf(searchTerm)) return true;
-	   if (~data[2].toLowerCase().indexOf(searchTerm)) return true;
-	   if (~data[3].toLowerCase().indexOf(searchTerm)) return true;
-	   if (~data[5].toLowerCase().indexOf(searchTerm)) return true;
-	   if (~data[7].toLowerCase().indexOf(searchTerm)) return true;
-	   if (~data[8].toLowerCase().indexOf(searchTerm)) return true;
-	   if (~data[9].toLowerCase().indexOf(searchTerm)) return true;
-	   if (~data[10].toLowerCase().indexOf(searchTerm)) return true;
-	   if (~data[11].toLowerCase().indexOf(searchTerm)) return true;
-	   if (~data[12].toLowerCase().indexOf(searchTerm)) return true;
-	   if (~data[14].toLowerCase().indexOf(searchTerm)) return true;
-	   if (~data[15].toLowerCase().indexOf(searchTerm)) return true;
-	   if (~data[17].toLowerCase().indexOf(searchTerm)) return true;
-	   if (~data[18].toLowerCase().indexOf(searchTerm)) return true;
-	   if (~data[19].toLowerCase().indexOf(searchTerm)) return true;
-       return false;
-   })
+   
    table.draw();
    $.fn.dataTable.ext.search.pop();
 })
  order= new $.fn.dataTable.ColReorder( table );
- var svdodr=[<?php echo $usersettings[0]['value1'] ?>];
- if(svdodr.length>1){
- 	order.fnOrder(svdodr);
- 	//alert(fnSettings().aoColumns.length);
- }
+ 
  
   // Handle click on "Select all" control
    $('#select-all').on('click', function(){
       // Get all rows with search applied
+     
       var rows = table.rows({ 'search': 'applied' }).nodes();
       // Check/uncheck checkboxes for all rows in the table
       $('input[type="checkbox"]', rows).prop('checked', this.checked);
-      var c=$(".mptl-lst-chkbox:checked").length;
-      $(".mptl-itemsel").html(c);
+      
    });
    // Handle click on checkbox to set state of "Select all" control
    $('#mptlindextbl tbody').on('change', 'input[type="checkbox"]', function(){
@@ -304,9 +196,7 @@ $this->Html->script([
             el.indeterminate = true;
          }
       }
-       var c=$(".mptl-lst-chkbox:checked").length;
-       
-       $(".mptl-itemsel").html(c);
+      setTurben();
         
        
        
@@ -338,7 +228,8 @@ $this->Html->script([
    });
    $(".mptl-settings-save").click(function(){
        var hiddencols="";
-      
+       
+	   
        $('.mptl_settings_chk').each(function () {
 		    var sThisVal = (this.checked ? $(this).val() : "");
 		    var id=$(this).attr("id");
@@ -354,20 +245,27 @@ $this->Html->script([
 		    }
 	   });
 	   
+	   
+	   window.location.reload(); 
 	   $.post("/<?php echo $this->request->params['controller'] ?>/updateSettings",
    		 {
        		 columns: hiddencols,
-       		 visorder:  order.fnOrder().toString() 
+       		 visorder:  table.colReorder.order().toString() 
    		 },
 	    function(data, status){
 	        $('#settings').modal('hide');
 	    });
-	    repositionSettings();
+	  
+	     $('#settings').modal('hide');
   
    });
 
-    $('input[id="issueddate"],input[id="startdate"],input[id="completiondate"').change(function(){
-    	 table.ajax.reload();
+    $('.mptl-daterange').change(function(){
+    	 var ordr=table.colReorder.order();
+    	 table.ajax.reload(null,false);
+    	 table.colReorder.order(ordr);
+    	 table.draw();
+    	
     });
   
         //jQuery UI sortable for the settings modal
@@ -378,12 +276,52 @@ $this->Html->script([
         zIndex: 999999
     });
     
-    
-    
-  
+     $(".mptl-daterange").change(function(){
+          updateFilterActiveFlag();
+     });
+     
+     setTurben();
   });
+function setTurben()
+{
+	var c=$(".mptl-lst-chkbox:checked").length;
+      $(".mptl-itemsel").html(c);
+      if(c==0){
+      	   $( ".mptl-itemsel" ).fadeTo( "slow" , 0, function() {
+		    // Animation complete.
+		  });
+      }else{
+      	  $( ".mptl-itemsel" ).fadeTo( "slow" , 1, function() {
+		    // Animation complete.
+		  });
+      }
+}  
   
-
+function updateFilterActiveFlag()
+{
+	    var flagActive=false;
+	    
+	    $('.mptl-daterange').each(function () {
+		    var l= $(this).val().length;
+		    if(l>3){
+		    	flagActive=true;
+		    }
+	   });
+	 	$('.mptl-filter-base').each(function (){
+    		
+    		
+    		if(this.checked  && !($(this).is(':disabled'))){
+    			flagActive=true;
+    			
+    		}
+    	});
+    	
+    	
+    	  flagActive  ? $("#filterstatus").show() : 	$("#filterstatus").hide();
+    	
+    	
+    
+}
 
 $('.mptl-filter-base').on('ifChecked', function(event){ 
 	
@@ -399,7 +337,7 @@ $('.mptl-filter-base').on('ifUnchecked', function(event){
  function setBasicFilter()
   {
   	  var filter="";
-  	  var factive=false;
+  	 // factive=false;
        $('.mptl-filter-base').each(function () {
 		    var sThisVal = (this.checked ? $(this).val() : "");
 		    var id=$(this).attr("id");
@@ -408,40 +346,24 @@ $('.mptl-filter-base').on('ifUnchecked', function(event){
 	    	
 		    	filter.length>0? filter+="," :filter;
 		    	filter+=col;
-		    	factive=true;
+		    	//factive=true;
 		    }
 	   });
   	  $("#basicfilter").val(filter);
-  	  if(factive){
-  	  	
-  	  	$("#filterstatus").show();
-  	  }else{
-  	  	$("#filterstatus").hide();
-  	  }
+  	 
+  	  updateFilterActiveFlag();
+  	 
+  	    var ordr=table.colReorder.order();
   	  
-  	  table.ajax.reload();
-  }
-  function getAdditionalFilter()
-  {
-  	var filter="";
-  	filter+=($("#issueddate").val()+",");
-  	filter+=($("#startdate").val()+",");
-  	filter+=($("#completiondate").val()+",");
-  	
-  	return filter;
-  	
+    	 table.ajax.reload(null,true);
+    	 table.colReorder.order(ordr);
+    	 
+    	 table.draw();
   }
   
-  function repositionSettings(){
-  	
-  	var listItems = $("#todo-list li");
-		listItems.each(function(idx, li) {
-   			 var columm = $(li);
-   			 console.log("hello");
-
-    		// and the rest of your code
-		});
-  	
+  
+  function setOrder()
+  {
   	
   }
   

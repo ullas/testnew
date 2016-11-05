@@ -1,39 +1,29 @@
-<nav class="large-3 medium-4 columns" id="actions-sidebar">
-    <ul class="side-nav">
-        <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Html->link(__('Edit Trip'), ['action' => 'edit', $trip->id]) ?> </li>
-        <li><?= $this->Form->postLink(__('Delete Trip'), ['action' => 'delete', $trip->id], ['confirm' => __('Are you sure you want to delete # {0}?', $trip->id)]) ?> </li>
-        <li><?= $this->Html->link(__('List Trips'), ['action' => 'index']) ?> </li>
-        <li><?= $this->Html->link(__('New Trip'), ['action' => 'add']) ?> </li>
-        <li><?= $this->Html->link(__('List Customers'), ['controller' => 'Customers', 'action' => 'index']) ?> </li>
-        <li><?= $this->Html->link(__('New Customer'), ['controller' => 'Customers', 'action' => 'add']) ?> </li>
-        <li><?= $this->Html->link(__('List Vehicles'), ['controller' => 'Vehicles', 'action' => 'index']) ?> </li>
-        <li><?= $this->Html->link(__('New Vehicle'), ['controller' => 'Vehicles', 'action' => 'add']) ?> </li>
-        <li><?= $this->Html->link(__('List Timepolicies'), ['controller' => 'Timepolicies', 'action' => 'index']) ?> </li>
-        <li><?= $this->Html->link(__('New Timepolicy'), ['controller' => 'Timepolicies', 'action' => 'add']) ?> </li>
-        <li><?= $this->Html->link(__('List Routes'), ['controller' => 'Routes', 'action' => 'index']) ?> </li>
-        <li><?= $this->Html->link(__('New Route'), ['controller' => 'Routes', 'action' => 'add']) ?> </li>
-        <li><?= $this->Html->link(__('List Startpoints'), ['controller' => 'Locations', 'action' => 'index']) ?> </li>
-        <li><?= $this->Html->link(__('New Startpoint'), ['controller' => 'Locations', 'action' => 'add']) ?> </li>
-        <li><?= $this->Html->link(__('List Schedules'), ['controller' => 'Schedules', 'action' => 'index']) ?> </li>
-        <li><?= $this->Html->link(__('New Schedule'), ['controller' => 'Schedules', 'action' => 'add']) ?> </li>
-        <li><?= $this->Html->link(__('List Tripstatuses'), ['controller' => 'Tripstatuses', 'action' => 'index']) ?> </li>
-        <li><?= $this->Html->link(__('New Tripstatus'), ['controller' => 'Tripstatuses', 'action' => 'add']) ?> </li>
-        <li><?= $this->Html->link(__('List Vehiclecategories'), ['controller' => 'Vehiclecategories', 'action' => 'index']) ?> </li>
-        <li><?= $this->Html->link(__('New Vehiclecategory'), ['controller' => 'Vehiclecategories', 'action' => 'add']) ?> </li>
-    </ul>
-</nav>
-<div class="trips view large-9 medium-8 columns content">
-    <h3><?= h($trip->name) ?></h3>
-    <table class="vertical-table">
+<section class="content-header">
+  <h1>
+     <?php echo $this->request->params['controller'] ?> Details
+  </h1>
+  <ol class="breadcrumb">
+  	<li><a href="#"><i class="fa fa-dashboard"></i>Home</a></li>
+    <li><a href="#"> Trip Management</a></li>
+    <li><a href="/servicesentries/"> Schedules</a></li>
+    <li class="active">View</li>
+  </ol>
+</section>
+<section class="content">
+  <div class="row">
+  <div class="col-md-12">
+  	
+  	<div class="box box-primary">
+  		<div class="box-body">
+  		<table class="table table-hover">
         <tr>
             <th><?= __('Name') ?></th>
             <td><?= h($trip->name) ?></td>
         </tr>
-        <tr>
+        <!-- <tr>
             <th><?= __('Customer') ?></th>
             <td><?= $trip->has('customer') ? $this->Html->link($trip->customer->name, ['controller' => 'Customers', 'action' => 'view', $trip->customer->id]) : '' ?></td>
-        </tr>
+        </tr> -->
         <tr>
             <th><?= __('Vehicle') ?></th>
             <td><?= $trip->has('vehicle') ? $this->Html->link($trip->vehicle->id, ['controller' => 'Vehicles', 'action' => 'view', $trip->vehicle->id]) : '' ?></td>
@@ -73,10 +63,6 @@
         <tr>
             <th><?= __('Id') ?></th>
             <td><?= $this->Number->format($trip->id) ?></td>
-        </tr>
-        <tr>
-            <th><?= __('Passengergroup Id') ?></th>
-            <td><?= $this->Number->format($trip->passengergroup_id) ?></td>
         </tr>
         <tr>
             <th><?= __('Trackingcode') ?></th>
@@ -131,8 +117,13 @@
             <td><?= $trip->active ? __('Yes') : __('No'); ?></td>
         </tr>
         <tr>
-            <th><?= __('Fromitinerary') ?></th>
-            <td><?= $trip->fromitinerary ? __('Yes') : __('No'); ?></td>
+            <th><?= __('From Schedule') ?></th>
+            <td><?= $trip->fromschedule ? __('Yes') : __('No'); ?></td>
         </tr>
     </table>
-</div>
+</div><!--boxbody-->
+   </div><!-- box -->
+  
+  </div><!-- col12-->
+  </div>
+  </section>

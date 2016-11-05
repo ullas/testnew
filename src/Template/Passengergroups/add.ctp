@@ -1,20 +1,24 @@
 <?php
   $myTemplates = [
-    'inputContainer' => '<div class="form-group">{{content}}</div>',
-     'label' => '<label class="col-sm-2 control-label" {{attrs}}>{{text}}</label>',
-    'input' => '<div class="col-sm-10"><input type="{{type}}" name="{{name}}"{{attrs}}/></div>',
-     'select' => '<div class="col-sm-10"><select name="{{name}}"{{attrs}}>{{content}}</select></div>',
-      'selectMultiple' => '<div class="col-sm-10"><select name="{{name}}[]" multiple="multiple"{{attrs}}>{{content}}</select></div>',
-     'textarea' => '<div class="col-sm-10"><textarea name="{{name}}"{{attrs}}>{{value}}</textarea></div>'
+    'inputContainer' => '<div class="form-group">{{content}}<div class="col-sm-offset-3 col-sm-6" style="margin-top:4px">{{help}}</div></div>',
+     'label' => '<label class="col-sm-3 control-label" {{attrs}}>{{text}}</label>',
+    'input' => '<div class="col-sm-6"><input type="{{type}}" name="{{name}}"{{attrs}}/></div>',
+    
+     'select' => '<div class="col-sm-6"><select name="{{name}}"{{attrs}}>{{content}}</select></div>',
+     'textarea' => '<div class="col-sm-6"><textarea name="{{name}}"{{attrs}}>{{value}}</textarea></div>'
 ];
+
+ 
 $this->Form->templates($myTemplates);
 
 ?>
 
+
 <!-- Content Header (Page header) -->
 <section class="content-header">
   <h1>
-    Add Passenger Group
+    New Passenger Group <small>Please fill the details to create a new Passenger Group</small>
+  </h1>
   </h1>
   <ol class="breadcrumb">
     <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
@@ -36,12 +40,9 @@ $this->Form->templates($myTemplates);
           <div class="active tab-pane" id="details">
              <div class="form-horizontal">
         <?php
-            echo $this->Form->input('name');
+            echo $this->Form->input('name',['required' => 'required']);
             echo $this->Form->input('description');
-            echo $this->Form->input('customer_id', ['options' => $customers, 'empty' => false,'class'=>'select2']);
-            echo $this->Form->input('system');
-            echo $this->Form->input('enabled');
-            echo $this->Form->input('passengers._ids', ['options' => $passengers]);
+            echo $this->Form->input('passengers.ids', ['label'=>'Passengers','options' => $passengers,'class'=>'select2']);
         ?>
    </div>
  
@@ -60,7 +61,7 @@ $this->Form->templates($myTemplates);
   <div class="row">
    <div class="form-group">
                 <div class="col-sm-offset-6 col-sm-10">
-                  <button type="submit" class="btn btn-danger">Save</button>
+                  <button type="submit" class="btn btn-success">Save</button>
                 </div>
    </div>
    </div>

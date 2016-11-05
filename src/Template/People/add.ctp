@@ -1,20 +1,22 @@
 
 <?php
   $myTemplates = [
-    'inputContainer' => '<div class="form-group">{{content}}</div>',
-     'label' => '<label class="col-sm-2 control-label" {{attrs}}>{{text}}</label>',
-    'input' => '<div class="col-sm-10"><input type="{{type}}" name="{{name}}"{{attrs}}/></div>',
-     'select' => '<div class="col-sm-10"><select name="{{name}}"{{attrs}}>{{content}}</select></div>',
-     'textarea' => '<div class="col-sm-10"><textarea name="{{name}}"{{attrs}}>{{value}}</textarea></div>'
+    'inputContainer' => '<div class="form-group">{{content}}<div class="col-sm-offset-3 col-sm-6" style="margin-top:4px">{{help}}</div></div>',
+     'label' => '<label class="col-sm-3 control-label" {{attrs}}>{{text}}</label>',
+    'input' => '<div class="col-sm-6"><input type="{{type}}" name="{{name}}"{{attrs}}/></div>',
+    
+     'select' => '<div class="col-sm-6"><select name="{{name}}"{{attrs}}>{{content}}</select></div>',
+     'textarea' => '<div class="col-sm-6"><textarea name="{{name}}"{{attrs}}>{{value}}</textarea></div>'
 ];
+
+ 
 $this->Form->templates($myTemplates);
 
 ?>
-
 <!-- Content Header (Page header) -->
 <section class="content-header">
   <h1>
-    Add People
+    New People <small>Please fill the details to create People</small>
   </h1>
   <ol class="breadcrumb">
   	<li><a href="#"><i class="fa fa-dashboard"></i>Home</a></li>
@@ -37,7 +39,7 @@ $this->Form->templates($myTemplates);
              <div class="form-horizontal">
                 
            <?php
-            echo $this->Form->input('Trackingobject.name');
+            echo $this->Form->input('name',['required' => 'required']);
             echo $this->Form->input('age');
             echo $this->Form->input('designation');
             echo $this->Form->input('address');
@@ -67,7 +69,7 @@ $this->Form->templates($myTemplates);
   <div class="row">
    <div class="form-group">
                 <div class="col-sm-offset-6 col-sm-10">
-                  <button type="submit" class="btn">Save</button>
+                  <button type="submit" class="btn btn-success">Save</button>
                 </div>
    </div>
    </div>

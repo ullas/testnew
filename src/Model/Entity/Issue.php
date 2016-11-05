@@ -19,14 +19,19 @@ use Cake\ORM\Entity;
  * @property bool $markasvoid
  * @property int $customer_id
  * @property int $workorder_id
- * @property int $serviceentry_id
+ * @property int $servicesentry_id
+ * @property int $documentcount
+ * @property int $commentscount
+ * @property int $issuestatus_id
  *
  * @property \App\Model\Entity\Vehicle $vehicle
- * @property \App\Model\Entity\Reportedby $reportedby
+ * @property \App\Model\Entity\Address $reportedby
  * @property \App\Model\Entity\Customer $customer
  * @property \App\Model\Entity\Workorder $workorder
- * @property \App\Model\Entity\Servicesentry $servicesentry
+ * @property \App\Model\Entity\Serviceentry $serviceentry
+ * @property \App\Model\Entity\Issuestatus $issuestatus
  * @property \App\Model\Entity\Issuedocument[] $issuedocuments
+ * @property \App\Model\Entity\Workorderlineitem[] $workorderlineitems
  * @property \App\Model\Entity\Address[] $addresses
  */
 class Issue extends Entity

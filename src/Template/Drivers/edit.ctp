@@ -1,66 +1,105 @@
-<nav class="large-3 medium-4 columns" id="actions-sidebar">
-    <ul class="side-nav">
-        <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Form->postLink(
-                __('Delete'),
-                ['action' => 'delete', $driver->id],
-                ['confirm' => __('Are you sure you want to delete # {0}?', $driver->id)]
-            )
-        ?></li>
-        <li><?= $this->Html->link(__('List Drivers'), ['action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('List Addresses'), ['controller' => 'Addresses', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Address'), ['controller' => 'Addresses', 'action' => 'add']) ?></li>
-        <li><?= $this->Html->link(__('List Customers'), ['controller' => 'Customers', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Customer'), ['controller' => 'Customers', 'action' => 'add']) ?></li>
-        <li><?= $this->Html->link(__('List Contractors'), ['controller' => 'Contractors', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Contractor'), ['controller' => 'Contractors', 'action' => 'add']) ?></li>
-        <li><?= $this->Html->link(__('List Stations'), ['controller' => 'Stations', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Station'), ['controller' => 'Stations', 'action' => 'add']) ?></li>
-        <li><?= $this->Html->link(__('List Supervisors'), ['controller' => 'Drivers', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Supervisor'), ['controller' => 'Drivers', 'action' => 'add']) ?></li>
-        <li><?= $this->Html->link(__('List Ibuttons'), ['controller' => 'Ibuttons', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Ibutton'), ['controller' => 'Ibuttons', 'action' => 'add']) ?></li>
-        <li><?= $this->Html->link(__('List Vehicles'), ['controller' => 'Vehicles', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Vehicle'), ['controller' => 'Vehicles', 'action' => 'add']) ?></li>
-        <li><?= $this->Html->link(__('List Rfids'), ['controller' => 'Rfids', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Rfid'), ['controller' => 'Rfids', 'action' => 'add']) ?></li>
-        <li><?= $this->Html->link(__('List Drivergroups'), ['controller' => 'Drivergroups', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Drivergroup'), ['controller' => 'Drivergroups', 'action' => 'add']) ?></li>
-    </ul>
-</nav>
-<div class="drivers form large-9 medium-8 columns content">
+<?php
+  $myTemplates = [
+    'inputContainer' => '<div class="form-group">{{content}}<div class="col-sm-offset-3 col-sm-6" style="margin-top:4px">{{help}}</div></div>',
+     'label' => '<label class="col-sm-3 control-label" {{attrs}}>{{text}}</label>',
+    'input' => '<div class="col-sm-6"><div class="input-group">{{icon}}<input type="{{type}}" name="{{name}}"{{attrs}}/></div></div>',
+    
+     'select' => '<div class="col-sm-6"><select name="{{name}}"{{attrs}}>{{content}}</select></div>',
+     'textarea' => '<div class="col-sm-6"><textarea name="{{name}}"{{attrs}}>{{value}}</textarea></div>'
+];
+$this->Form->templates($myTemplates);
+?>
+
+
+<!-- Content Header (Page header) -->
+<section class="content-header">
+  <h1>
+    Edit Driver<small>Please fill the details to edit a Driver</small>
+  </h1>
+  <ol class="breadcrumb">
+  	<li><a href="#"><i class="fa fa-dashboard"></i>Home</a></li>
+   
+    <li><a href="/Servicesentries/"> Drivers</a></li>
+    <li class="active">Edit</li>
+  </ol>
+</section>
+
+<!-- Main content -->
+<section class="content">
     <?= $this->Form->create($driver) ?>
-    <fieldset>
-        <legend><?= __('Edit Driver') ?></legend>
+   <div class="row">
+    
+    <div class="col-md-12">
+      <div class="nav-tabs-custom">
+        
+        <div class="tab-content" style="padding-top:45px">
+          <div class="active tab-pane" id="details">
+             <div class="form-horizontal">
         <?php
-            echo $this->Form->input('name');
-            echo $this->Form->input('middlename');
-            echo $this->Form->input('lastname');
-            echo $this->Form->input('dob', ['empty' => true]);
+           echo $this->Form->input('name',['required' => 'required']);
+            echo $this->Form->input('middlename',['label'=>'Middle Name']);
+            echo $this->Form->input('lastname',['label'=>'Last Name']);
+            echo $this->Form->input('dob', ['type'=>'text','empty' => true,'label'=>'Date Of Birth','class'=>'datemask','templateVars' => ['icon' => '<div class="input-group-addon"><i class="fa fa-calendar"></i></div>']]);
             echo $this->Form->input('sex');
             echo $this->Form->input('nationality');
-            echo $this->Form->input('idcardno');
-            echo $this->Form->input('licenceno');
-            echo $this->Form->input('licenceexpdate');
-            echo $this->Form->input('address_id', ['options' => $addresses, 'empty' => true]);
-            echo $this->Form->input('nextofkin');
+            echo $this->Form->input('idcardno',['label'=>'ID Card No','required' => 'required']);
+            echo $this->Form->input('licenceno',['label'=>'Licence No','required' => 'required']);
+            echo $this->Form->input('licenceexpdate', ['type'=>'text','empty' => true,'label'=>'Licence Expiry Date','class'=>'datemask','templateVars' => ['icon' => '<div class="input-group-addon"><i class="fa fa-calendar"></i></div>']]);
+            echo $this->Form->input('address_id', ['options' => $addresses, 'empty' => true,'class'=>'select2']);
+            echo $this->Form->input('nextofkin',['label'=>'Next Of Kin']);
             echo $this->Form->input('comments');
             echo $this->Form->input('photo');
-            echo $this->Form->input('ibutton_id');
-            echo $this->Form->input('drivingpassportno');
-            echo $this->Form->input('drivingpassportexp', ['empty' => true]);
-            echo $this->Form->input('customer_id', ['options' => $customers, 'empty' => true]);
-            echo $this->Form->input('vehicle_id');
-            echo $this->Form->input('drivinglicenseclass');
-            echo $this->Form->input('contractor_id', ['options' => $contractors, 'empty' => true]);
-            echo $this->Form->input('station_id', ['options' => $stations, 'empty' => true]);
-            echo $this->Form->input('reporingtime', ['empty' => true]);
+            echo $this->Form->input('ibutton_id',['class'=>'select2']);
+            echo $this->Form->input('drivingpassportno',['label'=>'Driving Passport No']);
+            echo $this->Form->input('drivingpassportexp', ['type'=>'text','empty' => true,'label'=>'Driving Passport Expiry Date','class'=>'datemask','templateVars' => ['icon' => '<div class="input-group-addon"><i class="fa fa-calendar"></i></div>']]);
+            echo $this->Form->input('vehicle_id',['class'=>'select2']);
+            echo $this->Form->input('drivinglicenseclass',['label'=>'Driving Licence Class']);
+            echo $this->Form->input('contractor_id', ['options' => $contractors, 'empty' => true,'class'=>'select2']);
+            echo $this->Form->input('station_id', ['options' => $stations, 'empty' => true,'class'=>'select2']);
+            echo $this->Form->input('reporingtime', ['label'=>'Reporting Time','empty' => true]);
             echo $this->Form->input('offday1');
             echo $this->Form->input('offday2');
-            echo $this->Form->input('supervisor_id', ['options' => $supervisors, 'empty' => true]);
-            echo $this->Form->input('drivergroups._ids', ['options' => $drivergroups]);
+            echo $this->Form->input('supervisor_id', ['options' => $supervisors, 'empty' => true,'class'=>'select2']);
+            echo $this->Form->input('drivergroups.ids', ['label'=>'Driver Group','options' => $drivergroups,'class'=>'select2']);
         ?>
-    </fieldset>
-    <?= $this->Form->button(__('Submit')) ?>
-    <?= $this->Form->end() ?>
-</div>
+    <div class="row">
+   <div class="form-group">
+                <div class="col-sm-offset-6 col-sm-10">
+                  <button type="submit" class="btn btn-success">Save</button>
+                </div>
+   </div>
+   </div>
+   <!-- /.row -->
+ <?= $this->Form->end() ?>
+</section>
+<!-- /.content -->
+<?php
+$this->Html->css([
+  'AdminLTE./plugins/datepicker/datepicker3',
+  'AdminLTE./plugins/select2/select2.min'
+  ],
+  ['block' => 'css']);
+
+$this->Html->script([
+ 'AdminLTE./plugins/select2/select2.full.min',
+ 'AdminLTE./plugins/datepicker/bootstrap-datepicker',
+ '/js/dropzone/dropzone',
+ 'AdminLTE./plugins/iCheck/icheck.min'
+],
+['block' => 'script']);
+?>
+<?php $this->start('scriptBotton'); ?>
+<script>
+  $(function () {
+   
+   $(".select2").select2({ width: '100%' });
+   $('.datemask').datepicker({
+            format:"dd/mm/yy",
+              autoclose: true
+   });
+  
+
+  });
+</script>
+<?php $this->end(); ?>
+   

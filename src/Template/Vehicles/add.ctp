@@ -14,7 +14,7 @@ $this->Form->templates($myTemplates);
 <!-- Content Header (Page header) -->
 <section class="content-header">
   <h1>
-    Add Vehicle
+    New Vehicle <small>Please fill the details to create a new Vehicle</small>
   </h1>
   <ol class="breadcrumb">
     <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
@@ -53,23 +53,23 @@ $this->Form->templates($myTemplates);
              	
                 <?php 
                  
-             	    echo $this->Form->input('name',['label'=>'Name*','templateVars' => ['help' => 'A nickname to distinguish this vehicle']]);
+             	    echo $this->Form->input('name',['label'=>'Name','templateVars' => ['help' => 'A nickname to distinguish this vehicle'],'required' => 'required']);
              	    echo $this->Form->input('code',['templateVars' => ['help' => 'Vehicle Identification Number or Serial Number']]);
              	    echo $this->Form->input('plateno',['label'=>'License Plate']);
 		           
 		            echo $this->Form->input('vehicletype_id', ['options' => $vehicletypes, 
 		                             'templateVars' => ['help' => 'Select your vehicle category'],
-		                             'empty' => true,'class'=>'select2','label'=>'Type*']);
+		                             'empty' => true,'class'=>'select2','label'=>'Type' ,'required' => 'required']);
 		            echo $this->Form->input('year',['templateVars' => ['help' => 'e.g 2008,1973']]);
 		            echo $this->Form->input('make',['templateVars' => ['help' => 'e.g Maruthi,Ford etc.']]);
 		            echo $this->Form->input('model',['templateVars' => ['help' => 'Cressida,Sunny,i10 etc.']]);
 		            echo $this->Form->input('trim',['templateVars' => ['help' => 'C class,XE,Sports etc.']]);
 		            echo $this->Form->input('registationloc',['label'=>'Registration Location']);
-		            echo $this->Form->input('vehiclestatus_id',['label'=>'Status*','options'=>$vehiclestatuses, 'class' =>'select2', 'empty' => false,'templateVars' => ['help' => 'Current status of this vehicle']]);
+		            echo $this->Form->input('vehiclestatus_id',['label'=>'Status','options'=>$vehiclestatuses, 'class' =>'select2', 'empty' => false,'templateVars' => ['help' => 'Current status of this vehicle'],'required' => 'required']);
 		            //echo $this->Form->input('vehiclestatus_id', ['options' => $vehiclestatuses, 'empty' => true]);
           
 		            
-		            echo $this->Form->input('ownership_id', ['label'=>'Ownership*','options' => $ownerships, 'empty' => false,'class'=>'select2']);
+		            echo $this->Form->input('ownership_id', ['label'=>'Ownership','options' => $ownerships, 'empty' => false,'class'=>'select2','required' => 'required']);
 		            echo $this->Form->input('symbol_id', ['options' => $symbols, 'empty' => true,'class'=>'select2']);
 		            
 		            echo $this->Form->input('station_id', ['options' => $stations, 'empty' => true,'class'=>'select2']);
@@ -644,10 +644,7 @@ $this->Form->templates($myTemplates);
 <!-- /.content -->
 <?php
 $this->Html->css([
-    'AdminLTE./plugins/daterangepicker/daterangepicker-bs3',
-    'AdminLTE./plugins/iCheck/all',
-    'AdminLTE./plugins/colorpicker/bootstrap-colorpicker.min',
-    'AdminLTE./plugins/timepicker/bootstrap-timepicker.min',
+   
     'AdminLTE./plugins/select2/select2.min',
   ],
   ['block' => 'css']);
@@ -657,11 +654,8 @@ $this->Html->script([
   'AdminLTE./plugins/input-mask/jquery.inputmask',
   'AdminLTE./plugins/input-mask/jquery.inputmask.date.extensions',
   'AdminLTE./plugins/input-mask/jquery.inputmask.extensions',
-  '/js/moment.min.js',
-  'AdminLTE./plugins/daterangepicker/daterangepicker',
-  'AdminLTE./plugins/colorpicker/bootstrap-colorpicker.min',
-  'AdminLTE./plugins/timepicker/bootstrap-timepicker.min',
-  'AdminLTE./plugins/iCheck/icheck.min',
+  '/js/moment.min'
+  
 ],
 ['block' => 'script']);
 ?>

@@ -40,14 +40,17 @@ use Cake\ORM\Entity;
  * @property \App\Model\Entity\Vehiclestatus $vehiclestatus
  * @property \App\Model\Entity\Ownership $ownership
  * @property \App\Model\Entity\Symbol $symbol
+ * @property \App\Model\Entity\Driverdetectionmode $driverdetectionmode
  * @property \App\Model\Entity\Station $station
  * @property \App\Model\Entity\Department $department
  * @property \App\Model\Entity\Trackingobject $trackingobject
  * @property \App\Model\Entity\Purpose $purpose
- * @property \App\Model\Entity\Vendor $transporter
- * @property \App\Model\Entity\Driver $activedriver
+ * @property \App\Model\Entity\Transporter $transporter
+ * @property \App\Model\Entity\Activedriver $activedriver
+ * @property \App\Model\Entity\Customer $customer
  * @property \App\Model\Entity\Driver[] $drivers
  * @property \App\Model\Entity\Fuelentry[] $fuelentries
+ * @property \App\Model\Entity\Inspection[] $inspections
  * @property \App\Model\Entity\Issue[] $issues
  * @property \App\Model\Entity\Servicesentry[] $servicesentries
  * @property \App\Model\Entity\Trip[] $trips
@@ -58,7 +61,6 @@ use Cake\ORM\Entity;
  * @property \App\Model\Entity\Vehiclespecification[] $vehiclespecifications
  * @property \App\Model\Entity\Vehiclewheelstyre[] $vehiclewheelstyres
  * @property \App\Model\Entity\Workorder[] $workorders
- * @property \App\Model\Entity\Customer $customer
  */
 class Vehicle extends Entity
 {

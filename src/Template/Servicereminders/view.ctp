@@ -1,23 +1,23 @@
-<nav class="large-3 medium-4 columns" id="actions-sidebar">
-    <ul class="side-nav">
-        <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Html->link(__('Edit Servicereminder'), ['action' => 'edit', $servicereminder->id]) ?> </li>
-        <li><?= $this->Form->postLink(__('Delete Servicereminder'), ['action' => 'delete', $servicereminder->id], ['confirm' => __('Are you sure you want to delete # {0}?', $servicereminder->id)]) ?> </li>
-        <li><?= $this->Html->link(__('List Servicereminders'), ['action' => 'index']) ?> </li>
-        <li><?= $this->Html->link(__('New Servicereminder'), ['action' => 'add']) ?> </li>
-        <li><?= $this->Html->link(__('List Distributionlists'), ['controller' => 'Distributionlists', 'action' => 'index']) ?> </li>
-        <li><?= $this->Html->link(__('New Distributionlist'), ['controller' => 'Distributionlists', 'action' => 'add']) ?> </li>
-        <li><?= $this->Html->link(__('List Groups'), ['controller' => 'Groups', 'action' => 'index']) ?> </li>
-        <li><?= $this->Html->link(__('New Group'), ['controller' => 'Groups', 'action' => 'add']) ?> </li>
-        <li><?= $this->Html->link(__('List Customers'), ['controller' => 'Customers', 'action' => 'index']) ?> </li>
-        <li><?= $this->Html->link(__('New Customer'), ['controller' => 'Customers', 'action' => 'add']) ?> </li>
-    </ul>
-</nav>
-<div class="servicereminders view large-9 medium-8 columns content">
-    <h3><?= h($servicereminder->id) ?></h3>
-    <table class="vertical-table">
+<section class="content-header">
+  <h1>
+    <?php echo $this->request->params['controller'] ?> Details
+  </h1>
+   <ol class="breadcrumb">
+    <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+    <li><a href="#"> Reminders</a></li>
+     <li><a href="/servicereminders/"> Service Reminders</a></li>
+    <li class="active">View</li>
+  </ol>
+</section>
+<section class="content">
+  <div class="row">
+  <div class="col-md-12">
+  	
+  	<div class="box box-primary">
+  		<div class="box-body">
+  		<table class="table table-hover">
         <tr>
-            <th><?= __('Distributionlist') ?></th>
+            <th><?= __('Distribution List') ?></th>
             <td><?= $servicereminder->has('distributionlist') ? $this->Html->link($servicereminder->distributionlist->name, ['controller' => 'Distributionlists', 'action' => 'view', $servicereminder->distributionlist->id]) : '' ?></td>
         </tr>
         <tr>
@@ -33,28 +33,33 @@
             <td><?= $this->Number->format($servicereminder->id) ?></td>
         </tr>
         <tr>
-            <th><?= __('Servicetask Id') ?></th>
+            <th><?= __('Service Task Id') ?></th>
             <td><?= $this->Number->format($servicereminder->servicetask_id) ?></td>
         </tr>
         <tr>
-            <th><?= __('Meterinterval') ?></th>
+            <th><?= __('Meter Interval') ?></th>
             <td><?= $this->Number->format($servicereminder->meterinterval) ?></td>
         </tr>
         <tr>
-            <th><?= __('Daysinterval') ?></th>
+            <th><?= __('Days Interval') ?></th>
             <td><?= $this->Number->format($servicereminder->daysinterval) ?></td>
         </tr>
         <tr>
-            <th><?= __('Meterthreshold') ?></th>
+            <th><?= __('Meter Threshold') ?></th>
             <td><?= $this->Number->format($servicereminder->meterthreshold) ?></td>
         </tr>
         <tr>
-            <th><?= __('Timethreashold') ?></th>
+            <th><?= __('Time Threshold') ?></th>
             <td><?= $this->Number->format($servicereminder->timethreashold) ?></td>
         </tr>
         <tr>
-            <th><?= __('Notificationrequired') ?></th>
+            <th><?= __('Notification Required') ?></th>
             <td><?= $servicereminder->notificationrequired ? __('Yes') : __('No'); ?></td>
         </tr>
-    </table>
-</div>
+      </table>
+   </div><!--boxbody-->
+   </div><!-- box -->
+  
+  </div><!-- col12-->
+</div> 
+</section>

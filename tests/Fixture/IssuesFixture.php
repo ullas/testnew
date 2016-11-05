@@ -30,7 +30,10 @@ class IssuesFixture extends TestFixture
         'markasvoid' => ['type' => 'boolean', 'length' => null, 'default' => null, 'null' => true, 'comment' => null, 'precision' => null],
         'customer_id' => ['type' => 'integer', 'length' => 10, 'default' => null, 'null' => true, 'comment' => null, 'precision' => null, 'unsigned' => null, 'autoIncrement' => null],
         'workorder_id' => ['type' => 'integer', 'length' => 10, 'default' => null, 'null' => true, 'comment' => null, 'precision' => null, 'unsigned' => null, 'autoIncrement' => null],
-        'serviceentry_id' => ['type' => 'integer', 'length' => 10, 'default' => null, 'null' => true, 'comment' => null, 'precision' => null, 'unsigned' => null, 'autoIncrement' => null],
+        'servicesentry_id' => ['type' => 'integer', 'length' => 10, 'default' => null, 'null' => true, 'comment' => null, 'precision' => null, 'unsigned' => null, 'autoIncrement' => null],
+        'documentcount' => ['type' => 'integer', 'length' => 10, 'default' => '0', 'null' => true, 'comment' => null, 'precision' => null, 'unsigned' => null, 'autoIncrement' => null],
+        'commentscount' => ['type' => 'integer', 'length' => 10, 'default' => '0', 'null' => true, 'comment' => null, 'precision' => null, 'unsigned' => null, 'autoIncrement' => null],
+        'issuestatus_id' => ['type' => 'integer', 'length' => 10, 'default' => null, 'null' => true, 'comment' => null, 'precision' => null, 'unsigned' => null, 'autoIncrement' => null],
         '_constraints' => [
             'primary' => ['type' => 'primary', 'columns' => ['id'], 'length' => []],
         ],
@@ -46,18 +49,21 @@ class IssuesFixture extends TestFixture
         [
             'id' => 1,
             'vehicle_id' => 1,
-            'reportedon' => '2016-10-06',
+            'reportedon' => '2016-10-26',
             'summary' => 'Lorem ipsum dolor sit amet',
             'description' => 'Lorem ipsum dolor sit amet, aliquet feugiat. Convallis morbi fringilla gravida, phasellus feugiat dapibus velit nunc, pulvinar eget sollicitudin venenatis cum nullam, vivamus ut a sed, mollitia lectus. Nulla vestibulum massa neque ut et, id hendrerit sit, feugiat in taciti enim proin nibh, tempor dignissim, rhoncus duis vestibulum nunc mattis convallis.',
             'odometer' => 1,
             'reportedby_id' => 1,
             'tags' => 'Lorem ipsum dolor sit amet',
-            'duedate' => '2016-10-06',
+            'duedate' => '2016-10-26',
             'overdueodometer' => 1,
             'markasvoid' => 1,
             'customer_id' => 1,
             'workorder_id' => 1,
-            'serviceentry_id' => 1
+            'servicesentry_id' => 1,
+            'documentcount' => 1,
+            'commentscount' => 1,
+            'issuestatus_id' => 1
         ],
     ];
 }

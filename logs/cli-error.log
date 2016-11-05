@@ -1430,3 +1430,249 @@ Stack Trace:
 #14 {main}
 
 
+2016-10-21 02:14:29 Warning: Warning (2): include(/Users/maptell/testgit/vendor/composer/../../src/Model/Table/VehiclesTable.php): failed to open stream: No such file or directory in [/Users/maptell/testgit/vendor/composer/ClassLoader.php, line 412]
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE/src/Error/BaseErrorHandler.php, line 146
+include - ROOT/vendor/composer/ClassLoader.php, line 412
+Composer\Autoload\includeFile - ROOT/vendor/composer/ClassLoader.php, line 412
+Composer\Autoload\ClassLoader::loadClass() - ROOT/vendor/composer/ClassLoader.php, line 301
+spl_autoload_call - [internal], line ??
+class_exists - [internal], line ??
+Cake\Core\App::_classExistsInBase() - CORE/src/Core/App.php, line 152
+Cake\Core\App::className() - CORE/src/Core/App.php, line 64
+Cake\ORM\Locator\TableLocator::_getClassName() - CORE/src/ORM/Locator/TableLocator.php, line 199
+Cake\ORM\Locator\TableLocator::get() - CORE/src/ORM/Locator/TableLocator.php, line 156
+Cake\ORM\TableRegistry::get() - CORE/src/ORM/TableRegistry.php, line 110
+Bake\Shell\Task\ModelTask::getTableObject() - ROOT/vendor/cakephp/bake/src/Shell/Task/ModelTask.php, line 185
+Bake\Shell\Task\ModelTask::bake() - ROOT/vendor/cakephp/bake/src/Shell/Task/ModelTask.php, line 109
+Bake\Shell\Task\ModelTask::main() - ROOT/vendor/cakephp/bake/src/Shell/Task/ModelTask.php, line 97
+Cake\Console\Shell::runCommand() - CORE/src/Console/Shell.php, line 466
+Cake\Console\Shell::runCommand() - CORE/src/Console/Shell.php, line 459
+Cake\Console\ShellDispatcher::_dispatch() - CORE/src/Console/ShellDispatcher.php, line 227
+Cake\Console\ShellDispatcher::dispatch() - CORE/src/Console/ShellDispatcher.php, line 182
+Cake\Console\ShellDispatcher::run() - CORE/src/Console/ShellDispatcher.php, line 128
+[main] - ROOT/bin/cake.php, line 34
+
+
+
+2016-10-21 02:14:29 Warning: Warning (2): include(): Failed opening '/Users/maptell/testgit/vendor/composer/../../src/Model/Table/VehiclesTable.php' for inclusion (include_path='.:/usr/local/php5/lib/php') in [/Users/maptell/testgit/vendor/composer/ClassLoader.php, line 412]
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE/src/Error/BaseErrorHandler.php, line 146
+include - ROOT/vendor/composer/ClassLoader.php, line 412
+Composer\Autoload\includeFile - ROOT/vendor/composer/ClassLoader.php, line 412
+Composer\Autoload\ClassLoader::loadClass() - ROOT/vendor/composer/ClassLoader.php, line 301
+spl_autoload_call - [internal], line ??
+class_exists - [internal], line ??
+Cake\Core\App::_classExistsInBase() - CORE/src/Core/App.php, line 152
+Cake\Core\App::className() - CORE/src/Core/App.php, line 64
+Cake\ORM\Locator\TableLocator::_getClassName() - CORE/src/ORM/Locator/TableLocator.php, line 199
+Cake\ORM\Locator\TableLocator::get() - CORE/src/ORM/Locator/TableLocator.php, line 156
+Cake\ORM\TableRegistry::get() - CORE/src/ORM/TableRegistry.php, line 110
+Bake\Shell\Task\ModelTask::getTableObject() - ROOT/vendor/cakephp/bake/src/Shell/Task/ModelTask.php, line 185
+Bake\Shell\Task\ModelTask::bake() - ROOT/vendor/cakephp/bake/src/Shell/Task/ModelTask.php, line 109
+Bake\Shell\Task\ModelTask::main() - ROOT/vendor/cakephp/bake/src/Shell/Task/ModelTask.php, line 97
+Cake\Console\Shell::runCommand() - CORE/src/Console/Shell.php, line 466
+Cake\Console\Shell::runCommand() - CORE/src/Console/Shell.php, line 459
+Cake\Console\ShellDispatcher::_dispatch() - CORE/src/Console/ShellDispatcher.php, line 227
+Cake\Console\ShellDispatcher::dispatch() - CORE/src/Console/ShellDispatcher.php, line 182
+Cake\Console\ShellDispatcher::run() - CORE/src/Console/ShellDispatcher.php, line 128
+[main] - ROOT/bin/cake.php, line 34
+
+
+
+2016-10-21 02:14:53 Error: [Cake\Database\Exception] Cannot describe vehicle. It has 0 columns.
+Stack Trace:
+#0 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Database/Schema/CachedCollection.php(63): Cake\Database\Schema\Collection->describe('vehicle', Array)
+#1 /Users/maptell/testgit/vendor/cakephp/cakephp/src/ORM/Table.php(440): Cake\Database\Schema\CachedCollection->describe('vehicle')
+#2 /Users/maptell/testgit/vendor/cakephp/cakephp/src/ORM/Table.php(518): Cake\ORM\Table->schema()
+#3 /Users/maptell/testgit/vendor/cakephp/bake/src/Shell/Task/ModelTask.php(210): Cake\ORM\Table->primaryKey()
+#4 /Users/maptell/testgit/vendor/cakephp/bake/src/Shell/Task/ModelTask.php(127): Bake\Shell\Task\ModelTask->getAssociations(Object(Cake\ORM\Table))
+#5 /Users/maptell/testgit/vendor/cakephp/bake/src/Shell/Task/ModelTask.php(110): Bake\Shell\Task\ModelTask->getTableContext(Object(Cake\ORM\Table), 'vehicle', 'Vehicle')
+#6 /Users/maptell/testgit/vendor/cakephp/bake/src/Shell/Task/ModelTask.php(97): Bake\Shell\Task\ModelTask->bake('Vehicle')
+#7 [internal function]: Bake\Shell\Task\ModelTask->main('vehicle')
+#8 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Console/Shell.php(466): call_user_func_array(Array, Array)
+#9 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Console/Shell.php(459): Cake\Console\Shell->runCommand(Array, false, Array)
+#10 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Console/ShellDispatcher.php(227): Cake\Console\Shell->runCommand(Array, true, Array)
+#11 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Console/ShellDispatcher.php(182): Cake\Console\ShellDispatcher->_dispatch(Array)
+#12 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Console/ShellDispatcher.php(128): Cake\Console\ShellDispatcher->dispatch(Array)
+#13 /Users/maptell/testgit/bin/cake.php(34): Cake\Console\ShellDispatcher::run(Array)
+#14 {main}
+
+
+2016-10-21 02:15:06 Warning: Warning (2): include(/Users/maptell/testgit/vendor/composer/../../src/Model/Table/VehiclesTable.php): failed to open stream: No such file or directory in [/Users/maptell/testgit/vendor/composer/ClassLoader.php, line 412]
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE/src/Error/BaseErrorHandler.php, line 146
+include - ROOT/vendor/composer/ClassLoader.php, line 412
+Composer\Autoload\includeFile - ROOT/vendor/composer/ClassLoader.php, line 412
+Composer\Autoload\ClassLoader::loadClass() - ROOT/vendor/composer/ClassLoader.php, line 301
+spl_autoload_call - [internal], line ??
+class_exists - [internal], line ??
+Cake\Core\App::_classExistsInBase() - CORE/src/Core/App.php, line 152
+Cake\Core\App::className() - CORE/src/Core/App.php, line 64
+Cake\ORM\Locator\TableLocator::_getClassName() - CORE/src/ORM/Locator/TableLocator.php, line 199
+Cake\ORM\Locator\TableLocator::get() - CORE/src/ORM/Locator/TableLocator.php, line 156
+Cake\ORM\TableRegistry::get() - CORE/src/ORM/TableRegistry.php, line 110
+Bake\Shell\Task\ModelTask::getTableObject() - ROOT/vendor/cakephp/bake/src/Shell/Task/ModelTask.php, line 185
+Bake\Shell\Task\ModelTask::findHasMany() - ROOT/vendor/cakephp/bake/src/Shell/Task/ModelTask.php, line 344
+Bake\Shell\Task\ModelTask::getAssociations() - ROOT/vendor/cakephp/bake/src/Shell/Task/ModelTask.php, line 221
+Bake\Shell\Task\ModelTask::getTableContext() - ROOT/vendor/cakephp/bake/src/Shell/Task/ModelTask.php, line 127
+Bake\Shell\Task\ModelTask::bake() - ROOT/vendor/cakephp/bake/src/Shell/Task/ModelTask.php, line 110
+Bake\Shell\Task\ModelTask::main() - ROOT/vendor/cakephp/bake/src/Shell/Task/ModelTask.php, line 97
+Bake\Shell\Task\ModelTask::all() - ROOT/vendor/cakephp/bake/src/Shell/Task/ModelTask.php, line 165
+Cake\Console\Shell::runCommand() - CORE/src/Console/Shell.php, line 452
+Cake\Console\Shell::runCommand() - CORE/src/Console/Shell.php, line 459
+Cake\Console\ShellDispatcher::_dispatch() - CORE/src/Console/ShellDispatcher.php, line 227
+Cake\Console\ShellDispatcher::dispatch() - CORE/src/Console/ShellDispatcher.php, line 182
+Cake\Console\ShellDispatcher::run() - CORE/src/Console/ShellDispatcher.php, line 128
+[main] - ROOT/bin/cake.php, line 34
+
+
+
+2016-10-21 02:15:06 Warning: Warning (2): include(): Failed opening '/Users/maptell/testgit/vendor/composer/../../src/Model/Table/VehiclesTable.php' for inclusion (include_path='.:/usr/local/php5/lib/php') in [/Users/maptell/testgit/vendor/composer/ClassLoader.php, line 412]
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE/src/Error/BaseErrorHandler.php, line 146
+include - ROOT/vendor/composer/ClassLoader.php, line 412
+Composer\Autoload\includeFile - ROOT/vendor/composer/ClassLoader.php, line 412
+Composer\Autoload\ClassLoader::loadClass() - ROOT/vendor/composer/ClassLoader.php, line 301
+spl_autoload_call - [internal], line ??
+class_exists - [internal], line ??
+Cake\Core\App::_classExistsInBase() - CORE/src/Core/App.php, line 152
+Cake\Core\App::className() - CORE/src/Core/App.php, line 64
+Cake\ORM\Locator\TableLocator::_getClassName() - CORE/src/ORM/Locator/TableLocator.php, line 199
+Cake\ORM\Locator\TableLocator::get() - CORE/src/ORM/Locator/TableLocator.php, line 156
+Cake\ORM\TableRegistry::get() - CORE/src/ORM/TableRegistry.php, line 110
+Bake\Shell\Task\ModelTask::getTableObject() - ROOT/vendor/cakephp/bake/src/Shell/Task/ModelTask.php, line 185
+Bake\Shell\Task\ModelTask::findHasMany() - ROOT/vendor/cakephp/bake/src/Shell/Task/ModelTask.php, line 344
+Bake\Shell\Task\ModelTask::getAssociations() - ROOT/vendor/cakephp/bake/src/Shell/Task/ModelTask.php, line 221
+Bake\Shell\Task\ModelTask::getTableContext() - ROOT/vendor/cakephp/bake/src/Shell/Task/ModelTask.php, line 127
+Bake\Shell\Task\ModelTask::bake() - ROOT/vendor/cakephp/bake/src/Shell/Task/ModelTask.php, line 110
+Bake\Shell\Task\ModelTask::main() - ROOT/vendor/cakephp/bake/src/Shell/Task/ModelTask.php, line 97
+Bake\Shell\Task\ModelTask::all() - ROOT/vendor/cakephp/bake/src/Shell/Task/ModelTask.php, line 165
+Cake\Console\Shell::runCommand() - CORE/src/Console/Shell.php, line 452
+Cake\Console\Shell::runCommand() - CORE/src/Console/Shell.php, line 459
+Cake\Console\ShellDispatcher::_dispatch() - CORE/src/Console/ShellDispatcher.php, line 227
+Cake\Console\ShellDispatcher::dispatch() - CORE/src/Console/ShellDispatcher.php, line 182
+Cake\Console\ShellDispatcher::run() - CORE/src/Console/ShellDispatcher.php, line 128
+[main] - ROOT/bin/cake.php, line 34
+
+
+
+2016-10-21 02:15:42 Warning: Warning (2): include(/Users/maptell/testgit/vendor/composer/../../src/Model/Table/VehiclesTable.php): failed to open stream: No such file or directory in [/Users/maptell/testgit/vendor/composer/ClassLoader.php, line 412]
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE/src/Error/BaseErrorHandler.php, line 146
+include - ROOT/vendor/composer/ClassLoader.php, line 412
+Composer\Autoload\includeFile - ROOT/vendor/composer/ClassLoader.php, line 412
+Composer\Autoload\ClassLoader::loadClass() - ROOT/vendor/composer/ClassLoader.php, line 301
+spl_autoload_call - [internal], line ??
+class_exists - [internal], line ??
+Cake\Core\App::_classExistsInBase() - CORE/src/Core/App.php, line 152
+Cake\Core\App::className() - CORE/src/Core/App.php, line 64
+Cake\ORM\Locator\TableLocator::_getClassName() - CORE/src/ORM/Locator/TableLocator.php, line 199
+Cake\ORM\Locator\TableLocator::get() - CORE/src/ORM/Locator/TableLocator.php, line 156
+Cake\ORM\TableRegistry::get() - CORE/src/ORM/TableRegistry.php, line 110
+Bake\Shell\Task\ModelTask::getTableObject() - ROOT/vendor/cakephp/bake/src/Shell/Task/ModelTask.php, line 185
+Bake\Shell\Task\ModelTask::bake() - ROOT/vendor/cakephp/bake/src/Shell/Task/ModelTask.php, line 109
+Bake\Shell\Task\ModelTask::main() - ROOT/vendor/cakephp/bake/src/Shell/Task/ModelTask.php, line 97
+Cake\Console\Shell::runCommand() - CORE/src/Console/Shell.php, line 466
+Cake\Console\Shell::runCommand() - CORE/src/Console/Shell.php, line 459
+Cake\Console\ShellDispatcher::_dispatch() - CORE/src/Console/ShellDispatcher.php, line 227
+Cake\Console\ShellDispatcher::dispatch() - CORE/src/Console/ShellDispatcher.php, line 182
+Cake\Console\ShellDispatcher::run() - CORE/src/Console/ShellDispatcher.php, line 128
+[main] - ROOT/bin/cake.php, line 34
+
+
+
+2016-10-21 02:15:42 Warning: Warning (2): include(): Failed opening '/Users/maptell/testgit/vendor/composer/../../src/Model/Table/VehiclesTable.php' for inclusion (include_path='.:/usr/local/php5/lib/php') in [/Users/maptell/testgit/vendor/composer/ClassLoader.php, line 412]
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE/src/Error/BaseErrorHandler.php, line 146
+include - ROOT/vendor/composer/ClassLoader.php, line 412
+Composer\Autoload\includeFile - ROOT/vendor/composer/ClassLoader.php, line 412
+Composer\Autoload\ClassLoader::loadClass() - ROOT/vendor/composer/ClassLoader.php, line 301
+spl_autoload_call - [internal], line ??
+class_exists - [internal], line ??
+Cake\Core\App::_classExistsInBase() - CORE/src/Core/App.php, line 152
+Cake\Core\App::className() - CORE/src/Core/App.php, line 64
+Cake\ORM\Locator\TableLocator::_getClassName() - CORE/src/ORM/Locator/TableLocator.php, line 199
+Cake\ORM\Locator\TableLocator::get() - CORE/src/ORM/Locator/TableLocator.php, line 156
+Cake\ORM\TableRegistry::get() - CORE/src/ORM/TableRegistry.php, line 110
+Bake\Shell\Task\ModelTask::getTableObject() - ROOT/vendor/cakephp/bake/src/Shell/Task/ModelTask.php, line 185
+Bake\Shell\Task\ModelTask::bake() - ROOT/vendor/cakephp/bake/src/Shell/Task/ModelTask.php, line 109
+Bake\Shell\Task\ModelTask::main() - ROOT/vendor/cakephp/bake/src/Shell/Task/ModelTask.php, line 97
+Cake\Console\Shell::runCommand() - CORE/src/Console/Shell.php, line 466
+Cake\Console\Shell::runCommand() - CORE/src/Console/Shell.php, line 459
+Cake\Console\ShellDispatcher::_dispatch() - CORE/src/Console/ShellDispatcher.php, line 227
+Cake\Console\ShellDispatcher::dispatch() - CORE/src/Console/ShellDispatcher.php, line 182
+Cake\Console\ShellDispatcher::run() - CORE/src/Console/ShellDispatcher.php, line 128
+[main] - ROOT/bin/cake.php, line 34
+
+
+
+2016-10-25 04:03:58 Error: [Cake\Console\Exception\MissingShellException] Shell class for "Workorderpartslineitems" could not be found.
+Exception Attributes: array (
+  'class' => 'Workorderpartslineitems',
+)
+Stack Trace:
+#0 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Console/ShellDispatcher.php(223): Cake\Console\ShellDispatcher->findShell('Workorderpartsl...')
+#1 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Console/ShellDispatcher.php(182): Cake\Console\ShellDispatcher->_dispatch(Array)
+#2 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Console/ShellDispatcher.php(128): Cake\Console\ShellDispatcher->dispatch(Array)
+#3 /Users/maptell/testgit/bin/cake.php(34): Cake\Console\ShellDispatcher::run(Array)
+#4 {main}
+
+
+2016-10-28 12:43:00 Error: [Cake\Database\Exception] Cannot describe inspectionforms. It has 0 columns.
+Stack Trace:
+#0 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Database/Schema/CachedCollection.php(63): Cake\Database\Schema\Collection->describe('inspectionforms', Array)
+#1 /Users/maptell/testgit/vendor/cakephp/cakephp/src/ORM/Table.php(440): Cake\Database\Schema\CachedCollection->describe('inspectionforms')
+#2 /Users/maptell/testgit/vendor/cakephp/cakephp/src/ORM/Table.php(518): Cake\ORM\Table->schema()
+#3 /Users/maptell/testgit/vendor/cakephp/bake/src/Shell/Task/ModelTask.php(210): Cake\ORM\Table->primaryKey()
+#4 /Users/maptell/testgit/vendor/cakephp/bake/src/Shell/Task/ModelTask.php(127): Bake\Shell\Task\ModelTask->getAssociations(Object(Cake\ORM\Table))
+#5 /Users/maptell/testgit/vendor/cakephp/bake/src/Shell/Task/ModelTask.php(110): Bake\Shell\Task\ModelTask->getTableContext(Object(Cake\ORM\Table), 'inspectionforms', 'Inspectionforms')
+#6 /Users/maptell/testgit/vendor/cakephp/bake/src/Shell/Task/ModelTask.php(97): Bake\Shell\Task\ModelTask->bake('Inspectionforms')
+#7 [internal function]: Bake\Shell\Task\ModelTask->main('inspectionforms')
+#8 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Console/Shell.php(466): call_user_func_array(Array, Array)
+#9 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Console/Shell.php(459): Cake\Console\Shell->runCommand(Array, false, Array)
+#10 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Console/ShellDispatcher.php(227): Cake\Console\Shell->runCommand(Array, true, Array)
+#11 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Console/ShellDispatcher.php(182): Cake\Console\ShellDispatcher->_dispatch(Array)
+#12 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Console/ShellDispatcher.php(128): Cake\Console\ShellDispatcher->dispatch(Array)
+#13 /Users/maptell/testgit/bin/cake.php(34): Cake\Console\ShellDispatcher::run(Array)
+#14 {main}
+
+
+2016-10-31 06:53:09 Error: [Cake\Database\Exception] Cannot describe template. It has 0 columns.
+Stack Trace:
+#0 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Database/Schema/CachedCollection.php(63): Cake\Database\Schema\Collection->describe('template', Array)
+#1 /Users/maptell/testgit/vendor/cakephp/cakephp/src/ORM/Table.php(440): Cake\Database\Schema\CachedCollection->describe('template')
+#2 /Users/maptell/testgit/vendor/cakephp/cakephp/src/ORM/Table.php(518): Cake\ORM\Table->schema()
+#3 /Users/maptell/testgit/vendor/cakephp/bake/src/Shell/Task/ModelTask.php(210): Cake\ORM\Table->primaryKey()
+#4 /Users/maptell/testgit/vendor/cakephp/bake/src/Shell/Task/ModelTask.php(127): Bake\Shell\Task\ModelTask->getAssociations(Object(Cake\ORM\Table))
+#5 /Users/maptell/testgit/vendor/cakephp/bake/src/Shell/Task/ModelTask.php(110): Bake\Shell\Task\ModelTask->getTableContext(Object(Cake\ORM\Table), 'template', 'Template')
+#6 /Users/maptell/testgit/vendor/cakephp/bake/src/Shell/Task/ModelTask.php(97): Bake\Shell\Task\ModelTask->bake('Template')
+#7 [internal function]: Bake\Shell\Task\ModelTask->main('template')
+#8 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Console/Shell.php(466): call_user_func_array(Array, Array)
+#9 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Console/Shell.php(459): Cake\Console\Shell->runCommand(Array, false, Array)
+#10 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Console/ShellDispatcher.php(227): Cake\Console\Shell->runCommand(Array, true, Array)
+#11 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Console/ShellDispatcher.php(182): Cake\Console\ShellDispatcher->_dispatch(Array)
+#12 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Console/ShellDispatcher.php(128): Cake\Console\ShellDispatcher->dispatch(Array)
+#13 /Users/maptell/testgit/bin/cake.php(34): Cake\Console\ShellDispatcher::run(Array)
+#14 {main}
+
+
+2016-10-31 07:05:12 Error: [Cake\Database\Exception] Cannot describe template. It has 0 columns.
+Stack Trace:
+#0 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Database/Schema/CachedCollection.php(63): Cake\Database\Schema\Collection->describe('template', Array)
+#1 /Users/maptell/testgit/vendor/cakephp/cakephp/src/ORM/Table.php(440): Cake\Database\Schema\CachedCollection->describe('template')
+#2 /Users/maptell/testgit/vendor/cakephp/cakephp/src/ORM/Table.php(518): Cake\ORM\Table->schema()
+#3 /Users/maptell/testgit/vendor/cakephp/bake/src/Shell/Task/ModelTask.php(210): Cake\ORM\Table->primaryKey()
+#4 /Users/maptell/testgit/vendor/cakephp/bake/src/Shell/Task/ModelTask.php(127): Bake\Shell\Task\ModelTask->getAssociations(Object(Cake\ORM\Table))
+#5 /Users/maptell/testgit/vendor/cakephp/bake/src/Shell/Task/ModelTask.php(110): Bake\Shell\Task\ModelTask->getTableContext(Object(Cake\ORM\Table), 'template', 'Template')
+#6 /Users/maptell/testgit/vendor/cakephp/bake/src/Shell/Task/ModelTask.php(97): Bake\Shell\Task\ModelTask->bake('Template')
+#7 [internal function]: Bake\Shell\Task\ModelTask->main('template')
+#8 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Console/Shell.php(466): call_user_func_array(Array, Array)
+#9 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Console/Shell.php(459): Cake\Console\Shell->runCommand(Array, false, Array)
+#10 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Console/ShellDispatcher.php(227): Cake\Console\Shell->runCommand(Array, true, Array)
+#11 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Console/ShellDispatcher.php(182): Cake\Console\ShellDispatcher->_dispatch(Array)
+#12 /Users/maptell/testgit/vendor/cakephp/cakephp/src/Console/ShellDispatcher.php(128): Cake\Console\ShellDispatcher->dispatch(Array)
+#13 /Users/maptell/testgit/bin/cake.php(34): Cake\Console\ShellDispatcher::run(Array)
+#14 {main}
+
+
