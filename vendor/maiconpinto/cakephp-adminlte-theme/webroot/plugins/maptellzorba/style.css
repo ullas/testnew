@@ -1,0 +1,207 @@
+@font-face {
+  font-family: 'MaptellZorba';
+  src:  url('fonts/MaptellZorba.eot?sxsdim');
+  src:  url('fonts/MaptellZorba.eot?sxsdim#iefix') format('embedded-opentype'),
+    url('fonts/MaptellZorba.ttf?sxsdim') format('truetype'),
+    url('fonts/MaptellZorba.woff?sxsdim') format('woff'),
+    url('fonts/MaptellZorba.svg?sxsdim#MaptellZorba') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+[class^="zorba-"], [class*=" zorba-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'MaptellZorba' !important;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.zorba-fog-light:before {
+  content: "\e907";
+}
+.zorba-glowplug:before {
+  content: "\e908";
+}
+.zorba-high-beam:before {
+  content: "\e909";
+}
+.zorba-hood:before {
+  content: "\e90a";
+}
+.zorba-light:before {
+  content: "\e90b";
+}
+.zorba-low-beam:before {
+  content: "\e90c";
+}
+.zorba-parking-lights:before {
+  content: "\e90d";
+}
+.zorba-recirculation:before {
+  content: "\e910";
+}
+.zorba-rw-defrost:before {
+  content: "\e911";
+}
+.zorba-trunk:before {
+  content: "\e912";
+}
+.zorba-turn-signals:before {
+  content: "\e913";
+}
+.zorba-ventilating-fan:before {
+  content: "\e914";
+}
+.zorba-ws-defrost:before {
+  content: "\e915";
+}
+.zorba-ws-washer:before {
+  content: "\e91b";
+}
+.zorba-ws-wiper:before {
+  content: "\e91c";
+}
+.zorba-dome-light:before {
+  content: "\e91d";
+}
+.zorba-doors:before {
+  content: "\e91e";
+}
+.zorba-airoutlet:before {
+  content: "\e91f";
+}
+.zorba-airbag:before {
+  content: "\e921";
+}
+.zorba-brakewarning:before {
+  content: "\e922";
+}
+.zorba-abs:before {
+  content: "\e923";
+}
+.zorba-brake-left:before {
+  content: "\e924";
+}
+.zorba-brakefluid:before {
+  content: "\e925";
+}
+.zorba-brake:before {
+  content: "\e926";
+}
+.zorba-seatbelt:before {
+  content: "\e928";
+}
+.zorba-seatbelt-diag:before {
+  content: "\e929";
+}
+.zorba-battery1:before {
+  content: "\e92b";
+}
+.zorba-torque1:before {
+  content: "\e942";
+}
+.zorba-engine-temperature:before {
+  content: "\e932";
+}
+.zorba-temperature2:before {
+  content: "\e936";
+}
+.zorba-engine:before {
+  content: "\e937";
+}
+.zorba-ignition:before {
+  content: "\e938";
+}
+.zorba-ignition-on:before {
+  content: "\e939";
+}
+.zorba-temperature1:before {
+  content: "\e90e";
+}
+.zorba-tyrepressure:before {
+  content: "\e90f";
+}
+.zorba-speed-down:before {
+  content: "\e916";
+}
+.zorba-speed-up:before {
+  content: "\e917";
+}
+.zorba-temperature-up:before {
+  content: "\e918";
+}
+.zorba-steering:before {
+  content: "\e919";
+}
+.zorba-aircondition:before {
+  content: "\e927";
+}
+.zorba-torque:before {
+  content: "\e92a";
+}
+.zorba-rpm-o:before {
+  content: "\e92f";
+}
+.zorba-rpm:before {
+  content: "\e930";
+}
+.zorba-oiltin:before {
+  content: "\e931";
+}
+.zorba-battery-o:before {
+  content: "\e905";
+}
+.zorba-temperature:before {
+  content: "\e906";
+}
+.zorba-oil:before {
+  content: "\e902";
+}
+.zorba-engineload:before {
+  content: "\e903";
+}
+.zorba-engineoil:before {
+  content: "\e901";
+}
+.zorba-Engine3:before {
+  content: "\e904";
+}
+.zorba-car1:before {
+  content: "\e900";
+}
+.zorba-location2:before {
+  content: "\e948";
+}
+.zorba-compass:before {
+  content: "\e949";
+}
+.zorba-compass2:before {
+  content: "\e94a";
+}
+.zorba-map:before {
+  content: "\e94b";
+}
+.zorba-map2:before {
+  content: "\e94c";
+}
+.zorba-airplane:before {
+  content: "\e9af";
+}
+.zorba-cloud:before {
+  content: "\e9c1";
+}
+.zorba-sphere:before {
+  content: "\e9c9";
+}
+.zorba-earth:before {
+  content: "\e9ca";
+}
+

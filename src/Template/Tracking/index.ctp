@@ -110,6 +110,7 @@
 $this->Html->css([
     'AdminLTE./plugins/datatables/dataTables.bootstrap',
 		'AdminLTE./plugins/respcarousel/respcarousel',
+		'AdminLTE./plugins/maptellzorba/style',
   ],
   ['block' => 'css']);
 
