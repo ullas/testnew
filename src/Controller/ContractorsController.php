@@ -2,7 +2,7 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
-
+use Cake\ORM\TableRegistry;
 /**
  * Contractors Controller
  *
@@ -10,7 +10,12 @@ use App\Controller\AppController;
  */
 class ContractorsController extends AppController
 {
-
+	/**
+     * Components
+     *
+     * @var array
+     */
+    public $components = ['Datatable'];
     /**
      * Index method
      *
@@ -18,14 +23,55 @@ class ContractorsController extends AppController
      */
     public function index()
     {
-        $this->paginate = [
-            'contain' => ['Customers']
-        ];
-        $contractors = $this->paginate($this->Contractors);
-
-        $this->set(compact('contractors'));
-        $this->set('_serialize', ['contractors']);
+         $this->loadModel('Contractors');
+         $configs=$this->Contractors->find('all')->toArray();
+		 
+          
+		 $actions =[
+             
+                ['name'=>'delete','title'=>'Delete','class'=>' label-danger ']
+                ];
+         $additional= [
+      	                          'basic'=>['All'],
+      	                          'additional'=>[
+      	                                	                          
+      	                          ]];
+		$this->set('additional',$additional);
+		 $this->set('actions',$actions);	
+         $this->set('configs',$configs);	
+         $this->set('_serialize', ['configs','actions']);
+		 //$this->set('_serialize', ['configs','usersettings','actions','additional']);
     }
+
+
+	
+	public function ajaxdata() {
+        $this->autoRender= false;
+		$usrfiter="";
+		$basic = isset($this->request->query['basic'])?$this->request->query['basic']:"" ;
+		$additional = isset($this->request->query['additional'])?$this->request->query['additional']:"";
+		
+		
+
+        $this->loadModel('Contractors');
+        $dbout=$this->Contractors->find('all')->toArray();
+     
+         $fields = array();
+		 
+				$fields[0] = array("name" =>"Contractors.id"  , "type" => "num");
+				$fields[1] = array("name" =>"Contractors.name"  , "type" => "char");
+				$fields[2] = array("name" =>"Contractors.descrtption"  , "type" => "char");
+				
+		
+		$this->log($fields);
+		$output =$this->Datatable->getView($fields,['Customers'],$usrfiter);
+		$out =json_encode($output);  
+	   
+		$this->response->body($out);
+	    return $this->response;
+	     
+             
+ }
 
     /**
      * View method
@@ -54,6 +100,7 @@ class ContractorsController extends AppController
         $contractor = $this->Contractors->newEntity();
         if ($this->request->is('post')) {
             $contractor = $this->Contractors->patchEntity($contractor, $this->request->data);
+			$contractor['customer_id']=$this->loggedinuser['customer_id'];
             if ($this->Contractors->save($contractor)) {
                 $this->Flash->success(__('The contractor has been saved.'));
 
@@ -81,6 +128,7 @@ class ContractorsController extends AppController
         ]);
         if ($this->request->is(['patch', 'post', 'put'])) {
             $contractor = $this->Contractors->patchEntity($contractor, $this->request->data);
+			$contractor['customer_id']=$this->loggedinuser['customer_id'];
             if ($this->Contractors->save($contractor)) {
                 $this->Flash->success(__('The contractor has been saved.'));
 
@@ -113,4 +161,43 @@ class ContractorsController extends AppController
 
         return $this->redirect(['action' => 'index']);
     }
+
+		public function deleteAll($id=null){
+    	
+		$this->request->allowMethod(['post', 'deleteall']);
+        $sucess=false;$failure=false;
+        $data=$this->request->data;
+			
+		if(isset($data)){
+		   foreach($data as $key =>$value){
+		   	   		
+		   	   	$itemna=explode("-",$key);
+			    
+			    if(count($itemna)== 2 && $itemna[0]=='chk'){
+			    	
+					$record = $this->Contractors->get($value);
+					
+					 if($record['customer_id']== $this->loggedinuser['customer_id']) {
+					 	
+						   if ($this->Contractors->delete($record)) {
+					           $sucess= $sucess | true;
+					        } else {
+					           $failure= $failure | true;
+					        }
+					}
+				}  	  
+			}
+		   		        
+		
+				if($sucess){
+					$this->Flash->success(__('Selected Contractors has been deleted.'));
+				}
+		        if($failure){
+					$this->Flash->error(__('The Contractors could not be deleted. Please, try again.'));
+				}
+		
+		   }
+
+             return $this->redirect(['action' => 'index']);	
+     }
 }

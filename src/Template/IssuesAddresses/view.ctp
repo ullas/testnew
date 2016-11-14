@@ -1,11 +1,11 @@
 <section class="content-header">
   <h1>
-     <?= h($issuesAddress->id) ?> Details
+    <?php echo $this->request->params['controller'] ?> Details
   </h1>
-  <ol class="breadcrumb">
-  	<li><a href="#"><i class="fa fa-dashboard"></i>Home</a></li>
-   
-    <li><a href="/issuesAddress/"> issuesAddress</a></li>
+   <ol class="breadcrumb">
+    <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+    
+     <li><a href="/IssuesAddresses/"> Issue Addresses</a></li>
     <li class="active">View</li>
   </ol>
 </section>
@@ -24,13 +24,11 @@
             <th><?= __('Address') ?></th>
             <td><?= $issuesAddress->has('address') ? $this->Html->link($issuesAddress->address->name, ['controller' => 'Addresses', 'action' => 'view', $issuesAddress->address->id]) : '' ?></td>
         </tr>
-        <tr>
-            <th><?= __('Id') ?></th>
-            <td><?= $this->Number->format($issuesAddress->id) ?></td>
-        </tr>
+        
+      </table>
    </div><!--boxbody-->
    </div><!-- box -->
   
   </div><!-- col12-->
-</div> </table>
-</div>
+</div> 
+</section>

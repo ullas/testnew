@@ -39,6 +39,9 @@ class TripstatusesTable extends Table
         $this->hasMany('Trips', [
             'foreignKey' => 'tripstatus_id'
         ]);
+		$this->belongsTo('Customers', [
+            'foreignKey' => 'customer_id'
+        ]);
     }
 
     /**

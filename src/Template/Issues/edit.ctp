@@ -18,7 +18,7 @@ $this->Form->templates($myTemplates);
   </h1>
   <ol class="breadcrumb">
   	<li><a href="#"><i class="fa fa-dashboard"></i>Home</a></li>
-   
+    <li><a href="#"></a>Fleet Management</li>
     <li><a href="/Issues"> Issues</a></li>
     <li class="active">Edit</li>
   </ol>
@@ -35,7 +35,7 @@ $this->Form->templates($myTemplates);
         <div class="tab-content">
           <div class="active tab-pane" id="details">
              <div class="form-horizontal">
-          <?php
+         <?php
             echo $this->Form->input('vehicle_id', ['options' => $vehicles, 'empty' => true,'class'=>'select2','required' => 'required']);
                    echo $this->Form->input('reportedon', ['label'=>'Reported On','empty' => true,'type'=>'text', 'class'=>'datemask','required' => 'required','templateVars' => ['icon' => '<div class="input-group-addon"><i class="fa fa-calendar"></i></div>']]);
                    
@@ -52,7 +52,7 @@ $this->Form->templates($myTemplates);
 
                     
                 	
-                  echo $this->Form->input('reportedby_id',['label'=>'Reported By','class'=>'select2']);
+                  echo $this->Form->input('reportedby_id',[ 'empty' => true,'label'=>'Reported By','class'=>'select2']);
 
                     
                 	
@@ -76,7 +76,7 @@ $this->Form->templates($myTemplates);
            <?php    	
             echo $this->Form->input('workorder_id', ['label'=>'Work Order','options' => $workorders, 'empty' => true,'class'=>'select2']);
             echo $this->Form->input('serviceentry_id', ['label'=>'Service Entry','options' => $servicesentries, 'empty' => true,'class'=>'select2']);
-            echo $this->Form->input('addresses.ids', ['options' => $addresses,'class'=>'select2','label'=>'Assigned To']);
+            echo $this->Form->input('addresses.ids', [ 'empty' => true,'options' => $addresses,'class'=>'select2','label'=>'Assigned To']);
 	
         ?>
     </div>

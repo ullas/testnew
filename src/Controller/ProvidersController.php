@@ -2,7 +2,7 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
-
+use Cake\ORM\TableRegistry;
 /**
  * Providers Controller
  *
@@ -10,7 +10,13 @@ use App\Controller\AppController;
  */
 class ProvidersController extends AppController
 {
-
+	/**
+     * Components
+     *
+     * @var array
+     */
+    public $components = ['Datatable'];
+	
     /**
      * Index method
      *
@@ -18,15 +24,47 @@ class ProvidersController extends AppController
      */
     public function index()
     {
-        $this->paginate = [
-            'contain' => ['Customers']
-        ];
-        $providers = $this->paginate($this->Providers);
-
-        $this->set(compact('providers'));
-        $this->set('_serialize', ['providers']);
+       $this->loadModel('Providers');
+       $configs=$this->Providers->find('all')->toArray();
+	   $actions =[['name'=>'delete','title'=>'Delete','class'=>' label-danger ']];
+       $additional= ['basic'=>['All'],
+      	                'additional'=>[ ]
+      	            ];
+	   $this->set('additional',$additional);
+	   $this->set('actions',$actions);	
+       $this->set('configs',$configs);	
+       $this->set('_serialize', ['configs','actions']);
     }
+	
+	public function ajaxdata() 
+	{
+        $this->autoRender= false;
+		$usrfiter="";
+		$basic = isset($this->request->query['basic'])?$this->request->query['basic']:"" ;
+		$additional = isset($this->request->query['additional'])?$this->request->query['additional']:"";
+		
 
+        $this->loadModel('Providers');
+        $dbout=$this->Providers->find('all')->toArray();
+     
+         $fields = array();
+		 
+				$fields[0] = array("name" =>"Providers.id"  , "type" => "num");
+				$fields[1] = array("name" =>"Providers.name"  , "type" => "char");
+				$fields[2] = array("name" =>"Providers.description"  , "type" => "char");
+				$fields[3] = array("name" =>"Providers.modelno"  , "type" => "char");
+				$fields[4] = array("name" =>"Providers.osver"  , "type" => "char");
+				
+				
+		
+		$this->log($fields);
+		$output =$this->Datatable->getView($fields,['Customers'],$usrfiter);
+		$out =json_encode($output);  
+	   
+		$this->response->body($out);
+	    return $this->response;
+	}
+	
     /**
      * View method
      *
@@ -54,6 +92,7 @@ class ProvidersController extends AppController
         $provider = $this->Providers->newEntity();
         if ($this->request->is('post')) {
             $provider = $this->Providers->patchEntity($provider, $this->request->data);
+			$provider['customer_id']=$this->loggedinuser['customer_id'];
             if ($this->Providers->save($provider)) {
                 $this->Flash->success(__('The provider has been saved.'));
 
@@ -81,6 +120,7 @@ class ProvidersController extends AppController
         ]);
         if ($this->request->is(['patch', 'post', 'put'])) {
             $provider = $this->Providers->patchEntity($provider, $this->request->data);
+			$provider['customer_id']=$this->loggedinuser['customer_id'];
             if ($this->Providers->save($provider)) {
                 $this->Flash->success(__('The provider has been saved.'));
 
@@ -113,4 +153,47 @@ class ProvidersController extends AppController
 
         return $this->redirect(['action' => 'index']);
     }
+	public function deleteAll($id=null)
+	{
+    	$this->request->allowMethod(['post', 'deleteall']);
+        $sucess=false;$failure=false;
+        $data=$this->request->data;
+			
+		if(isset($data)){
+		   foreach($data as $key =>$value){
+		   	   		
+		   	   	$itemna=explode("-",$key);
+			    
+			    if(count($itemna)== 2 && $itemna[0]=='chk'){
+			    	
+					$record = $this->Providers->get($value);
+					
+					 if($record['customer_id']== $this->loggedinuser['customer_id']) 
+					 {
+					 	
+						   if ($this->Providers->delete($record)) 
+						    {
+					           $sucess= $sucess | true;
+					        } else {
+					           $failure= $failure | true;
+					        }
+					}
+				}  	  
+			}
+		   		        
+		
+				if($sucess)
+				{
+					$this->Flash->success(__('Selected Providers has been deleted.'));
+				}
+		        if($failure)
+		        {
+					$this->Flash->error(__('The Providers could not be deleted. Please, try again.'));
+				}
+		
+		   }
+
+             return $this->redirect(['action' => 'index']);	
+     }
+	
 }

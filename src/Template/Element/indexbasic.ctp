@@ -7,8 +7,8 @@
       
       $title="Manage ". $this->request->params['controller'] ;
       echo $this->element('actions',[$actions,'title'=>$title]);
-	  
-	   ?>
+	 // echo count($colheadsformasters);
+	  ?>
      </div>
       <div class="col-md-8">
       	<?php echo  $this->element('filters',$additional) ?>
@@ -23,12 +23,26 @@
             <tr>
             	<th data-orderable="false"><input type="checkbox" name="select_all" value="1" id="select-all" ></th>
            	
-                <?php
-                  for($i=1;$i<count($configs);$i++){
-                  		
-                  	echo "<th>". $configs[$i]['title'] ."</th>";
-                  }
-                ?>
+               <?php
+               if(isset($colheadsformasters))
+			   {
+			   
+	               	 for($i=1;$i<count($colheadsformasters);$i++)
+	               	 {
+	                 echo "<th>". $colheadsformasters[$i]["title"] ."</th>";
+	                 }
+				
+			   }
+			   else
+			   {
+                    for($i=1;$i<count($configs);$i++)
+                    {
+                    echo "<th>". $configs[$i]['title'] ."</th>";
+                    }
+				  
+			   }
+			   ?>  
+                
                 <th data-orderable="false">Actions</th>
             </tr>
         </thead>
@@ -53,7 +67,19 @@
     </div>
   </div>
 </div>
- <?php echo $this->element('settings',[$configs,$usersettings]) ?>
+ <?php
+  
+  if(isset($colheadsformasters))
+   {
+   	echo $this->element('settings',[$configs]); 
+   }
+  else 
+  {
+  echo $this->element('settings',[$configs,$usersettings]);   
+  }
+   
+  
+  ?>
 <?php
 $this->Html->css([ 'AdminLTE./plugins/datatables/dataTables.bootstrap', 
 'AdminLTE./plugins/daterangepicker/daterangepicker',
@@ -123,13 +149,14 @@ $this->Html->script([
           stateSave:false,
           responsive: true,
           "initComplete": function(settings, json) {
-                //set bool value
-                var innerHtml = $('.mptldtbool').html();
-                // if(innerHtml=="1"){
-                    // $('.mptldtbool').html("True");
-                // }else{
-                    // $('.mptldtbool').html("False");
-                // }
+            //set bool value
+            $("#mptlindextbl tbody").find('tr').each(function () {
+         	$(this).find('td').each (function() {
+         	var innerHtml=$(this).find('div.mptldtbool').html();
+         	(innerHtml=="1") ? $(this).find('div.mptldtbool').html("True") 
+			: $(this).find('div.mptldtbool').html("False");
+         	});
+     	});
           },
           "fnServerParams": function ( aoData ) {
             
@@ -164,8 +191,17 @@ $this->Html->script([
             return '<input type="checkbox" class="mptl-lst-chkbox" name="chk-' + data + '" value="' + $('<div/>').text(data).html() + '">';
         }
      },{
-     	'targets': [<?php echo $usersettings['0']['value'] ;?>],
-     	"visible": false,
+     	'targets': [<?php
+			     	if(isset($colheadsformasters))
+			   			{
+			   				
+			   			}
+					else
+						{
+						echo $usersettings['0']['value'] ;
+						}
+			     	  ?>],
+     	 "visible": false,
      },
      
      ]

@@ -14,12 +14,12 @@ $this->Form->templates($myTemplates);
 <!-- Content Header (Page header) -->
 <section class="content-header">
   <h1>
-    Triptype
+   New  Trip Types
   </h1>
   <ol class="breadcrumb">
   	<li><a href="#"><i class="fa fa-dashboard"></i>Home</a></li>
    
-    <li><a href="/Triptypes/"> Triptypes</a></li>
+    <li><a href="/Triptypes"> Trip Types</a></li>
     <li class="active">Add</li>
   </ol>
 </section>
@@ -37,13 +37,9 @@ $this->Form->templates($myTemplates);
              <div class="form-horizontal">
         <?php
                 	
-                  echo $this->Form->input('name');
-
-                    
-            echo $this->Form->input('customer_id', ['options' => $customers, 'empty' => true,'class'=>'select2']);
-	
-        ?>
-    </div>
+                  echo $this->Form->input('name',['required'=>'required']);
+		?>
+     </div>
  
           </div>
           <!-- /.tab-pane -->
@@ -60,7 +56,7 @@ $this->Form->templates($myTemplates);
   <div class="row">
    <div class="form-group">
                 <div class="col-sm-offset-6 col-sm-10">
-                  <button type="submit" class="btn-success">Save</button>
+                  <button type="submit" class="btn btn-success">Save</button>
                 </div>
    </div>
    </div>
@@ -70,24 +66,18 @@ $this->Form->templates($myTemplates);
 <!-- /.content -->
 <?php
 $this->Html->css([
-    'AdminLTE./plugins/daterangepicker/daterangepicker-bs3',
-    'AdminLTE./plugins/iCheck/all',
-    'AdminLTE./plugins/colorpicker/bootstrap-colorpicker.min',
-    'AdminLTE./plugins/timepicker/bootstrap-timepicker.min',
-    'AdminLTE./plugins/select2/select2.min',
+    
+    'AdminLTE./plugins/datepicker/datepicker3',
+ 	'AdminLTE./plugins/select2/select2.min'
   ],
   ['block' => 'css']);
 
 $this->Html->script([
-  'AdminLTE./plugins/select2/select2.full.min',
-  'AdminLTE./plugins/input-mask/jquery.inputmask',
-  'AdminLTE./plugins/input-mask/jquery.inputmask.date.extensions',
-  'AdminLTE./plugins/input-mask/jquery.inputmask.extensions',
-  '/js/moment.min.js',
-  'AdminLTE./plugins/daterangepicker/daterangepicker',
-  'AdminLTE./plugins/colorpicker/bootstrap-colorpicker.min',
-  'AdminLTE./plugins/timepicker/bootstrap-timepicker.min',
-  'AdminLTE./plugins/iCheck/icheck.min',
+ 'AdminLTE./plugins/select2/select2.full.min',
+  	'AdminLTE./plugins/datepicker/bootstrap-datepicker',
+  	'/js/dropzone/dropzone',
+	'AdminLTE./plugins/iCheck/icheck.min'
+ 
 ],
 ['block' => 'script']);
 ?>
@@ -95,13 +85,15 @@ $this->Html->script([
 <script>
   $(function () {
     //Initialize Select2 Elements
-   $(".select2").select2({ width: '100%' });
-   $(".datemask").inputmask("yyyy/mm/dd", {"placeholder": "yyyy/mm/dd"});
-    $(".timepicker").timepicker({
-      showInputs: false
-    });
+    $(".select2").select2();
+     $('.datemask').datepicker({
+            format:"dd/mm/yy",
+              autoclose: true
+   });
 
   });
 </script>
 <?php $this->end(); ?>
        
+
+    

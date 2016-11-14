@@ -2,7 +2,7 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
-
+use Cake\ORM\TableRegistry;
 /**
  * Triptypes Controller
  *
@@ -12,13 +12,13 @@ use App\Controller\AppController;
 class TriptypesController extends AppController
 {
 
-    /**
+   /**
      * Components
      *
      * @var array
      */
     public $components = ['Datatable'];
-
+	
     /**
      * Index method
      *
@@ -26,46 +26,44 @@ class TriptypesController extends AppController
      */
     public function index()
     {
-    	/*
-        $this->paginate = [
-            'contain' => ['Customers']
-        ];
-        $triptypes = $this->paginate($this->Triptypes);
-
-        $this->set(compact('triptypes'));
-        $this->set('_serialize', ['triptypes']);*/
-       
-         $this->loadModel('CreateConfigs');
-         $configs=$this->CreateConfigs->find('all')->where(['table_name' => '$currentModelName'])->order(['id' => 'ASC'])->toArray();
-        
-         $this->set('configs',$configs);	
-         $this->set('_serialize', ['configs']);
-       
-       
+       $this->loadModel('Triptypes');
+       $configs=$this->Triptypes->find('all')->toArray();
+	   $actions =[['name'=>'delete','title'=>'Delete','class'=>' label-danger ']];
+       $additional= ['basic'=>['All'],
+      	                'additional'=>[ ]
+      	            ];
+	   $this->set('additional',$additional);
+	   $this->set('actions',$actions);	
+       $this->set('configs',$configs);	
+       $this->set('_serialize', ['configs','actions']);
     }
-    
-    
-public function ajaxdata() {
-        $this->autoRender= false;
-      
-          
-       $this->loadModel('CreateConfigs');
-        $dbout=$this->CreateConfigs->find('all')->toArray();
-        $fields = array();
-        foreach($dbout as $value){
-            $fields[] = array("name" => $value['field_name'] , "type" => $value['datatype'] );
-			
-        }
-      
-		                           
-        $output =$this->Datatable->getView($fields,['Customers']);
-        $out =json_encode($output);  
 	
+	public function ajaxdata() 
+	{
+        $this->autoRender= false;
+		$usrfiter="";
+		$basic = isset($this->request->query['basic'])?$this->request->query['basic']:"" ;
+		$additional = isset($this->request->query['additional'])?$this->request->query['additional']:"";
+		
+
+        $this->loadModel('Triptypes');
+        $dbout=$this->Triptypes->find('all')->toArray();
+     
+         $fields = array();
+		 
+				$fields[0] = array("name" =>"Triptypes.id"  , "type" => "num");
+				$fields[1] = array("name" =>"Triptypes.name"  , "type" => "char");
+								
+		
+		$this->log($fields);
+		$output =$this->Datatable->getView($fields,['Customers'],$usrfiter);
+		$out =json_encode($output);  
+	   
 		$this->response->body($out);
 	    return $this->response;
-	     
-             
- }  
+	}
+    
+    
 
     /**
      * View method
@@ -94,6 +92,7 @@ public function ajaxdata() {
         $triptype = $this->Triptypes->newEntity();
         if ($this->request->is('post')) {
             $triptype = $this->Triptypes->patchEntity($triptype, $this->request->data);
+			$triptype['customer_id']=$this->loggedinuser['customer_id'];
             $triptype['customer_id']=$this->currentuser['customer_id'];
             if ($this->Triptypes->save($triptype)) {
                 $this->Flash->success(__('The triptype has been saved.'));
@@ -125,6 +124,7 @@ public function ajaxdata() {
         ]);
         if ($this->request->is(['patch', 'post', 'put'])) {
             $triptype = $this->Triptypes->patchEntity($triptype, $this->request->data);
+			$triptype['customer_id']=$this->loggedinuser['customer_id'];
             if ($this->Triptypes->save($triptype)) {
                 $this->Flash->success(__('The triptype has been saved.'));
 
@@ -157,4 +157,46 @@ public function ajaxdata() {
 
         return $this->redirect(['action' => 'index']);
     }
+	public function deleteAll($id=null)
+	{
+    	$this->request->allowMethod(['post', 'deleteall']);
+        $sucess=false;$failure=false;
+        $data=$this->request->data;
+			
+		if(isset($data)){
+		   foreach($data as $key =>$value){
+		   	   		
+		   	   	$itemna=explode("-",$key);
+			    
+			    if(count($itemna)== 2 && $itemna[0]=='chk'){
+			    	
+					$record = $this->Triptypes->get($value);
+					
+					 if($record['customer_id']== $this->loggedinuser['customer_id']) 
+					 {
+					 	
+						   if ($this->Triptypes->delete($record)) 
+						    {
+					           $sucess= $sucess | true;
+					        } else {
+					           $failure= $failure | true;
+					        }
+					}
+				}  	  
+			}
+		   		        
+		
+				if($sucess)
+				{
+					$this->Flash->success(__('Selected Triptypes has been deleted.'));
+				}
+		        if($failure)
+		        {
+					$this->Flash->error(__('The Triptypes could not be deleted. Please, try again.'));
+				}
+		
+		   }
+
+             return $this->redirect(['action' => 'index']);	
+     }
 }

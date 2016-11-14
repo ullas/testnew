@@ -2,7 +2,7 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
-
+use Cake\ORM\TableRegistry;
 /**
  * Ownerships Controller
  *
@@ -10,7 +10,13 @@ use App\Controller\AppController;
  */
 class OwnershipsController extends AppController
 {
-
+	/**
+     * Components
+     *
+     * @var array
+     */
+    public $components = ['Datatable'];
+	
     /**
      * Index method
      *
@@ -18,15 +24,44 @@ class OwnershipsController extends AppController
      */
     public function index()
     {
-        $this->paginate = [
-            'contain' => ['Customers']
-        ];
-        $ownerships = $this->paginate($this->Ownerships);
-
-        $this->set(compact('ownerships'));
-        $this->set('_serialize', ['ownerships']);
+        $this->loadModel('Ownerships');
+       $configs=$this->Ownerships->find('all')->toArray();
+	   $actions =[['name'=>'delete','title'=>'Delete','class'=>' label-danger ']];
+       $additional= ['basic'=>['All'],
+      	                'additional'=>[ ]
+      	            ];
+	   $this->set('additional',$additional);
+	   $this->set('actions',$actions);	
+       $this->set('configs',$configs);	
+       $this->set('_serialize', ['configs','actions']);
     }
+		
+	public function ajaxdata() 
+	{
+        $this->autoRender= false;
+		$usrfiter="";
+		$basic = isset($this->request->query['basic'])?$this->request->query['basic']:"" ;
+		$additional = isset($this->request->query['additional'])?$this->request->query['additional']:"";
+		
 
+        $this->loadModel('Ownerships');
+        $dbout=$this->Ownerships->find('all')->toArray();
+     
+         $fields = array();
+		 
+				$fields[0] = array("name" =>"Ownerships.id"  , "type" => "num");
+				$fields[1] = array("name" =>"Ownerships.name"  , "type" => "char");
+				
+				
+		
+		$this->log($fields);
+		$output =$this->Datatable->getView($fields,['Customers'],$usrfiter);
+		$out =json_encode($output);  
+	   
+		$this->response->body($out);
+	    return $this->response;
+	}	
+		
     /**
      * View method
      *
@@ -54,6 +89,7 @@ class OwnershipsController extends AppController
         $ownership = $this->Ownerships->newEntity();
         if ($this->request->is('post')) {
             $ownership = $this->Ownerships->patchEntity($ownership, $this->request->data);
+			$ownership['customer_id']=$this->loggedinuser['customer_id'];
             if ($this->Ownerships->save($ownership)) {
                 $this->Flash->success(__('The ownership has been saved.'));
 
@@ -81,6 +117,7 @@ class OwnershipsController extends AppController
         ]);
         if ($this->request->is(['patch', 'post', 'put'])) {
             $ownership = $this->Ownerships->patchEntity($ownership, $this->request->data);
+			$ownership['customer_id']=$this->loggedinuser['customer_id'];
             if ($this->Ownerships->save($ownership)) {
                 $this->Flash->success(__('The ownership has been saved.'));
 
@@ -113,4 +150,47 @@ class OwnershipsController extends AppController
 
         return $this->redirect(['action' => 'index']);
     }
+	
+		public function deleteAll($id=null)
+	{
+    	$this->request->allowMethod(['post', 'deleteall']);
+        $sucess=false;$failure=false;
+        $data=$this->request->data;
+			
+		if(isset($data)){
+		   foreach($data as $key =>$value){
+		   	   		
+		   	   	$itemna=explode("-",$key);
+			    
+			    if(count($itemna)== 2 && $itemna[0]=='chk'){
+			    	
+					$record = $this->Ownerships->get($value);
+					
+					 if($record['customer_id']== $this->loggedinuser['customer_id']) 
+					 {
+					 	
+						   if ($this->Ownerships->delete($record)) 
+						    {
+					           $sucess= $sucess | true;
+					        } else {
+					           $failure= $failure | true;
+					        }
+					}
+				}  	  
+			}
+		   		        
+		
+				if($sucess)
+				{
+					$this->Flash->success(__('Selected Ownerships has been deleted.'));
+				}
+		        if($failure)
+		        {
+					$this->Flash->error(__('The Ownerships could not be deleted. Please, try again.'));
+				}
+		
+		   }
+
+             return $this->redirect(['action' => 'index']);	
+     }
 }

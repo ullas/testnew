@@ -39,6 +39,9 @@ class CurrenciesTable extends Table
         $this->hasMany('Vehiclepurchases', [
             'foreignKey' => 'currency_id'
         ]);
+		 $this->belongsTo('Customers', [
+            'foreignKey' => 'customer_id'
+        ]);
     }
 
     /**

@@ -2,7 +2,7 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
-
+use Cake\ORM\TableRegistry;
 /**
  * Servicecompleted Controller
  *
@@ -11,6 +11,13 @@ use App\Controller\AppController;
 class ServicecompletedController extends AppController
 {
 
+     /**
+     * Components
+     *
+     * @var array
+     */
+    public $components = ['Datatable'];
+	
     /**
      * Index method
      *
@@ -18,14 +25,45 @@ class ServicecompletedController extends AppController
      */
     public function index()
     {
-        $this->paginate = [
-            'contain' => ['Servicesentries']
-        ];
-        $servicecompleted = $this->paginate($this->Servicecompleted);
-
-        $this->set(compact('servicecompleted'));
-        $this->set('_serialize', ['servicecompleted']);
+       $this->loadModel('Servicecompleted');
+       $configs=$this->Servicecompleted->find('all')->toArray();
+	   $actions =[['name'=>'delete','title'=>'Delete','class'=>' label-danger ']];
+       $additional= ['basic'=>['All'],
+      	                'additional'=>[ ]
+      	            ];
+	   $this->set('additional',$additional);
+	   $this->set('actions',$actions);	
+       $this->set('configs',$configs);	
+       $this->set('_serialize', ['configs','actions']);
     }
+	
+	public function ajaxdata() 
+	{
+        $this->autoRender= false;
+		$usrfiter="";
+		$basic = isset($this->request->query['basic'])?$this->request->query['basic']:"" ;
+		$additional = isset($this->request->query['additional'])?$this->request->query['additional']:"";
+		
+
+        $this->loadModel('Servicecompleted');
+        $dbout=$this->Servicecompleted->find('all')->toArray();
+     
+         $fields = array();
+		 
+				$fields[0] = array("name" =>"Servicecompleted.id"  , "type" => "num");
+				$fields[1] = array("name" =>"Servicecompleted.servicesentry_id"  , "type" => "char");
+				$fields[2] = array("name" =>"Servicecompleted.servicescompleted"  , "type" => "char");
+				
+								
+		
+		$this->log($fields);
+		$output =$this->Datatable->getView($fields,['Customers'],$usrfiter);
+		$out =json_encode($output);  
+	   
+		$this->response->body($out);
+	    return $this->response;
+	}
+
 
     /**
      * View method
@@ -37,7 +75,7 @@ class ServicecompletedController extends AppController
     public function view($id = null)
     {
         $servicecompleted = $this->Servicecompleted->get($id, [
-            'contain' => ['Servicesentries']
+            'contain' => ['Servicesentries', 'Customers']
         ]);
 
         $this->set('servicecompleted', $servicecompleted);
@@ -54,6 +92,7 @@ class ServicecompletedController extends AppController
         $servicecompleted = $this->Servicecompleted->newEntity();
         if ($this->request->is('post')) {
             $servicecompleted = $this->Servicecompleted->patchEntity($servicecompleted, $this->request->data);
+			$servicecompleted['customer_id']=$this->loggedinuser['customer_id'];
             if ($this->Servicecompleted->save($servicecompleted)) {
                 $this->Flash->success(__('The servicecompleted has been saved.'));
 
@@ -63,7 +102,8 @@ class ServicecompletedController extends AppController
             }
         }
         $servicesentries = $this->Servicecompleted->Servicesentries->find('list', ['limit' => 200]);
-        $this->set(compact('servicecompleted', 'servicesentries'));
+		 $customers = $this->Servicecompleted->Customers->find('list', ['limit' => 200]);
+        $this->set(compact('servicecompleted', 'servicesentries','customers'));
         $this->set('_serialize', ['servicecompleted']);
     }
 
@@ -81,6 +121,7 @@ class ServicecompletedController extends AppController
         ]);
         if ($this->request->is(['patch', 'post', 'put'])) {
             $servicecompleted = $this->Servicecompleted->patchEntity($servicecompleted, $this->request->data);
+			$servicecompleted['customer_id']=$this->loggedinuser['customer_id'];
             if ($this->Servicecompleted->save($servicecompleted)) {
                 $this->Flash->success(__('The servicecompleted has been saved.'));
 
@@ -113,4 +154,46 @@ class ServicecompletedController extends AppController
 
         return $this->redirect(['action' => 'index']);
     }
+	public function deleteAll($id=null)
+	{
+    	$this->request->allowMethod(['post', 'deleteall']);
+        $sucess=false;$failure=false;
+        $data=$this->request->data;
+			
+		if(isset($data)){
+		   foreach($data as $key =>$value){
+		   	   		
+		   	   	$itemna=explode("-",$key);
+			    
+			    if(count($itemna)== 2 && $itemna[0]=='chk'){
+			    	
+					$record = $this->Servicecompleted->get($value);
+					
+					 if($record['customer_id']== $this->loggedinuser['customer_id']) 
+					 {
+					 	
+						   if ($this->Servicecompleted->delete($record)) 
+						    {
+					           $sucess= $sucess | true;
+					        } else {
+					           $failure= $failure | true;
+					        }
+					}
+				}  	  
+			}
+		   		        
+		
+				if($sucess)
+				{
+					$this->Flash->success(__('Selected Servicecompleted has been deleted.'));
+				}
+		        if($failure)
+		        {
+					$this->Flash->error(__('The Servicecompleted could not be deleted. Please, try again.'));
+				}
+		
+		   }
+
+             return $this->redirect(['action' => 'index']);	
+     }
 }

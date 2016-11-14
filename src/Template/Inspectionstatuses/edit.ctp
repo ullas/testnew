@@ -14,13 +14,13 @@ $this->Form->templates($myTemplates);
 <!-- Content Header (Page header) -->
 <section class="content-header">
   <h1>
-    Inspectionstatus
+   Edit Inspectionstatus
   </h1>
   <ol class="breadcrumb">
   	<li><a href="#"><i class="fa fa-dashboard"></i>Home</a></li>
    
     <li><a href="/Inspectionstatuses"> Inspectionstatuses</a></li>
-    <li class="active">Add</li>
+    <li class="active">Edit</li>
   </ol>
 </section>
 
@@ -35,14 +35,10 @@ $this->Form->templates($myTemplates);
         <div class="tab-content">
           <div class="active tab-pane" id="details">
              <div class="form-horizontal">
-        <?php
+         <?php
                 	
-                  echo $this->Form->input('name');
-
-                    
-            echo $this->Form->input('customer_id', ['options' => $customers, 'empty' => true,'class'=>'select2']);
-	
-        ?>
+                  echo $this->Form->input('name',['required'=>'required']);
+		?>
     </div>
  
           </div>
@@ -60,7 +56,7 @@ $this->Form->templates($myTemplates);
   <div class="row">
    <div class="form-group">
                 <div class="col-sm-offset-6 col-sm-10">
-                  <button type="submit" class="btn-success">Save</button>
+                  <button type="submit" class="btn btn-success">Save</button>
                 </div>
    </div>
    </div>
