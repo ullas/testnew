@@ -39,6 +39,9 @@ class VehicletypesTable extends Table
         $this->hasMany('Vehicles', [
             'foreignKey' => 'vehicletype_id'
         ]);
+		$this->belongsTo('Customers', [
+            'foreignKey' => 'customer_id'
+        ]);
     }
 
     /**

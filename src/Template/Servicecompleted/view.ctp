@@ -1,28 +1,34 @@
-<nav class="large-3 medium-4 columns" id="actions-sidebar">
-    <ul class="side-nav">
-        <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Html->link(__('Edit Servicecompleted'), ['action' => 'edit', $servicecompleted->id]) ?> </li>
-        <li><?= $this->Form->postLink(__('Delete Servicecompleted'), ['action' => 'delete', $servicecompleted->id], ['confirm' => __('Are you sure you want to delete # {0}?', $servicecompleted->id)]) ?> </li>
-        <li><?= $this->Html->link(__('List Servicecompleted'), ['action' => 'index']) ?> </li>
-        <li><?= $this->Html->link(__('New Servicecompleted'), ['action' => 'add']) ?> </li>
-        <li><?= $this->Html->link(__('List Servicesentries'), ['controller' => 'Servicesentries', 'action' => 'index']) ?> </li>
-        <li><?= $this->Html->link(__('New Servicesentry'), ['controller' => 'Servicesentries', 'action' => 'add']) ?> </li>
-    </ul>
-</nav>
-<div class="servicecompleted view large-9 medium-8 columns content">
-    <h3><?= h($servicecompleted->id) ?></h3>
-    <table class="vertical-table">
+<section class="content-header">
+  <h1>
+    <?php echo $this->request->params['controller'] ?> Details
+  </h1>
+   <ol class="breadcrumb">
+    <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+    
+     <li><a href="/servicecompleted/"> Services Completed</a></li>
+    <li class="active">View</li>
+  </ol>
+</section>
+<section class="content">
+  <div class="row">
+  <div class="col-md-12">
+  	
+  	<div class="box box-primary">
+  		<div class="box-body">
+  		<table class="table table-hover">
         <tr>
-            <th><?= __('Servicesentry') ?></th>
-            <td><?= $servicecompleted->has('servicesentry') ? $this->Html->link($servicecompleted->servicesentry->id, ['controller' => 'Servicesentries', 'action' => 'view', $servicecompleted->servicesentry->id]) : '' ?></td>
+            <th><?= __('Service Entry') ?></th>
+            <td><?= $servicecompleted->has('servicesentry') ? $this->Html->link($servicecompleted->servicesentry->name, ['controller' => 'Servicesentries', 'action' => 'view', $servicecompleted->servicesentry->id]) : '' ?></td>
         </tr>
         <tr>
-            <th><?= __('Servicescompleted') ?></th>
+            <th><?= __('Services Completed') ?></th>
             <td><?= h($servicecompleted->servicescompleted) ?></td>
         </tr>
-        <tr>
-            <th><?= __('Id') ?></th>
-            <td><?= $this->Number->format($servicecompleted->id) ?></td>
-        </tr>
-    </table>
-</div>
+        
+      </table>
+   </div><!--boxbody-->
+   </div><!-- box -->
+  
+  </div><!-- col12-->
+</div> 
+</section>

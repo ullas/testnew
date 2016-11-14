@@ -2,7 +2,7 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
-
+use Cake\ORM\TableRegistry;
 /**
  * Stations Controller
  *
@@ -11,6 +11,13 @@ use App\Controller\AppController;
 class StationsController extends AppController
 {
 
+  /**
+     * Components
+     *
+     * @var array
+     */
+    public $components = ['Datatable'];
+	
     /**
      * Index method
      *
@@ -18,14 +25,42 @@ class StationsController extends AppController
      */
     public function index()
     {
-        $this->paginate = [
-            'contain' => ['Customers']
-        ];
-        $stations = $this->paginate($this->Stations);
-
-        $this->set(compact('stations'));
-        $this->set('_serialize', ['stations']);
+       $this->loadModel('Stations');
+       $configs=$this->Stations->find('all')->toArray();
+	   $actions =[['name'=>'delete','title'=>'Delete','class'=>' label-danger ']];
+       $additional= ['basic'=>['All'],
+      	                'additional'=>[ ]
+      	            ];
+	   $this->set('additional',$additional);
+	   $this->set('actions',$actions);	
+       $this->set('configs',$configs);	
+       $this->set('_serialize', ['configs','actions']);
     }
+	
+	public function ajaxdata() 
+	{
+        $this->autoRender= false;
+		$usrfiter="";
+		$basic = isset($this->request->query['basic'])?$this->request->query['basic']:"" ;
+		$additional = isset($this->request->query['additional'])?$this->request->query['additional']:"";
+		
+
+        $this->loadModel('Stations');
+        $dbout=$this->Stations->find('all')->toArray();
+     
+         $fields = array();
+		 
+				$fields[0] = array("name" =>"Stations.id"  , "type" => "num");
+				$fields[1] = array("name" =>"Stations.name"  , "type" => "char");
+								
+		
+		$this->log($fields);
+		$output =$this->Datatable->getView($fields,['Customers'],$usrfiter);
+		$out =json_encode($output);  
+	   
+		$this->response->body($out);
+	    return $this->response;
+	}
 
     /**
      * View method
@@ -54,6 +89,7 @@ class StationsController extends AppController
         $station = $this->Stations->newEntity();
         if ($this->request->is('post')) {
             $station = $this->Stations->patchEntity($station, $this->request->data);
+			$station['customer_id']=$this->loggedinuser['customer_id'];
             if ($this->Stations->save($station)) {
                 $this->Flash->success(__('The station has been saved.'));
 
@@ -81,6 +117,7 @@ class StationsController extends AppController
         ]);
         if ($this->request->is(['patch', 'post', 'put'])) {
             $station = $this->Stations->patchEntity($station, $this->request->data);
+			$station['customer_id']=$this->loggedinuser['customer_id'];
             if ($this->Stations->save($station)) {
                 $this->Flash->success(__('The station has been saved.'));
 
@@ -113,4 +150,48 @@ class StationsController extends AppController
 
         return $this->redirect(['action' => 'index']);
     }
+	
+	public function deleteAll($id=null)
+	{
+    	$this->request->allowMethod(['post', 'deleteall']);
+        $sucess=false;$failure=false;
+        $data=$this->request->data;
+			
+		if(isset($data)){
+		   foreach($data as $key =>$value){
+		   	   		
+		   	   	$itemna=explode("-",$key);
+			    
+			    if(count($itemna)== 2 && $itemna[0]=='chk'){
+			    	
+					$record = $this->Stations->get($value);
+					
+					 if($record['customer_id']== $this->loggedinuser['customer_id']) 
+					 {
+					 	
+						   if ($this->Stations->delete($record)) 
+						    {
+					           $sucess= $sucess | true;
+					        } else {
+					           $failure= $failure | true;
+					        }
+					}
+				}  	  
+			}
+		   		        
+		
+				if($sucess)
+				{
+					$this->Flash->success(__('Selected Stations has been deleted.'));
+				}
+		        if($failure)
+		        {
+					$this->Flash->error(__('The Stations could not be deleted. Please, try again.'));
+				}
+		
+		   }
+
+             return $this->redirect(['action' => 'index']);	
+     }
+	
 }

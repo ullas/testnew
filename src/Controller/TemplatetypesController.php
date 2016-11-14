@@ -2,7 +2,7 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
-
+use Cake\ORM\TableRegistry;
 /**
  * Templatetypes Controller
  *
@@ -11,6 +11,13 @@ use App\Controller\AppController;
 class TemplatetypesController extends AppController
 {
 
+     /**
+     * Components
+     *
+     * @var array
+     */
+    public $components = ['Datatable'];
+	
     /**
      * Index method
      *
@@ -18,14 +25,42 @@ class TemplatetypesController extends AppController
      */
     public function index()
     {
-        $this->paginate = [
-            'contain' => ['Customers']
-        ];
-        $templatetypes = $this->paginate($this->Templatetypes);
-
-        $this->set(compact('templatetypes'));
-        $this->set('_serialize', ['templatetypes']);
+       $this->loadModel('Templatetypes');
+       $configs=$this->Templatetypes->find('all')->toArray();
+	   $actions =[['name'=>'delete','title'=>'Delete','class'=>' label-danger ']];
+       $additional= ['basic'=>['All'],
+      	                'additional'=>[ ]
+      	            ];
+	   $this->set('additional',$additional);
+	   $this->set('actions',$actions);	
+       $this->set('configs',$configs);	
+       $this->set('_serialize', ['configs','actions']);
     }
+	
+	public function ajaxdata() 
+	{
+        $this->autoRender= false;
+		$usrfiter="";
+		$basic = isset($this->request->query['basic'])?$this->request->query['basic']:"" ;
+		$additional = isset($this->request->query['additional'])?$this->request->query['additional']:"";
+		
+
+        $this->loadModel('Templatetypes');
+        $dbout=$this->Templatetypes->find('all')->toArray();
+     
+         $fields = array();
+		 
+				$fields[0] = array("name" =>"Templatetypes.id"  , "type" => "num");
+				$fields[1] = array("name" =>"Templatetypes.name"  , "type" => "char");
+				$fields[2] = array("name" =>"Templatetypes.description"  , "type" => "char");				
+		
+		$this->log($fields);
+		$output =$this->Datatable->getView($fields,['Customers'],$usrfiter);
+		$out =json_encode($output);  
+	   
+		$this->response->body($out);
+	    return $this->response;
+	}
 
     /**
      * View method
@@ -54,6 +89,7 @@ class TemplatetypesController extends AppController
         $templatetype = $this->Templatetypes->newEntity();
         if ($this->request->is('post')) {
             $templatetype = $this->Templatetypes->patchEntity($templatetype, $this->request->data);
+			$templatetype['customer_id']=$this->loggedinuser['customer_id'];
             if ($this->Templatetypes->save($templatetype)) {
                 $this->Flash->success(__('The templatetype has been saved.'));
 
@@ -81,6 +117,7 @@ class TemplatetypesController extends AppController
         ]);
         if ($this->request->is(['patch', 'post', 'put'])) {
             $templatetype = $this->Templatetypes->patchEntity($templatetype, $this->request->data);
+			$templatetype['customer_id']=$this->loggedinuser['customer_id'];
             if ($this->Templatetypes->save($templatetype)) {
                 $this->Flash->success(__('The templatetype has been saved.'));
 
@@ -113,4 +150,46 @@ class TemplatetypesController extends AppController
 
         return $this->redirect(['action' => 'index']);
     }
+public function deleteAll($id=null)
+	{
+    	$this->request->allowMethod(['post', 'deleteall']);
+        $sucess=false;$failure=false;
+        $data=$this->request->data;
+			
+		if(isset($data)){
+		   foreach($data as $key =>$value){
+		   	   		
+		   	   	$itemna=explode("-",$key);
+			    
+			    if(count($itemna)== 2 && $itemna[0]=='chk'){
+			    	
+					$record = $this->Templatetypes->get($value);
+					
+					 if($record['customer_id']== $this->loggedinuser['customer_id']) 
+					 {
+					 	
+						   if ($this->Templatetypes->delete($record)) 
+						    {
+					           $sucess= $sucess | true;
+					        } else {
+					           $failure= $failure | true;
+					        }
+					}
+				}  	  
+			}
+		   		        
+		
+				if($sucess)
+				{
+					$this->Flash->success(__('Selected Templatetypes has been deleted.'));
+				}
+		        if($failure)
+		        {
+					$this->Flash->error(__('The Purposes Templatetypes not be deleted. Please, try again.'));
+				}
+		
+		   }
+
+             return $this->redirect(['action' => 'index']);	
+     }
 }

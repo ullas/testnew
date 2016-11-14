@@ -237,32 +237,32 @@ public function ajaxdata() {
             }
         }
         
-        $addresses = $this->Drivers->Addresses->find('list', ['limit' => 200])->where("customer_id=".$this->loggedinuser['customer_id'])->where("customer_id=0");
+        $addresses = $this->Drivers->Addresses->find('list', ['limit' => 200])->where("customer_id=".$this->loggedinuser['customer_id']);
         
                         
           $customers = $this->Drivers->Customers->find('list', ['limit' => 200])->where("id=".$this->loggedinuser['customer_id']);
       
         
                 
-        $contractors = $this->Drivers->Contractors->find('list', ['limit' => 200])->where("customer_id=".$this->loggedinuser['customer_id'])->where("customer_id=0");
+        $contractors = $this->Drivers->Contractors->find('list', ['limit' => 200])->where("customer_id=".$this->loggedinuser['customer_id']);
         
                 
-        $stations = $this->Drivers->Stations->find('list', ['limit' => 200])->where("customer_id=".$this->loggedinuser['customer_id'])->where("customer_id=0");
+        $stations = $this->Drivers->Stations->find('list', ['limit' => 200])->where("customer_id=".$this->loggedinuser['customer_id']);
         
                 
-        $supervisors = $this->Drivers->Supervisors->find('list', ['limit' => 200])->where("customer_id=".$this->loggedinuser['customer_id'])->where("customer_id=0");
+        $supervisors = $this->Drivers->Supervisors->find('list', ['limit' => 200])->where("customer_id=".$this->loggedinuser['customer_id']);
         
                 
-        $shifts = $this->Drivers->Shifts->find('list', ['limit' => 200])->where("customer_id=".$this->loggedinuser['customer_id'])->where("customer_id=0");
+        $shifts = $this->Drivers->Shifts->find('list', ['limit' => 200])->where("customer_id=".$this->loggedinuser['customer_id']);
         
                 
-        $vehicles = $this->Drivers->Vehicles->find('list', ['limit' => 200])->where("customer_id=".$this->loggedinuser['customer_id'])->where("customer_id=0");
+        $vehicles = $this->Drivers->Vehicles->find('list', ['limit' => 200])->where("customer_id=".$this->loggedinuser['customer_id']);
         
                 
-        $drivergroups = $this->Drivers->Drivergroups->find('list', ['limit' => 200])->where("customer_id=".$this->loggedinuser['customer_id'])->where("customer_id=0");
+        $drivergroups = $this->Drivers->Drivergroups->find('list', ['limit' => 200])->where("customer_id=".$this->loggedinuser['customer_id']);
         
                 
-        $languages = $this->Drivers->Languages->find('list', ['limit' => 200])->where("customer_id=".$this->loggedinuser['customer_id'])->where("customer_id=0");
+        $languages = $this->Drivers->Languages->find('list', ['limit' => 200])->where("customer_id=".$this->loggedinuser['customer_id']);
         
                 $this->set(compact('driver', 'addresses', 'customers', 'contractors', 'stations', 'supervisors', 'shifts', 'vehicles', 'drivergroups', 'languages'));
         $this->set('_serialize', ['driver']);

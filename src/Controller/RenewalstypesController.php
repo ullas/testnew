@@ -2,7 +2,7 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
-
+use Cake\ORM\TableRegistry;
 /**
  * Renewalstypes Controller
  *
@@ -12,20 +12,55 @@ class RenewalstypesController extends AppController
 {
 
     /**
+     * Components
+     *
+     * @var array
+     */
+    public $components = ['Datatable'];
+	
+    /**
      * Index method
      *
      * @return \Cake\Network\Response|null
      */
     public function index()
     {
-        $this->paginate = [
-            'contain' => ['Customers']
-        ];
-        $renewalstypes = $this->paginate($this->Renewalstypes);
-
-        $this->set(compact('renewalstypes'));
-        $this->set('_serialize', ['renewalstypes']);
+       $this->loadModel('Renewalstypes');
+       $configs=$this->Renewalstypes->find('all')->toArray();
+	   $actions =[['name'=>'delete','title'=>'Delete','class'=>' label-danger ']];
+       $additional= ['basic'=>['All'],
+      	                'additional'=>[ ]
+      	            ];
+	   $this->set('additional',$additional);
+	   $this->set('actions',$actions);	
+       $this->set('configs',$configs);	
+       $this->set('_serialize', ['configs','actions']);
     }
+	
+	public function ajaxdata() 
+	{
+        $this->autoRender= false;
+		$usrfiter="";
+		$basic = isset($this->request->query['basic'])?$this->request->query['basic']:"" ;
+		$additional = isset($this->request->query['additional'])?$this->request->query['additional']:"";
+		
+
+        $this->loadModel('Renewalstypes');
+        $dbout=$this->Renewalstypes->find('all')->toArray();
+     
+         $fields = array();
+		 
+				$fields[0] = array("name" =>"Renewalstypes.id"  , "type" => "num");
+				$fields[1] = array("name" =>"Renewalstypes.name"  , "type" => "char");
+								
+		
+		$this->log($fields);
+		$output =$this->Datatable->getView($fields,['Customers'],$usrfiter);
+		$out =json_encode($output);  
+	   
+		$this->response->body($out);
+	    return $this->response;
+	}
 
     /**
      * View method
@@ -54,6 +89,7 @@ class RenewalstypesController extends AppController
         $renewalstype = $this->Renewalstypes->newEntity();
         if ($this->request->is('post')) {
             $renewalstype = $this->Renewalstypes->patchEntity($renewalstype, $this->request->data);
+			$renewalstype['customer_id']=$this->loggedinuser['customer_id'];
             if ($this->Renewalstypes->save($renewalstype)) {
                 $this->Flash->success(__('The renewalstype has been saved.'));
 
@@ -81,6 +117,7 @@ class RenewalstypesController extends AppController
         ]);
         if ($this->request->is(['patch', 'post', 'put'])) {
             $renewalstype = $this->Renewalstypes->patchEntity($renewalstype, $this->request->data);
+			$renewalstype['customer_id']=$this->loggedinuser['customer_id'];
             if ($this->Renewalstypes->save($renewalstype)) {
                 $this->Flash->success(__('The renewalstype has been saved.'));
 
@@ -113,4 +150,47 @@ class RenewalstypesController extends AppController
 
         return $this->redirect(['action' => 'index']);
     }
+
+public function deleteAll($id=null)
+	{
+    	$this->request->allowMethod(['post', 'deleteall']);
+        $sucess=false;$failure=false;
+        $data=$this->request->data;
+			
+		if(isset($data)){
+		   foreach($data as $key =>$value){
+		   	   		
+		   	   	$itemna=explode("-",$key);
+			    
+			    if(count($itemna)== 2 && $itemna[0]=='chk'){
+			    	
+					$record = $this->Renewalstypes->get($value);
+					
+					 if($record['customer_id']== $this->loggedinuser['customer_id']) 
+					 {
+					 	
+						   if ($this->Renewalstypes->delete($record)) 
+						    {
+					           $sucess= $sucess | true;
+					        } else {
+					           $failure= $failure | true;
+					        }
+					}
+				}  	  
+			}
+		   		        
+		
+				if($sucess)
+				{
+					$this->Flash->success(__('Selected Renewalstypes has been deleted.'));
+				}
+		        if($failure)
+		        {
+					$this->Flash->error(__('The Renewalstypes could not be deleted. Please, try again.'));
+				}
+		
+		   }
+
+             return $this->redirect(['action' => 'index']);	
+     }
 }

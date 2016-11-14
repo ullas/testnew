@@ -37,7 +37,7 @@ class ServicesentriesTable extends Table
         parent::initialize($config);
 
         $this->table('servicesentries');
-        $this->displayField('id');
+        $this->displayField('name');
         $this->primaryKey('id');
 
         $this->belongsTo('Vehicles', [

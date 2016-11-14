@@ -2,7 +2,7 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
-
+use Cake\ORM\TableRegistry;
 /**
  * Symbols Controller
  *
@@ -11,6 +11,13 @@ use App\Controller\AppController;
 class SymbolsController extends AppController
 {
 
+     /**
+     * Components
+     *
+     * @var array
+     */
+    public $components = ['Datatable'];
+	
     /**
      * Index method
      *
@@ -18,14 +25,43 @@ class SymbolsController extends AppController
      */
     public function index()
     {
-        $this->paginate = [
-            'contain' => ['Customers']
-        ];
-        $symbols = $this->paginate($this->Symbols);
-
-        $this->set(compact('symbols'));
-        $this->set('_serialize', ['symbols']);
+       $this->loadModel('Symbols');
+       $configs=$this->Symbols->find('all')->toArray();
+	   $actions =[['name'=>'delete','title'=>'Delete','class'=>' label-danger ']];
+       $additional= ['basic'=>['All'],
+      	                'additional'=>[ ]
+      	            ];
+	   $this->set('additional',$additional);
+	   $this->set('actions',$actions);	
+       $this->set('configs',$configs);	
+       $this->set('_serialize', ['configs','actions']);
     }
+	
+	public function ajaxdata() 
+	{
+        $this->autoRender= false;
+		$usrfiter="";
+		$basic = isset($this->request->query['basic'])?$this->request->query['basic']:"" ;
+		$additional = isset($this->request->query['additional'])?$this->request->query['additional']:"";
+		
+
+        $this->loadModel('Symbols');
+        $dbout=$this->Symbols->find('all')->toArray();
+     
+         $fields = array();
+		 
+		$fields[0] = array("name" =>"Symbols.id"  , "type" => "num");
+				
+				
+								
+		
+		$this->log($fields);
+		$output =$this->Datatable->getView($fields,['Customers', 'Vehicles'],$usrfiter);
+		$out =json_encode($output);  
+	   
+		$this->response->body($out);
+	    return $this->response;
+	}
 
     /**
      * View method
@@ -54,6 +90,7 @@ class SymbolsController extends AppController
         $symbol = $this->Symbols->newEntity();
         if ($this->request->is('post')) {
             $symbol = $this->Symbols->patchEntity($symbol, $this->request->data);
+			$purpose['customer_id']=$this->loggedinuser['customer_id'];
             if ($this->Symbols->save($symbol)) {
                 $this->Flash->success(__('The symbol has been saved.'));
 
@@ -81,6 +118,7 @@ class SymbolsController extends AppController
         ]);
         if ($this->request->is(['patch', 'post', 'put'])) {
             $symbol = $this->Symbols->patchEntity($symbol, $this->request->data);
+			$purpose['customer_id']=$this->loggedinuser['customer_id'];
             if ($this->Symbols->save($symbol)) {
                 $this->Flash->success(__('The symbol has been saved.'));
 
@@ -113,4 +151,47 @@ class SymbolsController extends AppController
 
         return $this->redirect(['action' => 'index']);
     }
+	
+	public function deleteAll($id=null)
+	{
+    	$this->request->allowMethod(['post', 'deleteall']);
+        $sucess=false;$failure=false;
+        $data=$this->request->data;
+			
+		if(isset($data)){
+		   foreach($data as $key =>$value){
+		   	   		
+		   	   	$itemna=explode("-",$key);
+			    
+			    if(count($itemna)== 2 && $itemna[0]=='chk'){
+			    	
+					$record = $this->Symbols->get($value);
+					
+					 if($record['customer_id']== $this->loggedinuser['customer_id']) 
+					 {
+					 	
+						   if ($this->Symbols->delete($record)) 
+						    {
+					           $sucess= $sucess | true;
+					        } else {
+					           $failure= $failure | true;
+					        }
+					}
+				}  	  
+			}
+		   		        
+		
+				if($sucess)
+				{
+					$this->Flash->success(__('Selected Symbols has been deleted.'));
+				}
+		        if($failure)
+		        {
+					$this->Flash->error(__('The Symbols could not be deleted. Please, try again.'));
+				}
+		
+		   }
+
+             return $this->redirect(['action' => 'index']);	
+     }
 }

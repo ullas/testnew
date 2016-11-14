@@ -2,7 +2,7 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
-
+use Cake\ORM\TableRegistry;
 /**
  * Partcategories Controller
  *
@@ -10,7 +10,12 @@ use App\Controller\AppController;
  */
 class PartcategoriesController extends AppController
 {
-
+	/**
+     * Components
+     *
+     * @var array
+     */
+    public $components = ['Datatable'];
     /**
      * Index method
      *
@@ -18,15 +23,44 @@ class PartcategoriesController extends AppController
      */
     public function index()
     {
-        $this->paginate = [
-            'contain' => ['Customers']
-        ];
-        $partcategories = $this->paginate($this->Partcategories);
-
-        $this->set(compact('partcategories'));
-        $this->set('_serialize', ['partcategories']);
+        $this->loadModel('Partcategories');
+       $configs=$this->Partcategories->find('all')->toArray();
+	   $actions =[['name'=>'delete','title'=>'Delete','class'=>' label-danger ']];
+       $additional= ['basic'=>['All'],
+      	                'additional'=>[ ]
+      	            ];
+	   $this->set('additional',$additional);
+	   $this->set('actions',$actions);	
+       $this->set('configs',$configs);	
+       $this->set('_serialize', ['configs','actions']);
     }
+	
+	public function ajaxdata() 
+	{
+        $this->autoRender= false;
+		$usrfiter="";
+		$basic = isset($this->request->query['basic'])?$this->request->query['basic']:"" ;
+		$additional = isset($this->request->query['additional'])?$this->request->query['additional']:"";
+		
 
+        $this->loadModel('Partcategories');
+        $dbout=$this->Partcategories->find('all')->toArray();
+     
+         $fields = array();
+		 
+				$fields[0] = array("name" =>"Partcategories.id"  , "type" => "num");
+				$fields[1] = array("name" =>"Partcategories.name"  , "type" => "char");
+				
+				
+		
+		$this->log($fields);
+		$output =$this->Datatable->getView($fields,['Customers'],$usrfiter);
+		$out =json_encode($output);  
+	   
+		$this->response->body($out);
+	    return $this->response;
+	}
+	
     /**
      * View method
      *
@@ -54,6 +88,7 @@ class PartcategoriesController extends AppController
         $partcategory = $this->Partcategories->newEntity();
         if ($this->request->is('post')) {
             $partcategory = $this->Partcategories->patchEntity($partcategory, $this->request->data);
+			$partcategory['customer_id']=$this->loggedinuser['customer_id'];
             if ($this->Partcategories->save($partcategory)) {
                 $this->Flash->success(__('The partcategory has been saved.'));
 
@@ -81,6 +116,7 @@ class PartcategoriesController extends AppController
         ]);
         if ($this->request->is(['patch', 'post', 'put'])) {
             $partcategory = $this->Partcategories->patchEntity($partcategory, $this->request->data);
+			$partcategory['customer_id']=$this->loggedinuser['customer_id'];
             if ($this->Partcategories->save($partcategory)) {
                 $this->Flash->success(__('The partcategory has been saved.'));
 
@@ -113,4 +149,46 @@ class PartcategoriesController extends AppController
 
         return $this->redirect(['action' => 'index']);
     }
+	public function deleteAll($id=null)
+	{
+    	$this->request->allowMethod(['post', 'deleteall']);
+        $sucess=false;$failure=false;
+        $data=$this->request->data;
+			
+		if(isset($data)){
+		   foreach($data as $key =>$value){
+		   	   		
+		   	   	$itemna=explode("-",$key);
+			    
+			    if(count($itemna)== 2 && $itemna[0]=='chk'){
+			    	
+					$record = $this->Partcategories->get($value);
+					
+					 if($record['customer_id']== $this->loggedinuser['customer_id']) 
+					 {
+					 	
+						   if ($this->Partcategories->delete($record)) 
+						    {
+					           $sucess= $sucess | true;
+					        } else {
+					           $failure= $failure | true;
+					        }
+					}
+				}  	  
+			}
+		   		        
+		
+				if($sucess)
+				{
+					$this->Flash->success(__('Selected Partcategories has been deleted.'));
+				}
+		        if($failure)
+		        {
+					$this->Flash->error(__('The Partcategories could not be deleted. Please, try again.'));
+				}
+		
+		   }
+
+             return $this->redirect(['action' => 'index']);	
+     }
 }

@@ -39,6 +39,9 @@ class ServicedocumentsTable extends Table
         $this->belongsTo('Servicesentries', [
             'foreignKey' => 'servicesentry_id'
         ]);
+		$this->belongsTo('Customers', [
+            'foreignKey' => 'customer_id'
+        ]);
     }
 
     /**

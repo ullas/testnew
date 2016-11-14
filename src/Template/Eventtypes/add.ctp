@@ -1,22 +1,103 @@
-<nav class="large-3 medium-4 columns" id="actions-sidebar">
-    <ul class="side-nav">
-        <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Html->link(__('List Eventtypes'), ['action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('List Gpsdata'), ['controller' => 'Gpsdata', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Gpsdata'), ['controller' => 'Gpsdata', 'action' => 'add']) ?></li>
-    </ul>
-</nav>
-<div class="eventtypes form large-9 medium-8 columns content">
-    <?= $this->Form->create($eventtype) ?>
-    <fieldset>
-        <legend><?= __('Add Eventtype') ?></legend>
+<?php
+  $myTemplates = [
+    'inputContainer' => '<div class="form-group">{{content}}<div class="col-sm-offset-3 col-sm-6" style="margin-top:4px">{{help}}</div></div>',
+     'label' => '<label class="col-sm-3 control-label" {{attrs}}>{{text}}</label>',
+    'input' => '<div class="col-sm-6"><div class="input-group">{{icon}}<input type="{{type}}" name="{{name}}"{{attrs}}/></div></div>',
+    
+     'select' => '<div class="col-sm-6"><select name="{{name}}"{{attrs}}>{{content}}</select></div>',
+     'textarea' => '<div class="col-sm-6"><textarea name="{{name}}"{{attrs}}>{{value}}</textarea></div>'
+];
+$this->Form->templates($myTemplates);
+?>
+
+
+<!-- Content Header (Page header) -->
+<section class="content-header">
+  <h1>
+    New Event Type <small>Please fill the details to create a new Event Type</small>
+  </h1>
+  <ol class="breadcrumb">
+    <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+    
+    <li><a href="/eventtypes/"> Event Types</a></li>
+    <li class="active">Add</li>
+  </ol>
+</section>
+
+<!-- Main content -->
+<section class="content">
+ <?= $this->Form->create($eventtype) ?>
+  <div class="row">
+    
+    <div class="col-md-12">
+      <div class="nav-tabs-custom">
+        
+        <div class="tab-content">
+          <div class="active tab-pane" id="details">
+             <div class="form-horizontal">
         <?php
-            echo $this->Form->input('code');
+            echo $this->Form->input('code',['required'=>'required']);
             echo $this->Form->input('provider');
-            echo $this->Form->input('name');
-            echo $this->Form->input('model');
+            echo $this->Form->input('name',['required'=>'required']);
+            echo $this->Form->input('model',['required'=>'required']);
         ?>
-    </fieldset>
-    <?= $this->Form->button(__('Submit')) ?>
-    <?= $this->Form->end() ?>
-</div>
+    </div>
+ 
+          </div>
+          <!-- /.tab-pane -->
+          
+          
+        </div>
+        <!-- /.tab-content -->
+      </div>
+      <!-- /.nav-tabs-custom -->
+    </div>
+    <!-- /.col -->
+  </div>
+  <!-- /.row -->
+  <div class="row">
+   <div class="form-group">
+                <div class="col-sm-offset-6 col-sm-10">
+                  <button type="submit" class="btn btn-success">Save</button>
+                </div>
+   </div>
+   </div>
+   <!-- /.row -->
+ <?= $this->Form->end() ?>
+</section>
+<!-- /.content -->
+
+
+<?php
+$this->Html->css([
+    
+    'AdminLTE./plugins/datepicker/datepicker3',
+ 	'AdminLTE./plugins/select2/select2.min'
+  ],
+  ['block' => 'css']);
+
+$this->Html->script([
+ 'AdminLTE./plugins/select2/select2.full.min',
+  	'AdminLTE./plugins/datepicker/bootstrap-datepicker',
+  	'/js/dropzone/dropzone',
+	'AdminLTE./plugins/iCheck/icheck.min'
+ 
+],
+['block' => 'script']);
+?>
+<?php $this->start('scriptBotton'); ?>
+<script>
+  $(function () {
+    //Initialize Select2 Elements
+    $(".select2").select2();
+     $('.datemask').datepicker({
+            format:"dd/mm/yy",
+              autoclose: true
+   });
+
+  });
+</script>
+<?php $this->end(); ?>
+
+
+

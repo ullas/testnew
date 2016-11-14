@@ -39,6 +39,9 @@ class ServicecompletedTable extends Table
         $this->belongsTo('Servicesentries', [
             'foreignKey' => 'servicesentry_id'
         ]);
+		$this->belongsTo('Customers', [
+            'foreignKey' => 'customer_id'
+        ]);
     }
 
     /**
@@ -68,6 +71,7 @@ class ServicecompletedTable extends Table
     public function buildRules(RulesChecker $rules)
     {
         $rules->add($rules->existsIn(['servicesentry_id'], 'Servicesentries'));
+		
 
         return $rules;
     }

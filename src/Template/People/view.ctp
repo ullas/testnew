@@ -3,9 +3,10 @@
      <?php echo $this->request->params['controller'] ?> Details
   </h1>
   <ol class="breadcrumb">
-    <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-    <li><a href="#"> Tracking Objects</a></li>
-     <li><a href="/people/"> People</a></li>
+   <li><a href="#"><i class="fa fa-dashboard"></i>Home</a></li>
+  	<li><a href="#"><i class="fa fa-puzzle-piece"></i> Administration</a></li>
+    <li><a href="#"><i class="fa fa-puzzle-piece"></i> Tracking Items</a></li>
+    <li><a href="/people/"><i class="fa fa-user"></i> People</a></li>
     <li class="active">View</li>
   </ol>
 </section>

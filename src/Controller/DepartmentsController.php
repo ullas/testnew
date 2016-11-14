@@ -2,7 +2,7 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
-
+use Cake\ORM\TableRegistry;
 /**
  * Departments Controller
  *
@@ -10,7 +10,12 @@ use App\Controller\AppController;
  */
 class DepartmentsController extends AppController
 {
-
+	/**
+     * Components
+     *
+     * @var array
+     */
+    public $components = ['Datatable'];
     /**
      * Index method
      *
@@ -18,15 +23,46 @@ class DepartmentsController extends AppController
      */
     public function index()
     {
-        $this->paginate = [
-            'contain' => ['Customers']
-        ];
-        $departments = $this->paginate($this->Departments);
-
-        $this->set(compact('departments'));
-        $this->set('_serialize', ['departments']);
+       $this->loadModel('Departments');
+       $configs=$this->Departments->find('all')->toArray();
+	   $actions =[['name'=>'delete','title'=>'Delete','class'=>' label-danger ']];
+       $additional= ['basic'=>['All'],
+      	                'additional'=>[ ]
+      	            ];
+	   $this->set('additional',$additional);
+	   $this->set('actions',$actions);	
+       $this->set('configs',$configs);	
+       $this->set('_serialize', ['configs','actions']);
     }
+	
+	public function ajaxdata() 
+	{
+        $this->autoRender= false;
+		$usrfiter="";
+		$basic = isset($this->request->query['basic'])?$this->request->query['basic']:"" ;
+		$additional = isset($this->request->query['additional'])?$this->request->query['additional']:"";
+		
 
+        $this->loadModel('Departments');
+        $dbout=$this->Departments->find('all')->toArray();
+     
+         $fields = array();
+		 
+				$fields[0] = array("name" =>"Departments.id"  , "type" => "num");
+				$fields[1] = array("name" =>"Departments.name"  , "type" => "char");
+				//$fields[2] = array("name" =>"Departments.description"  , "type" => "char");
+				
+		
+		$this->log($fields);
+		$output =$this->Datatable->getView($fields,['Customers'],$usrfiter);
+		$out =json_encode($output);  
+	   
+		$this->response->body($out);
+	    return $this->response;
+	     
+             
+	 }
+	
     /**
      * View method
      *
@@ -54,6 +90,7 @@ class DepartmentsController extends AppController
         $department = $this->Departments->newEntity();
         if ($this->request->is('post')) {
             $department = $this->Departments->patchEntity($department, $this->request->data);
+			$department['customer_id']=$this->loggedinuser['customer_id'];
             if ($this->Departments->save($department)) {
                 $this->Flash->success(__('The department has been saved.'));
 
@@ -81,6 +118,7 @@ class DepartmentsController extends AppController
         ]);
         if ($this->request->is(['patch', 'post', 'put'])) {
             $department = $this->Departments->patchEntity($department, $this->request->data);
+			$department['customer_id']=$this->loggedinuser['customer_id'];
             if ($this->Departments->save($department)) {
                 $this->Flash->success(__('The department has been saved.'));
 

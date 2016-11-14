@@ -18,8 +18,8 @@ $this->Form->templates($myTemplates);
   </h1>
   <ol class="breadcrumb">
   	<li><a href="#"><i class="fa fa-dashboard"></i>Home</a></li>
-   
-    <li><a href="/Servicesentries/"> Drivers</a></li>
+    <li><a href="#"></a>Fleet Management</li>
+    <li><a href="/drivers/"> Drivers</a></li>
     <li class="active">Edit</li>
   </ol>
 </section>
@@ -46,13 +46,14 @@ $this->Form->templates($myTemplates);
             echo $this->Form->input('licenceno',['label'=>'Licence No','required' => 'required']);
             echo $this->Form->input('licenceexpdate', ['type'=>'text','empty' => true,'label'=>'Licence Expiry Date','class'=>'datemask','templateVars' => ['icon' => '<div class="input-group-addon"><i class="fa fa-calendar"></i></div>']]);
             echo $this->Form->input('address_id', ['options' => $addresses, 'empty' => true,'class'=>'select2']);
+            echo $this->Form->input('maritalstatus',['label'=>'Marital Status']);
             echo $this->Form->input('nextofkin',['label'=>'Next Of Kin']);
             echo $this->Form->input('comments');
             echo $this->Form->input('photo');
             echo $this->Form->input('ibutton_id',['class'=>'select2']);
             echo $this->Form->input('drivingpassportno',['label'=>'Driving Passport No']);
             echo $this->Form->input('drivingpassportexp', ['type'=>'text','empty' => true,'label'=>'Driving Passport Expiry Date','class'=>'datemask','templateVars' => ['icon' => '<div class="input-group-addon"><i class="fa fa-calendar"></i></div>']]);
-            echo $this->Form->input('vehicle_id',['class'=>'select2']);
+            echo $this->Form->input('vehicle_id',['options' => $vehicles, 'empty' => true,'class'=>'select2']);
             echo $this->Form->input('drivinglicenseclass',['label'=>'Driving Licence Class']);
             echo $this->Form->input('contractor_id', ['options' => $contractors, 'empty' => true,'class'=>'select2']);
             echo $this->Form->input('station_id', ['options' => $stations, 'empty' => true,'class'=>'select2']);
