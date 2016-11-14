@@ -2,7 +2,7 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
-
+use Cake\ORM\TableRegistry;
 /**
  * Driverdetectionmodes Controller
  *
@@ -10,7 +10,12 @@ use App\Controller\AppController;
  */
 class DriverdetectionmodesController extends AppController
 {
-
+	/**
+     * Components
+     *
+     * @var array
+     */
+    public $components = ['Datatable'];
     /**
      * Index method
      *
@@ -18,12 +23,43 @@ class DriverdetectionmodesController extends AppController
      */
     public function index()
     {
-        $driverdetectionmodes = $this->paginate($this->Driverdetectionmodes);
-
-        $this->set(compact('driverdetectionmodes'));
-        $this->set('_serialize', ['driverdetectionmodes']);
+       $this->loadModel('Driverdetectionmodes');
+       $configs=$this->Driverdetectionmodes->find('all')->toArray();
+	   $actions =[['name'=>'delete','title'=>'Delete','class'=>' label-danger ']];
+       $additional= ['basic'=>['All'],
+      	                'additional'=>[ ]
+      	            ];
+	   $this->set('additional',$additional);
+	   $this->set('actions',$actions);	
+       $this->set('configs',$configs);	
+       $this->set('_serialize', ['configs','actions']);
     }
+	
+	public function ajaxdata() 
+	{
+        $this->autoRender= false;
+		$usrfiter="";
+		$basic = isset($this->request->query['basic'])?$this->request->query['basic']:"" ;
+		$additional = isset($this->request->query['additional'])?$this->request->query['additional']:"";
+		
 
+        $this->loadModel('Driverdetectionmodes');
+        $dbout=$this->Driverdetectionmodes->find('all')->toArray();
+     
+         $fields = array();
+		 
+				$fields[0] = array("name" =>"Driverdetectionmodes.id"  , "type" => "num");
+				$fields[1] = array("name" =>"Driverdetectionmodes.name"  , "type" => "char");
+				
+				
+		
+		$this->log($fields);
+		$output =$this->Datatable->getView($fields,['Customers'],$usrfiter);
+		$out =json_encode($output);  
+	   
+		$this->response->body($out);
+	    return $this->response;
+	}
     /**
      * View method
      *
@@ -51,7 +87,7 @@ class DriverdetectionmodesController extends AppController
         $driverdetectionmode = $this->Driverdetectionmodes->newEntity();
         if ($this->request->is('post')) {
             $driverdetectionmode = $this->Driverdetectionmodes->patchEntity($driverdetectionmode, $this->request->data);
-            $driverdetectionmode['customer_id']=$this->currentuser['customer_id'];
+            $driverdetectionmode['customer_id']=$this->loggedinuser['customer_id'];
             if ($this->Driverdetectionmodes->save($driverdetectionmode)) {
                 $this->Flash->success(__('The driverdetectionmode has been saved.'));
 
@@ -78,6 +114,7 @@ class DriverdetectionmodesController extends AppController
         ]);
         if ($this->request->is(['patch', 'post', 'put'])) {
             $driverdetectionmode = $this->Driverdetectionmodes->patchEntity($driverdetectionmode, $this->request->data);
+			$driverdetectionmode['customer_id']=$this->loggedinuser['customer_id'];
             if ($this->Driverdetectionmodes->save($driverdetectionmode)) {
                 $this->Flash->success(__('The driverdetectionmode has been saved.'));
 
@@ -109,4 +146,43 @@ class DriverdetectionmodesController extends AppController
 
         return $this->redirect(['action' => 'index']);
     }
+
+public function deleteAll($id=null){
+    	
+		$this->request->allowMethod(['post', 'deleteall']);
+        $sucess=false;$failure=false;
+        $data=$this->request->data;
+			
+		if(isset($data)){
+		   foreach($data as $key =>$value){
+		   	   		
+		   	   	$itemna=explode("-",$key);
+			    
+			    if(count($itemna)== 2 && $itemna[0]=='chk'){
+			    	
+					$record = $this->Driverdetectionmodes->get($value);
+					
+					 if($record['customer_id']== $this->loggedinuser['customer_id']) {
+					 	
+						   if ($this->Driverdetectionmodes->delete($record)) {
+					           $sucess= $sucess | true;
+					        } else {
+					           $failure= $failure | true;
+					        }
+					}
+				}  	  
+			}
+		   		        
+		
+				if($sucess){
+					$this->Flash->success(__('Selected Driverdetectionmodes has been deleted.'));
+				}
+		        if($failure){
+					$this->Flash->error(__('The Driverdetectionmodes could not be deleted. Please, try again.'));
+				}
+		
+		   }
+
+             return $this->redirect(['action' => 'index']);	
+     }
 }

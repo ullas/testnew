@@ -2,7 +2,7 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
-
+use Cake\ORM\TableRegistry;
 /**
  * Devicemodels Controller
  *
@@ -24,77 +24,46 @@ class DevicemodelsController extends AppController
      *
      * @return \Cake\Network\Response|null
      */
-    public function index()
+ public function index()
     {
-    	/*
-      		    
-        */
-       
-         $this->loadModel('CreateConfigs');
-         $configs=$this->CreateConfigs->find('all')->where(['table_name' => 'Devicemodels'])->order(['id' => 'ASC'])->toArray();
-        
-         $this->set('configs',$configs);	
-         $this->set('_serialize', ['configs']);
-         
-         
-         
-         $this->loadModel('CreateConfigs');
-         $configs=$this->CreateConfigs->find('all')->where(['table_name' => 'Devicemodels'])->order(['"order"' => 'ASC'])->toArray();
-		 $this->loadModel('Usersettings');
-		 $usersettings=$this->Usersettings->find('all')->where(['user_id' => $this->loggedinuser['id']])->where(['module' => 'Workorders'])->where(['key' => 'INIT_VISIBLE_COLUMNS_Devicemodels'])->toArray();
-         if(isset($usersettings[0]['value'])){
-         	$this->set('usersettings',$usersettings);	
-			
-         }else{
-         	
-         	$this->loadModel('Globalusersettings');
-		    $usersettings=$this->Globalusersettings->find('all')->where(['module' => 'Workorders'])->where(['key' => 'INIT_VISIBLE_COLUMNS_WORKORDERS'])->toArray();
-            $this->set('usersettings',$usersettings);
-			
-         }
-		 $actions =[
-                ['name'=>'assign','title'=>'Assign','class'=>'label-success'],
-                ['name'=>'unassign','title'=>'Unassign','class'=>'label-warning'],
-                ['name'=>'close','title'=>'Close','class'=>' label-danger ']
-                ];
-         $additional= [
-      	                          'basic'=>['Open','OverDue','Resolved','Closed'],
-      	                          'additional'=>[
-      	                                ['name'=>'issueddate','title'=>'Issued Date'],
-      	                                ['name'=>'startdate','title' =>'Start Date'],
-      	                                ['name'=>'completiondate','title'=>'Completion Date']   	                          
-      	                          ]];
-		 $this->set('additional',$additional);
-		 $this->set('actions',$actions);	
-         $this->set('configs',$configs);	
-         $this->set('_serialize', ['configs','usersettings','actions','additional']);
-       
-       
-    }
-    
-    
-public function ajaxdata() {
-        $this->autoRender= false;
-      
-          
-       $this->loadModel('CreateConfigs');
-       $dbout=$this->CreateConfigs->find('all')->where(['table_name' => 'Devicemodels'])->order(['id' => 'ASC'])->toArray();
-        
-        $fields = array();
-        foreach($dbout as $value){
-            $fields[] = array("name" => $value['field_name'] , "type" => $value['datatype'] );
-			
-        }
-      
-		                           
-        $output =$this->Datatable->getView($fields,['Customers']);
-        $out =json_encode($output);  
+       $this->loadModel('Devicemodels');
+       $configs=$this->Devicemodels->find('all')->toArray();
+	   $actions =[['name'=>'delete','title'=>'Delete','class'=>' label-danger ']];
+       $additional= ['basic'=>['All'],
+      	                'additional'=>[ ]
+      	            ];
+	   $this->set('additional',$additional);
+	   $this->set('actions',$actions);	
+       $this->set('configs',$configs);	
+       $this->set('_serialize', ['configs','actions']);
+	}
+		
 	
+	public function ajaxdata() 
+	{
+        $this->autoRender= false;
+		$usrfiter="";
+		$basic = isset($this->request->query['basic'])?$this->request->query['basic']:"" ;
+		$additional = isset($this->request->query['additional'])?$this->request->query['additional']:"";
+		
+
+        $this->loadModel('Devicemodels');
+        $dbout=$this->Devicemodels->find('all')->toArray();
+     
+         $fields = array();
+		 
+				$fields[0] = array("name" =>"Devicemodels.id"  , "type" => "num");
+				$fields[1] = array("name" =>"Devicemodels.name"  , "type" => "char");
+				
+				
+		
+		$this->log($fields);
+		$output =$this->Datatable->getView($fields,['Customers'],$usrfiter);
+		$out =json_encode($output);  
+	   
 		$this->response->body($out);
 	    return $this->response;
-	     
-             
- }  
+	}
 
     /**
      * View method
@@ -123,7 +92,7 @@ public function ajaxdata() {
         $devicemodel = $this->Devicemodels->newEntity();
         if ($this->request->is('post')) {
             $devicemodel = $this->Devicemodels->patchEntity($devicemodel, $this->request->data);
-            $devicemodel['customer_id']=$this->currentuser['customer_id'];
+            $devicemodel['customer_id']=$this->loggedinuser['customer_id'];
             if ($this->Devicemodels->save($devicemodel)) {
                 $this->Flash->success(__('The devicemodel has been saved.'));
 
@@ -154,7 +123,7 @@ public function ajaxdata() {
         ]);
         if ($this->request->is(['patch', 'post', 'put'])) {
             $devicemodel = $this->Devicemodels->patchEntity($devicemodel, $this->request->data);
-             $devicemodel['customer_id']=$this->currentuser['customer_id'];
+             $devicemodel['customer_id']=$this->loggedinuser['customer_id'];
             if ($this->Devicemodels->save($devicemodel)) {
                 $this->Flash->success(__('The devicemodel has been saved.'));
 
@@ -187,4 +156,47 @@ public function ajaxdata() {
 
         return $this->redirect(['action' => 'index']);
     }
+
+	public function deleteAll($id=null)
+	{
+    	$this->request->allowMethod(['post', 'deleteall']);
+        $sucess=false;$failure=false;
+        $data=$this->request->data;
+			
+		if(isset($data)){
+		   foreach($data as $key =>$value){
+		   	   		
+		   	   	$itemna=explode("-",$key);
+			    
+			    if(count($itemna)== 2 && $itemna[0]=='chk'){
+			    	
+					$record = $this->Devicemodels->get($value);
+					
+					 if($record['customer_id']== $this->loggedinuser['customer_id']) 
+					 {
+					 	
+						   if ($this->Devicemodels->delete($record)) 
+						    {
+					           $sucess= $sucess | true;
+					        } else {
+					           $failure= $failure | true;
+					        }
+					}
+				}  	  
+			}
+		   		        
+		
+				if($sucess)
+				{
+					$this->Flash->success(__('Selected Devicemodels has been deleted.'));
+				}
+		        if($failure)
+		        {
+					$this->Flash->error(__('The Devicemodels could not be deleted. Please, try again.'));
+				}
+		
+		   }
+
+             return $this->redirect(['action' => 'index']);	
+     }
 }

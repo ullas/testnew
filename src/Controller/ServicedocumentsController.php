@@ -2,7 +2,7 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
-
+use Cake\ORM\TableRegistry;
 /**
  * Servicedocuments Controller
  *
@@ -12,20 +12,55 @@ class ServicedocumentsController extends AppController
 {
 
     /**
+     * Components
+     *
+     * @var array
+     */
+    public $components = ['Datatable'];
+	
+    /**
      * Index method
      *
      * @return \Cake\Network\Response|null
      */
     public function index()
     {
-        $this->paginate = [
-            'contain' => ['Servicesentries']
-        ];
-        $servicedocuments = $this->paginate($this->Servicedocuments);
-
-        $this->set(compact('servicedocuments'));
-        $this->set('_serialize', ['servicedocuments']);
+       $this->loadModel('Servicedocuments');
+       $configs=$this->Servicedocuments->find('all')->toArray();
+	   $actions =[['name'=>'delete','title'=>'Delete','class'=>' label-danger ']];
+       $additional= ['basic'=>['All'],
+      	                'additional'=>[ ]
+      	            ];
+	   $this->set('additional',$additional);
+	   $this->set('actions',$actions);	
+       $this->set('configs',$configs);	
+       $this->set('_serialize', ['configs','actions']);
     }
+	
+	public function ajaxdata() 
+	{
+        $this->autoRender= false;
+		$usrfiter="";
+		$basic = isset($this->request->query['basic'])?$this->request->query['basic']:"" ;
+		$additional = isset($this->request->query['additional'])?$this->request->query['additional']:"";
+		
+
+        $this->loadModel('Servicedocuments');
+        $dbout=$this->Servicedocuments->find('all')->toArray();
+     
+         $fields = array();
+		 
+				$fields[0] = array("name" =>"Servicedocuments.id"  , "type" => "num");
+				$fields[1] = array("name" =>"Servicesentries.name"  , "type" => "char");
+				$fields[2] = array("name" =>"Servicedocuments.data"  , "type" => "char");				
+		
+		$this->log($fields);
+		$output =$this->Datatable->getView($fields,['Customers','Servicesentries'],$usrfiter);
+		$out =json_encode($output);  
+	   
+		$this->response->body($out);
+	    return $this->response;
+	}
 
     /**
      * View method
@@ -54,6 +89,7 @@ class ServicedocumentsController extends AppController
         $servicedocument = $this->Servicedocuments->newEntity();
         if ($this->request->is('post')) {
             $servicedocument = $this->Servicedocuments->patchEntity($servicedocument, $this->request->data);
+			$servicedocument['customer_id']=$this->loggedinuser['customer_id'];
             if ($this->Servicedocuments->save($servicedocument)) {
                 $this->Flash->success(__('The servicedocument has been saved.'));
 
@@ -81,6 +117,7 @@ class ServicedocumentsController extends AppController
         ]);
         if ($this->request->is(['patch', 'post', 'put'])) {
             $servicedocument = $this->Servicedocuments->patchEntity($servicedocument, $this->request->data);
+			$servicedocument['customer_id']=$this->loggedinuser['customer_id'];
             if ($this->Servicedocuments->save($servicedocument)) {
                 $this->Flash->success(__('The servicedocument has been saved.'));
 
@@ -113,4 +150,46 @@ class ServicedocumentsController extends AppController
 
         return $this->redirect(['action' => 'index']);
     }
+	public function deleteAll($id=null)
+	{
+    	$this->request->allowMethod(['post', 'deleteall']);
+        $sucess=false;$failure=false;
+        $data=$this->request->data;
+			
+		if(isset($data)){
+		   foreach($data as $key =>$value){
+		   	   		
+		   	   	$itemna=explode("-",$key);
+			    
+			    if(count($itemna)== 2 && $itemna[0]=='chk'){
+			    	
+					$record = $this->Servicedocuments->get($value);
+					
+					 if($record['customer_id']== $this->loggedinuser['customer_id']) 
+					 {
+					 	
+						   if ($this->Servicedocuments->delete($record)) 
+						    {
+					           $sucess= $sucess | true;
+					        } else {
+					           $failure= $failure | true;
+					        }
+					}
+				}  	  
+			}
+		   		        
+		
+				if($sucess)
+				{
+					$this->Flash->success(__('Selected Service Documents has been deleted.'));
+				}
+		        if($failure)
+		        {
+					$this->Flash->error(__('The Service Documents could not be deleted. Please, try again.'));
+				}
+		
+		   }
+
+             return $this->redirect(['action' => 'index']);	
+     }
 }

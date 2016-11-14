@@ -6,9 +6,10 @@
     <small>The individuals tracked by mobile or a tracker device</small>
   </h1>
   <ol class="breadcrumb">
-    <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-    <li class="active">Tracking Objects</li>
-      <li class="active">People</li>
+    <li><a href="#"><i class="fa fa-dashboard"></i>Home</a></li>
+  	<li><a href="#"><i class="fa fa-puzzle-piece"></i> Administration</a></li>
+    <li><a href="#"><i class="fa fa-puzzle-piece"></i> Tracking Items</a></li>
+    <li><a href="/people/"><i class="fa fa-user"></i> People</a></li>
   </ol>
 </section>
 <?php echo $this->element('indexbasic'); ?>

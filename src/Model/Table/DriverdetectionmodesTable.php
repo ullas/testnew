@@ -39,6 +39,9 @@ class DriverdetectionmodesTable extends Table
         $this->hasMany('Vehicles', [
             'foreignKey' => 'driverdetectionmode_id'
         ]);
+		$this->belongsTo('Customers', [
+            'foreignKey' => 'customer_id'
+        ]);
     }
 
     /**

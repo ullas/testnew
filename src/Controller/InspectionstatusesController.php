@@ -26,42 +26,46 @@ class InspectionstatusesController extends AppController
      */
     public function index()
     {
-    	/*
-      		    
-        */
-       
-         $this->loadModel('CreateConfigs');
-         $configs=$this->CreateConfigs->find('all')->where(['table_name' => 'Inspectionstatuses'])->order(['id' => 'ASC'])->toArray();
-        
-         $this->set('configs',$configs);	
-         $this->set('_serialize', ['configs']);
+    	$this->loadModel('Inspectionstatuses');
+       $configs=$this->Inspectionstatuses->find('all')->toArray();
+	   $actions =[['name'=>'delete','title'=>'Delete','class'=>' label-danger ']];
+       $additional= ['basic'=>['All'],
+      	                'additional'=>[ ]
+      	            ];
+	   $this->set('additional',$additional);
+	   $this->set('actions',$actions);	
+       $this->set('configs',$configs);	
+       $this->set('_serialize', ['configs','actions']);
        
        
     }
     
     
-public function ajaxdata() {
+	public function ajaxdata() 
+	{
         $this->autoRender= false;
-      
-          
-       $this->loadModel('CreateConfigs');
-       $dbout=$this->CreateConfigs->find('all')->where(['table_name' => 'Inspectionstatuses'])->order(['id' => 'ASC'])->toArray();
-        
-        $fields = array();
-        foreach($dbout as $value){
-            $fields[] = array("name" => $value['field_name'] , "type" => $value['datatype'] );
-			
-        }
-      
-		                           
-        $output =$this->Datatable->getView($fields,['Customers']);
-        $out =json_encode($output);  
-	
+		$usrfiter="";
+		$basic = isset($this->request->query['basic'])?$this->request->query['basic']:"" ;
+		$additional = isset($this->request->query['additional'])?$this->request->query['additional']:"";
+		
+
+        $this->loadModel('Inspectionstatuses');
+        $dbout=$this->Inspectionstatuses->find('all')->toArray();
+     
+         $fields = array();
+		 
+				$fields[0] = array("name" =>"Inspectionstatuses.id"  , "type" => "num");
+				$fields[1] = array("name" =>"Inspectionstatuses.name"  , "type" => "char");
+				
+				
+		
+		$this->log($fields);
+		$output =$this->Datatable->getView($fields,['Customers'],$usrfiter);
+		$out =json_encode($output);  
+	   
 		$this->response->body($out);
 	    return $this->response;
-	     
-             
- }  
+	}
 
     /**
      * View method
@@ -90,7 +94,7 @@ public function ajaxdata() {
         $inspectionstatus = $this->Inspectionstatuses->newEntity();
         if ($this->request->is('post')) {
             $inspectionstatus = $this->Inspectionstatuses->patchEntity($inspectionstatus, $this->request->data);
-            $inspectionstatus['customer_id']=$this->currentuser['customer_id'];
+            $inspectionstatus['customer_id']=$this->loggedinuser['customer_id'];
             if ($this->Inspectionstatuses->save($inspectionstatus)) {
                 $this->Flash->success(__('The inspectionstatus has been saved.'));
 
@@ -121,7 +125,7 @@ public function ajaxdata() {
         ]);
         if ($this->request->is(['patch', 'post', 'put'])) {
             $inspectionstatus = $this->Inspectionstatuses->patchEntity($inspectionstatus, $this->request->data);
-             $inspectionstatus['customer_id']=$this->currentuser['customer_id'];
+             $inspectionstatus['customer_id']=$this->loggedinuser['customer_id'];
             if ($this->Inspectionstatuses->save($inspectionstatus)) {
                 $this->Flash->success(__('The inspectionstatus has been saved.'));
 
@@ -154,4 +158,43 @@ public function ajaxdata() {
 
         return $this->redirect(['action' => 'index']);
     }
+	
+	public function deleteAll($id=null){
+    	
+		$this->request->allowMethod(['post', 'deleteall']);
+        $sucess=false;$failure=false;
+        $data=$this->request->data;
+			
+		if(isset($data)){
+		   foreach($data as $key =>$value){
+		   	   		
+		   	   	$itemna=explode("-",$key);
+			    
+			    if(count($itemna)== 2 && $itemna[0]=='chk'){
+			    	
+					$record = $this->Inspectionstatuses->get($value);
+					
+					 if($record['customer_id']== $this->loggedinuser['customer_id']) {
+					 	
+						   if ($this->Inspectionstatuses->delete($record)) {
+					           $sucess= $sucess | true;
+					        } else {
+					           $failure= $failure | true;
+					        }
+					}
+				}  	  
+			}
+		   		        
+		
+				if($sucess){
+					$this->Flash->success(__('Selected Inspectionstatuses has been deleted.'));
+				}
+		        if($failure){
+					$this->Flash->error(__('The Inspectionstatuses could not be deleted. Please, try again.'));
+				}
+		
+		   }
+
+             return $this->redirect(['action' => 'index']);	
+     }
 }

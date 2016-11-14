@@ -7,9 +7,10 @@
     <small>Stationary or moving items tracked other than vehicle or people</small>
   </h1>
   <ol class="breadcrumb">
-    <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-    <li><a href="#"><i class="fa fa-dashboard"></i> Tracking Items</a></li>
-    <li class="active">Asset</li>
+    <li><a href="#"><i class="fa fa-dashboard"></i>Home</a></li>
+  	<li><a href="#"><i class="fa fa-puzzle-piece"></i> Administration</a></li>
+    <li><a href="#"><i class="fa fa-puzzle-piece"></i> Tracking Items</a></li>
+    <li><a href="/assets/"><i class="fa fa-cube"></i> Assets</a></li>
     
   </ol>
 </section>

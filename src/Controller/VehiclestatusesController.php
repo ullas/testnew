@@ -2,7 +2,7 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
-
+use Cake\ORM\TableRegistry;
 /**
  * Vehiclestatuses Controller
  *
@@ -11,6 +11,13 @@ use App\Controller\AppController;
 class VehiclestatusesController extends AppController
 {
 
+   /**
+     * Components
+     *
+     * @var array
+     */
+    public $components = ['Datatable'];
+	
     /**
      * Index method
      *
@@ -18,14 +25,42 @@ class VehiclestatusesController extends AppController
      */
     public function index()
     {
-        $this->paginate = [
-            'contain' => ['Customers']
-        ];
-        $vehiclestatuses = $this->paginate($this->Vehiclestatuses);
-
-        $this->set(compact('vehiclestatuses'));
-        $this->set('_serialize', ['vehiclestatuses']);
+       $this->loadModel('Vehiclestatuses');
+       $configs=$this->Vehiclestatuses->find('all')->toArray();
+	   $actions =[['name'=>'delete','title'=>'Delete','class'=>' label-danger ']];
+       $additional= ['basic'=>['All'],
+      	                'additional'=>[ ]
+      	            ];
+	   $this->set('additional',$additional);
+	   $this->set('actions',$actions);	
+       $this->set('configs',$configs);	
+       $this->set('_serialize', ['configs','actions']);
     }
+	
+	public function ajaxdata() 
+	{
+        $this->autoRender= false;
+		$usrfiter="";
+		$basic = isset($this->request->query['basic'])?$this->request->query['basic']:"" ;
+		$additional = isset($this->request->query['additional'])?$this->request->query['additional']:"";
+		
+
+        $this->loadModel('Vehiclestatuses');
+        $dbout=$this->Vehiclestatuses->find('all')->toArray();
+     
+         $fields = array();
+		 
+				$fields[0] = array("name" =>"Vehiclestatuses.id"  , "type" => "num");
+				$fields[1] = array("name" =>"Vehiclestatuses.name"  , "type" => "char");
+								
+		
+		$this->log($fields);
+		$output =$this->Datatable->getView($fields,['Customers'],$usrfiter);
+		$out =json_encode($output);  
+	   
+		$this->response->body($out);
+	    return $this->response;
+	}
 
     /**
      * View method
@@ -54,6 +89,7 @@ class VehiclestatusesController extends AppController
         $vehiclestatus = $this->Vehiclestatuses->newEntity();
         if ($this->request->is('post')) {
             $vehiclestatus = $this->Vehiclestatuses->patchEntity($vehiclestatus, $this->request->data);
+			$vehiclestatus['customer_id']=$this->loggedinuser['customer_id'];
             if ($this->Vehiclestatuses->save($vehiclestatus)) {
                 $this->Flash->success(__('The vehiclestatus has been saved.'));
 
@@ -81,6 +117,7 @@ class VehiclestatusesController extends AppController
         ]);
         if ($this->request->is(['patch', 'post', 'put'])) {
             $vehiclestatus = $this->Vehiclestatuses->patchEntity($vehiclestatus, $this->request->data);
+			$vehiclestatus['customer_id']=$this->loggedinuser['customer_id'];
             if ($this->Vehiclestatuses->save($vehiclestatus)) {
                 $this->Flash->success(__('The vehiclestatus has been saved.'));
 
@@ -113,4 +150,46 @@ class VehiclestatusesController extends AppController
 
         return $this->redirect(['action' => 'index']);
     }
+	public function deleteAll($id=null)
+	{
+    	$this->request->allowMethod(['post', 'deleteall']);
+        $sucess=false;$failure=false;
+        $data=$this->request->data;
+			
+		if(isset($data)){
+		   foreach($data as $key =>$value){
+		   	   		
+		   	   	$itemna=explode("-",$key);
+			    
+			    if(count($itemna)== 2 && $itemna[0]=='chk'){
+			    	
+					$record = $this->Vehiclestatuses->get($value);
+					
+					 if($record['customer_id']== $this->loggedinuser['customer_id']) 
+					 {
+					 	
+						   if ($this->Vehiclestatuses->delete($record)) 
+						    {
+					           $sucess= $sucess | true;
+					        } else {
+					           $failure= $failure | true;
+					        }
+					}
+				}  	  
+			}
+		   		        
+		
+				if($sucess)
+				{
+					$this->Flash->success(__('Selected Vehiclestatuses has been deleted.'));
+				}
+		        if($failure)
+		        {
+					$this->Flash->error(__('The Vehiclestatuses could not be deleted. Please, try again.'));
+				}
+		
+		   }
+
+             return $this->redirect(['action' => 'index']);	
+     }
 }

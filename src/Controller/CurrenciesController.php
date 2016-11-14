@@ -2,7 +2,7 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
-
+use Cake\ORM\TableRegistry;
 /**
  * Currencies Controller
  *
@@ -10,7 +10,12 @@ use App\Controller\AppController;
  */
 class CurrenciesController extends AppController
 {
-
+	/**
+     * Components
+     *
+     * @var array
+     */
+    public $components = ['Datatable'];
     /**
      * Index method
      *
@@ -18,12 +23,47 @@ class CurrenciesController extends AppController
      */
     public function index()
     {
-        $currencies = $this->paginate($this->Currencies);
-
-        $this->set(compact('currencies'));
-        $this->set('_serialize', ['currencies']);
+       $this->loadModel('Currencies');
+       $configs=$this->Currencies->find('all')->toArray();
+	   $actions =[['name'=>'delete','title'=>'Delete','class'=>' label-danger ']];
+       $additional= ['basic'=>['All'],
+      	                'additional'=>[ ]
+      	            ];
+	   $this->set('additional',$additional);
+	   $this->set('actions',$actions);	
+       $this->set('configs',$configs);	
+       $this->set('_serialize', ['configs','actions']);
     }
 
+
+	public function ajaxdata() 
+	{
+        $this->autoRender= false;
+		$usrfiter="";
+		$basic = isset($this->request->query['basic'])?$this->request->query['basic']:"" ;
+		$additional = isset($this->request->query['additional'])?$this->request->query['additional']:"";
+		
+
+        $this->loadModel('AssetTypes');
+        $dbout=$this->AssetTypes->find('all')->toArray();
+     
+         $fields = array();
+		 
+				$fields[0] = array("name" =>"Currencies.id"  , "type" => "num");
+				$fields[1] = array("name" =>"Currencies.name"  , "type" => "char");
+				$fields[2] = array("name" =>"Currencies.abbrev"  , "type" => "char");
+				$fields[3] = array("name" =>"Currencies.symbol"  , "type" => "char");
+		
+		$this->log($fields);
+		$output =$this->Datatable->getView($fields,['Customers'],$usrfiter);
+		$out =json_encode($output);  
+	   
+		$this->response->body($out);
+	    return $this->response;
+	     
+             
+	 }
+	
     /**
      * View method
      *
@@ -108,4 +148,43 @@ class CurrenciesController extends AppController
 
         return $this->redirect(['action' => 'index']);
     }
+	
+	public function deleteAll($id=null){
+    	
+		$this->request->allowMethod(['post', 'deleteall']);
+        $sucess=false;$failure=false;
+        $data=$this->request->data;
+			
+		if(isset($data)){
+		   foreach($data as $key =>$value){
+		   	   		
+		   	   	$itemna=explode("-",$key);
+			    
+			    if(count($itemna)== 2 && $itemna[0]=='chk'){
+			    	
+					$record = $this->Currencies->get($value);
+					
+					 if($record['customer_id']== $this->loggedinuser['customer_id']) {
+					 	
+						   if ($this->Currencies->delete($record)) {
+					           $sucess= $sucess | true;
+					        } else {
+					           $failure= $failure | true;
+					        }
+					}
+				}  	  
+			}
+		   		        
+		
+				if($sucess){
+					$this->Flash->success(__('Selected Currencies has been deleted.'));
+				}
+		        if($failure){
+					$this->Flash->error(__('The Currencies could not be deleted. Please, try again.'));
+				}
+		
+		   }
+
+             return $this->redirect(['action' => 'index']);	
+     }
 }

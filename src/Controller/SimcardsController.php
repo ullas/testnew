@@ -2,7 +2,7 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
-
+use Cake\ORM\TableRegistry;
 /**
  * Simcards Controller
  *
@@ -31,39 +31,28 @@ class SimcardsController extends AppController
         */
        
          $this->loadModel('CreateConfigs');
-         $configs=$this->CreateConfigs->find('all')->where(['table_name' => 'Simcards'])->order(['id' => 'ASC'])->toArray();
-        
-         $this->set('configs',$configs);	
-         $this->set('_serialize', ['configs']);
-         
-         
-         
-         $this->loadModel('CreateConfigs');
          $configs=$this->CreateConfigs->find('all')->where(['table_name' => 'Simcards'])->order(['"order"' => 'ASC'])->toArray();
-		 $this->loadModel('Usersettings');
-		 $usersettings=$this->Usersettings->find('all')->where(['user_id' => $this->loggedinuser['id']])->where(['module' => 'Workorders'])->where(['key' => 'INIT_VISIBLE_COLUMNS_Simcards'])->toArray();
+        
+         	 $this->loadModel('Usersettings');
+		 $usersettings=$this->Usersettings->find('all')->where(['user_id' => $this->loggedinuser['id']])->where(['module' => 'Simcards'])->where(['key' => 'INIT_VISIBLE_COLUMNS_SIMCARDS'])->toArray();
          if(isset($usersettings[0]['value'])){
          	$this->set('usersettings',$usersettings);	
 			
          }else{
          	
          	$this->loadModel('Globalusersettings');
-		    $usersettings=$this->Globalusersettings->find('all')->where(['module' => 'Workorders'])->where(['key' => 'INIT_VISIBLE_COLUMNS_WORKORDERS'])->toArray();
+		    $usersettings=$this->Globalusersettings->find('all')->where(['module' => 'Simcards'])->where(['key' => 'INIT_VISIBLE_COLUMNS_SIMCARDS'])->toArray();
             $this->set('usersettings',$usersettings);
 			
          }
 		 $actions =[
-                ['name'=>'assign','title'=>'Assign','class'=>'label-success'],
-                ['name'=>'unassign','title'=>'Unassign','class'=>'label-warning'],
-                ['name'=>'close','title'=>'Close','class'=>' label-danger ']
+                
+                ['name'=>'delete','title'=>'Delete','class'=>' label-danger ']
                 ];
          $additional= [
-      	                          'basic'=>['Open','OverDue','Resolved','Closed'],
+      	                          'basic'=>['All'],
       	                          'additional'=>[
-      	                                ['name'=>'issueddate','title'=>'Issued Date'],
-      	                                ['name'=>'startdate','title' =>'Start Date'],
-      	                                ['name'=>'completiondate','title'=>'Completion Date']   	                          
-      	                          ]];
+      	                                ]];
 		 $this->set('additional',$additional);
 		 $this->set('actions',$actions);	
          $this->set('configs',$configs);	
@@ -72,13 +61,60 @@ class SimcardsController extends AppController
        
     }
     
-    
-public function ajaxdata() {
+    public function updateSettings()
+{
+   	
+	$this->autoRender= false;	
+	$columns=$_POST['columns'];
+	$visorder = $_POST['visorder'];
+		
+	
+	$columns=isset($columns)?$columns:6;
+	$userSettings = TableRegistry::get('Usersettings');
+	$count = $userSettings->find('all')
+	   ->where(['key' => 'INIT_VISIBLE_COLUMNS_SIMCARDS'])
+	  ->where(['user_id' => $this->loggedinuser['id']])
+	   ->count();
+	
+	if($count>0)	{	 
+	
+	$query = $userSettings->query();
+	$res=$query->update()
+	    ->set(['value' => $columns])
+		->set(['value1' => $visorder])
+	    ->where(['key' => 'INIT_VISIBLE_COLUMNS_SIMCARDS'])
+	    ->where(['user_id' => $this->loggedinuser['id']])
+	    ->execute();
+	$this->response->body($res);
+	
+   }else{
+   	  
+	   $query1 = $userSettings->query();
+	   $res=$query1->insert(['key','value','user_id','module'])
+	   ->values(
+	       ['key'=>'INIT_VISIBLE_COLUMNS_SIMCARDS',
+	        'value'=>$columns,
+	        'user_id'=>$this->loggedinuser['id'],
+	        'module'=>'Simcards'])
+	    ->execute();
+	   $this->response->body($res);
+	
+	   
+   }
+   }
+	public function ajaxdata() {
         $this->autoRender= false;
-      
+      	$usrfiter="";
+		$basic = isset($this->request->query['basic'])?$this->request->query['basic']:"" ;
+		$additional = isset($this->request->query['additional'])?$this->request->query['additional']:"";
+		
+		
+       
+	  
+	  
           
        $this->loadModel('CreateConfigs');
-       $dbout=$this->CreateConfigs->find('all')->where(['table_name' => 'Simcards'])->order(['id' => 'ASC'])->toArray();
+       $dbout=$this->CreateConfigs->find('all')->where(['table_name' => 'Simcards'])->order(['"order"' => 'ASC'])->toArray();
         
         $fields = array();
         foreach($dbout as $value){
@@ -87,7 +123,7 @@ public function ajaxdata() {
         }
       
 		                           
-        $output =$this->Datatable->getView($fields,['Simproviders', 'Customers']);
+        $output =$this->Datatable->getView($fields,['Simproviders', 'Customers'],$usrfiter);
         $out =json_encode($output);  
 	
 		$this->response->body($out);
@@ -123,7 +159,7 @@ public function ajaxdata() {
         $simcard = $this->Simcards->newEntity();
         if ($this->request->is('post')) {
             $simcard = $this->Simcards->patchEntity($simcard, $this->request->data);
-            $simcard['customer_id']=$this->currentuser['customer_id'];
+            $simcard['customer_id']=$this->loggedinuser['customer_id'];
             if ($this->Simcards->save($simcard)) {
                 $this->Flash->success(__('The simcard has been saved.'));
 
@@ -157,7 +193,7 @@ public function ajaxdata() {
         ]);
         if ($this->request->is(['patch', 'post', 'put'])) {
             $simcard = $this->Simcards->patchEntity($simcard, $this->request->data);
-             $simcard['customer_id']=$this->currentuser['customer_id'];
+             $simcard['customer_id']=$this->loggedinuser['customer_id'];
             if ($this->Simcards->save($simcard)) {
                 $this->Flash->success(__('The simcard has been saved.'));
 
@@ -191,4 +227,42 @@ public function ajaxdata() {
 
         return $this->redirect(['action' => 'index']);
     }
+	public function deleteAll($id=null){
+    	
+		$this->request->allowMethod(['post', 'deleteall']);
+        $sucess=false;$failure=false;
+        $data=$this->request->data;
+			
+		if(isset($data)){
+		   foreach($data as $key =>$value){
+		   	   		
+		   	   	$itemna=explode("-",$key);
+			    
+			    if(count($itemna)== 2 && $itemna[0]=='chk'){
+			    	
+					$record = $this->Simcards->get($value);
+					
+					 if($record['customer_id']== $this->loggedinuser['customer_id']) {
+					 	
+						   if ($this->Simcards->delete($record)) {
+					           $sucess= $sucess | true;
+					        } else {
+					           $failure= $failure | true;
+					        }
+					}
+				}  	  
+			}
+		   		        
+		
+				if($sucess){
+					$this->Flash->success(__('Selected Simcards has been deleted.'));
+				}
+		        if($failure){
+					$this->Flash->error(__('The Simcards could not be deleted. Please, try again.'));
+				}
+		
+		   }
+
+             return $this->redirect(['action' => 'index']);	
+     }
 }

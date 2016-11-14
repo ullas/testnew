@@ -19,9 +19,10 @@ $this->Form->templates($myTemplates);
     Edit Asset <small>Please fill the details to edit an Asset</small>
   </h1>
   <ol class="breadcrumb">
-    <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-    <li><a href="#">Tracking Object</a></li>
-    <li><a href="/assets/"> Asset</a></li>
+   <li><a href="#"><i class="fa fa-dashboard"></i>Home</a></li>
+  	<li><a href="#"><i class="fa fa-puzzle-piece"></i> Administration</a></li>
+    <li><a href="#"><i class="fa fa-puzzle-piece"></i> Tracking Items</a></li>
+    <li><a href="/assets/"><i class="fa fa-cube"></i> Assets</a></li>
     <li class="active">Edit</li>
   </ol>
 </section>

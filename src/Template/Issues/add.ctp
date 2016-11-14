@@ -18,7 +18,7 @@ $this->Form->templates($myTemplates);
   </h1>
   <ol class="breadcrumb">
   	<li><a href="#"><i class="fa fa-dashboard"></i>Home</a></li>
-   
+    <li><a href="#"></a>Fleet Management</li>
     <li><a href="/Issues"> Issues</a></li>
     <li class="active">Add</li>
   </ol>
@@ -52,7 +52,7 @@ $this->Form->templates($myTemplates);
 
                     
                 	
-                  echo $this->Form->input('reportedby_id',['label'=>'Reported By','class'=>'select2']);
+                  echo $this->Form->input('reportedby_id',[ 'empty' => true,'label'=>'Reported By','class'=>'select2']);
 
                     
                 	
@@ -76,7 +76,7 @@ $this->Form->templates($myTemplates);
            <?php    	
             echo $this->Form->input('workorder_id', ['label'=>'Work Order','options' => $workorders, 'empty' => true,'class'=>'select2']);
             echo $this->Form->input('serviceentry_id', ['label'=>'Service Entry','options' => $servicesentries, 'empty' => true,'class'=>'select2']);
-            echo $this->Form->input('addresses.ids', ['options' => $addresses,'class'=>'select2','label'=>'Assigned To']);
+            echo $this->Form->input('addresses.ids', [ 'empty' => true,'options' => $addresses,'class'=>'select2','label'=>'Assigned To']);
 	
         ?>
     </div>

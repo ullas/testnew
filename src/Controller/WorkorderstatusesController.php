@@ -2,7 +2,7 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
-
+use Cake\ORM\TableRegistry;
 /**
  * Workorderstatuses Controller
  *
@@ -12,20 +12,55 @@ class WorkorderstatusesController extends AppController
 {
 
     /**
+     * Components
+     *
+     * @var array
+     */
+    public $components = ['Datatable'];
+	
+    /**
      * Index method
      *
      * @return \Cake\Network\Response|null
      */
     public function index()
     {
-        $this->paginate = [
-            'contain' => ['Customers']
-        ];
-        $workorderstatuses = $this->paginate($this->Workorderstatuses);
-
-        $this->set(compact('workorderstatuses'));
-        $this->set('_serialize', ['workorderstatuses']);
+       $this->loadModel('Workorderstatuses');
+       $configs=$this->Workorderstatuses->find('all')->toArray();
+	   $actions =[['name'=>'delete','title'=>'Delete','class'=>' label-danger ']];
+       $additional= ['basic'=>['All'],
+      	                'additional'=>[ ]
+      	            ];
+	   $this->set('additional',$additional);
+	   $this->set('actions',$actions);	
+       $this->set('configs',$configs);	
+       $this->set('_serialize', ['configs','actions']);
     }
+	
+	public function ajaxdata() 
+	{
+        $this->autoRender= false;
+		$usrfiter="";
+		$basic = isset($this->request->query['basic'])?$this->request->query['basic']:"" ;
+		$additional = isset($this->request->query['additional'])?$this->request->query['additional']:"";
+		
+
+        $this->loadModel('Workorderstatuses');
+        $dbout=$this->Workorderstatuses->find('all')->toArray();
+     
+         $fields = array();
+		 
+				$fields[0] = array("name" =>"Workorderstatuses.id"  , "type" => "num");
+				$fields[1] = array("name" =>"Workorderstatuses.name"  , "type" => "char");
+								
+		
+		$this->log($fields);
+		$output =$this->Datatable->getView($fields,['Customers'],$usrfiter);
+		$out =json_encode($output);  
+	   
+		$this->response->body($out);
+	    return $this->response;
+	}
 
     /**
      * View method
@@ -54,6 +89,7 @@ class WorkorderstatusesController extends AppController
         $workorderstatus = $this->Workorderstatuses->newEntity();
         if ($this->request->is('post')) {
             $workorderstatus = $this->Workorderstatuses->patchEntity($workorderstatus, $this->request->data);
+			$workorderstatus['customer_id']=$this->loggedinuser['customer_id'];
             if ($this->Workorderstatuses->save($workorderstatus)) {
                 $this->Flash->success(__('The workorderstatus has been saved.'));
 
@@ -81,6 +117,7 @@ class WorkorderstatusesController extends AppController
         ]);
         if ($this->request->is(['patch', 'post', 'put'])) {
             $workorderstatus = $this->Workorderstatuses->patchEntity($workorderstatus, $this->request->data);
+			$workorderstatus['customer_id']=$this->loggedinuser['customer_id'];
             if ($this->Workorderstatuses->save($workorderstatus)) {
                 $this->Flash->success(__('The workorderstatus has been saved.'));
 
@@ -113,4 +150,46 @@ class WorkorderstatusesController extends AppController
 
         return $this->redirect(['action' => 'index']);
     }
+	public function deleteAll($id=null)
+	{
+    	$this->request->allowMethod(['post', 'deleteall']);
+        $sucess=false;$failure=false;
+        $data=$this->request->data;
+			
+		if(isset($data)){
+		   foreach($data as $key =>$value){
+		   	   		
+		   	   	$itemna=explode("-",$key);
+			    
+			    if(count($itemna)== 2 && $itemna[0]=='chk'){
+			    	
+					$record = $this->Workorderstatuses->get($value);
+					
+					 if($record['customer_id']== $this->loggedinuser['customer_id']) 
+					 {
+					 	
+						   if ($this->Workorderstatuses->delete($record)) 
+						    {
+					           $sucess= $sucess | true;
+					        } else {
+					           $failure= $failure | true;
+					        }
+					}
+				}  	  
+			}
+		   		        
+		
+				if($sucess)
+				{
+					$this->Flash->success(__('Selected Workorder statuses has been deleted.'));
+				}
+		        if($failure)
+		        {
+					$this->Flash->error(__('The Workorder statuses could not be deleted. Please, try again.'));
+				}
+		
+		   }
+
+             return $this->redirect(['action' => 'index']);	
+     }
 }

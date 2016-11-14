@@ -3,6 +3,7 @@ namespace App\Controller;
 
 use App\Controller\AppController;
 use Cake\Event\Event;
+use Cake\ORM\TableRegistry;
 /**
  * Users Controller
  *
@@ -12,7 +13,12 @@ class UsersController extends AppController
 {
 
 
-  
+  	/**
+     * Components
+     *
+     * @var array
+     */
+    public $components = ['Datatable'];
     /**
      * Index method
      *
@@ -20,16 +26,161 @@ class UsersController extends AppController
      */
     public function index()
     {
-        $this->paginate = [
-           
-        ];
-        $users = $this->paginate($this->Users);
-
-        $this->set(compact('users'));
-        $this->set('_serialize', ['users']);
+        /*
+      		    
+        */
+       
+         $this->loadModel('CreateConfigs');
+         $configs=$this->CreateConfigs->find('all')->where(['table_name' => 'Users'])->order(['"order"' => 'ASC'])->toArray();
+        
+         	 $this->loadModel('Usersettings');
+		 $usersettings=$this->Usersettings->find('all')->where(['user_id' => $this->loggedinuser['id']])->where(['module' => 'Users'])->where(['key' => 'INIT_VISIBLE_COLUMNS_USERS'])->toArray();
+         if(isset($usersettings[0]['value'])){
+         	$this->set('usersettings',$usersettings);	
+			
+         }else{
+         	
+         	$this->loadModel('Globalusersettings');
+		    $usersettings=$this->Globalusersettings->find('all')->where(['module' => 'Users'])->where(['key' => 'INIT_VISIBLE_COLUMNS_USERS'])->toArray();
+            $this->set('usersettings',$usersettings);
+			
+         }
+		 $actions =[
+                
+                ['name'=>'delete','title'=>'Delete','class'=>' label-danger ']
+                ];
+         $additional= [
+      	                          'basic'=>['All'],
+      	                          'additional'=>[
+      	                                ['name'=>'created','title'=>'Created Date'], 
+      	                                ['name'=>'modified','title'=>'Modified Date'] 	                          
+      	                          ]];
+		 $this->set('additional',$additional);
+		 $this->set('actions',$actions);	
+         $this->set('configs',$configs);	
+         $this->set('_serialize', ['configs','usersettings','actions','additional']);
 		
     }
+	public function updateSettings()
+	{
+   	
+	$this->autoRender= false;	
+	$columns=$_POST['columns'];
+	$visorder = $_POST['visorder'];
+		
+	
+	$columns=isset($columns)?$columns:6;
+	$userSettings = TableRegistry::get('Usersettings');
+	$count = $userSettings->find('all')
+	   ->where(['key' => 'INIT_VISIBLE_COLUMNS_USERS'])
+	  ->where(['user_id' => $this->loggedinuser['id']])
+	   ->count();
+	
+	if($count>0)	{	 
+	
+	$query = $userSettings->query();
+	$res=$query->update()
+	    ->set(['value' => $columns])
+		->set(['value1' => $visorder])
+	    ->where(['key' => 'INIT_VISIBLE_COLUMNS_USERS'])
+	    ->where(['user_id' => $this->loggedinuser['id']])
+	    ->execute();
+	$this->response->body($res);
+	
+   }else{
+   	  
+	   $query1 = $userSettings->query();
+	   $res=$query1->insert(['key','value','user_id','module'])
+	   ->values(
+	       ['key'=>'INIT_VISIBLE_COLUMNS_USERS',
+	        'value'=>$columns,
+	        'user_id'=>$this->loggedinuser['id'],
+	        'module'=>'Users'])
+	    ->execute();
+	   $this->response->body($res);
+	
+	   
+   	}
+	
+	}
 
+	private function toPostDBDate($date){
+		
+		 $ret="";
+		 $parts=explode("/",$date);
+		 if(count($parts)==3){
+		 	$ret= $date= '20' .trim($parts[2]) . "-" . trim($parts[1]) . "-" . trim($parts[0]);
+			
+		 }
+		
+	  return $ret;
+	}
+
+	private function getDateRangeFilters($dates,$basic)  {
+	
+	$sql="";	
+		
+	$alldates=explode(",",$dates);
+	
+	$pre=($basic>0)?" and ":"";
+	
+	$datecol=explode("-",$alldates[0]);
+	
+	$sql .=  count($datecol)>1? " $pre created between '" . $this->toPostDBDate($datecol[0]) . "' and '" . $this->toPostDBDate($datecol[1]) . "'": "" ;
+	
+	$datecol=explode("-",$alldates[1]);
+	
+	$pre=(strlen($sql)>0)?" and ":"";
+	
+	$sql .=  count($datecol)>1? " $pre modified between '" . $this->toPostDBDate($datecol[0]) . "' and '" . $this->toPostDBDate($datecol[1]) . "'": "" ;
+	
+	//$datecol=explode("-",$alldates[2]);
+	//$pre=(strlen($sql)>0)?" and ":"";
+	
+	//$sql .= count($datecol)>1? " $pre completiondate between '" . $this->toPostDBDate($datecol[0]) . "' and '" . $this->toPostDBDate($datecol[1]) . "'": "" ;
+	
+	
+	return $sql;
+	}
+	
+    
+	public function ajaxdata() {
+        $this->autoRender= false;
+		$usrfiter="";
+		$basic = isset($this->request->query['basic'])?$this->request->query['basic']:"" ;
+		$additional = isset($this->request->query['additional'])?$this->request->query['additional']:"";
+		
+		/*
+        if($basic == 1){
+        	
+			$usrfiter=" servicesentries.markasvoid='true'  ";
+			
+        }else{
+        	$usrfiter=" servicesentries.markasvoid='false'  ";
+        }
+		$usrfiter.=$this->getDateRangeFilters($additional,2);
+		*/
+          
+       $this->loadModel('CreateConfigs');
+       $dbout=$this->CreateConfigs->find('all')->where(['table_name' => 'Users'])->order(['"order"' => 'ASC'])->toArray();
+        
+        $fields = array();
+        foreach($dbout as $value){
+            $fields[] = array("name" => $value['field_name'] , "type" => $value['datatype'] );
+			
+        }
+        
+		
+		
+		                           
+        $output =$this->Datatable->getView($fields,['Customers'],$usrfiter);
+        $out =json_encode($output);  
+	   
+		$this->response->body($out);
+	    return $this->response;
+	     
+             
+ 	} 
     /**
      * View method
      *
@@ -57,6 +208,7 @@ class UsersController extends AppController
         $user = $this->Users->newEntity();
         if ($this->request->is('post')) {
             $user = $this->Users->patchEntity($user, $this->request->data);
+			$user['customer_id']=$this->loggedinuser['customer_id'];
             if ($this->Users->save($user)) {
                 $this->Flash->success(__('The user has been saved.'));
 
@@ -65,7 +217,8 @@ class UsersController extends AppController
                 $this->Flash->error(__('The user could not be saved. Please, try again.'));
             }
         }
-       
+        $customers = $this->Users->Customers->find('list', ['limit' => 200])->where("customer_id=".$this->loggedinuser['customer_id']);
+        
         $this->set(compact('user'));
         $this->set('_serialize', ['user']);
     }
@@ -84,6 +237,7 @@ class UsersController extends AppController
         ]);
         if ($this->request->is(['patch', 'post', 'put'])) {
             $user = $this->Users->patchEntity($user, $this->request->data);
+			$user['customer_id']=$this->loggedinuser['customer_id'];
             if ($this->Users->save($user)) {
                 $this->Flash->success(__('The user has been saved.'));
 
@@ -92,7 +246,8 @@ class UsersController extends AppController
                 $this->Flash->error(__('The user could not be saved. Please, try again.'));
             }
         }
-        $roles = $this->Users->Roles->find('list', ['limit' => 200]);
+       //$roles = $this->Users->Roles->find('list', ['limit' => 200])->where("customer_id=".$this->loggedinuser['customer_id']);
+        $customers = $this->Users->Customers->find('list', ['limit' => 200])->where("customer_id=".$this->loggedinuser['customer_id']);
         $this->set(compact('user'));
         $this->set('_serialize', ['user']);
     }
@@ -117,6 +272,48 @@ class UsersController extends AppController
         return $this->redirect(['action' => 'index']);
     }
 	
+	public function deleteAll($id=null)
+	{
+    	$this->request->allowMethod(['post', 'deleteall']);
+        $sucess=false;$failure=false;
+        $data=$this->request->data;
+			
+		if(isset($data)){
+		   foreach($data as $key =>$value){
+		   	   		
+		   	   	$itemna=explode("-",$key);
+			    
+			    if(count($itemna)== 2 && $itemna[0]=='chk'){
+			    	
+					$record = $this->Users->get($value);
+					
+					 if($record['customer_id']== $this->loggedinuser['customer_id']) 
+					 {
+					 	
+						   if ($this->Users->delete($record)) 
+						    {
+					           $sucess= $sucess | true;
+					        } else {
+					           $failure= $failure | true;
+					        }
+					}
+				}  	  
+			}
+		   		        
+		
+				if($sucess)
+				{
+					$this->Flash->success(__('Selected Users has been deleted.'));
+				}
+		        if($failure)
+		        {
+					$this->Flash->error(__('The Users could not be deleted. Please, try again.'));
+				}
+		
+		   }
+
+             return $this->redirect(['action' => 'index']);	
+     }
 	
 	 public function beforeFilter(Event $event)
     {
@@ -142,4 +339,5 @@ class UsersController extends AppController
     {
         return $this->redirect($this->Auth->logout());
     }
+	
 }

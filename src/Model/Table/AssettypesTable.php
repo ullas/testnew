@@ -39,6 +39,9 @@ class AssettypesTable extends Table
         $this->hasMany('Trackingobjects', [
             'foreignKey' => 'assettype_id'
         ]);
+		$this->belongsTo('Customers', [
+            'foreignKey' => 'customer_id'
+        ]);
     }
 
     /**
@@ -59,5 +62,12 @@ class AssettypesTable extends Table
             ->allowEmpty('description');
 
         return $validator;
+    }
+	 public function buildRules(RulesChecker $rules)
+    {
+        
+        $rules->add($rules->existsIn(['customer_id'], 'Customers'));
+
+        return $rules;
     }
 }

@@ -18,7 +18,7 @@ $this->Form->templates($myTemplates);
   </h1>
   <ol class="breadcrumb">
   	<li><a href="#"><i class="fa fa-dashboard"></i>Home</a></li>
-   
+    <li><a href="#"></a>Fleet Management</li>
     <li><a href="/Workorders/"> Work Orders</a></li>
     <li class="active">Edit</li>
   </ol>
@@ -37,10 +37,10 @@ $this->Form->templates($myTemplates);
              <div class="form-horizontal">
         <?php
             echo $this->Form->input('issuedate', ['empty' => true,'type'=>'text','class'=>'datemask','label'=>'Issue Date ','templateVars' => ['icon' => '<div class="input-group-addon"><i class="fa fa-calendar"></i></div>'],'required' => 'required']);
-            echo $this->Form->input('workorderstatus_id',['label'=>'Work Order Status ','class'=>'select2','required' => 'required']);
+            echo $this->Form->input('workorderstatus_id',['empty' => true,'label'=>'Work Order Status ','class'=>'select2','required' => 'required']);
             echo $this->Form->input('vehicle_id', ['options' => $vehicles, 'empty' => true,'class'=>'select2','required' => 'required']);
             echo $this->Form->input('startdate', ['empty' => true,'type'=>'text','class'=>'datemask','label'=>'Start Date ','templateVars' => ['icon' => '<div class="input-group-addon"><i class="fa fa-calendar"></i></div>'],'required' => 'required']);
-            echo $this->Form->input('lables');
+            echo $this->Form->input('lables',['label'=>'Labels']);
             echo $this->Form->input('odometer');
              ?>
          
@@ -60,9 +60,9 @@ $this->Form->templates($myTemplates);
             echo $this->Form->input('parts');
             echo $this->Form->input('dicount',['label'=>'Discount']);
             echo $this->Form->input('tax');
-            echo $this->Form->input('issuedby_id',['label'=>'Issued By','class'=>'select2']);
-            echo $this->Form->input('assignedby_id',['label'=>'Assigned By','class'=>'select2']);
-            echo $this->Form->input('assignto_id',['label'=>'Assigned To','class'=>'select2']);
+            echo $this->Form->input('issuedby_id',['empty' => true,'label'=>'Issued By','class'=>'select2']);
+            echo $this->Form->input('assignedby_id',['empty' => true,'label'=>'Assigned By','class'=>'select2']);
+            echo $this->Form->input('assignto_id',['empty' => true,'label'=>'Assigned To','class'=>'select2']);
             echo $this->Form->input('invoicenumber',['label'=>'Invoice Number']);
             echo $this->Form->input('phonenumber',['label'=>'Phone Number']);
             echo $this->Form->input('description');
