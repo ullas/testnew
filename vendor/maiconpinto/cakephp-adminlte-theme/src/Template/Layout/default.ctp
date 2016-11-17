@@ -136,12 +136,70 @@
 	   $( ':input[required]' ).each( function () {
 	       $("label[for='" + this.id + "']").addClass('mandatory');
 	   });
+	   
+	   $("#myModal").on("show.bs.modal", function(e) {
+		    var link = $(e.relatedTarget);
+		   // alert(link.attr("href"));
+		    $(this).find(".modal-body").load(link.attr("href"),function( response, status, xhr ){
+		    	
+		    	  if ( status == "error" ) {
+					    var msg = "Sorry but there was an error: ";
+					    alert(msg);
+				  }else{
+				  	   
+				  	     table= $('#mptlindextblmaster').DataTable({
+         					 "paging": true,
+          					 "lengthChange": true,
+          					 "ajax": link.attr("href")+"/ajaxData",
+          					 "processing": true,
+         					 "serverSide": true,
+         					 "searching": true,
+          					 "ordering": true,
+         					 'columnDefs': [{
+						        'targets': 0,
+						        'className': 'dt-body-center',
+						        'render': function (data, type, full, meta){
+						            return '<input type="checkbox" class="mptl-lst-chkbox-master" name="chk-' + data + '" value="' + $('<div/>').text(data).html() + '">';
+						        }
+						     }]
+				  		});
+				  		$('<a id="masterdataadd" href="'+ link.attr("href")+'/add/" class="btn btn-sm btn-success" style="margin-left:5px;" title="Add New"><i class="fa fa-plus" aria-hidden="true"></i></a>').appendTo('div.dataTables_filter');
+				  		
           
+				 }
+		    });
+		});
+		$('#masterdataadd').on('click', function(ev) {
+						    e.preventDefault();
+						    alert("Alert");
+		});
+		 
     });
     
     
 </script>
 <!-- AdminLTE App -->
 <?php echo $this->Html->script('AdminLTE.AdminLTE.min'); ?>
+<div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Master Data</h4>
+      </div>
+      <div class="modal-body">
+        
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
 </body>
 </html>

@@ -75,22 +75,14 @@ if (file_exists($file)) {
                     <span class="label label-danger">9</span>
                 </a>
                 <ul class="dropdown-menu">
-                    <li class="header">9 new Reminders</li>
+                    <li class="header">Master Data</li>
                     <li>
                         <!-- inner menu: contains the actual data -->
                         <ul class="menu">
                             <li><!-- Task item -->
-                                <a href="#">
-                                    <h3>
-                                        Delivery of items at Al-Saj
-                                        <small class="pull-right">20%</small>
-                                    </h3>
-                                    <div class="progress xs">
-                                        <div class="progress-bar progress-bar-aqua" style="width: 20%" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
-                                            <span class="sr-only">20% Complete</span>
-                                        </div>
-                                    </div>
-                                </a>
+                              <a href="Assettypes" data-remote="false" data-toggle="modal" data-target="#myModal" class="btn btn-default">
+							    Asset Types
+							  </a>
                             </li>
                             <!-- end task item -->
                         </ul>

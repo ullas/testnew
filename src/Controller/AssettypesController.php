@@ -39,9 +39,6 @@ class AssettypesController extends AppController
 	public function ajaxdata() 
 	{
         $this->autoRender= false;
-		$usrfiter="";
-		$basic = isset($this->request->query['basic'])?$this->request->query['basic']:"" ;
-		$additional = isset($this->request->query['additional'])?$this->request->query['additional']:"";
 		
 
         $this->loadModel('AssetTypes');
@@ -55,7 +52,7 @@ class AssettypesController extends AppController
 				
 		
 		$this->log($fields);
-		$output =$this->Datatable->getView($fields,['Customers'],$usrfiter);
+		$output =$this->Datatable->getView($fields,['Customers'],"");
 		$out =json_encode($output);  
 	   
 		$this->response->body($out);
