@@ -67,6 +67,10 @@ if (file_exists($file)) {
                         <div class="crsl-wrap">
                           <?php echo $this->element('/tracking/vehicle'); ?>
                           <?php echo $this->element('/tracking/driver'); ?>
+                          <?php echo $this->element('/tracking/obdfuel'); ?>
+                          <?php echo $this->element('/tracking/obdengine'); ?>
+                          <?php echo $this->element('/tracking/obdfaults'); ?>
+                          <?php echo $this->element('/tracking/obddriving'); ?>
                           <?php echo $this->element('/tracking/sensor'); ?>
                           <?php echo $this->element('/tracking/events'); ?>
                               </div>
