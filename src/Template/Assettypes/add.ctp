@@ -14,19 +14,14 @@ $this->Form->templates($myTemplates);
 <!-- Content Header (Page header) -->
 <section class="content-header">
   <h1>
-    Add Asset Type <small>Please fill the details to create a new Asset Type</small>
+    Add Asset Type 
   </h1>
-  <ol class="breadcrumb">
-    <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-    
-    <li><a href="/assettypes/"> Asset Types</a></li>
-    <li class="active">Add</li>
-  </ol>
+  
 </section>
 
 <!-- Main content -->
 <section class="content">
- <?= $this->Form->create($assettype) ?>
+ <?= $this->Form->create($assettype,['id'=>'masterdataform']) ?>
   <div class="row">
     
     <div class="col-md-12">

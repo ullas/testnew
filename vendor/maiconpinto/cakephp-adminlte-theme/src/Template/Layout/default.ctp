@@ -163,16 +163,38 @@
 						        }
 						     }]
 				  		});
-				  		$('<a id="masterdataadd" href="'+ link.attr("href")+'/add/" class="btn btn-sm btn-success" style="margin-left:5px;" title="Add New"><i class="fa fa-plus" aria-hidden="true"></i></a>').appendTo('div.dataTables_filter');
+				  		
+				  		$('<a href='+ link.attr("href") +'"/add/" id="masterdataadd" class="btn btn-sm btn-success" style="margin-left:5px;" title="Add New Work Order"><i class="fa fa-plus" aria-hidden="true"></i></a>').appendTo('div.dataTables_filter');
+   
+				  		$("div.dataTables_filter").delegate("#masterdataadd","click", function(e){
+				  			 e.preventDefault();
+						     $(".modal-body").load(link.attr("href")+"/add",function( response, status, xhr ){
+						     	
+						     	   $('#myModal').on("submit", "form#masterdataform", function(e){ 
+									    e.preventDefault(); 
+									    
+									    
+									     	
+									     	$('#myModal').modal("hide");
+									     	
+									     
+									    
+									    
+									    
+									});
+						     });
+						    
+				  			
+				  		});
+				  		
+					  
+				  		
 				  		
           
 				 }
 		    });
 		});
-		$('#masterdataadd').on('click', function(ev) {
-						    e.preventDefault();
-						    alert("Alert");
-		});
+		
 		 
     });
     
