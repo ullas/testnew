@@ -19,7 +19,7 @@ $this->Form->templates($myTemplates);
   <ol class="breadcrumb">
     <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
     
-    <li><a href="/$driverdetectionmodes/"> Driver Detection Modes</a></li>
+    <li><a href="/driverdetectionmodes/"> Driver Detection Modes</a></li>
     <li class="active">Edit</li>
   </ol>
 </section>

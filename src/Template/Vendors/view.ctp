@@ -64,10 +64,6 @@
             <th><?= __('Contact Phone') ?></th>
             <td><?= h($vendor->contactphone) ?></td>
         </tr>
-        <tr>
-            <th><?= __('Id') ?></th>
-            <td><?= $this->Number->format($vendor->id) ?></td>
-        </tr>
         </tbody>
      </table>
    </div><!--boxbody-->

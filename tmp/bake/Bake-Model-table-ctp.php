@@ -48,7 +48,6 @@ echo implode("\n", $uses);
 
 
 <?= $this->DocBlock->classDescription($name, 'Model', $annotations) ?>
-
 class <?= $name ?>Table extends Table
 {
 
@@ -151,7 +150,6 @@ foreach ($validation as $field => $rules):
         $validator
 <?php foreach ($validationMethods as $validationMethod): ?>
             <?= $validationMethod ?>
-
 <?php endforeach; ?>
 
 <?php

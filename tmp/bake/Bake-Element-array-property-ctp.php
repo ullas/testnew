@@ -4,7 +4,6 @@ use Cake\Utility\Inflector;
 
     /**
      * <?= Inflector::humanize($name) ?>
-
      *
      * @var array
      */

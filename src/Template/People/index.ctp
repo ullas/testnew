@@ -12,4 +12,4 @@
     <li><a href="/people/"><i class="fa fa-user"></i> People</a></li>
   </ol>
 </section>
-<?php echo $this->element('indexbasic'); ?>
+<?php echo $this->element('indexbasictrim'); ?>

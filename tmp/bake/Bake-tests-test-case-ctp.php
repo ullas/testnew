@@ -47,10 +47,8 @@ class <?= $className ?>Test extends TestCase
 
     /**
      * <?= $propertyInfo['description'] ?>
-
      *
      * @var <?= $propertyInfo['type'] ?>
-
      */
     public $<?= $propertyInfo['name'] ?><?php if (isset($propertyInfo['value'])): ?> = <?= $propertyInfo['value'] ?><?php endif; ?>;
 <?php endforeach; ?>
@@ -76,13 +74,10 @@ class <?= $className ?>Test extends TestCase
         parent::setUp();
 <?php if ($preConstruct): ?>
         <?= $preConstruct ?>
-
 <?php endif; ?>
         $this-><?= $subject . ' = ' . $construction ?>
-
 <?php if ($postConstruct): ?>
         <?= $postConstruct ?>
-
 <?php endif; ?>
     }
 

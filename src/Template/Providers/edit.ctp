@@ -38,8 +38,8 @@ $this->Form->templates($myTemplates);
         <?php
             echo $this->Form->input('name');
             echo $this->Form->input('description');
-            echo $this->Form->input('modelno');
-            echo $this->Form->input('osver');
+            echo $this->Form->input('modelno',["label"=>'Model No']);
+            echo $this->Form->input('osver',["label"=>'OS Version']);
         ?>
     </div>
  

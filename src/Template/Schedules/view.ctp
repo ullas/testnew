@@ -25,10 +25,6 @@
             <td><?= h($schedule->name) ?></td>
         </tr>
         <tr>
-            <th><?= __('Id') ?></th>
-            <td><?= $this->Number->format($schedule->id) ?></td>
-        </tr>
-        <tr>
             <th><?= __('Startloc Id') ?></th>
             <td><?= $this->Number->format($schedule->startloc_id) ?></td>
         </tr>

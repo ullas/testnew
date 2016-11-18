@@ -217,9 +217,10 @@ private function getDateRangeFilters($dates,$basic)  {
                 $this->Flash->error(__('The rfid could not be saved. Please, try again.'));
             }
         }
-        $customers = $this->Rfids->Customers->find('list', ['limit' => 200]);
-        $passengers = $this->Rfids->Passengers->find('list', ['limit' => 200]);
-        $this->set(compact('rfid', 'customers', 'passengers'));
+        $customers = $this->Rfids->Customers->find('list', ['limit' => 200])->where("customer_id=".$this->loggedinuser['customer_id']);
+		$drivers = $this->Rfids->Drivers->find('list', ['limit' => 200])->where("customer_id=".$this->loggedinuser['customer_id']);
+        $passengers = $this->Rfids->Passengers->find('list', ['limit' => 200])->where("customer_id=".$this->loggedinuser['customer_id']);
+        $this->set(compact('rfid', 'customers', 'passengers','drivers'));
         $this->set('_serialize', ['rfid']);
     }
 
