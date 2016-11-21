@@ -19,7 +19,9 @@
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <!-- Bootstrap 3.3.5 -->
-    <?php echo $this->Html->css('AdminLTE./bootstrap/css/bootstrap'); ?>
+    <?php echo $this->Html->css('AdminLTE./plugins/datatables/dataTables.bootstrap'); ?>
+     <?php echo $this->Html->css('AdminLTE./bootstrap/css/bootstrap'); ?>
+    
     <!-- Font Awesome -->
     <link rel="stylesheet" href="/css/font-awesome.min.css">
     <!-- Ionicons -->
@@ -94,6 +96,13 @@
 <!-- FastClick -->
 <?php echo $this->Html->script('AdminLTE./plugins/fastclick/fastclick'); ?>
 
+<?php echo $this->Html->script('AdminLTE./plugins/datatables/jquery.dataTables.min'); ?>
+<?php echo $this->Html->script('AdminLTE./plugins/datatables/dataTables.bootstrap.min'); ?>
+
+
+
+
+
 
 <?php echo $this->Html->script('ol/ol'); ?>
 
@@ -101,6 +110,12 @@
 <?php echo $this->fetch('script'); ?>
 <?php echo $this->fetch('scriptBotton'); ?>
 <script type="text/javascript">
+
+    function loadMasterData(){
+    	
+    	
+    }
+
     $(document).ready(function(){
         $(".navbar .menu").slimscroll({
             height: "200px",
@@ -137,6 +152,9 @@
 	       $("label[for='" + this.id + "']").addClass('mandatory');
 	   });
 	   
+	   
+	   
+	   
 	   $("#myModal").on("show.bs.modal", function(e) {
 		    var link = $(e.relatedTarget);
 		   // alert(link.attr("href"));
@@ -153,6 +171,9 @@
           					 "ajax": link.attr("href")+"/ajaxData",
           					 "processing": true,
          					 "serverSide": true,
+         					 "drawCallback":function(settings){
+         					 	tableLoaded(link);
+         					 },
          					 "searching": true,
           					 "ordering": true,
          					 'columnDefs': [{
@@ -163,6 +184,9 @@
 						        }
 						     }]
 				  		});
+				  		$(".mptlmaster-edit").click(function(){
+  							alert($(this).attr("data-id"));
+  						});
 				  		
 				  		$('<a href='+ link.attr("href") +'"/add/" id="masterdataadd" class="btn btn-sm btn-success" style="margin-left:5px;" title="Add New Work Order"><i class="fa fa-plus" aria-hidden="true"></i></a>').appendTo('div.dataTables_filter');
    
@@ -173,14 +197,24 @@
 						     	   $('#myModal').on("submit", "form#masterdataform", function(e){ 
 									    e.preventDefault(); 
 									    
-									    
-									     	
-									     	$('#myModal').modal("hide");
-									     	
-									     
-									    
-									    
-									    
+									    var postData = $(this).serializeArray();
+									    var formURL = $(this).attr("action");
+									    $.ajax(
+									    {
+									        url : formURL,
+									        type: "POST",
+									        data : postData,
+									        success:function(data, textStatus, jqXHR) 
+									        {
+									            $('#myModal').modal("hide");
+									        },
+									        error: function(jqXHR, textStatus, errorThrown) 
+									        {
+									            $('#myModal').modal("hide");   
+									        }
+									    });
+									    $(this).unbind(e);
+								    
 									});
 						     });
 						    
@@ -198,7 +232,58 @@
 		 
     });
     
-    
+  function tableLoaded(link){
+  	$(".mptlmaster-edit").click(function(){
+  		var url=$(this).attr("data-id");
+  		
+  		 $(".modal-body").load(url,function( response, status, xhr ){
+  		 	
+  		 	$('#myModal').on("submit", "form#masterdataform", function(e){ 
+			    e.preventDefault(); 
+			   
+			    var postData = $(this).serializeArray();
+			    var formURL = $(this).attr("action");
+			    $.ajax(
+			    {
+			        url : formURL,
+			        type: "POST",
+			        data : postData,
+			        success:function(data, textStatus, jqXHR) 
+			        {
+			            $('#myModal').modal("hide");
+			        },
+			        error: function(jqXHR, textStatus, errorThrown) 
+			        {
+			            $('#myModal').modal("hide");    
+			        }
+			    });
+			    $(this).unbind(e);
+		    
+			});
+  		 	
+  		 });
+  		
+  	});
+  	
+  	$(".mptlmaster-delete").click(function(){
+  		var url=$(this).attr("data-id");
+  		alert(url);
+  		$.ajax(
+			    {
+			        url : url,
+			        type: "POST",		      
+			        success:function(data, textStatus, jqXHR) 
+			        {
+			            $('#myModal').modal("hide");
+			        },
+			        error: function(jqXHR, textStatus, errorThrown) 
+			        {
+			            $('#myModal').modal("hide");
+			        }
+			    });
+  		
+  	});
+  }  
 </script>
 <!-- AdminLTE App -->
 <?php echo $this->Html->script('AdminLTE.AdminLTE.min'); ?>
@@ -215,7 +300,7 @@
         
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-default" data-dismiss="modal">Close</button>
       </div>
     </div>
 

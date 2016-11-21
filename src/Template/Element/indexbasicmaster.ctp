@@ -40,3 +40,12 @@
     <?= $this->Form->end() ?>
 </section>
 
+<?php $this->start('scriptBotton'); ?>
+<script>
+  $(function () {
+  	
+  	
+  });
+</script>
+<?php $this->end(); ?>
+
