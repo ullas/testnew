@@ -14,19 +14,14 @@ $this->Form->templates($myTemplates);
 <!-- Content Header (Page header) -->
 <section class="content-header">
   <h1>
-    Edit Contractors <small>Please fill the details to edit a Contractor</small>
+    Edit Contractors 
   </h1>
-  <ol class="breadcrumb">
-    <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-    
-    <li><a href="/contractors/"> Contractors</a></li>
-    <li class="active">Edit</li>
-  </ol>
+  
 </section>
 
 <!-- Main content -->
 <section class="content">
- <?= $this->Form->create($contractor) ?>
+ <?= $this->Form->create($contractor,['id'=>'masterdataform']) ?>
   <div class="row">
     
     <div class="col-md-12">
@@ -38,8 +33,7 @@ $this->Form->templates($myTemplates);
         <?php
             echo $this->Form->input('name',['required'=>'required']);
             echo $this->Form->input('descrtption');
-            
-        ?>
+                    ?>
    </div>
  
           </div>
@@ -65,38 +59,5 @@ $this->Form->templates($myTemplates);
  <?= $this->Form->end() ?>
 </section>
 <!-- /.content -->
-
-
-<?php
-$this->Html->css([
-    
-    'AdminLTE./plugins/datepicker/datepicker3',
- 	'AdminLTE./plugins/select2/select2.min'
-  ],
-  ['block' => 'css']);
-
-$this->Html->script([
- 'AdminLTE./plugins/select2/select2.full.min',
-  	'AdminLTE./plugins/datepicker/bootstrap-datepicker',
-  	'/js/dropzone/dropzone',
-	'AdminLTE./plugins/iCheck/icheck.min'
- 
-],
-['block' => 'script']);
-?>
-<?php $this->start('scriptBotton'); ?>
-<script>
-  $(function () {
-    //Initialize Select2 Elements
-    $(".select2").select2();
-     $('.datemask').datepicker({
-            format:"dd/mm/yy",
-              autoclose: true
-   });
-
-  });
-</script>
-<?php $this->end(); ?>
-
 
 

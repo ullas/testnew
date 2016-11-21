@@ -16,7 +16,7 @@ class ServicedocumentsController extends AppController
      *
      * @var array
      */
-    public $components = ['Datatable'];
+    public $components = ['Datatablemaster'];
 	
     /**
      * Index method
@@ -55,7 +55,7 @@ class ServicedocumentsController extends AppController
 				$fields[2] = array("name" =>"Servicedocuments.data"  , "type" => "char");				
 		
 		$this->log($fields);
-		$output =$this->Datatable->getView($fields,['Customers','Servicesentries'],$usrfiter);
+		$output =$this->Datatablemaster->getView($fields,['Customers','Servicesentries'],$usrfiter);
 		$out =json_encode($output);  
 	   
 		$this->response->body($out);
@@ -91,11 +91,11 @@ class ServicedocumentsController extends AppController
             $servicedocument = $this->Servicedocuments->patchEntity($servicedocument, $this->request->data);
 			$servicedocument['customer_id']=$this->loggedinuser['customer_id'];
             if ($this->Servicedocuments->save($servicedocument)) {
-                $this->Flash->success(__('The servicedocument has been saved.'));
+            //    $this->Flash->success(__('The servicedocument has been saved.'));
 
-                return $this->redirect(['action' => 'index']);
+            //    return $this->redirect(['action' => 'index']);
             } else {
-                $this->Flash->error(__('The servicedocument could not be saved. Please, try again.'));
+            //    $this->Flash->error(__('The servicedocument could not be saved. Please, try again.'));
             }
         }
         $servicesentries = $this->Servicedocuments->Servicesentries->find('list', ['limit' => 200]);
@@ -119,11 +119,11 @@ class ServicedocumentsController extends AppController
             $servicedocument = $this->Servicedocuments->patchEntity($servicedocument, $this->request->data);
 			$servicedocument['customer_id']=$this->loggedinuser['customer_id'];
             if ($this->Servicedocuments->save($servicedocument)) {
-                $this->Flash->success(__('The servicedocument has been saved.'));
+             //   $this->Flash->success(__('The servicedocument has been saved.'));
 
-                return $this->redirect(['action' => 'index']);
+             //   return $this->redirect(['action' => 'index']);
             } else {
-                $this->Flash->error(__('The servicedocument could not be saved. Please, try again.'));
+              //  $this->Flash->error(__('The servicedocument could not be saved. Please, try again.'));
             }
         }
         $servicesentries = $this->Servicedocuments->Servicesentries->find('list', ['limit' => 200]);
@@ -140,12 +140,12 @@ class ServicedocumentsController extends AppController
      */
     public function delete($id = null)
     {
-        $this->request->allowMethod(['post', 'delete']);
+        //$this->request->allowMethod(['post', 'delete']);
         $servicedocument = $this->Servicedocuments->get($id);
         if ($this->Servicedocuments->delete($servicedocument)) {
-            $this->Flash->success(__('The servicedocument has been deleted.'));
+        //    $this->Flash->success(__('The servicedocument has been deleted.'));
         } else {
-            $this->Flash->error(__('The servicedocument could not be deleted. Please, try again.'));
+         //   $this->Flash->error(__('The servicedocument could not be deleted. Please, try again.'));
         }
 
         return $this->redirect(['action' => 'index']);

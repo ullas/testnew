@@ -16,17 +16,12 @@ $this->Form->templates($myTemplates);
   <h1>
    New  Inspectionstatus
   </h1>
-  <ol class="breadcrumb">
-  	<li><a href="#"><i class="fa fa-dashboard"></i>Home</a></li>
-   
-    <li><a href="/Inspectionstatuses"> Inspectionstatuses</a></li>
-    <li class="active">Add</li>
-  </ol>
+  
 </section>
 
 <!-- Main content -->
 <section class="content">
-    <?= $this->Form->create($inspectionstatus) ?>
+    <?= $this->Form->create($inspectionstatus,['id'=>'masterdataform']) ?>
    <div class="row">
     
     <div class="col-md-12">
@@ -64,23 +59,3 @@ $this->Form->templates($myTemplates);
  <?= $this->Form->end() ?>
 </section>
 <!-- /.content -->
-<?php
-$this->Html->css([
-   'AdminLTE./plugins/select2/select2.min',
-  ],
-  ['block' => 'css']);
-$this->Html->script(
-[
-  'AdminLTE./plugins/select2/select2.full.min',
-  '/js/moment.min.js',
-],
-['block' => 'script']);
-?>
-<?php $this->start('scriptBotton'); ?>
-<script>
-  $(function () {
-      $(".select2").select2({ width: '100%' });
-  });
-</script>
-<?php $this->end(); ?>
-       

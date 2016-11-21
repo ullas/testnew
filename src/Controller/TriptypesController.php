@@ -17,7 +17,7 @@ class TriptypesController extends AppController
      *
      * @var array
      */
-    public $components = ['Datatable'];
+    public $components = ['Datatablemaster'];
 	
     /**
      * Index method
@@ -56,7 +56,7 @@ class TriptypesController extends AppController
 								
 		
 		$this->log($fields);
-		$output =$this->Datatable->getView($fields,['Customers'],$usrfiter);
+		$output =$this->Datatablemaster->getView($fields,['Customers'],$usrfiter);
 		$out =json_encode($output);  
 	   
 		$this->response->body($out);
@@ -95,11 +95,11 @@ class TriptypesController extends AppController
 			$triptype['customer_id']=$this->loggedinuser['customer_id'];
             $triptype['customer_id']=$this->currentuser['customer_id'];
             if ($this->Triptypes->save($triptype)) {
-                $this->Flash->success(__('The triptype has been saved.'));
+            //    $this->Flash->success(__('The triptype has been saved.'));
 
-                return $this->redirect(['action' => 'index']);
+            //    return $this->redirect(['action' => 'index']);
             } else {
-                $this->Flash->error(__('The triptype could not be saved. Please, try again.'));
+            //    $this->Flash->error(__('The triptype could not be saved. Please, try again.'));
             }
         }
                 
@@ -126,11 +126,11 @@ class TriptypesController extends AppController
             $triptype = $this->Triptypes->patchEntity($triptype, $this->request->data);
 			$triptype['customer_id']=$this->loggedinuser['customer_id'];
             if ($this->Triptypes->save($triptype)) {
-                $this->Flash->success(__('The triptype has been saved.'));
+            //    $this->Flash->success(__('The triptype has been saved.'));
 
-                return $this->redirect(['action' => 'index']);
+            //    return $this->redirect(['action' => 'index']);
             } else {
-                $this->Flash->error(__('The triptype could not be saved. Please, try again.'));
+             //   $this->Flash->error(__('The triptype could not be saved. Please, try again.'));
             }
         }
         $customers = $this->Triptypes->Customers->find('list', ['limit' => 200]);
@@ -147,12 +147,12 @@ class TriptypesController extends AppController
      */
     public function delete($id = null)
     {
-        $this->request->allowMethod(['post', 'delete']);
+        //$this->request->allowMethod(['post', 'delete']);
         $triptype = $this->Triptypes->get($id);
         if ($this->Triptypes->delete($triptype)) {
-            $this->Flash->success(__('The triptype has been deleted.'));
+        //    $this->Flash->success(__('The triptype has been deleted.'));
         } else {
-            $this->Flash->error(__('The triptype could not be deleted. Please, try again.'));
+        //    $this->Flash->error(__('The triptype could not be deleted. Please, try again.'));
         }
 
         return $this->redirect(['action' => 'index']);

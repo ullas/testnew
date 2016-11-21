@@ -5,12 +5,7 @@
     Contractors
     <small>Manage your Contractors</small>
   </h1>
-  <ol class="breadcrumb">
-    <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-    
-    <li class="active">Contractors</li>
-    
-  </ol>
+  
 </section>
 <?php 
 				$fields = array();
@@ -19,6 +14,6 @@
 				$fields[2] = array("title" =>"Description"  , "type" => "char");
 				
 
-echo $this->element('indexbasic', array('colheadsformasters' => $fields)); ?>
+echo $this->element('indexbasicmaster', array('colheadsformasters' => $fields)); ?>
 
 

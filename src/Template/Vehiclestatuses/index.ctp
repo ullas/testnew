@@ -5,12 +5,7 @@
     Vehicle Statuses
     <small>Manage your  Vehicle Statuses</small>
   </h1>
-  <ol class="breadcrumb">
-    <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-    
-    <li class="active">Purposes</li>
-    
-  </ol>
+ 
 </section>
 <?php 
 				$fields = array();
@@ -19,6 +14,6 @@
 							
 				
 
-echo $this->element('indexbasic', array('colheadsformasters' => $fields)); ?>
+echo $this->element('indexbasicmaster', array('colheadsformasters' => $fields)); ?>
 
 
