@@ -15,7 +15,7 @@ class AssettypesController extends AppController
      *
      * @var array
      */
-    public $components = ['Datatable'];
+    public $components = ['Datatablemaster'];
     /**
      * Index method
      *
@@ -39,9 +39,6 @@ class AssettypesController extends AppController
 	public function ajaxdata() 
 	{
         $this->autoRender= false;
-		$usrfiter="";
-		$basic = isset($this->request->query['basic'])?$this->request->query['basic']:"" ;
-		$additional = isset($this->request->query['additional'])?$this->request->query['additional']:"";
 		
 
         $this->loadModel('AssetTypes');
@@ -55,7 +52,7 @@ class AssettypesController extends AppController
 				
 		
 		$this->log($fields);
-		$output =$this->Datatable->getView($fields,['Customers'],$usrfiter);
+		$output =$this->Datatablemaster->getView($fields,['Customers'],"");
 		$out =json_encode($output);  
 	   
 		$this->response->body($out);
@@ -94,11 +91,11 @@ class AssettypesController extends AppController
             $assettype = $this->Assettypes->patchEntity($assettype, $this->request->data);
 			$assettype['customer_id']=$this->loggedinuser['customer_id'];
             if ($this->Assettypes->save($assettype)) {
-                $this->Flash->success(__('The assettype has been saved.'));
+              //  $this->Flash->success(__('The assettype has been saved.'));
 
-                return $this->redirect(['action' => 'index']);
+               // return $this->redirect(['action' => 'index']);
             } else {
-                $this->Flash->error(__('The assettype could not be saved. Please, try again.'));
+               // $this->Flash->error(__('The assettype could not be saved. Please, try again.'));
             }
         }
         $this->set(compact('assettype'));
@@ -121,11 +118,11 @@ class AssettypesController extends AppController
             $assettype = $this->Assettypes->patchEntity($assettype, $this->request->data);
 			$assettype['customer_id']=$this->loggedinuser['customer_id'];
             if ($this->Assettypes->save($assettype)) {
-                $this->Flash->success(__('The assettype has been saved.'));
+                //$this->Flash->success(__('The assettype has been saved.'));
 
                 return $this->redirect(['action' => 'index']);
             } else {
-                $this->Flash->error(__('The assettype could not be saved. Please, try again.'));
+               // $this->Flash->error(__('The assettype could not be saved. Please, try again.'));
             }
         }
         $this->set(compact('assettype'));
@@ -141,12 +138,12 @@ class AssettypesController extends AppController
      */
     public function delete($id = null)
     {
-        $this->request->allowMethod(['post', 'delete']);
+       // $this->request->allowMethod(['post', 'delete']);
         $assettype = $this->Assettypes->get($id);
         if ($this->Assettypes->delete($assettype)) {
-            $this->Flash->success(__('The assettype has been deleted.'));
+            //$this->Flash->success(__('The assettype has been deleted.'));
         } else {
-            $this->Flash->error(__('The assettype could not be deleted. Please, try again.'));
+           // $this->Flash->error(__('The assettype could not be deleted. Please, try again.'));
         }
 
         return $this->redirect(['action' => 'index']);

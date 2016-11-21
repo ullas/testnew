@@ -41,7 +41,7 @@ $this->Form->templates($myTemplates);
             echo $this->Form->input('shipmenttype_id', ['label'=>'Shipment Type','options' => $shipmenttypes, 'empty' => true,'class'=>'select2' ]);
 			echo $this->Form->input('orderstate_id', ['label'=>'Order State','options' => $orderstates, 'empty' => true,'class'=>'select2'  ]);
             echo $this->Form->input('shipmentorderdate', ['type'=>'text','empty' => true,'label'=>'Shipment Order Date','class'=>'datemask','templateVars' => ['icon' => '<div class="input-group-addon"><i class="fa fa-calendar"></i></div>']]);
-            echo $this->Form->input('distributioncenter_id', ['label'=>'Distribution Centre','options' => $distributioncenters, 'empty' => true,'class'=>'select2' ]);
+            echo $this->Form->input('distributioncenter_id', ['label'=>'Distribution Centre','options' => $distributioncenteres, 'empty' => true,'class'=>'select2' ]);
             echo $this->Form->input('packageweight', ['label'=>'Package Weight']);
 			echo $this->Form->input('packagevolume', ['label'=>'Package Volume']);
 			echo $this->Form->input('packagevalue', ['label'=>'Package Value']);

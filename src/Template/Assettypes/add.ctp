@@ -3,7 +3,6 @@
     'inputContainer' => '<div class="form-group">{{content}}<div class="col-sm-offset-3 col-sm-6" style="margin-top:4px">{{help}}</div></div>',
      'label' => '<label class="col-sm-3 control-label" {{attrs}}>{{text}}</label>',
     'input' => '<div class="col-sm-6"><div class="input-group">{{icon}}<input type="{{type}}" name="{{name}}"{{attrs}}/></div></div>',
-    
      'select' => '<div class="col-sm-6"><select name="{{name}}"{{attrs}}>{{content}}</select></div>',
      'textarea' => '<div class="col-sm-6"><textarea name="{{name}}"{{attrs}}>{{value}}</textarea></div>'
 ];
@@ -13,20 +12,13 @@ $this->Form->templates($myTemplates);
 
 <!-- Content Header (Page header) -->
 <section class="content-header">
-  <h1>
-    Add Asset Type <small>Please fill the details to create a new Asset Type</small>
-  </h1>
-  <ol class="breadcrumb">
-    <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-    
-    <li><a href="/assettypes/"> Asset Types</a></li>
-    <li class="active">Add</li>
-  </ol>
+  <h1>Add Asset Type </h1>
+  
 </section>
 
 <!-- Main content -->
 <section class="content">
- <?= $this->Form->create($assettype) ?>
+ <?= $this->Form->create($assettype,['id'=>'masterdataform']) ?>
   <div class="row">
     
     <div class="col-md-12">

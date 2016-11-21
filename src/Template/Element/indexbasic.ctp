@@ -81,15 +81,13 @@
   
   ?>
 <?php
-$this->Html->css([ 'AdminLTE./plugins/datatables/dataTables.bootstrap', 
+$this->Html->css([ 
 'AdminLTE./plugins/daterangepicker/daterangepicker',
   'AdminLTE./plugins/iCheck/all',
    'AdminLTE./plugins/datatables/extensions/ColReorder/css/dataTables.colReorder.min',
  ], ['block' => 'css']);
 
 $this->Html->script([
-  'AdminLTE./plugins/datatables/jquery.dataTables.min',
-  'AdminLTE./plugins/datatables/dataTables.bootstrap.min',
   'AdminLTE./plugins/datatables/extensions/ColReorder/js/dataTables.colReorder.min',
   'AdminLTE./plugins/daterangepicker/moment.min',
   'AdminLTE./plugins/daterangepicker/daterangepicker',
