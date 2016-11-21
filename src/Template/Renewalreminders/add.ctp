@@ -21,7 +21,7 @@ $this->Form->templates($myTemplates);
   <ol class="breadcrumb">
   	<li><a href="#"><i class="fa fa-dashboard"></i>Home</a></li>
    
-    <li><a href="/Servicesentries/"> RenewalReminders</a></li>
+    <li><a href="/Renewalreminders/"> RenewalReminders</a></li>
     <li class="active">Add</li>
   </ol>
 </section>

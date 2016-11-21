@@ -33,11 +33,7 @@
             <td><?= $rfid->has('passenger') ? $this->Html->link($rfid->passenger->id, ['controller' => 'Passengers', 'action' => 'view', $rfid->passenger->id]) : '' ?></td>
         </tr>
         <tr>
-            <th><?= __('Id') ?></th>
-            <td><?= $this->Number->format($rfid->id) ?></td>
-        </tr>
-        <tr>
-            <th><?= __('Driver Id') ?></th>
+            <th><?= __('Driver') ?></th>
             <td><?= $this->Number->format($rfid->driver_id) ?></td>
         </tr>
         <tr>

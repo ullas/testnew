@@ -40,11 +40,7 @@
             <th><?= __('Provider') ?></th>
             <td><?= $device->has('provider') ? $this->Html->link($device->provider->name, ['controller' => 'Providers', 'action' => 'view', $device->provider->id]) : '' ?></td>
         </tr>
-        <tr>
-            <th><?= __('Id') ?></th>
-            <td><?= $this->Number->format($device->id) ?></td>
-        </tr>
-        <tr>
+       <tr>
             <th><?= __('Distance Type') ?></th>
             <td><?= $this->Number->format($device->distance_type) ?></td>
         </tr>

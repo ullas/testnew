@@ -24,15 +24,6 @@
             <th><?= __('Description') ?></th>
             <td><?= h($distributionlist->description) ?></td>
         </tr>
-        <tr>
-            <th><?= __('Customer') ?></th>
-            <td><?= $distributionlist->has('customer') ? $this->Html->link($distributionlist->customer->name, ['controller' => 'Customers', 'action' => 'view', $distributionlist->customer->id]) : '' ?></td>
-        </tr>
-        <tr>
-            <th><?= __('Id') ?></th>
-            <td><?= $this->Number->format($distributionlist->id) ?></td>
-        </tr>
-       
     </table>
    </div><!--boxbody-->
    </div><!-- box -->

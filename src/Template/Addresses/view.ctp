@@ -69,10 +69,6 @@
             <td><?= h($address->pincode) ?></td>
         </tr>
         <tr>
-            <th><?= __('Id') ?></th>
-            <td><?= $this->Number->format($address->id) ?></td>
-        </tr>
-        <tr>
             <th><?= __('Is Current Address') ?></th>
             <td><?= $address->iscurrentAddress ? __('Yes') : __('No'); ?></td>
         </tr>

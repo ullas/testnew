@@ -195,7 +195,7 @@ public function ajaxdata() {
             'contain' => ['Customers', 'Templatetypes', 'Alertcategories', 'Jobs']
         ]);
 
-       if($address['customer_id']==$this->loggedinuser['customer_id']){
+       if($template['customer_id']==$this->loggedinuser['customer_id']){
         $this->set('template', $template);
         $this->set('_serialize', ['template']);
 		

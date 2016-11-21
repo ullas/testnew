@@ -2,6 +2,7 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
+use Cake\ORM\TableRegistry;
 
 /**
  * Passengers Controller
@@ -10,7 +11,12 @@ use App\Controller\AppController;
  */
 class PassengersController extends AppController
 {
-
+	 /**
+     * Components
+     *
+     * @var array
+     */
+    public $components = ['Datatable'];
     /**
      * Index method
      *
@@ -18,14 +24,149 @@ class PassengersController extends AppController
      */
     public function index()
     {
-        $this->paginate = [
-            'contain' => ['Customers']
-        ];
-        $passengers = $this->paginate($this->Passengers);
-
-        $this->set(compact('passengers'));
-        $this->set('_serialize', ['passengers']);
+       /*
+      		    
+        */
+       
+         $this->loadModel('CreateConfigs');
+         $configs=$this->CreateConfigs->find('all')->where(['table_name' => 'Passengers'])->order(['"order"' => 'ASC'])->toArray();
+        
+         	 $this->loadModel('Usersettings');
+		 $usersettings=$this->Usersettings->find('all')->where(['user_id' => $this->loggedinuser['id']])->where(['module' => 'Passengers'])->where(['key' => 'INIT_VISIBLE_COLUMNS_PASSENGERS'])->toArray();
+         if(isset($usersettings[0]['value'])){
+         	$this->set('usersettings',$usersettings);	
+			
+         }else{
+         	
+         	$this->loadModel('Globalusersettings');
+		    $usersettings=$this->Globalusersettings->find('all')->where(['module' => 'Passengers'])->where(['key' => 'INIT_VISIBLE_COLUMNS_PASSENGERS'])->toArray();
+            $this->set('usersettings',$usersettings);
+			
+         }
+		 $actions =[
+                
+                ['name'=>'delete','title'=>'Delete','class'=>' label-danger ']
+                ];
+         $additional= [
+      	                          'basic'=>['All'],
+      	                          'additional'=>[
+      	                                	                          
+      	                          ]];
+		 $this->set('additional',$additional);
+		 $this->set('actions',$actions);	
+         $this->set('configs',$configs);	
+         $this->set('_serialize', ['configs','usersettings','actions','additional']);
     }
+
+	public function updateSettings()
+	{
+   	
+		$this->autoRender= false;	
+		$columns=$_POST['columns'];
+		$visorder = $_POST['visorder'];
+			
+		
+		$columns=isset($columns)?$columns:6;
+		$userSettings = TableRegistry::get('Usersettings');
+		$count = $userSettings->find('all')
+		   ->where(['key' => 'INIT_VISIBLE_COLUMNS_PASSENGERS'])
+		  ->where(['user_id' => $this->loggedinuser['id']])
+		   ->count();
+		
+		if($count>0)	
+			{	 
+				$query = $userSettings->query();
+				$res=$query->update()
+			    ->set(['value' => $columns])
+				->set(['value1' => $visorder])
+			    ->where(['key' => 'INIT_VISIBLE_COLUMNS_PASSENGERS'])
+			    ->where(['user_id' => $this->loggedinuser['id']])
+			    ->execute();
+				$this->response->body($res);
+		
+	   		}
+	   	else
+	   		{
+	   	  
+			   $query1 = $userSettings->query();
+			   $res=$query1->insert(['key','value','user_id','module'])
+			   ->values(
+			       ['key'=>'INIT_VISIBLE_COLUMNS_PASSENGERS',
+			        'value'=>$columns,
+			        'user_id'=>$this->loggedinuser['id'],
+			        'module'=>'Passengers'])
+			    ->execute();
+			   	$this->response->body($res);
+			}
+	
+	}
+
+	private function toPostDBDate($date)
+	{
+	
+		 $ret="";
+		 $parts=explode("/",$date);
+		 if(count($parts)==3)
+		 {
+		 	$ret= $date= '20' .trim($parts[2]) . "-" . trim($parts[1]) . "-" . trim($parts[0]);
+			
+		 }
+		
+	  	return $ret;
+	}
+
+	private function getDateRangeFilters($dates,$basic)  
+	{
+	
+		$sql="";	
+			
+		//$alldates=explode(",",$dates);
+		
+		//$pre=($basic>0)?" and ":"";
+		
+		//$datecol=explode("-",$alldates[0]);
+		
+		//$sql .=  count($datecol)>1? " $pre dateofservice between '" . $this->toPostDBDate($datecol[0]) . "' and '" . $this->toPostDBDate($datecol[1]) . "'": "" ;
+		
+		//$datecol=explode("-",$alldates[1]);
+		
+		//$pre=(strlen($sql)>0)?" and ":"";
+		
+		//$sql .=  count($datecol)>1? " $pre startdate between '" . $this->toPostDBDate($datecol[0]) . "' and '" . $this->toPostDBDate($datecol[1]) . "'": "" ;
+		
+		//$datecol=explode("-",$alldates[2]);
+		//$pre=(strlen($sql)>0)?" and ":"";
+		
+		//$sql .= count($datecol)>1? " $pre completiondate between '" . $this->toPostDBDate($datecol[0]) . "' and '" . $this->toPostDBDate($datecol[1]) . "'": "" ;
+		
+		
+		return $sql;
+	}
+	
+	public function ajaxdata() 
+	{
+        $this->autoRender= false;
+		$usrfiter="";
+		$basic = isset($this->request->query['basic'])?$this->request->query['basic']:"" ;
+		$additional = isset($this->request->query['additional'])?$this->request->query['additional']:"";
+		
+		
+          
+       $this->loadModel('CreateConfigs');
+       $dbout=$this->CreateConfigs->find('all')->where(['table_name' => 'Passengers'])->order(['"order"' => 'ASC'])->toArray();
+        
+        $fields = array();
+        foreach($dbout as $value){
+            $fields[] = array("name" => $value['field_name'] , "type" => $value['datatype'] );
+			
+        }
+        
+		$output =$this->Datatable->getView($fields,[ 'Customers'],$usrfiter);
+        $out =json_encode($output);  
+	   
+		$this->response->body($out);
+	    return $this->response;
+	} 
 
     /**
      * View method
@@ -54,6 +195,7 @@ class PassengersController extends AppController
         $passenger = $this->Passengers->newEntity();
         if ($this->request->is('post')) {
             $passenger = $this->Passengers->patchEntity($passenger, $this->request->data);
+			$passenger['customer_id']=$this->loggedinuser['customer_id'];
             if ($this->Passengers->save($passenger)) {
                 $this->Flash->success(__('The passenger has been saved.'));
 
@@ -81,6 +223,7 @@ class PassengersController extends AppController
         ]);
         if ($this->request->is(['patch', 'post', 'put'])) {
             $passenger = $this->Passengers->patchEntity($passenger, $this->request->data);
+			$passenger['customer_id']=$this->loggedinuser['customer_id'];
             if ($this->Passengers->save($passenger)) {
                 $this->Flash->success(__('The passenger has been saved.'));
 
@@ -113,4 +256,43 @@ class PassengersController extends AppController
 
         return $this->redirect(['action' => 'index']);
     }
+
+public function deleteAll($id=null){
+    	
+		$this->request->allowMethod(['post', 'deleteall']);
+        $sucess=false;$failure=false;
+        $data=$this->request->data;
+			
+		if(isset($data)){
+		   foreach($data as $key =>$value){
+		   	   		
+		   	   	$itemna=explode("-",$key);
+			    
+			    if(count($itemna)== 2 && $itemna[0]=='chk'){
+			    	
+					$record = $this->Passengers->get($value);
+					
+					 if($record['customer_id']== $this->loggedinuser['customer_id']) {
+					 	
+						   if ($this->Passengers->delete($record)) {
+					           $sucess= $sucess | true;
+					        } else {
+					           $failure= $failure | true;
+					        }
+					}
+				}  	  
+			}
+		   		        
+		
+				if($sucess){
+					$this->Flash->success(__('Selected Passengers has been deleted.'));
+				}
+		        if($failure){
+					$this->Flash->error(__('The Passengers could not be deleted. Please, try again.'));
+				}
+		
+		   }
+
+             return $this->redirect(['action' => 'index']);	
+     }
 }

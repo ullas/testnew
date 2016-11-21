@@ -1,6 +1,6 @@
 <section class="content-header">
   <h1>
-     <?= h($usersetting->id) ?> Details
+    <?php echo $this->request->params['controller'] ?> Details
   </h1>
   <ol class="breadcrumb">
   	<li><a href="#"><i class="fa fa-dashboard"></i>Home</a></li>
@@ -40,9 +40,10 @@
             <th><?= __('Id') ?></th>
             <td><?= $this->Number->format($usersetting->id) ?></td>
         </tr>
+  </table>
    </div><!--boxbody-->
    </div><!-- box -->
   
   </div><!-- col12-->
-</div> </table>
-</div>
+</div> 
+</section>

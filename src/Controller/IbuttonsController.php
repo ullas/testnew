@@ -215,8 +215,8 @@ public function ajaxdata() {
                 $this->Flash->error(__('The ibutton could not be saved. Please, try again.'));
             }
         }
-        $customers = $this->Ibuttons->Customers->find('list', ['limit' => 200]);
-        $drivers = $this->Ibuttons->Drivers->find('list', ['limit' => 200]);
+        $customers = $this->Ibuttons->Customers->find('list', ['limit' => 200])->where("customer_id=".$this->loggedinuser['customer_id']);
+        $drivers = $this->Ibuttons->Drivers->find('list', ['limit' => 200])->where("customer_id=".$this->loggedinuser['customer_id']);
         $this->set(compact('ibutton', 'customers', 'drivers'));
         $this->set('_serialize', ['ibutton']);
     }
@@ -243,8 +243,8 @@ public function ajaxdata() {
                 $this->Flash->error(__('The ibutton could not be saved. Please, try again.'));
             }
         }
-        $customers = $this->Ibuttons->Customers->find('list', ['limit' => 200]);
-        $drivers = $this->Ibuttons->Drivers->find('list', ['limit' => 200]);
+        $customers = $this->Ibuttons->Customers->find('list', ['limit' => 200])->where("customer_id=".$this->loggedinuser['customer_id']);
+        $drivers = $this->Ibuttons->Drivers->find('list', ['limit' => 200])->where("customer_id=".$this->loggedinuser['customer_id']);
         $this->set(compact('ibutton', 'customers', 'drivers'));
         $this->set('_serialize', ['ibutton']);
     }
