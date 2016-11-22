@@ -13,5 +13,7 @@
   </ol>
 </section>
 <!-- Main content -->
-<?php echo $this->element('indexbasictrim'); ?>
+
+<?php echo $this->element('indexbasicnofilter'); ?>
+
 
