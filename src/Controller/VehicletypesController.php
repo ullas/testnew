@@ -52,6 +52,7 @@ class VehicletypesController extends AppController
 		 
 				$fields[0] = array("name" =>"Vehicletypes.id"  , "type" => "num");
 				$fields[1] = array("name" =>"Vehicletypes.name"  , "type" => "char");
+				$fields[2] = array("name" =>"Vehicletypes.description"  , "type" => "char");
 								
 		
 		$this->log($fields);

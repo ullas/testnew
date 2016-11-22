@@ -28,8 +28,9 @@ $this->Form->templates($myTemplates);
           <div class="active tab-pane" id="details">
              <div class="form-horizontal">
         <?php
-            echo $this->Form->input('name');
+            echo $this->Form->input('name',['required'=>'required']);
             echo $this->Form->input('symbol');
+            echo $this->Form->input('description');
             
         ?>
     </div>

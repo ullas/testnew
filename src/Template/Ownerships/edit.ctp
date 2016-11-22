@@ -21,7 +21,7 @@ $this->Form->templates($myTemplates);
 
 <!-- Main content -->
 <section class="content">
- <?= $this->Form->create($ownership) ?>
+ <?= $this->Form->create($ownership,['id'=>'masterdataform']) ?>
   <div class="row">
     
     <div class="col-md-12">
@@ -33,6 +33,7 @@ $this->Form->templates($myTemplates);
         
          <?php
             echo $this->Form->input('name',['required'=>'required']);
+            echo $this->Form->input('description');
          ?>
     </fieldset>
    </div>

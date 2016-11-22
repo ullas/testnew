@@ -52,6 +52,7 @@ class PurposesController extends AppController
 		 
 				$fields[0] = array("name" =>"Purposes.id"  , "type" => "num");
 				$fields[1] = array("name" =>"Purposes.name"  , "type" => "char");
+				$fields[2] = array("name" =>"Purposes.description"  , "type" => "char");
 								
 		
 		$this->log($fields);

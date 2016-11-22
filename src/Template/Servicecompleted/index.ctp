@@ -12,6 +12,7 @@
 				$fields[0] = array("title" =>"Id"  , "type" => "num");
 				$fields[1] = array("title" =>"Service Entry"  , "type" => "char");
 				$fields[2] = array("title" =>"Services Completed"  , "type" => "char");
+				$fields[3] = array("title" =>"Description"  , "type" => "char");
 							
 				
 

@@ -12,6 +12,7 @@
 				$fields[0] = array("title" =>"Id"  , "type" => "num");
 				$fields[1] = array("title" =>"Name"  , "type" => "char");
 				$fields[2] = array("title" =>"Symbol"  , "type" => "char");
+				$fields[3] = array("title" =>"Description"  , "type" => "char");
 							
 				
 

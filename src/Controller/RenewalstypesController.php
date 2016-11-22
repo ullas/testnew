@@ -52,6 +52,7 @@ class RenewalstypesController extends AppController
 		 
 				$fields[0] = array("name" =>"Renewalstypes.id"  , "type" => "num");
 				$fields[1] = array("name" =>"Renewalstypes.name"  , "type" => "char");
+				$fields[2] = array("name" =>"Renewalstypes.description"  , "type" => "char");
 								
 		
 		$this->log($fields);
