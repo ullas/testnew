@@ -51,6 +51,7 @@ class OwnershipsController extends AppController
 		 
 				$fields[0] = array("name" =>"Ownerships.id"  , "type" => "num");
 				$fields[1] = array("name" =>"Ownerships.name"  , "type" => "char");
+				$fields[2] = array("name" =>"Ownerships.description"  , "type" => "char");
 				
 				
 		

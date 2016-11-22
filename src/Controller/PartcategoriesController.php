@@ -50,6 +50,7 @@ class PartcategoriesController extends AppController
 		 
 				$fields[0] = array("name" =>"Partcategories.id"  , "type" => "num");
 				$fields[1] = array("name" =>"Partcategories.name"  , "type" => "char");
+				$fields[2] = array("name" =>"Partcategories.description"  , "type" => "char");
 				
 				
 		

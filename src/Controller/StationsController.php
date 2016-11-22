@@ -52,6 +52,7 @@ class StationsController extends AppController
 		 
 				$fields[0] = array("name" =>"Stations.id"  , "type" => "num");
 				$fields[1] = array("name" =>"Stations.name"  , "type" => "char");
+				$fields[2] = array("name" =>"Stations.description"  , "type" => "char");
 								
 		
 		$this->log($fields);

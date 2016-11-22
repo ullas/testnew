@@ -32,8 +32,8 @@ $this->Form->templates($myTemplates);
              <div class="form-horizontal">
         <?php
             echo $this->Form->input('name',['required'=>'required']);
-            echo $this->Form->input('descrtption');
-                    ?>
+            echo $this->Form->input('description');
+         ?>
    </div>
  
           </div>

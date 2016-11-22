@@ -52,6 +52,7 @@ class ServicetasksController extends AppController
 		 
 				$fields[0] = array("name" =>"Servicetasks.id"  , "type" => "num");
 				$fields[1] = array("name" =>"Servicetasks.name"  , "type" => "char");
+				$fields[2] = array("name" =>"Servicetasks.description"  , "type" => "char");
 								
 		
 		$this->log($fields);

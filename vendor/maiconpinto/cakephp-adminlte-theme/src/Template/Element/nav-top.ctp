@@ -86,13 +86,13 @@ if (file_exists($file)) {
 		                    <a href="Contractors" data-remote="false" data-toggle="modal" data-target="#myModal" >Contractors</a>
 		                  </div>
 		                  <div class="col-xs-3 text-center">
-		                    <a href="Currencies">Currencies</a>
+		                    <a href="Currencies" data-remote="false" data-toggle="modal" data-target="#myModal">Currencies</a>
 		                  </div>
 		                  <div class="col-xs-3 text-center">
-		                    <a href="Departments">Departments</a>
+		                    <a href="Departments" data-remote="false" data-toggle="modal" data-target="#myModal">Departments</a>
 		                  </div>
 		                  <div class="col-xs-3 text-center">
-		                    <a href="Inspectionstatuses">Inspectionstatuses</a>
+		                    <a href="Inspectionstatuses" data-remote="false" data-toggle="modal" data-target="#myModal">Inspection Statuses</a>
 		                  </div>
 		                  
 		                </div>
@@ -100,16 +100,16 @@ if (file_exists($file)) {
 		              
 		                <div class="row">
 		                  <div class="col-xs-3 text-center">
-		                    <a href="Manufacturers">Manufacturers</a>
+		                    <a href="Manufacturers" data-remote="false" data-toggle="modal" data-target="#myModal">Manufacturers</a>
 		                  </div>
 		                  <div class="col-xs-3 text-center">
-		                    <a href="Ownerships">Ownerships</a>
+		                    <a href="Ownerships" data-remote="false" data-toggle="modal" data-target="#myModal">Ownerships</a>
 		                  </div>
 		                  <div class="col-xs-3 text-center">
-		                    <a href="Partcategories">Partcategories</a>
+		                    <a href="Partcategories" data-remote="false" data-toggle="modal" data-target="#myModal">Part Categories</a>
 		                  </div>
 		                  <div class="col-xs-3 text-center">
-		                    <a href="Ownerships">Ownerships</a>
+		                    <a href="Ownerships" data-remote="false" data-toggle="modal" data-target="#myModal">Ownerships</a>
 		                  </div>
 		                  
 		                  
@@ -118,47 +118,47 @@ if (file_exists($file)) {
 		                
 		                <div class="row">
 		                  <div class="col-xs-3 text-center">
-		                    <a href="Purposes">Purposes</a>
+		                    <a href="Purposes" data-remote="false" data-toggle="modal" data-target="#myModal">Purposes</a>
 		                  </div>
 		                  <div class="col-xs-3 text-center">
-		                    <a href="Servicecompleted">Servicecompleted</a>
+		                    <a href="Servicecompleted" data-remote="false" data-toggle="modal" data-target="#myModal">Service Completed</a>
 		                  </div>
 		                  <div class="col-xs-3 text-center">
-		                    <a href="Units">Units</a>
+		                    <a href="Measurementunits" data-remote="false" data-toggle="modal" data-target="#myModal">Units</a>
 		                  </div>
 		                  <div class="col-xs-3 text-center">
-		                    <a href="Servicetasks">Servicetasks</a>
+		                    <a href="Servicetasks" data-remote="false" data-toggle="modal" data-target="#myModal">Service Tasks</a>
 		                  </div>
 		                </div> <!-- /.row --><div class="divider"></div>
 		                <div class="row">
 		                  
 		                 
 		                  <div class="col-xs-3 text-center">
-		                    <a href="Renewalstypes">Renewalstypes</a>
+		                    <a href="Renewalstypes" data-remote="false" data-toggle="modal" data-target="#myModal">Renewal Types</a>
 		                  </div>
 		                  <div class="col-xs-3 text-center">
-		                    <a href="Stations">Stations</a>
+		                    <a href="Stations" data-remote="false" data-toggle="modal" data-target="#myModal">Stations</a>
 		                  </div>
 		                  <div class="col-xs-3 text-center">
-		                    <a href="Symbols">Symbols</a>
+		                    <a href="Symbols" data-remote="false" data-toggle="modal" data-target="#myModal">Symbols</a>
 		                  </div>
 		                  <div class="col-xs-3 text-center">
-		                    <a href="Templatetypes">Templatetypes</a>
+		                    <a href="Templatetypes" data-remote="false" data-toggle="modal" data-target="#myModal">Template Types</a>
 		                  </div>
 		                </div> <!-- /.row --><div class="divider"></div>
 		               
 		                <div class="row">
 		                  <div class="col-xs-3 text-center">
-		                    <a href="Workorderstatuses">Workorderstatuses</a>
+		                    <a href="Workorderstatuses" data-remote="false" data-toggle="modal" data-target="#myModal">Work Order Statuses</a>
 		                  </div>
 		                  <div class="col-xs-3 text-center">
-		                    <a href="Vehiclecategories">Vehiclecategories</a>
+		                    <a href="Vehiclecategories" data-remote="false" data-toggle="modal" data-target="#myModal">Vehicle Categories</a>
 		                  </div>
 		                  <div class="col-xs-3 text-center">
-		                    <a href="Vehiclestatuses">Vehiclestatuses</a>
+		                    <a href="Vehiclestatuses" data-remote="false" data-toggle="modal" data-target="#myModal">Vehicle Statuses</a>
 		                  </div>
 		                  <div class="col-xs-3 text-center">
-		                    <a href="Vehicletypes">Vehicletypes</a>
+		                    <a href="Vehicletypes" data-remote="false" data-toggle="modal" data-target="#myModal">Vehicle Types</a>
 		                  </div>
 		                </div>
 		                

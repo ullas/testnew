@@ -33,6 +33,7 @@ $this->Form->templates($myTemplates);
         <?php
             echo $this->Form->input('servicesentry_id', ['label'=>'Service Entry','options' => $servicesentries, 'empty' => true,'class'=>'select2','required' => 'required']);
 			echo $this->Form->input('servicescompleted',['label'=>'Services Completed']);
+			echo $this->Form->input('description');
 		?>
    </div>
  

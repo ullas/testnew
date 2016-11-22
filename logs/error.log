@@ -2511,3 +2511,1667 @@ Stack Trace:
 
 )
 
+2016-11-22 06:51:28 Error: Array
+(
+    [0] => Array
+        (
+            [name] => Vehicletypes.id
+            [type] => num
+        )
+
+    [1] => Array
+        (
+            [name] => Vehicletypes.name
+            [type] => char
+        )
+
+)
+
+2016-11-22 06:51:33 Error: Array
+(
+    [0] => Array
+        (
+            [name] => Vehiclestatuses.id
+            [type] => num
+        )
+
+    [1] => Array
+        (
+            [name] => Vehiclestatuses.name
+            [type] => char
+        )
+
+)
+
+2016-11-22 06:52:46 Error: Array
+(
+    [0] => Array
+        (
+            [name] => Contractors.id
+            [type] => num
+        )
+
+    [1] => Array
+        (
+            [name] => Contractors.name
+            [type] => char
+        )
+
+    [2] => Array
+        (
+            [name] => Contractors.descrtption
+            [type] => char
+        )
+
+)
+
+2016-11-22 06:58:32 Error: Array
+(
+    [0] => Array
+        (
+            [name] => Contractors.id
+            [type] => num
+        )
+
+    [1] => Array
+        (
+            [name] => Contractors.name
+            [type] => char
+        )
+
+    [2] => Array
+        (
+            [name] => Contractors.descrtption
+            [type] => char
+        )
+
+)
+
+2016-11-22 07:00:31 Error: Array
+(
+    [0] => Array
+        (
+            [name] => Departments.id
+            [type] => num
+        )
+
+    [1] => Array
+        (
+            [name] => Departments.name
+            [type] => char
+        )
+
+    [2] => Array
+        (
+            [name] => Departments.description
+            [type] => char
+        )
+
+)
+
+2016-11-22 07:01:05 Error: Array
+(
+    [0] => Array
+        (
+            [name] => Measurementunits.id
+            [type] => num
+        )
+
+    [1] => Array
+        (
+            [name] => Measurementunits.name
+            [type] => char
+        )
+
+    [2] => Array
+        (
+            [name] => Measurementunits.description
+            [type] => char
+        )
+
+)
+
+2016-11-22 07:01:22 Error: Array
+(
+    [0] => Array
+        (
+            [name] => Measurementunits.id
+            [type] => num
+        )
+
+    [1] => Array
+        (
+            [name] => Measurementunits.name
+            [type] => char
+        )
+
+    [2] => Array
+        (
+            [name] => Measurementunits.description
+            [type] => char
+        )
+
+)
+
+2016-11-22 07:01:46 Error: Array
+(
+    [0] => Array
+        (
+            [name] => Measurementunits.id
+            [type] => num
+        )
+
+    [1] => Array
+        (
+            [name] => Measurementunits.name
+            [type] => char
+        )
+
+    [2] => Array
+        (
+            [name] => Measurementunits.description
+            [type] => char
+        )
+
+)
+
+2016-11-22 07:02:30 Error: Array
+(
+    [0] => Array
+        (
+            [name] => Departments.id
+            [type] => num
+        )
+
+    [1] => Array
+        (
+            [name] => Departments.name
+            [type] => char
+        )
+
+    [2] => Array
+        (
+            [name] => Departments.description
+            [type] => char
+        )
+
+)
+
+2016-11-22 07:02:40 Error: Array
+(
+    [0] => Array
+        (
+            [name] => Departments.id
+            [type] => num
+        )
+
+    [1] => Array
+        (
+            [name] => Departments.name
+            [type] => char
+        )
+
+    [2] => Array
+        (
+            [name] => Departments.description
+            [type] => char
+        )
+
+)
+
+2016-11-22 07:03:01 Error: Array
+(
+    [0] => Array
+        (
+            [name] => Measurementunits.id
+            [type] => num
+        )
+
+    [1] => Array
+        (
+            [name] => Measurementunits.name
+            [type] => char
+        )
+
+    [2] => Array
+        (
+            [name] => Measurementunits.description
+            [type] => char
+        )
+
+)
+
+2016-11-22 07:03:31 Error: Array
+(
+    [0] => Array
+        (
+            [name] => Measurementunits.id
+            [type] => num
+        )
+
+    [1] => Array
+        (
+            [name] => Measurementunits.name
+            [type] => char
+        )
+
+    [2] => Array
+        (
+            [name] => Measurementunits.description
+            [type] => char
+        )
+
+)
+
+2016-11-22 07:03:41 Error: Array
+(
+    [0] => Array
+        (
+            [name] => Measurementunits.id
+            [type] => num
+        )
+
+    [1] => Array
+        (
+            [name] => Measurementunits.name
+            [type] => char
+        )
+
+    [2] => Array
+        (
+            [name] => Measurementunits.description
+            [type] => char
+        )
+
+)
+
+2016-11-22 07:07:15 Error: Array
+(
+    [0] => Array
+        (
+            [name] => Ownerships.id
+            [type] => num
+        )
+
+    [1] => Array
+        (
+            [name] => Ownerships.name
+            [type] => char
+        )
+
+    [2] => Array
+        (
+            [name] => Ownerships.description
+            [type] => char
+        )
+
+)
+
+2016-11-22 07:08:22 Error: Array
+(
+    [0] => Array
+        (
+            [name] => Ownerships.id
+            [type] => num
+        )
+
+    [1] => Array
+        (
+            [name] => Ownerships.name
+            [type] => char
+        )
+
+    [2] => Array
+        (
+            [name] => Ownerships.description
+            [type] => char
+        )
+
+)
+
+2016-11-22 07:11:10 Error: Array
+(
+    [0] => Array
+        (
+            [name] => Measurementunits.id
+            [type] => num
+        )
+
+    [1] => Array
+        (
+            [name] => Measurementunits.name
+            [type] => char
+        )
+
+    [2] => Array
+        (
+            [name] => Measurementunits.description
+            [type] => char
+        )
+
+)
+
+2016-11-22 07:11:22 Error: Array
+(
+    [0] => Array
+        (
+            [name] => Measurementunits.id
+            [type] => num
+        )
+
+    [1] => Array
+        (
+            [name] => Measurementunits.name
+            [type] => char
+        )
+
+    [2] => Array
+        (
+            [name] => Measurementunits.description
+            [type] => char
+        )
+
+)
+
+2016-11-22 07:12:55 Error: Array
+(
+    [0] => Array
+        (
+            [name] => Ownerships.id
+            [type] => num
+        )
+
+    [1] => Array
+        (
+            [name] => Ownerships.name
+            [type] => char
+        )
+
+    [2] => Array
+        (
+            [name] => Ownerships.description
+            [type] => char
+        )
+
+)
+
+2016-11-22 07:14:13 Error: Array
+(
+    [0] => Array
+        (
+            [name] => Measurementunits.id
+            [type] => num
+        )
+
+    [1] => Array
+        (
+            [name] => Measurementunits.name
+            [type] => char
+        )
+
+    [2] => Array
+        (
+            [name] => Measurementunits.description
+            [type] => char
+        )
+
+)
+
+2016-11-22 07:14:29 Error: Array
+(
+    [0] => Array
+        (
+            [name] => Ownerships.id
+            [type] => num
+        )
+
+    [1] => Array
+        (
+            [name] => Ownerships.name
+            [type] => char
+        )
+
+    [2] => Array
+        (
+            [name] => Ownerships.description
+            [type] => char
+        )
+
+)
+
+2016-11-22 07:16:33 Error: Array
+(
+    [0] => Array
+        (
+            [name] => Partcategories.id
+            [type] => num
+        )
+
+    [1] => Array
+        (
+            [name] => Partcategories.name
+            [type] => char
+        )
+
+)
+
+2016-11-22 07:20:04 Error: Array
+(
+    [0] => Array
+        (
+            [name] => Partcategories.id
+            [type] => num
+        )
+
+    [1] => Array
+        (
+            [name] => Partcategories.name
+            [type] => char
+        )
+
+    [2] => Array
+        (
+            [name] => Partcategories.description
+            [type] => char
+        )
+
+)
+
+2016-11-22 07:20:16 Error: Array
+(
+    [0] => Array
+        (
+            [name] => Partcategories.id
+            [type] => num
+        )
+
+    [1] => Array
+        (
+            [name] => Partcategories.name
+            [type] => char
+        )
+
+    [2] => Array
+        (
+            [name] => Partcategories.description
+            [type] => char
+        )
+
+)
+
+2016-11-22 07:20:33 Error: Array
+(
+    [0] => Array
+        (
+            [name] => Partcategories.id
+            [type] => num
+        )
+
+    [1] => Array
+        (
+            [name] => Partcategories.name
+            [type] => char
+        )
+
+    [2] => Array
+        (
+            [name] => Partcategories.description
+            [type] => char
+        )
+
+)
+
+2016-11-22 07:25:18 Error: Array
+(
+    [0] => Array
+        (
+            [name] => Partcategories.id
+            [type] => num
+        )
+
+    [1] => Array
+        (
+            [name] => Partcategories.name
+            [type] => char
+        )
+
+    [2] => Array
+        (
+            [name] => Partcategories.description
+            [type] => char
+        )
+
+)
+
+2016-11-22 07:29:14 Error: Array
+(
+    [0] => Array
+        (
+            [name] => Purposes.id
+            [type] => num
+        )
+
+    [1] => Array
+        (
+            [name] => Purposes.name
+            [type] => char
+        )
+
+    [2] => Array
+        (
+            [name] => Purposes.description
+            [type] => char
+        )
+
+)
+
+2016-11-22 07:29:55 Error: Array
+(
+    [0] => Array
+        (
+            [name] => Purposes.id
+            [type] => num
+        )
+
+    [1] => Array
+        (
+            [name] => Purposes.name
+            [type] => char
+        )
+
+    [2] => Array
+        (
+            [name] => Purposes.description
+            [type] => char
+        )
+
+)
+
+2016-11-22 07:30:05 Error: Array
+(
+    [0] => Array
+        (
+            [name] => Purposes.id
+            [type] => num
+        )
+
+    [1] => Array
+        (
+            [name] => Purposes.name
+            [type] => char
+        )
+
+    [2] => Array
+        (
+            [name] => Purposes.description
+            [type] => char
+        )
+
+)
+
+2016-11-22 07:30:20 Error: Array
+(
+    [0] => Array
+        (
+            [name] => Purposes.id
+            [type] => num
+        )
+
+    [1] => Array
+        (
+            [name] => Purposes.name
+            [type] => char
+        )
+
+    [2] => Array
+        (
+            [name] => Purposes.description
+            [type] => char
+        )
+
+)
+
+2016-11-22 07:30:35 Error: Array
+(
+    [0] => Array
+        (
+            [name] => Purposes.id
+            [type] => num
+        )
+
+    [1] => Array
+        (
+            [name] => Purposes.name
+            [type] => char
+        )
+
+    [2] => Array
+        (
+            [name] => Purposes.description
+            [type] => char
+        )
+
+)
+
+2016-11-22 07:30:43 Error: Array
+(
+    [0] => Array
+        (
+            [name] => Purposes.id
+            [type] => num
+        )
+
+    [1] => Array
+        (
+            [name] => Purposes.name
+            [type] => char
+        )
+
+    [2] => Array
+        (
+            [name] => Purposes.description
+            [type] => char
+        )
+
+)
+
+2016-11-22 07:34:39 Error: Array
+(
+    [0] => Array
+        (
+            [name] => Partcategories.id
+            [type] => num
+        )
+
+    [1] => Array
+        (
+            [name] => Partcategories.name
+            [type] => char
+        )
+
+    [2] => Array
+        (
+            [name] => Partcategories.description
+            [type] => char
+        )
+
+)
+
+2016-11-22 07:34:57 Error: Array
+(
+    [0] => Array
+        (
+            [name] => Partcategories.id
+            [type] => num
+        )
+
+    [1] => Array
+        (
+            [name] => Partcategories.name
+            [type] => char
+        )
+
+    [2] => Array
+        (
+            [name] => Partcategories.description
+            [type] => char
+        )
+
+)
+
+2016-11-22 07:35:17 Error: Array
+(
+    [0] => Array
+        (
+            [name] => Partcategories.id
+            [type] => num
+        )
+
+    [1] => Array
+        (
+            [name] => Partcategories.name
+            [type] => char
+        )
+
+    [2] => Array
+        (
+            [name] => Partcategories.description
+            [type] => char
+        )
+
+)
+
+2016-11-22 07:35:49 Error: Array
+(
+    [0] => Array
+        (
+            [name] => Renewalstypes.id
+            [type] => num
+        )
+
+    [1] => Array
+        (
+            [name] => Renewalstypes.name
+            [type] => char
+        )
+
+    [2] => Array
+        (
+            [name] => Renewalstypes.description
+            [type] => char
+        )
+
+)
+
+2016-11-22 07:36:02 Error: Array
+(
+    [0] => Array
+        (
+            [name] => Renewalstypes.id
+            [type] => num
+        )
+
+    [1] => Array
+        (
+            [name] => Renewalstypes.name
+            [type] => char
+        )
+
+    [2] => Array
+        (
+            [name] => Renewalstypes.description
+            [type] => char
+        )
+
+)
+
+2016-11-22 07:36:20 Error: Array
+(
+    [0] => Array
+        (
+            [name] => Renewalstypes.id
+            [type] => num
+        )
+
+    [1] => Array
+        (
+            [name] => Renewalstypes.name
+            [type] => char
+        )
+
+    [2] => Array
+        (
+            [name] => Renewalstypes.description
+            [type] => char
+        )
+
+)
+
+2016-11-22 07:36:31 Error: Array
+(
+    [0] => Array
+        (
+            [name] => Renewalstypes.id
+            [type] => num
+        )
+
+    [1] => Array
+        (
+            [name] => Renewalstypes.name
+            [type] => char
+        )
+
+    [2] => Array
+        (
+            [name] => Renewalstypes.description
+            [type] => char
+        )
+
+)
+
+2016-11-22 07:36:43 Error: Array
+(
+    [0] => Array
+        (
+            [name] => Renewalstypes.id
+            [type] => num
+        )
+
+    [1] => Array
+        (
+            [name] => Renewalstypes.name
+            [type] => char
+        )
+
+    [2] => Array
+        (
+            [name] => Renewalstypes.description
+            [type] => char
+        )
+
+)
+
+2016-11-22 08:35:44 Error: Array
+(
+    [0] => Array
+        (
+            [name] => Servicecompleted.id
+            [type] => num
+        )
+
+    [1] => Array
+        (
+            [name] => Servicecompleted.servicesentry_id
+            [type] => char
+        )
+
+    [2] => Array
+        (
+            [name] => Servicecompleted.servicescompleted
+            [type] => char
+        )
+
+    [3] => Array
+        (
+            [name] => Servicecompleted.description
+            [type] => char
+        )
+
+)
+
+2016-11-22 08:37:56 Error: Array
+(
+    [0] => Array
+        (
+            [name] => Servicetasks.id
+            [type] => num
+        )
+
+    [1] => Array
+        (
+            [name] => Servicetasks.name
+            [type] => char
+        )
+
+    [2] => Array
+        (
+            [name] => Servicetasks.description
+            [type] => char
+        )
+
+)
+
+2016-11-22 08:38:11 Error: Array
+(
+    [0] => Array
+        (
+            [name] => Servicetasks.id
+            [type] => num
+        )
+
+    [1] => Array
+        (
+            [name] => Servicetasks.name
+            [type] => char
+        )
+
+    [2] => Array
+        (
+            [name] => Servicetasks.description
+            [type] => char
+        )
+
+)
+
+2016-11-22 08:38:48 Error: Array
+(
+    [0] => Array
+        (
+            [name] => Servicetasks.id
+            [type] => num
+        )
+
+    [1] => Array
+        (
+            [name] => Servicetasks.name
+            [type] => char
+        )
+
+    [2] => Array
+        (
+            [name] => Servicetasks.description
+            [type] => char
+        )
+
+)
+
+2016-11-22 08:39:05 Error: Array
+(
+    [0] => Array
+        (
+            [name] => Servicetasks.id
+            [type] => num
+        )
+
+    [1] => Array
+        (
+            [name] => Servicetasks.name
+            [type] => char
+        )
+
+    [2] => Array
+        (
+            [name] => Servicetasks.description
+            [type] => char
+        )
+
+)
+
+2016-11-22 08:41:07 Error: Array
+(
+    [0] => Array
+        (
+            [name] => Servicetasks.id
+            [type] => num
+        )
+
+    [1] => Array
+        (
+            [name] => Servicetasks.name
+            [type] => char
+        )
+
+    [2] => Array
+        (
+            [name] => Servicetasks.description
+            [type] => char
+        )
+
+)
+
+2016-11-22 08:41:30 Error: Array
+(
+    [0] => Array
+        (
+            [name] => Servicetasks.id
+            [type] => num
+        )
+
+    [1] => Array
+        (
+            [name] => Servicetasks.name
+            [type] => char
+        )
+
+    [2] => Array
+        (
+            [name] => Servicetasks.description
+            [type] => char
+        )
+
+)
+
+2016-11-22 08:41:56 Error: Array
+(
+    [0] => Array
+        (
+            [name] => Servicetasks.id
+            [type] => num
+        )
+
+    [1] => Array
+        (
+            [name] => Servicetasks.name
+            [type] => char
+        )
+
+    [2] => Array
+        (
+            [name] => Servicetasks.description
+            [type] => char
+        )
+
+)
+
+2016-11-22 08:42:04 Error: Array
+(
+    [0] => Array
+        (
+            [name] => Servicetasks.id
+            [type] => num
+        )
+
+    [1] => Array
+        (
+            [name] => Servicetasks.name
+            [type] => char
+        )
+
+    [2] => Array
+        (
+            [name] => Servicetasks.description
+            [type] => char
+        )
+
+)
+
+2016-11-22 08:42:12 Error: Array
+(
+    [0] => Array
+        (
+            [name] => Servicetasks.id
+            [type] => num
+        )
+
+    [1] => Array
+        (
+            [name] => Servicetasks.name
+            [type] => char
+        )
+
+    [2] => Array
+        (
+            [name] => Servicetasks.description
+            [type] => char
+        )
+
+)
+
+2016-11-22 08:42:19 Error: Array
+(
+    [0] => Array
+        (
+            [name] => Servicetasks.id
+            [type] => num
+        )
+
+    [1] => Array
+        (
+            [name] => Servicetasks.name
+            [type] => char
+        )
+
+    [2] => Array
+        (
+            [name] => Servicetasks.description
+            [type] => char
+        )
+
+)
+
+2016-11-22 08:48:12 Error: Array
+(
+    [0] => Array
+        (
+            [name] => Stations.id
+            [type] => num
+        )
+
+    [1] => Array
+        (
+            [name] => Stations.name
+            [type] => char
+        )
+
+    [2] => Array
+        (
+            [name] => Stations.description
+            [type] => char
+        )
+
+)
+
+2016-11-22 08:48:50 Error: Array
+(
+    [0] => Array
+        (
+            [name] => Stations.id
+            [type] => num
+        )
+
+    [1] => Array
+        (
+            [name] => Stations.name
+            [type] => char
+        )
+
+    [2] => Array
+        (
+            [name] => Stations.description
+            [type] => char
+        )
+
+)
+
+2016-11-22 08:49:04 Error: Array
+(
+    [0] => Array
+        (
+            [name] => Stations.id
+            [type] => num
+        )
+
+    [1] => Array
+        (
+            [name] => Stations.name
+            [type] => char
+        )
+
+    [2] => Array
+        (
+            [name] => Stations.description
+            [type] => char
+        )
+
+)
+
+2016-11-22 08:49:15 Error: Array
+(
+    [0] => Array
+        (
+            [name] => Stations.id
+            [type] => num
+        )
+
+    [1] => Array
+        (
+            [name] => Stations.name
+            [type] => char
+        )
+
+    [2] => Array
+        (
+            [name] => Stations.description
+            [type] => char
+        )
+
+)
+
+2016-11-22 08:59:54 Error: Array
+(
+    [0] => Array
+        (
+            [name] => id
+            [type] => num
+        )
+
+    [1] => Array
+        (
+            [name] => name
+            [type] => char
+        )
+
+    [2] => Array
+        (
+            [name] => symbol
+            [type] => char
+        )
+
+    [3] => Array
+        (
+            [name] => Decription
+            [type] => char
+        )
+
+)
+
+2016-11-22 09:00:05 Error: Array
+(
+    [0] => Array
+        (
+            [name] => id
+            [type] => num
+        )
+
+    [1] => Array
+        (
+            [name] => name
+            [type] => char
+        )
+
+    [2] => Array
+        (
+            [name] => symbol
+            [type] => char
+        )
+
+    [3] => Array
+        (
+            [name] => Decription
+            [type] => char
+        )
+
+)
+
+2016-11-22 09:00:23 Error: Array
+(
+    [0] => Array
+        (
+            [name] => id
+            [type] => num
+        )
+
+    [1] => Array
+        (
+            [name] => name
+            [type] => char
+        )
+
+    [2] => Array
+        (
+            [name] => symbol
+            [type] => char
+        )
+
+    [3] => Array
+        (
+            [name] => Decription
+            [type] => char
+        )
+
+)
+
+2016-11-22 09:00:36 Error: Array
+(
+    [0] => Array
+        (
+            [name] => id
+            [type] => num
+        )
+
+    [1] => Array
+        (
+            [name] => name
+            [type] => char
+        )
+
+    [2] => Array
+        (
+            [name] => symbol
+            [type] => char
+        )
+
+    [3] => Array
+        (
+            [name] => Decription
+            [type] => char
+        )
+
+)
+
+2016-11-22 09:00:55 Error: Array
+(
+    [0] => Array
+        (
+            [name] => id
+            [type] => num
+        )
+
+    [1] => Array
+        (
+            [name] => name
+            [type] => char
+        )
+
+    [2] => Array
+        (
+            [name] => symbol
+            [type] => char
+        )
+
+    [3] => Array
+        (
+            [name] => Decription
+            [type] => char
+        )
+
+)
+
+2016-11-22 09:01:49 Error: Array
+(
+    [0] => Array
+        (
+            [name] => id
+            [type] => num
+        )
+
+    [1] => Array
+        (
+            [name] => name
+            [type] => char
+        )
+
+    [2] => Array
+        (
+            [name] => symbol
+            [type] => char
+        )
+
+    [3] => Array
+        (
+            [name] => description
+            [type] => char
+        )
+
+)
+
+2016-11-22 09:02:09 Error: Array
+(
+    [0] => Array
+        (
+            [name] => id
+            [type] => num
+        )
+
+    [1] => Array
+        (
+            [name] => name
+            [type] => char
+        )
+
+    [2] => Array
+        (
+            [name] => symbol
+            [type] => char
+        )
+
+    [3] => Array
+        (
+            [name] => description
+            [type] => char
+        )
+
+)
+
+2016-11-22 09:02:19 Error: Array
+(
+    [0] => Array
+        (
+            [name] => id
+            [type] => num
+        )
+
+    [1] => Array
+        (
+            [name] => name
+            [type] => char
+        )
+
+    [2] => Array
+        (
+            [name] => symbol
+            [type] => char
+        )
+
+    [3] => Array
+        (
+            [name] => description
+            [type] => char
+        )
+
+)
+
+2016-11-22 09:06:20 Error: Array
+(
+    [0] => Array
+        (
+            [name] => Vehiclestatuses.id
+            [type] => num
+        )
+
+    [1] => Array
+        (
+            [name] => Vehiclestatuses.name
+            [type] => char
+        )
+
+    [2] => Array
+        (
+            [name] => Vehiclestatuses.description
+            [type] => char
+        )
+
+)
+
+2016-11-22 09:06:31 Error: Array
+(
+    [0] => Array
+        (
+            [name] => Vehiclestatuses.id
+            [type] => num
+        )
+
+    [1] => Array
+        (
+            [name] => Vehiclestatuses.name
+            [type] => char
+        )
+
+    [2] => Array
+        (
+            [name] => Vehiclestatuses.description
+            [type] => char
+        )
+
+)
+
+2016-11-22 09:06:44 Error: Array
+(
+    [0] => Array
+        (
+            [name] => Vehiclestatuses.id
+            [type] => num
+        )
+
+    [1] => Array
+        (
+            [name] => Vehiclestatuses.name
+            [type] => char
+        )
+
+    [2] => Array
+        (
+            [name] => Vehiclestatuses.description
+            [type] => char
+        )
+
+)
+
+2016-11-22 09:10:30 Error: Array
+(
+    [0] => Array
+        (
+            [name] => Vehicletypes.id
+            [type] => num
+        )
+
+    [1] => Array
+        (
+            [name] => Vehicletypes.name
+            [type] => char
+        )
+
+    [2] => Array
+        (
+            [name] => Vehicletypes.description
+            [type] => char
+        )
+
+)
+
+2016-11-22 09:10:39 Error: Array
+(
+    [0] => Array
+        (
+            [name] => Vehicletypes.id
+            [type] => num
+        )
+
+    [1] => Array
+        (
+            [name] => Vehicletypes.name
+            [type] => char
+        )
+
+    [2] => Array
+        (
+            [name] => Vehicletypes.description
+            [type] => char
+        )
+
+)
+
+2016-11-22 09:10:55 Error: Array
+(
+    [0] => Array
+        (
+            [name] => Vehicletypes.id
+            [type] => num
+        )
+
+    [1] => Array
+        (
+            [name] => Vehicletypes.name
+            [type] => char
+        )
+
+    [2] => Array
+        (
+            [name] => Vehicletypes.description
+            [type] => char
+        )
+
+)
+
+2016-11-22 09:12:21 Error: Array
+(
+    [0] => Array
+        (
+            [name] => Vehicletypes.id
+            [type] => num
+        )
+
+    [1] => Array
+        (
+            [name] => Vehicletypes.name
+            [type] => char
+        )
+
+    [2] => Array
+        (
+            [name] => Vehicletypes.description
+            [type] => char
+        )
+
+)
+
+2016-11-22 09:15:46 Error: Array
+(
+    [0] => Array
+        (
+            [name] => Workorderstatuses.id
+            [type] => num
+        )
+
+    [1] => Array
+        (
+            [name] => Workorderstatuses.name
+            [type] => char
+        )
+
+    [2] => Array
+        (
+            [name] => Workorderstatuses.description
+            [type] => char
+        )
+
+)
+
+2016-11-22 09:16:23 Error: Array
+(
+    [0] => Array
+        (
+            [name] => Workorderstatuses.id
+            [type] => num
+        )
+
+    [1] => Array
+        (
+            [name] => Workorderstatuses.name
+            [type] => char
+        )
+
+    [2] => Array
+        (
+            [name] => Workorderstatuses.description
+            [type] => char
+        )
+
+)
+
+2016-11-22 09:16:36 Error: Array
+(
+    [0] => Array
+        (
+            [name] => Workorderstatuses.id
+            [type] => num
+        )
+
+    [1] => Array
+        (
+            [name] => Workorderstatuses.name
+            [type] => char
+        )
+
+    [2] => Array
+        (
+            [name] => Workorderstatuses.description
+            [type] => char
+        )
+
+)
+
+2016-11-22 09:16:49 Error: Array
+(
+    [0] => Array
+        (
+            [name] => Workorderstatuses.id
+            [type] => num
+        )
+
+    [1] => Array
+        (
+            [name] => Workorderstatuses.name
+            [type] => char
+        )
+
+    [2] => Array
+        (
+            [name] => Workorderstatuses.description
+            [type] => char
+        )
+
+)
+
+2016-11-22 09:22:45 Error: Array
+(
+    [0] => Array
+        (
+            [name] => Contractors.id
+            [type] => num
+        )
+
+    [1] => Array
+        (
+            [name] => Contractors.name
+            [type] => char
+        )
+
+    [2] => Array
+        (
+            [name] => Contractors.descrtption
+            [type] => char
+        )
+
+)
+

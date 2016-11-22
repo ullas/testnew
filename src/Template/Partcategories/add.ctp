@@ -33,6 +33,7 @@ $this->Form->templates($myTemplates);
     
         <?php
             echo $this->Form->input('name',['required'=>'required']);
+			echo $this->Form->input('description');
         ?>
      </div>
  

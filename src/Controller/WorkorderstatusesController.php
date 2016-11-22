@@ -52,6 +52,7 @@ class WorkorderstatusesController extends AppController
 		 
 				$fields[0] = array("name" =>"Workorderstatuses.id"  , "type" => "num");
 				$fields[1] = array("name" =>"Workorderstatuses.name"  , "type" => "char");
+				$fields[2] = array("name" =>"Workorderstatuses.description"  , "type" => "char");
 								
 		
 		$this->log($fields);
