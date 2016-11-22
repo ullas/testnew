@@ -16,7 +16,7 @@ class SymbolsController extends AppController
      *
      * @var array
      */
-    public $components = ['Datatable'];
+    public $components = ['Datatablemaster'];
 	
     /**
      * Index method
@@ -56,7 +56,7 @@ class SymbolsController extends AppController
 								
 		
 		$this->log($fields);
-		$output =$this->Datatable->getView($fields,['Customers', 'Vehicles'],$usrfiter);
+		$output =$this->Datatablemaster->getView($fields,['Customers', 'Vehicles'],$usrfiter);
 		$out =json_encode($output);  
 	   
 		$this->response->body($out);
@@ -92,11 +92,11 @@ class SymbolsController extends AppController
             $symbol = $this->Symbols->patchEntity($symbol, $this->request->data);
 			$purpose['customer_id']=$this->loggedinuser['customer_id'];
             if ($this->Symbols->save($symbol)) {
-                $this->Flash->success(__('The symbol has been saved.'));
+             //   $this->Flash->success(__('The symbol has been saved.'));
 
-                return $this->redirect(['action' => 'index']);
+             //   return $this->redirect(['action' => 'index']);
             } else {
-                $this->Flash->error(__('The symbol could not be saved. Please, try again.'));
+             //   $this->Flash->error(__('The symbol could not be saved. Please, try again.'));
             }
         }
         $customers = $this->Symbols->Customers->find('list', ['limit' => 200]);
@@ -120,11 +120,11 @@ class SymbolsController extends AppController
             $symbol = $this->Symbols->patchEntity($symbol, $this->request->data);
 			$purpose['customer_id']=$this->loggedinuser['customer_id'];
             if ($this->Symbols->save($symbol)) {
-                $this->Flash->success(__('The symbol has been saved.'));
+            //    $this->Flash->success(__('The symbol has been saved.'));
 
-                return $this->redirect(['action' => 'index']);
+            //    return $this->redirect(['action' => 'index']);
             } else {
-                $this->Flash->error(__('The symbol could not be saved. Please, try again.'));
+             //   $this->Flash->error(__('The symbol could not be saved. Please, try again.'));
             }
         }
         $customers = $this->Symbols->Customers->find('list', ['limit' => 200]);
@@ -141,12 +141,12 @@ class SymbolsController extends AppController
      */
     public function delete($id = null)
     {
-        $this->request->allowMethod(['post', 'delete']);
+        //$this->request->allowMethod(['post', 'delete']);
         $symbol = $this->Symbols->get($id);
         if ($this->Symbols->delete($symbol)) {
-            $this->Flash->success(__('The symbol has been deleted.'));
+         //   $this->Flash->success(__('The symbol has been deleted.'));
         } else {
-            $this->Flash->error(__('The symbol could not be deleted. Please, try again.'));
+        //    $this->Flash->error(__('The symbol could not be deleted. Please, try again.'));
         }
 
         return $this->redirect(['action' => 'index']);

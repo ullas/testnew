@@ -17,7 +17,7 @@ class InspectionstatusesController extends AppController
      *
      * @var array
      */
-    public $components = ['Datatable'];
+    public $components = ['Datatablemaster'];
 
     /**
      * Index method
@@ -60,7 +60,7 @@ class InspectionstatusesController extends AppController
 				
 		
 		$this->log($fields);
-		$output =$this->Datatable->getView($fields,['Customers'],$usrfiter);
+		$output =$this->Datatablemaster->getView($fields,['Customers'],$usrfiter);
 		$out =json_encode($output);  
 	   
 		$this->response->body($out);
@@ -96,11 +96,11 @@ class InspectionstatusesController extends AppController
             $inspectionstatus = $this->Inspectionstatuses->patchEntity($inspectionstatus, $this->request->data);
             $inspectionstatus['customer_id']=$this->loggedinuser['customer_id'];
             if ($this->Inspectionstatuses->save($inspectionstatus)) {
-                $this->Flash->success(__('The inspectionstatus has been saved.'));
+             //   $this->Flash->success(__('The inspectionstatus has been saved.'));
 
-                return $this->redirect(['action' => 'index']);
+             //  return $this->redirect(['action' => 'index']);
             } else {
-                $this->Flash->error(__('The inspectionstatus could not be saved. Please, try again.'));
+              //  $this->Flash->error(__('The inspectionstatus could not be saved. Please, try again.'));
             }
         }
                 
@@ -127,11 +127,11 @@ class InspectionstatusesController extends AppController
             $inspectionstatus = $this->Inspectionstatuses->patchEntity($inspectionstatus, $this->request->data);
              $inspectionstatus['customer_id']=$this->loggedinuser['customer_id'];
             if ($this->Inspectionstatuses->save($inspectionstatus)) {
-                $this->Flash->success(__('The inspectionstatus has been saved.'));
+             //   $this->Flash->success(__('The inspectionstatus has been saved.'));
 
-                return $this->redirect(['action' => 'index']);
+             //   return $this->redirect(['action' => 'index']);
             } else {
-                $this->Flash->error(__('The inspectionstatus could not be saved. Please, try again.'));
+             //   $this->Flash->error(__('The inspectionstatus could not be saved. Please, try again.'));
             }
         }
         $customers = $this->Inspectionstatuses->Customers->find('list', ['limit' => 200]);
@@ -151,9 +151,9 @@ class InspectionstatusesController extends AppController
         $this->request->allowMethod(['post', 'delete']);
         $inspectionstatus = $this->Inspectionstatuses->get($id);
         if ($this->Inspectionstatuses->delete($inspectionstatus)) {
-            $this->Flash->success(__('The inspectionstatus has been deleted.'));
+         //   $this->Flash->success(__('The inspectionstatus has been deleted.'));
         } else {
-            $this->Flash->error(__('The inspectionstatus could not be deleted. Please, try again.'));
+         //   $this->Flash->error(__('The inspectionstatus could not be deleted. Please, try again.'));
         }
 
         return $this->redirect(['action' => 'index']);

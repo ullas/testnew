@@ -16,7 +16,7 @@ class TripstatusesController extends AppController
      *
      * @var array
      */
-    public $components = ['Datatable'];
+    public $components = ['Datatablemaster'];
 	
     /**
      * Index method
@@ -55,7 +55,7 @@ class TripstatusesController extends AppController
 				$fields[2] = array("name" =>"Tripstatuses.description"  , "type" => "char");				
 		
 		$this->log($fields);
-		$output =$this->Datatable->getView($fields,['Customers'],$usrfiter);
+		$output =$this->Datatablemaster->getView($fields,['Customers'],$usrfiter);
 		$out =json_encode($output);  
 	   
 		$this->response->body($out);
@@ -91,11 +91,11 @@ class TripstatusesController extends AppController
             $tripstatus = $this->Tripstatuses->patchEntity($tripstatus, $this->request->data);
 			$tripstatus['customer_id']=$this->loggedinuser['customer_id'];
             if ($this->Tripstatuses->save($tripstatus)) {
-                $this->Flash->success(__('The tripstatus has been saved.'));
+             //   $this->Flash->success(__('The tripstatus has been saved.'));
 
-                return $this->redirect(['action' => 'index']);
+            //    return $this->redirect(['action' => 'index']);
             } else {
-                $this->Flash->error(__('The tripstatus could not be saved. Please, try again.'));
+             //   $this->Flash->error(__('The tripstatus could not be saved. Please, try again.'));
             }
         }
         $this->set(compact('tripstatus'));
@@ -118,11 +118,11 @@ class TripstatusesController extends AppController
             $tripstatus = $this->Tripstatuses->patchEntity($tripstatus, $this->request->data);
 			$tripstatus['customer_id']=$this->loggedinuser['customer_id'];
             if ($this->Tripstatuses->save($tripstatus)) {
-                $this->Flash->success(__('The tripstatus has been saved.'));
+            //    $this->Flash->success(__('The tripstatus has been saved.'));
 
-                return $this->redirect(['action' => 'index']);
+             //   return $this->redirect(['action' => 'index']);
             } else {
-                $this->Flash->error(__('The tripstatus could not be saved. Please, try again.'));
+             //   $this->Flash->error(__('The tripstatus could not be saved. Please, try again.'));
             }
         }
         $this->set(compact('tripstatus'));
@@ -138,12 +138,12 @@ class TripstatusesController extends AppController
      */
     public function delete($id = null)
     {
-        $this->request->allowMethod(['post', 'delete']);
+       // $this->request->allowMethod(['post', 'delete']);
         $tripstatus = $this->Tripstatuses->get($id);
         if ($this->Tripstatuses->delete($tripstatus)) {
-            $this->Flash->success(__('The tripstatus has been deleted.'));
+       //     $this->Flash->success(__('The tripstatus has been deleted.'));
         } else {
-            $this->Flash->error(__('The tripstatus could not be deleted. Please, try again.'));
+        //    $this->Flash->error(__('The tripstatus could not be deleted. Please, try again.'));
         }
 
         return $this->redirect(['action' => 'index']);

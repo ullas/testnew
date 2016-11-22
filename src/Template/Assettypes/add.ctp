@@ -58,35 +58,4 @@ $this->Form->templates($myTemplates);
 <!-- /.content -->
 
 
-<?php
-$this->Html->css([
-    
-    'AdminLTE./plugins/datepicker/datepicker3',
- 	'AdminLTE./plugins/select2/select2.min'
-  ],
-  ['block' => 'css']);
-
-$this->Html->script([
- 'AdminLTE./plugins/select2/select2.full.min',
-  	'AdminLTE./plugins/datepicker/bootstrap-datepicker',
-  	'/js/dropzone/dropzone',
-	'AdminLTE./plugins/iCheck/icheck.min'
- 
-],
-['block' => 'script']);
-?>
-<?php $this->start('scriptBotton'); ?>
-<script>
-  $(function () {
-    //Initialize Select2 Elements
-    $(".select2").select2();
-     $('.datemask').datepicker({
-            format:"dd/mm/yy",
-              autoclose: true
-   });
-
-  });
-</script>
-<?php $this->end(); ?>
-
 

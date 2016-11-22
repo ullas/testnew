@@ -15,7 +15,7 @@ class EventtypesController extends AppController
      *
      * @var array
      */
-    public $components = ['Datatable'];
+    public $components = ['Datatablemaster'];
     /**
      * Index method
      *
@@ -55,7 +55,7 @@ class EventtypesController extends AppController
 				
 		
 		$this->log($fields);
-		$output =$this->Datatable->getView($fields,['Customers'],$usrfiter);
+		$output =$this->Datatablemaster->getView($fields,['Customers'],$usrfiter);
 		$out =json_encode($output);  
 	   
 		$this->response->body($out);
@@ -93,11 +93,11 @@ class EventtypesController extends AppController
             $eventtype = $this->Eventtypes->patchEntity($eventtype, $this->request->data);
 			$eventtype['customer_id']=$this->loggedinuser['customer_id'];
             if ($this->Eventtypes->save($eventtype)) {
-                $this->Flash->success(__('The eventtype has been saved.'));
+         //       $this->Flash->success(__('The eventtype has been saved.'));
 
-                return $this->redirect(['action' => 'index']);
+         //       return $this->redirect(['action' => 'index']);
             } else {
-                $this->Flash->error(__('The eventtype could not be saved. Please, try again.'));
+         //       $this->Flash->error(__('The eventtype could not be saved. Please, try again.'));
             }
         }
         $this->set(compact('eventtype'));
@@ -120,11 +120,11 @@ class EventtypesController extends AppController
             $eventtype = $this->Eventtypes->patchEntity($eventtype, $this->request->data);
 			$eventtype['customer_id']=$this->loggedinuser['customer_id'];
             if ($this->Eventtypes->save($eventtype)) {
-                $this->Flash->success(__('The eventtype has been saved.'));
+         //       $this->Flash->success(__('The eventtype has been saved.'));
 
-                return $this->redirect(['action' => 'index']);
+         //       return $this->redirect(['action' => 'index']);
             } else {
-                $this->Flash->error(__('The eventtype could not be saved. Please, try again.'));
+         //       $this->Flash->error(__('The eventtype could not be saved. Please, try again.'));
             }
         }
         $this->set(compact('eventtype'));
@@ -143,9 +143,9 @@ class EventtypesController extends AppController
         $this->request->allowMethod(['post', 'delete']);
         $eventtype = $this->Eventtypes->get($id);
         if ($this->Eventtypes->delete($eventtype)) {
-            $this->Flash->success(__('The eventtype has been deleted.'));
+       //     $this->Flash->success(__('The eventtype has been deleted.'));
         } else {
-            $this->Flash->error(__('The eventtype could not be deleted. Please, try again.'));
+      //      $this->Flash->error(__('The eventtype could not be deleted. Please, try again.'));
         }
 
         return $this->redirect(['action' => 'index']);

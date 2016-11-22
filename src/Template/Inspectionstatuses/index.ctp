@@ -5,12 +5,7 @@
     Inspection Statuses
     <small>Manage your Inspection Statuses</small>
   </h1>
-  <ol class="breadcrumb">
-    <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-    
-    <li class="active">Inspection Statuses</li>
-    
-  </ol>
+  
 </section>
 <?php 
 				$fields = array();
@@ -19,6 +14,6 @@
 				
 				
 
-echo $this->element('indexbasic', array('colheadsformasters' => $fields)); ?>
+echo $this->element('indexbasicmaster', array('colheadsformasters' => $fields)); ?>
 
 

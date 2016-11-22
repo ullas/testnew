@@ -17,7 +17,7 @@ class DevicemodelsController extends AppController
      *
      * @var array
      */
-    public $components = ['Datatable'];
+    public $components = ['Datatablemaster'];
 
     /**
      * Index method
@@ -58,7 +58,7 @@ class DevicemodelsController extends AppController
 				
 		
 		$this->log($fields);
-		$output =$this->Datatable->getView($fields,['Customers'],$usrfiter);
+		$output =$this->Datatablemaster->getView($fields,['Customers'],$usrfiter);
 		$out =json_encode($output);  
 	   
 		$this->response->body($out);
@@ -94,11 +94,11 @@ class DevicemodelsController extends AppController
             $devicemodel = $this->Devicemodels->patchEntity($devicemodel, $this->request->data);
             $devicemodel['customer_id']=$this->loggedinuser['customer_id'];
             if ($this->Devicemodels->save($devicemodel)) {
-                $this->Flash->success(__('The devicemodel has been saved.'));
+          //      $this->Flash->success(__('The devicemodel has been saved.'));
 
-                return $this->redirect(['action' => 'index']);
+          //      return $this->redirect(['action' => 'index']);
             } else {
-                $this->Flash->error(__('The devicemodel could not be saved. Please, try again.'));
+           //     $this->Flash->error(__('The devicemodel could not be saved. Please, try again.'));
             }
         }
                 
@@ -125,11 +125,11 @@ class DevicemodelsController extends AppController
             $devicemodel = $this->Devicemodels->patchEntity($devicemodel, $this->request->data);
              $devicemodel['customer_id']=$this->loggedinuser['customer_id'];
             if ($this->Devicemodels->save($devicemodel)) {
-                $this->Flash->success(__('The devicemodel has been saved.'));
+        //        $this->Flash->success(__('The devicemodel has been saved.'));
 
-                return $this->redirect(['action' => 'index']);
+        //        return $this->redirect(['action' => 'index']);
             } else {
-                $this->Flash->error(__('The devicemodel could not be saved. Please, try again.'));
+         //       $this->Flash->error(__('The devicemodel could not be saved. Please, try again.'));
             }
         }
         $customers = $this->Devicemodels->Customers->find('list', ['limit' => 200]);
@@ -146,12 +146,12 @@ class DevicemodelsController extends AppController
      */
     public function delete($id = null)
     {
-        $this->request->allowMethod(['post', 'delete']);
+       // $this->request->allowMethod(['post', 'delete']);
         $devicemodel = $this->Devicemodels->get($id);
         if ($this->Devicemodels->delete($devicemodel)) {
-            $this->Flash->success(__('The devicemodel has been deleted.'));
+       //     $this->Flash->success(__('The devicemodel has been deleted.'));
         } else {
-            $this->Flash->error(__('The devicemodel could not be deleted. Please, try again.'));
+       //     $this->Flash->error(__('The devicemodel could not be deleted. Please, try again.'));
         }
 
         return $this->redirect(['action' => 'index']);
