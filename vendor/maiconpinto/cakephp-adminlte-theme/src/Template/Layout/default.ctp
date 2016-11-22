@@ -194,6 +194,11 @@
 				  			 e.preventDefault();
 						     $(".modal-body").load(link.attr("href")+"/add",function( response, status, xhr ){
 						     	
+							//set mnadatory * after required label
+     						$( ':input[required]' ).each( function () {
+         						$("label[for='" + this.id + "']").addClass('mandatory');
+     						});
+     
 						     	   $('#myModal').on("submit", "form#masterdataform", function(e){ 
 									    e.preventDefault(); 
 									    

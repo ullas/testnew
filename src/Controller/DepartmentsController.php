@@ -50,7 +50,7 @@ class DepartmentsController extends AppController
 		 
 				$fields[0] = array("name" =>"Departments.id"  , "type" => "num");
 				$fields[1] = array("name" =>"Departments.name"  , "type" => "char");
-				//$fields[2] = array("name" =>"Departments.description"  , "type" => "char");
+				$fields[2] = array("name" =>"Departments.description"  , "type" => "char");
 				
 		
 		$this->log($fields);

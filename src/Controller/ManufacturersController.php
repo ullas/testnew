@@ -50,6 +50,7 @@ class ManufacturersController extends AppController
 		 
 				$fields[0] = array("name" =>"Manufacturers.id"  , "type" => "num");
 				$fields[1] = array("name" =>"Manufacturers.name"  , "type" => "char");
+				$fields[2] = array("name" =>"Manufacturers.description"  , "type" => "char");
 				
 				
 		

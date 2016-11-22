@@ -50,6 +50,7 @@ class MeasurementunitsController extends AppController
 		 
 				$fields[0] = array("name" =>"Measurementunits.id"  , "type" => "num");
 				$fields[1] = array("name" =>"Measurementunits.name"  , "type" => "char");
+				$fields[2] = array("name" =>"Measurementunits.description"  , "type" => "char");
 				
 				
 		
