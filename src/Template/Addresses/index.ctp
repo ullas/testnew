@@ -13,5 +13,5 @@
   </ol>
 </section>
 <!-- Main content -->
-<?php echo $this->element('indexbasic'); ?>
+<?php echo $this->element('indexbasicnofilter'); ?>
 
