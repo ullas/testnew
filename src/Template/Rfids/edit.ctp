@@ -19,9 +19,8 @@ $this->Form->templates($myTemplates);
   </h1>
   <ol class="breadcrumb">
     <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-    <li><a href="#">Contacts</a></li>
-    <li><a href="/addresses/"> Addresses</a></li>
-    <li class="active">Edit</li>
+   <li><a href="/Rfids/"> RFID</a></li>
+    <li class="active">Add</li>
   </ol>
 </section>
 
@@ -39,6 +38,7 @@ $this->Form->templates($myTemplates);
         <?php
             echo $this->Form->input('code',['required' => 'required']);
             echo $this->Form->input('description');
+		    echo $this->Form->input('driver_id', ['options' => $drivers, 'empty' => true,'class'=>'select2']);
             echo $this->Form->input('passenger_id', ['options' => $passengers, 'empty' => true,'class'=>'select2']);
 		?>
 		 		<div class="form-group">

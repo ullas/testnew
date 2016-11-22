@@ -11,4 +11,8 @@
     
   </ol>
 </section>
+<<<<<<< HEAD
  <?php echo $this->element('indexbasicnofilter'); ?>
+=======
+ <?php echo $this->element('indexbasictrim'); ?>
+>>>>>>> origin/master

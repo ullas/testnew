@@ -34,7 +34,7 @@ $this->Form->templates($myTemplates);
         <div class="tab-content" style="padding-top:45px">
           <div class="active tab-pane" id="details">
              <div class="form-horizontal">
-        <?php
+         <?php
             echo $this->Form->input('jobdate',['type'=>'text','empty' => true,'label'=>'Job Date','required' => 'required','class'=>'datemask','templateVars' => ['icon' => '<div class="input-group-addon"><i class="fa fa-calendar"></i></div>']]);
             echo $this->Form->input('trackingobject_id', ['label'=>'Tracking Object','options' => $trackingobjects, 'empty' => true,'class'=>'select2','required' => 'required']);
             echo $this->Form->input('assigned_by',['label'=>'Assigned By','type'=>'text']);
@@ -43,7 +43,7 @@ $this->Form->templates($myTemplates);
             echo $this->Form->input('jobtime', ['empty' => true]);
             echo $this->Form->input('comments',['label'=>'Assigned By','type'=>'text']);
             echo $this->Form->input('timepolicy_id', ['label'=>'Time Policy','options' => $timepolicies, 'empty' => true,'class'=>'select2']);
-            echo $this->Form->input('template_id',['label'=>'Template','type'=>'text']);
+            echo $this->Form->input('template_id',['label'=>'Template','options' => $templates, 'empty' => true,'class'=>'select2']);
             echo $this->Form->input('endcustomername',['label'=>'End Customer Name','type'=>'text']);
             echo $this->Form->input('endcustomermailid',['label'=>'End Customer Mail ID','type'=>'text']);
             echo $this->Form->input('endcustomerphone',['label'=>'End Customer Phone','type'=>'text']);

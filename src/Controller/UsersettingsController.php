@@ -209,8 +209,8 @@ class UsersettingsController extends AppController
                 $this->Flash->error(__('The usersetting could not be saved. Please, try again.'));
             }
         }
-        
-        $users = $this->Usersettings->Users->find('list', ['limit' => 200])->where("customer_id=".$this->loggedinuser['customer_id'])->where("customer_id=0");
+        																	
+        $users = $this->Usersettings->Users->find('list', ['limit' => 200])->where("customer_id=".$this->loggedinuser['customer_id']);
         
                 $this->set(compact('usersetting', 'users'));
         $this->set('_serialize', ['usersetting']);

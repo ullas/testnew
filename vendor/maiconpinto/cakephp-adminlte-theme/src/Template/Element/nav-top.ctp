@@ -74,21 +74,153 @@ if (file_exists($file)) {
                     <i class="fa fa-lightbulb-o"></i>
                     <span class="label label-danger">9</span>
                 </a>
-                <ul class="dropdown-menu">
+                <ul class="dropdown-menu pull-right" role="menu">
                     <li class="header">Master Data</li>
                     <li>
                         <!-- inner menu: contains the actual data -->
                         <ul class="menu">
-                            <li><!-- Task item -->
+                        	 <li><!-- Task item -->
                               <a href="Assettypes" data-remote="false" data-toggle="modal" data-target="#myModal" class="btn btn-default">
-							    Asset Types
+							    Assettypes
 							  </a>
                             </li>
+                            <li><!-- Task item -->
+                              <a href="Contractors" data-remote="false" data-toggle="modal" data-target="#myModal" class="btn btn-default">
+							    Contractors
+							  </a>
+                            </li>
+                            <li><!-- Task item -->
+                              <a href="Currencies" data-remote="false" data-toggle="modal" data-target="#myModal" class="btn btn-default">
+							    Currencies
+							  </a>
+                            </li>
+                            <li><!-- Task item -->
+                              <a href="Departments" data-remote="false" data-toggle="modal" data-target="#myModal" class="btn btn-default">
+							    Departments
+							  </a>
+                            </li>
+                            <li><!-- Task item -->
+                              <a href="Devicemodels" data-remote="false" data-toggle="modal" data-target="#myModal" class="btn btn-default">
+							    Devicemodels
+							  </a>
+                            </li>
+                            <li><!-- Task item -->
+                              <a href="Driverdetectionmodes" data-remote="false" data-toggle="modal" data-target="#myModal" class="btn btn-default">
+							    Driverdetectionmodes
+							  </a>
+                            </li>
+                            <li><!-- Task item -->
+                              <a href="Eventtypes" data-remote="false" data-toggle="modal" data-target="#myModal" class="btn btn-default">
+							    Eventtypes
+							  </a>
+                            </li>
+                            <li><!-- Task item -->
+                              <a href="Inspectionstatuses" data-remote="false" data-toggle="modal" data-target="#myModal" class="btn btn-default">
+							    Inspectionstatuses
+							  </a>
+                            </li><li><!-- Task item -->
+                              <a href="Manufacturers" data-remote="false" data-toggle="modal" data-target="#myModal" class="btn btn-default">
+							    Manufacturers
+							  </a>
+                            </li>
+                            <li><!-- Task item -->
+                              <a href="Measurementunits" data-remote="false" data-toggle="modal" data-target="#myModal" class="btn btn-default">
+							    Measurementunits
+							  </a>
+                            </li>
+                            <li><!-- Task item -->
+                              <a href="Ownerships" data-remote="false" data-toggle="modal" data-target="#myModal" class="btn btn-default">
+							    Ownerships
+							  </a>
+                            </li>
+                            <li><!-- Task item -->
+                              <a href="Partcategories" data-remote="false" data-toggle="modal" data-target="#myModal" class="btn btn-default">
+							    Partcategories
+							  </a>
+                            </li>
+                            <li><!-- Task item -->
+                              <a href="Providers" data-remote="false" data-toggle="modal" data-target="#myModal" class="btn btn-default">
+							    Providers
+							  </a>
+                            </li>
+                            <li><!-- Task item -->
+                              <a href="Purposes" data-remote="false" data-toggle="modal" data-target="#myModal" class="btn btn-default">
+							    Purposes
+							  </a>
+                            </li>
+                            <li><!-- Task item -->
+                              <a href="Renewalstypes" data-remote="false" data-toggle="modal" data-target="#myModal" class="btn btn-default">
+							    Renewalstypes
+							  </a>
+                            </li>
+                            <li><!-- Task item -->
+                              <a href="Servicecompleted" data-remote="false" data-toggle="modal" data-target="#myModal" class="btn btn-default">
+							    Servicecompleted
+							  </a>
+                            </li>
+                            <li><!-- Task item -->
+                              <a href="Servicedocuments" data-remote="false" data-toggle="modal" data-target="#myModal" class="btn btn-default">
+							    Servicedocuments
+							  </a>
+                            </li>
+                            <li><!-- Task item -->
+                              <a href="Servicetasks" data-remote="false" data-toggle="modal" data-target="#myModal" class="btn btn-default">
+							    Servicetasks
+							  </a>
+                            </li>
+                            <li><!-- Task item -->
+                              <a href="Stations" data-remote="false" data-toggle="modal" data-target="#myModal" class="btn btn-default">
+							    Stations
+							  </a>
+                            </li>
+                            <li><!-- Task item -->
+                              <a href="Symbols" data-remote="false" data-toggle="modal" data-target="#myModal" class="btn btn-default">
+							    Symbols
+							  </a>
+                            </li>
+                            <li><!-- Task item -->
+                              <a href="Templatetypes" data-remote="false" data-toggle="modal" data-target="#myModal" class="btn btn-default">
+							    Templatetypes
+							  </a>
+                            </li>
+                            <li><!-- Task item -->
+                              <a href="Tripstatuses" data-remote="false" data-toggle="modal" data-target="#myModal" class="btn btn-default">
+							    Tripstatuses
+							  </a>
+                            </li>
+                            <li><!-- Task item -->
+                              <a href="Triptypes" data-remote="false" data-toggle="modal" data-target="#myModal" class="btn btn-default">
+							    Triptypes
+							  </a>
+                            </li>
+                            <li><!-- Task item -->
+                              <a href="Vehiclecategories" data-remote="false" data-toggle="modal" data-target="#myModal" class="btn btn-default">
+							    Vehiclecategories
+							  </a>
+                            </li>
+                            <li><!-- Task item -->
+                              <a href="Vehiclestatuses" data-remote="false" data-toggle="modal" data-target="#myModal" class="btn btn-default">
+							    Vehiclestatuses
+							  </a>
+                            </li>
+                            <li><!-- Task item -->
+                              <a href="Vehicletypes" data-remote="false" data-toggle="modal" data-target="#myModal" class="btn btn-default">
+							    Vehicletypes
+							  </a>
+                            </li>
+                            <li><!-- Task item -->
+                              <a href="Workorderstatuses" data-remote="false" data-toggle="modal" data-target="#myModal" class="btn btn-default">
+							    Workorderstatuses
+							  </a>
+                            </li>
+                            
                             <!-- end task item -->
                         </ul>
+                        
+                        
                     </li>
                     <li class="footer">
-                        <a href="#">View all tasks</a>
+                        
                     </li>
                 </ul>
             </li>

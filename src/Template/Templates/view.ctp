@@ -17,10 +17,6 @@
   		<div class="box-body">
   		<table class="table table-hover">
         <tr>
-            <th><?= __('Customer') ?></th>
-            <td><?= $template->has('customer') ? $this->Html->link($template->customer->name, ['controller' => 'Customers', 'action' => 'view', $template->customer->id]) : '' ?></td>
-        </tr>
-        <tr>
             <th><?= __('Name') ?></th>
             <td><?= h($template->name) ?></td>
         </tr>
@@ -30,7 +26,7 @@
         </tr>
         <tr>
             <th><?= __('Template') ?></th>
-            <td><?= h($template->template) ?></td>
+            <td><?= h($template->templatetext) ?></td>
         </tr>
         <tr>
             <th><?= __('Subject') ?></th>
@@ -39,10 +35,6 @@
         <tr>
             <th><?= __('Template Category') ?></th>
             <td><?= h($template->templatecat) ?></td>
-        </tr>
-        <tr>
-            <th><?= __('Id') ?></th>
-            <td><?= $this->Number->format($template->id) ?></td>
         </tr>
         <tr>
             <th><?= __('Template Type Id') ?></th>

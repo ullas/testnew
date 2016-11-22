@@ -15,7 +15,7 @@ class CurrenciesController extends AppController
      *
      * @var array
      */
-    public $components = ['Datatable'];
+    public $components = ['Datatablemaster'];
     /**
      * Index method
      *
@@ -55,7 +55,7 @@ class CurrenciesController extends AppController
 				$fields[3] = array("name" =>"Currencies.symbol"  , "type" => "char");
 		
 		$this->log($fields);
-		$output =$this->Datatable->getView($fields,['Customers'],$usrfiter);
+		$output =$this->Datatablemaster->getView($fields,['Customers'],$usrfiter);
 		$out =json_encode($output);  
 	   
 		$this->response->body($out);
@@ -92,11 +92,11 @@ class CurrenciesController extends AppController
         if ($this->request->is('post')) {
             $currency = $this->Currencies->patchEntity($currency, $this->request->data);
             if ($this->Currencies->save($currency)) {
-                $this->Flash->success(__('The currency has been saved.'));
+         //       $this->Flash->success(__('The currency has been saved.'));
 
-                return $this->redirect(['action' => 'index']);
+         //       return $this->redirect(['action' => 'index']);
             } else {
-                $this->Flash->error(__('The currency could not be saved. Please, try again.'));
+          //      $this->Flash->error(__('The currency could not be saved. Please, try again.'));
             }
         }
         $this->set(compact('currency'));
@@ -118,11 +118,11 @@ class CurrenciesController extends AppController
         if ($this->request->is(['patch', 'post', 'put'])) {
             $currency = $this->Currencies->patchEntity($currency, $this->request->data);
             if ($this->Currencies->save($currency)) {
-                $this->Flash->success(__('The currency has been saved.'));
+        //        $this->Flash->success(__('The currency has been saved.'));
 
-                return $this->redirect(['action' => 'index']);
+        //        return $this->redirect(['action' => 'index']);
             } else {
-                $this->Flash->error(__('The currency could not be saved. Please, try again.'));
+        //        $this->Flash->error(__('The currency could not be saved. Please, try again.'));
             }
         }
         $this->set(compact('currency'));
@@ -138,12 +138,12 @@ class CurrenciesController extends AppController
      */
     public function delete($id = null)
     {
-        $this->request->allowMethod(['post', 'delete']);
+       // $this->request->allowMethod(['post', 'delete']);
         $currency = $this->Currencies->get($id);
         if ($this->Currencies->delete($currency)) {
-            $this->Flash->success(__('The currency has been deleted.'));
+       //     $this->Flash->success(__('The currency has been deleted.'));
         } else {
-            $this->Flash->error(__('The currency could not be deleted. Please, try again.'));
+       //     $this->Flash->error(__('The currency could not be deleted. Please, try again.'));
         }
 
         return $this->redirect(['action' => 'index']);

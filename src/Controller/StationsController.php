@@ -16,7 +16,7 @@ class StationsController extends AppController
      *
      * @var array
      */
-    public $components = ['Datatable'];
+    public $components = ['Datatablemaster'];
 	
     /**
      * Index method
@@ -55,7 +55,7 @@ class StationsController extends AppController
 								
 		
 		$this->log($fields);
-		$output =$this->Datatable->getView($fields,['Customers'],$usrfiter);
+		$output =$this->Datatablemaster->getView($fields,['Customers'],$usrfiter);
 		$out =json_encode($output);  
 	   
 		$this->response->body($out);
@@ -91,11 +91,11 @@ class StationsController extends AppController
             $station = $this->Stations->patchEntity($station, $this->request->data);
 			$station['customer_id']=$this->loggedinuser['customer_id'];
             if ($this->Stations->save($station)) {
-                $this->Flash->success(__('The station has been saved.'));
+            //    $this->Flash->success(__('The station has been saved.'));
 
-                return $this->redirect(['action' => 'index']);
+            //    return $this->redirect(['action' => 'index']);
             } else {
-                $this->Flash->error(__('The station could not be saved. Please, try again.'));
+            //    $this->Flash->error(__('The station could not be saved. Please, try again.'));
             }
         }
         $customers = $this->Stations->Customers->find('list', ['limit' => 200]);
@@ -119,11 +119,11 @@ class StationsController extends AppController
             $station = $this->Stations->patchEntity($station, $this->request->data);
 			$station['customer_id']=$this->loggedinuser['customer_id'];
             if ($this->Stations->save($station)) {
-                $this->Flash->success(__('The station has been saved.'));
+            //    $this->Flash->success(__('The station has been saved.'));
 
-                return $this->redirect(['action' => 'index']);
+            //    return $this->redirect(['action' => 'index']);
             } else {
-                $this->Flash->error(__('The station could not be saved. Please, try again.'));
+             //   $this->Flash->error(__('The station could not be saved. Please, try again.'));
             }
         }
         $customers = $this->Stations->Customers->find('list', ['limit' => 200]);
@@ -140,12 +140,12 @@ class StationsController extends AppController
      */
     public function delete($id = null)
     {
-        $this->request->allowMethod(['post', 'delete']);
+        //$this->request->allowMethod(['post', 'delete']);
         $station = $this->Stations->get($id);
         if ($this->Stations->delete($station)) {
-            $this->Flash->success(__('The station has been deleted.'));
+        //    $this->Flash->success(__('The station has been deleted.'));
         } else {
-            $this->Flash->error(__('The station could not be deleted. Please, try again.'));
+        //    $this->Flash->error(__('The station could not be deleted. Please, try again.'));
         }
 
         return $this->redirect(['action' => 'index']);

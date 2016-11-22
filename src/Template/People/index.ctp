@@ -12,4 +12,8 @@
     <li><a href="/people/"><i class="fa fa-user"></i> People</a></li>
   </ol>
 </section>
+<<<<<<< HEAD
 <?php echo $this->element('indexbasicnofilter'); ?>
+=======
+<?php echo $this->element('indexbasictrim'); ?>
+>>>>>>> origin/master

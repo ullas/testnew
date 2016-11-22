@@ -5,7 +5,7 @@
   <ol class="breadcrumb">
   	<li><a href="#"><i class="fa fa-dashboard"></i>Home</a></li>
     <li><a href="#"> Trip Management</a></li>
-    <li><a href="/servicesentries/"> Schedules</a></li>
+    <li><a href="/Subscriptions/"> Subscriptions</a></li>
     <li class="active">View</li>
   </ol>
 </section>
@@ -36,11 +36,7 @@
             <th><?= __('Loctype') ?></th>
             <td><?= h($subscription->loctype) ?></td>
         </tr>
-        <tr>
-            <th><?= __('Id') ?></th>
-            <td><?= $this->Number->format($subscription->id) ?></td>
-        </tr>
-        <tr>
+       <tr>
             <th><?= __('Notification Id') ?></th>
             <td><?= $this->Number->format($subscription->notification_id) ?></td>
         </tr>

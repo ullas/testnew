@@ -5,7 +5,7 @@
    <ol class="breadcrumb">
     <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
     
-     <li><a href="/assettypes/"> Asset Types</a></li>
+     <li><a href="/Contractors/"> Contractors</a></li>
     <li class="active">View</li>
   </ol>
 </section>

@@ -33,7 +33,7 @@ class AssettypesController extends AppController
 	   $this->set('actions',$actions);	
        $this->set('configs',$configs);	
        $this->set('_serialize', ['configs','actions']);
-	}
+	}	
 		
 	
 	public function ajaxdata() 

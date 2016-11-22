@@ -16,7 +16,7 @@ class TemplatetypesController extends AppController
      *
      * @var array
      */
-    public $components = ['Datatable'];
+    public $components = ['Datatablemaster'];
 	
     /**
      * Index method
@@ -55,7 +55,7 @@ class TemplatetypesController extends AppController
 				$fields[2] = array("name" =>"Templatetypes.description"  , "type" => "char");				
 		
 		$this->log($fields);
-		$output =$this->Datatable->getView($fields,['Customers'],$usrfiter);
+		$output =$this->Datatablemaster->getView($fields,['Customers'],$usrfiter);
 		$out =json_encode($output);  
 	   
 		$this->response->body($out);
@@ -91,11 +91,11 @@ class TemplatetypesController extends AppController
             $templatetype = $this->Templatetypes->patchEntity($templatetype, $this->request->data);
 			$templatetype['customer_id']=$this->loggedinuser['customer_id'];
             if ($this->Templatetypes->save($templatetype)) {
-                $this->Flash->success(__('The templatetype has been saved.'));
+            //    $this->Flash->success(__('The templatetype has been saved.'));
 
-                return $this->redirect(['action' => 'index']);
+            //    return $this->redirect(['action' => 'index']);
             } else {
-                $this->Flash->error(__('The templatetype could not be saved. Please, try again.'));
+            //    $this->Flash->error(__('The templatetype could not be saved. Please, try again.'));
             }
         }
         $customers = $this->Templatetypes->Customers->find('list', ['limit' => 200]);
@@ -119,11 +119,11 @@ class TemplatetypesController extends AppController
             $templatetype = $this->Templatetypes->patchEntity($templatetype, $this->request->data);
 			$templatetype['customer_id']=$this->loggedinuser['customer_id'];
             if ($this->Templatetypes->save($templatetype)) {
-                $this->Flash->success(__('The templatetype has been saved.'));
+             //   $this->Flash->success(__('The templatetype has been saved.'));
 
-                return $this->redirect(['action' => 'index']);
+            //    return $this->redirect(['action' => 'index']);
             } else {
-                $this->Flash->error(__('The templatetype could not be saved. Please, try again.'));
+            //    $this->Flash->error(__('The templatetype could not be saved. Please, try again.'));
             }
         }
         $customers = $this->Templatetypes->Customers->find('list', ['limit' => 200]);
@@ -140,12 +140,12 @@ class TemplatetypesController extends AppController
      */
     public function delete($id = null)
     {
-        $this->request->allowMethod(['post', 'delete']);
+       // $this->request->allowMethod(['post', 'delete']);
         $templatetype = $this->Templatetypes->get($id);
         if ($this->Templatetypes->delete($templatetype)) {
-            $this->Flash->success(__('The templatetype has been deleted.'));
+        //    $this->Flash->success(__('The templatetype has been deleted.'));
         } else {
-            $this->Flash->error(__('The templatetype could not be deleted. Please, try again.'));
+        //    $this->Flash->error(__('The templatetype could not be deleted. Please, try again.'));
         }
 
         return $this->redirect(['action' => 'index']);
