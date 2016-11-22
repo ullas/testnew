@@ -83,16 +83,16 @@ if (file_exists($file)) {
                   	<li class="user-body">
 		               <div class="row">
 		                  <div class="col-xs-3 text-center">
-		                    <a href="#">Contractors</a>
+		                    <a href="Contractors" data-remote="false" data-toggle="modal" data-target="#myModal" >Contractors</a>
 		                  </div>
 		                  <div class="col-xs-3 text-center">
-		                    <a href="#">Currencies</a>
+		                    <a href="Currencies">Currencies</a>
 		                  </div>
 		                  <div class="col-xs-3 text-center">
-		                    <a href="#">Departments</a>
+		                    <a href="Departments">Departments</a>
 		                  </div>
 		                  <div class="col-xs-3 text-center">
-		                    <a href="#">Inspectionstatuses</a>
+		                    <a href="Inspectionstatuses">Inspectionstatuses</a>
 		                  </div>
 		                  
 		                </div>
@@ -100,16 +100,16 @@ if (file_exists($file)) {
 		              
 		                <div class="row">
 		                  <div class="col-xs-3 text-center">
-		                    <a href="#">Manufacturers</a>
+		                    <a href="Manufacturers">Manufacturers</a>
 		                  </div>
 		                  <div class="col-xs-3 text-center">
-		                    <a href="#">Ownerships</a>
+		                    <a href="Ownerships">Ownerships</a>
 		                  </div>
 		                  <div class="col-xs-3 text-center">
-		                    <a href="#">Partcategories</a>
+		                    <a href="Partcategories">Partcategories</a>
 		                  </div>
 		                  <div class="col-xs-3 text-center">
-		                    <a href="#">Ownerships</a>
+		                    <a href="Ownerships">Ownerships</a>
 		                  </div>
 		                  
 		                  
@@ -118,47 +118,47 @@ if (file_exists($file)) {
 		                
 		                <div class="row">
 		                  <div class="col-xs-3 text-center">
-		                    <a href="#">Purposes</a>
+		                    <a href="Purposes">Purposes</a>
 		                  </div>
 		                  <div class="col-xs-3 text-center">
-		                    <a href="#">Servicecompleted</a>
+		                    <a href="Servicecompleted">Servicecompleted</a>
 		                  </div>
 		                  <div class="col-xs-3 text-center">
-		                    <a href="#">Units</a>
+		                    <a href="Units">Units</a>
 		                  </div>
 		                  <div class="col-xs-3 text-center">
-		                    <a href="#">Servicetasks</a>
+		                    <a href="Servicetasks">Servicetasks</a>
 		                  </div>
 		                </div> <!-- /.row --><div class="divider"></div>
 		                <div class="row">
 		                  
 		                 
 		                  <div class="col-xs-3 text-center">
-		                    <a href="#">Renewalstypes</a>
+		                    <a href="Renewalstypes">Renewalstypes</a>
 		                  </div>
 		                  <div class="col-xs-3 text-center">
-		                    <a href="#">Stations</a>
+		                    <a href="Stations">Stations</a>
 		                  </div>
 		                  <div class="col-xs-3 text-center">
-		                    <a href="#">Symbols</a>
+		                    <a href="Symbols">Symbols</a>
 		                  </div>
 		                  <div class="col-xs-3 text-center">
-		                    <a href="#">Templatetypes</a>
+		                    <a href="Templatetypes">Templatetypes</a>
 		                  </div>
 		                </div> <!-- /.row --><div class="divider"></div>
 		               
 		                <div class="row">
 		                  <div class="col-xs-3 text-center">
-		                    <a href="#">Workorderstatuses</a>
+		                    <a href="Workorderstatuses">Workorderstatuses</a>
 		                  </div>
 		                  <div class="col-xs-3 text-center">
-		                    <a href="#">Vehiclecategories</a>
+		                    <a href="Vehiclecategories">Vehiclecategories</a>
 		                  </div>
 		                  <div class="col-xs-3 text-center">
-		                    <a href="#">Vehiclestatuses</a>
+		                    <a href="Vehiclestatuses">Vehiclestatuses</a>
 		                  </div>
 		                  <div class="col-xs-3 text-center">
-		                    <a href="#">Vehicletypes</a>
+		                    <a href="Vehicletypes">Vehicletypes</a>
 		                  </div>
 		                </div>
 		                
