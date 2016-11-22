@@ -69,6 +69,105 @@ if (file_exists($file)) {
                 </ul>
             </li>
             <!-- Tasks: style can be found in dropdown.less -->
+            <li class="dropdown user user-menu" >
+            	<!-- <div class="btn-group"> -->
+                  <!-- <button type="button" class="dropdown-toggle" data-toggle="dropdown">
+                    <i class="fa fa-bars"></i></button> -->
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                    <i class="fa fa-bars"></i>
+                </a>
+                  <ul class="dropdown-menu pull-right" role="menu" style = "width : 800px">
+                  	<li class="header bg-aqua">		
+		              Manage Master data 
+		            </li>
+                  	<li class="user-body">
+		               <div class="row">
+		                  <div class="col-xs-3 text-center">
+		                    <a href="Contractors" data-remote="false" data-toggle="modal" data-target="#myModal" >Contractors</a>
+		                  </div>
+		                  <div class="col-xs-3 text-center">
+		                    <a href="Currencies">Currencies</a>
+		                  </div>
+		                  <div class="col-xs-3 text-center">
+		                    <a href="Departments">Departments</a>
+		                  </div>
+		                  <div class="col-xs-3 text-center">
+		                    <a href="Inspectionstatuses">Inspectionstatuses</a>
+		                  </div>
+		                  
+		                </div>
+		                <!-- /.row --><div class="divider"></div>
+		              
+		                <div class="row">
+		                  <div class="col-xs-3 text-center">
+		                    <a href="Manufacturers">Manufacturers</a>
+		                  </div>
+		                  <div class="col-xs-3 text-center">
+		                    <a href="Ownerships">Ownerships</a>
+		                  </div>
+		                  <div class="col-xs-3 text-center">
+		                    <a href="Partcategories">Partcategories</a>
+		                  </div>
+		                  <div class="col-xs-3 text-center">
+		                    <a href="Ownerships">Ownerships</a>
+		                  </div>
+		                  
+		                  
+		                </div> <!-- /.row --><div class="divider"></div>
+		               
+		                
+		                <div class="row">
+		                  <div class="col-xs-3 text-center">
+		                    <a href="Purposes">Purposes</a>
+		                  </div>
+		                  <div class="col-xs-3 text-center">
+		                    <a href="Servicecompleted">Servicecompleted</a>
+		                  </div>
+		                  <div class="col-xs-3 text-center">
+		                    <a href="Units">Units</a>
+		                  </div>
+		                  <div class="col-xs-3 text-center">
+		                    <a href="Servicetasks">Servicetasks</a>
+		                  </div>
+		                </div> <!-- /.row --><div class="divider"></div>
+		                <div class="row">
+		                  
+		                 
+		                  <div class="col-xs-3 text-center">
+		                    <a href="Renewalstypes">Renewalstypes</a>
+		                  </div>
+		                  <div class="col-xs-3 text-center">
+		                    <a href="Stations">Stations</a>
+		                  </div>
+		                  <div class="col-xs-3 text-center">
+		                    <a href="Symbols">Symbols</a>
+		                  </div>
+		                  <div class="col-xs-3 text-center">
+		                    <a href="Templatetypes">Templatetypes</a>
+		                  </div>
+		                </div> <!-- /.row --><div class="divider"></div>
+		               
+		                <div class="row">
+		                  <div class="col-xs-3 text-center">
+		                    <a href="Workorderstatuses">Workorderstatuses</a>
+		                  </div>
+		                  <div class="col-xs-3 text-center">
+		                    <a href="Vehiclecategories">Vehiclecategories</a>
+		                  </div>
+		                  <div class="col-xs-3 text-center">
+		                    <a href="Vehiclestatuses">Vehiclestatuses</a>
+		                  </div>
+		                  <div class="col-xs-3 text-center">
+		                    <a href="Vehicletypes">Vehicletypes</a>
+		                  </div>
+		                </div>
+		                
+		               
+		               
+		              </li>
+                  </ul>
+                <!-- </div> -->
+            </li>
             <li class="dropdown tasks-menu">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                     <i class="fa fa-lightbulb-o"></i>

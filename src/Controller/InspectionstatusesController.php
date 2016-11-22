@@ -56,6 +56,7 @@ class InspectionstatusesController extends AppController
 		 
 				$fields[0] = array("name" =>"Inspectionstatuses.id"  , "type" => "num");
 				$fields[1] = array("name" =>"Inspectionstatuses.name"  , "type" => "char");
+				$fields[2] = array("name" =>"Inspectionstatuses.description"  , "type" => "char");
 				
 				
 		

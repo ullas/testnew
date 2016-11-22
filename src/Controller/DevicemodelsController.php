@@ -54,7 +54,7 @@ class DevicemodelsController extends AppController
 		 
 				$fields[0] = array("name" =>"Devicemodels.id"  , "type" => "num");
 				$fields[1] = array("name" =>"Devicemodels.name"  , "type" => "char");
-				
+				$fields[2] = array("name" =>"Devicemodels.description"  , "type" => "char");
 				
 		
 		$this->log($fields);

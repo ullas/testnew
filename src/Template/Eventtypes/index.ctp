@@ -13,7 +13,8 @@
 				$fields[1] = array("title" =>"Name"  , "type" => "char");
 				$fields[2] = array("title" =>"Code"  , "type" => "num");
 				$fields[3] = array("title" =>"Provider"  , "type" => "num");
-				$fields[4] = array("title" =>"Model"  , "type" => "char");
+				//$fields[4] = array("title" =>"Model"  , "type" => "char");
+				$fields[4] = array("title" =>"Description"  , "type" => "char");
 
 echo $this->element('indexbasicmaster', array('colheadsformasters' => $fields)); ?>
 

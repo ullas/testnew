@@ -50,8 +50,9 @@ class SymbolsController extends AppController
      
          $fields = array();
 		 
-		$fields[0] = array("name" =>"Symbols.id"  , "type" => "num");
-				
+		$fields[0] = array("name" =>"id"  , "type" => "num");
+		$fields[1] = array("name" =>"name"  , "type" => "char");
+		$fields[2] = array("name" =>"symbol"  , "type" => "char");		
 				
 								
 		
@@ -90,7 +91,7 @@ class SymbolsController extends AppController
         $symbol = $this->Symbols->newEntity();
         if ($this->request->is('post')) {
             $symbol = $this->Symbols->patchEntity($symbol, $this->request->data);
-			$purpose['customer_id']=$this->loggedinuser['customer_id'];
+			$symbol['customer_id']=$this->loggedinuser['customer_id'];
             if ($this->Symbols->save($symbol)) {
              //   $this->Flash->success(__('The symbol has been saved.'));
 
@@ -118,7 +119,7 @@ class SymbolsController extends AppController
         ]);
         if ($this->request->is(['patch', 'post', 'put'])) {
             $symbol = $this->Symbols->patchEntity($symbol, $this->request->data);
-			$purpose['customer_id']=$this->loggedinuser['customer_id'];
+			$symbol['customer_id']=$this->loggedinuser['customer_id'];
             if ($this->Symbols->save($symbol)) {
             //    $this->Flash->success(__('The symbol has been saved.'));
 

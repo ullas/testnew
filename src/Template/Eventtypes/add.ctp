@@ -35,6 +35,7 @@ $this->Form->templates($myTemplates);
             echo $this->Form->input('provider');
             echo $this->Form->input('name',['required'=>'required']);
             echo $this->Form->input('model',['required'=>'required']);
+			echo $this->Form->input('description');
         ?>
     </div>
  

@@ -51,7 +51,8 @@ class EventtypesController extends AppController
 				$fields[1] = array("name" =>"Eventtypes.name"  , "type" => "char");
 				$fields[2] = array("name" =>"Eventtypes.code"  , "type" => "num");
 				$fields[3] = array("name" =>"Eventtypes.provider"  , "type" => "num");
-				$fields[4] = array("name" =>"Eventtypes.model"  , "type" => "char");
+				//$fields[4] = array("name" =>"Eventtypes.model"  , "type" => "char");
+				$fields[4] = array("name" =>"Eventtypes.description"  , "type" => "char");
 				
 		
 		$this->log($fields);
