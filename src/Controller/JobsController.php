@@ -211,11 +211,11 @@ public function ajaxdata() {
                 $this->Flash->error(__('The job could not be saved. Please, try again.'));
             }
         }
-        $trackingobjects = $this->Jobs->Trackingobjects->find('list', ['limit' => 200]);
-        $customers = $this->Jobs->Customers->find('list', ['limit' => 200]);
-        $timepolicies = $this->Jobs->Timepolicies->find('list', ['limit' => 200]);
-        $templates = $this->Jobs->Templates->find('list', ['limit' => 200]);
-        $locations = $this->Jobs->Locations->find('list', ['limit' => 200]);
+        $trackingobjects = $this->Jobs->Trackingobjects->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
+        $customers = $this->Jobs->Customers->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
+        $timepolicies = $this->Jobs->Timepolicies->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
+        $templates = $this->Jobs->Templates->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
+        $locations = $this->Jobs->Locations->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
         $this->set(compact('job', 'trackingobjects', 'customers', 'timepolicies', 'templates', 'locations'));
         $this->set('_serialize', ['job']);
     }
@@ -232,6 +232,11 @@ public function ajaxdata() {
         $job = $this->Jobs->get($id, [
             'contain' => []
         ]);
+		if($job['customer_id']!= $this->loggedinuser['customer_id'])
+		{
+			 $this->Flash->success(__('You are not Authorized.'));
+			 return $this->redirect(['action' => 'index']);
+		}
         if ($this->request->is(['patch', 'post', 'put'])) {
             $job = $this->Jobs->patchEntity($job, $this->request->data);
             if ($this->Jobs->save($job)) {
@@ -242,11 +247,11 @@ public function ajaxdata() {
                 $this->Flash->error(__('The job could not be saved. Please, try again.'));
             }
         }
-        $trackingobjects = $this->Jobs->Trackingobjects->find('list', ['limit' => 200]);
-        $customers = $this->Jobs->Customers->find('list', ['limit' => 200]);
-        $timepolicies = $this->Jobs->Timepolicies->find('list', ['limit' => 200]);
-        $templates = $this->Jobs->Templates->find('list', ['limit' => 200]);
-        $locations = $this->Jobs->Locations->find('list', ['limit' => 200]);
+        $trackingobjects = $this->Jobs->Trackingobjects->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
+        $customers = $this->Jobs->Customers->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
+        $timepolicies = $this->Jobs->Timepolicies->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
+        $templates = $this->Jobs->Templates->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
+        $locations = $this->Jobs->Locations->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
         $this->set(compact('job', 'trackingobjects', 'customers', 'timepolicies', 'templates', 'locations'));
         $this->set('_serialize', ['job']);
     }
@@ -262,12 +267,19 @@ public function ajaxdata() {
     {
         $this->request->allowMethod(['post', 'delete']);
         $job = $this->Jobs->get($id);
-        if ($this->Jobs->delete($job)) {
-            $this->Flash->success(__('The job has been deleted.'));
-        } else {
-            $this->Flash->error(__('The job could not be deleted. Please, try again.'));
-        }
-
+		if($job['customer_id'] = $this->loggedinuser['customer_id'])
+		{
+	        if ($this->Jobs->delete($job)) {
+	            $this->Flash->success(__('The job has been deleted.'));
+	        } else {
+	            $this->Flash->error(__('The job could not be deleted. Please, try again.'));
+	        }
+		}
+	    else
+	    {
+	   	    $this->Flash->error(__('You are not authorized'));
+		
+	    }
         return $this->redirect(['action' => 'index']);
     }
 	
