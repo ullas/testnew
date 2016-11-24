@@ -291,6 +291,14 @@
   	});
   }  
 </script>
+<style>
+	.mptldisabled, .mptldisabled:focus,.mptldisabled:hover {
+    	color: #a1a1a1;padding:2px;
+    	cursor: not-allowed;
+    	background-color: #fff;
+    	border-color: #ddd;
+	}
+</style>
 <!-- AdminLTE App -->
 <?php echo $this->Html->script('AdminLTE.AdminLTE.min'); ?>
 <div id="myModal" class="modal fade" role="dialog">

@@ -11,7 +11,7 @@ use Cake\Utility\Inflector;
            $length = count($fields);
            $colmns = array();
            $i = 0;
-		   
+		   $controller = $this->_registry->getController();
 		   
            foreach($fields as $value){
                 if($value['type']=='boolean'){
@@ -34,21 +34,35 @@ use Cake\Utility\Inflector;
                 }
                 
             }
+		   
+		   if($controller->loggedinuser['customer_id']=="0"){
+           		$colmns[] =array(
+               		'db' => 'id',
+               		'dt' => $length++,
+               		'formatter' => function( $d, $row ,$modalname) {
+                   		$buttons='<a class="fa fa-file-text-o p3 mptldisabled"></a>
+                                   		<a class="fa fa-pencil p3 mptldisabled"></a>
+                                   		<a class="fa fa-trash mptldisabled"></a>';
 
-           $colmns[] =array(
-               'db' => 'id',
-               'dt' => $length++,
-               'formatter' => function( $d, $row ,$modalname) {
-                   $buttons='<a href="/'.   $modalname  . '/view/'.$d.'" class="fa fa-file-text-o p3"></a>
+                   		return $buttons;
+               		}
+              	);
+              }else{
+              	$colmns[] =array(
+               		'db' => 'id',
+               		'dt' => $length++,
+               		'formatter' => function( $d, $row ,$modalname) {
+                   		$buttons='<a href="/'.   $modalname  . '/view/'.$d.'" class="fa fa-file-text-o p3"></a>
                                    <a href="/'.   $modalname . '/edit/'.$d.'" class="fa fa-pencil p3"></a>
                                    <form name="formdelete" id="formdelete' .$d. '" method="post" action="/'.   $modalname  . '/delete/'.$d.'" style="display:none;" >
                                    <input type="hidden" name="_method" value="POST"></form>
                                    <a href="#" onclick="if (confirm(&quot;Are you sure you want to delete # '.$d.'?&quot;)) { document.getElementById(&quot;formdelete'.$d.'&quot;).submit(); }
                                     event.returnValue = false; return false;" class="fa fa-trash"></a>';
 
-                   return $buttons;
-               }
-              );
+                   		return $buttons;
+               		}
+              	);
+			  }
            //getting orderby
               $order = $this->Order( $colmns );
            //getting filter
@@ -59,8 +73,6 @@ use Cake\Utility\Inflector;
            $limit = $this->Limit( );
            //getting page no
 $page=ceil($this->request->query['start']/$limit)+1;
-
-           $controller = $this->_registry->getController();
 
 $model=$controller->loadModel($controller->modelClass);
 
