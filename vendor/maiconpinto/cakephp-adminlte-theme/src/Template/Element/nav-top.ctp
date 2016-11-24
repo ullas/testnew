@@ -77,8 +77,8 @@ if (file_exists($file)) {
                     <i class="fa fa-bars"></i>
                 </a>
                   <ul class="dropdown-menu pull-right" role="menu" style = "width : 800px">
-                  	<li class="header bg-aqua">		
-		              Manage Master data 
+                  	<li class="header bg-aqua text-center" style="padding:5px;">		
+		              <h4 >Manage Master data</h4>
 		            </li>
                   	<li class="user-body">
 		               <div class="row">
