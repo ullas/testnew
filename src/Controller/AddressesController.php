@@ -195,7 +195,7 @@ private function getDateRangeFilters($dates,$basic)  {
             }
         }
         
-        $distributionlists = $this->Addresses->Distributionlists->find('list', ['limit' => 200])->where("customer_id=".$this->loggedinuser['customer_id']);
+        $distributionlists = $this->Addresses->Distributionlists->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
         $this->set(compact('address', 'customers', 'distributionlists'));
         $this->set('_serialize', ['address']);
     }
@@ -212,6 +212,11 @@ private function getDateRangeFilters($dates,$basic)  {
         $address = $this->Addresses->get($id, [
             'contain' => ['Distributionlists']
         ]);
+		if($address['customer_id']!= $this->loggedinuser['customer_id'])
+		{
+			 $this->Flash->success(__('You are not Authorized.'));
+			 return $this->redirect(['action' => 'index']);
+		}
         if ($this->request->is(['patch', 'post', 'put'])) {
             $address = $this->Addresses->patchEntity($address, $this->request->data);
             if ($this->Addresses->save($address)) {
@@ -223,7 +228,7 @@ private function getDateRangeFilters($dates,$basic)  {
             }
         }
         ;
-        $distributionlists = $this->Addresses->Distributionlists->find('list', ['limit' => 200])->where("customer_id=".$this->loggedinuser['customer_id']);
+        $distributionlists = $this->Addresses->Distributionlists->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
         $this->set(compact('address', 'customers', 'distributionlists'));
         $this->set('_serialize', ['address']);
     }
@@ -238,13 +243,20 @@ private function getDateRangeFilters($dates,$basic)  {
     public function delete($id = null)
     {
         $this->request->allowMethod(['post', 'delete']);
-        $address = $this->Addresses->get($id)->where("customer_id=".$this->loggedinuser['customer_id']);
-        if ($this->Addresses->delete($address)) {
-            $this->Flash->success(__('The address has been deleted.'));
-        } else {
-            $this->Flash->error(__('The address could not be deleted. Please, try again.'));
-        }
-
+        $address = $this->Addresses->get($id);
+		if($address['customer_id'] = $this->loggedinuser['customer_id'])
+		{
+	        if ($this->Addresses->delete($address)) {
+	            $this->Flash->success(__('The address has been deleted.'));
+	        } else {
+	            $this->Flash->error(__('The address could not be deleted. Please, try again.'));
+	        }
+		}
+	    else
+	    {
+	   	    $this->Flash->error(__('You are not authorized'));
+		
+	    }
         return $this->redirect(['action' => 'index']);
     }
 	

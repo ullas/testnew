@@ -46,7 +46,7 @@ class DriversTable extends Table
         parent::initialize($config);
 
         $this->table('drivers');
-        $this->displayField('firstname');
+        $this->displayField('name');
         $this->primaryKey('id');
 
         $this->belongsTo('Addresses', [

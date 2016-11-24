@@ -209,6 +209,7 @@ public function ajaxdata() {
         $vendor = $this->Vendors->newEntity();
         if ($this->request->is('post')) {
             $vendor = $this->Vendors->patchEntity($vendor, $this->request->data);
+			$vendor['customer_id']=$this->loggedinuser['customer_id'];
             if ($this->Vendors->save($vendor)) {
                 $this->Flash->success(__('The vendor has been saved.'));
 
@@ -233,8 +234,14 @@ public function ajaxdata() {
         $vendor = $this->Vendors->get($id, [
             'contain' => []
         ]);
+		if($vendor['customer_id']!= $this->loggedinuser['customer_id'])
+		{
+			 $this->Flash->success(__('You are not Authorized.'));
+			 return $this->redirect(['action' => 'index']);
+		}
         if ($this->request->is(['patch', 'post', 'put'])) {
             $vendor = $this->Vendors->patchEntity($vendor, $this->request->data);
+			$vendor['customer_id']=$this->loggedinuser['customer_id'];
             if ($this->Vendors->save($vendor)) {
                 $this->Flash->success(__('The vendor has been saved.'));
 
@@ -258,12 +265,20 @@ public function ajaxdata() {
     {
         $this->request->allowMethod(['post', 'delete']);
         $vendor = $this->Vendors->get($id);
-        if ($this->Vendors->delete($vendor)) {
-            $this->Flash->success(__('The vendor has been deleted.'));
-        } else {
-            $this->Flash->error(__('The vendor could not be deleted. Please, try again.'));
-        }
-
+		if($vendor['customer_id'] = $this->loggedinuser['customer_id'])
+		{
+	        if ($this->Vendors->delete($vendor)) {
+	            $this->Flash->success(__('The vendor has been deleted.'));
+	        } else {
+	            $this->Flash->error(__('The vendor could not be deleted. Please, try again.'));
+	        }
+		}
+	    else
+	    {
+	   	    $this->Flash->error(__('You are not authorized'));
+		
+	    }
+		
         return $this->redirect(['action' => 'index']);
     }
 

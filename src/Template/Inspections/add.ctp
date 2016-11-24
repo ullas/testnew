@@ -35,17 +35,17 @@ $this->Form->templates($myTemplates);
         <div class="tab-content">
           <div class="active tab-pane" id="details">
              <div class="form-horizontal">
-        <?php
+       <?php
                 	
                   echo $this->Form->input('name',['required' => 'required']);
 
-                    echo $this->Form->input('vehicle_id', ['options' => $vehicles, 'empty' => true,'class'=>'select2']); 
+                    echo $this->Form->input('vehicle_id', ['options' => $vehicles, 'empty' => true,'class'=>'select2','required' => 'required']); 
                 	
                   echo $this->Form->input('descriptions');
 
                     
             echo $this->Form->input('inspectionform_id', ['label'=>'Inspection Form','options' => $inspectionforms, 'empty' => true,'class'=>'select2']);
-                   echo $this->Form->input('date', ['empty' => true,'type'=>'text', 'class'=>'datemask','templateVars' => ['icon' => '<div class="input-group-addon"><i class="fa fa-calendar"></i></div>']]);
+                   echo $this->Form->input('date', ['empty' => true,'type'=>'text','required' => 'required', 'class'=>'datemask','templateVars' => ['icon' => '<div class="input-group-addon"><i class="fa fa-calendar"></i></div>']]);
                    
             echo $this->Form->input('inspectionstatus_id', ['label'=>'Inspection Status','options' => $inspectionstatuses, 'empty' => true,'class'=>'select2']);
            

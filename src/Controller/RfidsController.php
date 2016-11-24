@@ -217,9 +217,9 @@ private function getDateRangeFilters($dates,$basic)  {
                 $this->Flash->error(__('The rfid could not be saved. Please, try again.'));
             }
         }
-        $customers = $this->Rfids->Customers->find('list', ['limit' => 200])->where("customer_id=".$this->loggedinuser['customer_id']);
-		$drivers = $this->Rfids->Drivers->find('list', ['limit' => 200])->where("customer_id=".$this->loggedinuser['customer_id']);
-        $passengers = $this->Rfids->Passengers->find('list', ['limit' => 200])->where("customer_id=".$this->loggedinuser['customer_id']);
+        $customers = $this->Rfids->Customers->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
+		$drivers = $this->Rfids->Drivers->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
+        $passengers = $this->Rfids->Passengers->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
         $this->set(compact('rfid', 'customers', 'passengers','drivers'));
         $this->set('_serialize', ['rfid']);
     }
@@ -236,6 +236,12 @@ private function getDateRangeFilters($dates,$basic)  {
         $rfid = $this->Rfids->get($id, [
             'contain' => []
         ]);
+		if($rfid['customer_id']!= $this->loggedinuser['customer_id'])
+		{
+			 $this->Flash->success(__('You are not Authorized.'));
+			 return $this->redirect(['action' => 'index']);
+			
+		}
         if ($this->request->is(['patch', 'post', 'put'])) {
             $rfid = $this->Rfids->patchEntity($rfid, $this->request->data);
             if ($this->Rfids->save($rfid)) {
@@ -246,9 +252,10 @@ private function getDateRangeFilters($dates,$basic)  {
                 $this->Flash->error(__('The rfid could not be saved. Please, try again.'));
             }
         }
-        $customers = $this->Rfids->Customers->find('list', ['limit' => 200]);
+        $customers = $this->Rfids->Customers->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
+		$drivers = $this->Rfids->Drivers->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
         $passengers = $this->Rfids->Passengers->find('list', ['limit' => 200]);
-        $this->set(compact('rfid', 'customers', 'passengers'));
+        $this->set(compact('rfid', 'customers', 'passengers','drivers'));
         $this->set('_serialize', ['rfid']);
     }
 
@@ -263,12 +270,19 @@ private function getDateRangeFilters($dates,$basic)  {
     {
         $this->request->allowMethod(['post', 'delete']);
         $rfid = $this->Rfids->get($id);
-        if ($this->Rfids->delete($rfid)) {
-            $this->Flash->success(__('The rfid has been deleted.'));
-        } else {
-            $this->Flash->error(__('The rfid could not be deleted. Please, try again.'));
-        }
-
+		if($rfid['customer_id'] = $this->loggedinuser['customer_id'])
+		{
+	        if ($this->Rfids->delete($rfid)) {
+	            $this->Flash->success(__('The rfid has been deleted.'));
+	        } else {
+	            $this->Flash->error(__('The rfid could not be deleted. Please, try again.'));
+	        }
+		}
+	    else
+	    {
+	   	    $this->Flash->error(__('You are not authorized'));
+		
+	    }
         return $this->redirect(['action' => 'index']);
     }
 

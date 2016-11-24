@@ -40,7 +40,7 @@
             	
             	
 		        <?php
-		            echo $this->Form->input('name'); ?>
+		            echo $this->Form->input('name',["required"=>"required"]); ?>
 					<div class="form-group">
                 <label>
                   <input type="checkbox" class="minimal-red" checked>
