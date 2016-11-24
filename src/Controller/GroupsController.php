@@ -215,9 +215,9 @@ public function ajaxdata() {
                 $this->Flash->error(__('The group could not be saved. Please, try again.'));
             }
         }
-        $trackingobjects = $this->Groups->Trackingobjects->find('list', ['limit' => 200]);
+        $trackingobjects = $this->Groups->Trackingobjects->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
         $this->set(compact('group', 'trackingobjects'));
-        $this->set('_serialize', ['group']);
+		$this->set('_serialize', ['group']);
     }
 
     /**
@@ -232,6 +232,11 @@ public function ajaxdata() {
         $group = $this->Groups->get($id, [
             'contain' => ['Trackingobjects']
         ]);
+		if($group['customer_id']!= $this->loggedinuser['customer_id'])
+		{
+			 $this->Flash->success(__('You are not Authorized.'));
+			 return $this->redirect(['action' => 'index']);
+		}
         if ($this->request->is(['patch', 'post', 'put'])) {
             $group = $this->Groups->patchEntity($group, $this->request->data);
             if ($this->Groups->save($group)) {
@@ -242,7 +247,7 @@ public function ajaxdata() {
                 $this->Flash->error(__('The group could not be saved. Please, try again.'));
             }
         }
-        $trackingobjects = $this->Groups->Trackingobjects->find('list', ['limit' => 200]);
+        $trackingobjects = $this->Groups->Trackingobjects->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
         $this->set(compact('group', 'trackingobjects'));
         $this->set('_serialize', ['group']);
     }
@@ -258,12 +263,19 @@ public function ajaxdata() {
     {
         $this->request->allowMethod(['post', 'delete']);
         $group = $this->Groups->get($id);
-        if ($this->Groups->delete($group)) {
-            $this->Flash->success(__('The group has been deleted.'));
-        } else {
-            $this->Flash->error(__('The group could not be deleted. Please, try again.'));
-        }
-
+		if($group['customer_id'] = $this->loggedinuser['customer_id'])
+		{
+	        if ($this->Groups->delete($group)) {
+	            $this->Flash->success(__('The group has been deleted.'));
+	        } else {
+	            $this->Flash->error(__('The group could not be deleted. Please, try again.'));
+	        }
+		}
+	    else
+	    {
+	   	    $this->Flash->error(__('You are not authorized'));
+		
+	    }
         return $this->redirect(['action' => 'index']);
     }
 	

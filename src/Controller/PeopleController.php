@@ -225,8 +225,8 @@ public function ajaxdata() {
             }
         }
         
-        $departments = $this->People->Departments->find('list', ['limit' => 200]);
-        $stations = $this->People->Stations->find('list', ['limit' => 200]);
+        $departments = $this->People->Departments->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
+        $stations = $this->People->Stations->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
         $this->set(compact('person', 'trackingobjects', 'departments', 'stations'));
         $this->set('_serialize', ['person']);
 		
@@ -244,6 +244,12 @@ public function ajaxdata() {
         $person = $this->People->get($id, [
             'contain' => []
         ]);
+		if($person['customer_id']!= $this->loggedinuser['customer_id'])
+		{
+			 $this->Flash->success(__('You are not Authorized.'));
+			 return $this->redirect(['action' => 'index']);
+		}
+		
 		$trobjTable = TableRegistry::get('Trackingobjects');
 		$trobj = $trobjTable->get($person->trackingobject_id, [
             'contain' => []
@@ -264,8 +270,8 @@ public function ajaxdata() {
             }
         }
        
-        $departments = $this->People->Departments->find('list', ['limit' => 200]);
-        $stations = $this->People->Stations->find('list', ['limit' => 200]);
+        $departments = $this->People->Departments->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
+        $stations = $this->People->Stations->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
         $this->set(compact('person',  'departments', 'stations'));
         $this->set('_serialize', ['person']);
 		$name=$trobj->name;
@@ -283,11 +289,23 @@ public function ajaxdata() {
     {
         $this->request->allowMethod(['post', 'delete']);
         $person = $this->People->get($id);
-        if ($this->People->delete($person)) {
-            $this->Flash->success(__('The person has been deleted.'));
-        } else {
-            $this->Flash->error(__('The person could not be deleted. Please, try again.'));
-        }
+		if($person['customer_id'] = $this->loggedinuser['customer_id'])
+		{
+				if ($this->People->delete($person)) 
+				{
+		            $this->Flash->success(__('The person has been deleted.'));
+		        } 
+		        else 
+		        {
+		            $this->Flash->error(__('The person could not be deleted. Please, try again.'));
+		        }
+		
+	    }
+	    else
+	    {
+	   	    $this->Flash->error(__('You are not authorized'));
+		
+	    }
 
         return $this->redirect(['action' => 'index']);
     }

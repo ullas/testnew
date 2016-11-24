@@ -219,13 +219,13 @@ class ServicesentriesController extends AppController
             }
         }
         
-        $vehicles = $this->Servicesentries->Vehicles->find('list', ['limit' => 200])->where("customer_id=".$this->loggedinuser['customer_id']);
+        $vehicles = $this->Servicesentries->Vehicles->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
         
                 
-        $vendors = $this->Servicesentries->Vendors->find('list', ['limit' => 200])->where("customer_id=".$this->loggedinuser['customer_id']);
+        $vendors = $this->Servicesentries->Vendors->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
         
                         
-          $customers = $this->Servicesentries->Customers->find('list', ['limit' => 200])->where("id=".$this->loggedinuser['customer_id']);
+          $customers = $this->Servicesentries->Customers->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
       
         
                 $this->set(compact('servicesentry', 'vehicles', 'vendors', 'customers'));
@@ -244,6 +244,11 @@ class ServicesentriesController extends AppController
         $servicesentry = $this->Servicesentries->get($id, [
             'contain' => []
         ]);
+		if($servicesentry['customer_id']!= $this->loggedinuser['customer_id'])
+		{
+			 $this->Flash->success(__('You are not Authorized.'));
+			 return $this->redirect(['action' => 'index']);
+		}
         if ($this->request->is(['patch', 'post', 'put'])) {
             $servicesentry = $this->Servicesentries->patchEntity($servicesentry, $this->request->data);
              $servicesentry['customer_id']=$this->loggedinuser['customer_id'];
@@ -255,13 +260,13 @@ class ServicesentriesController extends AppController
                 $this->Flash->error(__('The servicesentry could not be saved. Please, try again.'));
             }
         }
-        $vehicles = $this->Servicesentries->Vehicles->find('list', ['limit' => 200])->where("customer_id=".$this->loggedinuser['customer_id']);
+        $vehicles = $this->Servicesentries->Vehicles->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
         
                 
-        $vendors = $this->Servicesentries->Vendors->find('list', ['limit' => 200])->where("customer_id=".$this->loggedinuser['customer_id']);
+        $vendors = $this->Servicesentries->Vendors->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
         
                         
-          $customers = $this->Servicesentries->Customers->find('list', ['limit' => 200])->where("id=".$this->loggedinuser['customer_id']);
+          $customers = $this->Servicesentries->Customers->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
       
         $this->set(compact('servicesentry', 'vehicles', 'vendors', 'customers'));
         $this->set('_serialize', ['servicesentry']);
@@ -278,12 +283,19 @@ class ServicesentriesController extends AppController
     {
         $this->request->allowMethod(['post', 'delete']);
         $servicesentry = $this->Servicesentries->get($id);
-        if ($this->Servicesentries->delete($servicesentry)) {
-            $this->Flash->success(__('The servicesentry has been deleted.'));
-        } else {
-            $this->Flash->error(__('The servicesentry could not be deleted. Please, try again.'));
-        }
-
+		if($servicesentry['customer_id'] = $this->loggedinuser['customer_id'])
+		{
+	        if ($this->Servicesentries->delete($servicesentry)) {
+	            $this->Flash->success(__('The servicesentry has been deleted.'));
+	        } else {
+	            $this->Flash->error(__('The servicesentry could not be deleted. Please, try again.'));
+	        }
+		}
+	    else
+	    {
+	   	    $this->Flash->error(__('You are not authorized'));
+		
+	    }
         return $this->redirect(['action' => 'index']);
     }
 	

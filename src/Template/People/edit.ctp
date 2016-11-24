@@ -51,7 +51,7 @@ $this->Form->templates($myTemplates);
             echo $this->Form->input('phone');
             echo $this->Form->input('department_id', ['options' => $departments, 'empty' => true,'class'=>'select2']);
             echo $this->Form->input('station_id', ['options' => $stations, 'empty' => true,'class'=>'select2']);
-        ?>
+        	?>
         
             </div>
  
