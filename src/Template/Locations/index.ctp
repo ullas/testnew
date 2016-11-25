@@ -1,3 +1,31 @@
+<?php
+$this->Html->css([
+    'AdminLTE./plugins/datatables/dataTables.bootstrap',
+  ],
+  ['block' => 'css']);
+$this->Html->script([
+  'AdminLTE./plugins/datatables/jquery.dataTables.min',
+  'AdminLTE./plugins/datatables/extensions/TableTools/js/dataTables.tableTools',
+  'AdminLTE./plugins/datatables/dataTables.bootstrap.min',
+],     
+['block' => 'script']);
+?>
+<!-- dropzone -->
+<script src="https://rawgit.com/enyo/dropzone/master/dist/dropzone.js"></script>
+<link rel="stylesheet" href="https://rawgit.com/enyo/dropzone/master/dist/dropzone.css">
+<style>
+/*margin left for export buttons*/
+.DTTT{
+	margin-left:10px;
+}
+.DTTT .btn{
+	background-color: #00a65a;margin:5px;
+	border-color: #008d4c;color:#FFF;padding:3px 8px;
+}
+.dropzone{
+	overflow-y:scroll;height:100px;
+}
+</style>
 <!-- Content Header (Page header) -->
 <section class="content-header">
   <h1>
@@ -10,17 +38,25 @@
   </ol>
 </section>
 
+
+<?php
+	echo $this->Form->create('', array('url' => array('controller' => 'Uploads', 'action' => 'upload'), 'novalidate' => true, 'role' => 'form', 'class' => 'dropzone', 'enctype' => 'multipart/form-data', 'id' => 'my-awesome-dropzone'));
+    echo '<div class="dz-message">Drop files here or click to upload.</div>';
+    echo $this->Form->end();
+?>
+<!-- <form action="/Locations/upload" class="dropzone"></form> -->
+      
 <!-- Main content -->
 <section class="content">
 
 
   <div class="row">
     <div class="col-md-12">
-       <section >
+       <section>
 
      
             <div class="mptl-map">
-              <div id="map" style="height:400px; width: 100%; padding="0"></div>
+              <div id="map" style="height:400px; width: 100%; padding:0px;"></div>
             </div>
            
       
@@ -29,6 +65,7 @@
     <!-- /.col -->
   </div>
   <!-- /.row -->
+
 
   <!-- Main row -->
   <div class="row">
@@ -49,8 +86,7 @@
         </div>
         <!-- /.box-header -->
         <div class="box-body">
-          <div class="table-responsive">
-            <table class="table no-margin">
+            <table class="table table-hover  table-bordered " id="mptlindextbl">
               <thead>
               <tr>
                 <th> ID</th>
@@ -118,8 +154,6 @@
               </tr>
               </tbody>
             </table>
-          </div>
-          <!-- /.table-responsive -->
         </div>
         <!-- /.box-body -->
         <div class="box-footer clearfix">
@@ -148,8 +182,20 @@
 </section>
 <!-- /.content -->
 <?php $this->start('scriptBotton'); ?>
+
     <script>
-    	
+	$(document).ready(function() {
+    	var table =$('#mptlindextbl').DataTable();
+		//table tools like export
+    	var tt = new $.fn.dataTable.TableTools( table, {aButtons: [ { "sExtends": "copy","sButtonText": "<i class='fa fa-files-o'></i>","sToolTip": "Copy" },
+    																						 { "sExtends": "csv","sButtonText": "<i class='fa fa-file-word-o'></i>","sToolTip": "Csv"  },
+ 																							 { "sExtends": "xls","sButtonText": "<i class='fa fa-file-excel-o'></i>","sToolTip": "Excel"  },
+   																							 { "sExtends": "pdf","sButtonText": "<i class='fa fa-file-pdf-o'></i>","sToolTip": "Pdf"  },
+   																							 { "sExtends": "print","sButtonText": "<i class='fa fa-print'></i>","sToolTip": "Print" } ]} );
+		$( tt.fnContainer() ).appendTo('div.dataTables_filter');
+	
+	} );
+	
     	function CenterMap(long, lat,zoom) {
     		 console.log("Long: " + long + " Lat: " + lat);
    			 map.getView().setCenter(ol.proj.transform([long, lat], 'EPSG:4326', 'EPSG:3857'));

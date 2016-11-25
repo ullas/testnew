@@ -46,8 +46,8 @@ class FencesTable extends Table
         $this->belongsTo('Groups', [
             'foreignKey' => 'group_id'
         ]);
-        $this->belongsTo('Vehicles', [
-            'foreignKey' => 'vehicle_id'
+        $this->belongsTo('Trackingobjects', [
+            'foreignKey' => 'trackingobject_id'
         ]);
         $this->belongsTo('Customers', [
             'foreignKey' => 'customer_id'
@@ -120,7 +120,7 @@ class FencesTable extends Table
     {
         $rules->add($rules->existsIn(['user_id'], 'Users'));
         $rules->add($rules->existsIn(['group_id'], 'Groups'));
-        $rules->add($rules->existsIn(['vehicle_id'], 'Vehicles'));
+        $rules->add($rules->existsIn(['trackingobject_id'], 'Trackingobjects'));
         $rules->add($rules->existsIn(['customer_id'], 'Customers'));
         $rules->add($rules->existsIn(['zonetype_id'], 'Zonetypes'));
 

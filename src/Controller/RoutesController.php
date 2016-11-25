@@ -19,7 +19,7 @@ class RoutesController extends AppController
     public function index()
     {
         $this->paginate = [
-            'contain' => ['Vehicles', 'Customers', 'Users', 'Groups']
+            'contain' => ['Trackingobjects', 'Customers', 'Users', 'Groups']
         ];
         $routes = $this->paginate($this->Routes);
 
@@ -37,7 +37,7 @@ class RoutesController extends AppController
     public function view($id = null)
     {
         $route = $this->Routes->get($id, [
-            'contain' => ['Vehicles', 'Customers', 'Users', 'Groups', 'Schedules', 'Trips']
+            'contain' => ['Trackingobjects', 'Customers', 'Users', 'Groups', 'Schedules', 'Trips']
         ]);
 
         $this->set('route', $route);
@@ -62,11 +62,11 @@ class RoutesController extends AppController
                 $this->Flash->error(__('The route could not be saved. Please, try again.'));
             }
         }
-        $vehicles = $this->Routes->Vehicles->find('list', ['limit' => 200]);
+        $trackingobjects = $this->Routes->Trackingobjects->find('list', ['limit' => 200]);
         $customers = $this->Routes->Customers->find('list', ['limit' => 200]);
         $users = $this->Routes->Users->find('list', ['limit' => 200]);
         $groups = $this->Routes->Groups->find('list', ['limit' => 200]);
-        $this->set(compact('route', 'vehicles', 'customers', 'users', 'groups'));
+        $this->set(compact('route', 'trackingobjects', 'customers', 'users', 'groups'));
         $this->set('_serialize', ['route']);
     }
 
@@ -92,11 +92,11 @@ class RoutesController extends AppController
                 $this->Flash->error(__('The route could not be saved. Please, try again.'));
             }
         }
-        $vehicles = $this->Routes->Vehicles->find('list', ['limit' => 200]);
+        $trackingobjects = $this->Routes->Trackingobjects->find('list', ['limit' => 200]);
         $customers = $this->Routes->Customers->find('list', ['limit' => 200]);
         $users = $this->Routes->Users->find('list', ['limit' => 200]);
         $groups = $this->Routes->Groups->find('list', ['limit' => 200]);
-        $this->set(compact('route', 'vehicles', 'customers', 'users', 'groups'));
+        $this->set(compact('route', 'trackingobjects', 'customers', 'users', 'groups'));
         $this->set('_serialize', ['route']);
     }
 
