@@ -256,9 +256,14 @@
   function tableLoaded(link){
   	$(".mptlmaster-edit").click(function(){
   		var url=$(this).attr("data-id");
-  		alert("url------"+url);
-  		 $(".modal-body").load(url,function( response, status, xhr ){
+  		// alert("url------"+url);
+  		 $(".modal-body").load("/"+url,function( response, status, xhr ){
   		 	
+  		 	//set mnadatory * after required label
+			$( ':input[required]' ).each( function () {
+ 				$("label[for='" + this.id + "']").addClass('mandatory');
+			});
+     						
   		 	$('#myModal').on("submit", "form#masterdataform", function(e){ 
 			    e.preventDefault(); 
 			   
