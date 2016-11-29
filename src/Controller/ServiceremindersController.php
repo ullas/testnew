@@ -219,10 +219,10 @@ public function ajaxdata() {
                 $this->Flash->error(__('The servicereminder could not be saved. Please, try again.'));
             }
         }
-        $servicetasks = $this->Servicereminders->Servicetasks->find('list', ['limit' => 200]);
-        $distributionlists = $this->Servicereminders->Distributionlists->find('list', ['limit' => 200]);
-        $groups = $this->Servicereminders->Groups->find('list', ['limit' => 200]);
-        $customers = $this->Servicereminders->Customers->find('list', ['limit' => 200]);
+        $servicetasks = $this->Servicereminders->Servicetasks->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
+        $distributionlists = $this->Servicereminders->Distributionlists->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
+        $groups = $this->Servicereminders->Groups->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
+        $customers = $this->Servicereminders->Customers->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
         $this->set(compact('servicereminder', 'servicetasks', 'distributionlists', 'groups', 'customers'));
         $this->set('_serialize', ['servicereminder']);
     }
@@ -239,6 +239,11 @@ public function ajaxdata() {
         $servicereminder = $this->Servicereminders->get($id, [
             'contain' => []
         ]);
+		if($servicereminder['customer_id']!= $this->loggedinuser['customer_id'])
+		{
+			 $this->Flash->success(__('You are not Authorized.'));
+			 return $this->redirect(['action' => 'index']);
+		}
         if ($this->request->is(['patch', 'post', 'put'])) {
             $servicereminder = $this->Servicereminders->patchEntity($servicereminder, $this->request->data);
             if ($this->Servicereminders->save($servicereminder)) {
@@ -249,10 +254,10 @@ public function ajaxdata() {
                 $this->Flash->error(__('The servicereminder could not be saved. Please, try again.'));
             }
         }
-        $servicetasks = $this->Servicereminders->Servicetasks->find('list', ['limit' => 200]);
-        $distributionlists = $this->Servicereminders->Distributionlists->find('list', ['limit' => 200]);
-        $groups = $this->Servicereminders->Groups->find('list', ['limit' => 200]);
-        $customers = $this->Servicereminders->Customers->find('list', ['limit' => 200]);
+        $servicetasks = $this->Servicereminders->Servicetasks->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
+        $distributionlists = $this->Servicereminders->Distributionlists->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
+        $groups = $this->Servicereminders->Groups->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
+        $customers = $this->Servicereminders->Customers->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
         $this->set(compact('servicereminder', 'servicetasks', 'distributionlists', 'groups', 'customers'));
         $this->set('_serialize', ['servicereminder']);
     }
@@ -268,12 +273,20 @@ public function ajaxdata() {
     {
         $this->request->allowMethod(['post', 'delete']);
         $servicereminder = $this->Servicereminders->get($id);
-        if ($this->Servicereminders->delete($servicereminder)) {
-            $this->Flash->success(__('The servicereminder has been deleted.'));
-        } else {
-            $this->Flash->error(__('The servicereminder could not be deleted. Please, try again.'));
-        }
-
+		if($servicereminder['customer_id'] = $this->loggedinuser['customer_id'])
+		{
+	        if ($this->Servicereminders->delete($servicereminder)) {
+	            $this->Flash->success(__('The servicereminder has been deleted.'));
+	        } else {
+	            $this->Flash->error(__('The servicereminder could not be deleted. Please, try again.'));
+	        }
+		
+	    }
+	    else
+	    {
+	   	    $this->Flash->error(__('You are not authorized'));
+		
+	    }
         return $this->redirect(['action' => 'index']);
     }
 	

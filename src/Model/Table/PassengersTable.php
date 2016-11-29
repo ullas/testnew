@@ -33,7 +33,7 @@ class PassengersTable extends Table
         parent::initialize($config);
 
         $this->table('passengers');
-        $this->displayField('id');
+        $this->displayField('first_name');
         $this->primaryKey('id');
 
         $this->belongsTo('Customers', [

@@ -210,13 +210,13 @@ public function ajaxdata() {
             }
         }
         
-        $vehicles = $this->Fuelentries->Vehicles->find('list', ['limit' => 200])->where("customer_id=".$this->loggedinuser['customer_id']);
+        $vehicles = $this->Fuelentries->Vehicles->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
         
                 
-        $vendors = $this->Fuelentries->Vendors->find('list', ['limit' => 200])->where("customer_id=".$this->loggedinuser['customer_id']);
+        $vendors = $this->Fuelentries->Vendors->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
         
                         
-          $customers = $this->Fuelentries->Customers->find('list', ['limit' => 200])->where("id=".$this->loggedinuser['customer_id']);
+          $customers = $this->Fuelentries->Customers->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
       
         
                 $this->set(compact('fuelentry', 'vehicles', 'vendors', 'customers'));
@@ -235,6 +235,11 @@ public function ajaxdata() {
         $fuelentry = $this->Fuelentries->get($id, [
             'contain' => []
         ]);
+		if($fuelentry['customer_id']!= $this->loggedinuser['customer_id'])
+		{
+			 $this->Flash->success(__('You are not Authorized.'));
+			 return $this->redirect(['action' => 'index']);
+		}
         if ($this->request->is(['patch', 'post', 'put'])) {
             $fuelentry = $this->Fuelentries->patchEntity($fuelentry, $this->request->data);
              $fuelentry['customer_id']=$this->loggedinuser['customer_id'];
@@ -246,9 +251,9 @@ public function ajaxdata() {
                 $this->Flash->error(__('The fuelentry could not be saved. Please, try again.'));
             }
         }
-        $vehicles = $this->Fuelentries->Vehicles->find('list', ['limit' => 200]);
-        $vendors = $this->Fuelentries->Vendors->find('list', ['limit' => 200]);
-        $customers = $this->Fuelentries->Customers->find('list', ['limit' => 200]);
+        $vehicles = $this->Fuelentries->Vehicles->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
+        $vendors = $this->Fuelentries->Vendors->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
+        $customers = $this->Fuelentries->Customers->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
         $this->set(compact('fuelentry', 'vehicles', 'vendors', 'customers'));
         $this->set('_serialize', ['fuelentry']);
     }
@@ -264,12 +269,19 @@ public function ajaxdata() {
     {
         $this->request->allowMethod(['post', 'delete']);
         $fuelentry = $this->Fuelentries->get($id);
-        if ($this->Fuelentries->delete($fuelentry)) {
-            $this->Flash->success(__('The fuelentry has been deleted.'));
-        } else {
-            $this->Flash->error(__('The fuelentry could not be deleted. Please, try again.'));
-        }
-
+		if($fuelentry['customer_id'] = $this->loggedinuser['customer_id'])
+		{
+	        if ($this->Fuelentries->delete($fuelentry)) {
+	            $this->Flash->success(__('The fuelentry has been deleted.'));
+	        } else {
+	            $this->Flash->error(__('The fuelentry could not be deleted. Please, try again.'));
+	        }
+		 }
+	    else
+	    {
+	   	    $this->Flash->error(__('You are not authorized'));
+		
+	    }
         return $this->redirect(['action' => 'index']);
     }
 	

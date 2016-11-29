@@ -38,10 +38,10 @@ $this->Form->templates($myTemplates);
         <?php
              echo $this->Form->input('code',['required' =>'required']);
             echo $this->Form->input('install_date', ['empty' => true,'type'=>'text','class'=>'datemask' , 'required' =>'required','templateVars' => ['icon' => '<div class="input-group-addon"><i class="fa fa-calendar"></i></div>']]);
-            echo $this->Form->input('installed_by');
-            echo $this->Form->input('certified_by');
+            echo $this->Form->input('installed_by',['required' =>'required']);
+            echo $this->Form->input('certified_by',['required' =>'required']);
             echo $this->Form->input('comments');
-            echo $this->Form->input('provider_id', ['options' => $providers, 'empty' => true,'class'=>'select2']);
+            echo $this->Form->input('provider_id', ['options' => $providers, 'empty' => true,'class'=>'select2','required' =>'required']);
             echo $this->Form->input('distance_type');
 		?>	
 		<div class="form-group">

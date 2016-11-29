@@ -146,7 +146,7 @@ private function getDateRangeFilters($dates,$basic)  {
 	return $sql;
 }  
 
-public function ajaxdata() {
+	public function ajaxdata() {
         $this->autoRender= false;
 		$usrfiter="";
 		$basic = isset($this->request->query['basic'])?$this->request->query['basic']:"" ;
@@ -184,7 +184,7 @@ public function ajaxdata() {
 	    return $this->response;
 	     
              
- }  
+ 	}  
     /**
      * View method
      *
@@ -222,11 +222,7 @@ public function ajaxdata() {
 		    $trobjTable->save($trobj);
 			$asset['trackingobject_id']=$trobj->id;
 			
-			
-			
-			
-			
-            if ($this->Assets->save($asset)) {
+			if ($this->Assets->save($asset)) {
                 $this->Flash->success(__('The asset has been saved.'));
 
                 return $this->redirect(['action' => 'index']);
@@ -235,11 +231,11 @@ public function ajaxdata() {
             }
         }
        
-        $assettypes = $this->Assets->Assettypes->find('list', ['limit' => 200]);
-        $symbols = $this->Assets->Symbols->find('list', ['limit' => 200]);
-        $departments = $this->Assets->Departments->find('list', ['limit' => 200]);
-        $stations = $this->Assets->Stations->find('list', ['limit' => 200]);
-        $purposes = $this->Assets->Purposes->find('list', ['limit' => 200]);
+        $assettypes = $this->Assets->Assettypes->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
+        $symbols = $this->Assets->Symbols->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
+        $departments = $this->Assets->Departments->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
+        $stations = $this->Assets->Stations->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
+        $purposes = $this->Assets->Purposes->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
         $this->set(compact('asset', 'trackingobjects', 'assettypes', 'symbols', 'departments', 'stations', 'purposes'));
         $this->set('_serialize', ['asset']);
     }
@@ -257,6 +253,14 @@ public function ajaxdata() {
 	    $asset = $this->Assets->get($id, [
             'contain' => []
         ]);
+		
+		if($asset['customer_id']!= $this->loggedinuser['customer_id'])
+		{
+			 $this->Flash->success(__('You are not Authorized.'));
+			 return $this->redirect(['action' => 'index']);
+			
+		}
+		
 		
 		$trobj = $trobjTable->get($asset->trackingobject_id, [
             'contain' => []
@@ -280,11 +284,11 @@ public function ajaxdata() {
             }
         }
        
-        $assettypes = $this->Assets->Assettypes->find('list', ['limit' => 200]);
-        $symbols = $this->Assets->Symbols->find('list', ['limit' => 200]);
-        $departments = $this->Assets->Departments->find('list', ['limit' => 200]);
-        $stations = $this->Assets->Stations->find('list', ['limit' => 200]);
-        $purposes = $this->Assets->Purposes->find('list', ['limit' => 200]);
+        $assettypes = $this->Assets->Assettypes->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
+        $symbols = $this->Assets->Symbols->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
+        $departments = $this->Assets->Departments->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
+        $stations = $this->Assets->Stations->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
+        $purposes = $this->Assets->Purposes->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
         $this->set(compact('asset', 'trackingobjects', 'assettypes', 'symbols', 'departments', 'stations', 'purposes'));
         $this->set('_serialize', ['asset']);
 		$name=$trobj->name;
@@ -302,12 +306,22 @@ public function ajaxdata() {
     {
         $this->request->allowMethod(['post', 'delete']);
         $asset = $this->Assets->get($id);
-        if ($this->Assets->delete($asset)) {
-            $this->Flash->success(__('The asset has been deleted.'));
-        } else {
-            $this->Flash->error(__('The asset could not be deleted. Please, try again.'));
-        }
-
+		 if($asset['customer_id'] = $this->loggedinuser['customer_id'])
+		 {
+	        if ($this->Assets->delete($asset)) 
+	        {
+	            $this->Flash->success(__('The asset has been deleted.'));
+	        } 
+	        else 
+	        {
+	            $this->Flash->error(__('The asset could not be deleted. Please, try again.'));
+	        }
+		 }
+		 else
+		 {
+	   	    $this->Flash->error(__('You are not authorized'));
+		
+	     }
         return $this->redirect(['action' => 'index']);
     }
 

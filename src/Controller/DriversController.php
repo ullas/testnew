@@ -237,34 +237,34 @@ public function ajaxdata() {
             }
         }
         
-        $addresses = $this->Drivers->Addresses->find('list', ['limit' => 200])->where("customer_id=".$this->loggedinuser['customer_id']);
+        $addresses = $this->Drivers->Addresses->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
         
                         
-          $customers = $this->Drivers->Customers->find('list', ['limit' => 200])->where("id=".$this->loggedinuser['customer_id']);
+        $customers = $this->Drivers->Customers->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
       
         
                 
-        $contractors = $this->Drivers->Contractors->find('list', ['limit' => 200])->where("customer_id=".$this->loggedinuser['customer_id']);
+        $contractors = $this->Drivers->Contractors->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
         
                 
-        $stations = $this->Drivers->Stations->find('list', ['limit' => 200])->where("customer_id=".$this->loggedinuser['customer_id']);
+        $stations = $this->Drivers->Stations->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
         
                 
-        $supervisors = $this->Drivers->Supervisors->find('list', ['limit' => 200])->where("customer_id=".$this->loggedinuser['customer_id']);
+        $supervisors = $this->Drivers->Supervisors->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
         
                 
-        $shifts = $this->Drivers->Shifts->find('list', ['limit' => 200])->where("customer_id=".$this->loggedinuser['customer_id']);
+        $shifts = $this->Drivers->Shifts->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
         
                 
-        $vehicles = $this->Drivers->Vehicles->find('list', ['limit' => 200])->where("customer_id=".$this->loggedinuser['customer_id']);
+        $vehicles = $this->Drivers->Vehicles->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
         
                 
-        $drivergroups = $this->Drivers->Drivergroups->find('list', ['limit' => 200])->where("customer_id=".$this->loggedinuser['customer_id']);
+        $drivergroups = $this->Drivers->Drivergroups->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
         
                 
-        $languages = $this->Drivers->Languages->find('list', ['limit' => 200])->where("customer_id=".$this->loggedinuser['customer_id']);
+        $languages = $this->Drivers->Languages->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
         
-                $this->set(compact('driver', 'addresses', 'customers', 'contractors', 'stations', 'supervisors', 'shifts', 'vehicles', 'drivergroups', 'languages'));
+        $this->set(compact('driver', 'addresses', 'customers', 'contractors', 'stations', 'supervisors', 'shifts', 'vehicles', 'drivergroups', 'languages'));
         $this->set('_serialize', ['driver']);
     }
 
@@ -280,6 +280,11 @@ public function ajaxdata() {
         $driver = $this->Drivers->get($id, [
             'contain' => ['Vehicles', 'Drivergroups', 'Languages']
         ]);
+		if($driver['customer_id']!= $this->loggedinuser['customer_id'])
+		{
+			 $this->Flash->success(__('You are not Authorized.'));
+			 return $this->redirect(['action' => 'index']);
+		}
         if ($this->request->is(['patch', 'post', 'put'])) {
             $driver = $this->Drivers->patchEntity($driver, $this->request->data);
              $driver['customer_id']=$this->loggedinuser['customer_id'];
@@ -291,15 +296,15 @@ public function ajaxdata() {
                 $this->Flash->error(__('The driver could not be saved. Please, try again.'));
             }
         }
-        $addresses = $this->Drivers->Addresses->find('list', ['limit' => 200]);
-        $customers = $this->Drivers->Customers->find('list', ['limit' => 200]);
-        $contractors = $this->Drivers->Contractors->find('list', ['limit' => 200]);
-        $stations = $this->Drivers->Stations->find('list', ['limit' => 200]);
-        $supervisors = $this->Drivers->Supervisors->find('list', ['limit' => 200]);
-        $shifts = $this->Drivers->Shifts->find('list', ['limit' => 200]);
-        $vehicles = $this->Drivers->Vehicles->find('list', ['limit' => 200]);
-        $drivergroups = $this->Drivers->Drivergroups->find('list', ['limit' => 200]);
-        $languages = $this->Drivers->Languages->find('list', ['limit' => 200]);
+        $addresses = $this->Drivers->Addresses->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
+        $customers = $this->Drivers->Customers->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
+        $contractors = $this->Drivers->Contractors->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
+        $stations = $this->Drivers->Stations->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
+        $supervisors = $this->Drivers->Supervisors->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
+        $shifts = $this->Drivers->Shifts->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
+        $vehicles = $this->Drivers->Vehicles->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
+        $drivergroups = $this->Drivers->Drivergroups->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
+        $languages = $this->Drivers->Languages->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
         $this->set(compact('driver', 'addresses', 'customers', 'contractors', 'stations', 'supervisors', 'shifts', 'vehicles', 'drivergroups', 'languages'));
         $this->set('_serialize', ['driver']);
     }
@@ -315,12 +320,19 @@ public function ajaxdata() {
     {
         $this->request->allowMethod(['post', 'delete']);
         $driver = $this->Drivers->get($id);
-        if ($this->Drivers->delete($driver)) {
-            $this->Flash->success(__('The driver has been deleted.'));
-        } else {
-            $this->Flash->error(__('The driver could not be deleted. Please, try again.'));
-        }
-
+		if($driver['customer_id'] = $this->loggedinuser['customer_id'])
+		{
+	        if ($this->Drivers->delete($driver)) {
+	            $this->Flash->success(__('The driver has been deleted.'));
+	        } else {
+	            $this->Flash->error(__('The driver could not be deleted. Please, try again.'));
+	        }
+		}
+	    else
+	    {
+	   	    $this->Flash->error(__('You are not authorized'));
+		
+	    }
         return $this->redirect(['action' => 'index']);
     }
 	

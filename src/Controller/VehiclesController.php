@@ -211,6 +211,7 @@ private function getDateRangeFilters($dates,$basic)  {
     public function add()
     {
         $vehicle = $this->Vehicles->newEntity();
+		
         if ($this->request->is('post')) {
             $vehicle = $this->Vehicles->patchEntity($vehicle, $this->request->data,['associated' => ['Vehiclespecifications',
 		                        'Vehicleengines',
@@ -218,7 +219,8 @@ private function getDateRangeFilters($dates,$basic)  {
 			                   'Vehiclefluids',
 			                   'Vehiclepurchases'
 			                   ]]);
-            $vehicle['customer_id']=$this->currentuser['customer_id'];
+							   
+            $vehicle['customer_id']=$this->loggedinuser['customer_id'];
 			$trobjTable = TableRegistry::get('Trackingobjects');
 			$trobj=$trobjTable->newEntity();
 			
@@ -238,16 +240,16 @@ private function getDateRangeFilters($dates,$basic)  {
                 $this->Flash->error(__('The vehicle could not be saved. Please, try again.'));
             }
         }
-        $vehicletypes = $this->Vehicles->Vehicletypes->find('list', ['limit' => 200]);
-        $vehiclestatuses = $this->Vehicles->Vehiclestatuses->find('list', ['limit' => 200]);
-        $ownerships = $this->Vehicles->Ownerships->find('list', ['limit' => 200]);
-        $symbols = $this->Vehicles->Symbols->find('list', ['limit' => 200]);
-        $stations = $this->Vehicles->Stations->find('list', ['limit' => 200]);
-        $departments = $this->Vehicles->Departments->find('list', ['limit' => 200]);
+        $vehicletypes = $this->Vehicles->Vehicletypes->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
+        $vehiclestatuses = $this->Vehicles->Vehiclestatuses->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
+        $ownerships = $this->Vehicles->Ownerships->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
+        $symbols = $this->Vehicles->Symbols->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
+        $stations = $this->Vehicles->Stations->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
+        $departments = $this->Vehicles->Departments->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
         
-        $purposes = $this->Vehicles->Purposes->find('list', ['limit' => 200]);
-        $transporters = $this->Vehicles->Transporters->find('list', ['limit' => 200]);
-        $drivers = $this->Vehicles->Drivers->find('list', ['limit' => 200]);
+        $purposes = $this->Vehicles->Purposes->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
+        $transporters = $this->Vehicles->Transporters->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
+        $drivers = $this->Vehicles->Drivers->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
         $this->set(compact('vehicle', 'vehicletypes', 'vehiclestatuses', 'ownerships', 'symbols', 'stations', 'departments',  'purposes', 'transporters', 'drivers'));
         $this->set('_serialize', ['vehicle']);
     }
@@ -272,6 +274,11 @@ private function getDateRangeFilters($dates,$basic)  {
 		$trobj=$trobjTable->get($vehicle->trackingobject_id, [
             'contain' => []
         ]);
+		if($vehicle['customer_id']!= $this->loggedinuser['customer_id'])
+		{
+			 $this->Flash->success(__('You are not Authorized.'));
+			 return $this->redirect(['action' => 'index']);
+		}
         if ($this->request->is(['patch', 'post', 'put'])) {
             $vehicle = $this->Vehicles->patchEntity($vehicle, $this->request->data);
 			$trobj->name=$vehicle->name;
@@ -284,15 +291,15 @@ private function getDateRangeFilters($dates,$basic)  {
                 $this->Flash->error(__('The vehicle could not be saved. Please, try again.'));
             }
         }
-        $vehicletypes = $this->Vehicles->Vehicletypes->find('list', ['limit' => 200]);
-        $vehiclestatuses = $this->Vehicles->Vehiclestatuses->find('list', ['limit' => 200]);
-        $ownerships = $this->Vehicles->Ownerships->find('list', ['limit' => 200]);
-        $symbols = $this->Vehicles->Symbols->find('list', ['limit' => 200]);
-        $stations = $this->Vehicles->Stations->find('list', ['limit' => 200]);
-        $departments = $this->Vehicles->Departments->find('list', ['limit' => 200]);
+        $vehicletypes = $this->Vehicles->Vehicletypes->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
+        $vehiclestatuses = $this->Vehicles->Vehiclestatuses->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
+        $ownerships = $this->Vehicles->Ownerships->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
+        $symbols = $this->Vehicles->Symbols->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
+        $stations = $this->Vehicles->Stations->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
+        $departments = $this->Vehicles->Departments->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
         
-        $purposes = $this->Vehicles->Purposes->find('list', ['limit' => 200]);
-        $transporters = $this->Vehicles->Transporters->find('list', ['limit' => 200]);
+        $purposes = $this->Vehicles->Purposes->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
+        $transporters = $this->Vehicles->Transporters->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
         $drivers = $this->Vehicles->Drivers->find('list', ['limit' => 200]);
         $this->set(compact('vehicle', 'vehicletypes', 'vehiclestatuses', 'ownerships', 'symbols', 'stations', 'departments',  'purposes', 'transporters', 'drivers'));
         $this->set('_serialize', ['vehicle']);
@@ -312,15 +319,21 @@ private function getDateRangeFilters($dates,$basic)  {
         $vehicle = $this->Vehicles->get($id);
 		
 		 
+		if($vehicle['customer_id'] = $this->loggedinuser['customer_id'])
+		{
+	        if ($this->Vehicles->delete($vehicle)) {
+	        	$trobj=$trackingObjTable->get($vehicle['trackingobject_id']);
+				$trackingObjTable->delete($trobj);
+	            $this->Flash->success(__('The vehicle has been deleted.'));
+	        } else {
+	            $this->Flash->error(__('The vehicle could not be deleted. Please, try again.'));
+	        }
+		}
+	    else
+	    {
+	   	    $this->Flash->error(__('You are not authorized'));
 		
-        if ($this->Vehicles->delete($vehicle)) {
-        	$trobj=$trackingObjTable->get($vehicle['trackingobject_id']);
-			$trackingObjTable->delete($trobj);
-            $this->Flash->success(__('The vehicle has been deleted.'));
-        } else {
-            $this->Flash->error(__('The vehicle could not be deleted. Please, try again.'));
-        }
-
+	    }
         return $this->redirect(['action' => 'index']);
     }
 	

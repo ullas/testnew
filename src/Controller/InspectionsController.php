@@ -218,17 +218,17 @@ public function ajaxdata() {
             }
         }
         
-        $inspectionforms = $this->Inspections->Inspectionforms->find('list', ['limit' => 200])->where("customer_id=".$this->loggedinuser['customer_id'])->orwhere("customer_id=0");
+        $inspectionforms = $this->Inspections->Inspectionforms->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
         
                         
-        $customers = $this->Inspections->Customers->find('list', ['limit' => 200])->where("id=".$this->loggedinuser['customer_id']);
+        $customers = $this->Inspections->Customers->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
       
         
                 
-        $inspectionstatuses = $this->Inspections->Inspectionstatuses->find('list', ['limit' => 200])->where("customer_id=".$this->loggedinuser['customer_id'])->orwhere("customer_id=0");
+        $inspectionstatuses = $this->Inspections->Inspectionstatuses->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
         
                 
-        $vehicles = $this->Inspections->Vehicles->find('list', ['limit' => 200])->where("customer_id=".$this->loggedinuser['customer_id']);
+        $vehicles = $this->Inspections->Vehicles->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
         
                 $this->set(compact('inspection', 'inspectionforms', 'customers', 'inspectionstatuses', 'vehicles'));
         $this->set('_serialize', ['inspection']);
@@ -246,6 +246,11 @@ public function ajaxdata() {
         $inspection = $this->Inspections->get($id, [
             'contain' => []
         ]);
+		if($inspection['customer_id']!= $this->loggedinuser['customer_id'])
+		{
+			 $this->Flash->success(__('You are not Authorized.'));
+			 return $this->redirect(['action' => 'index']);
+		}
         if ($this->request->is(['patch', 'post', 'put'])) {
             $inspection = $this->Inspections->patchEntity($inspection, $this->request->data);
              $inspection['customer_id']=$this->loggedinuser['customer_id'];
@@ -257,17 +262,17 @@ public function ajaxdata() {
                 $this->Flash->error(__('The inspection could not be saved. Please, try again.'));
             }
         }
-        $inspectionforms = $this->Inspections->Inspectionforms->find('list', ['limit' => 200])->where("customer_id=".$this->loggedinuser['customer_id'])->orwhere("customer_id=0");
+        $inspectionforms = $this->Inspections->Inspectionforms->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
         
                         
-        $customers = $this->Inspections->Customers->find('list', ['limit' => 200])->where("id=".$this->loggedinuser['customer_id']);
+        $customers = $this->Inspections->Customers->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
       
         
                 
-        $inspectionstatuses = $this->Inspections->Inspectionstatuses->find('list', ['limit' => 200])->where("customer_id=".$this->loggedinuser['customer_id'])->orwhere("customer_id=0");
+        $inspectionstatuses = $this->Inspections->Inspectionstatuses->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
         
                 
-        $vehicles = $this->Inspections->Vehicles->find('list', ['limit' => 200])->where("customer_id=".$this->loggedinuser['customer_id']);
+        $vehicles = $this->Inspections->Vehicles->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
         
                 $this->set(compact('inspection', 'inspectionforms', 'customers', 'inspectionstatuses', 'vehicles'));
         $this->set('_serialize', ['inspection']);
@@ -284,12 +289,19 @@ public function ajaxdata() {
     {
         $this->request->allowMethod(['post', 'delete']);
         $inspection = $this->Inspections->get($id);
-        if ($this->Inspections->delete($inspection)) {
-            $this->Flash->success(__('The inspection has been deleted.'));
-        } else {
-            $this->Flash->error(__('The inspection could not be deleted. Please, try again.'));
-        }
-
+		if($inspection['customer_id'] = $this->loggedinuser['customer_id'])
+		{
+	        if ($this->Inspections->delete($inspection)) {
+	            $this->Flash->success(__('The inspection has been deleted.'));
+	        } else {
+	            $this->Flash->error(__('The inspection could not be deleted. Please, try again.'));
+	        }
+		}
+	    else
+	    {
+	   	    $this->Flash->error(__('You are not authorized'));
+		
+	    }
         return $this->redirect(['action' => 'index']);
     }
 	

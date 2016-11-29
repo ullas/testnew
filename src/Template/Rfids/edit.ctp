@@ -35,12 +35,13 @@ $this->Form->templates($myTemplates);
         <div class="tab-content">
           <div class="active tab-pane" id="details">
              <div class="form-horizontal">
-        <?php
+       <?php
             echo $this->Form->input('code',['required' => 'required']);
-            echo $this->Form->input('description');
-		    echo $this->Form->input('driver_id', ['options' => $drivers, 'empty' => true,'class'=>'select2']);
+			echo $this->Form->input('dateofpurchase', ['empty' => true,'type'=>'text','required' => 'required','class'=>'datemask','label'=>'Date of Purchase','templateVars' => ['icon' => '<div class="input-group-addon"><i class="fa fa-calendar"></i></div>']]);
+            echo $this->Form->input('driver_id', ['options' => $drivers, 'empty' => true,'class'=>'select2','required' => 'required']);
             echo $this->Form->input('passenger_id', ['options' => $passengers, 'empty' => true,'class'=>'select2']);
-		?>
+            echo $this->Form->input('description');
+		 ?>
 		 		<div class="form-group">
                   	<label for="privatekey" class="col-sm-3 control-label" style="padding-top:0" >Private key</label>
 				  	<div class="col-sm-6">
@@ -49,9 +50,7 @@ $this->Form->templates($myTemplates);
 				  	<div class="col-sm-offset-3 col-sm-6" style="margin-top:18px" >
 				  	</div>
 				</div>
-		<?php
-            echo $this->Form->input('dateofpurchase', ['empty' => true,'type'=>'text','class'=>'datemask','label'=>'Date of Purchase','templateVars' => ['icon' => '<div class="input-group-addon"><i class="fa fa-calendar"></i></div>']]);
-        ?>
+		
     </div>
  
           </div>

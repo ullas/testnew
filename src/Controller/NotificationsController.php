@@ -218,7 +218,7 @@ public function ajaxdata() {
                 $this->Flash->error(__('The notification could not be saved. Please, try again.'));
             }
         }
-        $timepolicies = $this->Notifications->Timepolicies->find('list', ['limit' => 200]);
+        $timepolicies = $this->Notifications->Timepolicies->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
         $this->set(compact('notification', 'timepolicies'));
         $this->set('_serialize', ['notification']);
     }
@@ -235,6 +235,11 @@ public function ajaxdata() {
         $notification = $this->Notifications->get($id, [
             'contain' => []
         ]);
+		if($notification['customer_id']!= $this->loggedinuser['customer_id'])
+		{
+			 $this->Flash->success(__('You are not Authorized.'));
+			 return $this->redirect(['action' => 'index']);
+		}
         if ($this->request->is(['patch', 'post', 'put'])) {
             $notification = $this->Notifications->patchEntity($notification, $this->request->data);
             if ($this->Notifications->save($notification)) {
@@ -245,7 +250,7 @@ public function ajaxdata() {
                 $this->Flash->error(__('The notification could not be saved. Please, try again.'));
             }
         }
-        $timepolicies = $this->Notifications->Timepolicies->find('list', ['limit' => 200]);
+        $timepolicies = $this->Notifications->Timepolicies->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
         $this->set(compact('notification', 'timepolicies'));
         $this->set('_serialize', ['notification']);
     }
@@ -261,12 +266,19 @@ public function ajaxdata() {
     {
         $this->request->allowMethod(['post', 'delete']);
         $notification = $this->Notifications->get($id);
-        if ($this->Notifications->delete($notification)) {
-            $this->Flash->success(__('The notification has been deleted.'));
-        } else {
-            $this->Flash->error(__('The notification could not be deleted. Please, try again.'));
-        }
-
+		if($notification['customer_id'] = $this->loggedinuser['customer_id'])
+		{
+	        if ($this->Notifications->delete($notification)) {
+	            $this->Flash->success(__('The notification has been deleted.'));
+	        } else {
+	            $this->Flash->error(__('The notification could not be deleted. Please, try again.'));
+	        }
+		}
+	    else
+	    {
+	   	    $this->Flash->error(__('You are not authorized'));
+		
+	    }
         return $this->redirect(['action' => 'index']);
     }
 

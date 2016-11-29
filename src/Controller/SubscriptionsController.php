@@ -212,10 +212,10 @@ public function ajaxdata() {
                 $this->Flash->error(__('The subscription could not be saved. Please, try again.'));
             }
         }
-        $schedules = $this->Subscriptions->Schedules->find('list', ['limit' => 200])->where("customer_id=".$this->loggedinuser['customer_id']);
-        $customers = $this->Subscriptions->Customers->find('list', ['limit' => 200])->where("customer_id=".$this->loggedinuser['customer_id']);
-        $locations = $this->Subscriptions->Locations->find('list', ['limit' => 200])->where("customer_id=".$this->loggedinuser['customer_id']);
-        $notifications = $this->Subscriptions->Notifications->find('list', ['limit' => 200])->where("customer_id=".$this->loggedinuser['customer_id']);
+        $schedules = $this->Subscriptions->Schedules->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
+        $customers = $this->Subscriptions->Customers->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
+        $locations = $this->Subscriptions->Locations->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
+        $notifications = $this->Subscriptions->Notifications->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
         $this->set(compact('subscription', 'schedules', 'customers', 'locations', 'notifications'));
         $this->set('_serialize', ['subscription']);
     }
@@ -232,6 +232,11 @@ public function ajaxdata() {
         $subscription = $this->Subscriptions->get($id, [
             'contain' => []
         ]);
+		if($subscription['customer_id']!= $this->loggedinuser['customer_id'])
+		{
+			 $this->Flash->success(__('You are not Authorized.'));
+			 return $this->redirect(['action' => 'index']);
+		}
         if ($this->request->is(['patch', 'post', 'put'])) {
             $subscription = $this->Subscriptions->patchEntity($subscription, $this->request->data);
             if ($this->Subscriptions->save($subscription)) {
@@ -242,10 +247,10 @@ public function ajaxdata() {
                 $this->Flash->error(__('The subscription could not be saved. Please, try again.'));
             }
         }
-        $schedules = $this->Subscriptions->Schedules->find('list', ['limit' => 200]);
-        $customers = $this->Subscriptions->Customers->find('list', ['limit' => 200]);
-        $locations = $this->Subscriptions->Locations->find('list', ['limit' => 200]);
-        $notifications = $this->Subscriptions->Notifications->find('list', ['limit' => 200]);
+        $schedules = $this->Subscriptions->Schedules->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
+        $customers = $this->Subscriptions->Customers->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
+        $locations = $this->Subscriptions->Locations->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
+        $notifications = $this->Subscriptions->Notifications->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
         $this->set(compact('subscription', 'schedules', 'customers', 'locations', 'notifications'));
         $this->set('_serialize', ['subscription']);
     }
@@ -261,12 +266,19 @@ public function ajaxdata() {
     {
         $this->request->allowMethod(['post', 'delete']);
         $subscription = $this->Subscriptions->get($id);
-        if ($this->Subscriptions->delete($subscription)) {
-            $this->Flash->success(__('The subscription has been deleted.'));
-        } else {
-            $this->Flash->error(__('The subscription could not be deleted. Please, try again.'));
-        }
-
+		if($subscription['customer_id'] = $this->loggedinuser['customer_id'])
+		{
+	        if ($this->Subscriptions->delete($subscription)) {
+	            $this->Flash->success(__('The subscription has been deleted.'));
+	        } else {
+	            $this->Flash->error(__('The subscription could not be deleted. Please, try again.'));
+	        }
+		}
+	    else
+	    {
+	   	    $this->Flash->error(__('You are not authorized'));
+		
+	    }
         return $this->redirect(['action' => 'index']);
     }
 	

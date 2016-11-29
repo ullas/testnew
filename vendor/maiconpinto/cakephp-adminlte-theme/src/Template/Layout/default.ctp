@@ -173,8 +173,8 @@
 	   
 	   $("#myModal").on("show.bs.modal", function(e) {
 		    var link = $(e.relatedTarget);
-		   // alert(link.attr("href"));
-		    $(this).find(".modal-body").load(link.attr("href"),function( response, status, xhr ){
+		    //alert(link.attr("href"));
+		    $(this).find(".modal-body").load("/"+link.attr("href"),function( response, status, xhr ){
 		    	
 		    	  if ( status == "error" ) {
 					    var msg = "Sorry but there was an error: ";
@@ -184,7 +184,7 @@
 				  	     table= $('#mptlindextblmaster').DataTable({
          					 "paging": true,
           					 "lengthChange": true,
-          					 "ajax": link.attr("href")+"/ajaxData",
+          					 "ajax": "/"+ link.attr("href")+"/ajaxData",
           					 "processing": true,
          					 "serverSide": true,
          					 "drawCallback":function(settings){
@@ -208,7 +208,7 @@
    
 				  		$("div.dataTables_filter").delegate("#masterdataadd","click", function(e){
 				  			 e.preventDefault();
-						     $(".modal-body").load(link.attr("href")+"/add",function( response, status, xhr ){
+						     $(".modal-body").load("/"+link.attr("href")+"/add",function( response, status, xhr ){
 						     	
 							//set mnadatory * after required label
      						$( ':input[required]' ).each( function () {
@@ -256,7 +256,7 @@
   function tableLoaded(link){
   	$(".mptlmaster-edit").click(function(){
   		var url=$(this).attr("data-id");
-  		
+  		alert("url------"+url);
   		 $(".modal-body").load(url,function( response, status, xhr ){
   		 	
   		 	$('#myModal').on("submit", "form#masterdataform", function(e){ 
@@ -264,6 +264,7 @@
 			   
 			    var postData = $(this).serializeArray();
 			    var formURL = $(this).attr("action");
+			    
 			    $.ajax(
 			    {
 			        url : formURL,

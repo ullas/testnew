@@ -213,16 +213,16 @@ private function getDateRangeFilters($dates,$basic)  {
                 $this->Flash->error(__('The trip could not be saved. Please, try again.'));
             }
         }
-		$customers = $this->Trips->Customers->find('list', ['limit' => 200])->where("customer_id=".$this->loggedinuser['customer_id']);
-        $vehicles = $this->Trips->Vehicles->find('list', ['limit' => 200])->where("customer_id=".$this->loggedinuser['customer_id']);
-        $timepolicies = $this->Trips->Timepolicies->find('list', ['limit' => 200])->where("customer_id=".$this->loggedinuser['customer_id']);
-        $routes = $this->Trips->Routes->find('list', ['limit' => 200])->where("customer_id=".$this->loggedinuser['customer_id']);
-        $startpoints = $this->Trips->Startpoints->find('list', ['limit' => 200])->where("customer_id=".$this->loggedinuser['customer_id']);
-        $endpoints = $this->Trips->Endpoints->find('list', ['limit' => 200])->where("customer_id=".$this->loggedinuser['customer_id']);
-        $schedules = $this->Trips->Schedules->find('list', ['limit' => 200])->where("customer_id=".$this->loggedinuser['customer_id']);
-        $tripstatuses = $this->Trips->Tripstatuses->find('list', ['limit' => 200])->where("customer_id=".$this->loggedinuser['customer_id']);
-        $vehiclecategories = $this->Trips->Vehiclecategories->find('list', ['limit' => 200])->where("customer_id=".$this->loggedinuser['customer_id']);
-        $triptypes = $this->Trips->Triptypes->find('list', ['limit' => 200])->where("customer_id=".$this->loggedinuser['customer_id']);
+		$customers = $this->Trips->Customers->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
+        $vehicles = $this->Trips->Vehicles->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
+        $timepolicies = $this->Trips->Timepolicies->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
+        $routes = $this->Trips->Routes->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
+        $startpoints = $this->Trips->Startpoints->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
+        $endpoints = $this->Trips->Endpoints->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
+        $schedules = $this->Trips->Schedules->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
+        $tripstatuses = $this->Trips->Tripstatuses->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
+        $vehiclecategories = $this->Trips->Vehiclecategories->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
+        $triptypes = $this->Trips->Triptypes->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
         $this->set(compact('trip', 'customers', 'vehicles', 'timepolicies', 'routes', 'startpoints', 'endpoints', 'schedules', 'tripstatuses', 'vehiclecategories', 'triptypes'));
         $this->set('_serialize', ['trip']);
     }
@@ -239,6 +239,11 @@ private function getDateRangeFilters($dates,$basic)  {
         $trip = $this->Trips->get($id, [
             'contain' => []
         ]);
+		if($trip['customer_id']!= $this->loggedinuser['customer_id'])
+		{
+			 $this->Flash->success(__('You are not Authorized.'));
+			 return $this->redirect(['action' => 'index']);
+		}
         if ($this->request->is(['patch', 'post', 'put'])) {
             $trip = $this->Trips->patchEntity($trip, $this->request->data);
             if ($this->Trips->save($trip)) {
@@ -249,16 +254,16 @@ private function getDateRangeFilters($dates,$basic)  {
                 $this->Flash->error(__('The trip could not be saved. Please, try again.'));
             }
         }
-        $customers = $this->Trips->Customers->find('list', ['limit' => 200]);
-        $vehicles = $this->Trips->Vehicles->find('list', ['limit' => 200]);
-        $timepolicies = $this->Trips->Timepolicies->find('list', ['limit' => 200]);
-        $routes = $this->Trips->Routes->find('list', ['limit' => 200]);
-        $startpoints = $this->Trips->Startpoints->find('list', ['limit' => 200]);
-        $endpoints = $this->Trips->Endpoints->find('list', ['limit' => 200]);
-        $schedules = $this->Trips->Schedules->find('list', ['limit' => 200]);
-        $tripstatuses = $this->Trips->Tripstatuses->find('list', ['limit' => 200]);
-        $vehiclecategories = $this->Trips->Vehiclecategories->find('list', ['limit' => 200]);
-        $triptypes = $this->Trips->Triptypes->find('list', ['limit' => 200]);
+        $customers = $this->Trips->Customers->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
+        $vehicles = $this->Trips->Vehicles->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
+        $timepolicies = $this->Trips->Timepolicies->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
+        $routes = $this->Trips->Routes->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
+        $startpoints = $this->Trips->Startpoints->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
+        $endpoints = $this->Trips->Endpoints->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
+        $schedules = $this->Trips->Schedules->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
+        $tripstatuses = $this->Trips->Tripstatuses->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
+        $vehiclecategories = $this->Trips->Vehiclecategories->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
+        $triptypes = $this->Trips->Triptypes->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
         $this->set(compact('trip', 'customers', 'vehicles', 'timepolicies', 'routes', 'startpoints', 'endpoints', 'schedules', 'tripstatuses', 'vehiclecategories', 'triptypes'));
         $this->set('_serialize', ['trip']);
     }
@@ -274,12 +279,19 @@ private function getDateRangeFilters($dates,$basic)  {
     {
         $this->request->allowMethod(['post', 'delete']);
         $trip = $this->Trips->get($id);
-        if ($this->Trips->delete($trip)) {
-            $this->Flash->success(__('The trip has been deleted.'));
-        } else {
-            $this->Flash->error(__('The trip could not be deleted. Please, try again.'));
-        }
-
+		if($trip['customer_id'] = $this->loggedinuser['customer_id'])
+		{
+	        if ($this->Trips->delete($trip)) {
+	            $this->Flash->success(__('The trip has been deleted.'));
+	        } else {
+	            $this->Flash->error(__('The trip could not be deleted. Please, try again.'));
+	        }
+		}
+	    else
+	    {
+	   	    $this->Flash->error(__('You are not authorized'));
+		
+	    }
         return $this->redirect(['action' => 'index']);
     }
 	

@@ -226,16 +226,16 @@ public function ajaxdata() {
             }
         }
         
-        $partcategories = $this->Parts->Partcategories->find('list', ['limit' => 200])->where("customer_id=".$this->loggedinuser['customer_id'])->orwhere("customer_id=0");
+        $partcategories = $this->Parts->Partcategories->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
         
                 
-        $manufacturers = $this->Parts->Manufacturers->find('list', ['limit' => 200])->where("customer_id=".$this->loggedinuser['customer_id']);
+        $manufacturers = $this->Parts->Manufacturers->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
         
                 
-        $measurementunits = $this->Parts->Measurementunits->find('list', ['limit' => 200])->where("customer_id=".$this->loggedinuser['customer_id'])->orwhere("customer_id=0");
+        $measurementunits = $this->Parts->Measurementunits->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
         
                 
-        $stations = $this->Parts->Stations->find('list', ['limit' => 200])->where("customer_id=".$this->loggedinuser['customer_id']);
+        $stations = $this->Parts->Stations->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
         
 				
 		
@@ -255,6 +255,11 @@ public function ajaxdata() {
         $part = $this->Parts->get($id, [
             'contain' => []
         ]);
+		if($part['customer_id']!= $this->loggedinuser['customer_id'])
+		{
+			 $this->Flash->success(__('You are not Authorized.'));
+			 return $this->redirect(['action' => 'index']);
+		}
         if ($this->request->is(['patch', 'post', 'put'])) {
             $part = $this->Parts->patchEntity($part, $this->request->data);
              $part['customer_id']=$this->loggedinuser['customer_id'];
@@ -266,16 +271,16 @@ public function ajaxdata() {
                 $this->Flash->error(__('The part could not be saved. Please, try again.'));
             }
         }
-         $partcategories = $this->Parts->Partcategories->find('list', ['limit' => 200])->where("customer_id=".$this->loggedinuser['customer_id'])->orwhere("customer_id=0");
+         $partcategories = $this->Parts->Partcategories->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
         
                 
-        $manufacturers = $this->Parts->Manufacturers->find('list', ['limit' => 200])->where("customer_id=".$this->loggedinuser['customer_id']);
+        $manufacturers = $this->Parts->Manufacturers->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
         
                 
-        $measurementunits = $this->Parts->Measurementunits->find('list', ['limit' => 200])->where("customer_id=".$this->loggedinuser['customer_id'])->orwhere("customer_id=0");
+        $measurementunits = $this->Parts->Measurementunits->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
         
                 
-        $stations = $this->Parts->Stations->find('list', ['limit' => 200])->where("customer_id=".$this->loggedinuser['customer_id']);
+        $stations = $this->Parts->Stations->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
         
         $this->set(compact('part', 'partcategories', 'manufacturers', 'measurementunits', 'stations'));
         $this->set('_serialize', ['part']);
@@ -292,12 +297,19 @@ public function ajaxdata() {
     {
         $this->request->allowMethod(['post', 'delete']);
         $part = $this->Parts->get($id);
-        if ($this->Parts->delete($part)) {
-            $this->Flash->success(__('The part has been deleted.'));
-        } else {
-            $this->Flash->error(__('The part could not be deleted. Please, try again.'));
-        }
-
+		if($part['customer_id'] = $this->loggedinuser['customer_id'])
+		{
+	        if ($this->Parts->delete($part)) {
+	            $this->Flash->success(__('The part has been deleted.'));
+	        } else {
+	            $this->Flash->error(__('The part could not be deleted. Please, try again.'));
+	        }
+		}
+	    else
+	    {
+	   	    $this->Flash->error(__('You are not authorized'));
+		
+	    }
         return $this->redirect(['action' => 'index']);
     }
     
