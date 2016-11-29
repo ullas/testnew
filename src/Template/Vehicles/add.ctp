@@ -673,7 +673,7 @@ $this->Form->templates($myTemplates);
   <!-- /.row -->
   <div class="row">
    <div class="form-group">
-                <div class="col-sm-offset-6 col-sm-12">
+                <div class="col-sm-12 text-center">
                   <button type="submit" class="btn btn-success">Save</button>
                 </div>
    </div>
