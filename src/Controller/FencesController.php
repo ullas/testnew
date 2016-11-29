@@ -19,7 +19,7 @@ class FencesController extends AppController
     public function index()
     {
         $this->paginate = [
-            'contain' => ['Users', 'Groups', 'Vehicles', 'Customers', 'Zonetypes']
+            'contain' => ['Users', 'Groups', 'Trackingobjects', 'Customers', 'Zonetypes']
         ];
         $fences = $this->paginate($this->Fences);
 
@@ -37,7 +37,7 @@ class FencesController extends AppController
     public function view($id = null)
     {
         $fence = $this->Fences->get($id, [
-            'contain' => ['Users', 'Groups', 'Vehicles', 'Customers', 'Zonetypes']
+            'contain' => ['Users', 'Groups', 'Trackingobjects', 'Customers', 'Zonetypes']
         ]);
 
         $this->set('fence', $fence);
@@ -64,10 +64,10 @@ class FencesController extends AppController
         }
         $users = $this->Fences->Users->find('list', ['limit' => 200]);
         $groups = $this->Fences->Groups->find('list', ['limit' => 200]);
-        $vehicles = $this->Fences->Vehicles->find('list', ['limit' => 200]);
+        $trackingobjects = $this->Fences->Trackingobjects->find('list', ['limit' => 200]);
         $customers = $this->Fences->Customers->find('list', ['limit' => 200]);
         $zonetypes = $this->Fences->Zonetypes->find('list', ['limit' => 200]);
-        $this->set(compact('fence', 'users', 'groups', 'vehicles', 'customers', 'zonetypes'));
+        $this->set(compact('fence', 'users', 'groups', 'trackingobjects', 'customers', 'zonetypes'));
         $this->set('_serialize', ['fence']);
     }
 
@@ -95,10 +95,10 @@ class FencesController extends AppController
         }
         $users = $this->Fences->Users->find('list', ['limit' => 200]);
         $groups = $this->Fences->Groups->find('list', ['limit' => 200]);
-        $vehicles = $this->Fences->Vehicles->find('list', ['limit' => 200]);
+        $trackingobjects = $this->Fences->Trackingobjects->find('list', ['limit' => 200]);
         $customers = $this->Fences->Customers->find('list', ['limit' => 200]);
         $zonetypes = $this->Fences->Zonetypes->find('list', ['limit' => 200]);
-        $this->set(compact('fence', 'users', 'groups', 'vehicles', 'customers', 'zonetypes'));
+        $this->set(compact('fence', 'users', 'groups', 'trackingobjects', 'customers', 'zonetypes'));
         $this->set('_serialize', ['fence']);
     }
 

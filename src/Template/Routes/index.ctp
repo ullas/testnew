@@ -50,7 +50,7 @@
         <!-- /.box-header -->
         <div class="box-body">
           <div class="table-responsive">
-            <table class="table no-margin">
+            <table class="table table-hover  table-bordered " id="mptlindextbl">
               <thead>
               <tr>
                 <th> ID</th>
@@ -150,7 +150,9 @@
 <!-- /.content -->
 <?php $this->start('scriptBotton'); ?>
     <script>
-    	
+    	$(document).ready(function() {
+    		$('#mptlindextbl').DataTable();
+		} );
     	function CenterMap(long, lat,zoom) {
     		 console.log("Long: " + long + " Lat: " + lat);
    			 map.getView().setCenter(ol.proj.transform([long, lat], 'EPSG:4326', 'EPSG:3857'));
