@@ -41,8 +41,8 @@ class RoutesTable extends Table
         $this->displayField('name');
         $this->primaryKey('id');
 
-        $this->belongsTo('Vehicles', [
-            'foreignKey' => 'vehicle_id'
+        $this->belongsTo('Trackingobjects', [
+            'foreignKey' => 'trackingobject_id'
         ]);
         $this->belongsTo('Customers', [
             'foreignKey' => 'customer_id'
@@ -101,7 +101,7 @@ class RoutesTable extends Table
      */
     public function buildRules(RulesChecker $rules)
     {
-        $rules->add($rules->existsIn(['vehicle_id'], 'Vehicles'));
+        $rules->add($rules->existsIn(['trackingobject_id'], 'Trackingobjects'));
         $rules->add($rules->existsIn(['customer_id'], 'Customers'));
         $rules->add($rules->existsIn(['user_id'], 'Users'));
         $rules->add($rules->existsIn(['group_id'], 'Groups'));

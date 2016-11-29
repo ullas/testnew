@@ -21,7 +21,8 @@
     <!-- Bootstrap 3.3.5 -->
     <?php echo $this->Html->css('AdminLTE./plugins/datatables/dataTables.bootstrap'); ?>
      <?php echo $this->Html->css('AdminLTE./bootstrap/css/bootstrap'); ?>
-    
+ 
+
     <!-- Font Awesome -->
     <link rel="stylesheet" href="/css/font-awesome.min.css">
     <!-- Ionicons -->
@@ -101,7 +102,22 @@
 
 
 
-
+ <!-- dropzone -->
+<script src="https://rawgit.com/enyo/dropzone/master/dist/dropzone.js"></script>
+<link rel="stylesheet" href="https://rawgit.com/enyo/dropzone/master/dist/dropzone.css">
+<style>
+/*margin left for export buttons*/
+.DTTT{
+	margin-left:10px;
+}
+.DTTT .btn{
+	background-color: #00a65a;margin:5px;
+	border-color: #008d4c;color:#FFF;padding:3px 8px;
+}
+.dropzone{
+	overflow-y:scroll;height:100px;
+}
+</style>
 
 
 <?php echo $this->Html->script('ol/ol'); ?>
@@ -240,9 +256,14 @@
   function tableLoaded(link){
   	$(".mptlmaster-edit").click(function(){
   		var url=$(this).attr("data-id");
-  		alert("url------"+url);
-  		 $(".modal-body").load(url,function( response, status, xhr ){
+  		// alert("url------"+url);
+  		 $(".modal-body").load("/"+url,function( response, status, xhr ){
   		 	
+  		 	//set mnadatory * after required label
+			$( ':input[required]' ).each( function () {
+ 				$("label[for='" + this.id + "']").addClass('mandatory');
+			});
+     						
   		 	$('#myModal').on("submit", "form#masterdataform", function(e){ 
 			    e.preventDefault(); 
 			   
@@ -295,7 +316,6 @@
 	.mptldisabled, .mptldisabled:focus,.mptldisabled:hover {
     	color: #a1a1a1;padding:2px;
     	cursor: not-allowed;
-    	background-color: #fff;
     	border-color: #ddd;
 	}
 </style>

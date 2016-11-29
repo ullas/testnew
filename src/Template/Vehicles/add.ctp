@@ -10,7 +10,29 @@
 $this->Form->templates($myTemplates);
 
 ?>
-
+ <style>
+ div#myDropZone {
+    width: 100%;
+    min-height: 500px;
+    border : 1.9px dashed #008FE2;display: table;
+}
+.dz-message {
+	color:#333;
+	font-size:26px;
+    font-weight: 400;
+  	display: table-cell;
+   vertical-align: middle;
+}
+.dz-clickable {
+    cursor: pointer;
+}
+.dz-max-files-reached {
+          /*pointer-events: none;*/          cursor: default;
+}
+.upload-btn{
+	font-size:16px;font-weight: 400;padding:8px;
+}
+</style>  
 <!-- Content Header (Page header) -->
 <section class="content-header">
   <h1>
@@ -616,7 +638,25 @@ $this->Form->templates($myTemplates);
           
            <div class="tab-pane" id="docs">
             <div class="form-horizontal">
-              
+            	
+            	
+            	<div class="form-group"><input type="hidden" value=""  id="uploadpath"/></div>
+            	
+            	<!-- <div class="form-group">
+            		<label class="col-sm-3 control-label" for="upload">Picture:</label>
+            		<div class="col-sm-6">
+            			<div id="drop" class="dropzone" action="/Uploads/upload"></div>
+					</div>
+				</div> -->
+				
+			    <!-- upload component -->
+            	<div class="form-group" style="margin:20px;"><div id="myDropZone" class="dropzone"><div class="dz-message text-center"><i class="fa fa-cloud-upload text-light-blue fa-5x"></i>
+            		<br/><span>Drag and drop Files Here to upload.</span>
+            		<br/><span class="upload-btn bg-info">or select files to Upload</span></div></div>
+            	</div>
+            	
+            	
+            	
             </div>
           </div>
           <!-- /.tab-pane -->
@@ -633,7 +673,7 @@ $this->Form->templates($myTemplates);
   <!-- /.row -->
   <div class="row">
    <div class="form-group">
-                <div class="col-sm-offset-6 col-sm-12">
+                <div class="col-sm-12 text-center">
                   <button type="submit" class="btn btn-success">Save</button>
                 </div>
    </div>
@@ -643,11 +683,6 @@ $this->Form->templates($myTemplates);
 </section>
 <!-- /.content -->
 <?php
-$this->Html->css([
-   
-    'AdminLTE./plugins/select2/select2.min',
-  ],
-  ['block' => 'css']);
 
 $this->Html->script([
   'AdminLTE./plugins/select2/select2.full.min',
@@ -661,7 +696,43 @@ $this->Html->script([
 ?>
 <?php $this->start('scriptBotton'); ?>
 <script>
+	//dropzone
+	Dropzone.autoDiscover = false;
+	var myDropzone = $("div#myDropZone").dropzone({
+         url : "/Uploads/upload",
+         maxFiles: 1,
+         addRemoveLinks: true, 
+         dictRemoveFileConfirmation : 'Are you sure you want to remove the particular file ?' ,
+         init: function() {
+     		this.on("complete", function (file) {
+      			if (this.getUploadingFiles().length === 0 && this.getQueuedFiles().length === 0) {
+					//alert(file);      
+				}
+    		});
+    		this.on("removedfile", function (file) {
+          		$("#uploadpath").val("");
+      		});
+    		this.on("queuecomplete", function (file) {
+          // alert("All files have uploaded ");
+      		});
+      
+      		this.on("success", function (file) {
+          		$("#uploadpath").val(file['name']);console.log(file['name']); //alert("Success ");
+      		});
+      
+      		this.on("error", function (file) {
+          		// alert("Error in uploading ");
+      		});
+      
+      		this.on("maxfilesexceeded", function(file){
+        		alert("You can not upload any more files.");this.removeFile(file);
+    		});
+    	},
+       
+    });
+
   $(function () {
+      
     //Initialize Select2 Elements
    $(".select2").select2({ width: '100%' });
    $(".datemask").inputmask("yyyy/mm/dd", {"placeholder": "yyyy/mm/dd"});

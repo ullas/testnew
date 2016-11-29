@@ -10,7 +10,6 @@ use App\Controller\AppController;
  */
 class LocationsController extends AppController
 {
-
     /**
      * Index method
      *
