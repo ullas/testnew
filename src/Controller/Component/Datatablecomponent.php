@@ -70,7 +70,8 @@ use Cake\Utility\Inflector;
            $where = $this->Filter( $colmns, $fields );
 
            //getting limit
-           $limit = $this->Limit( );
+           
+           $limit = $this->Limit();
            //getting page no
 $page=ceil($this->request->query['start']/$limit)+1;
 
