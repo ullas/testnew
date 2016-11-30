@@ -70,10 +70,14 @@ use Cake\Utility\Inflector;
            $where = $this->Filter( $colmns, $fields );
 
            //getting limit
+           $limit = $this->Limit( );//echo 1/0;
+           //set value to limit if it is null
+           // if($limit!=""){
+           	//getting page no
+           	$page=ceil($this->request->query['start']/$limit)+1;
+           // }
            
-           $limit = $this->Limit();
-           //getting page no
-$page=ceil($this->request->query['start']/$limit)+1;
+
 
 $model=$controller->loadModel($controller->modelClass);
 
