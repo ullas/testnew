@@ -12,12 +12,15 @@
 }
 /*margin left for export buttons*/
 .DTTT{
-	margin-left:10px;
+	margin-left:5px;
 }
 .DTTT .btn{
-	background-color: #00a65a;margin:5px;
-	border-color: #008d4c;color:#FFF;padding:3px 8px;
-}		
+	background-color: #00a65a;font-size: 12px; line-height:1.5;
+	border-color: #008d4c;color:#FFF;padding:5px 10px;
+}
+.DTTT .btn:hover, .DTTT .btn:active, .DTTT .btn.hover {
+    background-color: #008d4c;color:#FFF;	
+}	
 </style>
 	
     <meta charset="utf-8">
@@ -114,13 +117,14 @@
 <link rel="stylesheet" href="https://rawgit.com/enyo/dropzone/master/dist/dropzone.css">
 <style>
 /*margin left for export buttons*/
-.DTTT{
+/*.DTTT{
 	margin-left:10px;
 }
 .DTTT .btn{
 	background-color: #00a65a;margin:5px;
 	border-color: #008d4c;color:#FFF;padding:3px 8px;
-}
+}*/
+div.dataTables_wrapper { clear: both; }
 .dropzone{
 	overflow-y:scroll;height:100px;
 }
