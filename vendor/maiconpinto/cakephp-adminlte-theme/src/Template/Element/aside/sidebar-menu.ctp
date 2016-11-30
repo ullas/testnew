@@ -76,6 +76,7 @@ if (file_exists($file)) {
     </li>
     
     
+    <?php if ($loggedinuser['role'] == "admin"):  ?>
     
     <li class="treeview">
         <a href="#">
@@ -174,7 +175,7 @@ if (file_exists($file)) {
    
         </ul>
     </li>
-    
+    <?php endif; ?>
     
     
     

@@ -10,7 +10,14 @@
 .input-group{
 	width:100%;
 }
-		
+/*margin left for export buttons*/
+.DTTT{
+	margin-left:10px;
+}
+.DTTT .btn{
+	background-color: #00a65a;margin:5px;
+	border-color: #008d4c;color:#FFF;padding:3px 8px;
+}		
 </style>
 	
     <meta charset="utf-8">
@@ -19,10 +26,10 @@
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <!-- Bootstrap 3.3.5 -->
-    <?php echo $this->Html->css('AdminLTE./plugins/datatables/dataTables.bootstrap'); ?>
+    
      <?php echo $this->Html->css('AdminLTE./bootstrap/css/bootstrap'); ?>
  
-
+<?php echo $this->Html->css('AdminLTE./plugins/datatables/dataTables.bootstrap'); ?>
     <!-- Font Awesome -->
     <link rel="stylesheet" href="/css/font-awesome.min.css">
     <!-- Ionicons -->

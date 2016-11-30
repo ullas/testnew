@@ -1,8 +1,5 @@
 <?php
-$this->Html->css([
-    'AdminLTE./plugins/datatables/dataTables.bootstrap',
-  ],
-  ['block' => 'css']);
+
 $this->Html->script([
   'AdminLTE./plugins/datatables/jquery.dataTables.min',
   'AdminLTE./plugins/datatables/extensions/TableTools/js/dataTables.tableTools',
@@ -38,12 +35,6 @@ $this->Html->script([
   </ol>
 </section>
 
-
-<?php
-	echo $this->Form->create('', array('url' => array('controller' => 'Uploads', 'action' => 'upload'), 'novalidate' => true, 'role' => 'form', 'class' => 'dropzone', 'enctype' => 'multipart/form-data', 'id' => 'my-awesome-dropzone'));
-    echo '<div class="dz-message">Drop files here or click to upload.</div>';
-    echo $this->Form->end();
-?>
 <!-- <form action="/Locations/upload" class="dropzone"></form> -->
       
 <!-- Main content -->
@@ -196,11 +187,11 @@ $this->Html->script([
 	
 	} );
 	
-    	function CenterMap(long, lat,zoom) {
-    		 console.log("Long: " + long + " Lat: " + lat);
-   			 map.getView().setCenter(ol.proj.transform([long, lat], 'EPSG:4326', 'EPSG:3857'));
-   			 map.getView().setZoom(zoom);
-		}
+	function CenterMap(long, lat,zoom) {
+		console.log("Long: " + long + " Lat: " + lat);
+		map.getView().setCenter(ol.proj.transform([long, lat], 'EPSG:4326', 'EPSG:3857'));
+		map.getView().setZoom(zoom);
+	}
     	
     </script>
 
