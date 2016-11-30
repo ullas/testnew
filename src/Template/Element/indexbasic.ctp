@@ -218,7 +218,7 @@ $this->Html->script([
      
     // $('<a href="#" class="btn btn-sm btn-success" style="margin-left:5px;" title="Export to PDF"><i class="fa fa-file-pdf-o" aria-hidden="true"></i></a>').appendTo('div.dataTables_filter');
     // $('<a href="#" class="btn btn-sm btn-success" style="margin-left:5px;" title="Export to CSV"><i class="fa fa-file-excel-o" aria-hidden="true"></i></a>').appendTo('div.dataTables_filter');
-    // $('<a href="#" class="btn btn-sm btn-success" data-toggle="modal" data-target="#settings" style="margin-left:5px;" title="Table Settings"><i class="fa fa-gear" aria-hidden="true"></i></a>').appendTo('div.dataTables_filter');
+    $('<a href="#" class="btn btn-sm btn-success" data-toggle="modal" data-target="#settings" style="margin-left:5px;" title="Table Settings"><i class="fa fa-gear" aria-hidden="true"></i></a>').appendTo('div.dataTables_filter');
      
        $('.dataTables_filter input').unbind().on('keyup', function() {
 	 
