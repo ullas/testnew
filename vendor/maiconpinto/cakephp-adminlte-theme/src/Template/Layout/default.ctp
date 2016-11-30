@@ -47,7 +47,7 @@
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
 <!--[if lt IE 9]>
-<script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <![endif]-->
 </head>
@@ -108,7 +108,7 @@
 <?php echo $this->Html->script('AdminLTE./plugins/datatables/dataTables.bootstrap.min'); ?>
 
 
-
+<script src="https://cdn.datatables.net/buttons/1.2.2/js/buttons.print.min.js"></script>
  <!-- dropzone -->
 <script src="https://rawgit.com/enyo/dropzone/master/dist/dropzone.js"></script>
 <link rel="stylesheet" href="https://rawgit.com/enyo/dropzone/master/dist/dropzone.css">
