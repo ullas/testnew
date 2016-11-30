@@ -60,7 +60,7 @@ class ContractorsController extends AppController
 		 
 				$fields[0] = array("name" =>"Contractors.id"  , "type" => "num");
 				$fields[1] = array("name" =>"Contractors.name"  , "type" => "char");
-				$fields[2] = array("name" =>"Contractors.descrtption"  , "type" => "char");
+				$fields[2] = array("name" =>"Contractors.description"  , "type" => "char");
 				
 		
 		$this->log($fields);
@@ -109,7 +109,7 @@ class ContractorsController extends AppController
             //    $this->Flash->error(__('The contractor could not be saved. Please, try again.'));
             }
         }
-        $customers = $this->Contractors->Customers->find('list', ['limit' => 200]);
+        $customers = $this->Contractors->Customers->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
         $this->set(compact('contractor', 'customers'));
         $this->set('_serialize', ['contractor']);
     }
@@ -126,6 +126,12 @@ class ContractorsController extends AppController
         $contractor = $this->Contractors->get($id, [
             'contain' => []
         ]);
+		if($contractor['customer_id']!= $this->loggedinuser['customer_id'])
+		{
+			 $this->Flash->success(__('You are not Authorized.'));
+			 return $this->redirect(['action' => 'index']);
+			
+		}
         if ($this->request->is(['patch', 'post', 'put'])) {
             $contractor = $this->Contractors->patchEntity($contractor, $this->request->data);
 			$contractor['customer_id']=$this->loggedinuser['customer_id'];
@@ -137,7 +143,7 @@ class ContractorsController extends AppController
             //    $this->Flash->error(__('The contractor could not be saved. Please, try again.'));
             }
         }
-        $customers = $this->Contractors->Customers->find('list', ['limit' => 200]);
+        $customers = $this->Contractors->Customers->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
         $this->set(compact('contractor', 'customers'));
         $this->set('_serialize', ['contractor']);
     }
@@ -153,12 +159,19 @@ class ContractorsController extends AppController
     {
        // $this->request->allowMethod(['post', 'delete']);
         $contractor = $this->Contractors->get($id);
-        if ($this->Contractors->delete($contractor)) {
-        //    $this->Flash->success(__('The contractor has been deleted.'));
-        } else {
-        //    $this->Flash->error(__('The contractor could not be deleted. Please, try again.'));
-        }
-
+		if($contractor['customer_id'] = $this->loggedinuser['customer_id'])
+		{
+	        if ($this->Contractors->delete($contractor)) {
+	        //    $this->Flash->success(__('The contractor has been deleted.'));
+	        } else {
+	        //    $this->Flash->error(__('The contractor could not be deleted. Please, try again.'));
+	        }
+		}
+		 else
+		 {
+	   	    $this->Flash->error(__('You are not authorized'));
+		
+	     }
         return $this->redirect(['action' => 'index']);
     }
 

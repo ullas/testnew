@@ -183,6 +183,7 @@ private function getDateRangeFilters($dates,$basic)  {
     public function add()
     {
         $address = $this->Addresses->newEntity();
+		
         if ($this->request->is('post')) {
             $address = $this->Addresses->patchEntity($address, $this->request->data);
             $address['customer_id']=$this->loggedinuser['customer_id'];
@@ -212,11 +213,13 @@ private function getDateRangeFilters($dates,$basic)  {
         $address = $this->Addresses->get($id, [
             'contain' => ['Distributionlists']
         ]);
+		
 		if($address['customer_id']!= $this->loggedinuser['customer_id'])
 		{
 			 $this->Flash->success(__('You are not Authorized.'));
 			 return $this->redirect(['action' => 'index']);
 		}
+
         if ($this->request->is(['patch', 'post', 'put'])) {
             $address = $this->Addresses->patchEntity($address, $this->request->data);
             if ($this->Addresses->save($address)) {

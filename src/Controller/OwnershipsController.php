@@ -99,7 +99,7 @@ class OwnershipsController extends AppController
          //       $this->Flash->error(__('The ownership could not be saved. Please, try again.'));
             }
         }
-        $customers = $this->Ownerships->Customers->find('list', ['limit' => 200]);
+        $customers = $this->Ownerships->Customers->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
         $this->set(compact('ownership', 'customers'));
         $this->set('_serialize', ['ownership']);
     }
@@ -116,6 +116,12 @@ class OwnershipsController extends AppController
         $ownership = $this->Ownerships->get($id, [
             'contain' => []
         ]);
+		if($ownership['customer_id']!= $this->loggedinuser['customer_id'])
+		{
+			 $this->Flash->success(__('You are not Authorized.'));
+			 return $this->redirect(['action' => 'index']);
+			
+		}
         if ($this->request->is(['patch', 'post', 'put'])) {
             $ownership = $this->Ownerships->patchEntity($ownership, $this->request->data);
 			$ownership['customer_id']=$this->loggedinuser['customer_id'];
@@ -127,7 +133,7 @@ class OwnershipsController extends AppController
           //      $this->Flash->error(__('The ownership could not be saved. Please, try again.'));
             }
         }
-        $customers = $this->Ownerships->Customers->find('list', ['limit' => 200]);
+        $customers = $this->Ownerships->Customers->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
         $this->set(compact('ownership', 'customers'));
         $this->set('_serialize', ['ownership']);
     }
@@ -143,12 +149,19 @@ class OwnershipsController extends AppController
     {
       //  $this->request->allowMethod(['post', 'delete']);
         $ownership = $this->Ownerships->get($id);
-        if ($this->Ownerships->delete($ownership)) {
-      //      $this->Flash->success(__('The ownership has been deleted.'));
-        } else {
-       //     $this->Flash->error(__('The ownership could not be deleted. Please, try again.'));
-        }
-
+		if($ownership['customer_id'] = $this->loggedinuser['customer_id'])
+	    {
+		        if ($this->Ownerships->delete($ownership)) {
+		      //      $this->Flash->success(__('The ownership has been deleted.'));
+		        } else {
+		       //     $this->Flash->error(__('The ownership could not be deleted. Please, try again.'));
+		        }
+		}
+		 else
+		 {
+	   	    $this->Flash->error(__('You are not authorized'));
+		
+	     }
         return $this->redirect(['action' => 'index']);
     }
 	

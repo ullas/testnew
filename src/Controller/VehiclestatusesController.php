@@ -99,7 +99,7 @@ class VehiclestatusesController extends AppController
             //    $this->Flash->error(__('The vehiclestatus could not be saved. Please, try again.'));
             }
         }
-        $customers = $this->Vehiclestatuses->Customers->find('list', ['limit' => 200]);
+        $customers = $this->Vehiclestatuses->Customers->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
         $this->set(compact('vehiclestatus', 'customers'));
         $this->set('_serialize', ['vehiclestatus']);
     }
@@ -116,6 +116,12 @@ class VehiclestatusesController extends AppController
         $vehiclestatus = $this->Vehiclestatuses->get($id, [
             'contain' => []
         ]);
+		if($vehiclestatus['customer_id']!= $this->loggedinuser['customer_id'])
+		{
+			 $this->Flash->success(__('You are not Authorized.'));
+			 return $this->redirect(['action' => 'index']);
+			
+		}
         if ($this->request->is(['patch', 'post', 'put'])) {
             $vehiclestatus = $this->Vehiclestatuses->patchEntity($vehiclestatus, $this->request->data);
 			$vehiclestatus['customer_id']=$this->loggedinuser['customer_id'];
@@ -127,7 +133,7 @@ class VehiclestatusesController extends AppController
             //    $this->Flash->error(__('The vehiclestatus could not be saved. Please, try again.'));
             }
         }
-        $customers = $this->Vehiclestatuses->Customers->find('list', ['limit' => 200]);
+        $customers = $this->Vehiclestatuses->Customers->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
         $this->set(compact('vehiclestatus', 'customers'));
         $this->set('_serialize', ['vehiclestatus']);
     }
@@ -143,12 +149,19 @@ class VehiclestatusesController extends AppController
     {
        // $this->request->allowMethod(['post', 'delete']);
         $vehiclestatus = $this->Vehiclestatuses->get($id);
-        if ($this->Vehiclestatuses->delete($vehiclestatus)) {
-       //     $this->Flash->success(__('The vehiclestatus has been deleted.'));
-        } else {
-       //     $this->Flash->error(__('The vehiclestatus could not be deleted. Please, try again.'));
-        }
-
+		if($vehiclestatus['customer_id'] = $this->loggedinuser['customer_id'])
+	    {
+	        if ($this->Vehiclestatuses->delete($vehiclestatus)) {
+	       //     $this->Flash->success(__('The vehiclestatus has been deleted.'));
+	        } else {
+	       //     $this->Flash->error(__('The vehiclestatus could not be deleted. Please, try again.'));
+	        }
+		 }
+		 else
+		 {
+	   	    $this->Flash->error(__('You are not authorized'));
+		
+	     }
         return $this->redirect(['action' => 'index']);
     }
 	public function deleteAll($id=null)

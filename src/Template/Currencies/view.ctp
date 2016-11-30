@@ -27,6 +27,10 @@
             <th><?= __('Symbol') ?></th>
             <td><?= h($currency->symbol) ?></td>
         </tr>
+        <tr>
+            <th><?= __('Description') ?></th>
+            <td><?= h($currency->description) ?></td>
+        </tr>
         
     </table>
    </div><!--boxbody-->

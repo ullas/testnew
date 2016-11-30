@@ -98,7 +98,7 @@ class TemplatetypesController extends AppController
             //    $this->Flash->error(__('The templatetype could not be saved. Please, try again.'));
             }
         }
-        $customers = $this->Templatetypes->Customers->find('list', ['limit' => 200]);
+        $customers = $this->Templatetypes->Customers->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
         $this->set(compact('templatetype', 'customers'));
         $this->set('_serialize', ['templatetype']);
     }
@@ -115,6 +115,12 @@ class TemplatetypesController extends AppController
         $templatetype = $this->Templatetypes->get($id, [
             'contain' => []
         ]);
+		if($templatetype['customer_id']!= $this->loggedinuser['customer_id'])
+		{
+			 $this->Flash->success(__('You are not Authorized.'));
+			 return $this->redirect(['action' => 'index']);
+			
+		}
         if ($this->request->is(['patch', 'post', 'put'])) {
             $templatetype = $this->Templatetypes->patchEntity($templatetype, $this->request->data);
 			$templatetype['customer_id']=$this->loggedinuser['customer_id'];
@@ -126,7 +132,7 @@ class TemplatetypesController extends AppController
             //    $this->Flash->error(__('The templatetype could not be saved. Please, try again.'));
             }
         }
-        $customers = $this->Templatetypes->Customers->find('list', ['limit' => 200]);
+        $customers = $this->Templatetypes->Customers->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
         $this->set(compact('templatetype', 'customers'));
         $this->set('_serialize', ['templatetype']);
     }
@@ -142,12 +148,19 @@ class TemplatetypesController extends AppController
     {
        // $this->request->allowMethod(['post', 'delete']);
         $templatetype = $this->Templatetypes->get($id);
-        if ($this->Templatetypes->delete($templatetype)) {
-        //    $this->Flash->success(__('The templatetype has been deleted.'));
-        } else {
-        //    $this->Flash->error(__('The templatetype could not be deleted. Please, try again.'));
-        }
-
+		if($templatetype['customer_id'] = $this->loggedinuser['customer_id'])
+	    {
+	        if ($this->Templatetypes->delete($templatetype)) {
+	        //    $this->Flash->success(__('The templatetype has been deleted.'));
+	        } else {
+	        //    $this->Flash->error(__('The templatetype could not be deleted. Please, try again.'));
+	        }
+		 }
+		 else
+		 {
+	   	    $this->Flash->error(__('You are not authorized'));
+		
+	     }
         return $this->redirect(['action' => 'index']);
     }
 public function deleteAll($id=null)
