@@ -73,7 +73,7 @@ class VehicletypesController extends AppController
     public function view($id = null)
     {
         $vehicletype = $this->Vehicletypes->get($id, [
-            'contain' => ['Vehicles']
+            'contain' => ['Customers','Vehicles']
         ]);
 
         $this->set('vehicletype', $vehicletype);
@@ -99,6 +99,7 @@ class VehicletypesController extends AppController
             //    $this->Flash->error(__('The vehicletype could not be saved. Please, try again.'));
             }
         }
+        $customers = $this->Vehicletypes->Customers->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
         $this->set(compact('vehicletype'));
         $this->set('_serialize', ['vehicletype']);
     }
@@ -115,6 +116,12 @@ class VehicletypesController extends AppController
         $vehicletype = $this->Vehicletypes->get($id, [
             'contain' => []
         ]);
+		if($vehicletype['customer_id']!= $this->loggedinuser['customer_id'])
+		{
+			 $this->Flash->success(__('You are not Authorized.'));
+			 return $this->redirect(['action' => 'index']);
+			
+		}
         if ($this->request->is(['patch', 'post', 'put'])) {
             $vehicletype = $this->Vehicletypes->patchEntity($vehicletype, $this->request->data);
 			$vehicletype['customer_id']=$this->loggedinuser['customer_id'];
@@ -126,6 +133,7 @@ class VehicletypesController extends AppController
            //     $this->Flash->error(__('The vehicletype could not be saved. Please, try again.'));
             }
         }
+		$customers = $this->Vehicletypes->Customers->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
         $this->set(compact('vehicletype'));
         $this->set('_serialize', ['vehicletype']);
     }
@@ -141,12 +149,19 @@ class VehicletypesController extends AppController
     {
        // $this->request->allowMethod(['post', 'delete']);
         $vehicletype = $this->Vehicletypes->get($id);
-        if ($this->Vehicletypes->delete($vehicletype)) {
-       //     $this->Flash->success(__('The vehicletype has been deleted.'));
-        } else {
-      //      $this->Flash->error(__('The vehicletype could not be deleted. Please, try again.'));
-        }
-
+		if($vehicletype['customer_id'] = $this->loggedinuser['customer_id'])
+	    {
+	        if ($this->Vehicletypes->delete($vehicletype)) {
+	       //     $this->Flash->success(__('The vehicletype has been deleted.'));
+	        } else {
+	      //      $this->Flash->error(__('The vehicletype could not be deleted. Please, try again.'));
+	        }
+		}
+		 else
+		 {
+	   	    $this->Flash->error(__('You are not authorized'));
+		
+	     }
         return $this->redirect(['action' => 'index']);
     }
 	public function deleteAll($id=null)

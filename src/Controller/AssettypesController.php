@@ -114,6 +114,7 @@ class AssettypesController extends AppController
         $assettype = $this->Assettypes->get($id, [
             'contain' => []
         ]);
+		
         if ($this->request->is(['patch', 'post', 'put'])) {
             $assettype = $this->Assettypes->patchEntity($assettype, $this->request->data);
 			$assettype['customer_id']=$this->loggedinuser['customer_id'];

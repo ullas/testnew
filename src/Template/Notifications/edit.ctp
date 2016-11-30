@@ -302,8 +302,7 @@ $this->Html->css([
     'AdminLTE./plugins/daterangepicker/daterangepicker-bs3',
     'AdminLTE./plugins/iCheck/all',
     'AdminLTE./plugins/colorpicker/bootstrap-colorpicker.min',
-    'AdminLTE./plugins/timepicker/bootstrap-timepicker.min',
-    'AdminLTE./plugins/select2/select2.min',
+    'AdminLTE./plugins/timepicker/bootstrap-timepicker.min'
   ],
   ['block' => 'css']);
 

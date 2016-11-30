@@ -99,7 +99,7 @@ class RenewalstypesController extends AppController
             //    $this->Flash->error(__('The renewalstype could not be saved. Please, try again.'));
             }
         }
-        $customers = $this->Renewalstypes->Customers->find('list', ['limit' => 200]);
+        $customers = $this->Renewalstypes->Customers->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
         $this->set(compact('renewalstype', 'customers'));
         $this->set('_serialize', ['renewalstype']);
     }
@@ -116,6 +116,12 @@ class RenewalstypesController extends AppController
         $renewalstype = $this->Renewalstypes->get($id, [
             'contain' => []
         ]);
+		if($renewalstype['customer_id']!= $this->loggedinuser['customer_id'])
+		{
+			 $this->Flash->success(__('You are not Authorized.'));
+			 return $this->redirect(['action' => 'index']);
+			
+		}
         if ($this->request->is(['patch', 'post', 'put'])) {
             $renewalstype = $this->Renewalstypes->patchEntity($renewalstype, $this->request->data);
 			$renewalstype['customer_id']=$this->loggedinuser['customer_id'];
@@ -127,7 +133,7 @@ class RenewalstypesController extends AppController
             //    $this->Flash->error(__('The renewalstype could not be saved. Please, try again.'));
             }
         }
-        $customers = $this->Renewalstypes->Customers->find('list', ['limit' => 200]);
+        $customers = $this->Renewalstypes->Customers->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
         $this->set(compact('renewalstype', 'customers'));
         $this->set('_serialize', ['renewalstype']);
     }
@@ -143,12 +149,19 @@ class RenewalstypesController extends AppController
     {
         //$this->request->allowMethod(['post', 'delete']);
         $renewalstype = $this->Renewalstypes->get($id);
-        if ($this->Renewalstypes->delete($renewalstype)) {
-         //   $this->Flash->success(__('The renewalstype has been deleted.'));
-        } else {
-         //   $this->Flash->error(__('The renewalstype could not be deleted. Please, try again.'));
-        }
-
+		if($renewalstype['customer_id'] = $this->loggedinuser['customer_id'])
+	    {
+	        if ($this->Renewalstypes->delete($renewalstype)) {
+	         //   $this->Flash->success(__('The renewalstype has been deleted.'));
+	        } else {
+	         //   $this->Flash->error(__('The renewalstype could not be deleted. Please, try again.'));
+	        }
+		}
+		 else
+		 {
+	   	    $this->Flash->error(__('You are not authorized'));
+		
+	     }
         return $this->redirect(['action' => 'index']);
     }
 

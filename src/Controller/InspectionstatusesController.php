@@ -105,7 +105,7 @@ class InspectionstatusesController extends AppController
             }
         }
                 
-          $customers = $this->Inspectionstatuses->Customers->find('list', ['limit' => 200])->where("id=".$this->loggedinuser['customer_id']);
+          $customers = $this->Inspectionstatuses->Customers->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
       
         
                 $this->set(compact('inspectionstatus', 'customers'));
@@ -124,6 +124,13 @@ class InspectionstatusesController extends AppController
         $inspectionstatus = $this->Inspectionstatuses->get($id, [
             'contain' => []
         ]);
+		
+		if($inspectionstatus['customer_id']!= $this->loggedinuser['customer_id'])
+		{
+			 $this->Flash->success(__('You are not Authorized.'));
+			 return $this->redirect(['action' => 'index']);
+			
+		}
         if ($this->request->is(['patch', 'post', 'put'])) {
             $inspectionstatus = $this->Inspectionstatuses->patchEntity($inspectionstatus, $this->request->data);
              $inspectionstatus['customer_id']=$this->loggedinuser['customer_id'];
@@ -135,7 +142,7 @@ class InspectionstatusesController extends AppController
              //   $this->Flash->error(__('The inspectionstatus could not be saved. Please, try again.'));
             }
         }
-        $customers = $this->Inspectionstatuses->Customers->find('list', ['limit' => 200]);
+        $customers = $this->Inspectionstatuses->Customers->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
         $this->set(compact('inspectionstatus', 'customers'));
         $this->set('_serialize', ['inspectionstatus']);
     }
@@ -151,12 +158,19 @@ class InspectionstatusesController extends AppController
     {
         $this->request->allowMethod(['post', 'delete']);
         $inspectionstatus = $this->Inspectionstatuses->get($id);
-        if ($this->Inspectionstatuses->delete($inspectionstatus)) {
-         //   $this->Flash->success(__('The inspectionstatus has been deleted.'));
-        } else {
-         //   $this->Flash->error(__('The inspectionstatus could not be deleted. Please, try again.'));
-        }
-
+		 if($inspectionstatus['customer_id'] = $this->loggedinuser['customer_id'])
+		 {
+		        if ($this->Inspectionstatuses->delete($inspectionstatus)) {
+		         //   $this->Flash->success(__('The inspectionstatus has been deleted.'));
+		        } else {
+		         //   $this->Flash->error(__('The inspectionstatus could not be deleted. Please, try again.'));
+		        }
+		}
+		 else
+		 {
+	   	    $this->Flash->error(__('You are not authorized'));
+		
+	     }
         return $this->redirect(['action' => 'index']);
     }
 	
