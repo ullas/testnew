@@ -98,7 +98,7 @@ class PartcategoriesController extends AppController
             //    $this->Flash->error(__('The partcategory could not be saved. Please, try again.'));
             }
         }
-        $customers = $this->Partcategories->Customers->find('list', ['limit' => 200]);
+        $customers = $this->Partcategories->Customers->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
         $this->set(compact('partcategory', 'customers'));
         $this->set('_serialize', ['partcategory']);
     }
@@ -115,6 +115,12 @@ class PartcategoriesController extends AppController
         $partcategory = $this->Partcategories->get($id, [
             'contain' => []
         ]);
+		if($partcategory['customer_id']!= $this->loggedinuser['customer_id'])
+		{
+			 $this->Flash->success(__('You are not Authorized.'));
+			 return $this->redirect(['action' => 'index']);
+			
+		}
         if ($this->request->is(['patch', 'post', 'put'])) {
             $partcategory = $this->Partcategories->patchEntity($partcategory, $this->request->data);
 			$partcategory['customer_id']=$this->loggedinuser['customer_id'];
@@ -126,7 +132,7 @@ class PartcategoriesController extends AppController
           //      $this->Flash->error(__('The partcategory could not be saved. Please, try again.'));
             }
         }
-        $customers = $this->Partcategories->Customers->find('list', ['limit' => 200]);
+        $customers = $this->Partcategories->Customers->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
         $this->set(compact('partcategory', 'customers'));
         $this->set('_serialize', ['partcategory']);
     }
@@ -142,12 +148,19 @@ class PartcategoriesController extends AppController
     {
        // $this->request->allowMethod(['post', 'delete']);
         $partcategory = $this->Partcategories->get($id);
-        if ($this->Partcategories->delete($partcategory)) {
-      //      $this->Flash->success(__('The partcategory has been deleted.'));
-        } else {
-      //      $this->Flash->error(__('The partcategory could not be deleted. Please, try again.'));
-        }
-
+		if($partcategory['customer_id'] = $this->loggedinuser['customer_id'])
+	    {
+		        if ($this->Partcategories->delete($partcategory)) {
+		      //      $this->Flash->success(__('The partcategory has been deleted.'));
+		        } else {
+		      //      $this->Flash->error(__('The partcategory could not be deleted. Please, try again.'));
+		        }
+		}
+		 else
+		 {
+	   	    $this->Flash->error(__('You are not authorized'));
+		
+	     }
         return $this->redirect(['action' => 'index']);
     }
 	public function deleteAll($id=null)

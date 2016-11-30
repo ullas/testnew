@@ -34,6 +34,7 @@ $this->Form->templates($myTemplates);
             echo $this->Form->input('name',['label'=>'Name','required'=>'required']);
             echo $this->Form->input('abbrev',['label'=>'Abbreviation']);
             echo $this->Form->input('symbol');
+            echo $this->Form->input('description');
         ?>
      </div>
  

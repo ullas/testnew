@@ -53,6 +53,7 @@ class CurrenciesController extends AppController
 				$fields[1] = array("name" =>"Currencies.name"  , "type" => "char");
 				$fields[2] = array("name" =>"Currencies.abbrev"  , "type" => "char");
 				$fields[3] = array("name" =>"Currencies.symbol"  , "type" => "char");
+				$fields[4] = array("name" =>"Currencies.description"  , "type" => "char");
 		
 		$this->log($fields);
 		$output =$this->Datatablemaster->getView($fields,['Customers'],$usrfiter);
@@ -115,6 +116,12 @@ class CurrenciesController extends AppController
         $currency = $this->Currencies->get($id, [
             'contain' => []
         ]);
+		if($currency['customer_id']!= $this->loggedinuser['customer_id'])
+		{
+			 $this->Flash->success(__('You are not Authorized.'));
+			 return $this->redirect(['action' => 'index']);
+			
+		}
         if ($this->request->is(['patch', 'post', 'put'])) {
             $currency = $this->Currencies->patchEntity($currency, $this->request->data);
             if ($this->Currencies->save($currency)) {
@@ -140,12 +147,19 @@ class CurrenciesController extends AppController
     {
        // $this->request->allowMethod(['post', 'delete']);
         $currency = $this->Currencies->get($id);
-        if ($this->Currencies->delete($currency)) {
-       //     $this->Flash->success(__('The currency has been deleted.'));
-        } else {
-       //     $this->Flash->error(__('The currency could not be deleted. Please, try again.'));
-        }
-
+		 if($currency['customer_id'] = $this->loggedinuser['customer_id'])
+		 {
+		        if ($this->Currencies->delete($currency)) {
+		       //     $this->Flash->success(__('The currency has been deleted.'));
+		        } else {
+		       //     $this->Flash->error(__('The currency could not be deleted. Please, try again.'));
+		        }
+		}
+		 else
+		 {
+	   	    $this->Flash->error(__('You are not authorized'));
+		
+	     }
         return $this->redirect(['action' => 'index']);
     }
 	

@@ -210,7 +210,7 @@ private function getDateRangeFilters($dates,$basic)  {
     public function add()
     {
         $asset = $this->Assets->newEntity();
-        if ($this->request->is('post')) {
+		if ($this->request->is('post')) {
             $asset = $this->Assets->patchEntity($asset, $this->request->data);
 			
 			$asset['customer_id']=$this->loggedinuser['customer_id'];
@@ -306,8 +306,8 @@ private function getDateRangeFilters($dates,$basic)  {
     {
         $this->request->allowMethod(['post', 'delete']);
         $asset = $this->Assets->get($id);
-		 if($asset['customer_id'] = $this->loggedinuser['customer_id'])
-		 {
+		if($asset['customer_id'] = $this->loggedinuser['customer_id'])
+	    {
 	        if ($this->Assets->delete($asset)) 
 	        {
 	            $this->Flash->success(__('The asset has been deleted.'));
