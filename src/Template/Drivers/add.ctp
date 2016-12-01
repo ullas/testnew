@@ -1,5 +1,4 @@
 
-
 <?php echo $this->element('templateelement'); ?>
 
 <!-- Content Header (Page header) -->
@@ -43,7 +42,7 @@
             echo $this->Form->input('maritalstatus',['label'=>'Marital Status']);
             echo $this->Form->input('nextofkin',['label'=>'Next Of Kin']);
             echo $this->Form->input('comments');
-            echo $this->Form->input('photo');
+           // echo $this->Form->input('photo');
             echo $this->Form->input('ibutton_id',['class'=>'select2']);
             echo $this->Form->input('drivingpassportno',['label'=>'Driving Passport No']);
             echo $this->Form->input('drivingpassportexp', ['type'=>'text','empty' => true,'label'=>'Driving Passport Expiry Date','class'=>'datemask','templateVars' => ['icon' => '<div class="input-group-addon"><i class="fa fa-calendar"></i></div>']]);
@@ -62,7 +61,7 @@
         <div class="tab-pane" id="docs">
              <div class="form-horizontal">
              
-            	<div class="form-group"><input type="hidden" value=""  id="uploadpath"/></div>
+            	<?php echo $this->Form->input('attachment', array('type' => 'hidden')); ?>
 				
 			    <!-- upload component -->
             	<div class="form-group" style="margin:20px;"><div id="myDropZone" class="dropzone"><div class="dz-message text-center"><i class="fa fa-cloud-upload text-light-blue fa-5x"></i>
@@ -92,18 +91,51 @@ $this->Html->css([
  
   ],
   ['block' => 'css']);
-
 $this->Html->script([
  'AdminLTE./plugins/select2/select2.full.min',
  'AdminLTE./plugins/datepicker/bootstrap-datepicker',
  'AdminLTE./plugins/timepicker/bootstrap-timepicker.min',
- '/js/dropzone/dropzone',
  'AdminLTE./plugins/iCheck/icheck.min'
 ],
 ['block' => 'script']);
 ?>
 <?php $this->start('scriptBotton'); ?>
 <script>
+	//dropzone
+	Dropzone.autoDiscover = false;
+	var myDropzone = $("div#myDropZone").dropzone({
+         url : "/Uploads/upload",
+         maxFiles: 1,
+         addRemoveLinks: true, 
+         dictRemoveFileConfirmation : 'Are you sure you want to remove the particular file ?' ,
+         init: function() {
+     		this.on("complete", function (file) {
+      			if (this.getUploadingFiles().length === 0 && this.getQueuedFiles().length === 0) {
+					//alert(file);      
+				}
+    		});
+    		this.on("removedfile", function (file) {
+          		$("#attachment").val("");
+      		});
+    		this.on("queuecomplete", function (file) {
+          // alert("All files have uploaded ");
+      		});
+      
+      		this.on("success", function (file) {
+          		$("#attachment").val(file['name']);console.log(file['name']); //alert("Success ");
+      		});
+      
+      		this.on("error", function (file) {
+          		// alert("Error in uploading ");
+      		});
+      
+      		this.on("maxfilesexceeded", function(file){
+        		alert("You can not upload any more files.");this.removeFile(file);
+    		});
+    	},
+       
+    });
+
   $(function () {
    
    $(".select2").select2({ width: '100%' });
@@ -112,7 +144,6 @@ $this->Html->script([
               autoclose: true
    });
   
-
 $('.timepicker').timepicker({
 	showInputs:false
 });
