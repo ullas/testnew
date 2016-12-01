@@ -70,18 +70,20 @@
   ?>
 <?php
 $this->Html->css([ 
+'AdminLTE./plugins/datatables/dataTables.bootstrap', 
 'AdminLTE./plugins/daterangepicker/daterangepicker',
   'AdminLTE./plugins/iCheck/all',
    'AdminLTE./plugins/datatables/extensions/ColReorder/css/dataTables.colReorder.min',
  ], ['block' => 'css']);
 
 $this->Html->script([
+   'AdminLTE./plugins/datatables/extensions/TableTools/js/dataTables.tableTools',
+    'AdminLTE./plugins/datatables/dataTables.bootstrap.min',
   'AdminLTE./plugins/datatables/extensions/ColReorder/js/dataTables.colReorder.min',
   'AdminLTE./plugins/daterangepicker/moment.min',
   'AdminLTE./plugins/daterangepicker/daterangepicker',
   'AdminLTE./plugins/iCheck/iCheck.min',
 ], ['block' => 'script']); ?>
-
 <?php $this->start('scriptBotton'); ?>
 <script>
   var table; var order; 
@@ -165,9 +167,14 @@ $this->Html->script([
     });
      
      $('<a href="/<?php echo $this->request->params['controller'] ?>/add/" class="btn btn-sm btn-success" style="margin-left:5px;" title="Add New Work Order"><i class="fa fa-plus" aria-hidden="true"></i></a>').appendTo('div.dataTables_filter');
-    $('<a href="#" class="btn btn-sm btn-success" style="margin-left:5px;" title="Export to PDF"><i class="fa fa-file-pdf-o" aria-hidden="true"></i></a>').appendTo('div.dataTables_filter');
-    $('<a href="#" class="btn btn-sm btn-success" style="margin-left:5px;" title="Export to CSV"><i class="fa fa-file-excel-o" aria-hidden="true"></i></a>').appendTo('div.dataTables_filter');
-    $('<a href="#" class="btn btn-sm btn-success" data-toggle="modal" data-target="#settings" style="margin-left:5px;" title="Table Settings"><i class="fa fa-gear" aria-hidden="true"></i></a>').appendTo('div.dataTables_filter');
+    //table tools like export
+    var tt = new $.fn.dataTable.TableTools( table, {aButtons: [ { "sExtends": "copy","sButtonText": "<i class='fa fa-files-o'></i>","sToolTip": "Copy" },
+    																						 { "sExtends": "csv","sButtonText": "<i class='fa fa-file-word-o'></i>","sToolTip": "Csv"  },
+ 																							 { "sExtends": "xls","sFileName": "*.xls","sButtonText": "<i class='fa fa-file-excel-o'></i>","sToolTip": "Excel"  },
+   																							 { "sExtends": "pdf","sButtonText": "<i class='fa fa-file-pdf-o'></i>","sToolTip": "Pdf"  },
+   																							 { "sExtends": "print","sButtonText": "<i class='fa fa-print'></i>","sToolTip": "Print" } ]} );
+	$( tt.fnContainer() ).appendTo('div.dataTables_filter');
+	$('<a href="#" class="btn btn-sm btn-success" data-toggle="modal" data-target="#settings" style="margin-left:5px;" title="Table Settings"><i class="fa fa-gear" aria-hidden="true"></i></a>').appendTo('div.dataTables_filter');
      
        $('.dataTables_filter input').unbind().on('keyup', function() {
 	 

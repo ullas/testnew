@@ -22,8 +22,11 @@
     
     <div class="col-md-12">
       <div class="nav-tabs-custom">
-        
-        <div class="tab-content" style="padding-top:45px">
+        <ul class="nav nav-tabs">
+          <li  class="active"><a href="#details" data-toggle="tab">Details</a></li>	   
+          <li><a href="#docs" data-toggle="tab">Attachments</a></li>          
+        </ul>
+        <div class="tab-content">
           <div class="active tab-pane" id="details">
              <div class="form-horizontal">
        <?php
@@ -54,9 +57,26 @@
             echo $this->Form->input('supervisor_id', ['options' => $supervisors, 'empty' => true,'class'=>'select2']);
             echo $this->Form->input('drivergroups.ids', ['label'=>'Driver Group','options' => $drivergroups,'class'=>'select2']);
         ?>
+        </div></div>
+        
+        <div class="tab-pane" id="docs">
+             <div class="form-horizontal">
+             
+            	<div class="form-group"><input type="hidden" value=""  id="uploadpath"/></div>
+				
+			    <!-- upload component -->
+            	<div class="form-group" style="margin:20px;"><div id="myDropZone" class="dropzone"><div class="dz-message text-center"><i class="fa fa-cloud-upload text-light-blue fa-5x"></i>
+            		<br/><span>Drag and drop Files Here to upload.</span>
+            		<br/><span class="upload-btn bg-info">or select files to Upload</span></div></div>
+            	</div>
+            	
+            </div>
+           </div>
+          <!-- Tab Pane-->
+          </div></div></div></div>
     <div class="row">
    <div class="form-group">
-                <div class="col-sm-offset-6 col-sm-10">
+                <div class="col-sm-12 text-center">
                   <button type="submit" class="btn btn-success">Save</button>
                 </div>
    </div>
