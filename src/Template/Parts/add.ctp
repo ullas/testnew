@@ -1,14 +1,4 @@
-<?php
-  $myTemplates = [
-    'inputContainer' => '<div class="form-group">{{content}}<div class="col-sm-offset-3 col-sm-6 style="margin-top:18px">{{help}}</div></div>',
-     'label' => '<label class="col-sm-3 control-label" {{attrs}}>{{text}}</label>',
-    'input' => '<div class="col-sm-6"><input type="{{type}}" name="{{name}}"{{attrs}}/></div>',
-     'select' => '<div class="col-sm-6"><select name="{{name}}"{{attrs}}>{{content}}</select></div>',
-     'textarea' => '<div class="col-sm-6"><textarea name="{{name}}"{{attrs}}>{{value}}</textarea></div>'
-];
-$this->Form->templates($myTemplates);
-
-?>
+<?php echo $this->element('templateelement'); ?>
 
 <!-- Content Header (Page header) -->
 <section class="content-header">
@@ -77,8 +67,7 @@ $this->Html->css([
     'AdminLTE./plugins/daterangepicker/daterangepicker-bs3',
     'AdminLTE./plugins/iCheck/all',
     'AdminLTE./plugins/colorpicker/bootstrap-colorpicker.min',
-    'AdminLTE./plugins/timepicker/bootstrap-timepicker.min',
-    'AdminLTE./plugins/select2/select2.min',
+    'AdminLTE./plugins/timepicker/bootstrap-timepicker.min'
   ],
   ['block' => 'css']);
 

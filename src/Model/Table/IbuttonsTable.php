@@ -35,7 +35,7 @@ class IbuttonsTable extends Table
         parent::initialize($config);
 
         $this->table('ibuttons');
-        $this->displayField('id');
+        $this->displayField('code');
         $this->primaryKey('id');
 
         $this->belongsTo('Customers', [
