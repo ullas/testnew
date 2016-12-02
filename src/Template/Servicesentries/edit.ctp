@@ -36,15 +36,16 @@
             echo $this->Form->input('vendor_id', ['options' => $vendors, 'empty' => true,'templateVars' => ['help' => 'Select an existing vendor or enter the name of a new one'],'class'=>'select2']);
             echo $this->Form->input('comments');
 	
+	
         ?>
         
              <div class="form-group">
                   	<label for="markasvoid" class="col-sm-3 control-label" style="padding-top:0" >Mark as Void</label>
-				  	<div class="col-sm-6">
-				    	<input name="markasvoid" value="1" id="markasvoid" class="" type="checkbox">
+				  	<div class="col-sm-1">
+				  		 <?php echo $this->Form->checkbox('markasvoid', array('label' => false));?>
                    	</div>
 				  	<div class="col-sm-offset-3 col-sm-6" style="margin-top:18px" >
-				  	</div>
+				  	</div> 
 			</div>
 	</div>
   
@@ -89,6 +90,8 @@ $this->Html->script([
 <?php $this->start('scriptBotton'); ?>
 <script>
   $(function () {
+   
+   
    
    $(".select2").select2({ width: '100%' });
    $('.datemask').datepicker({
