@@ -15,4 +15,4 @@
 <?php 
 
 
-echo $this->element('indexbasic'); ?>
+echo $this->element('indexbasicnofilter'); ?>

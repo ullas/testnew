@@ -31,13 +31,13 @@
        <?php
             echo $this->Form->input('name',['required' => 'required']);
             echo $this->Form->input('dob', ['type'=>'text','empty' => true,'label'=>'Date Of Birth','class'=>'datemask','templateVars' => ['icon' => '<div class="input-group-addon"><i class="fa fa-calendar"></i></div>']]);
-            echo $this->Form->input('sex');
+            echo $this->Form->input('sex',['class'=>'select2','options' => array('Male', 'Female'), 'empty' => true]);
             echo $this->Form->input('nationality');
             echo $this->Form->input('idcardno',['label'=>'ID Card No','required' => 'required']);
             echo $this->Form->input('licenceno',['label'=>'Licence No','required' => 'required']);
             echo $this->Form->input('licenceexpdate', ['type'=>'text','empty' => true,'label'=>'Licence Expiry Date','class'=>'datemask','templateVars' => ['icon' => '<div class="input-group-addon"><i class="fa fa-calendar"></i></div>']]);
             echo $this->Form->input('address_id', ['options' => $addresses, 'empty' => true,'class'=>'select2']);
-            echo $this->Form->input('maritalstatus',['label'=>'Marital Status']);
+            echo $this->Form->input('maritalstatus',['label'=>'Marital Status','class'=>'select2','options' => array('Single', 'Married'), 'empty' => true]);
             echo $this->Form->input('nextofkin',['label'=>'Next Of Kin']);
             echo $this->Form->input('comments');
            // echo $this->Form->input('photo');

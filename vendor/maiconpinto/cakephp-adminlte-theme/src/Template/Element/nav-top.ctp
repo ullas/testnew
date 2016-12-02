@@ -110,7 +110,7 @@ if (file_exists($file)) {
 		                    <a href="Partcategories" data-remote="false" data-toggle="modal" data-target="#myModal">Part Categories</a>
 		                  </div>
 		                  <div class="col-xs-3 text-center">
-		                    <a href="Ownerships" data-remote="false" data-toggle="modal" data-target="#myModal">Ownerships</a>
+		                    <a href="Simproviders" data-remote="false" data-toggle="modal" data-target="#myModal">SIM Providers</a>
 		                  </div>
 		                  
 		                  
