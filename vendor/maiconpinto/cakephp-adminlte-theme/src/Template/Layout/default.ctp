@@ -167,6 +167,9 @@ div.dataTables_wrapper { clear: both; }
     }
 
     $(document).ready(function(){
+    	
+    	$(".input-group input[type='hidden']").parents('.col-sm-6').css("float", "right");
+    	
         $(".navbar .menu").slimscroll({
             height: "200px",
             alwaysVisible: false,
