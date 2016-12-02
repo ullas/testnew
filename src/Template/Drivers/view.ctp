@@ -21,14 +21,6 @@
             <td><?= h($driver->name) ?></td>
         </tr>
         <tr>
-            <th><?= __('Middle Name') ?></th>
-            <td><?= h($driver->middlename) ?></td>
-        </tr>
-        <tr>
-            <th><?= __('Last Name') ?></th>
-            <td><?= h($driver->lastname) ?></td>
-        </tr>
-        <tr>
             <th><?= __('Nationality') ?></th>
             <td><?= h($driver->nationality) ?></td>
         </tr>

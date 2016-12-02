@@ -29,9 +29,7 @@
           <div class="active tab-pane" id="details">
              <div class="form-horizontal">
        <?php
-           echo $this->Form->input('name',['required' => 'required']);
-            echo $this->Form->input('middlename',['label'=>'Middle Name']);
-            echo $this->Form->input('lastname',['label'=>'Last Name']);
+            echo $this->Form->input('name',['required' => 'required']);
             echo $this->Form->input('dob', ['type'=>'text','empty' => true,'label'=>'Date Of Birth','class'=>'datemask','templateVars' => ['icon' => '<div class="input-group-addon"><i class="fa fa-calendar"></i></div>']]);
             echo $this->Form->input('sex');
             echo $this->Form->input('nationality');
@@ -43,7 +41,7 @@
             echo $this->Form->input('nextofkin',['label'=>'Next Of Kin']);
             echo $this->Form->input('comments');
            // echo $this->Form->input('photo');
-            echo $this->Form->input('ibutton_id',['class'=>'select2']);
+            echo $this->Form->input('ibutton_id',['options' => $ibuttons,'class'=>'select2']);
             echo $this->Form->input('drivingpassportno',['label'=>'Driving Passport No']);
             echo $this->Form->input('drivingpassportexp', ['type'=>'text','empty' => true,'label'=>'Driving Passport Expiry Date','class'=>'datemask','templateVars' => ['icon' => '<div class="input-group-addon"><i class="fa fa-calendar"></i></div>']]);
             echo $this->Form->input('vehicle_id', ['options' => $vehicles, 'empty' => true,'class'=>'select2','required' => 'required']);
