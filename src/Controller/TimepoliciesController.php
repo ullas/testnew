@@ -2,7 +2,7 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
-
+use Cake\ORM\TableRegistry;
 /**
  * Timepolicies Controller
  *
@@ -10,7 +10,13 @@ use App\Controller\AppController;
  */
 class TimepoliciesController extends AppController
 {
-
+	  /**
+     * Components
+     *
+     * @var array
+     */
+    public $components = ['Datatable'];
+	
     /**
      * Index method
      *
