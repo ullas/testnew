@@ -95,7 +95,7 @@
 		            echo $this->Form->input('bodytype',['label'=>'Body Type','templateVars' => ['help' => 'Body type (XUV, Sedan, etc...)']]);
 		            echo $this->Form->input('bodysubtype',['label'=>'Body Subtype','templateVars' => ['help' => 'Extended Cab, Crew Cab, etc...']]);
 		             echo $this->Form->input('driverdetectionmode',['class'=>'select2']);
-                    echo $this->Form->input('activedriver',['class'=>'select2']);
+                    echo $this->Form->input('activedriver_id',['class'=>'select2']);
            
                     echo $this->Form->input('purpose_id', ['options' => $purposes, 'empty' => true,'class'=>'select2']);
            
@@ -632,7 +632,7 @@
             <div class="form-horizontal">
             	
             	
-            	<div class="form-group"><input type="hidden" value=""  id="uploadpath"/></div>
+            	<?php echo $this->Form->input('attachment', array('type' => 'hidden')); ?>
             	
             	<!-- <div class="form-group">
             		<label class="col-sm-3 control-label" for="upload">Picture:</label>
@@ -702,14 +702,14 @@ $this->Html->script([
 				}
     		});
     		this.on("removedfile", function (file) {
-          		$("#uploadpath").val("");
+          		$("#attachment").val("");
       		});
     		this.on("queuecomplete", function (file) {
           // alert("All files have uploaded ");
       		});
       
       		this.on("success", function (file) {
-          		$("#uploadpath").val(file['name']);console.log(file['name']); //alert("Success ");
+          		$("#attachment").val(file['name']);console.log(file['name']); //alert("Success ");
       		});
       
       		this.on("error", function (file) {

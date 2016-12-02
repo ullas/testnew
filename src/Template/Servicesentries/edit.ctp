@@ -3,11 +3,11 @@
 <!-- Content Header (Page header) -->
 <section class="content-header">
   <h1>
-    Edit Service Entry <small>Please fill the details to edit a Service Entry</small>
+    Edit Service Entry <small>Please fill the details to edit a  Service Entry</small>
   </h1>
   <ol class="breadcrumb">
   	<li><a href="#"><i class="fa fa-dashboard"></i>Home</a></li>
-    <li><a href="#"><i class="fa fa-bus"></i>Fleet Management</a></li> 
+	<li><a href="#"><i class="fa fa-bus"></i>Fleet Management</a></li>   
     <li><a href="/Servicesentries/"> Service Entries</a></li>
     <li class="active">Edit</li>
   </ol>
@@ -25,7 +25,7 @@
           <div class="active tab-pane" id="details">
              <div class="form-horizontal">
         <?php
-             echo $this->Form->input('name',['label'=>'Name','templateVars' => ['help' => 'A short name for your entry'],'required' => 'required']);             
+            echo $this->Form->input('name',['label'=>'Name','templateVars' => ['help' => 'A short name for your entry'],'required' => 'required']);             
             echo $this->Form->input('dateofservice', ['type'=>'text','empty' => true,'label'=>'Date Of Service','required' => 'required','class'=>'datemask','templateVars' => ['icon' => '<div class="input-group-addon"><i class="fa fa-calendar"></i></div>']]);
             echo $this->Form->input('vehicle_id', ['options' => $vehicles, 'empty' => true,'class'=>'select2','required' => 'required']);
             echo $this->Form->input('odo',['label'=>'Odometer','templateVars' => ['help' => 'Meter reading at the time of service'],'required' => 'required']); 

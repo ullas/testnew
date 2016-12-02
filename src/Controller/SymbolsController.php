@@ -52,7 +52,7 @@ class SymbolsController extends AppController
 		 
 		$fields[0] = array("name" =>"id"  , "type" => "num");
 		$fields[1] = array("name" =>"name"  , "type" => "char");
-		$fields[2] = array("name" =>"symbol"  , "type" => "char");		
+		$fields[2] = array("name" =>"attachment"  , "type" => "char");		
 		$fields[3] = array("name" =>"description"  , "type" => "char");	
 				
 								
