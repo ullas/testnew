@@ -101,13 +101,14 @@ if (file_exists($file)) {
     <li class="treeview">
         <a href="#">
             <i class="fa fa-laptop"></i>
-            <span>Harware</span>
+            <span>Hardware</span>
             <i class="fa fa-angle-left pull-right"></i>
         </a>
         <ul class="treeview-menu">
             <li><a href="<?php echo $this->Url->build('/devices'); ?>"><i class="fa fa-ticket"></i> Devices</a></li>
             <li><a href="<?php echo $this->Url->build('/ibuttons'); ?>"><i class="fa fa-dot-circle-o"></i> iButtons</a></li>
             <li><a href="<?php echo $this->Url->build('/rfids'); ?>"><i class="fa fa-credit-card"></i> RFID Tags</a></li>
+            <li><a href="<?php echo $this->Url->build('/simcards'); ?>"><i class="fa fa-credit-card"></i> SIM Cards</a></li>
            
         </ul>
     </li>

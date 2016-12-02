@@ -3,6 +3,7 @@
 <!-- Content Header (Page header) -->
 <section class="content-header">
   <h1>
+    Edit Service Entry <small>Please fill the details to edit a  Service Entry</small>
   </h1>
   <ol class="breadcrumb">
   	<li><a href="#"><i class="fa fa-dashboard"></i>Home</a></li>
