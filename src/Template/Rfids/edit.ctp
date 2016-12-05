@@ -32,8 +32,8 @@
 		 ?>
 		 		<div class="form-group">
                   	<label for="privatekey" class="col-sm-3 control-label" style="padding-top:0" >Private key</label>
-				  	<div class="col-sm-6">
-				    <input name="privatekey" value="1" id="privatekey" class="" type="checkbox">
+				  	<div class="col-sm-1">
+				    <?php echo $this->Form->checkbox('privatekey', array('label' => false));?>
                    	</div>
 				  	<div class="col-sm-offset-3 col-sm-6" style="margin-top:18px" >
 				  	</div>

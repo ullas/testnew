@@ -54,6 +54,9 @@ class DevicesTable extends Table
         $this->belongsTo('Simcards', [
             'foreignKey' => 'simcard_id'
         ]);
+		$this->belongsTo('Distancetypes', [
+            'foreignKey' => 'distancetype_id'
+        ]);
         $this->hasMany('Gpsdata', [
             'foreignKey' => 'device_id'
         ]);

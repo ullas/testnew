@@ -32,9 +32,8 @@
             echo $this->Form->input('startloc_id',['label'=>'Start Location','class'=>'select2','empty' => true]);
             echo $this->Form->input('endloc_id',['label'=>'End Location','class'=>'select2','empty' => true]);
             echo $this->Form->input('route_id',['class'=>'select2','empty' => true]);
-            echo $this->Form->input('start_time', ['empty' => true,'class'=>'datemask','type'=>'text','class'=>'timepicker']);
-            echo $this->Form->input('end_time', ['empty' => true,'type'=>'text','class'=>'timepicker']);
-            echo $this->Form->input('timepolicy_id',['label'=>'Time Policy','class'=>'select2','empty' => true]);
+            echo $this->Form->input('start_time', ['empty' => true,'class'=>'timepicker']);
+            echo $this->Form->input('end_time', ['empty' => true,'class'=>'timepicker']);echo $this->Form->input('timepolicy_id',['label'=>'Time Policy','class'=>'select2','empty' => true]);
             echo $this->Form->input('default_driver_id',['label'=>'Default Driver','class'=>'select2','empty' => true]);
             echo $this->Form->input('default_veh_id',['label'=>'Default Vehicle','class'=>'select2','empty' => true]);
             echo $this->Form->input('nodays',['label'=>'No Of Days',]);

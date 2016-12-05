@@ -31,7 +31,7 @@
             echo $this->Form->input('certified_by',['required' =>'required']);
             echo $this->Form->input('comments');
             echo $this->Form->input('provider_id', ['options' => $providers, 'empty' => true,'class'=>'select2','required' =>'required']);
-            echo $this->Form->input('distance_type');
+            echo $this->Form->input('distancetype_id',['label'=>'Distance Type','options' => $distancetypes, 'empty' => true,'class'=>'select2','empty'=>true]);
 		?>	
 		<div class="form-group">
                   	<label for="odometersupport" class="col-sm-3 control-label" style="padding-top:0" >Odometer Support</label>
@@ -80,7 +80,7 @@ $this->Html->css([
   ['block' => 'css']);
 
 $this->Html->script([
- 'AdminLTE./plugins/select2/select2.full.min',
+ 	'AdminLTE./plugins/select2/select2.full.min',
   	'AdminLTE./plugins/datepicker/bootstrap-datepicker',
   	'/js/dropzone/dropzone',
 	'AdminLTE./plugins/iCheck/icheck.min'
@@ -92,7 +92,18 @@ $this->Html->script([
 <script>
   $(function () {
     //Initialize Select2 Elements
-    $(".select2").select2();
+
+		//datepicker
+
+    	$('.mptldp').datepicker({
+
+    		format:"dd/mm/yy",
+
+      		autoclose: true,
+      		clearBtn: true
+
+    	});
+    
      $('.datemask').datepicker({
             format:"dd/mm/yy",
               autoclose: true

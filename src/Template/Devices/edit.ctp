@@ -30,7 +30,7 @@
             echo $this->Form->input('certified_by',['required' =>'required']);
             echo $this->Form->input('comments');
             echo $this->Form->input('provider_id', ['options' => $providers, 'empty' => true,'class'=>'select2','required' =>'required']);
-            echo $this->Form->input('distance_type');
+            echo $this->Form->input('distancetype_id',['label'=>'Distance Type','options' => $distancetypes, 'empty' => true,'class'=>'select2']);
 		?>		
 		<div class="form-group">
                   	<label for="odometersupport" class="col-sm-3 control-label" style="padding-top:0" >Odometer Support</label>
