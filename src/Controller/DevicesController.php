@@ -172,7 +172,7 @@ public function ajaxdata() {
 		
 		
 		                           
-        $output =$this->Datatable->getView($fields,['Customers', 'Providers', 'Devicemodels', 'Simcards'],$usrfiter);
+        $output =$this->Datatable->getView($fields,['Customers', 'Providers', 'Devicemodels', 'Simcards','Distancetypes'],$usrfiter);
         $out =json_encode($output);  
 	   
 		$this->response->body($out);
@@ -219,7 +219,8 @@ public function ajaxdata() {
         }
         $customers = $this->Devices->Customers->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
         $providers = $this->Devices->Providers->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
-        $this->set(compact('device', 'customers', 'providers'));
+        $distancetypes = $this->Devices->Distancetypes->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
+        $this->set(compact('device', 'customers', 'providers','distancetypes'));
         $this->set('_serialize', ['device']);
     }
 
@@ -253,7 +254,8 @@ public function ajaxdata() {
         }
         $customers = $this->Devices->Customers->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
         $providers = $this->Devices->Providers->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
-        $this->set(compact('device', 'customers', 'providers'));
+        $distancetypes = $this->Devices->Distancetypes->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
+        $this->set(compact('device', 'customers', 'providers','distancetypes'));
         $this->set('_serialize', ['device']);
     }
 

@@ -60,6 +60,7 @@ div#myDropZone {
     <link rel="stylesheet" href="/css/ionicons.min.css">
      <link rel="stylesheet" href="/js/ol/ol.css">
    <?php echo $this->Html->css('AdminLTE./plugins/select2/select2.min'); ?>
+   <?php echo $this->Html->css('AdminLTE./plugins/datepicker/datepicker3'); ?>
     <!-- Theme style -->
     <?php echo $this->Html->css('AdminLTE.AdminLTE.min'); ?>
 <!-- AdminLTE Skins. Choose a skin from the css/skins
@@ -75,6 +76,13 @@ div#myDropZone {
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <![endif]-->
 </head>
+<?php
+$this->Html->script([ 'AdminLTE./plugins/select2/select2.full.min' ], ['block' => 'script']);
+$this->Html->script([ 'AdminLTE./plugins/datepicker/bootstrap-datepicker' ], ['block' => 'script']);
+$this->Html->script([ '/js/dropzone/dropzone' ], ['block' => 'script']);
+$this->Html->script([ 'AdminLTE./plugins/iCheck/icheck.min' ], ['block' => 'script']);
+$this->Html->script([ 'AdminLTE./plugins/timepicker/bootstrap-timepicker.min' ], ['block' => 'script']);
+?>
 <body class="hold-transition skin-blue sidebar-mini">
     <!-- Site wrapper -->
     <div class="wrapper">
@@ -167,6 +175,14 @@ div.dataTables_wrapper { clear: both; }
     }
 
     $(document).ready(function(){
+    	
+    	//select 2 
+    	$(".select2").select2({ width: '100%',allowClear: true });
+		//datepicker
+    	$('.datemask').datepicker({
+    		format:"dd/mm/yy",
+      		autoclose: true,clearBtn: true
+    	});
     	
     	$(".input-group input[type='hidden']").parents('.col-sm-6').css("float", "right");
     	

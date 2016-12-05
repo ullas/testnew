@@ -44,7 +44,7 @@
             echo $this->Form->input('drivinglicenseclass',['label'=>'Driving Licence Class']);
             echo $this->Form->input('contractor_id', ['options' => $contractors, 'empty' => true,'class'=>'select2']);
             echo $this->Form->input('station_id', ['options' => $stations, 'empty' => true,'class'=>'select2']);
-            echo $this->Form->input('reporingtime', ['type'=>'text','class'=>'timepicker','label'=>'Reporting Time','empty' => true]);
+            echo $this->Form->input('reporingtime', ['label'=>'Reporting Time','empty' => true]);
             echo $this->Form->input('offday1');
             echo $this->Form->input('offday2');
             echo $this->Form->input('supervisor_id', ['options' => $supervisors, 'empty' => true,'class'=>'select2']);
