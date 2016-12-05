@@ -34,8 +34,8 @@
 		?>	
 		 <div class="form-group">
                   	<label for="notificationrequired" class="col-sm-3 control-label" style="padding-top:0" >Notification Required</label>
-				  	<div class="col-sm-6">
-				    	<input name="notificationrequired" value="1" id="notificationrequired" class="" type="checkbox">
+				  	<div class="col-sm-1">
+				    	<?php echo $this->Form->checkbox('notificationrequired', array('label' => false));?>
                    	</div>
 				  	<div class="col-sm-offset-3 col-sm-6" style="margin-top:18px" >
 				  	</div>

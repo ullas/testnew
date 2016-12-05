@@ -40,8 +40,8 @@
         <div class="form-group">
                   	 
                    	  <label for="partialfill" class="col-sm-3 control-label" style="padding-top:0" >Partial Fill</label>
-				  <div class="col-sm-6">
-				    <input name="partialfill" value="1" id="partialfill" class="" type="checkbox">
+				  <div class="col-sm-1">
+				    <?php echo $this->Form->checkbox('partialfill', array('label' => false));?>
                    	
 				  </div>
 				  <div class="col-sm-offset-3 col-sm-6" style="margin-top:18px" >
@@ -50,8 +50,8 @@
          <div class="form-group">
                   	 
                    	  <label for="markaspersonal" class="col-sm-3 control-label" style="padding-top:0" >Mark as Personal</label>
-				  <div class="col-sm-6">
-				    <input name="markaspersonal" value="1" id="markaspersonal" class="" type="checkbox">
+				  <div class="col-sm-1">
+				    <?php echo $this->Form->checkbox('markaspersonal', array('label' => false));?>
                    	
 				  </div>
 				  <div class="col-sm-offset-3 col-sm-6" style="margin-top:18px" >
@@ -74,7 +74,7 @@
   <!-- /.row -->
   <div class="row">
    <div class="form-group">
-                <div class="col-sm-offset-6 col-sm-10">
+                <div class="col-sm-12 text-center">
                   <button type="submit" class="btn btn-success">Save</button>
                 </div>
    </div>
@@ -84,31 +84,3 @@
 </section>
 <!-- /.content -->
 
-<?php
-$this->Html->css([
-    'AdminLTE./plugins/datepicker/datepicker3'
-  ],
-  ['block' => 'css']);
-
-$this->Html->script([
-   	'AdminLTE./plugins/select2/select2.full.min',
-  	'AdminLTE./plugins/datepicker/bootstrap-datepicker',
-  	'/js/dropzone/dropzone',
-	'AdminLTE./plugins/iCheck/icheck.min'
-],
-['block' => 'script']);
-?>
-<?php $this->start('scriptBotton'); ?>
-<script>
-  $(function () {
-    
-    $(".select2").select2();
-    
-     $('.datemask').datepicker({
-            format:"dd/mm/yy",
-              autoclose: true
-   });
-
-  });
-</script>
-<?php $this->end(); ?>      	  

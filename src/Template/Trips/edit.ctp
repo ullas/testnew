@@ -36,12 +36,56 @@
             echo $this->Form->input('startpoint_id', ['label'=>'Start Point','type'=>'text','options' => $startpoints, 'empty' => true,'class'=>'select2']);
             echo $this->Form->input('endpoint_id', ['label'=>'End Point','type'=>'text','options' => $endpoints, 'empty' => true,'class'=>'select2']);
             echo $this->Form->input('schedule_id', ['options' => $schedules,'empty' => true, 'class'=>'select2']);
-            echo $this->Form->input('autogen');
-            echo $this->Form->input('tripstatus_id', ['label'=>'Trip Status','options' => $tripstatuses, 'empty' => true]);
+            ?>
+              <div class="form-group">
+                  	 
+                   	  <label for="autogen" class="col-sm-3 control-label" style="padding-top:0" >Auto Gen</label>
+				  <div class="col-sm-1">
+				    <?php echo $this->Form->checkbox('autogen', array('label' => false));?>
+                   	
+				  </div>
+				  <div class="col-sm-offset-3 col-sm-6" style="margin-top:18px" >
+				  </div>
+				</div>
+            <?php
+            //echo $this->Form->input('autogen');
+            echo $this->Form->input('tripstatus_id', ['label'=>'Trip Status','options' => $tripstatuses, 'empty' => true, 'class'=>'select2']);
             echo $this->Form->input('last_location',['label'=>'Last Location']);
-            echo $this->Form->input('canceled',['label'=>'Cancelled']);
-            echo $this->Form->input('active');
-            echo $this->Form->input('fromschedule',['label'=>'From Schedule']);
+			?>
+			<div class="form-group">
+                  	 
+                   	  <label for="canceled" class="col-sm-3 control-label" style="padding-top:0" >Cancelled</label>
+				  <div class="col-sm-1">
+				    <?php echo $this->Form->checkbox('canceled', array('label' => false));?>
+                   	
+				  </div>
+				  <div class="col-sm-offset-3 col-sm-6" style="margin-top:18px" >
+				  </div>
+				</div>
+				<div class="form-group">
+                  	 
+                   	  <label for="active" class="col-sm-3 control-label" style="padding-top:0" >Active</label>
+				  <div class="col-sm-1">
+				    <?php echo $this->Form->checkbox('active', array('label' => false));?>
+                   	
+				  </div>
+				  <div class="col-sm-offset-3 col-sm-6" style="margin-top:18px" >
+				  </div>
+				</div>
+				<div class="form-group">
+                  	 
+                   	  <label for="fromschedule" class="col-sm-3 control-label" style="padding-top:0" >From Schedule</label>
+				  <div class="col-sm-1">
+				    <?php echo $this->Form->checkbox('fromschedule', array('label' => false));?>
+                   	
+				  </div>
+				  <div class="col-sm-offset-3 col-sm-6" style="margin-top:18px" >
+				  </div>
+				</div>
+			<?php
+            //echo $this->Form->input('canceled',['label'=>'Cancelled']);
+            //echo $this->Form->input('active');
+            //echo $this->Form->input('fromschedule',['label'=>'From Schedule']);
             echo $this->Form->input('trackingcode',['label'=>'Tracking Code']);
             echo $this->Form->input('adt',['type'=>'text','label'=>'ADT','empty' => true]);
             echo $this->Form->input('aat',['type'=>'text','label'=>'AAT','empty' => true]);
@@ -50,9 +94,30 @@
             echo $this->Form->input('vehiclecategory_id', ['label'=>'Vehicle Category','options' => $vehiclecategories, 'empty' => true,'class'=>'select2']);
             echo $this->Form->input('platform');
 			echo $this->Form->input('triptype_id', ['label'=>'Trip Type','options' => $triptypes, 'empty' => true,'class'=>'select2']);
-        	echo $this->Form->input('softwaretriggered',['label'=>'Software Triggered']);
-			echo $this->Form->input('hwtriggered',['label'=>'Hardware Triggered']);
+        	//echo $this->Form->input('softwaretriggered',['label'=>'Software Triggered']);
+			//echo $this->Form->input('hwtriggered',['label'=>'Hardware Triggered']);
         ?>
+        	<div class="form-group">
+                  	 
+                   	  <label for="softwaretriggered" class="col-sm-3 control-label" style="padding-top:0" >SoftwareTriggered</label>
+				  <div class="col-sm-1">
+				    <?php echo $this->Form->checkbox('softwaretriggered', array('label' => false));?>
+                   	
+				  </div>
+				  <div class="col-sm-offset-3 col-sm-6" style="margin-top:18px" >
+				  </div>
+			</div>
+			<div class="form-group">
+                  	 
+                   	  <label for="hwtriggered" class="col-sm-3 control-label" style="padding-top:0" >Hardware Triggered</label>
+				  <div class="col-sm-1">
+				    <?php echo $this->Form->checkbox('hwtriggered', array('label' => false));?>
+                   	
+				  </div>
+				  <div class="col-sm-offset-3 col-sm-6" style="margin-top:18px" >
+				  </div>
+				</div>
+        
   </div>
   
           </div>

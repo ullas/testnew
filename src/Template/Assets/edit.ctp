@@ -34,8 +34,8 @@
 		 ?>
 		  <div class="form-group">
                   	<label for="isstationary" class="col-sm-3 control-label" style="padding-top:0" >Is Stationary</label>
-				  	<div class="col-sm-6">
-				    	<input name="isstationary" value="1" id="isstationary" class="" type="checkbox">
+				  	<div class="col-sm-1">
+				    	<?php echo $this->Form->checkbox('isstationary', array('label' => false));?>
                    	</div>
 				  	<div class="col-sm-offset-3 col-sm-6" style="margin-top:18px" >
 				  	</div>
