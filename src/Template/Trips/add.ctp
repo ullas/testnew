@@ -28,8 +28,8 @@
             echo $this->Form->input('start_date', ['type'=>'text','empty' => true,'class'=>'datemask','required' => 'required','templateVars' => ['icon' => '<div class="input-group-addon"><i class="fa fa-calendar"></i></div>']]);
             echo $this->Form->input('end_date', ['type'=>'text','empty' => true,'class'=>'datemask','required' => 'required','templateVars' => ['icon' => '<div class="input-group-addon"><i class="fa fa-calendar"></i></div>']]);
             echo $this->Form->input('vehicle_id', ['options' => $vehicles, 'empty' => true,'class'=>'select2','required' => 'required']);
-            echo $this->Form->input('start_time', ['empty' => true]);
-            echo $this->Form->input('end_time', ['empty' => true]);
+            echo $this->Form->input('start_time',['class' => 'timepicker','type' => 'text','templateVars' => ['opentag' => '<div class="bootstrap-timepicker">','closetag' => '</div>','icon' => '<div class="input-group-addon"><i class="fa fa-clock-o"></i></div>']]);
+            echo $this->Form->input('end_time',['class' => 'timepicker','type' => 'text','templateVars' => ['opentag' => '<div class="bootstrap-timepicker">','closetag' => '</div>','icon' => '<div class="input-group-addon"><i class="fa fa-clock-o"></i></div>']]);
             echo $this->Form->input('timepolicy_id', ['options' => $timepolicies, 'empty' => true,'class'=>'select2']);
             echo $this->Form->input('route_id', ['options' => $routes, 'empty' => true,'class'=>'select2']);
             echo $this->Form->input('startpoint_id', ['label'=>'Start Point','type'=>'text','options' => $startpoints, 'empty' => true,'class'=>'select2']);
@@ -86,16 +86,30 @@
             //echo $this->Form->input('active');
             //echo $this->Form->input('fromschedule',['label'=>'From Schedule']);
             echo $this->Form->input('trackingcode',['label'=>'Tracking Code']);
+            
+			echo $this->Form->input('adt', ['label'=>'ADT','class' => 'timepicker','type' => 'text','templateVars' => ['opentag' => '<div class="bootstrap-timepicker">','closetag' => '</div>','icon' => '<div class="input-group-addon"><i class="fa fa-clock-o"></i></div>']]);
 			
-            echo $this->Form->input('adt',['label'=>'ADT','empty' => true, 'class'=>'datemask']);
+            // echo $this->Form->input('adt', array( 'type' => 'time' ));
            // echo $this->Form->input('aat',['label'=>'AAT','empty' => true]);
            // echo $this->Form->input('edt',['label'=>'EDT','empty' => true]);
            //  echo $this->Form->input('eat',['label'=>'EAT','empty' => true]);
 			?>
+
+			 <!-- <div class="bootstrap-timepicker">
+                <div class="form-group">
+                  <label>Time picker:</label>
+
+                  <div class="input-group">
+                    <input type="text" class="form-control timepicker">
+
+                    <div class="input-group-addon">
+                      <i class="fa fa-clock-o"></i>
+                    </div>
+                  </div>
+                </div>
+              </div> -->
 			
-			
-			
-			
+		
 		   <?php	
             echo $this->Form->input('vehiclecategory_id', ['label'=>'Vehicle Category','options' => $vehiclecategories, 'empty' => true,'class'=>'select2']);
             echo $this->Form->input('platform');
@@ -148,32 +162,18 @@
    <!-- /.row -->
  <?= $this->Form->end() ?>
 </section>
-<!-- /.content -->
-<?php
-$this->Html->css([
-  'AdminLTE./plugins/datepicker/datepicker3'
-  ],
-  ['block' => 'css']);
 
-$this->Html->script([
- 'AdminLTE./plugins/select2/select2.full.min',
- 'AdminLTE./plugins/datepicker/bootstrap-datepicker',
- '/js/dropzone/dropzone',
- 'AdminLTE./plugins/iCheck/icheck.min'
-],
-['block' => 'script']);
-?>
 <?php $this->start('scriptBotton'); ?>
 <script>
-  $(function () {
-   
-   $(".select2").select2({ width: '100%' });
-   $('.datemask').datepicker({
-            format:"dd/mm/yy",
-              autoclose: true
-   });
-  
+$(document).ready(function(){
 
-  });
+	//Timepicker
+    $(".timepicker").timepicker({
+      showInputs: false,autoclose: true,
+    });
+    //Timepicker
+				  	
+});
 </script>
 <?php $this->end(); ?>
+
