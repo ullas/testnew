@@ -146,7 +146,6 @@ $this->Html->script([ 'AdminLTE./plugins/iCheck/icheck.min' ], ['block' => 'scri
 
 <script src="https://cdn.datatables.net/buttons/1.2.2/js/buttons.print.min.js"></script>
  <!-- dropzone -->
-<script src="https://rawgit.com/enyo/dropzone/master/dist/dropzone.js"></script>
 <link rel="stylesheet" href="https://rawgit.com/enyo/dropzone/master/dist/dropzone.css">
 <style>
 /*margin left for export buttons*/
@@ -180,8 +179,11 @@ div.dataTables_wrapper { clear: both; }
 
     $(document).ready(function(){
     	
+    	$(".timepicker").timepicker({
+      		showInputs: false,autoclose: true,
+    	});
     	//select 2 
-    	$(".select2").select2({ width: '100%',allowClear: true });
+    	$(".select2").select2({ width: '100%',allowClear: true,placeholder: "Select" });
 		//datepicker
     	$('.datemask').datepicker({
     		format:"dd/mm/yy",
