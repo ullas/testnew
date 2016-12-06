@@ -52,15 +52,17 @@ div#myDropZone {
     <!-- Bootstrap 3.3.5 -->
     
      <?php echo $this->Html->css('AdminLTE./bootstrap/css/bootstrap'); ?>
- 
+
 <?php echo $this->Html->css('AdminLTE./plugins/datatables/dataTables.bootstrap'); ?>
     <!-- Font Awesome -->
     <link rel="stylesheet" href="/css/font-awesome.min.css">
     <!-- Ionicons -->
     <link rel="stylesheet" href="/css/ionicons.min.css">
      <link rel="stylesheet" href="/js/ol/ol.css">
+     
    <?php echo $this->Html->css('AdminLTE./plugins/select2/select2.min'); ?>
    <?php echo $this->Html->css('AdminLTE./plugins/datepicker/datepicker3'); ?>
+   <?php echo $this->Html->css('AdminLTE./plugins/timepicker/bootstrap-timepicker.min'); ?>
     <!-- Theme style -->
     <?php echo $this->Html->css('AdminLTE.AdminLTE.min'); ?>
 <!-- AdminLTE Skins. Choose a skin from the css/skins
@@ -79,10 +81,12 @@ div#myDropZone {
 <?php
 $this->Html->script([ 'AdminLTE./plugins/select2/select2.full.min' ], ['block' => 'script']);
 $this->Html->script([ 'AdminLTE./plugins/datepicker/bootstrap-datepicker' ], ['block' => 'script']);
+$this->Html->script([ 'AdminLTE./plugins/timepicker/bootstrap-timepicker.min' ], ['block' => 'script']);
 $this->Html->script([ '/js/dropzone/dropzone' ], ['block' => 'script']);
 $this->Html->script([ 'AdminLTE./plugins/iCheck/icheck.min' ], ['block' => 'script']);
-$this->Html->script([ 'AdminLTE./plugins/timepicker/bootstrap-timepicker.min' ], ['block' => 'script']);
 ?>
+
+
 <body class="hold-transition skin-blue sidebar-mini">
     <!-- Site wrapper -->
     <div class="wrapper">
@@ -142,7 +146,6 @@ $this->Html->script([ 'AdminLTE./plugins/timepicker/bootstrap-timepicker.min' ],
 
 <script src="https://cdn.datatables.net/buttons/1.2.2/js/buttons.print.min.js"></script>
  <!-- dropzone -->
-<script src="https://rawgit.com/enyo/dropzone/master/dist/dropzone.js"></script>
 <link rel="stylesheet" href="https://rawgit.com/enyo/dropzone/master/dist/dropzone.css">
 <style>
 /*margin left for export buttons*/
@@ -176,8 +179,11 @@ div.dataTables_wrapper { clear: both; }
 
     $(document).ready(function(){
     	
+    	$(".timepicker").timepicker({
+      		showInputs: false,autoclose: true,
+    	});
     	//select 2 
-    	$(".select2").select2({ width: '100%',allowClear: true });
+    	$(".select2").select2({ width: '100%',allowClear: true,placeholder: "Select" });
 		//datepicker
     	$('.datemask').datepicker({
     		format:"dd/mm/yy",
