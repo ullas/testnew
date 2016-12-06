@@ -163,17 +163,3 @@
  <?= $this->Form->end() ?>
 </section>
 
-<?php $this->start('scriptBotton'); ?>
-<script>
-$(document).ready(function(){
-
-	//Timepicker
-    $(".timepicker").timepicker({
-      showInputs: false,autoclose: true,
-    });
-    //Timepicker
-				  	
-});
-</script>
-<?php $this->end(); ?>
-
