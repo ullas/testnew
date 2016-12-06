@@ -86,9 +86,7 @@ class CustomersTable extends Table
 
         $this->addBehavior('Timestamp');
 
-        $this->belongsTo('Mapregions', [
-            'foreignKey' => 'mapregion_id'
-        ]);
+        
         $this->belongsTo('Customertypes', [
             'foreignKey' => 'customertype_id'
         ]);
@@ -352,7 +350,7 @@ class CustomersTable extends Table
      */
     public function buildRules(RulesChecker $rules)
     {
-        $rules->add($rules->existsIn(['mapregion_id'], 'Mapregions'));
+       
         $rules->add($rules->existsIn(['customertype_id'], 'Customertypes'));
 
         return $rules;
