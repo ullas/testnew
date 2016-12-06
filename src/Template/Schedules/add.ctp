@@ -39,7 +39,7 @@
             echo $this->Form->input('default_veh_id',['label'=>'Default Vehicle','class'=>'select2','empty' => true]);
             echo $this->Form->input('nodays',['label'=>'No Of Days',]);
             echo $this->Form->input('brktime_bfr_nxt_trip',['label'=>'Break Time Before Next Trip',]);
-            echo $this->Form->input('default_paxgrpid',['label'=>'Default Passenger Group','empty' => true]);
+            echo $this->Form->input('default_paxgrpid',['options' => $passengergroups,'label'=>'Default Passenger Group','empty' => true,'class'=>'select2']);
         ?>
        </div>
  

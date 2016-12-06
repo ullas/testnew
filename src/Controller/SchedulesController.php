@@ -222,7 +222,8 @@ private function getDateRangeFilters($dates,$basic)  {
         $timepolicies = $this->Schedules->Timepolicies->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
         $defaultDrivers = $this->Schedules->DefaultDrivers->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
         $defaultVehs = $this->Schedules->DefaultVehs->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
-        $this->set(compact('schedule', 'startlocs', 'endlocs', 'routes', 'customers', 'timepolicies', 'defaultDrivers', 'defaultVehs'));
+        $passengergroups = $this->Schedules->Passengergroups->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
+        $this->set(compact('schedule','passengergroups', 'startlocs', 'endlocs', 'routes', 'customers', 'timepolicies', 'defaultDrivers', 'defaultVehs'));
         $this->set('_serialize', ['schedule']);
     }
 
@@ -261,7 +262,8 @@ private function getDateRangeFilters($dates,$basic)  {
         $timepolicies = $this->Schedules->Timepolicies->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
         $defaultDrivers = $this->Schedules->DefaultDrivers->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
         $defaultVehs = $this->Schedules->DefaultVehs->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
-        $this->set(compact('schedule', 'startlocs', 'endlocs', 'routes', 'customers', 'timepolicies', 'defaultDrivers', 'defaultVehs'));
+        $passengergroups = $this->Schedules->Passengergroups->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
+        $this->set(compact('schedule','passengergroups', 'startlocs', 'endlocs', 'routes', 'customers', 'timepolicies', 'defaultDrivers', 'defaultVehs'));
         $this->set('_serialize', ['schedule']);
     }
 
