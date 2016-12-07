@@ -215,8 +215,8 @@ public function ajaxdata() {
                 $this->Flash->error(__('The ibutton could not be saved. Please, try again.'));
             }
         }
-        $customers = $this->Ibuttons->Customers->find('list', ['limit' => 200]);
-        $drivers = $this->Ibuttons->Drivers->find('list', ['limit' => 200]);
+        $customers = $this->Ibuttons->Customers->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
+        $drivers = $this->Ibuttons->Drivers->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
         $this->set(compact('ibutton', 'customers', 'drivers'));
         $this->set('_serialize', ['ibutton']);
     }
@@ -233,6 +233,12 @@ public function ajaxdata() {
         $ibutton = $this->Ibuttons->get($id, [
             'contain' => []
         ]);
+		if($ibutton['customer_id']!= $this->loggedinuser['customer_id'])
+		{
+			 $this->Flash->success(__('You are not Authorized.'));
+			 return $this->redirect(['action' => 'index']);
+			
+		}
         if ($this->request->is(['patch', 'post', 'put'])) {
             $ibutton = $this->Ibuttons->patchEntity($ibutton, $this->request->data);
             if ($this->Ibuttons->save($ibutton)) {
@@ -243,8 +249,8 @@ public function ajaxdata() {
                 $this->Flash->error(__('The ibutton could not be saved. Please, try again.'));
             }
         }
-        $customers = $this->Ibuttons->Customers->find('list', ['limit' => 200]);
-        $drivers = $this->Ibuttons->Drivers->find('list', ['limit' => 200]);
+        $customers = $this->Ibuttons->Customers->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
+        $drivers = $this->Ibuttons->Drivers->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
         $this->set(compact('ibutton', 'customers', 'drivers'));
         $this->set('_serialize', ['ibutton']);
     }
@@ -260,12 +266,19 @@ public function ajaxdata() {
     {
         $this->request->allowMethod(['post', 'delete']);
         $ibutton = $this->Ibuttons->get($id);
-        if ($this->Ibuttons->delete($ibutton)) {
-            $this->Flash->success(__('The ibutton has been deleted.'));
-        } else {
-            $this->Flash->error(__('The ibutton could not be deleted. Please, try again.'));
-        }
-
+		if($ibutton['customer_id'] = $this->loggedinuser['customer_id'])
+		{
+	        if ($this->Ibuttons->delete($ibutton)) {
+	            $this->Flash->success(__('The ibutton has been deleted.'));
+	        } else {
+	            $this->Flash->error(__('The ibutton could not be deleted. Please, try again.'));
+	        }
+		 }
+	   else
+	   {
+	   	    $this->Flash->error(__('You are not authorized'));
+		
+	   }
         return $this->redirect(['action' => 'index']);
     }
 

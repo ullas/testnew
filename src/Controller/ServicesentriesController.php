@@ -64,89 +64,93 @@ class ServicesentriesController extends AppController
     }
     
 	public function updateSettings()
-{
+	{
    	
-	$this->autoRender= false;	
-	$columns=$_POST['columns'];
-	$visorder = $_POST['visorder'];
+		$this->autoRender= false;	
+		$columns=$_POST['columns'];
+		$visorder = $_POST['visorder'];
+			
 		
+		$columns=isset($columns)?$columns:6;
+		$userSettings = TableRegistry::get('Usersettings');
+		$count = $userSettings->find('all')
+		   ->where(['key' => 'INIT_VISIBLE_COLUMNS_SERVICESENTRIES'])
+		  ->where(['user_id' => $this->loggedinuser['id']])
+		   ->count();
+		
+		if($count>0)	
+			{	 
+				$query = $userSettings->query();
+				$res=$query->update()
+			    ->set(['value' => $columns])
+				->set(['value1' => $visorder])
+			    ->where(['key' => 'INIT_VISIBLE_COLUMNS_SERVICESENTRIES'])
+			    ->where(['user_id' => $this->loggedinuser['id']])
+			    ->execute();
+				$this->response->body($res);
+		
+	   		}
+	   	else
+	   		{
+	   	  
+			   $query1 = $userSettings->query();
+			   $res=$query1->insert(['key','value','user_id','module'])
+			   ->values(
+			       ['key'=>'INIT_VISIBLE_COLUMNS_SERVICESENTRIES',
+			        'value'=>$columns,
+			        'user_id'=>$this->loggedinuser['id'],
+			        'module'=>'Servicesentries'])
+			    ->execute();
+			   	$this->response->body($res);
+			}
 	
-	$columns=isset($columns)?$columns:6;
-	$userSettings = TableRegistry::get('Usersettings');
-	$count = $userSettings->find('all')
-	   ->where(['key' => 'INIT_VISIBLE_COLUMNS_SERVICESENTRIES'])
-	  ->where(['user_id' => $this->loggedinuser['id']])
-	   ->count();
-	
-	if($count>0)	{	 
-	
-	$query = $userSettings->query();
-	$res=$query->update()
-	    ->set(['value' => $columns])
-		->set(['value1' => $visorder])
-	    ->where(['key' => 'INIT_VISIBLE_COLUMNS_SERVICESENTRIES'])
-	    ->where(['user_id' => $this->loggedinuser['id']])
-	    ->execute();
-	$this->response->body($res);
-	
-   }else{
-   	  
-	   $query1 = $userSettings->query();
-	   $res=$query1->insert(['key','value','user_id','module'])
-	   ->values(
-	       ['key'=>'INIT_VISIBLE_COLUMNS_SERVICESENTRIES',
-	        'value'=>$columns,
-	        'user_id'=>$this->loggedinuser['id'],
-	        'module'=>'Servicesentries'])
-	    ->execute();
-	   $this->response->body($res);
-	
-	   
-   }
-	
-}
+	}
 
-private function toPostDBDate($date){
+	private function toPostDBDate($date)
+	{
 	
 		 $ret="";
 		 $parts=explode("/",$date);
-		 if(count($parts)==3){
+		 if(count($parts)==3)
+		 {
 		 	$ret= $date= '20' .trim($parts[2]) . "-" . trim($parts[1]) . "-" . trim($parts[0]);
 			
 		 }
 		
-	  return $ret;
-}
+	  	return $ret;
+	}
 
-private function getDateRangeFilters($dates,$basic)  {
+	private function getDateRangeFilters($dates,$basic)  
+	{
 	
-	$sql="";	
+		$sql="";	
+			
+		$alldates=explode(",",$dates);
 		
-	$alldates=explode(",",$dates);
-	
-	$pre=($basic>0)?" and ":"";
-	
-	$datecol=explode("-",$alldates[0]);
-	
-	$sql .=  count($datecol)>1? " $pre dateofservice between '" . $this->toPostDBDate($datecol[0]) . "' and '" . $this->toPostDBDate($datecol[1]) . "'": "" ;
-	
-	//$datecol=explode("-",$alldates[1]);
-	
-	//$pre=(strlen($sql)>0)?" and ":"";
-	
-	//$sql .=  count($datecol)>1? " $pre startdate between '" . $this->toPostDBDate($datecol[0]) . "' and '" . $this->toPostDBDate($datecol[1]) . "'": "" ;
-	
-	//$datecol=explode("-",$alldates[2]);
-	//$pre=(strlen($sql)>0)?" and ":"";
-	
-	//$sql .= count($datecol)>1? " $pre completiondate between '" . $this->toPostDBDate($datecol[0]) . "' and '" . $this->toPostDBDate($datecol[1]) . "'": "" ;
-	
-	
-	return $sql;
-}
+		$pre=($basic>0)?" and ":"";
+		
+		$datecol=explode("-",$alldates[0]);
+		
+		$sql .=  count($datecol)>1? " $pre dateofservice between '" . $this->toPostDBDate($datecol[0]) . "' and '" . $this->toPostDBDate($datecol[1]) . "'": "" ;
+		
+		//$datecol=explode("-",$alldates[1]);
+		
+		//$pre=(strlen($sql)>0)?" and ":"";
+		
+		//$sql .=  count($datecol)>1? " $pre startdate between '" . $this->toPostDBDate($datecol[0]) . "' and '" . $this->toPostDBDate($datecol[1]) . "'": "" ;
+		
+		//$datecol=explode("-",$alldates[2]);
+		//$pre=(strlen($sql)>0)?" and ":"";
+		
+		//$sql .= count($datecol)>1? " $pre completiondate between '" . $this->toPostDBDate($datecol[0]) . "' and '" . $this->toPostDBDate($datecol[1]) . "'": "" ;
+		
+		
+		return $sql;
+	}
 	
     
-public function ajaxdata() {
+	public function ajaxdata() 
+	{
         $this->autoRender= false;
 		$usrfiter="";
 		$basic = isset($this->request->query['basic'])?$this->request->query['basic']:"" ;
@@ -172,17 +176,12 @@ public function ajaxdata() {
 			
         }
         
-		
-		
-		                           
-        $output =$this->Datatable->getView($fields,[ 'Vehicles', 'Vendors',  'Customers'],$usrfiter);
+		$output =$this->Datatable->getView($fields,[ 'Vehicles', 'Vendors',  'Customers'],$usrfiter);
         $out =json_encode($output);  
 	   
 		$this->response->body($out);
 	    return $this->response;
-	     
-             
- } 
+	} 
     /**
      * View method
      *
@@ -220,13 +219,13 @@ public function ajaxdata() {
             }
         }
         
-        $vehicles = $this->Servicesentries->Vehicles->find('list', ['limit' => 200])->where("customer_id=".$this->loggedinuser['customer_id']);
+        $vehicles = $this->Servicesentries->Vehicles->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
         
                 
-        $vendors = $this->Servicesentries->Vendors->find('list', ['limit' => 200])->where("customer_id=".$this->loggedinuser['customer_id']);
+        $vendors = $this->Servicesentries->Vendors->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
         
                         
-          $customers = $this->Servicesentries->Customers->find('list', ['limit' => 200])->where("id=".$this->loggedinuser['customer_id']);
+          $customers = $this->Servicesentries->Customers->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
       
         
                 $this->set(compact('servicesentry', 'vehicles', 'vendors', 'customers'));
@@ -245,6 +244,11 @@ public function ajaxdata() {
         $servicesentry = $this->Servicesentries->get($id, [
             'contain' => []
         ]);
+		if($servicesentry['customer_id']!= $this->loggedinuser['customer_id'])
+		{
+			 $this->Flash->success(__('You are not Authorized.'));
+			 return $this->redirect(['action' => 'index']);
+		}
         if ($this->request->is(['patch', 'post', 'put'])) {
             $servicesentry = $this->Servicesentries->patchEntity($servicesentry, $this->request->data);
              $servicesentry['customer_id']=$this->loggedinuser['customer_id'];
@@ -256,13 +260,13 @@ public function ajaxdata() {
                 $this->Flash->error(__('The servicesentry could not be saved. Please, try again.'));
             }
         }
-        $vehicles = $this->Servicesentries->Vehicles->find('list', ['limit' => 200])->where("customer_id=".$this->loggedinuser['customer_id']);
+        $vehicles = $this->Servicesentries->Vehicles->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
         
                 
-        $vendors = $this->Servicesentries->Vendors->find('list', ['limit' => 200])->where("customer_id=".$this->loggedinuser['customer_id']);
+        $vendors = $this->Servicesentries->Vendors->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
         
                         
-          $customers = $this->Servicesentries->Customers->find('list', ['limit' => 200])->where("id=".$this->loggedinuser['customer_id']);
+          $customers = $this->Servicesentries->Customers->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
       
         $this->set(compact('servicesentry', 'vehicles', 'vendors', 'customers'));
         $this->set('_serialize', ['servicesentry']);
@@ -279,12 +283,19 @@ public function ajaxdata() {
     {
         $this->request->allowMethod(['post', 'delete']);
         $servicesentry = $this->Servicesentries->get($id);
-        if ($this->Servicesentries->delete($servicesentry)) {
-            $this->Flash->success(__('The servicesentry has been deleted.'));
-        } else {
-            $this->Flash->error(__('The servicesentry could not be deleted. Please, try again.'));
-        }
-
+		if($servicesentry['customer_id'] = $this->loggedinuser['customer_id'])
+		{
+	        if ($this->Servicesentries->delete($servicesentry)) {
+	            $this->Flash->success(__('The servicesentry has been deleted.'));
+	        } else {
+	            $this->Flash->error(__('The servicesentry could not be deleted. Please, try again.'));
+	        }
+		}
+	    else
+	    {
+	   	    $this->Flash->error(__('You are not authorized'));
+		
+	    }
         return $this->redirect(['action' => 'index']);
     }
 	

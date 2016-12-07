@@ -29,11 +29,7 @@
             <td><?= $ibutton->has('customer') ? $this->Html->link($ibutton->customer->name, ['controller' => 'Customers', 'action' => 'view', $ibutton->customer->id]) : '' ?></td>
         </tr>
         <tr>
-            <th><?= __('Id') ?></th>
-            <td><?= $this->Number->format($ibutton->id) ?></td>
-        </tr>
-        <tr>
-            <th><?= __('Driver Id') ?></th>
+            <th><?= __('Driver') ?></th>
             <td><?= $this->Number->format($ibutton->driver_id) ?></td>
         </tr>
         <tr>

@@ -219,8 +219,8 @@ private function getDateRangeFilters($dates,$basic)  {
                 $this->Flash->error(__('The passengergroup could not be saved. Please, try again.'));
             }
         }
-        $customers = $this->Passengergroups->Customers->find('list', ['limit' => 200])->where("customer_id=".$this->loggedinuser['customer_id']);;
-        $passengers = $this->Passengergroups->Passengers->find('list', ['limit' => 200]);
+        $customers = $this->Passengergroups->Customers->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
+        $passengers = $this->Passengergroups->Passengers->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
         $this->set(compact('passengergroup', 'customers', 'passengers'));
         $this->set('_serialize', ['passengergroup']);
     }
@@ -237,6 +237,11 @@ private function getDateRangeFilters($dates,$basic)  {
         $passengergroup = $this->Passengergroups->get($id, [
             'contain' => ['Passengers']
         ]);
+		if($passengergroup['customer_id']!= $this->loggedinuser['customer_id'])
+		{
+			 $this->Flash->success(__('You are not Authorized.'));
+			 return $this->redirect(['action' => 'index']);
+		}
         if ($this->request->is(['patch', 'post', 'put'])) {
             $passengergroup = $this->Passengergroups->patchEntity($passengergroup, $this->request->data);
             if ($this->Passengergroups->save($passengergroup)) {
@@ -247,8 +252,8 @@ private function getDateRangeFilters($dates,$basic)  {
                 $this->Flash->error(__('The passengergroup could not be saved. Please, try again.'));
             }
         }
-        $customers = $this->Passengergroups->Customers->find('list', ['limit' => 200]);
-        $passengers = $this->Passengergroups->Passengers->find('list', ['limit' => 200]);
+        $customers = $this->Passengergroups->Customers->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
+        $passengers = $this->Passengergroups->Passengers->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
         $this->set(compact('passengergroup', 'customers', 'passengers'));
         $this->set('_serialize', ['passengergroup']);
     }
@@ -264,12 +269,19 @@ private function getDateRangeFilters($dates,$basic)  {
     {
         $this->request->allowMethod(['post', 'delete']);
         $passengergroup = $this->Passengergroups->get($id);
-        if ($this->Passengergroups->delete($passengergroup)) {
-            $this->Flash->success(__('The passengergroup has been deleted.'));
-        } else {
-            $this->Flash->error(__('The passengergroup could not be deleted. Please, try again.'));
-        }
-
+		if($person['customer_id'] = $this->loggedinuser['customer_id'])
+		{
+	        if ($this->Passengergroups->delete($passengergroup)) {
+	            $this->Flash->success(__('The passengergroup has been deleted.'));
+	        } else {
+	            $this->Flash->error(__('The passengergroup could not be deleted. Please, try again.'));
+	        }
+		 }
+	    else
+	    {
+	   	    $this->Flash->error(__('You are not authorized'));
+		
+	    }
         return $this->redirect(['action' => 'index']);
     }
 	

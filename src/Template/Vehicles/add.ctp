@@ -1,16 +1,30 @@
-<?php
-  $myTemplates = [
-    'inputContainer' => '<div class="form-group">{{content}}<div class="col-sm-offset-3 col-sm-6 style="margin-top:18px">{{help}}</div></div>',
-     'label' => '<label class="col-sm-3 control-label" {{attrs}}>{{text}}</label>',
-    'input' => '<div class="col-sm-6"><input type="{{type}}" name="{{name}}"{{attrs}}/></div>',
-     'select' => '<div class="col-sm-6"><select name="{{name}}"{{attrs}}>{{content}}</select></div>',
-     'selectMultiple' => '<div class="col-sm-6"><select name="{{name}}[]" multiple="multiple"{{attrs}}>{{content}}</select></div>',
-     'textarea' => '<div class="col-sm-6"><textarea name="{{name}}"{{attrs}}>{{value}}</textarea></div>'
-];
-$this->Form->templates($myTemplates);
 
-?>
 
+<?php echo $this->element('templateelement'); ?>
+
+ <style>
+ div#myDropZone {
+    width: 100%;
+    min-height: 500px;
+    border : 1.9px dashed #008FE2;display: table;
+}
+.dz-message {
+	color:#333;
+	font-size:26px;
+    font-weight: 400;
+  	display: table-cell;
+   vertical-align: middle;
+}
+.dz-clickable {
+    cursor: pointer;
+}
+.dz-max-files-reached {
+          /*pointer-events: none;*/          cursor: default;
+}
+.upload-btn{
+	font-size:16px;font-weight: 400;padding:8px;
+}
+</style>  
 <!-- Content Header (Page header) -->
 <section class="content-header">
   <h1>
@@ -81,7 +95,7 @@ $this->Form->templates($myTemplates);
 		            echo $this->Form->input('bodytype',['label'=>'Body Type','templateVars' => ['help' => 'Body type (XUV, Sedan, etc...)']]);
 		            echo $this->Form->input('bodysubtype',['label'=>'Body Subtype','templateVars' => ['help' => 'Extended Cab, Crew Cab, etc...']]);
 		             echo $this->Form->input('driverdetectionmode',['class'=>'select2']);
-                    echo $this->Form->input('activedriver',['class'=>'select2']);
+                    echo $this->Form->input('activedriver_id',['class'=>'select2']);
            
                     echo $this->Form->input('purpose_id', ['options' => $purposes, 'empty' => true,'class'=>'select2']);
            
@@ -616,7 +630,25 @@ $this->Form->templates($myTemplates);
           
            <div class="tab-pane" id="docs">
             <div class="form-horizontal">
-              
+            	
+            	
+            	<?php echo $this->Form->input('attachment', array('type' => 'hidden')); ?>
+            	
+            	<!-- <div class="form-group">
+            		<label class="col-sm-3 control-label" for="upload">Picture:</label>
+            		<div class="col-sm-6">
+            			<div id="drop" class="dropzone" action="/Uploads/upload"></div>
+					</div>
+				</div> -->
+				
+			    <!-- upload component -->
+            	<div class="form-group" style="margin:20px;"><div id="myDropZone" class="dropzone"><div class="dz-message text-center"><i class="fa fa-cloud-upload text-light-blue fa-5x"></i>
+            		<br/><span>Drag and drop Files Here to upload.</span>
+            		<br/><span class="upload-btn bg-info">or select files to Upload</span></div></div>
+            	</div>
+            	
+            	
+            	
             </div>
           </div>
           <!-- /.tab-pane -->
@@ -633,7 +665,7 @@ $this->Form->templates($myTemplates);
   <!-- /.row -->
   <div class="row">
    <div class="form-group">
-                <div class="col-sm-offset-6 col-sm-12">
+                <div class="col-sm-12 text-center">
                   <button type="submit" class="btn btn-success">Save</button>
                 </div>
    </div>
@@ -643,11 +675,6 @@ $this->Form->templates($myTemplates);
 </section>
 <!-- /.content -->
 <?php
-$this->Html->css([
-   
-    'AdminLTE./plugins/select2/select2.min',
-  ],
-  ['block' => 'css']);
 
 $this->Html->script([
   'AdminLTE./plugins/select2/select2.full.min',
@@ -661,7 +688,43 @@ $this->Html->script([
 ?>
 <?php $this->start('scriptBotton'); ?>
 <script>
+	//dropzone
+	Dropzone.autoDiscover = false;
+	var myDropzone = $("div#myDropZone").dropzone({
+         url : "/Uploads/upload",
+         maxFiles: 1,
+         addRemoveLinks: true, 
+         dictRemoveFileConfirmation : 'Are you sure you want to remove the particular file ?' ,
+         init: function() {
+     		this.on("complete", function (file) {
+      			if (this.getUploadingFiles().length === 0 && this.getQueuedFiles().length === 0) {
+					//alert(file);      
+				}
+    		});
+    		this.on("removedfile", function (file) {
+          		$("#attachment").val("");
+      		});
+    		this.on("queuecomplete", function (file) {
+          // alert("All files have uploaded ");
+      		});
+      
+      		this.on("success", function (file) {
+          		$("#attachment").val(file['name']);console.log(file['name']); //alert("Success ");
+      		});
+      
+      		this.on("error", function (file) {
+          		// alert("Error in uploading ");
+      		});
+      
+      		this.on("maxfilesexceeded", function(file){
+        		alert("You can not upload any more files.");this.removeFile(file);
+    		});
+    	},
+       
+    });
+
   $(function () {
+      
     //Initialize Select2 Elements
    $(".select2").select2({ width: '100%' });
    $(".datemask").inputmask("yyyy/mm/dd", {"placeholder": "yyyy/mm/dd"});

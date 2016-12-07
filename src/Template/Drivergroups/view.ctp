@@ -28,10 +28,7 @@
             <th><?= __('Default Driver') ?></th>
             <td><?= $drivergroup->has('defaultdriver') ? $this->Html->link($drivergroup->defaultdriver->id, ['controller' => 'Drivers', 'action' => 'view', $drivergroup->defaultdriver->id]) : '' ?></td>
         </tr>
-        <tr>
-            <th><?= __('Id') ?></th>
-            <td><?= $this->Number->format($drivergroup->id) ?></td>
-        </tr>
+        
     </table>
    </div><!--boxbody-->
    </div><!-- box -->

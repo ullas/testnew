@@ -69,37 +69,108 @@ if (file_exists($file)) {
                 </ul>
             </li>
             <!-- Tasks: style can be found in dropdown.less -->
-            <li class="dropdown tasks-menu">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                    <i class="fa fa-lightbulb-o"></i>
-                    <span class="label label-danger">9</span>
+            <?php if ($loggedinuser['role'] == "admin"):  ?>
+            <li class="dropdown user user-menu" >
+            	<!-- <div class="btn-group"> -->
+                  <!-- <button type="button" class="dropdown-toggle" data-toggle="dropdown">
+                    <i class="fa fa-bars"></i></button> -->
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                    <i class="fa fa-bars"></i>
                 </a>
-                <ul class="dropdown-menu">
-                    <li class="header">9 new Reminders</li>
-                    <li>
-                        <!-- inner menu: contains the actual data -->
-                        <ul class="menu">
-                            <li><!-- Task item -->
-                                <a href="#">
-                                    <h3>
-                                        Delivery of items at Al-Saj
-                                        <small class="pull-right">20%</small>
-                                    </h3>
-                                    <div class="progress xs">
-                                        <div class="progress-bar progress-bar-aqua" style="width: 20%" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
-                                            <span class="sr-only">20% Complete</span>
-                                        </div>
-                                    </div>
-                                </a>
-                            </li>
-                            <!-- end task item -->
-                        </ul>
-                    </li>
-                    <li class="footer">
-                        <a href="#">View all tasks</a>
-                    </li>
-                </ul>
+                  <ul class="dropdown-menu pull-right" role="menu" style = "width : 800px">
+                  	<li class="header bg-aqua text-center" style="padding:5px;">		
+		              <h4 >Manage Master data</h4>
+		            </li>
+                  	<li class="user-body">
+		               <div class="row">
+		                  <div class="col-xs-3 text-center">
+		                    <a href="Contractors" data-remote="false" data-toggle="modal" data-target="#myModal" >Contractors</a>
+		                  </div>
+		                  <div class="col-xs-3 text-center">
+		                    <a href="Currencies" data-remote="false" data-toggle="modal" data-target="#myModal">Currencies</a>
+		                  </div>
+		                  <div class="col-xs-3 text-center">
+		                    <a href="Departments" data-remote="false" data-toggle="modal" data-target="#myModal">Departments</a>
+		                  </div>
+		                  <div class="col-xs-3 text-center">
+		                    <a href="Inspectionstatuses" data-remote="false" data-toggle="modal" data-target="#myModal">Inspection Statuses</a>
+		                  </div>
+		                  
+		                </div>
+		                <!-- /.row --><div class="divider"></div>
+		              
+		                <div class="row">
+		                  <div class="col-xs-3 text-center">
+		                    <a href="Manufacturers" data-remote="false" data-toggle="modal" data-target="#myModal">Manufacturers</a>
+		                  </div>
+		                  <div class="col-xs-3 text-center">
+		                    <a href="Ownerships" data-remote="false" data-toggle="modal" data-target="#myModal">Ownerships</a>
+		                  </div>
+		                  <div class="col-xs-3 text-center">
+		                    <a href="Partcategories" data-remote="false" data-toggle="modal" data-target="#myModal">Part Categories</a>
+		                  </div>
+		                  <div class="col-xs-3 text-center">
+		                    <a href="Simproviders" data-remote="false" data-toggle="modal" data-target="#myModal">SIM Providers</a>
+		                  </div>
+		                  
+		                  
+		                </div> <!-- /.row --><div class="divider"></div>
+		               
+		                
+		                <div class="row">
+		                  <div class="col-xs-3 text-center">
+		                    <a href="Purposes" data-remote="false" data-toggle="modal" data-target="#myModal">Purposes</a>
+		                  </div>
+		                  <div class="col-xs-3 text-center">
+		                    <a href="Servicecompleted" data-remote="false" data-toggle="modal" data-target="#myModal">Service Completed</a>
+		                  </div>
+		                  <div class="col-xs-3 text-center">
+		                    <a href="Measurementunits" data-remote="false" data-toggle="modal" data-target="#myModal">Units</a>
+		                  </div>
+		                  <div class="col-xs-3 text-center">
+		                    <a href="Servicetasks" data-remote="false" data-toggle="modal" data-target="#myModal">Service Tasks</a>
+		                  </div>
+		                </div> <!-- /.row --><div class="divider"></div>
+		                <div class="row">
+		                  
+		                 
+		                  <div class="col-xs-3 text-center">
+		                    <a href="Renewalstypes" data-remote="false" data-toggle="modal" data-target="#myModal">Renewal Types</a>
+		                  </div>
+		                  <div class="col-xs-3 text-center">
+		                    <a href="Stations" data-remote="false" data-toggle="modal" data-target="#myModal">Stations</a>
+		                  </div>
+		                  <div class="col-xs-3 text-center">
+		                    <a href="Symbols" data-remote="false" data-toggle="modal" data-target="#myModal">Symbols</a>
+		                  </div>
+		                  <div class="col-xs-3 text-center">
+		                    <a href="Templatetypes" data-remote="false" data-toggle="modal" data-target="#myModal">Template Types</a>
+		                  </div>
+		                </div> <!-- /.row --><div class="divider"></div>
+		               
+		                <div class="row">
+		                  <div class="col-xs-3 text-center">
+		                    <a href="Workorderstatuses" data-remote="false" data-toggle="modal" data-target="#myModal">Work Order Statuses</a>
+		                  </div>
+		                  <div class="col-xs-3 text-center">
+		                    <a href="Vehiclecategories" data-remote="false" data-toggle="modal" data-target="#myModal">Vehicle Categories</a>
+		                  </div>
+		                  <div class="col-xs-3 text-center">
+		                    <a href="Vehiclestatuses" data-remote="false" data-toggle="modal" data-target="#myModal">Vehicle Statuses</a>
+		                  </div>
+		                  <div class="col-xs-3 text-center">
+		                    <a href="Vehicletypes" data-remote="false" data-toggle="modal" data-target="#myModal">Vehicle Types</a>
+		                  </div>
+		                </div>
+		                
+		               
+		               
+		              </li>
+                  </ul>
+                <!-- </div> -->
             </li>
+            <?php endif; ?>
+          
             <!-- User Account: style can be found in dropdown.less -->
             <li class="dropdown user user-menu">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">

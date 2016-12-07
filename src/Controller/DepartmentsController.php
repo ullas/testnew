@@ -15,7 +15,7 @@ class DepartmentsController extends AppController
      *
      * @var array
      */
-    public $components = ['Datatable'];
+    public $components = ['Datatablemaster'];
     /**
      * Index method
      *
@@ -50,11 +50,11 @@ class DepartmentsController extends AppController
 		 
 				$fields[0] = array("name" =>"Departments.id"  , "type" => "num");
 				$fields[1] = array("name" =>"Departments.name"  , "type" => "char");
-				//$fields[2] = array("name" =>"Departments.description"  , "type" => "char");
+				$fields[2] = array("name" =>"Departments.description"  , "type" => "char");
 				
 		
 		$this->log($fields);
-		$output =$this->Datatable->getView($fields,['Customers'],$usrfiter);
+		$output =$this->Datatablemaster->getView($fields,['Customers'],$usrfiter);
 		$out =json_encode($output);  
 	   
 		$this->response->body($out);
@@ -92,14 +92,14 @@ class DepartmentsController extends AppController
             $department = $this->Departments->patchEntity($department, $this->request->data);
 			$department['customer_id']=$this->loggedinuser['customer_id'];
             if ($this->Departments->save($department)) {
-                $this->Flash->success(__('The department has been saved.'));
+          //      $this->Flash->success(__('The department has been saved.'));
 
-                return $this->redirect(['action' => 'index']);
+          //      return $this->redirect(['action' => 'index']);
             } else {
-                $this->Flash->error(__('The department could not be saved. Please, try again.'));
+          //      $this->Flash->error(__('The department could not be saved. Please, try again.'));
             }
         }
-        $customers = $this->Departments->Customers->find('list', ['limit' => 200]);
+        $customers = $this->Departments->Customers->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
         $this->set(compact('department', 'customers'));
         $this->set('_serialize', ['department']);
     }
@@ -116,18 +116,24 @@ class DepartmentsController extends AppController
         $department = $this->Departments->get($id, [
             'contain' => []
         ]);
+		if($department['customer_id']!= $this->loggedinuser['customer_id'])
+		{
+			 $this->Flash->success(__('You are not Authorized.'));
+			 return $this->redirect(['action' => 'index']);
+			
+		}
         if ($this->request->is(['patch', 'post', 'put'])) {
             $department = $this->Departments->patchEntity($department, $this->request->data);
 			$department['customer_id']=$this->loggedinuser['customer_id'];
             if ($this->Departments->save($department)) {
-                $this->Flash->success(__('The department has been saved.'));
+           //     $this->Flash->success(__('The department has been saved.'));
 
-                return $this->redirect(['action' => 'index']);
+           //     return $this->redirect(['action' => 'index']);
             } else {
-                $this->Flash->error(__('The department could not be saved. Please, try again.'));
+           //     $this->Flash->error(__('The department could not be saved. Please, try again.'));
             }
         }
-        $customers = $this->Departments->Customers->find('list', ['limit' => 200]);
+        $customers = $this->Departments->Customers->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
         $this->set(compact('department', 'customers'));
         $this->set('_serialize', ['department']);
     }
@@ -141,14 +147,21 @@ class DepartmentsController extends AppController
      */
     public function delete($id = null)
     {
-        $this->request->allowMethod(['post', 'delete']);
+       // $this->request->allowMethod(['post', 'delete']);
         $department = $this->Departments->get($id);
-        if ($this->Departments->delete($department)) {
-            $this->Flash->success(__('The department has been deleted.'));
-        } else {
-            $this->Flash->error(__('The department could not be deleted. Please, try again.'));
-        }
-
+		if($department['customer_id'] = $this->loggedinuser['customer_id'])
+		 {
+		        if ($this->Departments->delete($department)) {
+		       //     $this->Flash->success(__('The department has been deleted.'));
+		        } else {
+		       //     $this->Flash->error(__('The department could not be deleted. Please, try again.'));
+		        }
+		 }
+		 else
+		 {
+	   	    $this->Flash->error(__('You are not authorized'));
+		
+	     }
         return $this->redirect(['action' => 'index']);
     }
 }

@@ -15,7 +15,7 @@ class MeasurementunitsController extends AppController
      *
      * @var array
      */
-    public $components = ['Datatable'];
+    public $components = ['Datatablemaster'];
     /**
      * Index method
      *
@@ -50,11 +50,12 @@ class MeasurementunitsController extends AppController
 		 
 				$fields[0] = array("name" =>"Measurementunits.id"  , "type" => "num");
 				$fields[1] = array("name" =>"Measurementunits.name"  , "type" => "char");
+				$fields[2] = array("name" =>"Measurementunits.description"  , "type" => "char");
 				
 				
 		
 		$this->log($fields);
-		$output =$this->Datatable->getView($fields,['Customers'],$usrfiter);
+		$output =$this->Datatablemaster->getView($fields,['Customers'],$usrfiter);
 		$out =json_encode($output);  
 	   
 		$this->response->body($out);
@@ -90,14 +91,14 @@ class MeasurementunitsController extends AppController
             $measurementunit = $this->Measurementunits->patchEntity($measurementunit, $this->request->data);
 			$measurementunit['customer_id']=$this->loggedinuser['customer_id'];
             if ($this->Measurementunits->save($measurementunit)) {
-                $this->Flash->success(__('The measurementunit has been saved.'));
+           //     $this->Flash->success(__('The measurementunit has been saved.'));
 
-                return $this->redirect(['action' => 'index']);
+            //    return $this->redirect(['action' => 'index']);
             } else {
-                $this->Flash->error(__('The measurementunit could not be saved. Please, try again.'));
+           //     $this->Flash->error(__('The measurementunit could not be saved. Please, try again.'));
             }
         }
-        $customers = $this->Measurementunits->Customers->find('list', ['limit' => 200]);
+        $customers = $this->Measurementunits->Customers->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
         $this->set(compact('measurementunit', 'customers'));
         $this->set('_serialize', ['measurementunit']);
     }
@@ -114,18 +115,24 @@ class MeasurementunitsController extends AppController
         $measurementunit = $this->Measurementunits->get($id, [
             'contain' => []
         ]);
+		if($measurementunit['customer_id']!= $this->loggedinuser['customer_id'])
+		{
+			 $this->Flash->success(__('You are not Authorized.'));
+			 return $this->redirect(['action' => 'index']);
+			
+		}
         if ($this->request->is(['patch', 'post', 'put'])) {
             $measurementunit = $this->Measurementunits->patchEntity($measurementunit, $this->request->data);
 			$measurementunit['customer_id']=$this->loggedinuser['customer_id'];
             if ($this->Measurementunits->save($measurementunit)) {
-                $this->Flash->success(__('The measurementunit has been saved.'));
+           //     $this->Flash->success(__('The measurementunit has been saved.'));
 
-                return $this->redirect(['action' => 'index']);
+           //     return $this->redirect(['action' => 'index']);
             } else {
-                $this->Flash->error(__('The measurementunit could not be saved. Please, try again.'));
+            //    $this->Flash->error(__('The measurementunit could not be saved. Please, try again.'));
             }
         }
-        $customers = $this->Measurementunits->Customers->find('list', ['limit' => 200]);
+        $customers = $this->Measurementunits->Customers->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
         $this->set(compact('measurementunit', 'customers'));
         $this->set('_serialize', ['measurementunit']);
     }
@@ -139,14 +146,21 @@ class MeasurementunitsController extends AppController
      */
     public function delete($id = null)
     {
-        $this->request->allowMethod(['post', 'delete']);
+        //$this->request->allowMethod(['post', 'delete']);
         $measurementunit = $this->Measurementunits->get($id);
-        if ($this->Measurementunits->delete($measurementunit)) {
-            $this->Flash->success(__('The measurementunit has been deleted.'));
-        } else {
-            $this->Flash->error(__('The measurementunit could not be deleted. Please, try again.'));
-        }
-
+		if($measurementunit['customer_id'] = $this->loggedinuser['customer_id'])
+	    {
+	        if ($this->Measurementunits->delete($measurementunit)) {
+	       //     $this->Flash->success(__('The measurementunit has been deleted.'));
+	        } else {
+	        //    $this->Flash->error(__('The measurementunit could not be deleted. Please, try again.'));
+	        }
+		 }
+		 else
+		 {
+	   	    $this->Flash->error(__('You are not authorized'));
+		
+	     }
         return $this->redirect(['action' => 'index']);
     }
 	public function deleteAll($id=null){

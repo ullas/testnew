@@ -1,27 +1,54 @@
-<nav class="large-3 medium-4 columns" id="actions-sidebar">
-    <ul class="side-nav">
-        <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Form->postLink(
-                __('Delete'),
-                ['action' => 'delete', $symbol->id],
-                ['confirm' => __('Are you sure you want to delete # {0}?', $symbol->id)]
-            )
-        ?></li>
-        <li><?= $this->Html->link(__('List Symbols'), ['action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('List Vehicles'), ['controller' => 'Vehicles', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Vehicle'), ['controller' => 'Vehicles', 'action' => 'add']) ?></li>
-    </ul>
-</nav>
-<div class="symbols form large-9 medium-8 columns content">
-    <?= $this->Form->create($symbol) ?>
-    <fieldset>
-        <legend><?= __('Edit Symbol') ?></legend>
+<?php echo $this->element('templateelement'); ?>
+
+<!-- Content Header (Page header) -->
+<section class="content-header">
+  <h1>Edit Symbol </h1>
+  
+</section>
+
+<!-- Main content -->
+<section class="content">
+ <?= $this->Form->create($symbol,['id'=>'masterdataform']) ?>
+  <div class="row">
+    
+    <div class="col-md-12">
+      <div class="nav-tabs-custom">
+        
+        <div class="tab-content">
+          <div class="active tab-pane" id="details">
+             <div class="form-horizontal">
         <?php
-            echo $this->Form->input('name');
+            echo $this->Form->input('name',['required'=>'required']);
             echo $this->Form->input('symbol');
-            echo $this->Form->input('customer_id');
+            echo $this->Form->input('description');
+            
         ?>
-    </fieldset>
-    <?= $this->Form->button(__('Submit')) ?>
-    <?= $this->Form->end() ?>
-</div>
+    </div>
+ 
+          </div>
+          <!-- /.tab-pane -->
+          
+          
+        </div>
+        <!-- /.tab-content -->
+      </div>
+      <!-- /.nav-tabs-custom -->
+    </div>
+    <!-- /.col -->
+  </div>
+  <!-- /.row -->
+  <div class="row">
+   <div class="form-group">
+                <div class="col-sm-offset-6 col-sm-10">
+                  <button type="submit" class="btn btn-success">Save</button>
+                </div>
+   </div>
+   </div>
+   <!-- /.row -->
+ <?= $this->Form->end() ?>
+</section>
+<!-- /.content -->
+
+
+
+

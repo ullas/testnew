@@ -172,7 +172,7 @@ public function ajaxdata() {
 		
 		
 		                           
-        $output =$this->Datatable->getView($fields,['Customers', 'Providers', 'Devicemodels', 'Simcards'],$usrfiter);
+        $output =$this->Datatable->getView($fields,['Customers', 'Providers', 'Devicemodels', 'Simcards','Distancetypes'],$usrfiter);
         $out =json_encode($output);  
 	   
 		$this->response->body($out);
@@ -217,9 +217,10 @@ public function ajaxdata() {
                 $this->Flash->error(__('The device could not be saved. Please, try again.'));
             }
         }
-        $customers = $this->Devices->Customers->find('list', ['limit' => 200]);
-        $providers = $this->Devices->Providers->find('list', ['limit' => 200]);
-        $this->set(compact('device', 'customers', 'providers'));
+        $customers = $this->Devices->Customers->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
+        $providers = $this->Devices->Providers->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
+        $distancetypes = $this->Devices->Distancetypes->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
+        $this->set(compact('device', 'customers', 'providers','distancetypes'));
         $this->set('_serialize', ['device']);
     }
 
@@ -235,6 +236,12 @@ public function ajaxdata() {
         $device = $this->Devices->get($id, [
             'contain' => []
         ]);
+		if($device['customer_id']!= $this->loggedinuser['customer_id'])
+		{
+			 $this->Flash->success(__('You are not Authorized.'));
+			 return $this->redirect(['action' => 'index']);
+			
+		}
         if ($this->request->is(['patch', 'post', 'put'])) {
             $device = $this->Devices->patchEntity($device, $this->request->data);
             if ($this->Devices->save($device)) {
@@ -245,9 +252,10 @@ public function ajaxdata() {
                 $this->Flash->error(__('The device could not be saved. Please, try again.'));
             }
         }
-        $customers = $this->Devices->Customers->find('list', ['limit' => 200]);
-        $providers = $this->Devices->Providers->find('list', ['limit' => 200]);
-        $this->set(compact('device', 'customers', 'providers'));
+        $customers = $this->Devices->Customers->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
+        $providers = $this->Devices->Providers->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
+        $distancetypes = $this->Devices->Distancetypes->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
+        $this->set(compact('device', 'customers', 'providers','distancetypes'));
         $this->set('_serialize', ['device']);
     }
 
@@ -262,12 +270,20 @@ public function ajaxdata() {
     {
         $this->request->allowMethod(['post', 'delete']);
         $device = $this->Devices->get($id);
-        if ($this->Devices->delete($device)) {
-            $this->Flash->success(__('The device has been deleted.'));
-        } else {
-            $this->Flash->error(__('The device could not be deleted. Please, try again.'));
-        }
-
+		
+		if($device['customer_id'] = $this->loggedinuser['customer_id'])
+		{
+	        if ($this->Devices->delete($device)) {
+	            $this->Flash->success(__('The device has been deleted.'));
+	        } else {
+	            $this->Flash->error(__('The device could not be deleted. Please, try again.'));
+	        }
+		}
+		else
+		{
+		   	    $this->Flash->error(__('You are not authorized'));
+			
+		}
         return $this->redirect(['action' => 'index']);
     }
 

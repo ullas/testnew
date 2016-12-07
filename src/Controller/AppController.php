@@ -30,7 +30,7 @@ use Cake\ORM\TableRegistry;
 class AppController extends Controller
 {
  
-    protected $loggedinuser;
+    public $loggedinuser;
 	protected $customer;
 
     /**

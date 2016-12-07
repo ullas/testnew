@@ -37,11 +37,14 @@ class VehicleoperationslimitTable extends Table
         $this->displayField('id');
         $this->primaryKey('id');
 
-        $this->belongsTo('Vehices', [
+        $this->belongsTo('Vehicles', [
             'foreignKey' => 'vehice_id'
         ]);
         $this->belongsTo('IButtons', [
             'foreignKey' => 'iButton_id'
+        ]);
+		  $this->belongsTo('Customers', [
+            'foreignKey' => 'customer_id'
         ]);
     }
 
@@ -99,7 +102,7 @@ class VehicleoperationslimitTable extends Table
      */
     public function buildRules(RulesChecker $rules)
     {
-        $rules->add($rules->existsIn(['vehice_id'], 'Vehices'));
+        $rules->add($rules->existsIn(['vehice_id'], 'Vehicles'));
         $rules->add($rules->existsIn(['iButton_id'], 'IButtons'));
 
         return $rules;

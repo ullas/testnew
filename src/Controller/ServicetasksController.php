@@ -16,7 +16,7 @@ class ServicetasksController extends AppController
      *
      * @var array
      */
-    public $components = ['Datatable'];
+    public $components = ['Datatablemaster'];
 	
     /**
      * Index method
@@ -52,10 +52,11 @@ class ServicetasksController extends AppController
 		 
 				$fields[0] = array("name" =>"Servicetasks.id"  , "type" => "num");
 				$fields[1] = array("name" =>"Servicetasks.name"  , "type" => "char");
+				$fields[2] = array("name" =>"Servicetasks.description"  , "type" => "char");
 								
 		
 		$this->log($fields);
-		$output =$this->Datatable->getView($fields,['Customers'],$usrfiter);
+		$output =$this->Datatablemaster->getView($fields,['Customers'],$usrfiter);
 		$out =json_encode($output);  
 	   
 		$this->response->body($out);
@@ -91,14 +92,14 @@ class ServicetasksController extends AppController
             $servicetask = $this->Servicetasks->patchEntity($servicetask, $this->request->data);
 			$servicetask['customer_id']=$this->loggedinuser['customer_id'];
             if ($this->Servicetasks->save($servicetask)) {
-                $this->Flash->success(__('The servicetask has been saved.'));
+            //    $this->Flash->success(__('The servicetask has been saved.'));
 
-                return $this->redirect(['action' => 'index']);
+            //    return $this->redirect(['action' => 'index']);
             } else {
-                $this->Flash->error(__('The servicetask could not be saved. Please, try again.'));
+            //    $this->Flash->error(__('The servicetask could not be saved. Please, try again.'));
             }
         }
-        $customers = $this->Servicetasks->Customers->find('list', ['limit' => 200]);
+        $customers = $this->Servicetasks->Customers->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
         $this->set(compact('servicetask', 'customers'));
         $this->set('_serialize', ['servicetask']);
     }
@@ -115,18 +116,24 @@ class ServicetasksController extends AppController
         $servicetask = $this->Servicetasks->get($id, [
             'contain' => []
         ]);
+		if($servicetask['customer_id']!= $this->loggedinuser['customer_id'])
+		{
+			 $this->Flash->success(__('You are not Authorized.'));
+			 return $this->redirect(['action' => 'index']);
+			
+		}
         if ($this->request->is(['patch', 'post', 'put'])) {
             $servicetask = $this->Servicetasks->patchEntity($servicetask, $this->request->data);
 			$servicetask['customer_id']=$this->loggedinuser['customer_id'];
             if ($this->Servicetasks->save($servicetask)) {
-                $this->Flash->success(__('The servicetask has been saved.'));
+            //    $this->Flash->success(__('The servicetask has been saved.'));
 
-                return $this->redirect(['action' => 'index']);
+            //    return $this->redirect(['action' => 'index']);
             } else {
-                $this->Flash->error(__('The servicetask could not be saved. Please, try again.'));
+             //   $this->Flash->error(__('The servicetask could not be saved. Please, try again.'));
             }
         }
-        $customers = $this->Servicetasks->Customers->find('list', ['limit' => 200]);
+        $customers = $this->Servicetasks->Customers->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
         $this->set(compact('servicetask', 'customers'));
         $this->set('_serialize', ['servicetask']);
     }
@@ -140,14 +147,21 @@ class ServicetasksController extends AppController
      */
     public function delete($id = null)
     {
-        $this->request->allowMethod(['post', 'delete']);
+        //$this->request->allowMethod(['post', 'delete']);
         $servicetask = $this->Servicetasks->get($id);
-        if ($this->Servicetasks->delete($servicetask)) {
-            $this->Flash->success(__('The servicetask has been deleted.'));
-        } else {
-            $this->Flash->error(__('The servicetask could not be deleted. Please, try again.'));
-        }
-
+		if($servicetask['customer_id'] = $this->loggedinuser['customer_id'])
+	    {
+	        if ($this->Servicetasks->delete($servicetask)) {
+	        //    $this->Flash->success(__('The servicetask has been deleted.'));
+	        } else {
+	        //    $this->Flash->error(__('The servicetask could not be deleted. Please, try again.'));
+	        }
+		 }
+		 else
+		 {
+	   	    $this->Flash->error(__('You are not authorized'));
+		
+	     }
         return $this->redirect(['action' => 'index']);
     }
 

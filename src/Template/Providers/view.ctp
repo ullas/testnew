@@ -25,11 +25,11 @@
             <td><?= h($provider->description) ?></td>
         </tr>
         <tr>
-            <th><?= __('Modelno') ?></th>
+            <th><?= __('Model No') ?></th>
             <td><?= h($provider->modelno) ?></td>
         </tr>
         <tr>
-            <th><?= __('Osver') ?></th>
+            <th><?= __('OS Version') ?></th>
             <td><?= h($provider->osver) ?></td>
         </tr>
         

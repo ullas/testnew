@@ -16,7 +16,7 @@ class ServicecompletedController extends AppController
      *
      * @var array
      */
-    public $components = ['Datatable'];
+    public $components = ['Datatablemaster'];
 	
     /**
      * Index method
@@ -53,11 +53,12 @@ class ServicecompletedController extends AppController
 				$fields[0] = array("name" =>"Servicecompleted.id"  , "type" => "num");
 				$fields[1] = array("name" =>"Servicecompleted.servicesentry_id"  , "type" => "char");
 				$fields[2] = array("name" =>"Servicecompleted.servicescompleted"  , "type" => "char");
+				$fields[3] = array("name" =>"Servicecompleted.description"  , "type" => "char");
 				
 								
 		
 		$this->log($fields);
-		$output =$this->Datatable->getView($fields,['Customers'],$usrfiter);
+		$output =$this->Datatablemaster->getView($fields,['Customers'],$usrfiter);
 		$out =json_encode($output);  
 	   
 		$this->response->body($out);
@@ -94,15 +95,15 @@ class ServicecompletedController extends AppController
             $servicecompleted = $this->Servicecompleted->patchEntity($servicecompleted, $this->request->data);
 			$servicecompleted['customer_id']=$this->loggedinuser['customer_id'];
             if ($this->Servicecompleted->save($servicecompleted)) {
-                $this->Flash->success(__('The servicecompleted has been saved.'));
+            //    $this->Flash->success(__('The servicecompleted has been saved.'));
 
-                return $this->redirect(['action' => 'index']);
+            //    return $this->redirect(['action' => 'index']);
             } else {
-                $this->Flash->error(__('The servicecompleted could not be saved. Please, try again.'));
+            //    $this->Flash->error(__('The servicecompleted could not be saved. Please, try again.'));
             }
         }
-        $servicesentries = $this->Servicecompleted->Servicesentries->find('list', ['limit' => 200]);
-		 $customers = $this->Servicecompleted->Customers->find('list', ['limit' => 200]);
+        $servicesentries = $this->Servicecompleted->Servicesentries->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
+		$customers = $this->Servicecompleted->Customers->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
         $this->set(compact('servicecompleted', 'servicesentries','customers'));
         $this->set('_serialize', ['servicecompleted']);
     }
@@ -119,18 +120,25 @@ class ServicecompletedController extends AppController
         $servicecompleted = $this->Servicecompleted->get($id, [
             'contain' => []
         ]);
+		if($servicecompleted['customer_id']!= $this->loggedinuser['customer_id'])
+		{
+			 $this->Flash->success(__('You are not Authorized.'));
+			 return $this->redirect(['action' => 'index']);
+			
+		}
         if ($this->request->is(['patch', 'post', 'put'])) {
             $servicecompleted = $this->Servicecompleted->patchEntity($servicecompleted, $this->request->data);
 			$servicecompleted['customer_id']=$this->loggedinuser['customer_id'];
             if ($this->Servicecompleted->save($servicecompleted)) {
-                $this->Flash->success(__('The servicecompleted has been saved.'));
+            //    $this->Flash->success(__('The servicecompleted has been saved.'));
 
-                return $this->redirect(['action' => 'index']);
+            //    return $this->redirect(['action' => 'index']);
             } else {
-                $this->Flash->error(__('The servicecompleted could not be saved. Please, try again.'));
+            //    $this->Flash->error(__('The servicecompleted could not be saved. Please, try again.'));
             }
         }
-        $servicesentries = $this->Servicecompleted->Servicesentries->find('list', ['limit' => 200]);
+        $servicesentries = $this->Servicecompleted->Servicesentries->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
+        $customers = $this->Servicecompleted->Customers->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
         $this->set(compact('servicecompleted', 'servicesentries'));
         $this->set('_serialize', ['servicecompleted']);
     }
@@ -144,14 +152,21 @@ class ServicecompletedController extends AppController
      */
     public function delete($id = null)
     {
-        $this->request->allowMethod(['post', 'delete']);
+        //$this->request->allowMethod(['post', 'delete']);
         $servicecompleted = $this->Servicecompleted->get($id);
-        if ($this->Servicecompleted->delete($servicecompleted)) {
-            $this->Flash->success(__('The servicecompleted has been deleted.'));
-        } else {
-            $this->Flash->error(__('The servicecompleted could not be deleted. Please, try again.'));
-        }
-
+		if($servicecompleted['customer_id'] = $this->loggedinuser['customer_id'])
+		    {
+	        if ($this->Servicecompleted->delete($servicecompleted)) {
+	        //    $this->Flash->success(__('The servicecompleted has been deleted.'));
+	        } else {
+	        //    $this->Flash->error(__('The servicecompleted could not be deleted. Please, try again.'));
+	        }
+		 }
+		 else
+		 {
+	   	    $this->Flash->error(__('You are not authorized'));
+		
+	     }
         return $this->redirect(['action' => 'index']);
     }
 	public function deleteAll($id=null)

@@ -169,9 +169,8 @@ class SimcardsController extends AppController
             }
         }
         
-        $simproviders = $this->Simcards->Simproviders->find('list', ['limit' => 200])->where("customer_id=".$this->loggedinuser['customer_id'])->where("customer_id=0");
+        $simproviders = $this->Simcards->Simproviders->find('list', ['limit' => 200])->where("customer_id=".$this->loggedinuser['customer_id'])->orwhere("customer_id=0");
         
-                        
           $customers = $this->Simcards->Customers->find('list', ['limit' => 200])->where("id=".$this->loggedinuser['customer_id']);
       
         

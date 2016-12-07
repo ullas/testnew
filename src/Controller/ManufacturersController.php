@@ -15,7 +15,7 @@ class ManufacturersController extends AppController
      *
      * @var array
      */
-    public $components = ['Datatable'];
+    public $components = ['Datatablemaster'];
     /**
      * Index method
      *
@@ -50,11 +50,12 @@ class ManufacturersController extends AppController
 		 
 				$fields[0] = array("name" =>"Manufacturers.id"  , "type" => "num");
 				$fields[1] = array("name" =>"Manufacturers.name"  , "type" => "char");
+				$fields[2] = array("name" =>"Manufacturers.description"  , "type" => "char");
 				
 				
 		
 		$this->log($fields);
-		$output =$this->Datatable->getView($fields,['Customers'],$usrfiter);
+		$output =$this->Datatablemaster->getView($fields,['Customers'],$usrfiter);
 		$out =json_encode($output);  
 	   
 		$this->response->body($out);
@@ -90,14 +91,14 @@ class ManufacturersController extends AppController
             $manufacturer = $this->Manufacturers->patchEntity($manufacturer, $this->request->data);
 			$manufacturer['customer_id']=$this->loggedinuser['customer_id'];
             if ($this->Manufacturers->save($manufacturer)) {
-                $this->Flash->success(__('The manufacturer has been saved.'));
+       //         $this->Flash->success(__('The manufacturer has been saved.'));
 
-                return $this->redirect(['action' => 'index']);
+         //       return $this->redirect(['action' => 'index']);
             } else {
-                $this->Flash->error(__('The manufacturer could not be saved. Please, try again.'));
+         //       $this->Flash->error(__('The manufacturer could not be saved. Please, try again.'));
             }
         }
-        $customers = $this->Manufacturers->Customers->find('list', ['limit' => 200]);
+        $customers = $this->Manufacturers->Customers->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
         $this->set(compact('manufacturer', 'customers'));
         $this->set('_serialize', ['manufacturer']);
     }
@@ -114,18 +115,24 @@ class ManufacturersController extends AppController
         $manufacturer = $this->Manufacturers->get($id, [
             'contain' => []
         ]);
+		if($manufacturer['customer_id']!= $this->loggedinuser['customer_id'])
+		{
+			 $this->Flash->success(__('You are not Authorized.'));
+			 return $this->redirect(['action' => 'index']);
+			
+		}
         if ($this->request->is(['patch', 'post', 'put'])) {
             $manufacturer = $this->Manufacturers->patchEntity($manufacturer, $this->request->data);
 			$manufacturer['customer_id']=$this->loggedinuser['customer_id'];
             if ($this->Manufacturers->save($manufacturer)) {
-                $this->Flash->success(__('The manufacturer has been saved.'));
+         //       $this->Flash->success(__('The manufacturer has been saved.'));
 
-                return $this->redirect(['action' => 'index']);
+         //       return $this->redirect(['action' => 'index']);
             } else {
-                $this->Flash->error(__('The manufacturer could not be saved. Please, try again.'));
+         //       $this->Flash->error(__('The manufacturer could not be saved. Please, try again.'));
             }
         }
-        $customers = $this->Manufacturers->Customers->find('list', ['limit' => 200]);
+        $customers = $this->Manufacturers->Customers->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
         $this->set(compact('manufacturer', 'customers'));
         $this->set('_serialize', ['manufacturer']);
     }
@@ -139,14 +146,21 @@ class ManufacturersController extends AppController
      */
     public function delete($id = null)
     {
-        $this->request->allowMethod(['post', 'delete']);
+       // $this->request->allowMethod(['post', 'delete']);
         $manufacturer = $this->Manufacturers->get($id);
-        if ($this->Manufacturers->delete($manufacturer)) {
-            $this->Flash->success(__('The manufacturer has been deleted.'));
-        } else {
-            $this->Flash->error(__('The manufacturer could not be deleted. Please, try again.'));
-        }
-
+		if($manufacturer['customer_id'] = $this->loggedinuser['customer_id'])
+	    {
+		        if ($this->Manufacturers->delete($manufacturer)) {
+		       //     $this->Flash->success(__('The manufacturer has been deleted.'));
+		        } else {
+		       //     $this->Flash->error(__('The manufacturer could not be deleted. Please, try again.'));
+		        }
+		}
+		 else
+		 {
+	   	    $this->Flash->error(__('You are not authorized'));
+		
+	     }
         return $this->redirect(['action' => 'index']);
     }
 

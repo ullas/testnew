@@ -1,17 +1,4 @@
-<?php
-  $myTemplates = [
-    'inputContainer' => '<div class="form-group">{{content}}<div class="col-sm-offset-3 col-sm-6" style="margin-top:4px">{{help}}</div></div>',
-     'label' => '<label class="col-sm-3 control-label" {{attrs}}>{{text}}</label>',
-    'input' => '<div class="col-sm-6"><input type="{{type}}" name="{{name}}"{{attrs}}/></div>',
-    
-     'select' => '<div class="col-sm-6"><select name="{{name}}"{{attrs}}>{{content}}</select></div>',
-     'textarea' => '<div class="col-sm-6"><textarea name="{{name}}"{{attrs}}>{{value}}</textarea></div>'
-];
-
- 
-$this->Form->templates($myTemplates);
-
-?>
+<?php echo $this->element('templateelement'); ?>
 
 <!-- Content Header (Page header) -->
 <section class="content-header">
@@ -47,8 +34,8 @@ $this->Form->templates($myTemplates);
 		 ?>
 		  <div class="form-group">
                   	<label for="isstationary" class="col-sm-3 control-label" style="padding-top:0" >Is Stationary</label>
-				  	<div class="col-sm-6">
-				    	<input name="isstationary" value="1" id="isstationary" class="" type="checkbox">
+				  	<div class="col-sm-1">
+				    	<?php echo $this->Form->checkbox('isstationary', array('label' => false));?>
                    	</div>
 				  	<div class="col-sm-offset-3 col-sm-6" style="margin-top:18px" >
 				  	</div>
@@ -88,8 +75,6 @@ $this->Form->templates($myTemplates);
 
 <?php
 $this->Html->css([
-  
-    'AdminLTE./plugins/select2/select2.min',
   ],
   ['block' => 'css']);
 

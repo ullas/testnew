@@ -28,15 +28,12 @@
             <th><?= __('Customer') ?></th>
             <td><?= $renewalreminder->has('customer') ? $this->Html->link($renewalreminder->customer->name, ['controller' => 'Customers', 'action' => 'view', $renewalreminder->customer->id]) : '' ?></td>
         </tr>
+        
         <tr>
-            <th><?= __('Id') ?></th>
-            <td><?= $this->Number->format($renewalreminder->id) ?></td>
+            <th><?= __('Renewal Type') ?></th>
+            <td><?= $renewalreminder->has('renewalstype') ? $this->Html->link($renewalreminder->renewalstype->name, ['controller' => 'Renewalstypes', 'action' => 'view', $renewalreminder->renewalstype->id]) : '' ?></td>
         </tr>
-        <tr>
-            <th><?= __('Renewal Type Id') ?></th>
-            <td><?= $this->Number->format($renewalreminder->renewalstype_id) ?></td>
-        </tr>
-        <tr>
+       <tr>
             <th><?= __('Due Date') ?></th>
             <td><?= $this->Number->format($renewalreminder->duedate) ?></td>
         </tr>

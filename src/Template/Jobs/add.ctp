@@ -43,7 +43,7 @@ $this->Form->templates($myTemplates);
             echo $this->Form->input('jobtime', ['empty' => true]);
             echo $this->Form->input('comments',['label'=>'Assigned By','type'=>'text']);
             echo $this->Form->input('timepolicy_id', ['label'=>'Time Policy','options' => $timepolicies, 'empty' => true,'class'=>'select2']);
-            echo $this->Form->input('template_id',['label'=>'Template','type'=>'text']);
+            echo $this->Form->input('template_id',['label'=>'Template','options' => $templates, 'empty' => true,'class'=>'select2']);
             echo $this->Form->input('endcustomername',['label'=>'End Customer Name','type'=>'text']);
             echo $this->Form->input('endcustomermailid',['label'=>'End Customer Mail ID','type'=>'text']);
             echo $this->Form->input('endcustomerphone',['label'=>'End Customer Phone','type'=>'text']);

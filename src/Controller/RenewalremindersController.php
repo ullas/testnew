@@ -218,10 +218,10 @@ public function ajaxdata() {
                 $this->Flash->error(__('The renewalreminder could not be saved. Please, try again.'));
             }
         }
-        $renewalstypes = $this->Renewalreminders->Renewalstypes->find('list', ['limit' => 200]);
-        $distributionlists = $this->Renewalreminders->Distributionlists->find('list', ['limit' => 200]);
-        $groups = $this->Renewalreminders->Groups->find('list', ['limit' => 200]);
-        $customers = $this->Renewalreminders->Customers->find('list', ['limit' => 200]);
+        $renewalstypes = $this->Renewalreminders->Renewalstypes->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
+        $distributionlists = $this->Renewalreminders->Distributionlists->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
+        $groups = $this->Renewalreminders->Groups->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
+        $customers = $this->Renewalreminders->Customers->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
         $this->set(compact('renewalreminder', 'renewalstypes', 'distributionlists', 'groups', 'customers'));
         $this->set('_serialize', ['renewalreminder']);
     }
@@ -238,6 +238,11 @@ public function ajaxdata() {
         $renewalreminder = $this->Renewalreminders->get($id, [
             'contain' => []
         ]);
+		if($renewalreminder['customer_id']!= $this->loggedinuser['customer_id'])
+		{
+			 $this->Flash->success(__('You are not Authorized.'));
+			 return $this->redirect(['action' => 'index']);
+		}
         if ($this->request->is(['patch', 'post', 'put'])) {
             $renewalreminder = $this->Renewalreminders->patchEntity($renewalreminder, $this->request->data);
             if ($this->Renewalreminders->save($renewalreminder)) {
@@ -248,10 +253,10 @@ public function ajaxdata() {
                 $this->Flash->error(__('The renewalreminder could not be saved. Please, try again.'));
             }
         }
-        $renewalstypes = $this->Renewalreminders->Renewalstypes->find('list', ['limit' => 200]);
-        $distributionlists = $this->Renewalreminders->Distributionlists->find('list', ['limit' => 200]);
-        $groups = $this->Renewalreminders->Groups->find('list', ['limit' => 200]);
-        $customers = $this->Renewalreminders->Customers->find('list', ['limit' => 200]);
+        $renewalstypes = $this->Renewalreminders->Renewalstypes->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
+        $distributionlists = $this->Renewalreminders->Distributionlists->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
+        $groups = $this->Renewalreminders->Groups->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
+        $customers = $this->Renewalreminders->Customers->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
         $this->set(compact('renewalreminder', 'renewalstypes', 'distributionlists', 'groups', 'customers'));
         $this->set('_serialize', ['renewalreminder']);
     }
@@ -267,12 +272,19 @@ public function ajaxdata() {
     {
         $this->request->allowMethod(['post', 'delete']);
         $renewalreminder = $this->Renewalreminders->get($id);
-        if ($this->Renewalreminders->delete($renewalreminder)) {
-            $this->Flash->success(__('The renewalreminder has been deleted.'));
-        } else {
-            $this->Flash->error(__('The renewalreminder could not be deleted. Please, try again.'));
-        }
-
+		if($renewalreminder['customer_id'] = $this->loggedinuser['customer_id'])
+		{
+	        if ($this->Renewalreminders->delete($renewalreminder)) {
+	            $this->Flash->success(__('The renewalreminder has been deleted.'));
+	        } else {
+	            $this->Flash->error(__('The renewalreminder could not be deleted. Please, try again.'));
+	        }
+		}
+	    else
+	    {
+	   	    $this->Flash->error(__('You are not authorized'));
+		
+	    }
         return $this->redirect(['action' => 'index']);
     }
 	

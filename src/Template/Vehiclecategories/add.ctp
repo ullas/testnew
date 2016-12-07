@@ -1,32 +1,17 @@
 
-<?php
-  $myTemplates = [
-    'inputContainer' => '<div class="form-group">{{content}}<div class="col-sm-offset-3 col-sm-6 style="margin-top:18px">{{help}}</div></div>',
-     'label' => '<label class="col-sm-3 control-label" {{attrs}}>{{text}}</label>',
-    'input' => '<div class="col-sm-6"><input type="{{type}}" name="{{name}}"{{attrs}}/></div>',
-     'select' => '<div class="col-sm-6"><select name="{{name}}"{{attrs}}>{{content}}</select></div>',
-     'textarea' => '<div class="col-sm-6"><textarea name="{{name}}"{{attrs}}>{{value}}</textarea></div>'
-];
-$this->Form->templates($myTemplates);
-
-?>
+<?php echo $this->element('templateelement'); ?>
 
 <!-- Content Header (Page header) -->
 <section class="content-header">
   <h1>
-   New  Vehicle Categories
+   New  Vehicle Category
   </h1>
-  <ol class="breadcrumb">
-  	<li><a href="#"><i class="fa fa-dashboard"></i>Home</a></li>
-   
-    <li><a href="/Vehiclecategories"> Vehicle Categories</a></li>
-    <li class="active">Add</li>
-  </ol>
+ 
 </section>
 
 <!-- Main content -->
 <section class="content">
-    <?= $this->Form->create($vehiclecategory) ?>
+    <?= $this->Form->create($vehiclecategory,['id'=>'masterdataform']) ?>
    <div class="row">
     
     <div class="col-md-12">
@@ -64,36 +49,3 @@ $this->Form->templates($myTemplates);
  <?= $this->Form->end() ?>
 </section>
 <!-- /.content -->
-<?php
-$this->Html->css([
-    
-    'AdminLTE./plugins/datepicker/datepicker3',
- 	'AdminLTE./plugins/select2/select2.min'
-  ],
-  ['block' => 'css']);
-
-$this->Html->script([
- 'AdminLTE./plugins/select2/select2.full.min',
-  	'AdminLTE./plugins/datepicker/bootstrap-datepicker',
-  	'/js/dropzone/dropzone',
-	'AdminLTE./plugins/iCheck/icheck.min'
- 
-],
-['block' => 'script']);
-?>
-<?php $this->start('scriptBotton'); ?>
-<script>
-  $(function () {
-    //Initialize Select2 Elements
-    $(".select2").select2();
-     $('.datemask').datepicker({
-            format:"dd/mm/yy",
-              autoclose: true
-   });
-
-  });
-</script>
-<?php $this->end(); ?>
-       
-
-

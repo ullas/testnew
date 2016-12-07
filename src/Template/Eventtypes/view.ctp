@@ -25,10 +25,6 @@
             <td><?= h($eventtype->model) ?></td>
         </tr>
         <tr>
-            <th><?= __('Id') ?></th>
-            <td><?= $this->Number->format($eventtype->id) ?></td>
-        </tr>
-        <tr>
             <th><?= __('Code') ?></th>
             <td><?= $this->Number->format($eventtype->code) ?></td>
         </tr>

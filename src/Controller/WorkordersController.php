@@ -274,22 +274,22 @@ public function ajaxdata() {
             }
         }
         
-        $workorderstatuses = $this->Workorders->Workorderstatuses->find('list', ['limit' => 200])->where("customer_id=".$this->loggedinuser['customer_id'])->orwhere("customer_id=0");
+        $workorderstatuses = $this->Workorders->Workorderstatuses->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
         
                 
-        $vehicles = $this->Workorders->Vehicles->find('list', ['limit' => 200])->where("customer_id=".$this->loggedinuser['customer_id']);
+        $vehicles = $this->Workorders->Vehicles->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
         
                 
-        $vendors = $this->Workorders->Vendors->find('list', ['limit' => 200])->where("customer_id=".$this->loggedinuser['customer_id']);
+        $vendors = $this->Workorders->Vendors->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
         
                 
-        $issuedbies = $this->Workorders->Issuedbies->find('list', ['limit' => 200])->where("customer_id=".$this->loggedinuser['customer_id']);
+        $issuedbies = $this->Workorders->Issuedbies->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
         
                 
-        $assignedbies = $this->Workorders->Assignedbies->find('list', ['limit' => 200])->where("customer_id=".$this->loggedinuser['customer_id']);
+        $assignedbies = $this->Workorders->Assignedbies->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
         
                 
-        $assigntos = $this->Workorders->Assigntos->find('list', ['limit' => 200])->where("customer_id=".$this->loggedinuser['customer_id']);
+        $assigntos = $this->Workorders->Assigntos->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
         
                         
          $servicetasks=$servicetasksTable->find('list', ['limit' => 200])->where("customer_id=".$this->loggedinuser['customer_id'])->orwhere("customer_id=0")->all()->toArray();
@@ -313,6 +313,11 @@ public function ajaxdata() {
         $workorder = $this->Workorders->get($id, [
             'contain' => []
         ]);
+        if($workorder['customer_id']!= $this->loggedinuser['customer_id'])
+		{
+			 $this->Flash->success(__('You are not Authorized.'));
+			 return $this->redirect(['action' => 'index']);
+		}
         if ($this->request->is(['patch', 'post', 'put'])) {
             $workorder = $this->Workorders->patchEntity($workorder, $this->request->data);
              $workorder['customer_id']=$this->loggedinuser['customer_id'];
@@ -324,22 +329,22 @@ public function ajaxdata() {
                 $this->Flash->error(__('The workorder could not be saved. Please, try again.'));
             }
         }
-        $workorderstatuses = $this->Workorders->Workorderstatuses->find('list', ['limit' => 200])->where("customer_id=".$this->loggedinuser['customer_id'])->orwhere("customer_id=0");
+        $workorderstatuses = $this->Workorders->Workorderstatuses->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
         
                 
-        $vehicles = $this->Workorders->Vehicles->find('list', ['limit' => 200])->where("customer_id=".$this->loggedinuser['customer_id']);
+        $vehicles = $this->Workorders->Vehicles->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
         
                 
-        $vendors = $this->Workorders->Vendors->find('list', ['limit' => 200])->where("customer_id=".$this->loggedinuser['customer_id']);
+        $vendors = $this->Workorders->Vendors->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
         
                 
-        $issuedbies = $this->Workorders->Issuedbies->find('list', ['limit' => 200])->where("customer_id=".$this->loggedinuser['customer_id']);
+        $issuedbies = $this->Workorders->Issuedbies->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
         
                 
-        $assignedbies = $this->Workorders->Assignedbies->find('list', ['limit' => 200])->where("customer_id=".$this->loggedinuser['customer_id']);
+        $assignedbies = $this->Workorders->Assignedbies->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
         
                 
-        $assigntos = $this->Workorders->Assigntos->find('list', ['limit' => 200])->where("customer_id=".$this->loggedinuser['customer_id']);
+        $assigntos = $this->Workorders->Assigntos->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
         
                
         $this->set(compact('workorder', 'workorderstatuses', 'vehicles', 'vendors', 'issuedbies', 'assignedbies', 'assigntos', 'customers'));
@@ -357,12 +362,19 @@ public function ajaxdata() {
     {
         $this->request->allowMethod(['post', 'delete']);
         $workorder = $this->Workorders->get($id);
-        if ($this->Workorders->delete($workorder)) {
-            $this->Flash->success(__('The workorder has been deleted.'));
-        } else {
-            $this->Flash->error(__('The workorder could not be deleted. Please, try again.'));
-        }
-
+		if($workorder['customer_id'] = $this->loggedinuser['customer_id'])
+		{
+	        if ($this->Workorders->delete($workorder)) {
+	            $this->Flash->success(__('The workorder has been deleted.'));
+	        } else {
+	            $this->Flash->error(__('The workorder could not be deleted. Please, try again.'));
+	        }
+		 }
+	    else
+	    {
+	   	    $this->Flash->error(__('You are not authorized'));
+		
+	    }
         return $this->redirect(['action' => 'index']);
     }
 

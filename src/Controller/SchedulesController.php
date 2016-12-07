@@ -215,14 +215,15 @@ private function getDateRangeFilters($dates,$basic)  {
                 $this->Flash->error(__('The schedule could not be saved. Please, try again.'));
             }
         }
-        $startlocs = $this->Schedules->Startlocs->find('list', ['limit' => 200]);
-        $endlocs = $this->Schedules->Endlocs->find('list', ['limit' => 200]);
-        $routes = $this->Schedules->Routes->find('list', ['limit' => 200]);
-        $customers = $this->Schedules->Customers->find('list', ['limit' => 200]);
-        $timepolicies = $this->Schedules->Timepolicies->find('list', ['limit' => 200]);
-        $defaultDrivers = $this->Schedules->DefaultDrivers->find('list', ['limit' => 200]);
-        $defaultVehs = $this->Schedules->DefaultVehs->find('list', ['limit' => 200]);
-        $this->set(compact('schedule', 'startlocs', 'endlocs', 'routes', 'customers', 'timepolicies', 'defaultDrivers', 'defaultVehs'));
+        $startlocs = $this->Schedules->Startlocs->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
+        $endlocs = $this->Schedules->Endlocs->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
+        $routes = $this->Schedules->Routes->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
+        $customers = $this->Schedules->Customers->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
+        $timepolicies = $this->Schedules->Timepolicies->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
+        $defaultDrivers = $this->Schedules->DefaultDrivers->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
+        $defaultVehs = $this->Schedules->DefaultVehs->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
+        $passengergroups = $this->Schedules->Passengergroups->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
+        $this->set(compact('schedule','passengergroups', 'startlocs', 'endlocs', 'routes', 'customers', 'timepolicies', 'defaultDrivers', 'defaultVehs'));
         $this->set('_serialize', ['schedule']);
     }
 
@@ -238,8 +239,14 @@ private function getDateRangeFilters($dates,$basic)  {
         $schedule = $this->Schedules->get($id, [
             'contain' => []
         ]);
+		if($schedule['customer_id']!= $this->loggedinuser['customer_id'])
+		{
+			 $this->Flash->success(__('You are not Authorized.'));
+			 return $this->redirect(['action' => 'index']);
+		}
         if ($this->request->is(['patch', 'post', 'put'])) {
             $schedule = $this->Schedules->patchEntity($schedule, $this->request->data);
+			$schedule['customer_id']=$this->loggedinuser['customer_id'];
             if ($this->Schedules->save($schedule)) {
                 $this->Flash->success(__('The schedule has been saved.'));
 
@@ -248,14 +255,15 @@ private function getDateRangeFilters($dates,$basic)  {
                 $this->Flash->error(__('The schedule could not be saved. Please, try again.'));
             }
         }
-        $startlocs = $this->Schedules->Startlocs->find('list', ['limit' => 200]);
-        $endlocs = $this->Schedules->Endlocs->find('list', ['limit' => 200]);
-        $routes = $this->Schedules->Routes->find('list', ['limit' => 200]);
-        $customers = $this->Schedules->Customers->find('list', ['limit' => 200]);
-        $timepolicies = $this->Schedules->Timepolicies->find('list', ['limit' => 200]);
-        $defaultDrivers = $this->Schedules->DefaultDrivers->find('list', ['limit' => 200]);
-        $defaultVehs = $this->Schedules->DefaultVehs->find('list', ['limit' => 200]);
-        $this->set(compact('schedule', 'startlocs', 'endlocs', 'routes', 'customers', 'timepolicies', 'defaultDrivers', 'defaultVehs'));
+        $startlocs = $this->Schedules->Startlocs->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
+        $endlocs = $this->Schedules->Endlocs->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
+        $routes = $this->Schedules->Routes->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
+        $customers = $this->Schedules->Customers->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
+        $timepolicies = $this->Schedules->Timepolicies->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
+        $defaultDrivers = $this->Schedules->DefaultDrivers->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
+        $defaultVehs = $this->Schedules->DefaultVehs->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
+        $passengergroups = $this->Schedules->Passengergroups->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
+        $this->set(compact('schedule','passengergroups', 'startlocs', 'endlocs', 'routes', 'customers', 'timepolicies', 'defaultDrivers', 'defaultVehs'));
         $this->set('_serialize', ['schedule']);
     }
 
@@ -270,12 +278,19 @@ private function getDateRangeFilters($dates,$basic)  {
     {
         $this->request->allowMethod(['post', 'delete']);
         $schedule = $this->Schedules->get($id);
-        if ($this->Schedules->delete($schedule)) {
-            $this->Flash->success(__('The schedule has been deleted.'));
-        } else {
-            $this->Flash->error(__('The schedule could not be deleted. Please, try again.'));
-        }
-
+		if($schedule['customer_id'] = $this->loggedinuser['customer_id'])
+		{
+	        if ($this->Schedules->delete($schedule)) {
+	            $this->Flash->success(__('The schedule has been deleted.'));
+	        } else {
+	            $this->Flash->error(__('The schedule could not be deleted. Please, try again.'));
+	        }
+		}
+	    else
+	    {
+	   	    $this->Flash->error(__('You are not authorized'));
+		
+	    }
         return $this->redirect(['action' => 'index']);
     }
 	

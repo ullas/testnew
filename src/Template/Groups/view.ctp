@@ -17,10 +17,6 @@
   		<div class="box-body">
   		<table class="table table-hover">
         <tr>
-            <th><?= __('Id') ?></th>
-            <td><?= $this->Number->format($group->id) ?></td>
-        </tr>    	
-        <tr>
             <th><?= __('Name') ?></th>
             <td><?= h($group->name) ?></td>
         </tr>

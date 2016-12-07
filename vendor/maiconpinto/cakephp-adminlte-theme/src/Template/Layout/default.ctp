@@ -10,7 +10,38 @@
 .input-group{
 	width:100%;
 }
-		
+/*margin left for export buttons*/
+.DTTT{
+	margin-left:5px;
+}
+.DTTT .btn{
+	background-color: #00a65a;font-size: 12px; line-height:1.5;
+	border-color: #008d4c;color:#FFF;padding:5px 10px;
+}
+.DTTT .btn:hover, .DTTT .btn:active, .DTTT .btn.hover {
+    background-color: #008d4c;color:#FFF;	
+}	
+div#myDropZone {
+    width: 100%;
+    min-height: 500px;
+    border : 1.9px dashed #008FE2;display: table;
+}
+.dz-message {
+	color:#333;
+	font-size:26px;
+    font-weight: 400;
+  	display: table-cell;
+   vertical-align: middle;
+}
+.dz-clickable {
+    cursor: pointer;
+}
+.dz-max-files-reached {
+          /*pointer-events: none;*/          cursor: default;
+}
+.upload-btn{
+	font-size:16px;font-weight: 400;padding:8px;
+}
 </style>
 	
     <meta charset="utf-8">
@@ -19,13 +50,19 @@
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <!-- Bootstrap 3.3.5 -->
-    <?php echo $this->Html->css('AdminLTE./bootstrap/css/bootstrap'); ?>
+    
+     <?php echo $this->Html->css('AdminLTE./bootstrap/css/bootstrap'); ?>
+
+<?php echo $this->Html->css('AdminLTE./plugins/datatables/dataTables.bootstrap'); ?>
     <!-- Font Awesome -->
     <link rel="stylesheet" href="/css/font-awesome.min.css">
     <!-- Ionicons -->
     <link rel="stylesheet" href="/css/ionicons.min.css">
      <link rel="stylesheet" href="/js/ol/ol.css">
+     
    <?php echo $this->Html->css('AdminLTE./plugins/select2/select2.min'); ?>
+   <?php echo $this->Html->css('AdminLTE./plugins/datepicker/datepicker3'); ?>
+   <?php echo $this->Html->css('AdminLTE./plugins/timepicker/bootstrap-timepicker.min'); ?>
     <!-- Theme style -->
     <?php echo $this->Html->css('AdminLTE.AdminLTE.min'); ?>
 <!-- AdminLTE Skins. Choose a skin from the css/skins
@@ -37,10 +74,19 @@
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
 <!--[if lt IE 9]>
-<script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <![endif]-->
 </head>
+<?php
+$this->Html->script([ 'AdminLTE./plugins/select2/select2.full.min' ], ['block' => 'script']);
+$this->Html->script([ 'AdminLTE./plugins/datepicker/bootstrap-datepicker' ], ['block' => 'script']);
+$this->Html->script([ 'AdminLTE./plugins/timepicker/bootstrap-timepicker.min' ], ['block' => 'script']);
+$this->Html->script([ '/js/dropzone/dropzone' ], ['block' => 'script']);
+$this->Html->script([ 'AdminLTE./plugins/iCheck/icheck.min' ], ['block' => 'script']);
+?>
+
+
 <body class="hold-transition skin-blue sidebar-mini">
     <!-- Site wrapper -->
     <div class="wrapper">
@@ -94,6 +140,28 @@
 <!-- FastClick -->
 <?php echo $this->Html->script('AdminLTE./plugins/fastclick/fastclick'); ?>
 
+<?php echo $this->Html->script('AdminLTE./plugins/datatables/jquery.dataTables.min'); ?>
+<?php echo $this->Html->script('AdminLTE./plugins/datatables/dataTables.bootstrap.min'); ?>
+
+
+<script src="https://cdn.datatables.net/buttons/1.2.2/js/buttons.print.min.js"></script>
+ <!-- dropzone -->
+<link rel="stylesheet" href="https://rawgit.com/enyo/dropzone/master/dist/dropzone.css">
+<style>
+/*margin left for export buttons*/
+/*.DTTT{
+	margin-left:10px;
+}
+.DTTT .btn{
+	background-color: #00a65a;margin:5px;
+	border-color: #008d4c;color:#FFF;padding:3px 8px;
+}*/
+div.dataTables_wrapper { clear: both; }
+.dropzone{
+	overflow-y:scroll;height:100px;
+}
+</style>
+
 
 <?php echo $this->Html->script('ol/ol'); ?>
 
@@ -101,7 +169,29 @@
 <?php echo $this->fetch('script'); ?>
 <?php echo $this->fetch('scriptBotton'); ?>
 <script type="text/javascript">
+
+
+    
+    function loadMasterData(){
+    	
+    	
+    }
+
     $(document).ready(function(){
+    	
+    	$(".timepicker").timepicker({
+      		showInputs: false,autoclose: true,
+    	});
+    	//select 2 
+    	$(".select2").select2({ width: '100%',allowClear: true,placeholder: "Select" });
+		//datepicker
+    	$('.datemask').datepicker({
+    		format:"dd/mm/yy",
+      		autoclose: true,clearBtn: true
+    	});
+    	
+    	$(".input-group input[type='hidden']").parents('.col-sm-6').css("float", "right");
+    	
         $(".navbar .menu").slimscroll({
             height: "200px",
             alwaysVisible: false,
@@ -136,12 +226,213 @@
 	   $( ':input[required]' ).each( function () {
 	       $("label[for='" + this.id + "']").addClass('mandatory');
 	   });
+	   
+	   
+	   
+	   
+	   $("#myModal").on("show.bs.modal", function(e) {
+		    var link = $(e.relatedTarget);
+		    //alert(link.attr("href"));
+		    $(this).find(".modal-body").load("/"+link.attr("href"),function( response, status, xhr ){
+		    	
+		    	  if ( status == "error" ) {
+					    var msg = "Sorry but there was an error: ";
+					    alert(msg);
+				  }else{
+				  	   
+				  	     table= $('#mptlindextblmaster').DataTable({
+         					 "paging": true,
+          					 "lengthChange": true,
+          					 "ajax": "/"+ link.attr("href")+"/ajaxData",
+          					 "processing": true,
+         					 "serverSide": true,
+         					 "drawCallback":function(settings){
+         					 	tableLoaded(link);
+         					 },
+         					 "searching": true,
+          					 "ordering": true,
+         					 'columnDefs': [{
+						        'targets': 0,
+						        'className': 'dt-body-center',
+						        'render': function (data, type, full, meta){
+						            return '<input type="checkbox" class="mptl-lst-chkbox-master" name="chk-' + data + '" value="' + $('<div/>').text(data).html() + '">';
+						        }
+						     }]
+				  		});
+				  		$(".mptlmaster-edit").click(function(){
+  							alert($(this).attr("data-id"));
+  						});
+				  		
+				  		$('<a href='+ link.attr("href") +'"/add/" id="masterdataadd" class="btn btn-sm btn-success" style="margin-left:5px;" title="Add New Work Order"><i class="fa fa-plus" aria-hidden="true"></i></a>').appendTo('div.dataTables_filter');
+   
+				  		$("div.dataTables_filter").delegate("#masterdataadd","click", function(e){
+				  			 e.preventDefault();
+						     $(".modal-body").load("/"+link.attr("href")+"/add",function( response, status, xhr ){
+						     	
+							//set mnadatory * after required label
+     						$( ':input[required]' ).each( function () {
+         						$("label[for='" + this.id + "']").addClass('mandatory');
+     						});
+     						
+					     	//dropzone
+						Dropzone.autoDiscover = false;
+						var myDropzone = $("div#myDropZone").dropzone({
+					         url : "/Uploads/upload",
+					         maxFiles: 1,
+					         addRemoveLinks: true, 
+					         dictRemoveFileConfirmation : 'Are you sure you want to remove the particular file ?' ,
+					         init: function() {
+					     		this.on("complete", function (file) {
+					      			if (this.getUploadingFiles().length === 0 && this.getQueuedFiles().length === 0) {
+										//alert(file);      
+									}
+					    		});
+					    		this.on("removedfile", function (file) {
+					          		$("#attachment").val("");
+					      		});
+					    		this.on("queuecomplete", function (file) {
+					          // alert("All files have uploaded ");
+					      		});
+					      
+					      		this.on("success", function (file) {
+					          		$("#attachment").val(file['name']);console.log(file['name']); //alert("Success ");
+					      		});
+					      
+					      		this.on("error", function (file) {
+					          		// alert("Error in uploading ");
+					      		});
+					      
+					      		this.on("maxfilesexceeded", function(file){
+					        		alert("You can not upload any more files.");this.removeFile(file);
+					    		});
+					    	},
+					       
+					    });
+					    
+					    
+						     	   $('#myModal').on("submit", "form#masterdataform", function(e){ 
+									    e.preventDefault(); 
+									    
+									    var postData = $(this).serializeArray();
+									    var formURL = $(this).attr("action");
+									    $.ajax(
+									    {
+									        url : formURL,
+									        type: "POST",
+									        data : postData,
+									        success:function(data, textStatus, jqXHR) 
+									        {
+									            $('#myModal').modal("hide");
+									        },
+									        error: function(jqXHR, textStatus, errorThrown) 
+									        {
+									            $('#myModal').modal("hide");   
+									        }
+									    });
+									    $(this).unbind(e);
+								    
+									});
+						     });
+						    
+				  			
+				  		});
+				  		
+					  
+				  		
+				  		
           
+				 }
+		    });
+		});
+		
+		 
     });
     
-    
+  function tableLoaded(link){
+  	$(".mptlmaster-edit").click(function(){
+  		var url=$(this).attr("data-id");
+  		// alert("url------"+url);
+  		 $(".modal-body").load("/"+url,function( response, status, xhr ){
+  		 	
+  		 	//set mnadatory * after required label
+			$( ':input[required]' ).each( function () {
+ 				$("label[for='" + this.id + "']").addClass('mandatory');
+			});
+     						
+  		 	$('#myModal').on("submit", "form#masterdataform", function(e){ 
+			    e.preventDefault(); 
+			   
+			    var postData = $(this).serializeArray();
+			    var formURL = $(this).attr("action");
+			    
+			    $.ajax(
+			    {
+			        url : formURL,
+			        type: "POST",
+			        data : postData,
+			        success:function(data, textStatus, jqXHR) 
+			        {
+			            $('#myModal').modal("hide");
+			        },
+			        error: function(jqXHR, textStatus, errorThrown) 
+			        {
+			            $('#myModal').modal("hide");    
+			        }
+			    });
+			    $(this).unbind(e);
+		    
+			});
+  		 	
+  		 });
+  		
+  	});
+  	
+  	$(".mptlmaster-delete").click(function(){
+  		var url=$(this).attr("data-id");
+  		alert(url);
+  		$.ajax(
+			    {
+			        url : url,
+			        type: "POST",		      
+			        success:function(data, textStatus, jqXHR) 
+			        {
+			            $('#myModal').modal("hide");
+			        },
+			        error: function(jqXHR, textStatus, errorThrown) 
+			        {
+			            $('#myModal').modal("hide");
+			        }
+			    });
+  		
+  	});
+  }  
 </script>
+<style>
+	.mptldisabled, .mptldisabled:focus,.mptldisabled:hover {
+    	color: #a1a1a1;padding:2px;
+    	cursor: not-allowed;
+    	border-color: #ddd;
+	}
+</style>
 <!-- AdminLTE App -->
 <?php echo $this->Html->script('AdminLTE.AdminLTE.min'); ?>
+<div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+     
+      <div class="modal-body">
+        
+      </div>
+      <div class="modal-footer">
+        <button type="submit" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
 </body>
 </html>

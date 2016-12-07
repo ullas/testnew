@@ -1,17 +1,4 @@
-<?php
-  $myTemplates = [
-    'inputContainer' => '<div class="form-group">{{content}}<div class="col-sm-offset-3 col-sm-6" style="margin-top:4px">{{help}}</div></div>',
-     'label' => '<label class="col-sm-3 control-label" {{attrs}}>{{text}}</label>',
-    'input' => '<div class="col-sm-6"><div class="input-group">{{icon}}<input type="{{type}}" name="{{name}}"{{attrs}}/></div></div>',
-    
-     'select' => '<div class="col-sm-6"><select name="{{name}}"{{attrs}}>{{content}}</select></div>',
-     'textarea' => '<div class="col-sm-6"><textarea name="{{name}}"{{attrs}}>{{value}}</textarea></div>'
-];
-$this->Form->templates($myTemplates);
-?>
-
-
-
+<?php echo $this->element('templateelement'); ?>
 <!-- Content Header (Page header) -->
 <section class="content-header">
   <h1>
@@ -36,23 +23,21 @@ $this->Form->templates($myTemplates);
         <div class="tab-content">
           <div class="active tab-pane" id="details">
              <div class="form-horizontal">
-        <?php
-            echo $this->Form->input('code');
-            echo $this->Form->input('description');
-            echo $this->Form->input('driver_id', ['options' => $drivers, 'empty' => false,'class'=>'select2']);
-			
-		?>
+         <?php
+            echo $this->Form->input('code',['required' =>'required']);
+			echo $this->Form->input('dateofpurchase', ['label'=>'Date Of Purchase','empty' => true,'type'=>'text','class'=>'datemask','required' =>'required','templateVars' => ['icon' => '<div class="input-group-addon"><i class="fa fa-calendar"></i></div>']]);
+            echo $this->Form->input('driver_id', ['options' => $drivers, 'empty' => false,'class'=>'select2','required' =>'required']);
+			echo $this->Form->input('description');
+		 ?>
 		 	<div class="form-group">
                   	<label for="privatekey" class="col-sm-3 control-label" style="padding-top:0" >Private Key</label>
-				  	<div class="col-sm-6">
-				    	<input name="privatekey" value="1" id="privatekey" class="" type="checkbox">
+				  	<div class="col-sm-1">
+				    	<?php echo $this->Form->checkbox('privatekey', array('label' => false));?>
                    	</div>
 				  	<div class="col-sm-offset-3 col-sm-6" style="margin-top:18px" >
 				  	</div>
 			</div>
-		<?php	 
-            echo $this->Form->input('dateofpurchase', ['label'=>'Date Of Purchase','empty' => true,'type'=>'text','class'=>'datemask','templateVars' => ['icon' => '<div class="input-group-addon"><i class="fa fa-calendar"></i></div>']]);
-        ?>
+		
   </div>
  
           </div>
@@ -83,8 +68,7 @@ $this->Form->templates($myTemplates);
 
 <?php
 $this->Html->css([
-  'AdminLTE./plugins/datepicker/datepicker3',
-  'AdminLTE./plugins/select2/select2.min'
+  'AdminLTE./plugins/datepicker/datepicker3'
   ],
   ['block' => 'css']);
 

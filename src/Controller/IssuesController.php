@@ -212,7 +212,7 @@ private function getDateRangeFilters($dates,$basic)  {
         $issue = $this->Issues->newEntity();
         if ($this->request->is('post')) {
             $issue = $this->Issues->patchEntity($issue, $this->request->data);
-            $issue['customer_id']=$this->currentuser['customer_id'];
+            $issue['customer_id']=$this->loggedinuser['customer_id'];
             if ($this->Issues->save($issue)) {
                 $this->Flash->success(__('The issue has been saved.'));
 
@@ -223,22 +223,22 @@ private function getDateRangeFilters($dates,$basic)  {
         }
         
         
-        $vehicles = $this->Issues->Vehicles->find('list', ['limit' => 200])->where("customer_id=".$this->loggedinuser['customer_id']);
+        $vehicles = $this->Issues->Vehicles->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
                 
-        $reportedbies = $this->Issues->Reportedbies->find('list', ['limit' => 200])->where("customer_id=".$this->loggedinuser['customer_id']);
+        $reportedbies = $this->Issues->Reportedbies->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
         
                         
-        $customers = $this->Issues->Customers->find('list', ['limit' => 200])->where("id=".$this->loggedinuser['customer_id']);
+        $customers = $this->Issues->Customers->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
       
         
                 
-        $workorders = $this->Issues->Workorders->find('list', ['limit' => 200])->where("customer_id=".$this->loggedinuser['customer_id']);
+        $workorders = $this->Issues->Workorders->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
         
                 
-        $servicesentries = $this->Issues->Servicesentries->find('list', ['limit' => 200])->where("customer_id=".$this->loggedinuser['customer_id']);
+        $servicesentries = $this->Issues->Servicesentries->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
         
                 
-        $addresses = $this->Issues->Addresses->find('list', ['limit' => 200])->where("customer_id=".$this->loggedinuser['customer_id']);
+        $addresses = $this->Issues->Addresses->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
         
                 $this->set(compact('issue', 'vehicles', 'reportedbies', 'customers', 'workorders', 'servicesentries', 'addresses'));
         $this->set('_serialize', ['issue']);
@@ -256,6 +256,11 @@ private function getDateRangeFilters($dates,$basic)  {
         $issue = $this->Issues->get($id, [
             'contain' => ['Addresses']
         ]);
+		if($issue['customer_id']!= $this->loggedinuser['customer_id'])
+		{
+			 $this->Flash->success(__('You are not Authorized.'));
+			 return $this->redirect(['action' => 'index']);
+		}
         if ($this->request->is(['patch', 'post', 'put'])) {
             $issue = $this->Issues->patchEntity($issue, $this->request->data);
              $issue['customer_id']=$this->currentuser['customer_id'];
@@ -267,12 +272,12 @@ private function getDateRangeFilters($dates,$basic)  {
                 $this->Flash->error(__('The issue could not be saved. Please, try again.'));
             }
         }
-        $vehicles = $this->Issues->Vehicles->find('list', ['limit' => 200]);
-        $reportedbies = $this->Issues->Reportedbies->find('list', ['limit' => 200]);
-        $customers = $this->Issues->Customers->find('list', ['limit' => 200]);
-        $workorders = $this->Issues->Workorders->find('list', ['limit' => 200]);
-        $servicesentries = $this->Issues->Servicesentries->find('list', ['limit' => 200]);
-        $addresses = $this->Issues->Addresses->find('list', ['limit' => 200]);
+        $vehicles = $this->Issues->Vehicles->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
+        $reportedbies = $this->Issues->Reportedbies->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
+        $customers = $this->Issues->Customers->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
+        $workorders = $this->Issues->Workorders->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
+        $servicesentries = $this->Issues->Servicesentries->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
+        $addresses = $this->Issues->Addresses->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
         $this->set(compact('issue', 'vehicles', 'reportedbies', 'customers', 'workorders', 'servicesentries', 'addresses'));
         $this->set('_serialize', ['issue']);
     }
@@ -288,12 +293,19 @@ private function getDateRangeFilters($dates,$basic)  {
     {
         $this->request->allowMethod(['post', 'delete']);
         $issue = $this->Issues->get($id);
-        if ($this->Issues->delete($issue)) {
-            $this->Flash->success(__('The issue has been deleted.'));
-        } else {
-            $this->Flash->error(__('The issue could not be deleted. Please, try again.'));
-        }
-
+		if($issue['customer_id'] = $this->loggedinuser['customer_id'])
+		{
+	        if ($this->Issues->delete($issue)) {
+	            $this->Flash->success(__('The issue has been deleted.'));
+	        } else {
+	            $this->Flash->error(__('The issue could not be deleted. Please, try again.'));
+	        }
+		}
+	    else
+	    {
+	   	    $this->Flash->error(__('You are not authorized'));
+		
+	    }
         return $this->redirect(['action' => 'index']);
     }
 	public function deleteAll($id=null){

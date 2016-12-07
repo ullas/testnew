@@ -25,14 +25,6 @@
             <td><?= $servicereminder->has('group') ? $this->Html->link($servicereminder->group->name, ['controller' => 'Groups', 'action' => 'view', $servicereminder->group->id]) : '' ?></td>
         </tr>
         <tr>
-            <th><?= __('Customer') ?></th>
-            <td><?= $servicereminder->has('customer') ? $this->Html->link($servicereminder->customer->name, ['controller' => 'Customers', 'action' => 'view', $servicereminder->customer->id]) : '' ?></td>
-        </tr>
-        <tr>
-            <th><?= __('Id') ?></th>
-            <td><?= $this->Number->format($servicereminder->id) ?></td>
-        </tr>
-        <tr>
             <th><?= __('Service Task Id') ?></th>
             <td><?= $this->Number->format($servicereminder->servicetask_id) ?></td>
         </tr>

@@ -1,17 +1,4 @@
-<?php
-  $myTemplates = [
-    'inputContainer' => '<div class="form-group">{{content}}<div class="col-sm-offset-3 col-sm-6" style="margin-top:4px">{{help}}</div></div>',
-     'label' => '<label class="col-sm-3 control-label" {{attrs}}>{{text}}</label>',
-    'input' => '<div class="col-sm-6"><input type="{{type}}" name="{{name}}"{{attrs}}/></div>',
-    
-     'select' => '<div class="col-sm-6"><select name="{{name}}"{{attrs}}>{{content}}</select></div>',
-     'textarea' => '<div class="col-sm-6"><textarea name="{{name}}"{{attrs}}>{{value}}</textarea></div>'
-];
-
- 
-$this->Form->templates($myTemplates);
-
-?>
+<?php echo $this->element('templateelement'); ?>
 
 <!-- Content Header (Page header) -->
 <section class="content-header">
@@ -21,7 +8,7 @@ $this->Form->templates($myTemplates);
   <ol class="breadcrumb">
   	<li><a href="#"><i class="fa fa-dashboard"></i>Home</a></li>
    
-    <li><a href="/Servicesentries/"> RenewalReminders</a></li>
+    <li><a href="/Renewalreminders/"> RenewalReminders</a></li>
     <li class="active">Add</li>
   </ol>
 </section>
@@ -44,8 +31,8 @@ $this->Form->templates($myTemplates);
 		?>
 		<div class="form-group">
                   	<label for="notificationrequired" class="col-sm-3 control-label" style="padding-top:0" >Notification Required</label>
-				  	<div class="col-sm-6">
-				    	<input name="notificationrequired" value="1" id="notificationrequired" class="" type="checkbox">
+				  	<div class="col-sm-1">
+				    	<?php echo $this->Form->checkbox('notificationrequired', array('label' => false));?>
                    	</div>
 				  	<div class="col-sm-offset-3 col-sm-6" style="margin-top:18px" >
 				  	</div>
@@ -69,8 +56,7 @@ $this->Form->templates($myTemplates);
 <!-- /.content -->
 <?php
 $this->Html->css([
-  'AdminLTE./plugins/datepicker/datepicker3',
-  'AdminLTE./plugins/select2/select2.min'
+  'AdminLTE./plugins/datepicker/datepicker3'
   ],
   ['block' => 'css']);
 

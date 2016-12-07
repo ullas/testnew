@@ -39,6 +39,9 @@ class EventtypesTable extends Table
         $this->hasMany('Gpsdata', [
             'foreignKey' => 'eventtype_id'
         ]);
+		 $this->belongsTo('Customers', [
+            'foreignKey' => 'customer_id'
+        ]);
     }
 
     /**

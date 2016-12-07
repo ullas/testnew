@@ -114,10 +114,12 @@ class VehiclesTable extends Table
             'foreignKey' => 'vehicle_id'
         ]);
         $this->hasMany('Trips', [
-            'foreignKey' => 'vehicle_id'
+            'foreignKey' => 'vehicle_id',
+            'dependent' => true
         ]);
         $this->hasOne('Vehicleengines', [
-            'foreignKey' => 'vehicle_id'
+            'foreignKey' => 'vehicle_id',
+            'dependent' => true
         ]);
         $this->hasOne('Vehiclefluids', [
             'foreignKey' => 'vehicle_id'
@@ -129,13 +131,16 @@ class VehiclesTable extends Table
             'foreignKey' => 'vehicle_id'
         ]);
         $this->hasOne('Vehiclepurchases', [
-            'foreignKey' => 'vehicle_id'
+            'foreignKey' => 'vehicle_id',
+            'dependent' => true
         ]);
         $this->hasOne('Vehiclespecifications', [
-            'foreignKey' => 'vehicle_id'
+            'foreignKey' => 'vehicle_id',
+            'dependent' => true
         ]);
         $this->hasOne('Vehiclewheelstyres', [
-            'foreignKey' => 'vehicle_id'
+            'foreignKey' => 'vehicle_id',
+            'dependent' => true
         ]);
         $this->hasMany('Workorders', [
             'foreignKey' => 'vehicle_id'

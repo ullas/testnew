@@ -1,17 +1,21 @@
-<nav class="large-3 medium-4 columns" id="actions-sidebar">
-    <ul class="side-nav">
-        <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Html->link(__('Edit Vehicleoperationslimit'), ['action' => 'edit', $vehicleoperationslimit->id]) ?> </li>
-        <li><?= $this->Form->postLink(__('Delete Vehicleoperationslimit'), ['action' => 'delete', $vehicleoperationslimit->id], ['confirm' => __('Are you sure you want to delete # {0}?', $vehicleoperationslimit->id)]) ?> </li>
-        <li><?= $this->Html->link(__('List Vehicleoperationslimit'), ['action' => 'index']) ?> </li>
-        <li><?= $this->Html->link(__('New Vehicleoperationslimit'), ['action' => 'add']) ?> </li>
-        <li><?= $this->Html->link(__('List I Buttons'), ['controller' => 'Ibuttons', 'action' => 'index']) ?> </li>
-        <li><?= $this->Html->link(__('New I Button'), ['controller' => 'Ibuttons', 'action' => 'add']) ?> </li>
-    </ul>
-</nav>
-<div class="vehicleoperationslimit view large-9 medium-8 columns content">
-    <h3><?= h($vehicleoperationslimit->id) ?></h3>
-    <table class="vertical-table">
+<section class="content-header">
+  <h1>
+     <?php echo $this->request->params['controller'] ?> Details
+  </h1>
+  <ol class="breadcrumb">
+    <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+    <li><a href="/vehicleoperationslimit/"> Vehicle Operations Limit</a></li>
+    <li class="active">View</li>
+  </ol>
+</section>
+<section class="content">
+  <div class="row">
+  <div class="col-md-12">
+  	
+  	<div class="box box-primary">
+  		<div class="box-body">
+  		<table class="table table-hover">
+        
         <tr>
             <th><?= __('Odometer Offset') ?></th>
             <td><?= h($vehicleoperationslimit->odometer_offset) ?></td>
@@ -25,10 +29,6 @@
             <td><?= $this->Number->format($vehicleoperationslimit->vehice_id) ?></td>
         </tr>
         <tr>
-            <th><?= __('Id') ?></th>
-            <td><?= $this->Number->format($vehicleoperationslimit->id) ?></td>
-        </tr>
-        <tr>
             <th><?= __('Speed Limit') ?></th>
             <td><?= $this->Number->format($vehicleoperationslimit->speed_limit) ?></td>
         </tr>
@@ -37,24 +37,29 @@
             <td><?= $this->Number->format($vehicleoperationslimit->battery_voltage) ?></td>
         </tr>
         <tr>
-            <th><?= __('Accelarationlimit') ?></th>
+            <th><?= __('Accelaration Limit') ?></th>
             <td><?= $this->Number->format($vehicleoperationslimit->accelarationlimit) ?></td>
         </tr>
         <tr>
-            <th><?= __('Breakinglimit') ?></th>
+            <th><?= __('Breaking Limit') ?></th>
             <td><?= $this->Number->format($vehicleoperationslimit->breakinglimit) ?></td>
         </tr>
         <tr>
-            <th><?= __('Crashlimit') ?></th>
+            <th><?= __('Crash Limit') ?></th>
             <td><?= $this->Number->format($vehicleoperationslimit->crashlimit) ?></td>
         </tr>
         <tr>
-            <th><?= __('Shutlimit') ?></th>
+            <th><?= __('Shut Limit') ?></th>
             <td><?= $this->Number->format($vehicleoperationslimit->shutlimit) ?></td>
         </tr>
         <tr>
-            <th><?= __('Continiousruntime') ?></th>
+            <th><?= __('Continuous Run Time') ?></th>
             <td><?= $this->Number->format($vehicleoperationslimit->continiousruntime) ?></td>
         </tr>
     </table>
-</div>
+   </div><!--boxbody-->
+   </div><!-- box -->
+  
+  </div><!-- col12-->
+</div> 
+</section>

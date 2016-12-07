@@ -16,7 +16,7 @@ class PurposesController extends AppController
      *
      * @var array
      */
-    public $components = ['Datatable'];
+    public $components = ['Datatablemaster'];
 	
     /**
      * Index method
@@ -52,10 +52,11 @@ class PurposesController extends AppController
 		 
 				$fields[0] = array("name" =>"Purposes.id"  , "type" => "num");
 				$fields[1] = array("name" =>"Purposes.name"  , "type" => "char");
+				$fields[2] = array("name" =>"Purposes.description"  , "type" => "char");
 								
 		
 		$this->log($fields);
-		$output =$this->Datatable->getView($fields,['Customers'],$usrfiter);
+		$output =$this->Datatablemaster->getView($fields,['Customers'],$usrfiter);
 		$out =json_encode($output);  
 	   
 		$this->response->body($out);
@@ -91,14 +92,14 @@ class PurposesController extends AppController
             $purpose = $this->Purposes->patchEntity($purpose, $this->request->data);
 			$purpose['customer_id']=$this->loggedinuser['customer_id'];
             if ($this->Purposes->save($purpose)) {
-                $this->Flash->success(__('The purpose has been saved.'));
+            //    $this->Flash->success(__('The purpose has been saved.'));
 
-                return $this->redirect(['action' => 'index']);
+            //    return $this->redirect(['action' => 'index']);
             } else {
-                $this->Flash->error(__('The purpose could not be saved. Please, try again.'));
+            //    $this->Flash->error(__('The purpose could not be saved. Please, try again.'));
             }
         }
-        $customers = $this->Purposes->Customers->find('list', ['limit' => 200]);
+        $customers = $this->Purposes->Customers->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
         $this->set(compact('purpose', 'customers'));
         $this->set('_serialize', ['purpose']);
     }
@@ -115,18 +116,24 @@ class PurposesController extends AppController
         $purpose = $this->Purposes->get($id, [
             'contain' => []
         ]);
+		if($purpose['customer_id']!= $this->loggedinuser['customer_id'])
+		{
+			 $this->Flash->success(__('You are not Authorized.'));
+			 return $this->redirect(['action' => 'index']);
+			
+		}
         if ($this->request->is(['patch', 'post', 'put'])) {
             $purpose = $this->Purposes->patchEntity($purpose, $this->request->data);
 			$purpose['customer_id']=$this->loggedinuser['customer_id'];
             if ($this->Purposes->save($purpose)) {
-                $this->Flash->success(__('The purpose has been saved.'));
+            //    $this->Flash->success(__('The purpose has been saved.'));
 
-                return $this->redirect(['action' => 'index']);
+            //    return $this->redirect(['action' => 'index']);
             } else {
-                $this->Flash->error(__('The purpose could not be saved. Please, try again.'));
+            //    $this->Flash->error(__('The purpose could not be saved. Please, try again.'));
             }
         }
-        $customers = $this->Purposes->Customers->find('list', ['limit' => 200]);
+        $customers = $this->Purposes->Customers->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
         $this->set(compact('purpose', 'customers'));
         $this->set('_serialize', ['purpose']);
     }
@@ -140,14 +147,21 @@ class PurposesController extends AppController
      */
     public function delete($id = null)
     {
-        $this->request->allowMethod(['post', 'delete']);
+        //$this->request->allowMethod(['post', 'delete']);
         $purpose = $this->Purposes->get($id);
-        if ($this->Purposes->delete($purpose)) {
-            $this->Flash->success(__('The purpose has been deleted.'));
-        } else {
-            $this->Flash->error(__('The purpose could not be deleted. Please, try again.'));
-        }
-
+		if($purpose['customer_id'] = $this->loggedinuser['customer_id'])
+	    {
+	        if ($this->Purposes->delete($purpose)) {
+	        //    $this->Flash->success(__('The purpose has been deleted.'));
+	        } else {
+	        //    $this->Flash->error(__('The purpose could not be deleted. Please, try again.'));
+	        }
+		}
+		 else
+		 {
+	   	    $this->Flash->error(__('You are not authorized'));
+		
+	     }
         return $this->redirect(['action' => 'index']);
     }
 	
