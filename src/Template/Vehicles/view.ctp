@@ -85,38 +85,23 @@
     <div class="col-md-9">
       <div class="nav-tabs-custom">
         <ul class="nav nav-tabs">
-          <li class="details"><a href="#details" data-toggle="tab">Details</a></li>
+          <li class="active"><a href="#details" data-toggle="tab">Details</a></li>
           <li ><a href="#activity" data-toggle="tab">Specifications</a></li>
           <li><a href="#engine" data-toggle="tab">Engine Details</a></li>
           <li><a href="#wheel" data-toggle="tab">Wheel&Tyre</a></li>
           <li><a href="#fuel" data-toggle="tab">Fluids</a></li>
-          <li><a href="#fuel" data-toggle="tab">Purchase</a></li>
-          <li><a href="#fuel" data-toggle="tab">Loan/Lease</a></li>
-          <li><a href="#timeline" data-toggle="tab">Attachments</a></li>
-          
-          <li><a href="#timeline" data-toggle="tab">Service History</a></li>
-          <li><a href="#timeline" data-toggle="tab">Run History</a></li>
-          <li><a href="#fuel" data-toggle="tab">Icidents</a></li>
-          <li><a href="#timeline" data-toggle="tab">Inspections</a></li>
-          <li><a href="#timeline" data-toggle="tab">Issues</a></li>
-          <li><a href="#timeline" data-toggle="tab">Workoders</a></li>
-          <li><a href="#timeline" data-toggle="tab">Parts Usage</a></li>
-          <li><a href="#timeline" data-toggle="tab">Reminders</a></li>
-          <li><a href="#timeline" data-toggle="tab">Comments</a></li>
-          <li><a href="#timeline" data-toggle="tab">Assigment History</a></li>
-          <li><a href="#timeline" data-toggle="tab">Odometer History</a></li>
-          <li><a href="#timeline" data-toggle="tab">Status Changes</a></li>
-          <li><a href="#limits" data-toggle="tab">Settings</a></li>
+          <li><a href="#timeline" data-toggle="tab">Purchase</a></li>
+          <li><a href="#limits" data-toggle="tab">Loan/Lease</a></li>
+          <li><a href="#attachments" data-toggle="tab">Attachments</a></li>
            
         </ul>
         <div class="tab-content">
-          <div class="active tab-pane" id="activity">
+          <div class="active tab-pane" id="details">
           	
           </div>
           
-        </div>
-        <div class="tab-content">
-          <div class="active tab-pane" id="activity">
+       
+          <div class="tab-pane" id="activity">
              <form class="form-horizontal">
               <div class="form-group">
                 <label for="inputWidth" class="col-sm-3 control-label">Width</label>
@@ -630,7 +615,9 @@
             </form>
           </div>
           <!-- /.tab-pane -->
-          
+          <div class="tab-pane" id="attachments">
+          	
+          </div>
         </div>
         <!-- /.tab-content -->
       </div>

@@ -1,9 +1,34 @@
+
+
 <?php echo $this->element('templateelement'); ?>
 
+ <style>
+ div#myDropZone {
+    width: 100%;
+    min-height: 500px;
+    border : 1.9px dashed #008FE2;display: table;
+}
+.dz-message {
+	color:#333;
+	font-size:26px;
+    font-weight: 400;
+  	display: table-cell;
+   vertical-align: middle;
+}
+.dz-clickable {
+    cursor: pointer;
+}
+.dz-max-files-reached {
+          /*pointer-events: none;*/          cursor: default;
+}
+.upload-btn{
+	font-size:16px;font-weight: 400;padding:8px;
+}
+</style>  
 <!-- Content Header (Page header) -->
 <section class="content-header">
   <h1>
-    Edit Vehicle <small>Please fill the details to edit a new Vehicle</small>
+    Edit Vehicle <small>Please fill the details to edit a Vehicle</small>
   </h1>
   <ol class="breadcrumb">
     <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
@@ -69,8 +94,8 @@
 		            echo $this->Form->input('color');
 		            echo $this->Form->input('bodytype',['label'=>'Body Type','templateVars' => ['help' => 'Body type (XUV, Sedan, etc...)']]);
 		            echo $this->Form->input('bodysubtype',['label'=>'Body Subtype','templateVars' => ['help' => 'Extended Cab, Crew Cab, etc...']]);
-		             echo $this->Form->input('driverdetectionmode',['class'=>'select2']);
-                    echo $this->Form->input('activedriver',['class'=>'select2']);
+		            echo $this->Form->input('driverdetectionmode',['options' => $driverdetectionmodes,'class'=>'select2', 'empty' => true]);
+                    echo $this->Form->input('activedriver_id',['options' => $drivers,'class'=>'select2', 'empty' => true]);
            
                     echo $this->Form->input('purpose_id', ['options' => $purposes, 'empty' => true,'class'=>'select2']);
            
@@ -438,6 +463,8 @@
            
             echo $this->Form->input('vehiclefluid.fueltype',['label'=>'Fuel Type','class'=>'select2']);
             echo $this->Form->input('vehiclefluid.fuelquality',['label'=>'Fuel Quality', 'templateVars' => ['help' => 'Recommended Octane rating']]);
+			echo $this->Form->input('vehiclefluid.fueltank1_capacity', ['label'=>'Fuel Tank1 Capacity','type'=>'text','empty' => true,'templateVars' => ['icon' => '<div class="input-group-addon">' .$mptluservolumeunit.' </div>']]);
+            
 			?>
 			
 			<div class="form-group">
@@ -486,18 +513,15 @@
           
           <div class=" tab-pane" id="purchase">
             <div class="form-horizontal">
-                <?php
-           echo $this->Form->input('vehiclepurchase.purchasedate', ['type'=>'text','empty' => true,'class'=>'datemask', 'templateVars' => ['help' => 'YYYY-MM-DD (Ex: 2016-09-08)']]);
+            <?php
+            echo $this->Form->input('vehiclepurchase.purchasedate',['type'=>'text','empty' => true,'label'=>'Purchase Date','class'=>'datemask','templateVars' => ['icon' => '<div class="input-group-addon"><i class="fa fa-calendar"></i></div>']]);
             echo $this->Form->input('vehiclepurchase.price',['label'=>'Purchase Price']);
-            echo $this->Form->input('vehiclepurchase.currency_id',['label'=>'Currency','class'=>'select2']);
-            
-			echo $this->Form->input('vehiclepurchase.purchasepodometer',['label'=>'Odometer','templateVars' => ['help' => 'Odometer at the time of purchase']]);
+            echo $this->Form->input('vehiclepurchase.currency_id',['options' => $currencies,'empty' => true,'label'=>'Currency','class'=>'select2']);
+            echo $this->Form->input('vehiclepurchase.purchasepodometer',['label'=>'Odometer','templateVars' => ['help' => 'Odometer at the time of purchase']]);
             echo $this->Form->input('vehiclepurchase.comments',['label'=>'Comments','type'=>'textarea']);
             echo $this->Form->input('vehiclepurchase.warrantyexpdate', ['label'=>'Warranty Expiration Date','type'=>'text','empty' => true,'class'=>'datemask', 'templateVars' => ['help' => 'YYYY-MM-DD (Ex: 2016-09-08)']]);
             echo $this->Form->input('vehiclepurchase.warrentyexpmeter',['label'=>'Max Meter Value','templateVars' => ['help' => 'Maximum odometer allowed by warranty coverage']]);
-            
-           
-             ?>
+            ?>
             </div>
           </div>
           <!-- /.tab-pane -->
@@ -505,93 +529,13 @@
           <div class="tab-pane" id="lease">
             <div class="form-horizontal">
             	
-            	<div class="form-group">
-		                <label class="col-sm-3 control-label">Monthly Payment</label>
-		                <div class="col-sm-6">
-		                <div class="input-group ">
-		                  <div class="input-group-addon">
-		                    <i class="fa fa-dollar"></i>
-		                  </div>
-		                  <input type="text" class="form-control pull-right" id="vehiclelease-maonthypayment" name="vehiclelease[maonthypayment]">
-		                  
-		                </div>
-		                <div class="col-sm-12" style="padding-left:0px"></div>
-		             </div>
-		                
-		                <!-- /.input group -->
-		            </div>
-            
-            
-            	
-            	
-            	
-          	
-            	
-               <?php
-            //   echo $this->Form->input('install_date', ['empty' => true,'type'=>'text','class'=>'datemask']);
-           echo $this->Form->input('vehiclelease.startdate', ['empty' => true, 'label'=>'Start Date', 'empty' => true,'type'=>'text','class'=>'datemask', 'templateVars' => ['help' => 'YYYY-MM-DD (Ex: 2016-09-08)']]);
-            echo $this->Form->input('vehiclelease.enddate', ['empty' => true, 'label'=>'End Date', 'empty' => true,'type'=>'text','class'=>'datemask', 'templateVars' => ['help' => 'YYYY-MM-DD (Ex: 2016-09-08)']]);
-			?>
-			
-			<div class="form-group">
-		                <label class="col-sm-3 control-label">Amount Financed</label>
-		                <div class="col-sm-6">
-		                <div class="input-group ">
-		                  <div class="input-group-addon">
-		                    <i class="fa fa-dollar"></i>
-		                    <!-- <i class="fa fa-percent" aria-hidden="true"></i> -->
-		                  </div>
-		                  <input type="text" class="form-control pull-right" id="vehiclelease-amountfinanced" name="vehiclelease[amountfinanced]">
-		                  
-		                </div>
-		                <div class="col-sm-12" style="padding-left:0px"></div>
-		             </div>
-		                
-		                <!-- /.input group -->
-		            </div>
-		            
-		            
-		    	<div class="form-group">
-		                <label class="col-sm-3 control-label">Interest Rate</label>
-		                <div class="col-sm-6">
-		                <div class="input-group ">
-		                  <div class="input-group-addon">
-		                    <i >%</i>
-		                    <!-- <i class="fa fa-percent" aria-hidden="true"></i> -->
-		                  </div>
-		                  <input type="text" class="form-control pull-right" id="vehiclelease-interestrate" name="vehiclelease[interestrate]">
-		                  
-		                </div>
-		                <div class="col-sm-12" style="padding-left:0px"></div>
-		             </div>
-		                
-		                <!-- /.input group -->
-		            </div>
-			
-			
-			
-			<div class="form-group">
-		                <label class="col-sm-3 control-label">Residual Value</label>
-		                <div class="col-sm-6">
-		                <div class="input-group ">
-		                  <div class="input-group-addon">
-		                    <i class="fa fa-dollar"></i>
-		                    <!-- <i class="fa fa-percent" aria-hidden="true"></i> -->
-		                  </div>
-		                  <input type="text" class="form-control pull-right" id="vehiclelease-residualvalue" name="vehiclelease[residualvalue]">
-		                  
-		                </div>Estimated vehicle worth when the lease ends
-		                <div class="col-sm-12" style="padding-left:0px"></div>
-		             </div>
-		                
-		                <!-- /.input group -->
-		            </div>
-		            
-		            
-			
-            
-           
-           <?php
+           <?php	
+           	echo $this->Form->input('vehiclelease.maonthypayment', ['label'=>'Monthly Payment','type'=>'text','empty' => true,'templateVars' => ['icon' => '<div class="input-group-addon"><i class="fa fa-dollar"></i></div>']]);
+            echo $this->Form->input('vehiclelease.startdate', ['type'=>'text','empty' => true,'label'=>'Start Date','required' => 'required','class'=>'datemask','templateVars' => ['icon' => '<div class="input-group-addon"><i class="fa fa-calendar"></i></div>']]);
+            echo $this->Form->input('vehiclelease.enddate', ['type'=>'text','empty' => true,'label'=>'End Date','required' => 'required','class'=>'datemask','templateVars' => ['icon' => '<div class="input-group-addon"><i class="fa fa-calendar"></i></div>']]);
+            echo $this->Form->input('vehiclelease.amountfinanced', ['type'=>'text','empty' => true,'templateVars' => ['icon' => '<div class="input-group-addon"><i class="fa fa-dollar"></i></div>']]);
+            echo $this->Form->input('vehiclelease.interestrate', ['label'=>'Interest Rate','type'=>'text','empty' => true,'templateVars' => ['icon' => '<div class="input-group-addon"><i>%</i></div>']]);
+            echo $this->Form->input('vehiclelease.residualvalue', ['label'=>'Residual Value','type'=>'text','empty' => true,'templateVars' => ['icon' => '<div class="input-group-addon"><i class="fa fa-dollar"></i></div>']]);
             echo $this->Form->input('vehiclelease.accountnumber', ['label'=>'Account Number']);
             echo $this->Form->input('vehiclelease.ifsccode', ['label'=>'IFSC Code']);
             echo $this->Form->input('vehiclelease.swiftcode', ['label'=>'Swift Code']);
@@ -605,7 +549,25 @@
           
            <div class="tab-pane" id="docs">
             <div class="form-horizontal">
-              
+            	
+            	
+            	<?php echo $this->Form->input('attachment', array('type' => 'hidden')); ?>
+            	
+            	<!-- <div class="form-group">
+            		<label class="col-sm-3 control-label" for="upload">Picture:</label>
+            		<div class="col-sm-6">
+            			<div id="drop" class="dropzone" action="/Uploads/upload"></div>
+					</div>
+				</div> -->
+				
+			    <!-- upload component -->
+            	<div class="form-group" style="margin:20px;"><div id="myDropZone" class="dropzone"><div class="dz-message text-center"><i class="fa fa-cloud-upload text-light-blue fa-5x"></i>
+            		<br/><span>Drag and drop Files Here to upload.</span>
+            		<br/><span class="upload-btn bg-info">or select files to Upload</span></div></div>
+            	</div>
+            	
+            	
+            	
             </div>
           </div>
           <!-- /.tab-pane -->
@@ -622,7 +584,7 @@
   <!-- /.row -->
   <div class="row">
    <div class="form-group">
-                <div class="col-sm-offset-6 col-sm-12">
+                <div class="col-sm-12 text-center">
                   <button type="submit" class="btn btn-success">Save</button>
                 </div>
    </div>
@@ -632,11 +594,6 @@
 </section>
 <!-- /.content -->
 <?php
-$this->Html->css([
-   
-   
-  ],
-  ['block' => 'css']);
 
 $this->Html->script([
   'AdminLTE./plugins/select2/select2.full.min',
@@ -650,10 +607,49 @@ $this->Html->script([
 ?>
 <?php $this->start('scriptBotton'); ?>
 <script>
+	//dropzone
+	Dropzone.autoDiscover = false;
+	var myDropzone = $("div#myDropZone").dropzone({
+         url : "/Uploads/upload",
+         maxFiles: 1,
+         addRemoveLinks: true, 
+         dictRemoveFileConfirmation : 'Are you sure you want to remove the particular file ?' ,
+         init: function() {
+     		this.on("complete", function (file) {
+      			if (this.getUploadingFiles().length === 0 && this.getQueuedFiles().length === 0) {
+					//alert(file);      
+				}
+    		});
+    		this.on("removedfile", function (file) {
+          		$("#attachment").val("");
+      		});
+    		this.on("queuecomplete", function (file) {
+          // alert("All files have uploaded ");
+      		});
+      
+      		this.on("success", function (file) {
+          		$("#attachment").val(file['name']);console.log(file['name']); //alert("Success ");
+      		});
+      
+      		this.on("error", function (file) {
+          		// alert("Error in uploading ");
+      		});
+      
+      		this.on("maxfilesexceeded", function(file){
+        		alert("You can not upload any more files.");this.removeFile(file);
+    		});
+    	},
+       
+    });
+
   $(function () {
+      
     //Initialize Select2 Elements
-   $(".select2").select2({ width: '100%' });
-   $(".datemask").inputmask("yyyy/mm/dd", {"placeholder": "yyyy/mm/dd"});
+  $(".select2").select2({ width: '100%' });
+   $('.datemask').datepicker({
+            format:"dd/mm/yy",
+              autoclose: true
+   });
 /*
     //Datemask dd/mm/yyyy
     $("#datemask").inputmask("dd/mm/yyyy", {"placeholder": "dd/mm/yyyy"});

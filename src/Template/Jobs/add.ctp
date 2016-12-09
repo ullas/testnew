@@ -1,15 +1,5 @@
-<?php
-  $myTemplates = [
-    'inputContainer' => '<div class="form-group">{{content}}<div class="col-sm-offset-3 col-sm-6" style="margin-top:4px">{{help}}</div></div>',
-     'label' => '<label class="col-sm-3 control-label" {{attrs}}>{{text}}</label>',
-    'input' => '<div class="col-sm-6"><div class="input-group">{{icon}}<input type="{{type}}" name="{{name}}"{{attrs}}/></div></div>',
-    
-     'select' => '<div class="col-sm-6"><select name="{{name}}"{{attrs}}>{{content}}</select></div>',
-     'textarea' => '<div class="col-sm-6"><textarea name="{{name}}"{{attrs}}>{{value}}</textarea></div>'
-];
-$this->Form->templates($myTemplates);
-?>
 
+<?php echo $this->element('templateelement'); ?>
 <!-- Content Header (Page header) -->
 <section class="content-header">
   <h1>
@@ -36,11 +26,14 @@ $this->Form->templates($myTemplates);
              <div class="form-horizontal">
         <?php
             echo $this->Form->input('jobdate',['type'=>'text','empty' => true,'label'=>'Job Date','required' => 'required','class'=>'datemask','templateVars' => ['icon' => '<div class="input-group-addon"><i class="fa fa-calendar"></i></div>']]);
+            
             echo $this->Form->input('trackingobject_id', ['label'=>'Tracking Object','options' => $trackingobjects, 'empty' => true,'class'=>'select2','required' => 'required']);
-            echo $this->Form->input('assigned_by',['label'=>'Assigned By','type'=>'text']);
+            
+            echo $this->Form->input('assigned_by',[ 'label'=>'Assigned By','options' => $addresses, 'empty' => true,'class'=>'select2']);
+            
             echo $this->Form->input('title',['type'=>'text','required' => 'required']);
             echo $this->Form->input('description',['type'=>'text']);
-            echo $this->Form->input('jobtime', ['empty' => true]);
+            echo $this->Form->input('jobtime',['class' => 'timepicker','type' => 'text','templateVars' => ['opentag' => '<div class="bootstrap-timepicker">','closetag' => '</div>','icon' => '<div class="input-group-addon"><i class="fa fa-clock-o"></i></div>']]);
             echo $this->Form->input('comments',['label'=>'Assigned By','type'=>'text']);
             echo $this->Form->input('timepolicy_id', ['label'=>'Time Policy','options' => $timepolicies, 'empty' => true,'class'=>'select2']);
             echo $this->Form->input('template_id',['label'=>'Template','options' => $templates, 'empty' => true,'class'=>'select2']);
@@ -81,7 +74,6 @@ $this->Form->templates($myTemplates);
 <?php
 $this->Html->css([
   'AdminLTE./plugins/datepicker/datepicker3',
-  'AdminLTE./plugins/select2/select2.min'
   ],
   ['block' => 'css']);
 

@@ -22,7 +22,7 @@ class VehiclesController extends AppController
       
     public function index()
     {
-        $this->loadModel('CreateConfigs');
+         $this->loadModel('CreateConfigs');
          $configs=$this->CreateConfigs->find('all')->where(['table_name' => 'Vehicles'])->order(['"order"' => 'ASC'])->toArray();
 		 $this->loadModel('Usersettings');
 		 $usersettings=$this->Usersettings->find('all')->where(['user_id' => $this->loggedinuser['id']])->where(['module' => 'Vehicles'])->where(['key' => 'INIT_VISIBLE_COLUMNS_VEHICLES'])->toArray();
@@ -171,7 +171,7 @@ private function getDateRangeFilters($dates,$basic)  {
 			
         }
         
-		
+		$contains=['Vehiclespecifications', 'Vehicleengines', 'Vehiclewheelstyres','Vehiclefluids','Vehiclepurchases','Vehicleleases'];
 		
 		                           
         $output =$this->Datatable->getView($fields,['Vehicletypes', 'Vehiclestatuses', 'Ownerships', 'Symbols', 'Driverdetectionmodes', 'Stations', 'Departments','Purposes','Transporters','Activedrivers','Customers'],$usrfiter);
@@ -185,7 +185,7 @@ private function getDateRangeFilters($dates,$basic)  {
     }  
 
 
-
+ 
     /**
      * View method
      *
@@ -196,7 +196,7 @@ private function getDateRangeFilters($dates,$basic)  {
     public function view($id = null)
     {
         $vehicle = $this->Vehicles->get($id, [
-            'contain' => ['Vehicletypes', 'Vehiclestatuses', 'Ownerships', 'Symbols', 'Stations', 'Departments',  'Purposes', 'Transporters', 'Drivers', 'Fuelentries', 'Issues', 'Servicesentries', 'Trips', 'Vehicleengines', 'Vehiclefluids', 'Vehiclepermits', 'Vehiclepurchases', 'Vehiclespecifications', 'Vehiclewheelstyres', 'Workorders']
+            'contain' => ['Vehicletypes', 'Vehiclestatuses', 'Ownerships', 'Symbols', 'Stations', 'Departments',  'Purposes', 'Transporters', 'Drivers', 'Fuelentries', 'Issues', 'Servicesentries', 'Trips', 'Vehicleengines', 'Vehiclefluids', 'Vehiclepermits', 'Vehiclepurchases', 'Vehiclespecifications', 'Vehiclewheelstyres', 'Workorders','Vehicleleases']
         ]);
 
         $this->set('vehicle', $vehicle);
@@ -213,14 +213,23 @@ private function getDateRangeFilters($dates,$basic)  {
         $vehicle = $this->Vehicles->newEntity();
 		
         if ($this->request->is('post')) {
-            $vehicle = $this->Vehicles->patchEntity($vehicle, $this->request->data,['associated' => ['Vehiclespecifications',
-		                        'Vehicleengines',
+            $vehicle = $this->Vehicles->patchEntity($vehicle, $this->request->data,
+            ['associated' => ['Vehiclespecifications',
+		                       'Vehicleengines',
 			                   'Vehiclewheelstyres',
 			                   'Vehiclefluids',
-			                   'Vehiclepurchases'
+			                   'Vehiclepurchases',
+			                   'Vehicleleases',
+			                   'Customers'
 			                   ]]);
 							   
             $vehicle['customer_id']=$this->loggedinuser['customer_id'];
+			$vehicle['vehiclespecification']['customer_id']=$this->loggedinuser['customer_id'];
+			$vehicle['vehicleengine']['customer_id']=$this->loggedinuser['customer_id'];
+			$vehicle['vehiclewheelstyre']['customer_id']=$this->loggedinuser['customer_id'];
+			$vehicle['vehiclefluid']['customer_id']=$this->loggedinuser['customer_id'];
+			$vehicle['vehiclepurchase']['customer_id']=$this->loggedinuser['customer_id'];
+			$vehicle['vehiclelease']['customer_id']=$this->loggedinuser['customer_id'];
 			$trobjTable = TableRegistry::get('Trackingobjects');
 			$trobj=$trobjTable->newEntity();
 			
@@ -246,11 +255,12 @@ private function getDateRangeFilters($dates,$basic)  {
         $symbols = $this->Vehicles->Symbols->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
         $stations = $this->Vehicles->Stations->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
         $departments = $this->Vehicles->Departments->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
-        
+        $driverdetectionmodes = $this->Vehicles->Driverdetectionmodes->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
         $purposes = $this->Vehicles->Purposes->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
         $transporters = $this->Vehicles->Transporters->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
         $drivers = $this->Vehicles->Drivers->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
-        $this->set(compact('vehicle', 'vehicletypes', 'vehiclestatuses', 'ownerships', 'symbols', 'stations', 'departments',  'purposes', 'transporters', 'drivers'));
+        $currencies = $this->Vehicles->Currencies->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
+        $this->set(compact('vehicle', 'vehicletypes', 'vehiclestatuses', 'ownerships', 'symbols', 'stations', 'departments',  'purposes', 'transporters', 'drivers','driverdetectionmodes','currencies'));
         $this->set('_serialize', ['vehicle']);
     }
 
@@ -266,10 +276,12 @@ private function getDateRangeFilters($dates,$basic)  {
         $trobjTable = TableRegistry::get('Trackingobjects');	
         $vehicle = $this->Vehicles->get($id, [
             'contain' => ['Drivers','Vehiclespecifications',
-		                        'Vehicleengines',
-			                   'Vehiclewheelstyres',
-			                   'Vehiclefluids',
-			                   'Vehiclepurchases']
+		                            'Vehicleengines',
+			                        'Vehiclewheelstyres',
+			                        'Vehiclefluids',
+			                        'Vehiclepurchases',
+			                        'Vehicleleases',
+			                        'Customers']
         ]);
 		$trobj=$trobjTable->get($vehicle->trackingobject_id, [
             'contain' => []
@@ -284,6 +296,9 @@ private function getDateRangeFilters($dates,$basic)  {
 			$trobj->name=$vehicle->name;
 		    $trobjTable->save($trobj);
             if ($this->Vehicles->save($vehicle)) {
+            
+			
+				
                 $this->Flash->success(__('The vehicle has been saved.'));
 
                 return $this->redirect(['action' => 'index']);
@@ -296,12 +311,14 @@ private function getDateRangeFilters($dates,$basic)  {
         $ownerships = $this->Vehicles->Ownerships->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
         $symbols = $this->Vehicles->Symbols->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
         $stations = $this->Vehicles->Stations->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
-        $departments = $this->Vehicles->Departments->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
+        $driverdetectionmodes = $this->Vehicles->Driverdetectionmodes->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
         
+        $departments = $this->Vehicles->Departments->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
+        $currencies = $this->Vehicles->Currencies->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
         $purposes = $this->Vehicles->Purposes->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
         $transporters = $this->Vehicles->Transporters->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
         $drivers = $this->Vehicles->Drivers->find('list', ['limit' => 200]);
-        $this->set(compact('vehicle', 'vehicletypes', 'vehiclestatuses', 'ownerships', 'symbols', 'stations', 'departments',  'purposes', 'transporters', 'drivers'));
+        $this->set(compact('vehicle', 'vehicletypes','driverdetectionmodes', 'vehiclestatuses', 'ownerships', 'symbols', 'stations', 'departments',  'purposes', 'transporters', 'drivers','currencies'));
         $this->set('_serialize', ['vehicle']);
     }
 

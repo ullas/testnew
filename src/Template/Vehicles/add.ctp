@@ -94,8 +94,8 @@
 		            echo $this->Form->input('color');
 		            echo $this->Form->input('bodytype',['label'=>'Body Type','templateVars' => ['help' => 'Body type (XUV, Sedan, etc...)']]);
 		            echo $this->Form->input('bodysubtype',['label'=>'Body Subtype','templateVars' => ['help' => 'Extended Cab, Crew Cab, etc...']]);
-		             echo $this->Form->input('driverdetectionmode',['class'=>'select2']);
-                    echo $this->Form->input('activedriver_id',['class'=>'select2']);
+		            echo $this->Form->input('driverdetectionmode',['options' => $driverdetectionmodes,'class'=>'select2', 'empty' => true]);
+                    echo $this->Form->input('activedriver_id',['options' => $drivers,'class'=>'select2', 'empty' => true]);
            
                     echo $this->Form->input('purpose_id', ['options' => $purposes, 'empty' => true,'class'=>'select2']);
            
@@ -511,26 +511,25 @@
           
           <div class=" tab-pane" id="purchase">
             <div class="form-horizontal">
-                <?php
-           echo $this->Form->input('vehiclepurchase.purchasedate', ['type'=>'text','empty' => true,'class'=>'datemask', 'templateVars' => ['help' => 'YYYY-MM-DD (Ex: 2016-09-08)']]);
+            <?php
+            echo $this->Form->input('vehiclepurchase.purchasedate', ['type'=>'text','empty' => true,'class'=>'datemask', 'templateVars' => ['help' => 'YYYY-MM-DD (Ex: 2016-09-08)']]);
             echo $this->Form->input('vehiclepurchase.price',['label'=>'Purchase Price']);
-            echo $this->Form->input('vehiclepurchase.currency_id',['label'=>'Currency','class'=>'select2']);
-            
-			echo $this->Form->input('vehiclepurchase.purchasepodometer',['label'=>'Odometer','templateVars' => ['help' => 'Odometer at the time of purchase']]);
+            echo $this->Form->input('vehiclepurchase.currency_id',['options' => $currencies,'empty' => true,'label'=>'Currency','class'=>'select2']);
+            echo $this->Form->input('vehiclepurchase.purchasepodometer',['label'=>'Odometer','templateVars' => ['help' => 'Odometer at the time of purchase']]);
             echo $this->Form->input('vehiclepurchase.comments',['label'=>'Comments','type'=>'textarea']);
             echo $this->Form->input('vehiclepurchase.warrantyexpdate', ['label'=>'Warranty Expiration Date','type'=>'text','empty' => true,'class'=>'datemask', 'templateVars' => ['help' => 'YYYY-MM-DD (Ex: 2016-09-08)']]);
             echo $this->Form->input('vehiclepurchase.warrentyexpmeter',['label'=>'Max Meter Value','templateVars' => ['help' => 'Maximum odometer allowed by warranty coverage']]);
-            
-           
-             ?>
+            ?>
             </div>
           </div>
           <!-- /.tab-pane -->
           
           <div class="tab-pane" id="lease">
             <div class="form-horizontal">
-            	
-            	<div class="form-group">
+            <?php	
+            	echo $this->Form->input('vehiclelease.maonthypayment', ['type'=>'text','empty' => true,'templateVars' => ['icon' => '<div class="input-group-addon"><i class="fa fa-dollar"></i></div>']]);
+            ?>
+            	<!-- <div class="form-group">
 		                <label class="col-sm-3 control-label">Monthly Payment</label>
 		                <div class="col-sm-6">
 		                <div class="input-group ">
@@ -543,20 +542,12 @@
 		                <div class="col-sm-12" style="padding-left:0px"></div>
 		             </div>
 		                
-		                <!-- /.input group -->
-		            </div>
+		            </div>  -->
             
-            
-            	
-            	
-            	
-          	
-            	
-               <?php
-            //   echo $this->Form->input('install_date', ['empty' => true,'type'=>'text','class'=>'datemask']);
-           echo $this->Form->input('vehiclelease.startdate', ['empty' => true, 'label'=>'Start Date', 'empty' => true,'type'=>'text','class'=>'datemask', 'templateVars' => ['help' => 'YYYY-MM-DD (Ex: 2016-09-08)']]);
-            echo $this->Form->input('vehiclelease.enddate', ['empty' => true, 'label'=>'End Date', 'empty' => true,'type'=>'text','class'=>'datemask', 'templateVars' => ['help' => 'YYYY-MM-DD (Ex: 2016-09-08)']]);
-			?>
+           <?php	
+            echo $this->Form->input('vehiclelease.startdate', ['type'=>'text','empty' => true,'label'=>'Start Date','required' => 'required','class'=>'datemask','templateVars' => ['icon' => '<div class="input-group-addon"><i class="fa fa-calendar"></i></div>']]);
+            echo $this->Form->input('vehiclelease.enddate', ['type'=>'text','empty' => true,'label'=>'End Date','required' => 'required','class'=>'datemask','templateVars' => ['icon' => '<div class="input-group-addon"><i class="fa fa-calendar"></i></div>']]);
+           ?>
 			
 			<div class="form-group">
 		                <label class="col-sm-3 control-label">Amount Financed</label>
@@ -726,8 +717,11 @@ $this->Html->script([
   $(function () {
       
     //Initialize Select2 Elements
-   $(".select2").select2({ width: '100%' });
-   $(".datemask").inputmask("yyyy/mm/dd", {"placeholder": "yyyy/mm/dd"});
+  $(".select2").select2({ width: '100%' });
+   $('.datemask').datepicker({
+            format:"dd/mm/yy",
+              autoclose: true
+   });
 /*
     //Datemask dd/mm/yyyy
     $("#datemask").inputmask("dd/mm/yyyy", {"placeholder": "dd/mm/yyyy"});
