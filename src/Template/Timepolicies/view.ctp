@@ -20,17 +20,34 @@
             <td><?= h($timepolicy->name) ?></td>
         </tr>
         <tr>
-            <th><?= __('Customer') ?></th>
-            <td><?= $timepolicy->has('customer') ? $this->Html->link($timepolicy->customer->name, ['controller' => 'Customers', 'action' => 'view', $timepolicy->customer->id]) : '' ?></td>
+            <th><?= __('Sunday') ?></th>
+            <td><?= $timepolicy->sunday ? __('Yes') : __('No'); ?></td>
         </tr>
         <tr>
-            <th><?= __('Description') ?></th>
-            <td><?= h($timepolicy->description) ?></td>
+            <th><?= __('Monday') ?></th>
+            <td><?= $timepolicy->monday ? __('Yes') : __('No'); ?></td>
         </tr>
         <tr>
-            <th><?= __('Id') ?></th>
-            <td><?= $this->Number->format($timepolicy->id) ?></td>
+            <th><?= __('Tuesday') ?></th>
+            <td><?= $timepolicy->tuesday ? __('Yes') : __('No'); ?></td>
         </tr>
+        <tr>
+            <th><?= __('Wednesday') ?></th>
+            <td><?= $timepolicy->wednesday ? __('Yes') : __('No'); ?></td>
+        </tr>
+        <tr>
+            <th><?= __('Thursday') ?></th>
+            <td><?= $timepolicy->thursday ? __('Yes') : __('No'); ?></td>
+        </tr>
+        <tr>
+            <th><?= __('Friday') ?></th>
+            <td><?= $timepolicy->friday ? __('Yes') : __('No'); ?></td>
+        </tr>
+        <tr>
+            <th><?= __('Saturday') ?></th>
+            <td><?= $timepolicy->saturday ? __('Yes') : __('No'); ?></td>
+        </tr>
+        
         <tr>
             <th><?= __('Sun Start Time') ?></th>
             <td><?= h($timepolicy->sun_start_time) ?></td>
@@ -88,44 +105,12 @@
             <td><?= h($timepolicy->sat_end_time) ?></td>
         </tr>
         <tr>
-            <th><?= __('Sunday') ?></th>
-            <td><?= $timepolicy->sunday ? __('Yes') : __('No'); ?></td>
-        </tr>
-        <tr>
-            <th><?= __('Monday') ?></th>
-            <td><?= $timepolicy->monday ? __('Yes') : __('No'); ?></td>
-        </tr>
-        <tr>
-            <th><?= __('Tuesday') ?></th>
-            <td><?= $timepolicy->tuesday ? __('Yes') : __('No'); ?></td>
-        </tr>
-        <tr>
-            <th><?= __('Wednesday') ?></th>
-            <td><?= $timepolicy->wednesday ? __('Yes') : __('No'); ?></td>
-        </tr>
-        <tr>
-            <th><?= __('Thursday') ?></th>
-            <td><?= $timepolicy->thursday ? __('Yes') : __('No'); ?></td>
-        </tr>
-        <tr>
-            <th><?= __('Friday') ?></th>
-            <td><?= $timepolicy->friday ? __('Yes') : __('No'); ?></td>
-        </tr>
-        <tr>
-            <th><?= __('Saturday') ?></th>
-            <td><?= $timepolicy->saturday ? __('Yes') : __('No'); ?></td>
-        </tr>
-        <tr>
             <th><?= __('Ev') ?></th>
             <td><?= $timepolicy->ev ? __('Yes') : __('No'); ?></td>
         </tr>
         <tr>
-            <th><?= __('System') ?></th>
-            <td><?= $timepolicy->system ? __('Yes') : __('No'); ?></td>
-        </tr>
-        <tr>
-            <th><?= __('Enabled') ?></th>
-            <td><?= $timepolicy->enabled ? __('Yes') : __('No'); ?></td>
+            <th><?= __('Description') ?></th>
+            <td><?= h($timepolicy->description) ?></td>
         </tr>
     </table>
    </div><!--boxbody-->

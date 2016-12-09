@@ -45,7 +45,8 @@ class ContractorsController extends AppController
 
 
 	
-	public function ajaxdata() {
+	public function ajaxdata() 
+	{
         $this->autoRender= false;
 		$usrfiter="";
 		$basic = isset($this->request->query['basic'])?$this->request->query['basic']:"" ;
@@ -69,9 +70,7 @@ class ContractorsController extends AppController
 	   
 		$this->response->body($out);
 	    return $this->response;
-	     
-             
- }
+	}
 
     /**
      * View method
