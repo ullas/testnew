@@ -90,7 +90,7 @@ public function ajaxdata() {
         $vehiclelease = $this->Vehicleleases->newEntity();
         if ($this->request->is('post')) {
             $vehiclelease = $this->Vehicleleases->patchEntity($vehiclelease, $this->request->data);
-            $vehiclelease['customer_id']=$this->currentuser['customer_id'];
+            $vehiclelease['customer_id']=$this->loggedinuser['customer_id'];
             if ($this->Vehicleleases->save($vehiclelease)) {
                 $this->Flash->success(__('The vehiclelease has been saved.'));
 

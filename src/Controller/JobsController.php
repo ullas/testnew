@@ -55,7 +55,7 @@ class JobsController extends AppController
 
 
 	public function updateSettings()
-{
+	{
    	
 	$this->autoRender= false;	
 	$columns=$_POST['columns'];
@@ -80,7 +80,9 @@ class JobsController extends AppController
 	    ->execute();
 	$this->response->body($res);
 	
-   }else{
+   }
+   else
+   {
    	  
 	   $query1 = $userSettings->query();
 	   $res=$query1->insert(['key','value','user_id','module'])
@@ -93,11 +95,11 @@ class JobsController extends AppController
 	   $this->response->body($res);
 	
 	   
-   }
+   	}
 	
-}
+	}
 
-private function toPostDBDate($date){
+	private function toPostDBDate($date){
 	
 		 $ret="";
 		 $parts=explode("/",$date);
@@ -107,9 +109,10 @@ private function toPostDBDate($date){
 		 }
 		
 	  return $ret;
-}
+	}
 
-private function getDateRangeFilters($dates,$basic)  {
+	private function getDateRangeFilters($dates,$basic)  
+	{
 	
 	$sql="";	
 		
@@ -134,10 +137,10 @@ private function getDateRangeFilters($dates,$basic)  {
 	
 	
 	return $sql;
-}
+	}
 	
     
-public function ajaxdata() {
+	public function ajaxdata() {
         $this->autoRender= false;
 		$usrfiter="";
 		$basic = isset($this->request->query['basic'])?$this->request->query['basic']:"" ;
@@ -163,17 +166,14 @@ public function ajaxdata() {
 			
         }
         
-		
-		
-		                           
-        $output =$this->Datatable->getView($fields,[ 'Trackingobjects', 'Customers', 'Timepolicies', 'Templates', 'Locations'],$usrfiter);
+		$output =$this->Datatable->getView($fields,[ 'Trackingobjects', 'Customers', 'Timepolicies', 'Templates', 'Locations'],$usrfiter);
         $out =json_encode($output);  
 	   
 		$this->response->body($out);
 	    return $this->response;
 	     
              
- } 
+ 	} 
 
     /**
      * View method
@@ -216,7 +216,8 @@ public function ajaxdata() {
         $timepolicies = $this->Jobs->Timepolicies->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
         $templates = $this->Jobs->Templates->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
         $locations = $this->Jobs->Locations->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
-        $this->set(compact('job', 'trackingobjects', 'customers', 'timepolicies', 'templates', 'locations'));
+        $addresses = $this->Jobs->Addresses->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
+        $this->set(compact('job', 'trackingobjects', 'customers', 'timepolicies', 'templates', 'locations','addresses'));
         $this->set('_serialize', ['job']);
     }
 
@@ -252,7 +253,8 @@ public function ajaxdata() {
         $timepolicies = $this->Jobs->Timepolicies->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
         $templates = $this->Jobs->Templates->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
         $locations = $this->Jobs->Locations->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
-        $this->set(compact('job', 'trackingobjects', 'customers', 'timepolicies', 'templates', 'locations'));
+        $addresses = $this->Jobs->Addresses->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
+        $this->set(compact('job', 'trackingobjects', 'customers', 'timepolicies', 'templates', 'locations','addresses'));
         $this->set('_serialize', ['job']);
     }
 
