@@ -14,8 +14,8 @@ if (file_exists($file)) {
             <i class="fa fa-dashboard"></i> <span>Dashboard</span> <i class="fa fa-angle-left pull-right"></i>
         </a>
         <ul class="treeview-menu">
-            <li><a href="<?php echo $this->Url->build('/dashboard'); ?>"><i class="glyphicon glyphicon-stats"></i>Manager DashBoad</a></li>
-            <li><a href="<?php echo $this->Url->build('/dashboard/operations'); ?>"><div class="pull-left image mptl-monitoring"></div>Operations</a></li> 
+            <li><a href="<?php echo $this->Url->build('/dashboard'); ?>"><i class="glyphicon glyphicon-stats"></i>Manager Dashboard</a></li>
+            <li><a href="<?php echo $this->Url->build('/dashboard/operations'); ?>"><div class="pull-left image mptl-monitoring"></div>Operations Dashboard</a></li>
         </ul>
     </li>
     <li class="treeview">
@@ -27,10 +27,10 @@ if (file_exists($file)) {
             <li><a href="<?php echo $this->Url->build('/tracking/'); ?>"><i class="fa fa-eye "></i> <span>Tracking</span></a></li>
              <li><a href="<?php echo $this->Url->build('/tripmonitor'); ?>"><i class="fa fa-desktop "></i> <span>Trip Monitoring</span></a></li>
            </ul>
-        
+
     </li>
-    
-    
+
+
      <li class="treeview">
         <a href="#">
             <i class="fa fa-history"></i> <span>Logs</span>
@@ -41,10 +41,10 @@ if (file_exists($file)) {
             <li><a href="<?php echo $this->Url->build('/alerts'); ?>"><i class="glyphicon glyphicon-bell"></i>Alerts <span class="label label-primary pull-right">13</span></a></li>
             <li><a href="<?php echo $this->Url->build('/drivers/logs'); ?>"><i class="glyphicon glyphicon-list-alt"></i> <span>Driver Logs</span></a></li>
             <li><a href="<?php echo $this->Url->build('/playback'); ?>"><i class="glyphicon glyphicon-repeat"></i> <span>Play Back</span></a></li>
-             
+
         </ul>
     </li>
-    
+
      <li class="header">OPERATIONS</li>
      <li class="treeview">
         <a href="#">
@@ -55,7 +55,7 @@ if (file_exists($file)) {
             <li><a href="<?php echo $this->Url->build('/schedules'); ?>"><i class="glyphicon glyphicon-list"></i>Schedules <span class="label label-primary pull-right">13</span></a></li>
             <li><a href="<?php echo $this->Url->build('/trips'); ?>"><i class="fa fa-road"></i>Trip</a></li>
             <li><a href="<?php echo $this->Url->build('/subscriptions'); ?>"><i class="fa fa-link"></i>Subscriptions</a></li>
-            <li><a href="<?php echo $this->Url->build('/assigments'); ?>"><i class="fa fa-external-link"></i>Assigments</a></li>
+            <li><a href="<?php echo $this->Url->build('/assigments'); ?>"><i class="fa fa-external-link"></i>Assignments</a></li>
              <li><a href="<?php echo $this->Url->build('/jobs'); ?>"><i class="fa fa-flag-checkered"></i>Jobs</a></li>
         </ul>
     </li>
@@ -74,10 +74,10 @@ if (file_exists($file)) {
             <li><a href="<?php echo $this->Url->build('/drivers'); ?>"><div class="pull-left image mptl-driver"></div>Drivers </a></li>
         </ul>
     </li>
-    
-    
+
+
     <?php if ($loggedinuser['role'] == "admin"):  ?>
-    
+
     <li class="treeview">
         <a href="#">
             <i class="fa fa-puzzle-piece"></i> <span>Administration</span>
@@ -93,11 +93,11 @@ if (file_exists($file)) {
             <li><a href="<?php echo $this->Url->build('/vehicles'); ?>"><i class="fa fa-bus"></i>Vehicles</a></li>
             <li><a href="<?php echo $this->Url->build('/people'); ?>"><i class="fa fa-user"></i>People</a></li>
             <li><a href="<?php echo $this->Url->build('/assets'); ?>"><i class="fa fa-cube"></i>Assets</a></li>
-           
+
         </ul>
     </li>
-    
-    
+
+
     <li class="treeview">
         <a href="#">
             <i class="fa fa-laptop"></i>
@@ -109,7 +109,7 @@ if (file_exists($file)) {
             <li><a href="<?php echo $this->Url->build('/ibuttons'); ?>"><i class="fa fa-dot-circle-o"></i> iButtons</a></li>
             <li><a href="<?php echo $this->Url->build('/rfids'); ?>"><i class="fa fa-credit-card"></i> RFID Tags</a></li>
             <li><a href="<?php echo $this->Url->build('/simcards'); ?>"><i class="fa fa-credit-card"></i> SIM Cards</a></li>
-           
+
         </ul>
     </li>
     <li class="treeview">
@@ -122,7 +122,7 @@ if (file_exists($file)) {
             <li><a href="<?php echo $this->Url->build('/groups'); ?>"><i class="fa fa-cubes"></i> Groups</a></li>
             <li><a href="<?php echo $this->Url->build('/passengergroups'); ?>"><div class="pull-left image mptl-pax"></div> Passenger Groups</a></li>
             <li><a href="<?php echo $this->Url->build('/drivergroups'); ?>"><i class="ion ion-person-stalker"></i> Driver Groups</a></li>
-            
+
         </ul>
     </li>
     <li class="treeview">
@@ -133,7 +133,7 @@ if (file_exists($file)) {
         <ul class="treeview-menu">
             <li><a href="<?php echo $this->Url->build('/addresses'); ?>"><i class="ion ion-android-contact"></i>Addesses</a></li>
             <li><a href="<?php echo $this->Url->build('/distributionlists'); ?>"><i class="ion ion-android-contacts"></i>Distribution Lists</a></li>
-            
+
         </ul>
     </li>
     <li class="treeview">
@@ -142,10 +142,10 @@ if (file_exists($file)) {
             <i class="fa fa-angle-left pull-right"></i>
         </a>
         <ul class="treeview-menu">
-            <li><a href="<?php echo $this->Url->build('/templates'); ?>"><i class="fa fa-table"></i>email</a></li>
-           
+            <li><a href="<?php echo $this->Url->build('/templates'); ?>"><i class="fa fa-table"></i>Email</a></li>
+
             <li><a href="<?php echo $this->Url->build('/notifications'); ?>"><div class="pull-left image mptl-notify"></div>Notifications</a></li>
-            
+
         </ul>
     </li>
      <li class="treeview">
@@ -157,7 +157,7 @@ if (file_exists($file)) {
             <li><a href="<?php echo $this->Url->build('/locations'); ?>"><i class="fa fa-map-pin"></i> Locations</a></li>
             <li><a href="<?php echo $this->Url->build('/fences'); ?>"><i class="fa fa-map-signs"></i>Fences</a></li>
             <li><a href="<?php echo $this->Url->build('/routes'); ?>"><i class="ion ion-map"></i>Routes</a></li>
-            
+
         </ul>
     </li>
     <li class="treeview">
@@ -168,25 +168,25 @@ if (file_exists($file)) {
         <ul class="treeview-menu">
             <li><a href="<?php echo $this->Url->build('/servicereminders'); ?>"><i class="fa fa-wrench"></i> <span>Service</span></a></li>
             <li><a href="<?php echo $this->Url->build('/renewalreminders'); ?>"><i class="fa fa-lightbulb-o"></i> <span>Renewal</span></a></li>
-          
+
         </ul>
     </li>
-              
+
     <li><a href="<?php echo $this->Url->build('/vendors'); ?>"><i class="fa fa-book"></i> <span>Vendors</span></a></li>
-   
+
         </ul>
     </li>
     <?php endif; ?>
-    
-    
-    
-    
-    
-   
-    
-   
+
+
+
+
+
+
+
+
      <li class="header">REPORTS</li>
-    
+
     <li class="treeview">
         <a href="#">
             <i class="fa fa-bar-chart"></i> <span>Reports</span>
@@ -195,11 +195,11 @@ if (file_exists($file)) {
         <ul class="treeview-menu">
             <li><a href="<?php echo $this->Url->build('/reports/group'); ?>"><div class="pull-left image mptl-greports"></div>Group Reports</a></li>
             <li><a href="<?php echo $this->Url->build('/reports/individul'); ?>"><div class="pull-left image mptl-ireports"></div>Individual Reports</a></li>
-            
+
         </ul>
     </li>
-    
-   
-   
+
+
+
 </ul>
 <?php } ?>
