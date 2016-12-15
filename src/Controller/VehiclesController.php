@@ -199,7 +199,18 @@ private function getDateRangeFilters($dates,$basic)  {
             'contain' => ['Vehicletypes', 'Vehiclestatuses', 'Ownerships', 'Symbols', 'Stations', 'Departments',  'Purposes', 'Transporters', 'Drivers', 'Fuelentries', 'Issues', 'Servicesentries', 'Trips', 'Vehicleengines', 'Vehiclefluids', 'Vehiclepermits', 'Vehiclepurchases', 'Vehiclespecifications', 'Vehiclewheelstyres', 'Workorders','Vehicleleases']
         ]);
 
-        $this->set('vehicle', $vehicle);
+        $vehicletypes = $this->Vehicles->Vehicletypes->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
+        $vehiclestatuses = $this->Vehicles->Vehiclestatuses->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
+        $ownerships = $this->Vehicles->Ownerships->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
+        $symbols = $this->Vehicles->Symbols->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
+        $stations = $this->Vehicles->Stations->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
+        $departments = $this->Vehicles->Departments->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
+        $driverdetectionmodes = $this->Vehicles->Driverdetectionmodes->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
+        $purposes = $this->Vehicles->Purposes->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
+        $transporters = $this->Vehicles->Transporters->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
+        $drivers = $this->Vehicles->Drivers->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
+        $currencies = $this->Vehicles->Currencies->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
+        $this->set(compact('vehicle', 'vehicletypes', 'vehiclestatuses', 'ownerships', 'symbols', 'stations', 'departments',  'purposes', 'transporters', 'drivers','driverdetectionmodes','currencies'));
         $this->set('_serialize', ['vehicle']);
     }
 

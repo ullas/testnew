@@ -75,6 +75,7 @@ class AppController extends Controller
 			$this->set('mptluserlengthunitmini','in');
 			$this->set('mptluserlengthunitmajor','ft');
 			$this->set('mptluservolumeunit','lt');
+			$this->set('mptluserweightunit','lb');
 			
         if (!array_key_exists('_serialize', $this->viewVars) &&
             in_array($this->response->type(), ['application/json', 'application/xml'])
