@@ -16,8 +16,8 @@
 		</div>
 		<div class="box-footer">
 			<div class="pull-right">
-				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-            	<button type="submit" class="btn btn-success">Save</button>
+              <button type="submit" class="btn btn-success">Save</button>
+				      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
             </div>
         </div>
         <?= $this->Form->end() ?>
