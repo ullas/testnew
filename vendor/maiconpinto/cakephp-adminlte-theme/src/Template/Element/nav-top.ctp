@@ -161,6 +161,21 @@ if (file_exists($file)) {
 		                  <div class="col-xs-3 text-center">
 		                    <a href="Vehicletypes" data-remote="false" data-toggle="modal" data-target="#myModal">Vehicle Types</a>
 		                  </div>
+		                </div> <!-- /.row --><div class="divider"></div>
+		                
+		                 <div class="row">
+		                  <div class="col-xs-3 text-center">
+		                    <a href="Analogsensortypes" data-remote="false" data-toggle="modal" data-target="#myModal">Analog Sensor Types</a>
+		                  </div>
+		                  <div class="col-xs-3 text-center">
+		                    <a href="Digitalsensortypes" data-remote="false" data-toggle="modal" data-target="#myModal">Digital Sensor Types</a>
+		                  </div>
+		                  <div class="col-xs-3 text-center">
+		                    <a href="Vehiclestatuses" data-remote="false" data-toggle="modal" data-target="#myModal">Vehicle Statuses</a>
+		                  </div>
+		                  <div class="col-xs-3 text-center">
+		                    <a href="Vehicletypes" data-remote="false" data-toggle="modal" data-target="#myModal">Vehicle Types</a>
+		                  </div>
 		                </div>
 
 
