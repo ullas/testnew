@@ -18,10 +18,8 @@
             </ul>
             <ul class="todo-list column-list">
               <?php
-
-               
                 $usa=explode(',',$usersettings[0]['value']);
-                echo '<li><input type="hidden" class="mptl_settings_chk" id="mptl_settings_chk_0"></l>';
+                echo '<input type="hidden" class="mptl_settings_chk" id="mptl_settings_chk_0">';
                 foreach ($configs as $key) {
                 	$check=in_array($key['order'],$usa)?"":"checked";
                     $disable=($key['order']==0) ?"disabled":"";
@@ -36,8 +34,8 @@
         </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
         <button type="button" class="mptl-settings-save btn btn-success">Save changes</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
       </div>
     </div>
   </div>

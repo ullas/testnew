@@ -54,6 +54,14 @@ background-color: #008fe2;
 .skin-blue .main-header li.user-header {
   background-color: #008FE2;
 }
+
+.skin-blue .main-header li.navtop-header {
+  background-color: #008FE2;
+  color: white;
+  text-align: center;
+  padding:5px;
+}
+
 .skin-blue .content-header {
   background: transparent;
 }
