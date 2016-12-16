@@ -124,8 +124,8 @@ class SensormappingsController extends AppController
 	public function ajaxdata() 
 	{
         	
-         $this->autoRender= false;
-		$usrfiter="Sensormappings.customer_id=".$this->loggedinuser['customer_id'];
+        $this->autoRender= false;
+		$usrfiter="";
 		$basic = isset($this->request->query['basic'])?$this->request->query['basic']:"" ;
 		$additional = isset($this->request->query['additional'])?$this->request->query['additional']:"";
 		
@@ -142,7 +142,7 @@ class SensormappingsController extends AppController
         
 		
 		
-		$output =$this->Datatablemaster->getView($fields,['Customers'],$usrfiter);
+		$output =$this->Datatable->getView($fields,['Customers'],$usrfiter);
 		$out =json_encode($output);  
 	   
 		$this->response->body($out);
@@ -183,7 +183,7 @@ class SensormappingsController extends AppController
             if ($this->Sensormappings->save($sensormapping)) {
                 $this->Flash->success(__('The sensormapping has been saved.'));
 
-                return $this->redirect(['action' => 'index']);
+               // return $this->redirect(['action' => 'index']);
             } else {
                 $this->Flash->error(__('The sensormapping could not be saved. Please, try again.'));
             }
@@ -219,7 +219,7 @@ class SensormappingsController extends AppController
             if ($this->Sensormappings->save($sensormapping)) {
                 $this->Flash->success(__('The sensormapping has been saved.'));
 
-                return $this->redirect(['action' => 'index']);
+               // return $this->redirect(['action' => 'index']);
             } else {
                 $this->Flash->error(__('The sensormapping could not be saved. Please, try again.'));
             }
@@ -256,4 +256,42 @@ class SensormappingsController extends AppController
 	    }
         return $this->redirect(['action' => 'index']);
     }
+	public function deleteAll($id=null){
+    	
+		$this->request->allowMethod(['post', 'deleteall']);
+        $sucess=false;$failure=false;
+        $data=$this->request->data;
+			
+		if(isset($data)){
+		   foreach($data as $key =>$value){
+		   	   		
+		   	   	$itemna=explode("-",$key);
+			    
+			    if(count($itemna)== 2 && $itemna[0]=='chk'){
+			    	
+					$record = $this->Sensormappings->get($value);
+					
+					 if($record['customer_id']== $this->loggedinuser['customer_id']) {
+					 	
+						   if ($this->Sensormappings->delete($record)) {
+					           $sucess= $sucess | true;
+					        } else {
+					           $failure= $failure | true;
+					        }
+					}
+				}  	  
+			}
+		   		        
+		
+				if($sucess){
+					$this->Flash->success(__('Selected Sensormappings has been deleted.'));
+				}
+		        if($failure){
+					$this->Flash->error(__('The Sensormappings could not be deleted. Please, try again.'));
+				}
+		
+		   }
+
+             return $this->redirect(['action' => 'index']);	
+     }
 }
