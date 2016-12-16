@@ -87,6 +87,9 @@ class VehiclesTable extends Table
         $this->belongsTo('Purposes', [
             'foreignKey' => 'purpose_id'
         ]);
+		 $this->belongsTo('Currencies', [
+            'foreignKey' => 'currency_id'
+        ]);
         $this->belongsTo('Transporters', [
             'className' =>'Vendors',
             'foreignKey' => 'transporter_id'
@@ -124,8 +127,9 @@ class VehiclesTable extends Table
         $this->hasOne('Vehiclefluids', [
             'foreignKey' => 'vehicle_id'
         ]);
-        $this->hasMany('Vehicleleases', [
-            'foreignKey' => 'vehicle_id'
+        $this->hasOne('Vehicleleases', [
+            'foreignKey' => 'vehicle_id',
+            'dependent' => true
         ]);
         $this->hasMany('Vehiclepermits', [
             'foreignKey' => 'vehicle_id'

@@ -14,4 +14,4 @@
   </ol>
 </section>
 
-<?php echo $this->element('indexbasictrim'); ?>
+<?php echo $this->element('indexbasicnofilter'); ?>

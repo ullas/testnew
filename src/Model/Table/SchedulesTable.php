@@ -56,6 +56,10 @@ class SchedulesTable extends Table
         $this->belongsTo('Customers', [
             'foreignKey' => 'customer_id'
         ]);
+		$this->belongsTo('Passengergroups', [
+            'foreignKey' => 'default_paxgrpid'
+        ]);
+		
         $this->belongsTo('Timepolicies', [
             'foreignKey' => 'timepolicy_id'
         ]);
@@ -67,6 +71,7 @@ class SchedulesTable extends Table
             'className' =>'Vehicles',
             'foreignKey' => 'default_veh_id'
         ]);
+		
     }
 
     /**

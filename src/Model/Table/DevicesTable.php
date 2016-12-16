@@ -38,7 +38,7 @@ class DevicesTable extends Table
         parent::initialize($config);
 
         $this->table('devices');
-        $this->displayField('id');
+        $this->displayField('code');
         $this->primaryKey('id');
 
         $this->belongsTo('Customers', [
@@ -54,7 +54,13 @@ class DevicesTable extends Table
         $this->belongsTo('Simcards', [
             'foreignKey' => 'simcard_id'
         ]);
-        $this->hasMany('Gpsdata', [
+		$this->belongsTo('Distancetypes', [
+            'foreignKey' => 'distancetype_id'
+        ]);
+		$this->hasOne('Sensormappings', [
+            'foreignKey' => 'sensormapping_id'
+        ]);
+		$this->hasMany('Gpsdata', [
             'foreignKey' => 'device_id'
         ]);
         $this->hasMany('Tracking', [

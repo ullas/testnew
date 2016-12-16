@@ -50,9 +50,9 @@
             echo $this->Form->input('parts');
             echo $this->Form->input('dicount',['label'=>'Discount']);
             echo $this->Form->input('tax');
-            echo $this->Form->input('issuedby_id',['empty' => true,'label'=>'Issued By','class'=>'select2']);
-            echo $this->Form->input('assignedby_id',['empty' => true,'label'=>'Assigned By','class'=>'select2']);
-            echo $this->Form->input('assignto_id',['empty' => true,'label'=>'Assigned To','class'=>'select2']);
+            echo $this->Form->input('issuedby_id',['options' => $issuedbies,'empty' => true,'label'=>'Issued By','class'=>'select2']);
+            echo $this->Form->input('assignedby_id',['options' => $assignedbies,'empty' => true,'label'=>'Assigned By','class'=>'select2']);
+            echo $this->Form->input('assignto_id',['options' => $assigntos,'empty' => true,'label'=>'Assigned To','class'=>'select2']);
             echo $this->Form->input('invoicenumber',['label'=>'Invoice Number']);
             echo $this->Form->input('phonenumber',['label'=>'Phone Number']);
             echo $this->Form->input('description');

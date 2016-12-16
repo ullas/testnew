@@ -172,7 +172,7 @@ public function ajaxdata() {
 		
 		
 		                           
-        $output =$this->Datatable->getView($fields,['Customers', 'Providers', 'Devicemodels', 'Simcards'],$usrfiter);
+        $output =$this->Datatable->getView($fields,['Customers', 'Providers', 'Devicemodels', 'Simcards','Distancetypes'],$usrfiter);
         $out =json_encode($output);  
 	   
 		$this->response->body($out);
@@ -219,7 +219,8 @@ public function ajaxdata() {
         }
         $customers = $this->Devices->Customers->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
         $providers = $this->Devices->Providers->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
-        $this->set(compact('device', 'customers', 'providers'));
+        $distancetypes = $this->Devices->Distancetypes->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
+        $this->set(compact('device', 'customers', 'providers','distancetypes'));
         $this->set('_serialize', ['device']);
     }
 
@@ -235,6 +236,7 @@ public function ajaxdata() {
         $device = $this->Devices->get($id, [
             'contain' => []
         ]);
+		
 		if($device['customer_id']!= $this->loggedinuser['customer_id'])
 		{
 			 $this->Flash->success(__('You are not Authorized.'));
@@ -253,7 +255,22 @@ public function ajaxdata() {
         }
         $customers = $this->Devices->Customers->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
         $providers = $this->Devices->Providers->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
-        $this->set(compact('device', 'customers', 'providers'));
+        $distancetypes = $this->Devices->Distancetypes->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
+		//$sensormappings = $this->Devices->Sensormappings->find('all')->where(['device_id' => $device['id']])->toArray(); //->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
+        $sensormappings = $this->Devices->Sensormappings->find('all')->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0'])->andwhere(['device_id' => $device['id']])->toArray() ;
+        
+        if(isset($sensormappings[0]['id']))
+	  		{
+	  			$this->set("path","/edit/".$sensormappings[0]['id'] );
+	  			
+	  		}
+  		else 
+	  		{
+	  			$this->set("path","/add");
+	  	    	
+	  		}
+		
+		$this->set(compact('device', 'customers', 'providers','distancetypes','sensormappings'));
         $this->set('_serialize', ['device']);
     }
 

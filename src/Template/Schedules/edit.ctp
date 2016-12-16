@@ -25,21 +25,21 @@
         <div class="tab-content">
           <div class="active tab-pane" id="details">
              <div class="form-horizontal">
-         <?php
+          <?php
             echo $this->Form->input('name',['required' => 'required']);
             echo $this->Form->input('validfrom', ['required' => 'required','label'=>'Valid From','empty' => true,'class'=>'datemask','type'=>'text','templateVars' => ['icon' => '<div class="input-group-addon"><i class="fa fa-calendar"></i></div>']]);
             echo $this->Form->input('validtill', ['required' => 'required','label'=>'Valid Till','empty' => true,'class'=>'datemask','type'=>'text','templateVars' => ['icon' => '<div class="input-group-addon"><i class="fa fa-calendar"></i></div>']]);
             echo $this->Form->input('startloc_id',['label'=>'Start Location','class'=>'select2','empty' => true]);
             echo $this->Form->input('endloc_id',['label'=>'End Location','class'=>'select2','empty' => true]);
             echo $this->Form->input('route_id',['class'=>'select2','empty' => true]);
-            echo $this->Form->input('start_time', ['empty' => true,'class'=>'datemask','type'=>'text','class'=>'timepicker']);
-            echo $this->Form->input('end_time', ['empty' => true,'type'=>'text','class'=>'timepicker']);
+            echo $this->Form->input('start_time',['class' => 'timepicker','type' => 'text','templateVars' => ['opentag' => '<div class="bootstrap-timepicker">','closetag' => '</div>','icon' => '<div class="input-group-addon"><i class="fa fa-clock-o"></i></div>']]);
+            echo $this->Form->input('end_time',['class' => 'timepicker','type' => 'text','templateVars' => ['opentag' => '<div class="bootstrap-timepicker">','closetag' => '</div>','icon' => '<div class="input-group-addon"><i class="fa fa-clock-o"></i></div>']]);
             echo $this->Form->input('timepolicy_id',['label'=>'Time Policy','class'=>'select2','empty' => true]);
             echo $this->Form->input('default_driver_id',['label'=>'Default Driver','class'=>'select2','empty' => true]);
             echo $this->Form->input('default_veh_id',['label'=>'Default Vehicle','class'=>'select2','empty' => true]);
             echo $this->Form->input('nodays',['label'=>'No Of Days',]);
             echo $this->Form->input('brktime_bfr_nxt_trip',['label'=>'Break Time Before Next Trip',]);
-            echo $this->Form->input('default_paxgrpid',['label'=>'Default Passenger Group','empty' => true]);
+            echo $this->Form->input('default_paxgrpid',['options' => $passengergroups,'label'=>'Default Passenger Group','empty' => true,'class'=>'select2']);
         ?>
        </div>
  

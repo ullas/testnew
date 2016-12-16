@@ -78,7 +78,7 @@ if (file_exists($file)) {
                     <i class="fa fa-bars"></i>
                 </a>
                   <ul class="dropdown-menu pull-right" role="menu" style = "width : 800px">
-                  	<li class="header bg-aqua text-center" style="padding:5px;">		
+                  	<li class="navtop-header">
 		              <h4 >Manage Master data</h4>
 		            </li>
                   	<li class="user-body">
@@ -95,10 +95,10 @@ if (file_exists($file)) {
 		                  <div class="col-xs-3 text-center">
 		                    <a href="Inspectionstatuses" data-remote="false" data-toggle="modal" data-target="#myModal">Inspection Statuses</a>
 		                  </div>
-		                  
+
 		                </div>
 		                <!-- /.row --><div class="divider"></div>
-		              
+
 		                <div class="row">
 		                  <div class="col-xs-3 text-center">
 		                    <a href="Manufacturers" data-remote="false" data-toggle="modal" data-target="#myModal">Manufacturers</a>
@@ -112,11 +112,11 @@ if (file_exists($file)) {
 		                  <div class="col-xs-3 text-center">
 		                    <a href="Simproviders" data-remote="false" data-toggle="modal" data-target="#myModal">SIM Providers</a>
 		                  </div>
-		                  
-		                  
+
+
 		                </div> <!-- /.row --><div class="divider"></div>
-		               
-		                
+
+
 		                <div class="row">
 		                  <div class="col-xs-3 text-center">
 		                    <a href="Purposes" data-remote="false" data-toggle="modal" data-target="#myModal">Purposes</a>
@@ -132,8 +132,8 @@ if (file_exists($file)) {
 		                  </div>
 		                </div> <!-- /.row --><div class="divider"></div>
 		                <div class="row">
-		                  
-		                 
+
+
 		                  <div class="col-xs-3 text-center">
 		                    <a href="Renewalstypes" data-remote="false" data-toggle="modal" data-target="#myModal">Renewal Types</a>
 		                  </div>
@@ -147,7 +147,7 @@ if (file_exists($file)) {
 		                    <a href="Templatetypes" data-remote="false" data-toggle="modal" data-target="#myModal">Template Types</a>
 		                  </div>
 		                </div> <!-- /.row --><div class="divider"></div>
-		               
+
 		                <div class="row">
 		                  <div class="col-xs-3 text-center">
 		                    <a href="Workorderstatuses" data-remote="false" data-toggle="modal" data-target="#myModal">Work Order Statuses</a>
@@ -161,16 +161,22 @@ if (file_exists($file)) {
 		                  <div class="col-xs-3 text-center">
 		                    <a href="Vehicletypes" data-remote="false" data-toggle="modal" data-target="#myModal">Vehicle Types</a>
 		                  </div>
+		                </div> <!-- /.row --><div class="divider"></div>
+
+		                 <div class="row">
+		                  <div class="col-xs-3 text-center">
+		                    <a href="Analogsensortypes" data-remote="false" data-toggle="modal" data-target="#myModal">Analog Sensor Types</a>
+		                  </div>
+		                  <div class="col-xs-3 text-center">
+		                    <a href="Digitalsensortypes" data-remote="false" data-toggle="modal" data-target="#myModal">Digital Sensor Types</a>
+		                  </div>
 		                </div>
-		                
-		               
-		               
 		              </li>
                   </ul>
                 <!-- </div> -->
             </li>
             <?php endif; ?>
-          
+
             <!-- User Account: style can be found in dropdown.less -->
             <li class="dropdown user user-menu">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">

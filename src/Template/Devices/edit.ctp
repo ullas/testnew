@@ -4,6 +4,19 @@
   <h1>
     Edit Device <small>Please fill the details to edit a Device</small>
   </h1>
+  <?php
+  $devid = $device['id'];
+  //if ($sensorid = 0)
+  // if(isset($sensormappings[0]['id']))
+  // {
+  	// $path ="/edit/".$sensorid ; 
+  // }
+  // else {
+     // $path ="/add";
+  // }
+  ?>
+  <a href="/sensormappings<?php echo $path ?>"> List Sensor Mappings</a>
+   <!-- <a href="/sensormappings/edit/<?php echo $sensorid ?>"> List Sensor Mappings</a> -->
   <ol class="breadcrumb">
     <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
     <li><a href="#">Hardware</a></li>
@@ -24,13 +37,14 @@
           <div class="active tab-pane" id="details">
              <div class="form-horizontal">
         <?php
-             echo $this->Form->input('code',['required' =>'required']);
+        
+        	echo $this->Form->input('code',['required' =>'required']);
             echo $this->Form->input('install_date', ['empty' => true,'type'=>'text','class'=>'datemask' , 'required' =>'required','templateVars' => ['icon' => '<div class="input-group-addon"><i class="fa fa-calendar"></i></div>']]);
             echo $this->Form->input('installed_by',['required' =>'required']);
             echo $this->Form->input('certified_by',['required' =>'required']);
             echo $this->Form->input('comments');
             echo $this->Form->input('provider_id', ['options' => $providers, 'empty' => true,'class'=>'select2','required' =>'required']);
-            echo $this->Form->input('distance_type');
+            echo $this->Form->input('distancetype_id',['label'=>'Distance Type','options' => $distancetypes, 'empty' => true,'class'=>'select2']);
 		?>		
 		<div class="form-group">
                   	<label for="odometersupport" class="col-sm-3 control-label" style="padding-top:0" >Odometer Support</label>

@@ -55,6 +55,9 @@ class JobsTable extends Table
         $this->belongsTo('Locations', [
             'foreignKey' => 'location_id'
         ]);
+		$this->belongsTo('Addresses', [
+            'foreignKey' => 'assigned_by'
+        ]);
     }
 
     /**

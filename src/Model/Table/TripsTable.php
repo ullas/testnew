@@ -132,21 +132,21 @@ class TripsTable extends Table
             ->integer('trackingcode')
             ->allowEmpty('trackingcode');
 
-        $validator
-            ->dateTime('adt')
-            ->allowEmpty('adt');
+        // $validator
+            // ->dateTime('adt')
+            // ->allowEmpty('adt');
 
-        $validator
-            ->dateTime('aat')
-            ->allowEmpty('aat');
-
-        $validator
-            ->dateTime('edt')
-            ->allowEmpty('edt');
-
-        $validator
-            ->dateTime('eat')
-            ->allowEmpty('eat');
+        // $validator
+            // ->dateTime('aat')
+            // ->allowEmpty('aat');
+// 
+        // $validator
+            // ->dateTime('edt')
+            // ->allowEmpty('edt');
+// 
+        // $validator
+            // ->dateTime('eat')
+            // ->allowEmpty('eat');
 
         $validator
             ->integer('platform')

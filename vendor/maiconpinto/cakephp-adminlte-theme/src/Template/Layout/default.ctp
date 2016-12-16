@@ -52,14 +52,17 @@ div#myDropZone {
     <!-- Bootstrap 3.3.5 -->
     
      <?php echo $this->Html->css('AdminLTE./bootstrap/css/bootstrap'); ?>
- 
+
 <?php echo $this->Html->css('AdminLTE./plugins/datatables/dataTables.bootstrap'); ?>
     <!-- Font Awesome -->
     <link rel="stylesheet" href="/css/font-awesome.min.css">
     <!-- Ionicons -->
     <link rel="stylesheet" href="/css/ionicons.min.css">
      <link rel="stylesheet" href="/js/ol/ol.css">
+     
    <?php echo $this->Html->css('AdminLTE./plugins/select2/select2.min'); ?>
+   <?php echo $this->Html->css('AdminLTE./plugins/datepicker/datepicker3'); ?>
+   <?php echo $this->Html->css('AdminLTE./plugins/timepicker/bootstrap-timepicker.min'); ?>
     <!-- Theme style -->
     <?php echo $this->Html->css('AdminLTE.AdminLTE.min'); ?>
 <!-- AdminLTE Skins. Choose a skin from the css/skins
@@ -75,6 +78,15 @@ div#myDropZone {
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <![endif]-->
 </head>
+<?php
+$this->Html->script([ 'AdminLTE./plugins/select2/select2.full.min' ], ['block' => 'script']);
+$this->Html->script([ 'AdminLTE./plugins/datepicker/bootstrap-datepicker' ], ['block' => 'script']);
+$this->Html->script([ 'AdminLTE./plugins/timepicker/bootstrap-timepicker.min' ], ['block' => 'script']);
+$this->Html->script([ '/js/dropzone/dropzone' ], ['block' => 'script']);
+$this->Html->script([ 'AdminLTE./plugins/iCheck/icheck.min' ], ['block' => 'script']);
+?>
+
+
 <body class="hold-transition skin-blue sidebar-mini">
     <!-- Site wrapper -->
     <div class="wrapper">
@@ -134,7 +146,6 @@ div#myDropZone {
 
 <script src="https://cdn.datatables.net/buttons/1.2.2/js/buttons.print.min.js"></script>
  <!-- dropzone -->
-<script src="https://rawgit.com/enyo/dropzone/master/dist/dropzone.js"></script>
 <link rel="stylesheet" href="https://rawgit.com/enyo/dropzone/master/dist/dropzone.css">
 <style>
 /*margin left for export buttons*/
@@ -167,6 +178,17 @@ div.dataTables_wrapper { clear: both; }
     }
 
     $(document).ready(function(){
+    	
+    	$(".timepicker").timepicker({
+      		showInputs: false,autoclose: true,
+    	});
+    	//select 2 
+    	$(".select2").select2({ width: '100%',allowClear: true,placeholder: "Select" });
+		//datepicker
+    	$('.datemask').datepicker({
+    		format:"dd/mm/yy",
+      		autoclose: true,clearBtn: true
+    	});
     	
     	$(".input-group input[type='hidden']").parents('.col-sm-6').css("float", "right");
     	
@@ -241,7 +263,9 @@ div.dataTables_wrapper { clear: both; }
   							alert($(this).attr("data-id"));
   						});
 				  		
+
 				  		$('<a href='+ link.attr("href") +'"/add/" id="masterdataadd" class="btn btn-sm btn-success" style="margin-left:5px;" title="Add New"><i class="fa fa-plus" aria-hidden="true"></i></a>').appendTo('#mptlindextblmaster_filter');
+
    
 				  		$("div.dataTables_filter").delegate("#masterdataadd","click", function(e){
 				  			 e.preventDefault();
@@ -400,12 +424,12 @@ div.dataTables_wrapper { clear: both; }
     <!-- Modal content-->
     <div class="modal-content">
      
-      <div class="modal-body">
+      <div class="modal-body" style="padding:0px;">
         
       </div>
-      <div class="modal-footer">
+      <!-- <div class="modal-footer">
         <button type="submit" class="btn btn-default" data-dismiss="modal">Close</button>
-      </div>
+      </div> -->
     </div>
 
   </div>

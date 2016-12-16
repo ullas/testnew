@@ -1,3 +1,4 @@
+<?php echo $this->element('templateelement'); ?>
 <!-- Content Header (Page header) -->
 <section class="content-header">
   <h1>
@@ -13,7 +14,7 @@
 
 <!-- Main content -->
 <section class="content">
-
+<?= $this->Form->create($vehicle) ?>
   <div class="row">
     <div class="col-md-3">
 
@@ -85,312 +86,115 @@
     <div class="col-md-9">
       <div class="nav-tabs-custom">
         <ul class="nav nav-tabs">
-          <li class="details"><a href="#details" data-toggle="tab">Details</a></li>
+          <li class="active"><a href="#details" data-toggle="tab">Details</a></li>
           <li ><a href="#activity" data-toggle="tab">Specifications</a></li>
           <li><a href="#engine" data-toggle="tab">Engine Details</a></li>
           <li><a href="#wheel" data-toggle="tab">Wheel&Tyre</a></li>
           <li><a href="#fuel" data-toggle="tab">Fluids</a></li>
-          <li><a href="#fuel" data-toggle="tab">Purchase</a></li>
-          <li><a href="#fuel" data-toggle="tab">Loan/Lease</a></li>
-          <li><a href="#timeline" data-toggle="tab">Attachments</a></li>
-          
-          <li><a href="#timeline" data-toggle="tab">Service History</a></li>
-          <li><a href="#timeline" data-toggle="tab">Run History</a></li>
-          <li><a href="#fuel" data-toggle="tab">Icidents</a></li>
-          <li><a href="#timeline" data-toggle="tab">Inspections</a></li>
-          <li><a href="#timeline" data-toggle="tab">Issues</a></li>
-          <li><a href="#timeline" data-toggle="tab">Workoders</a></li>
-          <li><a href="#timeline" data-toggle="tab">Parts Usage</a></li>
-          <li><a href="#timeline" data-toggle="tab">Reminders</a></li>
-          <li><a href="#timeline" data-toggle="tab">Comments</a></li>
-          <li><a href="#timeline" data-toggle="tab">Assigment History</a></li>
-          <li><a href="#timeline" data-toggle="tab">Odometer History</a></li>
-          <li><a href="#timeline" data-toggle="tab">Status Changes</a></li>
-          <li><a href="#limits" data-toggle="tab">Settings</a></li>
+          <li><a href="#timeline" data-toggle="tab">Purchase</a></li>
+          <li><a href="#limits" data-toggle="tab">Loan/Lease</a></li>
+          <li><a href="#attachments" data-toggle="tab">Attachments</a></li>
            
         </ul>
         <div class="tab-content">
-          <div class="active tab-pane" id="activity">
-          	
+          <div class="active tab-pane" id="details">
+          	<div class="form-horizontal">
+          			<?php 
+                    echo $this->Form->input('name',['disabled' =>true,'label'=>'Name','templateVars' => ['help' => 'A nickname to distinguish this vehicle'],'required' => 'required']);
+             	    echo $this->Form->input('code',['disabled' =>true,'value'=> h($vehicle->code),  'templateVars' => ['help' => 'Vehicle Identification Number or Serial Number']]);
+             	    echo $this->Form->input('plateno',['disabled' =>true,'value'=> h($vehicle->plateno),'label'=>'License Plate']);
+		            echo $this->Form->input('vehicletype_id', ['disabled' =>true,'value'=> h($vehicle->vehicletype_id),'options' => $vehicletypes, 
+		                             'templateVars' => ['help' => 'Select your vehicle category'],
+		                             'empty' => true,'class'=>'select2','label'=>'Type' ,'required' => 'required']);
+		            echo $this->Form->input('year',['disabled' =>true,'templateVars' => ['help' => 'e.g 2008,1973']]);
+		            echo $this->Form->input('make',['disabled' =>true,'templateVars' => ['help' => 'e.g Maruthi,Ford etc.']]);
+		            echo $this->Form->input('model',['disabled' =>true,'templateVars' => ['help' => 'Cressida,Sunny,i10 etc.']]);
+		            echo $this->Form->input('trim',['disabled' =>true,'templateVars' => ['help' => 'C class,XE,Sports etc.']]);
+		            echo $this->Form->input('registationloc',['disabled' =>true,'label'=>'Registration Location']);
+		            echo $this->Form->input('vehiclestatus_id',['disabled' =>true,'label'=>'Status','options'=>$vehiclestatuses, 'class' =>'select2', 'empty' => false,'templateVars' => ['help' => 'Current status of this vehicle'],'required' => 'required']);
+		            echo $this->Form->input('ownership_id', ['disabled' =>true,'label'=>'Ownership','options' => $ownerships, 'empty' => false,'class'=>'select2','required' => 'required']);
+		            echo $this->Form->input('symbol_id', ['disabled' =>true,'options' => $symbols, 'empty' => true,'class'=>'select2']);
+		            echo $this->Form->input('station_id', ['disabled' =>true,'options' => $stations, 'empty' => true,'class'=>'select2']);
+		            echo $this->Form->input('department_id', ['disabled' =>true,'options' => $departments, 'empty' => true,'class'=>'select2']);
+		            echo $this->Form->input('odometer',['disabled' =>true]);
+		            echo $this->Form->input('description',['disabled' =>true]);
+		            echo $this->Form->input('regstate',['disabled' =>true,'label'=>'Registration State']);
+		            echo $this->Form->input('color',['disabled' =>true]);
+		            echo $this->Form->input('bodytype',['disabled' =>true,'label'=>'Body Type','templateVars' => ['help' => 'Body type (XUV, Sedan, etc...)']]);
+		            echo $this->Form->input('bodysubtype',['disabled' =>true,'label'=>'Body Subtype','templateVars' => ['help' => 'Extended Cab, Crew Cab, etc...']]);
+		            echo $this->Form->input('driverdetectionmode',['label'=>'Driver Detection Mode','disabled' =>true,'options' => $driverdetectionmodes,'class'=>'select2', 'empty' => true]);
+                    echo $this->Form->input('activedriver_id',['label'=>'Active Driver','disabled' =>true,'options' => $drivers,'class'=>'select2', 'empty' => true]);
+           			echo $this->Form->input('purpose_id', ['disabled' =>true,'options' => $purposes, 'empty' => true,'class'=>'select2']);
+           			echo $this->Form->input('transporter_id',['disabled' =>true,'class'=>'select2']);
+                    echo $this->Form->input('drivers._ids', ['disabled' =>true,'options' => $drivers,'class'=>'select2']);
+					echo $this->Form->input('msrp', ['disabled' =>true,'label'=>'MSRP','type'=>'text','empty' => true,'templateVars' => ['help' => 'Manufacturer suggested retail price','icon' => '<div class="input-group-addon"><i class="'.$mptlusercurrencyfaclass.'"></i></div>']]);
+        	 		echo $this->Form->input('purpose_id', ['disabled' =>true,'options' => $purposes, 'empty' => true,'class'=>'select2']);
+             	    ?>
+          	</div>
           </div>
           
-        </div>
-        <div class="tab-content">
-          <div class="active tab-pane" id="activity">
-             <form class="form-horizontal">
-              <div class="form-group">
-                <label for="inputWidth" class="col-sm-3 control-label">Width</label>
-
-                <div class="col-sm-9">
-                  <input type="number" class="form-control" id="inputWidth" placeholder="Width">
-                </div>
-              </div>
-              <div class="form-group">
-                <label for="inputHeight" class="col-sm-3 control-label">Height</label>
-
-                <div class="col-sm-9">
-                  <input type="number" class="form-control" id="inputHeight" placeholder="Height">
-                </div>
-              </div>
-              <div class="form-group">
-                <label for="inputLength" class="col-sm-3 control-label">Length</label>
-
-                <div class="col-sm-9">
-                  <input type="number" class="form-control" id="inputLength" placeholder="Length">
-                </div>
-              </div>
-              <div class="form-group">
-                <label for="inputinteriorvolume" class="col-sm-3 control-label">Interior Volume</label>
-
-                <div class="col-sm-9">
-                  <input type="number" class="form-control" id="inputinteriorvolume" placeholder="Interior Volume"></input>
-                </div>
-              </div>
-              <div class="form-group">
-                <label for="inputpassengervolume" class="col-sm-3 control-label">Passenger Volume</label>
-
-                <div class="col-sm-9">
-                  <input type="number" class="form-control" id="inputpassengervolume" placeholder="Passenger Volume">
-                </div>
-              </div>
-             <div class="form-group">
-                <label for="inputcargovolume" class="col-sm-3 control-label">Cargo Volume</label>
-
-                <div class="col-sm-9">
-                  <input type="number" class="form-control" id="inputcargovolume" placeholder="Cargo Volume">
-                </div>
-              </div>
-              <div class="form-group">
-                <label for="inputgroudclearance" class="col-sm-3 control-label">Ground Clearance</label>
-
-                <div class="col-sm-9">
-                  <input type="number" class="form-control" id="inputgroudclearance" placeholder="Ground Clearance">
-                </div>
-              </div>
-               <div class="form-group">
-                <label for="inputbedlength" class="col-sm-3 control-label">Bed Length</label>
-
-                <div class="col-sm-9">
-                  <input type="number" class="form-control" id="inputbedlength" placeholder="Bed Length">
-                </div>
-              </div>
-              
-              <div class="form-group">
-                <label for="inputcurbweight" class="col-sm-3 control-label">Curb Weight</label>
-
-                <div class="col-sm-9">
-                  <input type="number" class="form-control" id="inputcurbweight" placeholder="Crub Weight">
-                </div>
-              </div>
-
-              <div class="form-group">
-                <label for="inputgrossweight" class="col-sm-3 control-label">Gross Weight</label>
-
-                <div class="col-sm-9">
-                  <input type="number" class="form-control" id="inputgrossweight" placeholder="Gross Weight">
-                </div>
-              </div>
-              <div class="form-group">
-                <label for="inputtowingcapacity" class="col-sm-3 control-label">Towing Capacity</label>
-
-                <div class="col-sm-9">
-                  <input type="number" class="form-control" id="inputtowingcapacity" placeholder="Towing Capacity">
-                </div>
-              </div>
-              <div class="form-group">
-                <label for="inputepacity" class="col-sm-3 control-label">EPA(City)</label>
-
-                <div class="col-sm-9">
-                  <input type="number" class="form-control" id="inputepacity" placeholder="EPA(City)">
-                </div>
-              </div>
-              <div class="form-group">
-                <label for="inputepahighway" class="col-sm-3 control-label">EPA(Highway)</label>
-
-                <div class="col-sm-9">
-                  <input type="number" class="form-control" id="inputepahighway" placeholder="EPA(Highway)">
-                </div>
-              </div>
-              <div class="form-group">
-                <label for="inputepacombined" class="col-sm-3 control-label">EPA(Compined)</label>
-
-                <div class="col-sm-9">
-                  <input type="number" class="form-control" id="inputepacombined" placeholder="EPA(Compined)">
-                </div>
-              </div>
-              <div class="form-group">
-                <label for="inputmaxpayload" class="col-sm-3 control-label">Maximum Payload</label>
-
-                <div class="col-sm-9">
-                  <input type="number" class="form-control" id="inputmaxpayload" placeholder="Maximum Payload">
-                </div>
-              </div>
-
-              
-              <div class="form-group">
-                <div class="col-sm-offset-6 col-sm-10">
-                  <button type="submit" class="btn btn-danger">Save</button>
-                </div>
-              </div>
-            </form>
-
-           
-
+       
+          <div class="tab-pane" id="activity">
+             <div class="form-horizontal">
             
-          </div>
+       
+		 <?php
+          	
+          	
+          	 echo $this->Form->input('vehiclespecification.width', ['disabled' =>true,'label'=>'Width','type'=>'text','empty' => true,'templateVars' => ['help' => 'Measurement of the widest part of the vehicle','icon' => '<div class="input-group-addon">'.$mptluserlengthunitmini.'  </div>']]);
+        	 echo $this->Form->input('vehiclespecification.height', ['disabled' =>true,'label'=>'Height','type'=>'text','empty' => true,'templateVars' => ['help' => 'Measurement from the ground to the highest part of the vehicle','icon' => '<div class="input-group-addon">'.$mptluserlengthunitmini.' </div>']]);
+        	 echo $this->Form->input('vehiclespecification.length', ['disabled' =>true,'label'=>'Length','type'=>'text','empty' => true,'templateVars' => ['help' => 'The total length of the vehicle including bumpers','icon' => '<div class="input-group-addon">'.$mptluserlengthunitmini.'  </div>']]);
+        	 echo $this->Form->input('vehiclespecification.interiorvolume', ['disabled' =>true,'label'=>'Interior Volume','type'=>'text','empty' => true,'templateVars' => ['help' => 'The volume within the vehicle main chamber','icon' => '<div class="input-group-addon">' .$mptluserlengthunitmajor.' <sup>3</sup> </div>']]);
+        	 echo $this->Form->input('vehiclespecification.passengervolume', ['disabled' =>true,'label'=>'Passenger Volume','type'=>'text','empty' => true,'templateVars' => ['help' => 'The volume for the area solely designated for passengers','icon' => '<div class="input-group-addon">' .$mptluserlengthunitmajor.' <sup>3</sup> </div>']]);
+        	 echo $this->Form->input('vehiclespecification.cargovolume', ['disabled' =>true,'label'=>'Cargo Volume','type'=>'text','empty' => true,'templateVars' => ['help' => 'The volume of the area designated as cargo space','icon' => '<div class="input-group-addon">' .$mptluserlengthunitmajor.' <sup>3</sup> </div>']]);
+        	 echo $this->Form->input('vehiclespecification.groudclearance', ['disabled' =>true,'label'=>'Ground Clearance','type'=>'text','empty' => true,'templateVars' => ['help' => 'The volume for the area solely designated for passengers','icon' => '<div class="input-group-addon">'.$mptluserlengthunitmini.'  </div>']]);
+        	 echo $this->Form->input('vehiclespecification.bedlength', ['disabled' =>true,'label'=>'Bed Length','type'=>'text','empty' => true,'templateVars' => ['help' => 'The volume of the area designated as cargo space','icon' => '<div class="input-group-addon">'.$mptluserlengthunitmini.'  </div>']]);
+        	
+			 echo $this->Form->input('vehiclespecification.curbweight', ['disabled' =>true,'label'=>'Curb Weight','type'=>'text','empty' => true,'templateVars' => ['help' => 'The weight of a vehicle with driver and fuel','icon' => '<div class="input-group-addon"> '.$mptluserweightunit.'  </div>']]);
+			 echo $this->Form->input('vehiclespecification.grossweight', ['disabled' =>true,'label'=>'GVWR','type'=>'text','empty' => true,'templateVars' => ['help' => 'Gross Vehicle Weight Rating','icon' => '<div class="input-group-addon">'.$mptluserweightunit.' </div>']]);
+			 echo $this->Form->input('vehiclespecification.towingcapacity', ['disabled' =>true,'label'=>'Towing Capacity','type'=>'text','empty' => true,'templateVars' => ['help' => 'The towing ability of the vehicle as it comes standard','icon' => '<div class="input-group-addon">'.$mptluserweightunit.' </div>']]);
+			 echo $this->Form->input('vehiclespecification.maxpayload', ['disabled' =>true,'label'=>'Max Payload','type'=>'text','empty' => true,'templateVars' => ['help' => 'The maximum allowable weight that the vehicle can hold','icon' => '<div class="input-group-addon"> '.$mptluserweightunit.' </div>']]);
+			
+          	
+             echo $this->Form->input('vehiclespecification.epacity',['disabled' =>true,'label'=>'EPA City']);
+             echo $this->Form->input('vehiclespecification.epahighway',['disabled' =>true,'label'=>'EPA Highway']);
+             echo $this->Form->input('vehiclespecification.epacombined',['disabled' =>true,'label'=>'EPA Combined']);          
+           
+        ?>
+            <!--	end specs -->
+            	
+            
+            
+             
+            </div>
+		</div>
           <!-- /.tab-pane -->
           
           <div class="tab-pane" id="engine">
-             <form class="form-horizontal">
-              <div class="form-group">
-                <label for="inputWidth" class="col-sm-3 control-label">Engine Summary</label>
-
-                <div class="col-sm-9">
-                  <input type="number" class="form-control" id="inputWidth" placeholder="Engine Summary">
-                </div>
-              </div>
-              <div class="form-group">
-                <label for="inputHeight" class="col-sm-3 control-label">Brand</label>
-
-                <div class="col-sm-9">
-                  <input type="number" class="form-control" id="inputHeight" placeholder="Brand">
-                </div>
-              </div>
-              <div class="form-group">
-                <label for="inputLength" class="col-sm-3 control-label">Aspiration</label>
-
-                <div class="col-sm-9">
-                  <input type="number" class="form-control" id="inputLength" placeholder="Aspiration">
-                </div>
-              </div>
-              <div class="form-group">
-                <label for="inputinteriorvolume" class="col-sm-3 control-label">Block Type</label>
-
-                <div class="col-sm-9">
-                  <input type="number" class="form-control" id="inputinteriorvolume" placeholder="Block Type"></input>
-                </div>
-              </div>
-              <div class="form-group">
-                <label for="inputpassengervolume" class="col-sm-3 control-label">Bore</label>
-
-                <div class="col-sm-9">
-                  <input type="number" class="form-control" id="inputpassengervolume" placeholder="Bore">
-                </div>
-              </div>
-             <div class="form-group">
-                <label for="inputcargovolume" class="col-sm-3 control-label">Cam Type</label>
-
-                <div class="col-sm-9">
-                  <input type="number" class="form-control" id="inputcargovolume" placeholder="Cam Type">
-                </div>
-              </div>
-              <div class="form-group">
-                <label for="inputgroudclearance" class="col-sm-3 control-label">Compression</label>
-
-                <div class="col-sm-9">
-                  <input type="number" class="form-control" id="inputgroudclearance" placeholder="Compression">
-                </div>
-              </div>
-               <div class="form-group">
-                <label for="inputbedlength" class="col-sm-3 control-label">Cylinders</label>
-
-                <div class="col-sm-9">
-                  <input type="number" class="form-control" id="inputbedlength" placeholder="Cylinders">
-                </div>
-              </div>
-              
-              <div class="form-group">
-                <label for="inputcurbweight" class="col-sm-3 control-label">Displacement</label>
-
-                <div class="col-sm-9">
-                  <input type="number" class="form-control" id="inputcurbweight" placeholder="Displacement">
-                </div>
-              </div>
-
-              <div class="form-group">
-                <label for="inputgrossweight" class="col-sm-3 control-label">Fuel Induction</label>
-
-                <div class="col-sm-9">
-                  <input type="number" class="form-control" id="inputgrossweight" placeholder="Fuel Inductiont">
-                </div>
-              </div>
-              <div class="form-group">
-                <label for="inputtowingcapacity" class="col-sm-3 control-label">Fuel Quality</label>
-
-                <div class="col-sm-9">
-                  <input type="number" class="form-control" id="inputtowingcapacity" placeholder="Fuel Quality">
-                </div>
-              </div>
-              <div class="form-group">
-                <label for="inputepacity" class="col-sm-3 control-label">Max HP</label>
-
-                <div class="col-sm-9">
-                  <input type="number" class="form-control" id="inputepacity" placeholder="Max HP">
-                </div>
-              </div>
-              <div class="form-group">
-                <label for="inputepahighway" class="col-sm-3 control-label">Max Torque</label>
-
-                <div class="col-sm-9">
-                  <input type="number" class="form-control" id="inputepahighway" placeholder="Max Torque">
-                </div>
-              </div>
-              <div class="form-group">
-                <label for="inputepacombined" class="col-sm-3 control-label">Redline Rpm</label>
-
-                <div class="col-sm-9">
-                  <input type="number" class="form-control" id="inputepacombined" placeholder="Redline Rpm">
-                </div>
-              </div>
-              <div class="form-group">
-                <label for="inputmaxpayload" class="col-sm-3 control-label">Stroke</label>
-
-                <div class="col-sm-9">
-                  <input type="number" class="form-control" id="inputmaxpayload" placeholder="Stroke">
-                </div>
-              </div>
-              <div class="form-group">
-                <label for="inputmaxpayload" class="col-sm-3 control-label">Valves</label>
-
-                <div class="col-sm-9">
-                  <input type="number" class="form-control" id="inputmaxpayload" placeholder="Valves">
-                </div>
-              </div>
-              <div class="form-group">
-                <label for="inputmaxpayload" class="col-sm-3 control-label">Transmission Summary</label>
-
-                <div class="col-sm-9">
-                  <input type="number" class="form-control" id="inputmaxpayload" placeholder="Transmission Summary">
-                </div>
-              </div>
-              <div class="form-group">
-                <label for="inputmaxpayload" class="col-sm-3 control-label">Trasmission Brand</label>
-
-                <div class="col-sm-9">
-                  <input type="number" class="form-control" id="inputmaxpayload" placeholder="Trasmission Brand">
-                </div>
-              </div>
-              <div class="form-group">
-                <label for="inputmaxpayload" class="col-sm-3 control-label">Transmission Type</label>
-
-                <div class="col-sm-9">
-                  <input type="number" class="form-control" id="inputmaxpayload" placeholder="Transmission Type">
-                </div>
-              </div>
-               <div class="form-group">
-                <label for="inputmaxpayload" class="col-sm-3 control-label">Traasmission Gears</label>
-
-                <div class="col-sm-9">
-                  <input type="number" class="form-control" id="inputmaxpayload" placeholder="Traasmission Gears">
-                </div>
-              </div>
-              
-              <div class="form-group">
-                <div class="col-sm-offset-6 col-sm-10">
-                  <button type="submit" class="btn btn-danger">Save</button>
-                </div>
-              </div>
-            </form>
+             <div class="form-horizontal">
+              <?php
+	            echo $this->Form->input('vehicleengine.enginesummary',['disabled' =>true,'label'=>'Engine Summary',  'templateVars' => ['help' => 'Basic Engine Summary']]);
+	            echo $this->Form->input('vehicleengine.brand',['disabled' =>true,'label'=>'Brand',   'templateVars' => ['help' => 'Brand specific Engine name']]);
+	            echo $this->Form->input('vehicleengine.aspiration',['disabled' =>true,'label'=>'Aspiration','class'=>'select2',   'templateVars' => ['help' => 'Method for drawing air into the engine']]);
+	            echo $this->Form->input('vehicleengine.blocktype',['disabled' =>true,'label'=>'Block Type','class'=>'select2',   'templateVars' => ['help' => 'Engine Block Type (F,H,R,I,W)']]);
+	            echo $this->Form->input('vehicleengine.bore', ['disabled' =>true,'label'=>'Bore','type'=>'text','empty' => true,'templateVars' => ['help' => 'Diameter of holes in the engine block used for cylinders','icon' => '<div class="input-group-addon">'.$mptluserlengthunitmini.'</div>']]);
+	        	echo $this->Form->input('vehicleengine.camtype',['disabled' =>true,'label'=>'Cam Type','class'=>'select2',   'templateVars' => ['help' => 'Type of Cam Examples include DOHC, SOHC etc..']]);
+	            echo $this->Form->input('vehicleengine.compression',['disabled' =>true,'label'=>'Compression',   'templateVars' => ['help' => 'Compression ratio']]);
+	            echo $this->Form->input('vehicleengine.cylinders',['disabled' =>true,'label'=>'Cylinders',  'templateVars' => ['help' => 'Number of cylinders present in the engine']]);
+	            echo $this->Form->input('vehicleengine.displacement',['disabled' =>true,'label'=>'Dispalcement',  'templateVars' => ['help' => 'Total Volume dispalced during one firing cycle of the engine']]);
+				echo $this->Form->input('vehicleengine.fuel_induction',['disabled' =>true,'label'=>'Fuel Induction','class'=>'select2',   'templateVars' => ['help' => 'Method of drawing fuel into the engine']]);
+	            echo $this->Form->input('vehicleengine.fuel_quality',['disabled' =>true,'label'=>'Fuel Quality',   'templateVars' => ['help' => 'Recommended Octane Rating']]);
+	            echo $this->Form->input('vehicleengine.max_hp',['disabled' =>true,'label'=>'Max HP',   'templateVars' => ['help' => 'Maximum power achieved by engine. Expressed in units of Horse Power']]);
+	            echo $this->Form->input('vehicleengine.max_torque',['disabled' =>true,'label'=>'Max Torque',   'templateVars' => ['help' => 'Maximum torque delivered by engine']]);
+	            echo $this->Form->input('vehicleengine.redline_rpm',['disabled' =>true,'label'=>'Redline RPM',   'templateVars' => ['help' => 'Maximum speed at which engine can operate without risking damage']]);
+	            echo $this->Form->input('vehicleengine.stroke',['disabled' =>true,'label'=>'Stroke',   'templateVars' => ['help' => 'Distance travelled by the piston during a combustion cycle']]);
+	            echo $this->Form->input('vehicleengine.valves',['disabled' =>true,'label'=>'Valves',   'templateVars' => ['help' => 'Total number of valves in the engine']]);
+	            echo $this->Form->input('vehicleengine.transmission_summary',['disabled' =>true,'label'=>'Transmission Summary',   'templateVars' => ['help' => 'Basic Transmission Summary']]);
+	            echo $this->Form->input('vehicleengine.trasmission_brand',['disabled' =>true,'label'=>'Transmission Brand',  'templateVars' => ['help' => 'Brand specific engine name. For example: Allison']]);
+	            echo $this->Form->input('vehicleengine.transmission_type',['disabled' =>true,'label'=>'Transmission Type','class'=>'select2' , 'templateVars' => ['help' => 'A nickname to distinguish this vehicle']]);
+	            echo $this->Form->input('vehicleengine.traasmission_gears',['disabled' =>true,'label'=>'Transmission Gears' , 'templateVars' => ['help' => 'Number of gears or speeds available']]);
+        		?>
+            </div>
 
            
 
@@ -399,100 +203,22 @@
           <!-- Tab Pane-->
           
            <div class="tab-pane" id="wheel">
-             <form class="form-horizontal">
-              <div class="form-group">
-                <label for="inputWidth" class="col-sm-3 control-label">Drive Type</label>
-
-                <div class="col-sm-9">
-                  <input type="number" class="form-control" id="inputWidth" placeholder="Drive Type">
-                </div>
-              </div>
-              <div class="form-group">
-                <label for="inputHeight" class="col-sm-3 control-label">Break System</label>
-
-                <div class="col-sm-9">
-                  <input type="number" class="form-control" id="inputHeight" placeholder="Break System">
-                </div>
-              </div>
-              <div class="form-group">
-                <label for="inputLength" class="col-sm-3 control-label">Front Track Width</label>
-
-                <div class="col-sm-9">
-                  <input type="number" class="form-control" id="inputLength" placeholder="Front Track Width">
-                </div>
-              </div>
-              <div class="form-group">
-                <label for="inputinteriorvolume" class="col-sm-3 control-label">Rear Track Width</label>
-
-                <div class="col-sm-9">
-                  <input type="number" class="form-control" id="inputinteriorvolume" placeholder="Rear Track Width"></input>
-                </div>
-              </div>
-              <div class="form-group">
-                <label for="inputpassengervolume" class="col-sm-3 control-label">Wheel Base</label>
-
-                <div class="col-sm-9">
-                  <input type="number" class="form-control" id="inputpassengervolume" placeholder="Bore">
-                </div>
-              </div>
-             <div class="form-group">
-                <label for="inputfrontwheeldia" class="col-sm-3 control-label">Front Wheel Diameter</label>
-
-                <div class="col-sm-9">
-                  <input type="number" class="form-control" id="inputcargovolume" placeholder="Front Wheel Diameter">
-                </div>
-              </div>
-              <div class="form-group">
-                <label for="inputgroudclearance" class="col-sm-3 control-label">Rear Wheel Diameter</label>
-
-                <div class="col-sm-9">
-                  <input type="number" class="form-control" id="inputgroudclearance" placeholder="Rear Wheel Diameter">
-                </div>
-              </div>
-               <div class="form-group">
-                <label for="inputbedlength" class="col-sm-3 control-label">Rear Axil</label>
-
-                <div class="col-sm-9">
-                  <input type="number" class="form-control" id="inputbedlength" placeholder="Rear Axil">
-                </div>
-              </div>
-              
-              <div class="form-group">
-                <label for="inputcurbweight" class="col-sm-3 control-label">Front Tyre Type</label>
-
-                <div class="col-sm-9">
-                  <input type="number" class="form-control" id="inputcurbweight" placeholder="Front Tyre Type">
-                </div>
-              </div>
-
-              <div class="form-group">
-                <label for="inputgrossweight" class="col-sm-3 control-label">Front Tyre PSI</label>
-
-                <div class="col-sm-9">
-                  <input type="number" class="form-control" id="inputgrossweight" placeholder="Front Tyre PSI">
-                </div>
-              </div>
-              <div class="form-group">
-                <label for="inputtowingcapacity" class="col-sm-3 control-label">Rear Tyre Type</label>
-
-                <div class="col-sm-9">
-                  <input type="number" class="form-control" id="inputtowingcapacity" placeholder="Rear Tyre Type">
-                </div>
-              </div>
-              <div class="form-group">
-                <label for="inputepacity" class="col-sm-3 control-label">Rear Tyre PSI</label>
-
-                <div class="col-sm-9">
-                  <input type="number" class="form-control" id="inputepacity" placeholder="Rear Tyre PSI">
-                </div>
-              </div>
-              
-              <div class="form-group">
-                <div class="col-sm-offset-6 col-sm-10">
-                  <button type="submit" class="btn btn-danger">Save</button>
-                </div>
-              </div>
-            </form>
+             <div class="form-horizontal">
+               <?php
+            	echo $this->Form->input('vehiclewheelstyre.drivetype',['disabled' =>true,'label'=>'Drive Type','class'=>'select2', 'templateVars' => ['help' => 'Refers to how many or which wheels are powered by the engine.']]);
+	            echo $this->Form->input('vehiclewheelstyre.breaksystem',['disabled' =>true,'label'=>'Brake System','class'=>'select2',  'templateVars' => ['help' => 'Description of brake type']]);
+	            echo $this->Form->input('vehiclewheelstyre.fronttrackwidth',['disabled' =>true,'label'=>'Front Track Width', 'templateVars' => ['help' => 'The distance between the front tires']]);
+	            echo $this->Form->input('vehiclewheelstyre.reartrackwidth',['disabled' =>true,'label'=>'Rear Track Width', 'templateVars' => ['help' => 'The distance between the rear tires']]);
+				echo $this->Form->input('vehiclewheelstyre.wheelbase', ['disabled' =>true,'label'=>'Wheel Base','type'=>'text','empty' => true,'templateVars' => ['help' => 'The length from the center of the front wheel to the center of the rear wheel','icon' => '<div class="input-group-addon">'.$mptluserlengthunitmini.' </div>']]);
+	        	echo $this->Form->input('vehiclewheelstyre.frontwheeldia',['disabled' =>true,'label'=>'Front Wheel Diameter', 'templateVars' => ['help' => 'The front wheel diameter(Displayed as  "length x width").']]);
+	            echo $this->Form->input('vehiclewheelstyre.rearwheeldia',['disabled' =>true,'label'=>'Rear Wheel Diameter', 'templateVars' => ['help' => 'The distance between the rear tires']]);
+	            echo $this->Form->input('vehiclewheelstyre.rearaxil',['disabled' =>true,'label'=>'Rear Axle']);
+	            echo $this->Form->input('vehiclewheelstyre.fronttyretype',['disabled' =>true,'label'=>'Front Tyre Type', 'templateVars' => ['help' => 'The front tire information']]);
+	            echo $this->Form->input('vehiclewheelstyre.fronttyrepsi',['disabled' =>true,'label'=>'Front Tyre PSI']);
+	            echo $this->Form->input('vehiclewheelstyre.reartyretype',['disabled' =>true,'label'=>'Rear Tyre Type', 'templateVars' => ['help' => 'The rear tire information if it is different than the front']]);
+	            echo $this->Form->input('vehiclewheelstyre.reartyrepsi',['disabled' =>true,'label'=>'Rear Tyre PSI']);
+        		?>
+            </div>
 
            
 
@@ -518,119 +244,37 @@
           <!-- /.tab-pane -->
 
           <div class="tab-pane" id="limits">
-            <form class="form-horizontal">
-              <div class="form-group">
-                <label for="inputspeedlimit" class="col-sm-3 control-label">Speed Limit</label>
-
-                <div class="col-sm-9">
-                  <input type="number" class="form-control" id="inputspeedlimit" placeholder="Speed Limit">
-                </div>
-              </div>
-              <div class="form-group">
-                <label for="inputbatteryvoltage" class="col-sm-3 control-label">Battery Voltage</label>
-
-                <div class="col-sm-9">
-                  <input type="number" class="form-control" id="inputbatteryvoltage" placeholder="Battery Voltage">
-                </div>
-              </div>
-              <div class="form-group">
-                <label for="inputaccelarationlimit" class="col-sm-3 control-label">Accelaration Limit</label>
-
-                <div class="col-sm-9">
-                  <input type="number" class="form-control" id="inputaccelarationlimit" placeholder="Accelaration Limit">
-                </div>
-              </div>
-              <div class="form-group">
-                <label for="inputbreakinglimit" class="col-sm-3 control-label">Breaking Limit</label>
-
-                <div class="col-sm-9">
-                  <input type="number" class="form-control" id="inputbreakinglimit" placeholder="Breaking Limit"></input>
-                </div>
-              </div>
-              <div class="form-group">
-                <label for="inputcrashlimit" class="col-sm-3 control-label">Crash Limit</label>
-
-                <div class="col-sm-9">
-                  <input type="number" class="form-control" id="inputcrashlimit" placeholder="Crash Limit">
-                </div>
-              </div>
-              <div class="form-group">
-                <label for="inputshutlimit" class="col-sm-3 control-label">Shunt Limit</label>
-
-                <div class="col-sm-9">
-                  <input type="number" class="form-control" id="inputshutlimit" placeholder="Shunt Limit">
-                </div>
-              </div>
-              <div class="form-group">
-                <label for="inputcontiniousruntime" class="col-sm-3 control-label">Continious Runtime</label>
-
-                <div class="col-sm-9">
-                  <input type="number" class="form-control" id="inputcontiniousruntime" placeholder="Continious Runtime">
-                </div>
-              </div>
-              <div class="form-group">
-                <label for="inputodometeroffset" class="col-sm-3 control-label">Odometer Offset</label>
-
-                <div class="col-sm-9">
-                  <input type="number" class="form-control" id="inputodometeroffset" placeholder="Odometer Offset">
-                </div>
-              </div>
-              
-              <div class="form-group">
-                <div class="col-sm-offset-6 col-sm-10">
-                  <button type="submit" class="btn btn-danger">Save</button>
-                </div>
-              </div>
-            </form>
+            <div class="form-horizontal">
+              <?php	
+           	echo $this->Form->input('vehiclelease.maonthypayment', ['disabled' =>true,'label'=>'Monthly Payment','type'=>'text','empty' => true,'templateVars' => ['icon' => '<div class="input-group-addon"><i class="'.$mptlusercurrencyfaclass.'"></i></div>']]);
+            echo $this->Form->input('vehiclelease.startdate', ['disabled' =>true,'type'=>'text','empty' => true,'label'=>'Start Date','required' => 'required','class'=>'datemask','templateVars' => ['icon' => '<div class="input-group-addon"><i class="fa fa-calendar"></i></div>']]);
+            echo $this->Form->input('vehiclelease.enddate', ['disabled' =>true,'type'=>'text','empty' => true,'label'=>'End Date','required' => 'required','class'=>'datemask','templateVars' => ['icon' => '<div class="input-group-addon"><i class="fa fa-calendar"></i></div>']]);
+            echo $this->Form->input('vehiclelease.amountfinanced', ['label'=>'Amount Financed','disabled' =>true,'type'=>'text','empty' => true,'templateVars' => ['icon' => '<div class="input-group-addon"><i class="'.$mptlusercurrencyfaclass.'"></i></div>']]);
+            echo $this->Form->input('vehiclelease.interestrate', ['disabled' =>true,'label'=>'Interest Rate','type'=>'text','empty' => true,'templateVars' => ['icon' => '<div class="input-group-addon"><i>%</i></div>']]);
+            echo $this->Form->input('vehiclelease.residualvalue', ['disabled' =>true,'label'=>'Residual Value','type'=>'text','empty' => true,'templateVars' => ['icon' => '<div class="input-group-addon"><i class="'.$mptlusercurrencyfaclass.'"></i></div>']]);
+            echo $this->Form->input('vehiclelease.accountnumber', ['disabled' =>true,'label'=>'Account Number']);
+            echo $this->Form->input('vehiclelease.ifsccode', ['disabled' =>true,'label'=>'IFSC Code']);
+            echo $this->Form->input('vehiclelease.swiftcode', ['disabled' =>true,'label'=>'Swift Code']);
+            echo $this->Form->input('vehiclelease.notes', ['disabled' =>true,'type'=>'textarea']);
+			?>
+            </div>
           </div>
           <!-- /.tab-pane -->
           <div class="tab-pane" id="fuel">
-            <form class="form-horizontal">
-              <div class="form-group">
-                <label for="inputfueltype" class="col-sm-3 control-label">Fuel Type</label>
-
-                <div class="col-sm-9">
-                  <input type="number" class="form-control" id="inputfueltype" placeholder="Fuel Type">
-                </div>
-              </div>
-              <div class="form-group">
-                <label for="inputfuelquality" class="col-sm-3 control-label">Fuel Quality</label>
-
-                <div class="col-sm-9">
-                  <input type="number" class="form-control" id="inputfuelquality" placeholder="Fuel Quality">
-                </div>
-              </div>
-              <div class="form-group">
-                <label for="inputfueltank1capacity" class="col-sm-3 control-label">Fuel Tank1 Capacity</label>
-
-                <div class="col-sm-9">
-                  <input type="number" class="form-control" id="inputfueltank1capacity" placeholder="Fuel Tank1 Capacity">
-                </div>
-              </div>
-              <div class="form-group">
-                <label for="inputfueltank2capacity" class="col-sm-3 control-label">Fuel Tank2 Capacity </label>
-
-                <div class="col-sm-9">
-                  <input type="number" class="form-control" id="inputfueltank2capacity" placeholder="Fuel Tank2 Capacity"></input>
-                </div>
-              </div>
-              <div class="form-group">
-                <label for="inputoilcapacity" class="col-sm-3 control-label">Oil Capacity</label>
-
-                <div class="col-sm-9">
-                  <input type="number" class="form-control" id="inputoilcapacity" placeholder="Oil Capacity">
-                </div>
-              </div>
-              
-              <div class="form-group">
-                <div class="col-sm-offset-6 col-sm-10">
-                  <button type="submit" class="btn btn-danger">Save</button>
-                </div>
-              </div>
-            </form>
+            <div class="form-horizontal">
+             <?php
+           	echo $this->Form->input('vehiclefluid.fueltype',['disabled' =>true,'label'=>'Fuel Type','class'=>'select2']);
+            echo $this->Form->input('vehiclefluid.fuelquality',['disabled' =>true,'label'=>'Fuel Quality', 'templateVars' => ['help' => 'Recommended Octane rating']]);
+			echo $this->Form->input('vehiclefluid.fueltank1_capacity', ['disabled' =>true,'label'=>'Fuel Tank1 Capacity','type'=>'text','empty' => true,'templateVars' => ['help' => 'The volume of gas the vehicles primary gas tank can hold','icon' => '<div class="input-group-addon">' .$mptluservolumeunit.' </div>']]);
+            echo $this->Form->input('vehiclefluid.fueltank2_capacity', ['disabled' =>true,'label'=>'Fuel Tank2 Capacity','type'=>'text','empty' => true,'templateVars' => ['help' => 'The volume of gas the vehicles secondary gas tank can hold','icon' => '<div class="input-group-addon">' .$mptluservolumeunit.' </div>']]);
+			echo $this->Form->input('vehiclefluid.oil_capacity', ['disabled' =>true,'label'=>'Oil Capacity','type'=>'text','empty' => true,'templateVars' => ['help' => 'Capacity of oil reservoir','icon' => '<div class="input-group-addon">' .$mptluservolumeunit.' </div>']]);
+        	?>
+            </div>
           </div>
           <!-- /.tab-pane -->
-          
+          <div class="tab-pane" id="attachments">
+          	
+          </div>
         </div>
         <!-- /.tab-content -->
       </div>
@@ -639,6 +283,6 @@
     <!-- /.col -->
   </div>
   <!-- /.row -->
-
+<?= $this->Form->end() ?>
 </section>
 <!-- /.content -->
