@@ -57,6 +57,9 @@ class DevicesTable extends Table
 		$this->belongsTo('Distancetypes', [
             'foreignKey' => 'distancetype_id'
         ]);
+		$this->hasOne('Sensormappings', [
+            'foreignKey' => 'sensormapping_id'
+        ]);
 		$this->hasMany('Gpsdata', [
             'foreignKey' => 'device_id'
         ]);

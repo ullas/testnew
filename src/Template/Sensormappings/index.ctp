@@ -5,15 +5,11 @@
     Sensormappings
     <small>Manage your Sensormappings</small>
   </h1>
-  
+  <ol class="breadcrumb">
+    <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+    <li><a href="#"></a>Sensormappings</li>
+    
+  </ol>
 </section>
-<?php 
-				$fields = array();
-				$fields[0] = array("title" =>"Id"  , "type" => "num");
-				//$fields[1] = array("title" =>"AI0"  , "type" => "num");
-				//$fields[2] = array("title" =>"AI1"  , "type" => "num");
-				
 
-echo $this->element('indexbasicmaster', array('colheadsformasters' => $fields)); ?>
-
-
+ <?php echo $this->element('indexbasicnofilter'); ?>
