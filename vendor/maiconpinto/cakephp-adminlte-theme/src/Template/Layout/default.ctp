@@ -263,7 +263,9 @@ div.dataTables_wrapper { clear: both; }
   							alert($(this).attr("data-id"));
   						});
 				  		
-				  		$('<a href='+ link.attr("href") +'"/add/" id="masterdataadd" class="btn btn-sm btn-success" style="margin-left:5px;" title="Add New Work Order"><i class="fa fa-plus" aria-hidden="true"></i></a>').appendTo('#mptlindextblmaster_filter');
+
+				  		$('<a href='+ link.attr("href") +'"/add/" id="masterdataadd" class="btn btn-sm btn-success" style="margin-left:5px;" title="Add New"><i class="fa fa-plus" aria-hidden="true"></i></a>').appendTo('#mptlindextblmaster_filter');
+
    
 				  		$("div.dataTables_filter").delegate("#masterdataadd","click", function(e){
 				  			 e.preventDefault();
