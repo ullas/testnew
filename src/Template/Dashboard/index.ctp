@@ -118,37 +118,37 @@
 
               <div class="progress-group">
                 <span class="progress-text">OverSpeed</span>
-                <span class="progress-number"><b>160</b>/320</span>
+                <span class="progress-number"><b><?php echo $overspeedalertcount ?></b>/<?php echo $totaloverspeedalertcount ?></span>
 
                 <div class="progress sm">
-                  <div class="progress-bar progress-bar-aqua" style="width: 50%"></div>
+                  <div class="progress-bar progress-bar-aqua" style="width:<?php echo ($overspeedalertcount/$totaloverspeedalertcount * 100);  ?>%"></div>
                 </div>
               </div>
               <!-- /.progress-group -->
               <div class="progress-group">
                 <span class="progress-text">Harsh Breaking</span>
-                <span class="progress-number"><b>20</b>/160</span>
+                <span class="progress-number"><b><?php echo $harshbreakingalertcount ?></b>/<?php echo $totalharshbreakingalertcount ?></span>
 
                 <div class="progress sm">
-                  <div class="progress-bar progress-bar-red" style="width: 14%"></div>
+                  <div class="progress-bar progress-bar-red" style="width: <?php echo ($harshbreakingalertcount/$totalharshbreakingalertcount * 100);  ?>%"></div>
                 </div>
               </div>
               <!-- /.progress-group -->
               <div class="progress-group">
                 <span class="progress-text">Fence Violations</span>
-                <span class="progress-number"><b>23</b>/230</span>
+                <span class="progress-number"><b><?php echo $fenceviolationalertcount ?></b>/<?php echo $totalfenceviolationalertcount ?></span>
 
                 <div class="progress sm">
-                  <div class="progress-bar progress-bar-green" style="width: 10%"></div>
+                  <div class="progress-bar progress-bar-green" style="width:<?php echo ($fenceviolationalertcount/$totalfenceviolationalertcount * 100);  ?>%"></div>
                 </div>
               </div>
               <!-- /.progress-group -->
               <div class="progress-group">
                 <span class="progress-text">Eccessive Acceleration</span>
-                <span class="progress-number"><b>20</b>/410</span>
+                <span class="progress-number"><b><?php echo $eccessiveaccelalertcount?></b>/<?php echo $totaleccessiveaccelalertcount ?></span>
 
                 <div class="progress sm">
-                  <div class="progress-bar progress-bar-yellow" style="width: 5%"></div>
+                  <div class="progress-bar progress-bar-yellow" style="width:<?php echo ($eccessiveaccelalertcount/$totaleccessiveaccelalertcount * 100);  ?>%;"></div>
                 </div>
               </div>
               <!-- /.progress-group -->
@@ -164,8 +164,8 @@
           	
             <div class="col-sm-3 col-xs-6">
               <div class="description-block border-right">
-                <span class="description-percentage text-green"><i class="fa fa-caret-up"></i> 17%</span>
-                <h5 class="description-header">35,210.43(KM)</h5>
+                <span class="description-percentage text-green"><i class="fa fa-caret-up"></i> <?php echo round($distancecount/$lastmonthdistancecount*100)?>%</span>
+                <h5 class="description-header"><?php echo $distancecount?>(KM)</h5>
                 <span class="description-text">TOTAL DISTANCE</span>
               </div>
               <!-- /.description-block -->
@@ -173,8 +173,8 @@
             <!-- /.col -->
             <div class="col-sm-3 col-xs-6">
               <div class="description-block border-right">
-                <span class="description-percentage text-yellow"><i class="fa fa-caret-left"></i> 0%</span>
-                <h5 class="description-header">8,000(Lt)</h5>
+                <span class="description-percentage text-yellow"><i class="fa fa-caret-left"></i> <?php echo round($fuelsum/$lastmonthfuelsum*100)?>%</span>
+                <h5 class="description-header"><?php echo $fuelsum?>(Lt)</h5>
                 <span class="description-text">FUEL USAGE</span>
               </div>
               <!-- /.description-block -->
@@ -182,8 +182,8 @@
             <!-- /.col -->
             <div class="col-sm-3 col-xs-6">
               <div class="description-block border-right">
-                <span class="description-percentage text-green"><i class="fa fa-caret-up"></i> 20%</span>
-                <h5 class="description-header">863(Hrs)</h5>
+                <span class="description-percentage text-green"><i class="fa fa-caret-up"></i> <?php echo round($nonprodhrssum / $lastmonthnonprodhrssum*100)?>%</span>
+                <h5 class="description-header"><?php echo round($nonprodhrssum)?>(Hrs)</h5>
                 <span class="description-text">Non productive Hours</span>
               </div>
               <!-- /.description-block -->
@@ -191,8 +191,8 @@
             <!-- /.col -->
             <div class="col-sm-3 col-xs-6">
               <div class="description-block">
-                <span class="description-percentage text-red"><i class="fa fa-caret-down"></i> 18%</span>
-                <h5 class="description-header">1200(Hrs)</h5>
+                <span class="description-percentage text-red"><i class="fa fa-caret-down"></i> <?php echo round($runtimesum / $lastmonthruntimesum*100)?>%</span>
+                <h5 class="description-header"><?php echo round($runtimesum)?>(Hrs)</h5>
                 <span class="description-text">TOTAL RUNTIME</span>
               </div>
               <!-- /.description-block -->
@@ -222,7 +222,7 @@
           <div class="box-tools pull-right">
             <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
             </button>
-            <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+            <!-- <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button> -->
           </div>
         </div>
         <!-- /.box-header -->
@@ -232,68 +232,33 @@
               <thead>
               <tr>
                 <th>Driver</th>
-                <th>Department</th>
+                <th>Distance</th>
                 <th>Score</th>
                 <th>Summary</th>
               </tr>
               </thead>
               <tbody>
-              <tr>
-                <td><a href="pages/examples/invoice.html">OR9842</a></td>
-                <td>Call of Duty IV</td>
-                <td><span class="label label-danger">32</span></td>
-                <td>
-                  <div class="sparkbar" data-color="#00a65a" data-height="20">90,80,90,-70,61,-83,63</div>
-                </td>
-              </tr>
-              <tr>
-                <td><a href="pages/examples/invoice.html">OR1848</a></td>
-                <td>Samsung Smart TV</td>
-                <td><span class="label label-danger">21</span></td>
-                <td>
-                  <div class="sparkbar" data-color="#f39c12" data-height="20">90,80,-90,70,61,-83,68</div>
-                </td>
-              </tr>
-              <tr>
-                <td><a href="pages/examples/invoice.html">OR7429</a></td>
-                <td>iPhone 6 Plus</td>
-                <td><span class="label label-danger">18</span></td>
-                <td>
-                  <div class="sparkbar" data-color="#f56954" data-height="20">90,-80,90,70,-61,83,63</div>
-                </td>
-              </tr>
-              <tr>
-                <td><a href="pages/examples/invoice.html">OR7429</a></td>
-                <td>Samsung Smart TV</td>
-                <td><span class="label label-warning">16</span></td>
-                <td>
-                  <div class="sparkbar" data-color="#00c0ef" data-height="20">90,80,-90,70,-61,83,63</div>
-                </td>
-              </tr>
-              <tr>
-                <td><a href="pages/examples/invoice.html">OR1848</a></td>
-                <td>Samsung Smart TV</td>
-                <td><span class="label label-warning">12</span></td>
-                <td>
-                  <div class="sparkbar" data-color="#f39c12" data-height="20">90,80,-90,70,61,-83,68</div>
-                </td>
-              </tr>
-              <tr>
-                <td><a href="pages/examples/invoice.html">OR7429</a></td>
-                <td>iPhone 6 Plus</td>
-                <td><span class="label label-warning">11</span></td>
-                <td>
-                  <div class="sparkbar" data-color="#f56954" data-height="20">90,-80,90,70,-61,83,63</div>
-                </td>
-              </tr>
-              <tr>
-                <td><a href="pages/examples/invoice.html">OR9842</a></td>
-                <td>Call of Duty IV</td>
-                <td><span class="label label-success">10</span></td>
-                <td>
-                  <div class="sparkbar" data-color="#00a65a" data-height="20">90,80,90,-70,61,-83,63</div>
-                </td>
-              </tr>
+              	<?php 
+					for ($x = 0; $x < count($ragcontent); $x++) { ?>
+						<tr>
+                		<td><?php echo $ragcontent[$x]['driver_code']; ?></td>
+                		<td><?php echo $ragcontent[$x]['distance']; ?></td>
+                		<td><span class="label label-danger">32</span></td>
+                		<td>
+                  			<div class="sparkbar" data-color="#00a65a" data-height="20">
+                  				<?php echo $ragcontent[$x]['ose']; ?>,
+                  				<?php echo $ragcontent[$x]['oste']; ?>,
+                  				<?php echo $ragcontent[$x]['hbe']; ?>,
+                  				<?php echo $ragcontent[$x]['eae']; ?>,
+                  				<?php echo $ragcontent[$x]['pbe']; ?>,
+                  				<?php echo $ragcontent[$x]['nde']; ?>,
+                  				<?php echo $ragcontent[$x]['ede']; ?>,
+                  				<?php echo $ragcontent[$x]['dte']; ?>
+                  			</div>
+                		</td>
+              			</tr>
+				<?php } 
+				?>
               </tbody>
             </table>
           </div>
@@ -434,7 +399,7 @@ $this->Html->script([
             pointStrokeColor: "#c1c7d1",
             pointHighlightFill: "#fff",
             pointHighlightStroke: "rgb(220,220,220)",
-            data: [86, 32, 45, 64, 55, 80, 78,62]
+            data: [86, 32, 45, 64, 55, 80, 78, 62]
           },
           {
             label: "Vehicle Utilisation",

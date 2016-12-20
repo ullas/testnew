@@ -213,6 +213,7 @@ public function ajaxdata() {
 			$trobj=$trobjTable->newEntity();
 			print_r($this->request->data);
 			$trobj->name=$this->request->data['name'];
+			$trobj->customer_id = $this->loggedinuser['customer_id'];
 		    $trobjTable->save($trobj);
 			$person['trackingobject_id']=$trobj->id;
 			

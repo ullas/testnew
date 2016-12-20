@@ -245,8 +245,9 @@ private function getDateRangeFilters($dates,$basic)  {
 			$trobj=$trobjTable->newEntity();
 			
 			
-			 $trobj->name=$vehicle->name;
-			 $trobjTable->save($trobj);
+			$trobj->name=$vehicle->name;
+			$trobj->customer_id = $this->loggedinuser['customer_id'];
+			$trobjTable->save($trobj);
 				
 			 $vehicle['trackingobject_id']=$trobj->id;
 			
