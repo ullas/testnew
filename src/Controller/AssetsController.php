@@ -219,6 +219,7 @@ private function getDateRangeFilters($dates,$basic)  {
 			
 			$trobj=$trobjTable->newEntity();
 			$trobj->name=$this->request->data['name'];
+			$trobj->customer_id = $this->loggedinuser['customer_id'];
 		    $trobjTable->save($trobj);
 			$asset['trackingobject_id']=$trobj->id;
 			

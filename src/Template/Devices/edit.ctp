@@ -4,17 +4,6 @@
   <h1>
     Edit Device <small>Please fill the details to edit a Device</small>
   </h1>
-  <?php
-  $devid = $device['id'];
-  //if ($sensorid = 0)
-  // if(isset($sensormappings[0]['id']))
-  // {
-  	// $path ="/edit/".$sensorid ; 
-  // }
-  // else {
-     // $path ="/add";
-  // }
-  ?>
   <a href="/sensormappings<?php echo $path ?>"> List Sensor Mappings</a>
    <!-- <a href="/sensormappings/edit/<?php echo $sensorid ?>"> List Sensor Mappings</a> -->
   <ol class="breadcrumb">
