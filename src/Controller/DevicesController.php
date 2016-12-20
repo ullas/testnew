@@ -206,21 +206,40 @@ public function ajaxdata() {
     public function add()
     {
         $device = $this->Devices->newEntity();
-        if ($this->request->is('post')) {
+		
+		//$sensormapping = $this->Devices->Sensormappings->newEntity();
+		
+		if ($this->request->is('post')) {
+        	
             $device = $this->Devices->patchEntity($device, $this->request->data);
 			$device['customer_id']=$this->loggedinuser['customer_id'];
+			
+			
+				
+			//$device['id']=$sensormappingobj->device_id;
+			//$sensormappingobj->device_id=$device['id'];
+			//$sensormappingobj['device_id']=$device->id;
+			
             if ($this->Devices->save($device)) {
                 $this->Flash->success(__('The device has been saved.'));
-
-                return $this->redirect(['action' => 'index']);
+				$sensormappingTable = TableRegistry::get('Sensormappings');
+				$sensormappingobj=$sensormappingTable->newEntity();
+				$sensormappingobj->device_id=$device['id'];
+				$sensormappingobj->customer_id=$this->loggedinuser['customer_id'];
+				$sensormappingTable->save($sensormappingobj);
+				return $this->redirect(['action' => 'index']);
             } else {
                 $this->Flash->error(__('The device could not be saved. Please, try again.'));
             }
+			
+			
+			
         }
         $customers = $this->Devices->Customers->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
         $providers = $this->Devices->Providers->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
         $distancetypes = $this->Devices->Distancetypes->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
-        $this->set(compact('device', 'customers', 'providers','distancetypes'));
+        $sensormappings = $this->Devices->Sensormappings->find('all')->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']);
+	    $this->set(compact('device', 'customers', 'providers','distancetypes','sensormappings'));
         $this->set('_serialize', ['device']);
     }
 
