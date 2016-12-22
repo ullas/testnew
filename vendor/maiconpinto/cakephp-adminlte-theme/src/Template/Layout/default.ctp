@@ -311,6 +311,7 @@ div.dataTables_wrapper { clear: both; }
 					    
 					    
 						     	   $('#myModal').on("submit", "form#masterdataform", function(e){ 
+									    
 									    e.preventDefault(); 
 									    
 									    var postData = $(this).serializeArray();
