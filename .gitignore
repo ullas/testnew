@@ -22,3 +22,4 @@ tmp/cache/persistent/myapp_cake_core_translations_default_pl__p_l
 *.sqlite
 
 tmp/debug_kit.sqlite
+src/webroot/uploadedpics/Ko ala.jpg

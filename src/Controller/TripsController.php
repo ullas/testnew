@@ -16,8 +16,7 @@ class TripsController extends AppController
      * @var array
      */
     public $components = ['Datatable'];
-    /**
-     * Index method
+     /* Index method
      *
      * @return \Cake\Network\Response|null
      */
@@ -205,6 +204,7 @@ private function getDateRangeFilters($dates,$basic)  {
         if ($this->request->is('post')) {
             $trip = $this->Trips->patchEntity($trip, $this->request->data);
             $trip['customer_id']=$this->loggedinuser['customer_id'];
+			$trip['adt'] = '2016-09-27'.' '.$trip['adt'];
             if ($this->Trips->save($trip)) {
                 $this->Flash->success(__('The trip has been saved.'));
 

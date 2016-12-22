@@ -44,8 +44,8 @@ class CurrenciesController extends AppController
 		$additional = isset($this->request->query['additional'])?$this->request->query['additional']:"";
 		
 
-        $this->loadModel('AssetTypes');
-        $dbout=$this->AssetTypes->find('all')->toArray();
+        $this->loadModel('Currencies');
+        $dbout=$this->Currencies->find('all')->toArray();
      
          $fields = array();
 		 
@@ -92,6 +92,7 @@ class CurrenciesController extends AppController
         $currency = $this->Currencies->newEntity();
         if ($this->request->is('post')) {
             $currency = $this->Currencies->patchEntity($currency, $this->request->data);
+			$currency['customer_id'] = $this->loggedinuser['customer_id'];
             if ($this->Currencies->save($currency)) {
          //       $this->Flash->success(__('The currency has been saved.'));
 
@@ -124,6 +125,7 @@ class CurrenciesController extends AppController
 		}
         if ($this->request->is(['patch', 'post', 'put'])) {
             $currency = $this->Currencies->patchEntity($currency, $this->request->data);
+			$currency['customer_id'] = $this->loggedinuser['customer_id'];
             if ($this->Currencies->save($currency)) {
         //        $this->Flash->success(__('The currency has been saved.'));
 

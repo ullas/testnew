@@ -17,31 +17,30 @@
 <section class="content">
  <?= $this->Form->create($part)?>
   <div class="row">
-    
+
     <div class="col-md-12">
       <div class="nav-tabs-custom">
-        
+
         <div class="tab-content">
           <div class="active tab-pane" id="details">
              <div class="form-horizontal">
         <?php
-            
-            echo $this->Form->input('partno',['label'=>'Part Number ','templateVars' => ['help' => 'Internal part identifier. Must be unique per part.'],'required' => 'required']);
+            echo $this->Form->input('partno',['label'=>'Part Number ','templateVars' => ['help' => 'A unique internal part identifier code.'],'required' => 'required']);
             echo $this->Form->input('partcategory_id', ['options' => $partcategories, 'empty' => true,'label'=>'Part Category','class'=>'select2','required' => 'required']);
             echo $this->Form->input('manufacturer_id', ['options' => $manufacturers, 'empty' => true,'class'=>'select2','required' => 'required']);
-            echo $this->Form->input('manufacturerpartno',['label'=>'Manufacturer Part Number','templateVars' => ['help' => 'Manufacturer specific part number that can differentiate the part from an internal number.'],'required' => 'required']);
+            echo $this->Form->input('manufacturerpartno',['label'=>'Manufacturer Part Number','templateVars' => ['help' => 'Manufacturer specific part number.'],'required' => 'required']);
             echo $this->Form->input('description');
             echo $this->Form->input('measurementunit_id', ['options' => $measurementunits, 'empty' => true,'label'=>'Measurement Unit','class'=>'select2']);
-            echo $this->Form->input('upc');
+            echo $this->Form->input('upc',['label'=>'UPC','templateVars' => ['help' => 'Universal Product Code to identify the part.']]);
             echo $this->Form->input('cost');
             echo $this->Form->input('station_id', ['options' => $stations, 'empty' => true,'class'=>'select2']);
         ?>
    </div>
- 
+
           </div>
           <!-- /.tab-pane -->
-          
-          
+
+
         </div>
         <!-- /.tab-content -->
       </div>
@@ -97,4 +96,4 @@ $this->Html->script([
 
   });
 </script>
-<?php $this->end(); ?>      	  
+<?php $this->end(); ?>

@@ -4,6 +4,8 @@
   <h1>
     Edit Device <small>Please fill the details to edit a Device</small>
   </h1>
+  <a href="/sensormappings<?php echo $path ?>"> List Sensor Mappings</a>
+   <!-- <a href="/sensormappings/edit/<?php echo $sensorid ?>"> List Sensor Mappings</a> -->
   <ol class="breadcrumb">
     <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
     <li><a href="#">Hardware</a></li>
@@ -24,7 +26,8 @@
           <div class="active tab-pane" id="details">
              <div class="form-horizontal">
         <?php
-             echo $this->Form->input('code',['required' =>'required']);
+        
+        	echo $this->Form->input('code',['required' =>'required']);
             echo $this->Form->input('install_date', ['empty' => true,'type'=>'text','class'=>'datemask' , 'required' =>'required','templateVars' => ['icon' => '<div class="input-group-addon"><i class="fa fa-calendar"></i></div>']]);
             echo $this->Form->input('installed_by',['required' =>'required']);
             echo $this->Form->input('certified_by',['required' =>'required']);

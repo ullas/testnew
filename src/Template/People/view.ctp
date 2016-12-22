@@ -20,7 +20,7 @@
         
         <tr>
             <th><?= __('Name') ?></th>
-            <td><?= h($person->trackingobject->name) ?></td>
+            <td><?= h($person->name) ?></td>
         </tr>
         <tr>
             <th><?= __('Designation') ?></th>

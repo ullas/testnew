@@ -263,7 +263,9 @@ div.dataTables_wrapper { clear: both; }
   							alert($(this).attr("data-id"));
   						});
 				  		
-				  		$('<a href='+ link.attr("href") +'"/add/" id="masterdataadd" class="btn btn-sm btn-success" style="margin-left:5px;" title="Add New Work Order"><i class="fa fa-plus" aria-hidden="true"></i></a>').appendTo('div.dataTables_filter');
+
+				  		$('<a href='+ link.attr("href") +'"/add/" id="masterdataadd" class="btn btn-sm btn-success" style="margin-left:5px;" title="Add New"><i class="fa fa-plus" aria-hidden="true"></i></a>').appendTo('#mptlindextblmaster_filter');
+
    
 				  		$("div.dataTables_filter").delegate("#masterdataadd","click", function(e){
 				  			 e.preventDefault();
@@ -423,12 +425,12 @@ div.dataTables_wrapper { clear: both; }
     <!-- Modal content-->
     <div class="modal-content">
      
-      <div class="modal-body">
+      <div class="modal-body" style="padding:0px;">
         
       </div>
-      <div class="modal-footer">
+      <!-- <div class="modal-footer">
         <button type="submit" class="btn btn-default" data-dismiss="modal">Close</button>
-      </div>
+      </div> -->
     </div>
 
   </div>

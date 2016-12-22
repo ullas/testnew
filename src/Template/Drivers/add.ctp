@@ -18,12 +18,12 @@
 <section class="content">
     <?= $this->Form->create($driver) ?>
    <div class="row">
-    
+
     <div class="col-md-12">
       <div class="nav-tabs-custom">
         <ul class="nav nav-tabs">
-          <li  class="active"><a href="#details" data-toggle="tab">Details</a></li>	   
-          <li><a href="#docs" data-toggle="tab">Attachments</a></li>          
+          <li  class="active"><a href="#details" data-toggle="tab">Details</a></li>
+          <li><a href="#docs" data-toggle="tab">Attachments</a></li>
         </ul>
         <div class="tab-content">
           <div class="active tab-pane" id="details">
@@ -41,32 +41,32 @@
             echo $this->Form->input('nextofkin',['label'=>'Next Of Kin']);
             echo $this->Form->input('comments');
            // echo $this->Form->input('photo');
-            echo $this->Form->input('ibutton_id',['options' => $ibuttons,'class'=>'select2']);
-            echo $this->Form->input('drivingpassportno',['label'=>'Driving Passport No']);
+            echo $this->Form->input('ibutton_id',['label'=>'iButton ID','options' => $ibuttons,'class'=>'select2', 'empty' => true,'templateVars' => ['help'=>'Unique digital identifier id. Also known as Dallas Key.']]);
+            echo $this->Form->input('drivingpassportno',['label'=>'Driving Passport No','templateVars' => ['help'=>'The Petroleum Driver Passport (PDP) number.'] ]);
             echo $this->Form->input('drivingpassportexp', ['type'=>'text','empty' => true,'label'=>'Driving Passport Expiry Date','class'=>'datemask','templateVars' => ['icon' => '<div class="input-group-addon"><i class="fa fa-calendar"></i></div>']]);
             echo $this->Form->input('vehicle_id', ['options' => $vehicles, 'empty' => true,'class'=>'select2','required' => 'required']);
             echo $this->Form->input('drivinglicenseclass',['label'=>'Driving Licence Class']);
             echo $this->Form->input('contractor_id', ['options' => $contractors, 'empty' => true,'class'=>'select2']);
             echo $this->Form->input('station_id', ['options' => $stations, 'empty' => true,'class'=>'select2']);
-            echo $this->Form->input('reporingtime', ['label'=>'Reporting Time','empty' => true]);
-            echo $this->Form->input('offday1');
-            echo $this->Form->input('offday2');
+            echo $this->Form->input('reporingtime',['label'=>'Reporting Time','class' => 'timepicker','type' => 'text','templateVars' => ['opentag' => '<div class="bootstrap-timepicker">','closetag' => '</div>','icon' => '<div class="input-group-addon"><i class="fa fa-clock-o"></i></div>']]);
+            echo $this->Form->input('offday1',['label'=>'Off day 1']);
+            echo $this->Form->input('offday2',['label'=>'Off day 2']);
             echo $this->Form->input('supervisor_id', ['options' => $supervisors, 'empty' => true,'class'=>'select2']);
-            echo $this->Form->input('drivergroups.ids', ['label'=>'Driver Group','options' => $drivergroups,'class'=>'select2']);
+            echo $this->Form->input('drivergroups.ids', ['label'=>'Driver Group','options' => $drivergroups,'class'=>'select2', 'empty' => true,]);
         ?>
         </div></div>
-        
+
         <div class="tab-pane" id="docs">
              <div class="form-horizontal">
-             
+
             	<?php echo $this->Form->input('attachment', array('type' => 'hidden')); ?>
-				
+
 			    <!-- upload component -->
             	<div class="form-group" style="margin:20px;"><div id="myDropZone" class="dropzone"><div class="dz-message text-center"><i class="fa fa-cloud-upload text-light-blue fa-5x"></i>
             		<br/><span>Drag and drop Files Here to upload.</span>
             		<br/><span class="upload-btn bg-info">or select files to Upload</span></div></div>
             	</div>
-            	
+
             </div>
            </div>
           <!-- Tab Pane-->
@@ -86,7 +86,7 @@
 $this->Html->css([
   'AdminLTE./plugins/datepicker/datepicker3',
   'AdminLTE./plugins/timepicker/bootstrap-timepicker.min'
- 
+
   ],
   ['block' => 'css']);
 $this->Html->script([
@@ -104,12 +104,12 @@ $this->Html->script([
 	var myDropzone = $("div#myDropZone").dropzone({
          url : "/Uploads/upload",
          maxFiles: 1,
-         addRemoveLinks: true, 
+         addRemoveLinks: true,
          dictRemoveFileConfirmation : 'Are you sure you want to remove the particular file ?' ,
          init: function() {
      		this.on("complete", function (file) {
       			if (this.getUploadingFiles().length === 0 && this.getQueuedFiles().length === 0) {
-					//alert(file);      
+					//alert(file);
 				}
     		});
     		this.on("removedfile", function (file) {
@@ -118,34 +118,33 @@ $this->Html->script([
     		this.on("queuecomplete", function (file) {
           // alert("All files have uploaded ");
       		});
-      
+
       		this.on("success", function (file) {
           		$("#attachment").val(file['name']);console.log(file['name']); //alert("Success ");
       		});
-      
+
       		this.on("error", function (file) {
           		// alert("Error in uploading ");
       		});
-      
+
       		this.on("maxfilesexceeded", function(file){
         		alert("You can not upload any more files.");this.removeFile(file);
     		});
     	},
-       
+
     });
 
   $(function () {
-   
+
    $(".select2").select2({ width: '100%' });
    $('.datemask').datepicker({
             format:"dd/mm/yy",
               autoclose: true
    });
-  
+
 $('.timepicker').timepicker({
 	showInputs:false
 });
   });
 </script>
 <?php $this->end(); ?>
-   

@@ -142,7 +142,8 @@ $model=$controller->loadModel($controller->modelClass);
                        foreach ($fields as $rowval) {
                            if( ($rowval['name']==$column['db']) && ($rowval['type']=="char") ){
                                $globalSearch[$column['db'].' ILIKE'] = "%" . $str. "%";
-                           }else if( ($rowval['name']==$column['db']) && ($rowval['type']=="num") ){
+                           }
+                           else if( ($rowval['name']==$column['db']) && ($rowval['type']=="num") ){
                                if(is_numeric($str))	{
                                   $globalSearch[$column['db']. '='] = "" . $str. "";
 							   }
