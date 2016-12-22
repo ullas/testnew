@@ -206,13 +206,7 @@
            <div class="tab-pane" id="docs">
             <div class="form-horizontal">
             	<?php echo $this->Form->input('attachment', array('type' => 'hidden')); ?>
-            	<!-- <div class="form-group">
-            		<label class="col-sm-3 control-label" for="upload">Picture:</label>
-            		<div class="col-sm-6">
-            			<div id="drop" class="dropzone" action="/Uploads/upload"></div>
-					</div>
-				</div> -->
-			    <!-- upload component -->
+            	
             	<div class="form-group" style="margin:20px;"><div id="myDropZone" class="dropzone"><div class="dz-message text-center"><i class="fa fa-cloud-upload text-light-blue fa-5x"></i>
             		<br/><span>Drag and drop Files Here to upload.</span>
             		<br/><span class="upload-btn bg-info">or select files to Upload</span></div></div>
@@ -252,40 +246,7 @@ $this->Html->script([
 ?>
 <?php $this->start('scriptBotton'); ?>
 <script>
-	//dropzone
-	Dropzone.autoDiscover = false;
-	var myDropzone = $("div#myDropZone").dropzone({
-         url : "/Uploads/upload",
-         maxFiles: 1,
-         addRemoveLinks: true,
-         dictRemoveFileConfirmation : 'Are you sure you want to remove the particular file ?' ,
-         init: function() {
-     		this.on("complete", function (file) {
-      			if (this.getUploadingFiles().length === 0 && this.getQueuedFiles().length === 0) {
-					//alert(file);
-				}
-    		});
-    		this.on("removedfile", function (file) {
-          		$("#attachment").val("");
-      		});
-    		this.on("queuecomplete", function (file) {
-          // alert("All files have uploaded ");
-      		});
-
-      		this.on("success", function (file) {
-          		$("#attachment").val(file['name']);console.log(file['name']); //alert("Success ");
-      		});
-
-      		this.on("error", function (file) {
-          		// alert("Error in uploading ");
-      		});
-
-      		this.on("maxfilesexceeded", function(file){
-        		alert("You can not upload any more files.");this.removeFile(file);
-    		});
-    	},
-
-    });
+	
 
   $(function () {
 
@@ -295,62 +256,7 @@ $this->Html->script([
             format:"dd/mm/yy",
               autoclose: true
    });
-/*
-    //Datemask dd/mm/yyyy
-    $("#datemask").inputmask("dd/mm/yyyy", {"placeholder": "dd/mm/yyyy"});
-    //Datemask2 mm/dd/yyyy
-    $("#datemask2").inputmask("mm/dd/yyyy", {"placeholder": "mm/dd/yyyy"});
-    //Money Euro
-    $("[data-mask]").inputmask();
 
-    //Date range picker
-    $('#reservation').daterangepicker();
-    //Date range picker with time picker
-    $('#reservationtime').daterangepicker({timePicker: true, timePickerIncrement: 30, format: 'MM/DD/YYYY h:mm A'});
-    //Date range as a button
-    $('#daterange-btn').daterangepicker(
-        {
-          ranges: {
-            'Today': [moment(), moment()],
-            'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
-            'Last 7 Days': [moment().subtract(6, 'days'), moment()],
-            'Last 30 Days': [moment().subtract(29, 'days'), moment()],
-            'This Month': [moment().startOf('month'), moment().endOf('month')],
-            'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
-          },
-          startDate: moment().subtract(29, 'days'),
-          endDate: moment()
-        },
-        function (start, end) {
-          $('#reportrange span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'));
-        }
-    );
-
-    //iCheck for checkbox and radio inputs
-    $('input[type="checkbox"].minimal, input[type="radio"].minimal').iCheck({
-      checkboxClass: 'icheckbox_minimal-blue',
-      radioClass: 'iradio_minimal-blue'
-    });
-    //Red color scheme for iCheck
-    $('input[type="checkbox"].minimal-red, input[type="radio"].minimal-red').iCheck({
-      checkboxClass: 'icheckbox_minimal-red',
-      radioClass: 'iradio_minimal-red'
-    });
-    //Flat red color scheme for iCheck
-    $('input[type="checkbox"].flat-red, input[type="radio"].flat-red').iCheck({
-      checkboxClass: 'icheckbox_flat-green',
-      radioClass: 'iradio_flat-green'
-    });
-
-    //Colorpicker
-    $(".my-colorpicker1").colorpicker();
-    //color picker with addon
-    $(".my-colorpicker2").colorpicker();
-
-    //Timepicker
-    $(".timepicker").timepicker({
-      showInputs: false
-    });*/
   });
 </script>
 <?php $this->end(); ?>

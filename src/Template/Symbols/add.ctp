@@ -14,11 +14,11 @@
     <div class="col-md-12">
       <div class="nav-tabs-custom">
         <ul class="nav nav-tabs">
-          <li  class="active"><a href="#details" data-toggle="tab">Details</a></li>
-          <li><a href="#docs" data-toggle="tab">Attachments</a></li>
+          <li  class="active"><a href="#symboldetails" data-toggle="tab">Details</a></li>
+          <li><a href="#attachments" data-toggle="tab">Attachments</a></li>
         </ul>
         <div class="tab-content">
-          <div class="active tab-pane" id="details">
+          <div class="active tab-pane" id="symboldetails">
              <div class="form-horizontal">
         <?php
             echo $this->Form->input('name',['required'=>'required']);
@@ -30,7 +30,7 @@
 
           </div>
           <!-- /.tab-pane -->
-         <div class="tab-pane" id="docs">
+         <div class="tab-pane" id="attachments">
              <div class="form-horizontal">
 
             	<?php echo $this->Form->input('attachment', array('type' => 'hidden')); ?>
