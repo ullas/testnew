@@ -134,8 +134,29 @@ class DashboardController extends AppController
 		  ,'nonprodhrssum','runtimesum','lastmonthfuelsum','lastmonthnonprodhrssum','lastmonthruntimesum','countrecs','tripscount',
 		  'currenttripscount','jobcount','pendingjobcount','remindercount','totalremindercount','cls1','cls2','cls3','cls4',
 		  'widthtrip','widthjob','totalpendingmaintenancecount','pendingmaintenancecount'));
+		  
+		  
     }
-	
+	public function getChartData(){
+     	
+		$this->autoRender= false;
+		
+		$dailysummaryTable = TableRegistry::get('Dailysummary');
+		$query=$dailysummaryTable->find('All')->andwhere(['customer_id'=>$this->loggedinuser['customer_id']])->toArray();
+		
+		$businesstime=[];
+		$fuel=[];
+		for ($x = 0; $x < count($query); $x++) {
+			$businesstime[$x]=$query[$x]['businesstime'];
+			$fuel[$x]=$query[$x]['fuel'];
+		}
+
+		 
+			$this->response->body($businesstime."$".$fuel);
+	    	return $this->response;
+
+		
+     }
 	 public function operations()
     {
         
