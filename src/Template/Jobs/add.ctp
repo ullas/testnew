@@ -41,7 +41,7 @@
             echo $this->Form->input('endcustomermailid',['label'=>'End Customer Mail ID','type'=>'text']);
             echo $this->Form->input('endcustomerphone',['label'=>'End Customer Phone','type'=>'text']);
             echo $this->Form->input('location_id', ['label'=>'Location','options' => $locations, 'empty' => true,'class'=>'select2']);
-            echo $this->Form->input('status',['type'=>'text']);
+            echo $this->Form->input('status',['class'=>'select2','options' => array('Pending', 'Completed')]);
             echo $this->Form->input('distance',['type'=>'text']);
         ?>
       

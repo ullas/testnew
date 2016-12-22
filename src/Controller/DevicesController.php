@@ -222,11 +222,21 @@ public function ajaxdata() {
 			
             if ($this->Devices->save($device)) {
                 $this->Flash->success(__('The device has been saved.'));
+				
 				$sensormappingTable = TableRegistry::get('Sensormappings');
 				$sensormappingobj=$sensormappingTable->newEntity();
 				$sensormappingobj->device_id=$device['id'];
 				$sensormappingobj->customer_id=$this->loggedinuser['customer_id'];
 				$sensormappingTable->save($sensormappingobj);
+				
+				$gpsdataTable = TableRegistry::get('Gpsdata');
+				$gpsdataobj=$gpsdataTable->newEntity();
+				$gpsdataobj->trackingobject_id=$device['trackingobject_id'];
+				$gpsdataobj->imei=$device['code'];
+				$gpsdataobj->device_id=$device['id'];
+				$gpsdataobj->customer_id=$this->loggedinuser['customer_id'];
+				$gpsdataTable->save($gpsdataobj);
+				
 				return $this->redirect(['action' => 'index']);
             } else {
                 $this->Flash->error(__('The device could not be saved. Please, try again.'));
@@ -237,9 +247,10 @@ public function ajaxdata() {
         }
         $customers = $this->Devices->Customers->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
         $providers = $this->Devices->Providers->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
+        $trackingobjects= $this->Devices->Trackingobjects->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
         $distancetypes = $this->Devices->Distancetypes->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
         $sensormappings = $this->Devices->Sensormappings->find('all')->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']);
-	    $this->set(compact('device', 'customers', 'providers','distancetypes','sensormappings'));
+	    $this->set(compact('device', 'customers', 'providers','distancetypes','sensormappings','trackingobjects'));
         $this->set('_serialize', ['device']);
     }
 
@@ -253,7 +264,7 @@ public function ajaxdata() {
     public function edit($id = null)
     {
         $device = $this->Devices->get($id, [
-            'contain' => []
+            'contain' => ['Gpsdata']
         ]);
 		
 		if($device['customer_id']!= $this->loggedinuser['customer_id'])
@@ -266,6 +277,38 @@ public function ajaxdata() {
             $device = $this->Devices->patchEntity($device, $this->request->data);
             if ($this->Devices->save($device)) {
                 $this->Flash->success(__('The device has been saved.'));
+				$this->loadModel('Gpsdata');
+				$arr = $this->Gpsdata->find('all',['conditions' => array('device_id' => $id), 'contain' => []])->toArray();
+				
+				$this->loadModel('Sensormapping');
+				$arr2 = $this->Sensormapping->find('all',['conditions' => array('device_id' => $id), 'contain' => []])->toArray();
+				
+				
+				if(isset($arr[0])){
+					$gpsdataobj = $arr[0];
+					$this->log($gpsdataobj);
+					$gpsdataobj->trackingobject_id=$device['trackingobject_id'];
+				 	$gpsdataobj->imei=$device['code'];
+					$gpsdataobj->customer_id=$this->loggedinuser['customer_id'];
+					//$gpsdataobj = $this->Gpsdata->patchEntity($gpsdataobj, $this->request->data['id']);
+            		if ($this->Devices->Gpsdata->save($gpsdataobj)) {
+                		// $this->Flash->success(__('The employee has been saved.'));
+                		// return $this->redirect(['action' => 'index']);
+					}
+				}
+				
+				if(isset($arr2[0])){
+					$sensormappingobj = $arr2[0];
+					$this->log($sensormappingobj);
+					$sensormappingobj->device_id=$device['id'];
+					$sensormappingobj->customer_id=$this->loggedinuser['customer_id'];
+					//$gpsdataobj = $this->Gpsdata->patchEntity($gpsdataobj, $this->request->data['id']);
+            		if ($this->Devices->Sensormapping->save($sensormappingobj)) {
+                		// $this->Flash->success(__('The employee has been saved.'));
+                		// return $this->redirect(['action' => 'index']);
+					}
+				}
+				
 
                 return $this->redirect(['action' => 'index']);
             } else {
@@ -275,7 +318,7 @@ public function ajaxdata() {
         $customers = $this->Devices->Customers->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
         $providers = $this->Devices->Providers->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
         $distancetypes = $this->Devices->Distancetypes->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
-		//$sensormappings = $this->Devices->Sensormappings->find('all')->where(['device_id' => $device['id']])->toArray(); //->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
+		$trackingobjects= $this->Devices->Trackingobjects->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
         $sensormappings = $this->Devices->Sensormappings->find('all')->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0'])->andwhere(['device_id' => $device['id']])->toArray() ;
         
         if(isset($sensormappings[0]['id']))
@@ -289,7 +332,7 @@ public function ajaxdata() {
 	  	    	
 	  		}
 		
-		$this->set(compact('device', 'customers', 'providers','distancetypes','sensormappings'));
+		$this->set(compact('device', 'customers', 'providers','distancetypes','sensormappings','trackingobjects'));
         $this->set('_serialize', ['device']);
     }
 
