@@ -320,7 +320,7 @@
           <span class="info-box-number"><?php echo $totalremindercount ?></span>
 
           <div class="progress">
-            <div class="progress-bar" style="width: 70%"></div>
+            <div class="progress-bar" style="width: <?php echo $widthreminder?>%"></div>
           </div>
               <span class="progress-description">
                  <?php echo $remindercount ?> Completed Today
@@ -337,7 +337,7 @@
           <span class="info-box-number"><?php echo $totalpendingmaintenancecount ?> </span>
 
           <div class="progress">
-            <div class="progress-bar" style="width: 40%"></div>
+            <div class="progress-bar" style="width: <?php echo $widthpendingmaintenance ?>%"></div>
           </div>
               <span class="progress-description">
                 <?php echo $pendingmaintenancecount ?>  Completed Today
