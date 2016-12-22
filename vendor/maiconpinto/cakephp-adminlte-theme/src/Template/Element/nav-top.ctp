@@ -25,44 +25,52 @@ if (file_exists($file)) {
                     <span class="label label-success">4</span>
                 </a>
                 <ul class="dropdown-menu">
-                    <li class="header">You have 4 messages</li>
+                    <li class="header">You have <?php echo $totalmessagescount ?> messages</li>
                     <li>
                         <!-- inner menu: contains the actual data -->
                         <ul class="menu">
+                        	<?php 
+						   for ($x = 0; $x < count($messagescontent); $x++) { ?>
                             <li><!-- start message -->
                                 <a href="#">
                                     <div class="pull-left">
                                         <?php echo $this->Html->image('user2-160x160.jpg', array('class' => 'img-circle', 'alt' => 'User Image')); ?>
                                     </div>
                                     <h4>
-                                        Support Team
-                                        <small><i class="fa fa-clock-o"></i> 5 mins</small>
+                                        <?php echo $messagescontent[$x]['message'] ?>
+                                        <!-- <small><i class="fa fa-clock-o"></i> 5 mins</small> -->
                                     </h4>
-                                    <p>Why not buy a new awesome theme?</p>
+                                    <p><?php echo $messagescontent[$x]['message'] ?></p>
                                 </a>
                             </li>
                             <!-- end message -->
+                            <?php } 
+							?>
                         </ul>
                     </li>
-                    <li class="footer"><a href="#">See All Messages</a></li>
+                    <li class="footer"><a href="/messages/">See All Messages</a></li>
                 </ul>
             </li>
             <!-- Notifications: style can be found in dropdown.less -->
             <li class="dropdown notifications-menu">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                     <i class="fa fa-bell-o"></i>
-                    <span class="label label-warning">10</span>
+                    <span class="label label-warning"><?php echo $totalnonackalertcount ?></span>
                 </a>
                 <ul class="dropdown-menu">
-                    <li class="header">10 unacknowlged notifications</li>
+                    <li class="header"><?php echo $totalnonackalertcount ?> unacknowlged notifications</li>
                     <li>
                         <!-- inner menu: contains the actual data -->
                         <ul class="menu">
-                            <li>
+                           <?php 
+						   for ($x = 0; $x < count($alertcontent); $x++) { ?>
+                           <li>
                                 <a href="#">
-                                    <i class="fa fa-users text-aqua"></i> GJ-4532 - Trip Started
-                                </a>
+                                	<i class="fa fa-users text-aqua"></i><?php echo $alertcontent[$x]['alert']; ?> 
+                            	</a>
                             </li>
+                            <?php } 
+							?>
                         </ul>
                     </li>
                     <li class="footer"><a href="#">View all</a></li>
@@ -177,7 +185,7 @@ if (file_exists($file)) {
             </li>
             <?php endif; ?>
 
-            <!-- User Account: style can be found in dropdown.less -->
+            <!-- User Account: style can be found in dropdown.less  user2-160x160.jpg -->
             <li class="dropdown user user-menu">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                     <?php echo $this->Html->image('user2-160x160.jpg', array('class' => 'user-image', 'alt' => 'User Image')); ?>

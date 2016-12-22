@@ -80,10 +80,10 @@
 		            echo $this->Form->input('bodytype',['label'=>'Body Type','templateVars' => ['help' => 'Vehicle body configuration. SUV, Sedan, hatchback etc..']]);
 		            echo $this->Form->input('bodysubtype',['label'=>'Body Subtype','templateVars' => ['help' => 'Vehicle body configuration sub type. Extended Cab, Crew Cab etc..']]);
 		            echo $this->Form->input('driverdetectionmode',['label'=>'Driver Detection Mode','options' => $driverdetectionmodes,'class'=>'select2', 'empty' => true]);
-                echo $this->Form->input('activedriver_id',['label'=>'Active Driver','options' => $drivers,'class'=>'select2', 'empty' => true]);
-                echo $this->Form->input('purpose_id', ['options' => $purposes, 'empty' => true,'class'=>'select2']);
-                echo $this->Form->input('transporter_id',['class'=>'select2']);
-                echo $this->Form->input('drivers._ids',['options' => $drivers,'class'=>'select2']);
+                	echo $this->Form->input('activedriver_id',['label'=>'Active Driver','options' => $drivers,'class'=>'select2', 'empty' => true]);
+                	echo $this->Form->input('purpose_id', ['options' => $purposes, 'empty' => true,'class'=>'select2']);
+               	 	echo $this->Form->input('transporter_id',['class'=>'select2']);
+                	echo $this->Form->input('drivers._ids',['options' => $drivers,'class'=>'select2']);
 					      echo $this->Form->input('msrp', ['label'=>'MRP','type'=>'text','empty' => true,'templateVars' => ['help' => 'Suggested retail price','icon' => '<div class="input-group-addon"><i class="'.$mptlusercurrencyfaclass.'"></i></div>']]);
         	 		  echo $this->Form->input('purpose_id', ['options' => $purposes, 'empty' => true,'class'=>'select2']);
              	   ?>
