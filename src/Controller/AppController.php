@@ -69,7 +69,7 @@ class AppController extends Controller
      */
     public function beforeRender(Event $event)
     {
-        	 $this->set('theme', Configure::read('Theme'));	
+        	$this->set('theme', Configure::read('Theme'));	
         	$this->viewBuilder()->theme('AdminLTE');
 			$this->set('mptlusercurrencyfaclass',"fa fa-rupee");
 			$this->set('mptluserlengthunitmini','in');
@@ -82,6 +82,21 @@ class AppController extends Controller
         ) {
             $this->set('_serialize', true);
         }
+
+		  $alertTable = TableRegistry::get('Alerts');
+		  $query=$alertTable->find('All')->where(['customer_id'=>$this->loggedinuser['customer_id']]);
+		  $this->set('totalalertcount',$query->count());
+		  $query=$alertTable->find('All')->where(['customer_id'=>$this->loggedinuser['customer_id']])->andwhere(['ack = false']);
+		  $this->set('totalnonackalertcount',$query->count());
+		  $query =$alertTable->find('All')->where(['customer_id'=>$this->loggedinuser['customer_id']])->andwhere(['ack = false'])->toArray();
+		  (isset($query)) ? $this->set('alertcontent',$query): $this->set('alertcontent',"");
+		
+		  $messagesTable = TableRegistry::get('Messages');	
+		  $query=$messagesTable->find('All')->where(['customer_id'=>$this->loggedinuser['customer_id']])->andwhere(['ack = false']);
+		  $this->set('totalmessagescount',$query->count());
+		  $query =$messagesTable->find('All')->where(['customer_id'=>$this->loggedinuser['customer_id']])->andwhere(['ack = false'])->toArray();
+		  (isset($query)) ? $this->set('messagescontent',$query): $this->set('messagescontent',"");
+		
     }
 	
 	public function isAuthorized($user)

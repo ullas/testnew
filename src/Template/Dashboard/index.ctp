@@ -164,7 +164,7 @@
           	
             <div class="col-sm-3 col-xs-6">
               <div class="description-block border-right">
-                <span class="description-percentage text-green"><i class="fa fa-caret-up"></i> <?php echo round($distancecount/$lastmonthdistancecount*100)?>%</span>
+                <span class="description-percentage text-green"><i class="<?php echo $cls1 ?>"></i> <?php echo abs(round(($distancecount-$lastmonthdistancecount)/$lastmonthdistancecount *100))?>%</span>
                 <h5 class="description-header"><?php echo $distancecount?>(KM)</h5>
                 <span class="description-text">TOTAL DISTANCE</span>
               </div>
@@ -173,7 +173,7 @@
             <!-- /.col -->
             <div class="col-sm-3 col-xs-6">
               <div class="description-block border-right">
-                <span class="description-percentage text-yellow"><i class="fa fa-caret-left"></i> <?php echo round($fuelsum/$lastmonthfuelsum*100)?>%</span>
+                <span class="description-percentage text-yellow"><i class="<?php echo $cls2 ?>"></i> <?php echo abs(round(($fuelsum-$lastmonthfuelsum)/$lastmonthfuelsum*100))?>%</span>
                 <h5 class="description-header"><?php echo $fuelsum?>(Lt)</h5>
                 <span class="description-text">FUEL USAGE</span>
               </div>
@@ -182,16 +182,17 @@
             <!-- /.col -->
             <div class="col-sm-3 col-xs-6">
               <div class="description-block border-right">
-                <span class="description-percentage text-green"><i class="fa fa-caret-up"></i> <?php echo round($nonprodhrssum / $lastmonthnonprodhrssum*100)?>%</span>
+                <span class="description-percentage text-green"><i class="<?php echo $cls3 ?>"></i> <?php echo abs(round(($nonprodhrssum-$lastmonthnonprodhrssum) / $lastmonthnonprodhrssum*100))?>%</span>
                 <h5 class="description-header"><?php echo round($nonprodhrssum)?>(Hrs)</h5>
                 <span class="description-text">Non productive Hours</span>
               </div>
               <!-- /.description-block -->
             </div>
             <!-- /.col -->
+          
             <div class="col-sm-3 col-xs-6">
               <div class="description-block">
-                <span class="description-percentage text-red"><i class="fa fa-caret-down"></i> <?php echo round($runtimesum / $lastmonthruntimesum*100)?>%</span>
+                <span class="description-percentage text-red"><i class="<?php echo $cls4 ?>"></i> <?php echo abs(round(($runtimesum-$lastmonthruntimesum) / $lastmonthruntimesum*100))?>%</span>
                 <h5 class="description-header"><?php echo round($runtimesum)?>(Hrs)</h5>
                 <span class="description-text">TOTAL RUNTIME</span>
               </div>
@@ -282,13 +283,13 @@
 
         <div class="info-box-content">
           <span class="info-box-text">Total Trips Today</span>
-          <span class="info-box-number">120</span>
+          <span class="info-box-number"><?php echo $tripscount ?></span>
 
           <div class="progress">
-            <div class="progress-bar" style="width: 50%"></div>
+            <div class="progress-bar" style="width: <?php echo $widthtrip ?>%"></div>
           </div>
               <span class="progress-description">
-                3 In Progress
+                <?php echo $currenttripscount ?> In Progress
               </span>
         </div>
         <!-- /.info-box-content -->
@@ -299,13 +300,13 @@
 
         <div class="info-box-content">
           <span class="info-box-text">Jobs Completed</span>
-          <span class="info-box-number">17</span>
+          <span class="info-box-number"><?php echo $jobcount ?></span>
 
-          <div class="progress">
-            <div class="progress-bar" style="width: 20%"></div>
+          <div class="progress"> 
+            <div class="progress-bar" style="width: <?php echo $widthjob ?>%"></div>
           </div>
               <span class="progress-description">
-                136 Jobs Pending
+                <?php echo $pendingjobcount ?> Jobs Pending 
               </span>
         </div>
         <!-- /.info-box-content -->
@@ -315,14 +316,14 @@
         <span class="info-box-icon"><i class="ion ion-ios-cloud-download-outline"></i></span>
 
         <div class="info-box-content">
-          <span class="info-box-text">Service Renewals</span>
-          <span class="info-box-number">10</span>
+          <span class="info-box-text">Service Reminders</span>
+          <span class="info-box-number"><?php echo $totalremindercount ?></span>
 
           <div class="progress">
-            <div class="progress-bar" style="width: 70%"></div>
+            <div class="progress-bar" style="width: <?php echo $widthreminder?>%"></div>
           </div>
               <span class="progress-description">
-                10 Completed Today
+                 <?php echo $remindercount ?> Completed Today
               </span>
         </div>
         <!-- /.info-box-content -->
@@ -333,13 +334,13 @@
 
         <div class="info-box-content">
           <span class="info-box-text">Pending Maintenance</span>
-          <span class="info-box-number">21</span>
+          <span class="info-box-number"><?php echo $totalpendingmaintenancecount ?> </span>
 
           <div class="progress">
-            <div class="progress-bar" style="width: 40%"></div>
+            <div class="progress-bar" style="width: <?php echo $widthpendingmaintenance ?>%"></div>
           </div>
               <span class="progress-description">
-                6 Completed Today
+                <?php echo $pendingmaintenancecount ?>  Completed Today
               </span>
         </div>
         <!-- /.info-box-content -->

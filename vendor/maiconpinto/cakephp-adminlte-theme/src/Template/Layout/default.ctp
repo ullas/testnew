@@ -171,6 +171,40 @@ div.dataTables_wrapper { clear: both; }
 <script type="text/javascript">
 
 
+    //dropzone
+	Dropzone.autoDiscover = false;
+	var myDropzone = $("div#myDropZone").dropzone({
+         url : "/Uploads/upload",
+         maxFiles: 1,
+         addRemoveLinks: true,
+         dictRemoveFileConfirmation : 'Are you sure you want to remove the particular file ?' ,
+         init: function() {
+     		this.on("complete", function (file) {
+      			if (this.getUploadingFiles().length === 0 && this.getQueuedFiles().length === 0) {
+					//alert(file);
+				}
+    		});
+    		this.on("removedfile", function (file) {
+          		$("#attachment").val("");
+      		});
+    		this.on("queuecomplete", function (file) {
+          // alert("All files have uploaded ");
+      		});
+
+      		this.on("success", function (file) {
+          		$("#attachment").val(file['name']);console.log(file['name']); //alert("Success ");
+      		});
+
+      		this.on("error", function (file) {
+          		// alert("Error in uploading ");
+      		});
+
+      		this.on("maxfilesexceeded", function(file){
+        		alert("You can not upload any more files.");this.removeFile(file);
+    		});
+    	},
+
+    });
     
     function loadMasterData(){
     	
@@ -269,7 +303,7 @@ div.dataTables_wrapper { clear: both; }
    
 				  		$("div.dataTables_filter").delegate("#masterdataadd","click", function(e){
 				  			 e.preventDefault();
-						     $(".modal-body").load("/"+link.attr("href")+"/add",function( response, status, xhr ){
+						     $("#mptlmodal").load("/"+link.attr("href")+"/add",function( response, status, xhr ){
 						     	
 							//set mnadatory * after required label
      						$( ':input[required]' ).each( function () {
@@ -277,42 +311,43 @@ div.dataTables_wrapper { clear: both; }
      						});
      						
 					     	//dropzone
-						Dropzone.autoDiscover = false;
-						var myDropzone = $("div#myDropZone").dropzone({
-					         url : "/Uploads/upload",
-					         maxFiles: 1,
-					         addRemoveLinks: true, 
-					         dictRemoveFileConfirmation : 'Are you sure you want to remove the particular file ?' ,
-					         init: function() {
-					     		this.on("complete", function (file) {
-					      			if (this.getUploadingFiles().length === 0 && this.getQueuedFiles().length === 0) {
-										//alert(file);      
-									}
-					    		});
-					    		this.on("removedfile", function (file) {
-					          		$("#attachment").val("");
-					      		});
-					    		this.on("queuecomplete", function (file) {
-					          // alert("All files have uploaded ");
-					      		});
-					      
-					      		this.on("success", function (file) {
-					          		$("#attachment").val(file['name']);console.log(file['name']); //alert("Success ");
-					      		});
-					      
-					      		this.on("error", function (file) {
-					          		// alert("Error in uploading ");
-					      		});
-					      
-					      		this.on("maxfilesexceeded", function(file){
-					        		alert("You can not upload any more files.");this.removeFile(file);
-					    		});
-					    	},
-					       
-					    });
+						// Dropzone.autoDiscover = false;
+						// var myDropzone = $("div#myDropZone").dropzone({
+					         // url : "/Uploads/upload",
+					         // maxFiles: 1,
+					         // addRemoveLinks: true, 
+					         // dictRemoveFileConfirmation : 'Are you sure you want to remove the particular file ?' ,
+					         // init: function() {
+					     		// this.on("complete", function (file) {
+					      			// if (this.getUploadingFiles().length === 0 && this.getQueuedFiles().length === 0) {
+										// //alert(file);      
+									// }
+					    		// });
+					    		// this.on("removedfile", function (file) {
+					          		// $("#attachment").val("");
+					      		// });
+					    		// this.on("queuecomplete", function (file) {
+					          // // alert("All files have uploaded ");
+					      		// });
+// 					      
+					      		// this.on("success", function (file) {
+					          		// $("#attachment").val(file['name']);console.log(file['name']); //alert("Success ");
+					      		// });
+// 					      
+					      		// this.on("error", function (file) {
+					          		// // alert("Error in uploading ");
+					      		// });
+// 					      
+					      		// this.on("maxfilesexceeded", function(file){
+					        		// alert("You can not upload any more files.");this.removeFile(file);
+					    		// });
+					    	// },
+// 					       
+					    // });
 					    
 					    
 						     	   $('#myModal').on("submit", "form#masterdataform", function(e){ 
+									    
 									    e.preventDefault(); 
 									    
 									    var postData = $(this).serializeArray();
@@ -424,7 +459,7 @@ div.dataTables_wrapper { clear: both; }
     <!-- Modal content-->
     <div class="modal-content">
      
-      <div class="modal-body" style="padding:0px;">
+      <div class="modal-body" id="mptlmodal" style="padding:0px;">
         
       </div>
       <!-- <div class="modal-footer">

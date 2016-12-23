@@ -51,6 +51,9 @@ class DevicesTable extends Table
         $this->belongsTo('Devicemodels', [
             'foreignKey' => 'devicemodel_id'
         ]);
+		 $this->belongsTo('Trackingobjects', [
+            'foreignKey' => 'trackingobject_id'
+        ]);
         $this->belongsTo('Simcards', [
             'foreignKey' => 'simcard_id'
         ]);
@@ -62,7 +65,8 @@ class DevicesTable extends Table
             'dependent' => true
         ]);
 		$this->hasMany('Gpsdata', [
-            'foreignKey' => 'device_id'
+            'foreignKey' => 'device_id',
+            'dependent' => true
         ]);
         $this->hasMany('Tracking', [
             'foreignKey' => 'device_id'

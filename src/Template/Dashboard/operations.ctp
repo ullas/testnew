@@ -18,7 +18,7 @@
           <!-- small box -->
           <div class="small-box bg-aqua">
             <div class="inner">
-              <h3>150</h3>
+              <h3><?php echo $overspeedalertcount?></h3>
 
               <p>Over Speed</p>
             </div>
@@ -33,7 +33,7 @@
           <!-- small box -->
           <div class="small-box bg-green">
             <div class="inner">
-              <h3>53<sup style="font-size: 20px">%</sup></h3>
+              <h3><?php echo $percentagerunning?><sup style="font-size: 20px">%</sup></h3>
 
               <p>Running</p>
             </div>
@@ -234,13 +234,13 @@
                 </div>
                 <!-- ./col -->
                 <div class="col-xs-3 text-center">
-                  <input type="text" class="knob" data-readonly="true" value="30" data-width="60" data-height="60" data-fgColor="#39CCCC">
+                  <input type="text" class="knob" data-readonly="true" value="<?php echo $completedjobcount?>" data-width="60" data-height="60" data-fgColor="#39CCCC">
 
                   <div class="knob-label">Completed</div>
                 </div>
                 <!-- ./col -->
                  <div class="col-xs-3 text-center">
-                  <input type="text" class="knob" data-readonly="true" value="30" data-width="60" data-height="60" data-fgColor="#39CCCC">
+                  <input type="text" class="knob" data-readonly="true" value="<?php echo $notstartedjobcount?>" data-width="60" data-height="60" data-fgColor="#39CCCC">
 
                   <div class="knob-label">Not Started</div>
                 </div>
@@ -264,7 +264,7 @@
             <div class="box-header">
               <i class="fa fa-th"></i>
 
-              <h3 class="box-title">Work Oders</h3>
+              <h3 class="box-title">Work Orders</h3>
 
               <div class="box-tools pull-right">
                 <button type="button" class="btn bg-blue btn-sm" data-widget="collapse"><i class="fa fa-minus"></i>
@@ -278,27 +278,27 @@
             <div class="box-footer no-border">
               <div class="row">
                 <div class="col-xs-3 text-center" style="border-right: 1px solid #f4f4f4">
-                  <input type="text" class="knob" data-readonly="true" value="20" data-width="60" data-height="60" data-fgColor="#39CCCC">
+                  <input type="text" class="knob" data-readonly="true" value="<?php echo $openworkordercount?>" data-width="60" data-height="60" data-fgColor="#39CCCC">
 
                   <div class="knob-label">Open</div>
                 </div>
                 <!-- ./col -->
                 <div class="col-xs-3 text-center" style="border-right: 1px solid #f4f4f4">
-                  <input type="text" class="knob" data-readonly="true" value="50" data-width="60" data-height="60" data-fgColor="#39CCCC">
+                  <input type="text" class="knob" data-readonly="true" value="<?php echo $overdueworkordercount?>" data-width="60" data-height="60" data-fgColor="#39CCCC">
 
-                  <div class="knob-label">Pending</div>
+                  <div class="knob-label">Overdue</div>
                 </div>
                 <!-- ./col -->
                 <div class="col-xs-3 text-center">
-                  <input type="text" class="knob" data-readonly="true" value="30" data-width="60" data-height="60" data-fgColor="#39CCCC">
+                  <input type="text" class="knob" data-readonly="true" value="<?php echo $deferredworkordercount?>" data-width="60" data-height="60" data-fgColor="#39CCCC">
 
-                  <div class="knob-label">On Hold</div>
+                  <div class="knob-label">Deffered</div>
                 </div>
                 <!-- ./col -->
                  <div class="col-xs-3 text-center">
-                  <input type="text" class="knob" data-readonly="true" value="30" data-width="60" data-height="60" data-fgColor="#39CCCC">
+                  <input type="text" class="knob" data-readonly="true" value="<?php echo $closedworkordercount?>" data-width="60" data-height="60" data-fgColor="#39CCCC">
 
-                  <div class="knob-label">Not Started</div>
+                  <div class="knob-label">Closed</div>
                 </div>
                 <!-- ./col -->
               </div>
@@ -314,44 +314,7 @@
         <!-- right col -->
       </div>
       <!-- /.row (main row) -->
-      <div class="row">
-        <!-- Left col -->
-        <section class="col-lg-12 ">
-           <div class="box box-solid bg-green-gradient">
-            <div class="box-header">
-              <i class="fa fa-calendar"></i>
-
-              <h3 class="box-title">Expenses</h3>
-              <!-- tools box -->
-              <div class="pull-right box-tools">
-                <!-- button with a dropdown -->
-                <div class="btn-group">
-                  <button type="button" class="btn btn-success btn-sm dropdown-toggle" data-toggle="dropdown">
-                    <i class="fa fa-bars"></i></button>
-                  <ul class="dropdown-menu pull-right" role="menu">
-                    <li><a href="#">Add new event</a></li>
-                    <li><a href="#">Clear events</a></li>
-                    <li class="divider"></li>
-                    <li><a href="#">View calendar</a></li>
-                  </ul>
-                </div>
-                <button type="button" class="btn btn-success btn-sm" data-widget="collapse"><i class="fa fa-minus"></i>
-                </button>
-                <button type="button" class="btn btn-success btn-sm" data-widget="remove"><i class="fa fa-times"></i>
-                </button>
-              </div>
-              <!-- /. tools -->
-            </div>
-            <!-- /.box-header -->
-            <div class="box-body no-padding">
-              <!--The calendar -->
-              <div id="calendar" style="width: 100% min-height:100px">Hello</div>
-            </div>
-            <!-- /.box-body -->
-       
-        	
-        </section>
-      </div>
+     
       <div class="row">
         <!-- Left col -->
         <section class="col-lg-12 ">
