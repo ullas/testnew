@@ -28,10 +28,13 @@ use Cake\ORM\Entity;
  * @property \App\Model\Entity\Route $route
  * @property \App\Model\Entity\Customer $customer
  * @property \App\Model\Entity\Timepolicy $timepolicy
- * @property \App\Model\Entity\DefaultDriver $default_driver
- * @property \App\Model\Entity\DefaultVeh $default_veh
- */
-class Schedule extends Entity
+ * @property \App\Model\Entity\Driver $default_driver
+ * @property \App\Model\Entity\Vehicle $default_veh
+ * @property \App\Model\Entity\Subscription[] $subscriptions
+ * @property \App\Model\Entity\Trip[] $trips
+ * @property \App\Model\Entity\Location[] $locations
+ * @property \App\Model\Entity\Passengergroup $passengergroup
+ */class Schedule extends Entity
 {
 
     /**
