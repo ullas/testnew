@@ -1,21 +1,21 @@
 <?php
 namespace App\Controller;
-
-use App\Controller\AppController;
 use Cake\ORM\TableRegistry;
+use App\Controller\AppController;
+
 /**
  * Schedules Controller
  *
- * @property \App\Model\Table\SchedulesTable $Schedules
- */
+ * @property \App\Model\Table\SchedulesTable $Schedules * @property \App\Controller\Component\DatatableComponent $Datatable */
 class SchedulesController extends AppController
 {
-	  /**
-     * Components
-     *
+
+    /**
+     * Components     *
      * @var array
      */
     public $components = ['Datatable'];
+
     /**
      * Index method
      *
@@ -53,10 +53,9 @@ class SchedulesController extends AppController
          $this->set('configs',$configs);	
          $this->set('_serialize', ['configs','usersettings','actions','additional']);
     }
- 
- 
- 	public function updateSettings()
-{
+    
+	public function updateSettings()
+	{
    	
 	$this->autoRender= false;	
 	$columns=$_POST['columns'];
@@ -94,51 +93,51 @@ class SchedulesController extends AppController
 	   $this->response->body($res);
 	
 	   
-   }
+	}
 	
 }
 
-private function toPostDBDate($date){
-	
-		 $ret="";
-		 $parts=explode("/",$date);
-		 if(count($parts)==3){
-		 	$ret= $date= '20' .trim($parts[2]) . "-" . trim($parts[1]) . "-" . trim($parts[0]);
+		private function toPostDBDate($date){
+		
+			 $ret="";
+			 $parts=explode("/",$date);
+			 if(count($parts)==3){
+				$ret= $date= '20' .trim($parts[2]) . "-" . trim($parts[1]) . "-" . trim($parts[0]);
+				
+			 }
 			
-		 }
-		
-	  return $ret;
-}
-
-private function getDateRangeFilters($dates,$basic)  {
-	
-	$sql="";	
-		
-	$alldates=explode(",",$dates);
-	
-	$pre=($basic>0)?" and ":"";
-	
-	$datecol=explode("-",$alldates[0]);
-	
-	$sql .=  count($datecol)>1? " $pre validfrom between '" . $this->toPostDBDate($datecol[0]) . "' and '" . $this->toPostDBDate($datecol[1]) . "'": "" ;
-	
-	$datecol=explode("-",$alldates[1]);
-	
-	$pre=(strlen($sql)>0)?" and ":"";
-	
-	$sql .=  count($datecol)>1? " $pre validtill between '" . $this->toPostDBDate($datecol[0]) . "' and '" . $this->toPostDBDate($datecol[1]) . "'": "" ;
-	
-	$datecol=explode("-",$alldates[2]);
-	//$pre=(strlen($sql)>0)?" and ":"";
-	
-	//$sql .= count($datecol)>1? " $pre completiondate between '" . $this->toPostDBDate($datecol[0]) . "' and '" . $this->toPostDBDate($datecol[1]) . "'": "" ;
-	
-	
-	return $sql;
+		  return $ret;
 	}
 
-
-	public function ajaxdata() {
+	private function getDateRangeFilters($dates,$basic)  {
+		
+		$sql="";	
+			
+		$alldates=explode(",",$dates);
+		
+		$pre=($basic>0)?" and ":"";
+		
+		$datecol=explode("-",$alldates[0]);
+		
+		$sql .=  count($datecol)>1? " $pre validfrom between '" . $this->toPostDBDate($datecol[0]) . "' and '" . $this->toPostDBDate($datecol[1]) . "'": "" ;
+		
+		$datecol=explode("-",$alldates[1]);
+		
+		$pre=(strlen($sql)>0)?" and ":"";
+		
+		$sql .=  count($datecol)>1? " $pre validtill between '" . $this->toPostDBDate($datecol[0]) . "' and '" . $this->toPostDBDate($datecol[1]) . "'": "" ;
+		
+		$datecol=explode("-",$alldates[2]);
+		//$pre=(strlen($sql)>0)?" and ":"";
+		
+		//$sql .= count($datecol)>1? " $pre completiondate between '" . $this->toPostDBDate($datecol[0]) . "' and '" . $this->toPostDBDate($datecol[1]) . "'": "" ;
+		
+		
+		return $sql;
+		}
+	
+    
+		public function ajaxdata() {
         $this->autoRender= false;
 		$usrfiter="";
 		$basic = isset($this->request->query['basic'])?$this->request->query['basic']:"" ;
@@ -174,11 +173,8 @@ private function getDateRangeFilters($dates,$basic)  {
 	   
 		$this->response->body($out);
 	    return $this->response;
-	     
-             
- } 
-	
- 
+	}
+
     /**
      * View method
      *
@@ -189,7 +185,7 @@ private function getDateRangeFilters($dates,$basic)  {
     public function view($id = null)
     {
         $schedule = $this->Schedules->get($id, [
-            'contain' => ['Startlocs', 'Endlocs', 'Routes', 'Customers', 'Timepolicies', 'DefaultDrivers', 'DefaultVehs']
+            'contain' => ['Startlocs', 'Endlocs', 'Routes', 'Customers', 'Timepolicies', 'DefaultDrivers', 'DefaultVehs', 'Locations', 'Subscriptions', 'Trips']
         ]);
 
         $this->set('schedule', $schedule);
@@ -206,7 +202,7 @@ private function getDateRangeFilters($dates,$basic)  {
         $schedule = $this->Schedules->newEntity();
         if ($this->request->is('post')) {
             $schedule = $this->Schedules->patchEntity($schedule, $this->request->data);
-			$schedule['customer_id']=$this->loggedinuser['customer_id'];
+            $schedule['customer_id']=$this->loggedinuser['customer_id'];
             if ($this->Schedules->save($schedule)) {
                 $this->Flash->success(__('The schedule has been saved.'));
 
@@ -215,15 +211,19 @@ private function getDateRangeFilters($dates,$basic)  {
                 $this->Flash->error(__('The schedule could not be saved. Please, try again.'));
             }
         }
-        $startlocs = $this->Schedules->Startlocs->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
-        $endlocs = $this->Schedules->Endlocs->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
-        $routes = $this->Schedules->Routes->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
-        $customers = $this->Schedules->Customers->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
-        $timepolicies = $this->Schedules->Timepolicies->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
-        $defaultDrivers = $this->Schedules->DefaultDrivers->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
-        $defaultVehs = $this->Schedules->DefaultVehs->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
+        
+        $startlocs = $this->Schedules->Startlocs->find('list', ['limit' => 200])->where("customer_id=".$this->loggedinuser['customer_id'])->where("customer_id=0");
+        $endlocs = $this->Schedules->Endlocs->find('list', ['limit' => 200])->where("customer_id=".$this->loggedinuser['customer_id'])->where("customer_id=0");
+        $routes = $this->Schedules->Routes->find('list', ['limit' => 200])->where("customer_id=".$this->loggedinuser['customer_id'])->where("customer_id=0");
+        $customers = $this->Schedules->Customers->find('list', ['limit' => 200])->where("id=".$this->loggedinuser['customer_id']);
+      	$timepolicies = $this->Schedules->Timepolicies->find('list', ['limit' => 200])->where("customer_id=".$this->loggedinuser['customer_id'])->where("customer_id=0");
+        $defaultDrivers = $this->Schedules->DefaultDrivers->find('list', ['limit' => 200])->where("customer_id=".$this->loggedinuser['customer_id'])->where("customer_id=0");
+        $defaultVehs = $this->Schedules->DefaultVehs->find('list', ['limit' => 200])->where("customer_id=".$this->loggedinuser['customer_id'])->where("customer_id=0");
+        $locations = $this->Schedules->Locations->find('list', ['limit' => 200])->where("customer_id=".$this->loggedinuser['customer_id'])->where("customer_id=0");
         $passengergroups = $this->Schedules->Passengergroups->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
-        $this->set(compact('schedule','passengergroups', 'startlocs', 'endlocs', 'routes', 'customers', 'timepolicies', 'defaultDrivers', 'defaultVehs'));
+        $drivers = $this->Schedules->Drivers->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
+        
+        $this->set(compact('schedule','passengergroups', 'startlocs', 'endlocs', 'routes', 'customers', 'timepolicies', 'defaultDrivers', 'defaultVehs', 'locations','drivers'));
         $this->set('_serialize', ['schedule']);
     }
 
@@ -237,7 +237,7 @@ private function getDateRangeFilters($dates,$basic)  {
     public function edit($id = null)
     {
         $schedule = $this->Schedules->get($id, [
-            'contain' => []
+            'contain' => ['Locations']
         ]);
 		if($schedule['customer_id']!= $this->loggedinuser['customer_id'])
 		{
@@ -246,7 +246,7 @@ private function getDateRangeFilters($dates,$basic)  {
 		}
         if ($this->request->is(['patch', 'post', 'put'])) {
             $schedule = $this->Schedules->patchEntity($schedule, $this->request->data);
-			$schedule['customer_id']=$this->loggedinuser['customer_id'];
+             $schedule['customer_id']=$this->currentuser['customer_id'];
             if ($this->Schedules->save($schedule)) {
                 $this->Flash->success(__('The schedule has been saved.'));
 
@@ -255,15 +255,16 @@ private function getDateRangeFilters($dates,$basic)  {
                 $this->Flash->error(__('The schedule could not be saved. Please, try again.'));
             }
         }
-        $startlocs = $this->Schedules->Startlocs->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
-        $endlocs = $this->Schedules->Endlocs->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
-        $routes = $this->Schedules->Routes->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
-        $customers = $this->Schedules->Customers->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
-        $timepolicies = $this->Schedules->Timepolicies->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
-        $defaultDrivers = $this->Schedules->DefaultDrivers->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
-        $defaultVehs = $this->Schedules->DefaultVehs->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
+        $startlocs = $this->Schedules->Startlocs->find('list', ['limit' => 200]);
+        $endlocs = $this->Schedules->Endlocs->find('list', ['limit' => 200]);
+        $routes = $this->Schedules->Routes->find('list', ['limit' => 200]);
+        $customers = $this->Schedules->Customers->find('list', ['limit' => 200]);
+        $timepolicies = $this->Schedules->Timepolicies->find('list', ['limit' => 200]);
+        $defaultDrivers = $this->Schedules->DefaultDrivers->find('list', ['limit' => 200]);
+        $defaultVehs = $this->Schedules->DefaultVehs->find('list', ['limit' => 200]);
+        $locations = $this->Schedules->Locations->find('list', ['limit' => 200]);
         $passengergroups = $this->Schedules->Passengergroups->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
-        $this->set(compact('schedule','passengergroups', 'startlocs', 'endlocs', 'routes', 'customers', 'timepolicies', 'defaultDrivers', 'defaultVehs'));
+        $this->set(compact('schedule','passengergroups', 'startlocs', 'endlocs', 'routes', 'customers', 'timepolicies', 'defaultDrivers', 'defaultVehs', 'locations'));
         $this->set('_serialize', ['schedule']);
     }
 
@@ -292,8 +293,8 @@ private function getDateRangeFilters($dates,$basic)  {
 		
 	    }
         return $this->redirect(['action' => 'index']);
-    }
-	
+   	 }
+
 	public function deleteAll($id=null){
     	
 		$this->request->allowMethod(['post', 'deleteall']);
@@ -332,6 +333,5 @@ private function getDateRangeFilters($dates,$basic)  {
 
              return $this->redirect(['action' => 'index']);	
      }
-	
-	
+
 }
