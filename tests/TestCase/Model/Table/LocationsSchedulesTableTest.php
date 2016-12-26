@@ -1,14 +1,20 @@
 <?php
-namespace App\Test\TestCase\Controller;
+namespace App\Test\TestCase\Model\Table;
 
-use App\Controller\SchedulesController;
-use Cake\TestSuite\IntegrationTestCase;
+use App\Model\Table\LocationsSchedulesTable;
+use Cake\ORM\TableRegistry;
+use Cake\TestSuite\TestCase;
 
 /**
- * App\Controller\SchedulesController Test Case
+ * App\Model\Table\LocationsSchedulesTable Test Case
  */
-class SchedulesControllerTest extends IntegrationTestCase
+class LocationsSchedulesTableTest extends TestCase
 {
+
+    /**
+     * Test subject     *
+     * @var \App\Model\Table\LocationsSchedulesTable     */
+    public $LocationsSchedules;
 
     /**
      * Fixtures
@@ -16,12 +22,10 @@ class SchedulesControllerTest extends IntegrationTestCase
      * @var array
      */
     public $fixtures = [
+        'app.locations_schedules',
         'app.schedules',
         'app.startlocs',
-        'app.endlocs',
-        'app.routes',
-        'app.trackingobjects',
-        'app.assettypes',
+        'app.users',
         'app.customers',
         'app.customertypes',
         'app.addresses',
@@ -61,21 +65,8 @@ class SchedulesControllerTest extends IntegrationTestCase
         'app.servicetasks',
         'app.servicereminders',
         'app.groups',
-        'app.trackingobjects_groups',
-        'app.workordertypes',
-        'app.workorderlabourlineitems',
-        'app.issues_addresses',
-        'app.workorderdocuments',
-        'app.workorderpartslineitems',
-        'app.parts',
-        'app.partcategories',
-        'app.measurementunits',
-        'app.manufacturers',
-        'app.transporters',
-        'app.activedrivers',
-        'app.vehicles_drivers',
-        'app.contractors',
-        'app.shifts',
+        'app.trackingobjects',
+        'app.assettypes',
         'app.alerts',
         'app.alertcategories',
         'app.providers',
@@ -93,18 +84,34 @@ class SchedulesControllerTest extends IntegrationTestCase
         'app.jobs',
         'app.timepolicies',
         'app.trips',
+        'app.routes',
         'app.startpoints',
-        'app.users',
-        'app.fences',
-        'app.zonetypes',
-        'app.locations',
         'app.subscriptions',
+        'app.locations',
         'app.notifications',
-        'app.locations_schedules',
         'app.endpoints',
         'app.tripstatuses',
         'app.vehiclecategories',
         'app.triptypes',
+        'app.assets',
+        'app.fences',
+        'app.zonetypes',
+        'app.people',
+        'app.trackingobjects_groups',
+        'app.workordertypes',
+        'app.workorderlabourlineitems',
+        'app.issues_addresses',
+        'app.workorderdocuments',
+        'app.workorderpartslineitems',
+        'app.parts',
+        'app.partcategories',
+        'app.measurementunits',
+        'app.manufacturers',
+        'app.transporters',
+        'app.activedrivers',
+        'app.vehicles_drivers',
+        'app.contractors',
+        'app.shifts',
         'app.rfids',
         'app.passengers',
         'app.drivergroups',
@@ -125,68 +132,59 @@ class SchedulesControllerTest extends IntegrationTestCase
         'app.renewalreminders',
         'app.renewalstypes',
         'app.worklorderlineitems',
-        'app.assets',
-        'app.people',
+        'app.endlocs',
         'app.default_drivers',
         'app.default_vehs'
     ];
 
     /**
-     * Test index method
+     * setUp method
      *
      * @return void
      */
-    public function testIndex()
+    public function setUp()
+    {
+        parent::setUp();
+        $config = TableRegistry::exists('LocationsSchedules') ? [] : ['className' => 'App\Model\Table\LocationsSchedulesTable'];        $this->LocationsSchedules = TableRegistry::get('LocationsSchedules', $config);    }
+
+    /**
+     * tearDown method
+     *
+     * @return void
+     */
+    public function tearDown()
+    {
+        unset($this->LocationsSchedules);
+
+        parent::tearDown();
+    }
+
+    /**
+     * Test initialize method
+     *
+     * @return void
+     */
+    public function testInitialize()
     {
         $this->markTestIncomplete('Not implemented yet.');
     }
 
     /**
-     * Test ajaxdata method
+     * Test validationDefault method
      *
      * @return void
      */
-    public function testAjaxdata()
+    public function testValidationDefault()
     {
         $this->markTestIncomplete('Not implemented yet.');
     }
 
     /**
-     * Test view method
+     * Test buildRules method
      *
      * @return void
      */
-    public function testView()
-    {
-        $this->markTestIncomplete('Not implemented yet.');
-    }
-
-    /**
-     * Test add method
-     *
-     * @return void
-     */
-    public function testAdd()
-    {
-        $this->markTestIncomplete('Not implemented yet.');
-    }
-
-    /**
-     * Test edit method
-     *
-     * @return void
-     */
-    public function testEdit()
-    {
-        $this->markTestIncomplete('Not implemented yet.');
-    }
-
-    /**
-     * Test delete method
-     *
-     * @return void
-     */
-    public function testDelete()
+    public function testBuildRules()
     {
         $this->markTestIncomplete('Not implemented yet.');
     }
