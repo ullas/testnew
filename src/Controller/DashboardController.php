@@ -34,6 +34,7 @@ class DashboardController extends AppController
 		  $jobtable = TableRegistry::get('Jobs');
 		  $remindertable = TableRegistry::get('Todaysreminders');
 		  
+		 
 		  
 		  $query=$tobjTable->find('All')->where(['customer_id'=>$this->loggedinuser['customer_id']]);
 		  (isset($query)) ? $totalcount=$query->count() : $totalcount="";
@@ -139,7 +140,10 @@ class DashboardController extends AppController
 		  (isset($query)) ? $tripscount=$query->count() : $tripscount="";
 		  $query2=$triptable->find('All')->where(['CURRENT_TIME BETWEEN start_time AND end_time'])->andwhere(['tripstatus_id = 1'])->andwhere(['EXTRACT(day from start_date) = EXTRACT(day from date(now()))'])->orwhere(['EXTRACT(day from end_date) = EXTRACT(day from date(now()))'])->andwhere(['customer_id'=>$this->loggedinuser['customer_id']]);
 		  (isset($query2)) ? $currenttripscount=$query2->count() : $currenttripscount="";
-		  $res = ($currenttripscount / $tripscount) * 100;
+		  
+		  if($tripscount > 0)
+		   {
+		  		 $res = ($currenttripscount / $tripscount) * 100;
 		  	if (isset ($query, $query2) )
 		  		{
 				  	$widthtrip = ($currenttripscount / $tripscount) * 100;
@@ -147,7 +151,15 @@ class DashboardController extends AppController
 			else
 				{
 					$widthtrip="";
-				}
+				}	
+		   }
+		  else
+		  	{
+		  		
+				$widthtrip = 0;
+		  	
+		  	}
+		 
 		  
 		  
 		  $query=$jobtable->find('All')->where(['EXTRACT(day from jobdate) = EXTRACT(day from date(now()))'])->andwhere(['status = 1'])->andwhere(['customer_id'=>$this->loggedinuser['customer_id']]);
@@ -156,13 +168,32 @@ class DashboardController extends AppController
 		  (isset($query2)) ? $pendingjobcount=$query2->count() : $pendingjobcount="";
 		  $query3=$jobtable->find('All')->where(['EXTRACT(day from jobdate) = EXTRACT(day from date(now()))'])->andwhere(['customer_id'=>$this->loggedinuser['customer_id']]);
 		  (isset($query3)) ? $totaljobcount=$query3->count() : $totaljobcount="";
-		  $widthjob = ($pendingjobcount / $totaljobcount) * 100;
+		  if($totaljobcount > 0)
+			  {
+			  	$widthjob = ($pendingjobcount / $totaljobcount) * 100;
+			  }
+		  else 
+		  	  {
+		  		$widthjob = 0;
+		  	  }
+		  
+		  
+		  
 		  
 		  $query=$remindertable->find('All')->where(['EXTRACT(day from date) = EXTRACT(day from date(now()))'])->andwhere(['status = 1'])->andwhere(['customer_id'=>$this->loggedinuser['customer_id']]);
 		  (isset($query)) ? $remindercount=$query->count() : $remindercount="";
 		  $query2=$remindertable->find('All')->where(['EXTRACT(day from date) = EXTRACT(day from date(now()))'])->andwhere(['customer_id'=>$this->loggedinuser['customer_id']]);
 		  (isset($query2)) ? $totalremindercount=$query2->count() : $totalremindercount="";
-		  $widthreminder = ($remindercount / $totalremindercount) * 100;
+		  
+		  if($totalremindercount > 0)
+		  	{
+		  		$widthreminder = ($remindercount / $totalremindercount) * 100;
+		  	}
+		  else
+		  	{
+		  		$widthreminder = 0;
+		  	}
+		  
 		  
 		  $query=$remindertable->find('All')->where(['servicetask_id = 2'])->andwhere(['EXTRACT(day from date) = EXTRACT(day from date(now()))'])->andwhere(['customer_id'=>$this->loggedinuser['customer_id']]);
 		  (isset($query)) ? $totalpendingmaintenancecount=$query->count() : $totalpendingmaintenancecount="";
@@ -170,7 +201,16 @@ class DashboardController extends AppController
 		  
 		  $query=$remindertable->find('All')->where(['servicetask_id = 2'])->andwhere(['EXTRACT(day from date) = EXTRACT(day from date(now()))'])->andwhere(['status = 1'])->andwhere(['customer_id'=>$this->loggedinuser['customer_id']]);
 		  (isset($query)) ? $pendingmaintenancecount=$query->count() : $pendingmaintenancecount="";
-		  $widthpendingmaintenance = ($pendingmaintenancecount / $totalpendingmaintenancecount) * 100;
+		 
+		  if($totalpendingmaintenancecount > 0)
+		  	{
+		  		$widthpendingmaintenance = ($pendingmaintenancecount / $totalpendingmaintenancecount) * 100;
+		  	}
+		  else
+		  	{
+		  		$widthpendingmaintenance = 0;
+		  	}
+		  
 		  
 		  $cls1 = (($distancecount-$lastmonthdistancecount) > 0) ? "fa fa-caret-up" : "fa fa-caret-down";
 		  $cls2 = (($fuelsum-$lastmonthfuelsum) > 0) ? "fa fa-caret-up" : "fa fa-caret-down";
@@ -194,15 +234,53 @@ class DashboardController extends AppController
 			  $vehicletable = TableRegistry::get('Vehicles');
 			  $jobtable = TableRegistry::get('Jobs');
 			  $workordertable = TableRegistry::get('Workorders');
+			  $gpsdatatable = TableRegistry::get('Gpsdata');
+			  $driversdatatable = TableRegistry::get('Drivers');
+			  $locationstripsdatatable = TableRegistry::get('Locations_trips');
+			  
+			   $results = $triptable->getActiveTrips($this->loggedinuser['customer_id']);
+		  	   //print_r($results);
 			  
 			  $query=$alertTable->find('All')->where (['alertcategories_id' => '1'])->andwhere(['EXTRACT(day from alert_dtime) = EXTRACT(day from date(now()))'])->andwhere(['customer_id'=>$this->loggedinuser['customer_id']]);
 			  (isset($query)) ? $overspeedalertcount=$query->count(): $overspeedalertcount="";
+			 
+			  $query=$alertTable->find('All')->where(['EXTRACT(day from alert_dtime) = EXTRACT(day from (now()))'])->andwhere(['customer_id'=>$this->loggedinuser['customer_id']])->toArray();
+			  (isset($query)) ? $alertscontent=$query : $alertscontent="";
 			  
-			  $query=$vehicletable->find('All')->andwhere(['customer_id'=>$this->loggedinuser['customer_id']]);
+			  
+			  
+			  
+			  $query=$vehicletable->find('All')->where(['customer_id'=>$this->loggedinuser['customer_id']]);
 			  (isset($query)) ? $vehiclescount=$query->count(): $vehiclescount="";
 			  $query2=$triptable->find('All')->where(['CURRENT_TIME BETWEEN start_time AND end_time'])->andwhere(['tripstatus_id = 1'])->andwhere(['EXTRACT(day from start_date) = EXTRACT(day from date(now()))'])->orwhere(['EXTRACT(day from end_date) = EXTRACT(day from date(now()))'])->andwhere(['customer_id'=>$this->loggedinuser['customer_id']]);
 			  (isset($query2)) ? $currenttripscount=$query2->count(): $currenttripscount="";
-			  $percentagerunning = ($currenttripscount / $vehiclescount)*100;
+			  $percentagerunning = abs(($currenttripscount / $vehiclescount)*100);
+			  
+			  $var = "'running'";
+			  $query=$gpsdatatable->find('All')->where(['EXTRACT(day from msgdtime)  = EXTRACT(day from now())'])->andwhere(['status = '. $var .'' ])->andwhere(['customer_id'=>$this->loggedinuser['customer_id']]);
+			 
+			  (isset($query)) ? $runningvehiclescount=$query->count(): $runningvehiclescount="";
+			  $query2=$gpsdatatable->find('All')->where(['EXTRACT(day from msgdtime)  = EXTRACT(day from now())'])->andwhere(['customer_id'=>$this->loggedinuser['customer_id']]);
+			  $vehiclescount=$query2->count();
+			  (isset($query2)) ? $vehiclescount=$query2->count(): $vehiclescount="";
+			 
+			   if($vehiclescount > 0)
+		  		{
+		  			 $percentagerunning = ($runningvehiclescount / $vehiclescount)*100;
+		  		}
+			   else
+			   	{
+			   		 $percentagerunning = 0;
+					
+			   	}
+			  
+			  
+			  $query = $gpsdatatable->find('All')->where(['EXTRACT(day from msgdtime)  = EXTRACT(day from now())'])->andwhere(['customer_id'=>$this->loggedinuser['customer_id']]) ->distinct(['ibuttoncode']);
+			  (isset($query)) ? $runningdriverscount=$query->count(): $runningdriverscount="";
+			  
+			  $query = $gpsdatatable->find('All')->where(['EXTRACT(day from msgdtime)  != EXTRACT(day from now())'])->andwhere(['customer_id'=>$this->loggedinuser['customer_id']]) ->distinct(['imei']);
+			  (isset($query)) ? $comfailurecount=$query->count(): $comfailurecount="";
+			  
 			  
 			  //status = 1 for completed & status = 0 for notstarted
 			  $query=$jobtable->find('All')->where(['EXTRACT(day from jobdate) = EXTRACT(day from date(now()))'])->andwhere(['status = 1'])->andwhere(['customer_id'=>$this->loggedinuser['customer_id']]);
@@ -214,8 +292,19 @@ class DashboardController extends AppController
 			  $query3=$jobtable->find('All')->where(['EXTRACT(day from jobdate) = EXTRACT(day from date(now()))'])->andwhere(['customer_id'=>$this->loggedinuser['customer_id']]);
 			  (isset($query)) ? $totaljobcount=$query3->count() : $notstartedjobcount="";
 			  $totaljobcount=$query3->count();
-			  $percentagecompletedjob = ($completedjobcount / $totaljobcount) * 100;
-			  $percentagenotstartedjob = ($notstartedjobcount / $totaljobcount) * 100;
+			   if($totaljobcount > 0)
+		  		{
+		  			$percentagecompletedjob = ($completedjobcount / $totaljobcount) * 100;
+			  		$percentagenotstartedjob = ($notstartedjobcount / $totaljobcount) * 100;
+		  		}
+			   else
+			   	{
+			   		 $percentagecompletedjob = 0;
+			  		 $percentagenotstartedjob = 0;
+					
+			   	}
+			  
+			 
 			  
 			  $query=$workordertable->find('All')->where(['CURRENT_DATE BETWEEN startdate AND completiondate'])->andwhere(['workorderstatus_id'=>1])->andwhere(['customer_id'=>$this->loggedinuser['customer_id']]);
 			  (isset($query)) ? $openworkordercount=$query->count() : $openworkordercount="";
@@ -237,13 +326,18 @@ class DashboardController extends AppController
 			  $percentagedeferredworkorder = ($deferredworkordercount / $totalworkordercount) * 100;
 			  $percentageclosedworkorder = ($closedworkordercount / $totalworkordercount) * 100;
 			  
+			  
+			  
+			 
+			 
+			 
 			   
 			  $this->set(compact('overspeedalertcount','percentagerunning','currenttripscount',
 			  					'completedjobcount','notstartedjobcount','percentagecompletedjob',
 								'percentagenotstartedjob','percentageopenworkorder','percentageoverdueworkorder',
 								'percentagedeferredworkorder','percentageclosedworkorder','openworkordercount',
 								'completedjobcount','notstartedjobcount','deferredworkordercount','closedworkordercount',
-								'overdueworkordercount'));
+								'overdueworkordercount','runningdriverscount','comfailurecount','alertscontent','results'));
 		
 		}
 

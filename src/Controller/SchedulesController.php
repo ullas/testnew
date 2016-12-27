@@ -334,4 +334,10 @@ class SchedulesController extends AppController
              return $this->redirect(['action' => 'index']);	
      }
 
+	public function configure()
+	    {
+	    	
+			
+	    }
+	
 }

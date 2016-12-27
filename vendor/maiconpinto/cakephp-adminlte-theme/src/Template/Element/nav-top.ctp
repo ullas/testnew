@@ -30,17 +30,34 @@ if (file_exists($file)) {
                         <!-- inner menu: contains the actual data -->
                         <ul class="menu">
                         	<?php 
-						   for ($x = 0; $x < count($messagescontent); $x++) { ?>
+						   for ($x = 0; $x < count($messagescontent); $x++) {
+						   			
+									//adding 19800 seconds- 5:30 hrs to GMT
+							    	$interval[$x] = (time() + 19800) -  strtotime($messagescontent[$x]['msg_dtime']);
+							
+							 ?>
                             <li><!-- start message -->
                                 <a href="#">
                                     <div class="pull-left">
                                         <?php echo $this->Html->image('user2-160x160.jpg', array('class' => 'img-circle', 'alt' => 'User Image')); ?>
                                     </div>
                                     <h4>
-                                        <?php echo $messagescontent[$x]['message'] ?>
-                                        <!-- <small><i class="fa fa-clock-o"></i> 5 mins</small> -->
+                                         <?php echo $messagescontent[$x]['message'] ?>
+                                        
                                     </h4>
-                                    <p><?php echo $messagescontent[$x]['message'] ?></p>
+                                    <p> <small><i class="fa fa-clock-o"></i>&nbsp;
+                                    	<?php
+                                    	 if($interval[$x] > 3600 )
+					                  	      {
+					                  	      	 echo gmdate('H',  $interval[$x]); echo ' hrs: ' ; 
+												 echo gmdate('i',  $interval[$x])  ; echo ' mins ago';
+											  }else if($interval[$x] > 60 && $interval[$x] < 3600 ) 
+											  {
+											  	echo gmdate('i',  $interval[$x])  ; echo ' mins ago';
+											  }else {
+											  		 echo ' just now';
+											  }
+                                    	 ?>&nbsp;</small></p>
                                 </a>
                             </li>
                             <!-- end message -->
