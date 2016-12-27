@@ -33,7 +33,7 @@
           <!-- small box -->
           <div class="small-box bg-green">
             <div class="inner">
-              <h3><?php echo $percentagerunning?><sup style="font-size: 20px">%</sup></h3>
+              <h3><?php echo round($percentagerunning)?><sup style="font-size: 20px">%</sup></h3>
 
               <p>Running</p>
             </div>
@@ -48,7 +48,7 @@
           <!-- small box -->
           <div class="small-box bg-yellow">
             <div class="inner">
-              <h3>44</h3>
+              <h3><?php echo $runningdriverscount?></h3>
 
               <p>Drivers Reported</p>
             </div>
@@ -63,7 +63,7 @@
           <!-- small box -->
           <div class="small-box bg-red">
             <div class="inner">
-              <h3>65</h3>
+              <h3><?php echo $comfailurecount?></h3>
 
               <p>Communication Failure</p>
             </div>
@@ -105,6 +105,14 @@
             <!-- /.box-header -->
             <div class="box-body">
               <ul class="todo-list">
+                <?php 
+                
+						   for ($x = 0; $x < count($alertscontent); $x++) 
+						   {
+						   	 	//adding 19800 seconds- 5:30 hrs to GMT
+							    $interval[$x] = (time() + 19800) -  strtotime($alertscontent[$x]['alert_dtime']);
+								// echo $interval[$x]."</br>";
+							?>
                 <li>
                   <!-- drag handle -->
                       <span class="handle">
@@ -114,16 +122,33 @@
                   <!-- checkbox -->
                   <input type="checkbox" value="" name="">
                   <!-- todo text -->
-                  <span class="text">Vehicle 354 Started</span>
+                  <span class="text"><?php echo $alertscontent[$x]['alert'] ?></span>
                   <!-- Emphasis label -->
-                  <small class="label label-danger"><i class="fa fa-clock-o"></i> 2 mins</small>
+                  <small class="label label-danger"><i class="fa fa-clock-o"></i>
+                  	<?php 
+                  	 if($interval[$x] > 3600 )
+                  	      {
+                  	      	 echo gmdate('H',  $interval[$x]); echo ' hrs: ' ; 
+							 echo gmdate('i',  $interval[$x])  ; echo ' mins ago';
+						  }else if($interval[$x] > 60 && $interval[$x] < 3600 ) 
+						  {
+						  	echo gmdate('i',  $interval[$x])  ; echo ' mins ago';
+						  }else {
+						  		 echo ' just now';
+						  }
+
+ 
+                  	?> 
+                 </small>
                   <!-- General tools such as edit or delete-->
                   <div class="tools">
                     <i class="fa fa-edit"></i>
                     <i class="fa fa-trash-o"></i>
                   </div>
                 </li>
-                <li>
+                <?php } 
+							?>
+                <!-- <li>
                       <span class="handle">
                         <i class="fa fa-ellipsis-v"></i>
                         <i class="fa fa-ellipsis-v"></i>
@@ -187,7 +212,7 @@
                     <i class="fa fa-edit"></i>
                     <i class="fa fa-trash-o"></i>
                   </div>
-                </li>
+                </li> -->
               </ul>
             </div>
             <!-- /.box-body -->
@@ -353,64 +378,32 @@
             <!-- /.box-body -->
             <div class="box-footer text-black">
               <div class="row">
+              	<?php 
+                
+						   for ($x = 0; $x < count($results); $x++) 
+						   {
+						   	 	
+								 
+							?>
+              	
                 <div class="col-sm-4">
                   <!-- Progress bars -->
                   <div class="clearfix">
-                    <span class="pull-left">Task #1</span>
-                    <small class="pull-right">90%</small>
+                    <span class="pull-left"><?php echo $results[$x]['name']?></span>
+                    <small class="pull-right"><?php echo $results[$x]['percent']?>%</small>
                   </div>
                   <div class="progress xs">
-                    <div class="progress-bar progress-bar-green" style="width: 90%;"></div>
+                    <div class="progress-bar progress-bar-green" style="width: <?php echo $results[$x]['percent']?>%;"></div>
                   </div>
-
-                  <div class="clearfix">
-                    <span class="pull-left">Task #2</span>
-                    <small class="pull-right">70%</small>
-                  </div>
-                  <div class="progress xs">
-                    <div class="progress-bar progress-bar-green" style="width: 70%;"></div>
-                  </div>
-                </div>
-                <!-- /.col -->
-                <div class="col-sm-4">
-                  <div class="clearfix">
-                    <span class="pull-left">Task #3</span>
-                    <small class="pull-right">60%</small>
-                  </div>
-                  <div class="progress xs">
-                    <div class="progress-bar progress-bar-green" style="width: 60%;"></div>
-                  </div>
-
-                  <div class="clearfix">
-                    <span class="pull-left">Task #4</span>
-                    <small class="pull-right">40%</small>
-                  </div>
-                  <div class="progress xs">
-                    <div class="progress-bar progress-bar-green" style="width: 40%;"></div>
-                  </div>
-                </div>
-                <!-- /.col -->
-                <div class="col-sm-4">
-                  <div class="clearfix">
-                    <span class="pull-left">Task #3</span>
-                    <small class="pull-right">60%</small>
-                  </div>
-                  <div class="progress xs">
-                    <div class="progress-bar progress-bar-green" style="width: 60%;"></div>
-                  </div>
-
-                  <div class="clearfix">
-                    <span class="pull-left">Task #4</span>
-                    <small class="pull-right">40%</small>
-                  </div>
-                  <div class="progress xs">
-                    <div class="progress-bar progress-bar-green" style="width: 40%;"></div>
-                  </div>
-                </div>
-                <!-- /.col -->
-              </div>
+                  
+				<!-- /.col -->
+               </div>
+               
+               <?php } 
+							?>
               <!-- /.row -->
             </div>
+            
           </div>
           <!-- /.box -->
         	
