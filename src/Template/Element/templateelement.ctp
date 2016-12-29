@@ -5,7 +5,7 @@
     'input' => '<div class="col-sm-6">{{opentag}}<div class="input-group">{{icon}}<input type="{{type}}" name="{{name}}"{{attrs}}/>{{closetag}}</div></div>',
     
      'select' => '<div class="col-sm-6"><select name="{{name}}"{{attrs}}>{{content}}</select></div>',
-     'selectMultiple' => '<div class="col-sm-6"><select name="{{name}}" multiple="multiple"{{attrs}}>{{content}}</select></div>',
+      'selectMultiple' => '<div class="col-sm-6"><select name="{{name}}[]" multiple="multiple"{{attrs}}>{{content}}</select></div>',
      'textarea' => '<div class="col-sm-6"><textarea name="{{name}}"{{attrs}}>{{value}}</textarea></div>'
 ];
 $this->Form->templates($myTemplates);

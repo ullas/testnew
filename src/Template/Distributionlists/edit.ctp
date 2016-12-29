@@ -28,7 +28,7 @@
        <?php
             echo $this->Form->input('name');
             echo $this->Form->input('description');
-       		echo $this->Form->input('addresses.ids', ['class'=>'select2','options' => $addresses,'label'=>'Address']);
+       		echo $this->Form->input('addresses._ids', ['class'=>'select2','options' => $addresses,'label'=>'Address']);
         ?>
      </div>
  

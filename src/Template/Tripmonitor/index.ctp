@@ -474,46 +474,127 @@ body {
 </script>
 
 <script>
+
+ 
   // create groups
   var groups = new vis.DataSet([
-    {id: 0, title:'Group1',content: '<a class="vis-group-toggle" href="javascript:void"><i class="vis-fa fa fa-toggle-on fa-lg violet"></i></a><i class="vis-fa fa fa-user violet" style="padding-left:5px; padding-right:5px"></i><b>Gopakumar</b>'},
-    {id: 1, title:'Group2',content: '<a class="vis-group-toggle" href="javascript:void"><i class="vis-fa fa fa-toggle-on fa-lg green"></i></a><i class="vis-fa fa fa-user green" style="padding-left:5px; padding-right:5px"></i><b>Gowri&nbsp;Menon</b>'},
-    {id: 2, title:'Group3',content: '<a class="vis-group-toggle" href="javascript:void"><i class="vis-fa fa fa-toggle-on fa-lg babyred"></i></a><i class="vis-fa fa fa-user babyred" style="padding-left:5px; padding-right:5px"></i><b>Jojo&nbsp;J&nbsp;J</b>'},
-    {id: 3, title:'Group4',content: '<a class="vis-group-toggle" href="javascript:void"><i class="vis-fa fa fa-toggle-on fa-lg darkblue"></i></a><i class="vis-fa fa fa-user darkblue" style="padding-left:5px; padding-right:5px"></i><b>Abu&nbsp;Ansari</b>'},
-  ]);
+
+   <?php
+    		$this->log($trips );
+			$lastid = -1;
+			foreach($trips as $key => $value) 
+				{
+					 if($value['id'] == $lastid)
+						 {
+							 $this->log($value['id']);
+						 }
+					 else
+						 {
+							$this->log($value['id']);
+					 		echo '{';		
+   ?>
+			
+    			id: <?php echo $value['id'];?> , title:'Group1',content: '<a class="vis-group-toggle" href="javascript:void"><i class="vis-fa fa fa-toggle-on fa-lg violet"></i></a><i class="vis-fa fa fa-user violet" style="padding-left:5px; padding-right:5px"></i><b> <?php echo $value['name'];?></b>'
+    		
+   <?php
+						
+				 			echo '},';			
+				 
+				 		}
+						$lastid = $value['id'];
+				 
+				}
+   ?>
+   ]);
+  
+  
+							 
+  
   // create a dataset with items
   // note that months are zero-based in the JavaScript Date object, so month 3 is April
   var items = new vis.DataSet([
-    {id: 10000, group: 0, content: '', start: new Date(2016,9,10,1,0,0),end: new Date(2016,9,10,12,0,0),type:'background',editable:false,className:'violetline'},
-  	{id: 1234, group: 0, content: '<i class="fa fa-truck fa-flip-horizontal fa-lg"></i><b>Start</b>', start: new Date(2016,9,10,1,0,0), type:'box',editable:false, className:'violet'},
-    {id: 0, group: 0, content: '1', start: new Date(2016,9,10,2,0,0), type:'box', className:'violet'},
-    {id: 1, group: 0, content: '2', start: new Date(2016,9,10,5,0,0), type:'box', className:'violet'},
-    {id: 1235, group: 0, content: '<b>Stop</b><i class="fa fa-flag fa-lg"></i>', start: new Date(2016,9,10,12,0,0), type:'box',editable:false, className:'violet'},
-    {id: 10001, group: 1, content: '', start: new Date(2016,9,10,8,0,0),end: new Date(2016,9,10,16,0,0),type:'background',editable:false,className:'greenlg'},
-    {id: 1236, group: 1, content: '<i class="fa fa-truck fa-flip-horizontal fa-lg"></i><b>Start<b>', start: new Date(2016,9,10,8,0,0), type:'box',editable:false, className:'green'},
-    {id: 2, group: 1, content: '1', start: new Date(2016,9,10,9,0,0), type:'box', className:'green'},
-    {id: 3, group: 1, content: '2', start: new Date(2016,9,10,12,0,0), type:'box', className:'green'},
-    {id: 1237, group: 1, content: '<b>Stop</b><i class="fa fa-flag fa-lg"></i>', start: new Date(2016,9,10,16,0,0), type:'box',editable:false, className:'green'},
-    {id: 10002, group: 2, content: '', start: new Date(2016,9,10,6,0,0),end: new Date(2016,9,10,18,0,0),type:'background',editable:false,className:'babyredlg'},
-    {id: 1238, group: 2, content: '<i class="fa fa-truck fa-flip-horizontal fa-lg"></i><b>Start<b>', start: new Date(2016,9,10,6,0,0), type:'box',editable:false, className:'babyred'},
-    {id: 4, group: 2, content: '1', start: new Date(2016,9,10,10,30,0), type:'box', className:'babyred'},
-    {id: 5, group: 2, content: '2', start: new Date(2016,9,10,13,0,0), type:'box', className:'babyred'},
-    {id: 6, group: 2, content: '3', start: new Date(2016,9,10,15,0,0), type:'box', className:'babyred'},
-    {id: 1239, group: 2, content: '<b>Stop</b><i class="fa fa-flag fa-lg"></i>', start: new Date(2016,9,10,18,0,0), type:'box',editable:false, className:'babyred'},
-    {id: 10003, group: 3, content: '', start: new Date(2016,9,10,4,0,0),end: new Date(2016,9,10,20,0,0),type:'background',editable:false,className:'darkblueline'},
-    {id: 1240, group: 3, content: '<i class="fa fa-truck fa-flip-horizontal fa-lg"></i><b>Start<b>', start: new Date(2016,9,10,4,0,0), type:'box',editable:false, className:'darkblue'},
-    {id: 7, group: 3, content: '1', start: new Date(2016,9,10,5,0,0), type:'box', className:'darkblue'},
-    {id: 8, group: 3, content: '2', start: new Date(2016,9,10,9,40,0), type:'box', className:'darkblue'},
-    {id: 9, group: 3, content: '3', start: new Date(2016,9,10,12,0,0), type:'box', className:'darkblue'},
-    {id: 10, group: 3, content: '4', start: new Date(2016,9,10,17,0,0), type:'box', className:'darkblue'},
-    {id: 11, group: 3, content: '5', start: new Date(2016,9,10,19,0,0), type:'box', className:'darkblue'},
-    {id: 1241, group: 3, content: '<b>Stop</b><i class="fa fa-flag fa-lg"></i>', start: new Date(2016,9,10,20,0,0), type:'box',editable:false, className:'darkblue'}
-  ]);
+  	<?php
+  	use Cake\I18n\Time;
+    		//$this->log($trips );
+			$lastid = -1;
+			$lastid2 = -1;
+			$tempids = [1,2,3,4,5];	
+			$barcolor = ['violetline','babyredlg','darkblueline','greenlg','violetline','babyredlg','darkblueline','greenlg','violetline','babyredlg','darkblueline','greenlg','violetline','babyredlg','darkblueline','greenlg','violetline','babyredlg','darkblueline','greenlg','violetline','babyredlg','darkblueline','greenlg','violetline','babyredlg','darkblueline','greenlg','violetline','babyredlg','darkblueline','greenlg','violetline','babyredlg','darkblueline','greenlg','violetline','babyredlg','darkblueline','greenlg','violetline','babyredlg','darkblueline','greenlg','violetline','babyredlg','darkblueline','greenlg','violetline','babyredlg','darkblueline','greenlg','violetline','babyredlg','darkblueline','greenlg','violetline','babyredlg','darkblueline','greenlg','violetline','babyredlg','darkblueline','greenlg','violetline','babyredlg','darkblueline','greenlg'];
+			$startstopcolor = ['violet','green','babyred','darkblue','violet','green','babyred','darkblue','violet','green','babyred','darkblue','violet','green','babyred','darkblue','violet','green','babyred','darkblue','violet','green','babyred','darkblue','violet','green','babyred','darkblue','violet','green','babyred','darkblue','violet','green','babyred','darkblue','violet','green','babyred','darkblue','violet','green','babyred','darkblue','violet','green','babyred','darkblue','violet','green','babyred','darkblue','violet','green','babyred','darkblue','violet','green','babyred','darkblue','violet','green','babyred','darkblue','violet','green','babyred','darkblue','violet','green','babyred','darkblue','violet','green','babyred','darkblue','violet','green','babyred','darkblue','violet','green','babyred','darkblue','violet','green','babyred','darkblue',];
+			
+			$c = 0;
+			foreach($trips as $key => $value) 
+				{
+					 if($value['id'] == $lastid)
+						 {
+						 	
+							 $aat = $value['aat'];
+						 	 $timeaat = strtotime($aat);
+						     $mnthaat = (date('m', $timeaat)) -1;
+							 
+							 $cdate = Time::now(); 
+	?>
+							//location points in between start and stop
+							{id: <?php echo $tempids[2]* rand();?>, group: <?php echo $value['id'];?>, content: '<?php echo $value['orderid'];?>', start: new Date(<?php echo date('Y', $timeaat) ;?>,<?php echo $mnthaat ;?>,<?php echo date('d', $timeaat) ;?>,<?php echo date('h', $timeaat) ;?>,<?php echo date('i', $timeaat) ;?>,<?php echo date('s', $timeaat) ;?>), type:'box', className:'violet'},
+   
+	<?php
+							
+						 }
+					 else
+						 {
+						 $starttime = strtotime($value['start_time']);
+						 $endtime = strtotime($value['end_time']);
+						 
+						 
+						 $cdate = strtotime(Time::now());
+						 $stdate = strtotime($value['start_date']);
+						 $enddate = strtotime($value['end_date']);
+						 $mnthstdate = (date('m', $stdate)) -1;
+						 $mnthenddate = (date('m', $enddate)) -1;
+						 
+						 $mnth = (date('m', $stdate)) -1;
+						 
+						 $aat = $value['aat'];
+						 $timeaat = strtotime($aat);
+						 $mnthaat = (date('m', $timeaat)) -1;
+						 
+						 	
+								
+	?>	
+						//bar image	
+					    {id: <?php echo $tempids[0] * rand();?>, group: <?php echo $value['id'];?>, content: '', start: new Date(<?php echo date('Y', $stdate) ;?>,<?php echo $mnthstdate;?>,<?php echo date('d', $stdate) ;?>,<?php echo date('h', $starttime) ;?>,<?php echo date('i', $starttime) ;?>,<?php echo date('s', $starttime) ;?>),end: new Date(<?php echo date('Y', $enddate) ;?>,<?php echo $mnthenddate;?>,<?php echo date('d', $enddate) ;?>,<?php echo date('h', $endtime) ;?>,<?php echo date('i', $endtime) ;?>,<?php echo date('s', $endtime) ;?>),type:'background',editable:false,className:<?php echo "'". $barcolor[$c]."'";?>},
+					  	
+					  	//start icon
+					  	{id: <?php echo $tempids[1]* rand();?>, group: <?php echo $value['id'];?>, content: '<i class="fa fa-truck fa-flip-horizontal fa-lg"></i><b>Start</b>', start: new Date(<?php echo date('Y', $stdate) ;?>,<?php echo $mnthstdate;?>,<?php echo date('d', $stdate) ;?>,<?php echo date('h', $starttime);?>,<?php echo date('i', $starttime);?>,<?php echo date('s', $starttime);?>), type:'box',editable:false, className:<?php echo "'". $startstopcolor[$c]."'";?>},
+					    
+					    //location points in between start and stop
+					    {id: <?php echo $tempids[2]* rand();?>, group: <?php echo $value['id'];?>, content: '<?php echo $value['orderid'];?>', start: new Date(<?php echo date('Y', $timeaat) ;?>,<?php echo $mnthaat ;?>,<?php echo date('d', $timeaat) ;?>,<?php echo date('h', $timeaat) ;?>,<?php echo date('i', $timeaat) ;?>,<?php echo date('s', $timeaat) ;?>), type:'box', className:<?php echo "'". $startstopcolor[$c]."'";?>},
+					   
+						//stop icon
+					    {id: <?php echo $tempids[4]* rand();?>, group: <?php echo $value['id'];?>, content: '<b>Stop</b><i class="fa fa-flag fa-lg"></i>', start: new Date(<?php echo date('Y', $enddate) ;?>,<?php echo $mnthenddate;?>,<?php echo date('d', $enddate) ;?>,<?php echo date('h', $endtime) ;?>,<?php echo date('i', $endtime) ;?>,<?php echo date('s', $endtime) ;?>), type:'box',editable:false, className:<?php echo "'". $startstopcolor[$c]."'";?>},
+					    
+	<?php
+								}
+									$lastid = $value['id'];
+									$c=$c+1;
+								}
+	?>
+		    		
+		    		
+    
+   ]);
   // specify options
+  <?php
+  $cdate = strtotime(Time::now());
+  $mnthcurrent = (date('m', $cdate)) -1;
+  
+  ?>
+  
   var options = {
     stack: false,
-    start: new Date(2016,9,10),
-    end: new Date(2016,9,11),
+    start: new Date(<?php echo date('Y', $cdate) ;?>,<?php echo $mnthcurrent ;?>,<?php echo date('d', $cdate) ;?>),
+    end: new Date(2017,0,10),
+    
     groupOrder: function (a, b) {
       return a.value - b.value;
     },
@@ -532,6 +613,10 @@ body {
   $('.vis-group-toggle').click(function(){
     $(this).find('i').toggleClass('fa-toggle-on fa-toggle-off')
 	});
+	
+	
 </script>
+
+
 
 <?php $this->end(); ?>

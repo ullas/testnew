@@ -83,7 +83,7 @@ use Cake\Validation\Validator;
 		$this->belongsToMany('Drivers', [
             'foreignKey' => 'schedule_id',
             'targetForeignKey' => 'driver_id',
-            'joinTable' => 'drivers'
+            'joinTable' => 'drivers_schedules'
         ]);
 		$this->belongsTo('Passengergroups', [
             'foreignKey' => 'default_paxgrpid'
