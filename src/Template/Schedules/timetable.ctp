@@ -19,6 +19,7 @@
             <ul class="todo-list column-list">
               <?php
               
+              print_r($locations);
                 //$this.log($locations);
                 // $usa=explode(',',$usersettings[0]['value']);
                 // echo '<input type="hidden" class="mptl_settings_chk" id="mptl_settings_chk_0">';
