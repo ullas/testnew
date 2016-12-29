@@ -491,7 +491,7 @@ $this->Html->script([
           height: $this.data('height') ? $this.data('height') : '30',
           barColor: $this.data('color')
         });
-      });
+      }); 
 
       //-----------------
       //- SPARKLINE PIE -
