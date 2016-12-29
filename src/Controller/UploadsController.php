@@ -18,7 +18,8 @@ class UploadsController extends AppController
 				
 			$tempFile = $_FILES['file']['tmp_name'];  
 		
-  			$targetPath = APP.'webroot'.DS.'uploadedpics'.DS;
+  			$targetPath = WWW_ROOT.DS.'img'.DS.'uploadedpics'.DS;
+  			// $targetPath = APP.'webroot'.DS.'uploadedpics'.DS;
   			$targetFile =  $targetPath. $this->request->data['file']['name'];
   			move_uploaded_file($tempFile,$targetFile);
   		
