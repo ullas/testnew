@@ -593,7 +593,7 @@ body {
   var options = {
     stack: false,
     start: new Date(<?php echo date('Y', $cdate) ;?>,<?php echo $mnthcurrent ;?>,<?php echo date('d', $cdate) ;?>),
-    end: new Date(2017,0,10),
+    end: new Date(<?php echo date('Y', $cdate) ;?>,<?php echo $mnthcurrent ;?>,<?php echo date('d', $cdate)  ;?>,24,00,00),
     
     groupOrder: function (a, b) {
       return a.value - b.value;
