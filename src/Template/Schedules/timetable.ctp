@@ -32,6 +32,11 @@
 // 
           		     // }
 				  // echo '<li><input type="hidden" class="mptl_settings_chk" id="mptl_settings_chk_"' . count($configs) .'></l>';
+	            
+	            foreach ($locations as $key) {}
+	            
+				$locations[''];
+	            
 	            ?>
 	            
 	            <table >
