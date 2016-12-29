@@ -133,7 +133,7 @@ class DashboardController extends AppController
 		  	 $colorclassruntime = "description-percentage text-red";	
 		  	}
 		  
-		  $query=$ragtable->find('All')->where(['EXTRACT(day from idate) = EXTRACT(day from date(now()))'])->andwhere(['customer_id'=>$this->loggedinuser['customer_id']])->toArray();
+		  $query=$ragtable->find('All')->where(['EXTRACT(day from idate)  = EXTRACT(day from date(now()))'])->andwhere(['customer_id'=>$this->loggedinuser['customer_id']])->toArray();
 		  (isset($query)) ? $ragcontent=$query : $ragcontent="";
 		  // $this->log($ragcontent);
 		  $query=$triptable->find('All')->where(['EXTRACT(day from start_date) = EXTRACT(day from date(now()))'])->orwhere(['EXTRACT(day from end_date) = EXTRACT(day from date(now()))'])->andwhere(['customer_id'=>$this->loggedinuser['customer_id']]);
