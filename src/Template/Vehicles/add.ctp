@@ -84,7 +84,7 @@
                 	echo $this->Form->input('purpose_id', ['options' => $purposes, 'empty' => true,'class'=>'select2']);
                	 	echo $this->Form->input('transporter_id',['class'=>'select2']);
                 	echo $this->Form->input('drivers._ids',['options' => $drivers,'class'=>'select2']);
-					echo $this->Form->input('msrp', ['label'=>'MRP','type'=>'text','empty' => true,'templateVars' => ['help' => 'Suggested retail price','icon' => '<div class="input-group-addon"><i class="'.$mptlusercurrencyfaclass.'"></i></div>']]);
+ 					echo $this->Form->input('msrp', ['label'=>'MRP','type'=>'text','empty' => true,'templateVars' => ['help' => 'Suggested retail price','icon' => '<div class="input-group-addon"><i class="'.$mptlusercurrencyfaclass.'"></i></div>']]);
         	 		echo $this->Form->input('purpose_id', ['options' => $purposes, 'empty' => true,'class'=>'select2']);
              	   ?>
             </div>

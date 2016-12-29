@@ -29,7 +29,7 @@
         <?php
             echo $this->Form->input('name',['required' => 'required']);
             echo $this->Form->input('description');
-            echo $this->Form->input('passengers.ids', ['label'=>'Passengers','options' => $passengers,'class'=>'select2']);
+            echo $this->Form->input('passengers._ids', ['label'=>'Passengers','options' => $passengers,'class'=>'select2']);
         ?>
    </div>
  

@@ -4,16 +4,15 @@ namespace App\Model\Entity;
 use Cake\ORM\Entity;
 
 /**
- * Group Entity
+ * DriversSchedule Entity
  *
  * @property int $id
- * @property string $name
- * @property string $description
- * @property int $customer_id
+ * @property int $driver_id
+ * @property int $schedule_id
  *
- * @property \App\Model\Entity\Customer $customer
- * @property \App\Model\Entity\Trackingobject[] $trackingobjects
- */class Group extends Entity
+ * @property \App\Model\Entity\Driver $driver
+ * @property \App\Model\Entity\Schedule $schedule
+ */class DriversSchedule extends Entity
 {
 
     /**
