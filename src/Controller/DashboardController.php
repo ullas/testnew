@@ -162,11 +162,11 @@ class DashboardController extends AppController
 		 
 		  
 		  
-		  $query=$jobtable->find('All')->where(['EXTRACT(day from jobdate) = EXTRACT(day from date(now()))'])->andwhere(['status = 1'])->andwhere(['customer_id'=>$this->loggedinuser['customer_id']]);
+		  $query=$jobtable->find('All')->where(['jobdate=date(now())'])->andwhere(['status = 1'])->andwhere(['customer_id'=>$this->loggedinuser['customer_id']]);
 		  (isset($query)) ? $jobcount=$query->count() : $jobcount="";
 		  $query2=$jobtable->find('All')->where(['status = 0'])->andwhere(['customer_id'=>$this->loggedinuser['customer_id']]);
 		  (isset($query2)) ? $pendingjobcount=$query2->count() : $pendingjobcount="";
-		  $query3=$jobtable->find('All')->where(['EXTRACT(day from jobdate) = EXTRACT(day from date(now()))'])->andwhere(['customer_id'=>$this->loggedinuser['customer_id']]);
+		  $query3=$jobtable->find('All')->where(['jobdate=date(now())'])->andwhere(['customer_id'=>$this->loggedinuser['customer_id']]);
 		  (isset($query3)) ? $totaljobcount=$query3->count() : $totaljobcount="";
 		  if($totaljobcount > 0)
 			  {
@@ -180,9 +180,9 @@ class DashboardController extends AppController
 		  
 		  
 		  
-		  $query=$remindertable->find('All')->where(['EXTRACT(day from date) = EXTRACT(day from date(now()))'])->andwhere(['status = 1'])->andwhere(['customer_id'=>$this->loggedinuser['customer_id']]);
+		  $query=$remindertable->find('All')->where(['date=date(now())'])->andwhere(['status = 1'])->andwhere(['customer_id'=>$this->loggedinuser['customer_id']]);
 		  (isset($query)) ? $remindercount=$query->count() : $remindercount="";
-		  $query2=$remindertable->find('All')->where(['EXTRACT(day from date) = EXTRACT(day from date(now()))'])->andwhere(['customer_id'=>$this->loggedinuser['customer_id']]);
+		  $query2=$remindertable->find('All')->where(['date=date(now())'])->andwhere(['customer_id'=>$this->loggedinuser['customer_id']]);
 		  (isset($query2)) ? $totalremindercount=$query2->count() : $totalremindercount="";
 		  
 		  if($totalremindercount > 0)
