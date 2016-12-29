@@ -10,7 +10,7 @@ use Cake\ORM\TableRegistry;
  */
 class GroupsController extends AppController
 {
-	/**
+	 /**
      * Components
      *
      * @var array
@@ -23,8 +23,8 @@ class GroupsController extends AppController
      */
     public function index()
     {
-         $this->loadModel('CreateConfigs');
-         $configs=$this->CreateConfigs->find('all')->where(['table_name' => 'Groups'])->order(['"order"' => 'ASC'])->toArray();
+    	 $this->loadModel('CreateConfigs');
+		 $configs=$this->CreateConfigs->find('all')->where(['table_name' => 'Groups'])->order(['"order"' => 'ASC'])->toArray();
 		 $this->loadModel('Usersettings');
 		 $usersettings=$this->Usersettings->find('all')->where(['user_id' => $this->loggedinuser['id']])->where(['module' => 'Groups'])->where(['key' => 'INIT_VISIBLE_COLUMNS_GROUPS'])->toArray();
          if(isset($usersettings[0]['value'])){
@@ -39,20 +39,23 @@ class GroupsController extends AppController
          }
 		 $actions =[
                 
-                ['name'=>'delete','title'=>'Delete','class'=>' label-danger ']
+                []
                 ];
          $additional= [
       	                          'basic'=>['All'],
       	                          'additional'=>[
-      	                                
-      	                                 	                          
+      	                                                          
       	                          ]];
 		 $this->set('additional',$additional);
 		 $this->set('actions',$actions);	
          $this->set('configs',$configs);	
          $this->set('_serialize', ['configs','usersettings','actions','additional']);
+		
+		
+		
+       
     }
-
+	
 	public function updateSettings()
 {
    	
@@ -122,7 +125,7 @@ private function getDateRangeFilters($dates,$basic)  {
 	
 	$datecol=explode("-",$alldates[0]);
 	
-	$sql .=  count($datecol)>1? " $pre issuedate between '" . $this->toPostDBDate($datecol[0]) . "' and '" . $this->toPostDBDate($datecol[1]) . "'": "" ;
+	$sql .=  count($datecol)>1? " $pre install_date between '" . $this->toPostDBDate($datecol[0]) . "' and '" . $this->toPostDBDate($datecol[1]) . "'": "" ;
 	
 	$datecol=explode("-",$alldates[1]);
 	
@@ -139,7 +142,8 @@ private function getDateRangeFilters($dates,$basic)  {
 	return $sql;
 }  
 
-public function ajaxdata() {
+
+	public function ajaxdata() {
         $this->autoRender= false;
 		$usrfiter="";
 		$basic = isset($this->request->query['basic'])?$this->request->query['basic']:"" ;
@@ -170,7 +174,7 @@ public function ajaxdata() {
 		
 		
 		                           
-        $output =$this->Datatable->getView($fields,[ 'Customers'],$usrfiter);
+        $output =$this->Datatable->getView($fields,['Customers', 'Trackingobjects', 'Fences', 'Locations', 'Renewalreminders', 'Routes', 'Servicereminders'],$usrfiter);
         $out =json_encode($output);  
 	   
 		$this->response->body($out);
@@ -178,7 +182,9 @@ public function ajaxdata() {
 	     
              
  }  
-
+	
+	
+	
     /**
      * View method
      *
@@ -189,7 +195,7 @@ public function ajaxdata() {
     public function view($id = null)
     {
         $group = $this->Groups->get($id, [
-            'contain' => ['Trackingobjects']
+            'contain' => ['Customers', 'Trackingobjects', 'Fences', 'Locations', 'Renewalreminders', 'Routes', 'Servicereminders']
         ]);
 
         $this->set('group', $group);
@@ -215,9 +221,10 @@ public function ajaxdata() {
                 $this->Flash->error(__('The group could not be saved. Please, try again.'));
             }
         }
-        $trackingobjects = $this->Groups->Trackingobjects->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
-        $this->set(compact('group', 'trackingobjects'));
-		$this->set('_serialize', ['group']);
+        $customers = $this->Groups->Customers->find('list', ['limit' => 200]);
+        $trackingobjects = $this->Groups->Trackingobjects->find('list', ['limit' => 200]);
+        $this->set(compact('group', 'customers', 'trackingobjects'));
+        $this->set('_serialize', ['group']);
     }
 
     /**
@@ -236,9 +243,11 @@ public function ajaxdata() {
 		{
 			 $this->Flash->success(__('You are not Authorized.'));
 			 return $this->redirect(['action' => 'index']);
+			
 		}
         if ($this->request->is(['patch', 'post', 'put'])) {
             $group = $this->Groups->patchEntity($group, $this->request->data);
+			$group['customer_id']=$this->loggedinuser['customer_id'];
             if ($this->Groups->save($group)) {
                 $this->Flash->success(__('The group has been saved.'));
 
@@ -247,8 +256,9 @@ public function ajaxdata() {
                 $this->Flash->error(__('The group could not be saved. Please, try again.'));
             }
         }
-        $trackingobjects = $this->Groups->Trackingobjects->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
-        $this->set(compact('group', 'trackingobjects'));
+        $customers = $this->Groups->Customers->find('list', ['limit' => 200]);
+        $trackingobjects = $this->Groups->Trackingobjects->find('list', ['limit' => 200]);
+        $this->set(compact('group', 'customers', 'trackingobjects'));
         $this->set('_serialize', ['group']);
     }
 
@@ -271,14 +281,13 @@ public function ajaxdata() {
 	            $this->Flash->error(__('The group could not be deleted. Please, try again.'));
 	        }
 		}
-	    else
-	    {
-	   	    $this->Flash->error(__('You are not authorized'));
-		
-	    }
+		else
+		{
+		   	    $this->Flash->error(__('You are not authorized'));
+			
+		}
         return $this->redirect(['action' => 'index']);
     }
-	
 	public function deleteAll($id=null){
     	
 		$this->request->allowMethod(['post', 'deleteall']);
@@ -317,5 +326,4 @@ public function ajaxdata() {
 
              return $this->redirect(['action' => 'index']);	
      }
-	
 }

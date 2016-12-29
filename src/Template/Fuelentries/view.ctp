@@ -44,6 +44,10 @@
             <td><?= $this->Number->format($fuelentry->priceperusnit) ?></td>
         </tr>
         <tr>
+            <th><?= __('Quantity') ?></th>
+            <td><?= $this->Number->format($fuelentry->quantity) ?></td>
+        </tr>
+        <tr>
             <th><?= __('Vendor') ?></th>
              <td><?= $fuelentry->has('vendor') ? $this->Html->link($fuelentry->vendor->name, ['controller' => 'Vendors', 'action' => 'view', $fuelentry->vendor->id]) : '' ?></td>
             <!-- <td><?= $this->Number->format($fuelentry->vendor_id) ?></td> -->

@@ -27,7 +27,7 @@
             echo $this->Form->input('name');
             echo $this->Form->input('description');
             echo $this->Form->input('defaultdriver_id', ['label'=>'Default Driver','options' => $defaultdrivers, 'empty' => true,'class'=>'select2']);
-            echo $this->Form->input('drivers.ids', ['label'=>'Driver','options' => $drivers,'class'=>'select2']);
+            echo $this->Form->input('drivers._ids', ['label'=>'Driver','options' => $drivers,'class'=>'select2']);
         ?>
     
  </div>

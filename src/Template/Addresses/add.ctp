@@ -49,7 +49,7 @@
 				  	</div>
 			</div>
 			<?php
-            echo $this->Form->input('distributionlists.ids', ['label'=>'Distribution List','options' => $distributionlists,'class'=>'select2']);
+            echo $this->Form->input('distributionlists._ids', ['label'=>'Distribution List','options' => $distributionlists,'class'=>'select2']);
         ?>
    <div class="row">
    <div class="form-group">

@@ -201,27 +201,25 @@ class SchedulesController extends AppController
     {
         $schedule = $this->Schedules->newEntity();
         if ($this->request->is('post')) {
-            $schedule = $this->Schedules->patchEntity($schedule, $this->request->data);
+            $schedule = $this->Schedules->patchEntity($schedule, $this->request->data,['associated'=>['Drivers','Locations']]);
             $schedule['customer_id']=$this->loggedinuser['customer_id'];
-            if ($this->Schedules->save($schedule)) {
-                $this->Flash->success(__('The schedule has been saved.'));
-
-                return $this->redirect(['action' => 'index']);
+            if ($id = $this->Schedules->save($schedule)) {
+                //$this->Flash->success(__('The schedule has been saved.'));
+ 			return $this->redirect(['action' => 'timetable',$id->id ]);
             } else {
                 $this->Flash->error(__('The schedule could not be saved. Please, try again.'));
             }
         }
         
-        $startlocs = $this->Schedules->Startlocs->find('list', ['limit' => 200])->where("customer_id=".$this->loggedinuser['customer_id'])->where("customer_id=0");
-        $endlocs = $this->Schedules->Endlocs->find('list', ['limit' => 200])->where("customer_id=".$this->loggedinuser['customer_id'])->where("customer_id=0");
-        $routes = $this->Schedules->Routes->find('list', ['limit' => 200])->where("customer_id=".$this->loggedinuser['customer_id'])->where("customer_id=0");
-        $customers = $this->Schedules->Customers->find('list', ['limit' => 200])->where("id=".$this->loggedinuser['customer_id']);
-      	$timepolicies = $this->Schedules->Timepolicies->find('list', ['limit' => 200])->where("customer_id=".$this->loggedinuser['customer_id'])->where("customer_id=0");
-        $defaultDrivers = $this->Schedules->DefaultDrivers->find('list', ['limit' => 200])->where("customer_id=".$this->loggedinuser['customer_id'])->where("customer_id=0");
+        $startlocs = $this->Schedules->Startlocs->find('list', ['limit' => 200])->where("customer_id=".$this->loggedinuser['customer_id']);
+        $endlocs = $this->Schedules->Endlocs->find('list', ['limit' => 200])->where("customer_id=".$this->loggedinuser['customer_id']);
+        $routes = $this->Schedules->Routes->find('list', ['limit' => 200])->where("customer_id=".$this->loggedinuser['customer_id']);
+        $timepolicies = $this->Schedules->Timepolicies->find('list', ['limit' => 200])->where("customer_id=".$this->loggedinuser['customer_id'])->orwhere("customer_id=0");
+        $defaultDrivers = $this->Schedules->DefaultDrivers->find('list', ['limit' => 200])->where("customer_id=".$this->loggedinuser['customer_id']);
         $defaultVehs = $this->Schedules->DefaultVehs->find('list', ['limit' => 200])->where("customer_id=".$this->loggedinuser['customer_id'])->where("customer_id=0");
-        $locations = $this->Schedules->Locations->find('list', ['limit' => 200])->where("customer_id=".$this->loggedinuser['customer_id'])->where("customer_id=0");
-        $passengergroups = $this->Schedules->Passengergroups->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
-        $drivers = $this->Schedules->Drivers->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
+        $locations = $this->Schedules->Locations->find('list', ['limit' => 200])->where("customer_id=".$this->loggedinuser['customer_id']);
+        $passengergroups = $this->Schedules->Passengergroups->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']]) ;
+        $drivers = $this->Schedules->Drivers->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']]) ;
         
         $this->set(compact('schedule','passengergroups', 'startlocs', 'endlocs', 'routes', 'customers', 'timepolicies', 'defaultDrivers', 'defaultVehs', 'locations','drivers'));
         $this->set('_serialize', ['schedule']);
@@ -237,7 +235,7 @@ class SchedulesController extends AppController
     public function edit($id = null)
     {
         $schedule = $this->Schedules->get($id, [
-            'contain' => ['Locations']
+            'contain' => ['Locations','Drivers']
         ]);
 		if($schedule['customer_id']!= $this->loggedinuser['customer_id'])
 		{
@@ -255,16 +253,18 @@ class SchedulesController extends AppController
                 $this->Flash->error(__('The schedule could not be saved. Please, try again.'));
             }
         }
-        $startlocs = $this->Schedules->Startlocs->find('list', ['limit' => 200]);
-        $endlocs = $this->Schedules->Endlocs->find('list', ['limit' => 200]);
-        $routes = $this->Schedules->Routes->find('list', ['limit' => 200]);
-        $customers = $this->Schedules->Customers->find('list', ['limit' => 200]);
-        $timepolicies = $this->Schedules->Timepolicies->find('list', ['limit' => 200]);
-        $defaultDrivers = $this->Schedules->DefaultDrivers->find('list', ['limit' => 200]);
-        $defaultVehs = $this->Schedules->DefaultVehs->find('list', ['limit' => 200]);
-        $locations = $this->Schedules->Locations->find('list', ['limit' => 200]);
-        $passengergroups = $this->Schedules->Passengergroups->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
-        $this->set(compact('schedule','passengergroups', 'startlocs', 'endlocs', 'routes', 'customers', 'timepolicies', 'defaultDrivers', 'defaultVehs', 'locations'));
+        
+        $startlocs = $this->Schedules->Startlocs->find('list', ['limit' => 200])->where("customer_id=".$this->loggedinuser['customer_id']);
+        $endlocs = $this->Schedules->Endlocs->find('list', ['limit' => 200])->where("customer_id=".$this->loggedinuser['customer_id']);
+        $routes = $this->Schedules->Routes->find('list', ['limit' => 200])->where("customer_id=".$this->loggedinuser['customer_id']);
+        $customers = $this->Schedules->Customers->find('list', ['limit' => 200])->where("id=".$this->loggedinuser['customer_id']);
+      	$timepolicies = $this->Schedules->Timepolicies->find('list', ['limit' => 200])->where("customer_id=".$this->loggedinuser['customer_id'])->orwhere("customer_id=0");
+        $defaultDrivers = $this->Schedules->DefaultDrivers->find('list', ['limit' => 200])->where("customer_id=".$this->loggedinuser['customer_id']);
+        $defaultVehs = $this->Schedules->DefaultVehs->find('list', ['limit' => 200])->where("customer_id=".$this->loggedinuser['customer_id'])->where("customer_id=0");
+        $locations = $this->Schedules->Locations->find('list', ['limit' => 200])->where("customer_id=".$this->loggedinuser['customer_id']);
+        $passengergroups = $this->Schedules->Passengergroups->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']]) ;
+        $drivers = $this->Schedules->Drivers->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']]) ;
+        $this->set(compact('schedule','drivers','passengergroups', 'startlocs', 'endlocs', 'routes', 'customers', 'timepolicies', 'defaultDrivers', 'defaultVehs', 'locations'));
         $this->set('_serialize', ['schedule']);
     }
 
@@ -334,9 +334,15 @@ class SchedulesController extends AppController
              return $this->redirect(['action' => 'index']);	
      }
 
-	public function configure()
+	public function timetable($id)
 	    {
-	    	
+	    	 $schedule = $this->Schedules->get($id, ['contain' => ['Locations'] ]);
+			 
+			  
+			  $locations = $this->Schedules->Locations->find('All')->where("schedule_id=".$id)->where("customer_id=".$this->loggedinuser['customer_id']);
+       
+			  $this->set( 'locations',$locations );
+              $this->set('_serialize', ['locations']);
 			
 	    }
 	

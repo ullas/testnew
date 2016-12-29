@@ -184,6 +184,17 @@ class TripsTable extends Table
 		$con = ConnectionManager::get('default');
 		$stmt = $con->execute("select trips.name,percent from (select trip_id, (sum(case completed when true then 1 when false then 0 end )*100/(count(*) + 2)) as percent from zorba.locations_trips where customer_id = $cid group by trip_id ) as p left join zorba.trips on trips.id= p.trip_id where tripstatus_id = 1");
 		$results = $stmt->fetchAll('assoc');
+		
+		return $results;
+	}
+	
+	public function getTripmondata($cid)
+	{
+		
+		$con = ConnectionManager::get('default');
+		//$stmt = $con->execute("select  trips.start_time, trips.end_time,trips.id, locations.name,orderid, trips.name,locations_trips.aat from zorba.trips left join zorba.locations_trips on trips.id = locations_trips.trip_id left join zorba.locations on locations.id =locations_trips.location_id where start_date = date(now()) order by trips.id,orderid");
+		$stmt = $con->execute("select  trips.start_date,trips.end_date, trips.start_time, trips.end_time,trips.id, locations.name,orderid, trips.name,locations_trips.aat,locations_trips.adt  from zorba.trips left join zorba.locations_trips on trips.id = locations_trips.trip_id left join zorba.locations on locations.id =locations_trips.location_id where start_date = date(now()) order by trips.id,orderid");
+		$results = $stmt->fetchAll('assoc');
 		return $results;
 	}
 }

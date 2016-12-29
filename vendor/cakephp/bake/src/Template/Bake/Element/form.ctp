@@ -25,43 +25,38 @@ if (isset($modelObject) && $modelObject->behaviors()->has('Tree')) {
     });
 }
 %>
-
-<?php
-  $myTemplates = [
-    'inputContainer' => '<div class="form-group">{{content}}<div class="col-sm-offset-3 col-sm-6 style="margin-top:18px">{{help}}</div></div>',
-     'label' => '<label class="col-sm-3 control-label" {{attrs}}>{{text}}</label>',
-    'input' => '<div class="col-sm-6"><input type="{{type}}" name="{{name}}"{{attrs}}/></div>',
-     'select' => '<div class="col-sm-6"><select name="{{name}}"{{attrs}}>{{content}}</select></div>',
-     'textarea' => '<div class="col-sm-6"><textarea name="{{name}}"{{attrs}}>{{value}}</textarea></div>'
-];
-$this->Form->templates($myTemplates);
-
-?>
-
-<!-- Content Header (Page header) -->
-<section class="content-header">
-  <h1>
-    <%= $singularHumanName %>
-  </h1>
-  <ol class="breadcrumb">
-  	<li><a href="#"><i class="fa fa-dashboard"></i>Home</a></li>
-   
-    <li><a href="/<%=$pluralHumanName %>"> <%= $pluralHumanName %></a></li>
-    <li class="active">Add</li>
-  </ol>
-</section>
-
-<!-- Main content -->
-<section class="content">
+<nav class="large-3 medium-4 columns" id="actions-sidebar">
+    <ul class="side-nav">
+        <li class="heading"><?= __('Actions') ?></li>
+<% if (strpos($action, 'add') === false): %>
+        <li><?= $this->Form->postLink(
+                __('Delete'),
+                ['action' => 'delete', $<%= $singularVar %>-><%= $primaryKey[0] %>],
+                ['confirm' => __('Are you sure you want to delete # {0}?', $<%= $singularVar %>-><%= $primaryKey[0] %>)]
+            )
+        ?></li>
+<% endif; %>
+        <li><?= $this->Html->link(__('List <%= $pluralHumanName %>'), ['action' => 'index']) ?></li>
+<%
+        $done = [];
+        foreach ($associations as $type => $data) {
+            foreach ($data as $alias => $details) {
+                if ($details['controller'] !== $this->name && !in_array($details['controller'], $done)) {
+%>
+        <li><?= $this->Html->link(__('List <%= $this->_pluralHumanName($alias) %>'), ['controller' => '<%= $details['controller'] %>', 'action' => 'index']) ?></li>
+        <li><?= $this->Html->link(__('New <%= $this->_singularHumanName($alias) %>'), ['controller' => '<%= $details['controller'] %>', 'action' => 'add']) ?></li>
+<%
+                    $done[] = $details['controller'];
+                }
+            }
+        }
+%>
+    </ul>
+</nav>
+<div class="<%= $pluralVar %> form large-9 medium-8 columns content">
     <?= $this->Form->create($<%= $singularVar %>) ?>
-   <div class="row">
-    
-    <div class="col-md-12">
-      <div class="nav-tabs-custom">
-        
-        <div class="tab-content">
-          <div class="active tab-pane" id="details">
-             <div class="form-horizontal">
+    <fieldset>
+        <legend><?= __('<%= Inflector::humanize($action) %> <%= $singularHumanName %>') ?></legend>
         <?php
 <%
         foreach ($fields as $field) {
@@ -72,107 +67,38 @@ $this->Form->templates($myTemplates);
                 $fieldData = $schema->column($field);
                 if (!empty($fieldData['null'])) {
 %>
-            echo $this->Form->input('<%= $field %>', ['options' => $<%= $keyFields[$field] %>, 'empty' => true,'class'=>'select2']);
+            echo $this->Form->input('<%= $field %>', ['options' => $<%= $keyFields[$field] %>, 'empty' => true]);
 <%
                 } else {
 %>
-            echo $this->Form->input('<%= $field %>', ['options' => $<%= $keyFields[$field] %>,'class'=>'select2']);
+            echo $this->Form->input('<%= $field %>', ['options' => $<%= $keyFields[$field] %>]);
 <%
                 }
                 continue;
             }
             if (!in_array($field, ['created', 'modified', 'updated'])) {
                 $fieldData = $schema->column($field);
-                if (in_array($fieldData['type'], ['date', 'datetime']) && (!empty($fieldData['null']))) {
+                if (in_array($fieldData['type'], ['date', 'datetime', 'time']) && (!empty($fieldData['null']))) {
 %>
-                   echo $this->Form->input('<%= $field %>', ['empty' => true,'type'=>'text', 'class'=>'datemask']);
-                   
+            echo $this->Form->input('<%= $field %>', ['empty' => true]);
 <%
-                } elseif(in_array($fieldData['type'], [ 'time']) && (!empty($fieldData['null'])))  {
-                	
+                } else {
 %>
-                    echo $this->Form->input('<%= $field %>',['empty' => true,'type'=>'text', 'class'=>'timepicker']);
-					
+            echo $this->Form->input('<%= $field %>');
 <%
-                }else{
-%>                	
-                  echo $this->Form->input('<%= $field %>');
-
-                    
-<%
-					
                 }
             }
         }
         if (!empty($associations['BelongsToMany'])) {
             foreach ($associations['BelongsToMany'] as $assocName => $assocData) {
 %>
-            echo $this->Form->input('<%= $assocData['property'] %>._ids', ['options' => $<%= $assocData['variable'] %>,'class'=>'select2']]);
+            echo $this->Form->input('<%= $assocData['property'] %>._ids', ['options' => $<%= $assocData['variable'] %>]);
 <%
             }
         }
 %>
-	
         ?>
-    </div>
- 
-          </div>
-          <!-- /.tab-pane -->
-          
-          
-        </div>
-        <!-- /.tab-content -->
-      </div>
-      <!-- /.nav-tabs-custom -->
-    </div>
-    <!-- /.col -->
-  </div>
-  <!-- /.row -->
-  <div class="row">
-   <div class="form-group">
-                <div class="col-sm-offset-6 col-sm-10">
-                  <button type="submit" class="btn-success">Save</button>
-                </div>
-   </div>
-   </div>
-   <!-- /.row -->
- <?= $this->Form->end() ?>
-</section>
-<!-- /.content -->
-<?php
-$this->Html->css([
-    'AdminLTE./plugins/daterangepicker/daterangepicker-bs3',
-    'AdminLTE./plugins/iCheck/all',
-    'AdminLTE./plugins/colorpicker/bootstrap-colorpicker.min',
-    'AdminLTE./plugins/timepicker/bootstrap-timepicker.min',
-    'AdminLTE./plugins/select2/select2.min',
-  ],
-  ['block' => 'css']);
-
-$this->Html->script([
-  'AdminLTE./plugins/select2/select2.full.min',
-  'AdminLTE./plugins/input-mask/jquery.inputmask',
-  'AdminLTE./plugins/input-mask/jquery.inputmask.date.extensions',
-  'AdminLTE./plugins/input-mask/jquery.inputmask.extensions',
-  '/js/moment.min.js',
-  'AdminLTE./plugins/daterangepicker/daterangepicker',
-  'AdminLTE./plugins/colorpicker/bootstrap-colorpicker.min',
-  'AdminLTE./plugins/timepicker/bootstrap-timepicker.min',
-  'AdminLTE./plugins/iCheck/icheck.min',
-],
-['block' => 'script']);
-?>
-<?php $this->start('scriptBotton'); ?>
-<script>
-  $(function () {
-    //Initialize Select2 Elements
-   $(".select2").select2({ width: '100%' });
-   $(".datemask").inputmask("yyyy/mm/dd", {"placeholder": "yyyy/mm/dd"});
-    $(".timepicker").timepicker({
-      showInputs: false
-    });
-
-  });
-</script>
-<?php $this->end(); ?>
-       
+    </fieldset>
+    <?= $this->Form->button(__('Submit')) ?>
+    <?= $this->Form->end() ?>
+</div>
