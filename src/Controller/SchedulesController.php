@@ -339,7 +339,7 @@ class SchedulesController extends AppController
 	    	 $schedule = $this->Schedules->get($id, ['contain' => ['Locations'] ]);
 			 
 			  
-			  $locations = $this->Schedules->Locations->find('All')->where("schedule_id=".$id)->where("customer_id=".$this->loggedinuser['customer_id']);
+			  $locations = $this->Schedules->Locationsschedules->find('All')->where("schedule_id=".$id)->where("customer_id=".$this->loggedinuser['customer_id'])->toArray();
        
 			  $this->set( 'locations',$locations );
               $this->set('_serialize', ['locations']);
