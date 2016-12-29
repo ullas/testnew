@@ -338,10 +338,31 @@ class SchedulesController extends AppController
 	    {
 	    	 $schedule = $this->Schedules->get($id, ['contain' => ['Locations'] ]);
 			 
+			 $locations = $this->Schedules->Locationsschedules->find()->select(['id','orderid','sat','sdt','Locations.name'])->where("schedule_id=".$id)
+			  					->leftJoin('Locations', 'Locations.id = Locationsschedules.location_id')->andWhere("locationsschedules.customer_id=".$this->loggedinuser['customer_id'])->toArray();
+								
+			 
+			  isset($locations[0])?$timetable=$locations[0] : $timetable=$this->Schedules->Locationsschedules->newEntity();
+			  if ($this->request->is(['patch', 'post', 'put'])) {
+            	$timetable = $this->Schedules->Locationsschedules->patchEntity($timetable, $this->request->data);
+				$timetable['customer_id']=$this->loggedinuser['customer_id'];
+            	if ($this->Schedules->Locationsschedules->save($timetable)) {
+                	$this->Flash->success(__('The timetable has been saved.'));
+
+                	return $this->redirect(['action' => 'index']);
+            	} else {
+                	$this->Flash->error(__('The timetable could not be saved. Please, try again.'));
+            	}
+        	  }
 			  
-			  $locations = $this->Schedules->Locationsschedules->find('All')->where("schedule_id=".$id)->where("customer_id=".$this->loggedinuser['customer_id'])->toArray();
+			  
        
-			  $this->set( 'locations',$locations );
+	   		  $times = array('00:00'=>'00:00','00:30'=>'00:30','01:00'=>'01:00');
+			  $days = array('1'=>'1','2'=>'2','3'=>'3');
+	   
+	   
+			  $this->set(compact('times', 'locations','days'));
+			  // $this->set( 'locations',$locations );
               $this->set('_serialize', ['locations']);
 			
 	    }
