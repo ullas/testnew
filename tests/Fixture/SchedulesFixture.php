@@ -47,13 +47,13 @@ class SchedulesFixture extends TestFixture
     public $records = [
         [
             'id' => 1,
-            'validfrom' => '2016-09-03',
-            'validtill' => '2016-09-03',
+            'validfrom' => '2016-12-23',
+            'validtill' => '2016-12-23',
             'startloc_id' => 1,
             'endloc_id' => 1,
             'route_id' => 1,
-            'start_time' => '11:28:49',
-            'end_time' => '11:28:49',
+            'start_time' => '07:14:28',
+            'end_time' => '07:14:28',
             'customer_id' => 1,
             'timepolicy_id' => 1,
             'default_driver_id' => 1,

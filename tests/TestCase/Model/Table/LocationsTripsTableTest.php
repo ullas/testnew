@@ -1,20 +1,20 @@
 <?php
 namespace App\Test\TestCase\Model\Table;
 
-use App\Model\Table\SchedulesTable;
+use App\Model\Table\LocationsTripsTable;
 use Cake\ORM\TableRegistry;
 use Cake\TestSuite\TestCase;
 
 /**
- * App\Model\Table\SchedulesTable Test Case
+ * App\Model\Table\LocationsTripsTable Test Case
  */
-class SchedulesTableTest extends TestCase
+class LocationsTripsTableTest extends TestCase
 {
 
     /**
      * Test subject     *
-     * @var \App\Model\Table\SchedulesTable     */
-    public $Schedules;
+     * @var \App\Model\Table\LocationsTripsTable     */
+    public $LocationsTrips;
 
     /**
      * Fixtures
@@ -22,9 +22,8 @@ class SchedulesTableTest extends TestCase
      * @var array
      */
     public $fixtures = [
-        'app.schedules',
-        'app.startlocs',
-        'app.users',
+        'app.locations_trips',
+        'app.trips',
         'app.customers',
         'app.customertypes',
         'app.addresses',
@@ -82,19 +81,42 @@ class SchedulesTableTest extends TestCase
         'app.templatetypes',
         'app.jobs',
         'app.timepolicies',
-        'app.trips',
-        'app.routes',
-        'app.startpoints',
-        'app.subscriptions',
-        'app.locations',
-        'app.notifications',
-        'app.endpoints',
-        'app.tripstatuses',
-        'app.vehiclecategories',
-        'app.triptypes',
-        'app.assets',
+        'app.schedules',
+        'app.startlocs',
+        'app.users',
         'app.fences',
         'app.zonetypes',
+        'app.locations',
+        'app.subscriptions',
+        'app.notifications',
+        'app.routes',
+        'app.endlocs',
+        'app.default_drivers',
+        'app.vehicles_drivers',
+        'app.contractors',
+        'app.shifts',
+        'app.rfids',
+        'app.passengers',
+        'app.drivergroups',
+        'app.defaultdrivers',
+        'app.drivers_drivergroups',
+        'app.languages',
+        'app.drivers_languages',
+        'app.default_vehs',
+        'app.transporters',
+        'app.activedrivers',
+        'app.inspections',
+        'app.inspectionforms',
+        'app.inspectionstatuses',
+        'app.vehicleengines',
+        'app.vehiclefluids',
+        'app.vehiclepermits',
+        'app.vehiclespecifications',
+        'app.vehiclewheelstyres',
+        'app.locations_schedules',
+        'app.passengergroups',
+        'app.passengergroups_passengers',
+        'app.assets',
         'app.people',
         'app.trackingobjects_groups',
         'app.workordertypes',
@@ -106,35 +128,14 @@ class SchedulesTableTest extends TestCase
         'app.partcategories',
         'app.measurementunits',
         'app.manufacturers',
-        'app.transporters',
-        'app.activedrivers',
-        'app.vehicles_drivers',
-        'app.contractors',
-        'app.shifts',
-        'app.rfids',
-        'app.passengers',
-        'app.drivergroups',
-        'app.defaultdrivers',
-        'app.drivers_drivergroups',
-        'app.languages',
-        'app.drivers_languages',
-        'app.inspections',
-        'app.inspectionforms',
-        'app.inspectionstatuses',
-        'app.vehicleengines',
-        'app.vehiclefluids',
-        'app.vehiclepermits',
-        'app.vehiclespecifications',
-        'app.vehiclewheelstyres',
-        'app.passengergroups',
-        'app.passengergroups_passengers',
         'app.renewalreminders',
         'app.renewalstypes',
+        'app.vehiclecategories',
         'app.worklorderlineitems',
-        'app.endlocs',
-        'app.default_drivers',
-        'app.default_vehs',
-        'app.locations_schedules'
+        'app.startpoints',
+        'app.endpoints',
+        'app.tripstatuses',
+        'app.triptypes'
     ];
 
     /**
@@ -145,7 +146,7 @@ class SchedulesTableTest extends TestCase
     public function setUp()
     {
         parent::setUp();
-        $config = TableRegistry::exists('Schedules') ? [] : ['className' => 'App\Model\Table\SchedulesTable'];        $this->Schedules = TableRegistry::get('Schedules', $config);    }
+        $config = TableRegistry::exists('LocationsTrips') ? [] : ['className' => 'App\Model\Table\LocationsTripsTable'];        $this->LocationsTrips = TableRegistry::get('LocationsTrips', $config);    }
 
     /**
      * tearDown method
@@ -154,7 +155,7 @@ class SchedulesTableTest extends TestCase
      */
     public function tearDown()
     {
-        unset($this->Schedules);
+        unset($this->LocationsTrips);
 
         parent::tearDown();
     }

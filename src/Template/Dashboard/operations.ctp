@@ -18,7 +18,7 @@
           <!-- small box -->
           <div class="small-box bg-aqua">
             <div class="inner">
-              <h3>150</h3>
+              <h3><?php echo $overspeedalertcount?></h3>
 
               <p>Over Speed</p>
             </div>
@@ -33,7 +33,7 @@
           <!-- small box -->
           <div class="small-box bg-green">
             <div class="inner">
-              <h3>53<sup style="font-size: 20px">%</sup></h3>
+              <h3><?php echo round($percentagerunning)?><sup style="font-size: 20px">%</sup></h3>
 
               <p>Running</p>
             </div>
@@ -48,7 +48,7 @@
           <!-- small box -->
           <div class="small-box bg-yellow">
             <div class="inner">
-              <h3>44</h3>
+              <h3><?php echo $runningdriverscount?></h3>
 
               <p>Drivers Reported</p>
             </div>
@@ -63,7 +63,7 @@
           <!-- small box -->
           <div class="small-box bg-red">
             <div class="inner">
-              <h3>65</h3>
+              <h3><?php echo $comfailurecount?></h3>
 
               <p>Communication Failure</p>
             </div>
@@ -105,6 +105,14 @@
             <!-- /.box-header -->
             <div class="box-body">
               <ul class="todo-list">
+                <?php 
+                
+						   for ($x = 0; $x < count($alertscontent); $x++) 
+						   {
+						   	 	//adding 19800 seconds- 5:30 hrs to GMT
+							    $interval[$x] = (time() + 19800) -  strtotime($alertscontent[$x]['alert_dtime']);
+								// echo $interval[$x]."</br>";
+							?>
                 <li>
                   <!-- drag handle -->
                       <span class="handle">
@@ -114,16 +122,33 @@
                   <!-- checkbox -->
                   <input type="checkbox" value="" name="">
                   <!-- todo text -->
-                  <span class="text">Vehicle 354 Started</span>
+                  <span class="text"><?php echo $alertscontent[$x]['alert'] ?></span>
                   <!-- Emphasis label -->
-                  <small class="label label-danger"><i class="fa fa-clock-o"></i> 2 mins</small>
+                  <small class="label label-danger"><i class="fa fa-clock-o"></i>
+                  	<?php 
+                  	 if($interval[$x] > 3600 )
+                  	      {
+                  	      	 echo gmdate('H',  $interval[$x]); echo ' hrs: ' ; 
+							 echo gmdate('i',  $interval[$x])  ; echo ' mins ago';
+						  }else if($interval[$x] > 60 && $interval[$x] < 3600 ) 
+						  {
+						  	echo gmdate('i',  $interval[$x])  ; echo ' mins ago';
+						  }else {
+						  		 echo ' just now';
+						  }
+
+ 
+                  	?> 
+                 </small>
                   <!-- General tools such as edit or delete-->
                   <div class="tools">
                     <i class="fa fa-edit"></i>
                     <i class="fa fa-trash-o"></i>
                   </div>
                 </li>
-                <li>
+                <?php } 
+							?>
+                <!-- <li>
                       <span class="handle">
                         <i class="fa fa-ellipsis-v"></i>
                         <i class="fa fa-ellipsis-v"></i>
@@ -187,7 +212,7 @@
                     <i class="fa fa-edit"></i>
                     <i class="fa fa-trash-o"></i>
                   </div>
-                </li>
+                </li> -->
               </ul>
             </div>
             <!-- /.box-body -->
@@ -234,13 +259,13 @@
                 </div>
                 <!-- ./col -->
                 <div class="col-xs-3 text-center">
-                  <input type="text" class="knob" data-readonly="true" value="30" data-width="60" data-height="60" data-fgColor="#39CCCC">
+                  <input type="text" class="knob" data-readonly="true" value="<?php echo $completedjobcount?>" data-width="60" data-height="60" data-fgColor="#39CCCC">
 
                   <div class="knob-label">Completed</div>
                 </div>
                 <!-- ./col -->
                  <div class="col-xs-3 text-center">
-                  <input type="text" class="knob" data-readonly="true" value="30" data-width="60" data-height="60" data-fgColor="#39CCCC">
+                  <input type="text" class="knob" data-readonly="true" value="<?php echo $notstartedjobcount?>" data-width="60" data-height="60" data-fgColor="#39CCCC">
 
                   <div class="knob-label">Not Started</div>
                 </div>
@@ -264,7 +289,7 @@
             <div class="box-header">
               <i class="fa fa-th"></i>
 
-              <h3 class="box-title">Work Oders</h3>
+              <h3 class="box-title">Work Orders</h3>
 
               <div class="box-tools pull-right">
                 <button type="button" class="btn bg-blue btn-sm" data-widget="collapse"><i class="fa fa-minus"></i>
@@ -278,27 +303,27 @@
             <div class="box-footer no-border">
               <div class="row">
                 <div class="col-xs-3 text-center" style="border-right: 1px solid #f4f4f4">
-                  <input type="text" class="knob" data-readonly="true" value="20" data-width="60" data-height="60" data-fgColor="#39CCCC">
+                  <input type="text" class="knob" data-readonly="true" value="<?php echo $openworkordercount?>" data-width="60" data-height="60" data-fgColor="#39CCCC">
 
                   <div class="knob-label">Open</div>
                 </div>
                 <!-- ./col -->
                 <div class="col-xs-3 text-center" style="border-right: 1px solid #f4f4f4">
-                  <input type="text" class="knob" data-readonly="true" value="50" data-width="60" data-height="60" data-fgColor="#39CCCC">
+                  <input type="text" class="knob" data-readonly="true" value="<?php echo $overdueworkordercount?>" data-width="60" data-height="60" data-fgColor="#39CCCC">
 
-                  <div class="knob-label">Pending</div>
+                  <div class="knob-label">Overdue</div>
                 </div>
                 <!-- ./col -->
                 <div class="col-xs-3 text-center">
-                  <input type="text" class="knob" data-readonly="true" value="30" data-width="60" data-height="60" data-fgColor="#39CCCC">
+                  <input type="text" class="knob" data-readonly="true" value="<?php echo $deferredworkordercount?>" data-width="60" data-height="60" data-fgColor="#39CCCC">
 
-                  <div class="knob-label">On Hold</div>
+                  <div class="knob-label">Deffered</div>
                 </div>
                 <!-- ./col -->
                  <div class="col-xs-3 text-center">
-                  <input type="text" class="knob" data-readonly="true" value="30" data-width="60" data-height="60" data-fgColor="#39CCCC">
+                  <input type="text" class="knob" data-readonly="true" value="<?php echo $closedworkordercount?>" data-width="60" data-height="60" data-fgColor="#39CCCC">
 
-                  <div class="knob-label">Not Started</div>
+                  <div class="knob-label">Closed</div>
                 </div>
                 <!-- ./col -->
               </div>
@@ -314,44 +339,7 @@
         <!-- right col -->
       </div>
       <!-- /.row (main row) -->
-      <div class="row">
-        <!-- Left col -->
-        <section class="col-lg-12 ">
-           <div class="box box-solid bg-green-gradient">
-            <div class="box-header">
-              <i class="fa fa-calendar"></i>
-
-              <h3 class="box-title">Expenses</h3>
-              <!-- tools box -->
-              <div class="pull-right box-tools">
-                <!-- button with a dropdown -->
-                <div class="btn-group">
-                  <button type="button" class="btn btn-success btn-sm dropdown-toggle" data-toggle="dropdown">
-                    <i class="fa fa-bars"></i></button>
-                  <ul class="dropdown-menu pull-right" role="menu">
-                    <li><a href="#">Add new event</a></li>
-                    <li><a href="#">Clear events</a></li>
-                    <li class="divider"></li>
-                    <li><a href="#">View calendar</a></li>
-                  </ul>
-                </div>
-                <button type="button" class="btn btn-success btn-sm" data-widget="collapse"><i class="fa fa-minus"></i>
-                </button>
-                <button type="button" class="btn btn-success btn-sm" data-widget="remove"><i class="fa fa-times"></i>
-                </button>
-              </div>
-              <!-- /. tools -->
-            </div>
-            <!-- /.box-header -->
-            <div class="box-body no-padding">
-              <!--The calendar -->
-              <div id="calendar" style="width: 100% min-height:100px">Hello</div>
-            </div>
-            <!-- /.box-body -->
-       
-        	
-        </section>
-      </div>
+     
       <div class="row">
         <!-- Left col -->
         <section class="col-lg-12 ">
@@ -390,64 +378,32 @@
             <!-- /.box-body -->
             <div class="box-footer text-black">
               <div class="row">
+              	<?php 
+                
+						   for ($x = 0; $x < count($results); $x++) 
+						   {
+						   	 	
+								 
+							?>
+              	
                 <div class="col-sm-4">
                   <!-- Progress bars -->
                   <div class="clearfix">
-                    <span class="pull-left">Task #1</span>
-                    <small class="pull-right">90%</small>
+                    <span class="pull-left"><?php echo $results[$x]['name']?></span>
+                    <small class="pull-right"><?php echo $results[$x]['percent']?>%</small>
                   </div>
                   <div class="progress xs">
-                    <div class="progress-bar progress-bar-green" style="width: 90%;"></div>
+                    <div class="progress-bar progress-bar-green" style="width: <?php echo $results[$x]['percent']?>%;"></div>
                   </div>
-
-                  <div class="clearfix">
-                    <span class="pull-left">Task #2</span>
-                    <small class="pull-right">70%</small>
-                  </div>
-                  <div class="progress xs">
-                    <div class="progress-bar progress-bar-green" style="width: 70%;"></div>
-                  </div>
-                </div>
-                <!-- /.col -->
-                <div class="col-sm-4">
-                  <div class="clearfix">
-                    <span class="pull-left">Task #3</span>
-                    <small class="pull-right">60%</small>
-                  </div>
-                  <div class="progress xs">
-                    <div class="progress-bar progress-bar-green" style="width: 60%;"></div>
-                  </div>
-
-                  <div class="clearfix">
-                    <span class="pull-left">Task #4</span>
-                    <small class="pull-right">40%</small>
-                  </div>
-                  <div class="progress xs">
-                    <div class="progress-bar progress-bar-green" style="width: 40%;"></div>
-                  </div>
-                </div>
-                <!-- /.col -->
-                <div class="col-sm-4">
-                  <div class="clearfix">
-                    <span class="pull-left">Task #3</span>
-                    <small class="pull-right">60%</small>
-                  </div>
-                  <div class="progress xs">
-                    <div class="progress-bar progress-bar-green" style="width: 60%;"></div>
-                  </div>
-
-                  <div class="clearfix">
-                    <span class="pull-left">Task #4</span>
-                    <small class="pull-right">40%</small>
-                  </div>
-                  <div class="progress xs">
-                    <div class="progress-bar progress-bar-green" style="width: 40%;"></div>
-                  </div>
-                </div>
-                <!-- /.col -->
-              </div>
+                  
+				<!-- /.col -->
+               </div>
+               
+               <?php } 
+							?>
               <!-- /.row -->
             </div>
+            
           </div>
           <!-- /.box -->
         	

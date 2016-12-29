@@ -16,6 +16,9 @@ use Cake\Validation\Validator;
  * @property \Cake\ORM\Association\BelongsTo $Timepolicies
  * @property \Cake\ORM\Association\BelongsTo $DefaultDrivers
  * @property \Cake\ORM\Association\BelongsTo $DefaultVehs
+ * @property \Cake\ORM\Association\HasMany $Subscriptions
+ * @property \Cake\ORM\Association\HasMany $Trips
+ * @property \Cake\ORM\Association\BelongsToMany $Locations
  *
  * @method \App\Model\Entity\Schedule get($primaryKey, $options = [])
  * @method \App\Model\Entity\Schedule newEntity($data = null, array $options = [])
@@ -24,8 +27,7 @@ use Cake\Validation\Validator;
  * @method \App\Model\Entity\Schedule patchEntity(\Cake\Datasource\EntityInterface $entity, array $data, array $options = [])
  * @method \App\Model\Entity\Schedule[] patchEntities($entities, array $data, array $options = [])
  * @method \App\Model\Entity\Schedule findOrCreate($search, callable $callback = null)
- */
-class SchedulesTable extends Table
+ */class SchedulesTable extends Table
 {
 
     /**
@@ -56,10 +58,6 @@ class SchedulesTable extends Table
         $this->belongsTo('Customers', [
             'foreignKey' => 'customer_id'
         ]);
-		$this->belongsTo('Passengergroups', [
-            'foreignKey' => 'default_paxgrpid'
-        ]);
-		
         $this->belongsTo('Timepolicies', [
             'foreignKey' => 'timepolicy_id'
         ]);
@@ -71,7 +69,25 @@ class SchedulesTable extends Table
             'className' =>'Vehicles',
             'foreignKey' => 'default_veh_id'
         ]);
-		
+        $this->hasMany('Subscriptions', [
+            'foreignKey' => 'schedule_id'
+        ]);
+        $this->hasMany('Trips', [
+            'foreignKey' => 'schedule_id'
+        ]);
+		$this->belongsToMany('Locations', [
+            'foreignKey' => 'schedule_id',
+            'targetForeignKey' => 'location_id',
+            'joinTable' => 'locations_schedules'
+        ]);
+		$this->belongsToMany('Drivers', [
+            'foreignKey' => 'schedule_id',
+            'targetForeignKey' => 'driver_id',
+            'joinTable' => 'drivers'
+        ]);
+		$this->belongsTo('Passengergroups', [
+            'foreignKey' => 'default_paxgrpid'
+        ]);
     }
 
     /**
@@ -84,38 +100,22 @@ class SchedulesTable extends Table
     {
         $validator
             ->allowEmpty('id', 'create');
-
         $validator
-            ->date('validfrom')
-            ->allowEmpty('validfrom');
-
+            ->date('validfrom')            ->allowEmpty('validfrom');
         $validator
-            ->date('validtill')
-            ->allowEmpty('validtill');
-
+            ->date('validtill')            ->allowEmpty('validtill');
         $validator
-            ->time('start_time')
-            ->allowEmpty('start_time');
-
+            ->time('start_time')            ->allowEmpty('start_time');
         $validator
-            ->time('end_time')
-            ->allowEmpty('end_time');
-
+            ->time('end_time')            ->allowEmpty('end_time');
         $validator
             ->allowEmpty('name');
-
         $validator
-            ->integer('nodays')
-            ->allowEmpty('nodays');
-
+            ->integer('nodays')            ->allowEmpty('nodays');
         $validator
-            ->integer('brktime_bfr_nxt_trip')
-            ->allowEmpty('brktime_bfr_nxt_trip');
-
+            ->integer('brktime_bfr_nxt_trip')            ->allowEmpty('brktime_bfr_nxt_trip');
         $validator
-            ->integer('default_paxgrpid')
-            ->allowEmpty('default_paxgrpid');
-
+            ->integer('default_paxgrpid')            ->allowEmpty('default_paxgrpid');
         return $validator;
     }
 

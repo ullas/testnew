@@ -1,20 +1,20 @@
 <?php
 namespace App\Test\TestCase\Model\Table;
 
-use App\Model\Table\SchedulesTable;
+use App\Model\Table\LocationsSchedulesTable;
 use Cake\ORM\TableRegistry;
 use Cake\TestSuite\TestCase;
 
 /**
- * App\Model\Table\SchedulesTable Test Case
+ * App\Model\Table\LocationsSchedulesTable Test Case
  */
-class SchedulesTableTest extends TestCase
+class LocationsSchedulesTableTest extends TestCase
 {
 
     /**
      * Test subject     *
-     * @var \App\Model\Table\SchedulesTable     */
-    public $Schedules;
+     * @var \App\Model\Table\LocationsSchedulesTable     */
+    public $LocationsSchedules;
 
     /**
      * Fixtures
@@ -22,6 +22,7 @@ class SchedulesTableTest extends TestCase
      * @var array
      */
     public $fixtures = [
+        'app.locations_schedules',
         'app.schedules',
         'app.startlocs',
         'app.users',
@@ -133,8 +134,7 @@ class SchedulesTableTest extends TestCase
         'app.worklorderlineitems',
         'app.endlocs',
         'app.default_drivers',
-        'app.default_vehs',
-        'app.locations_schedules'
+        'app.default_vehs'
     ];
 
     /**
@@ -145,7 +145,7 @@ class SchedulesTableTest extends TestCase
     public function setUp()
     {
         parent::setUp();
-        $config = TableRegistry::exists('Schedules') ? [] : ['className' => 'App\Model\Table\SchedulesTable'];        $this->Schedules = TableRegistry::get('Schedules', $config);    }
+        $config = TableRegistry::exists('LocationsSchedules') ? [] : ['className' => 'App\Model\Table\LocationsSchedulesTable'];        $this->LocationsSchedules = TableRegistry::get('LocationsSchedules', $config);    }
 
     /**
      * tearDown method
@@ -154,7 +154,7 @@ class SchedulesTableTest extends TestCase
      */
     public function tearDown()
     {
-        unset($this->Schedules);
+        unset($this->LocationsSchedules);
 
         parent::tearDown();
     }

@@ -5,7 +5,7 @@ use Cake\ORM\Query;
 use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
 use Cake\Validation\Validator;
-
+use Cake\Datasource\ConnectionManager;
 /**
  * Trips Model
  *
@@ -177,4 +177,13 @@ class TripsTable extends Table
 
         return $rules;
     }
+	
+	public function getActiveTrips($cid)
+	{
+		
+		$con = ConnectionManager::get('default');
+		$stmt = $con->execute("select trips.name,percent from (select trip_id, (sum(case completed when true then 1 when false then 0 end )*100/(count(*) + 2)) as percent from zorba.locations_trips where customer_id = $cid group by trip_id ) as p left join zorba.trips on trips.id= p.trip_id where tripstatus_id = 1");
+		$results = $stmt->fetchAll('assoc');
+		return $results;
+	}
 }

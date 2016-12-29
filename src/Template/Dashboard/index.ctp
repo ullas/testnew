@@ -164,7 +164,7 @@
           	
             <div class="col-sm-3 col-xs-6">
               <div class="description-block border-right">
-                <span class="description-percentage text-green"><i class="<?php echo $cls1 ?>"></i> <?php echo abs(round(($distancecount-$lastmonthdistancecount)/$lastmonthdistancecount *100))?>%</span>
+                <span class="<?php echo $colorclassdistance ?>"><i class="<?php echo $cls1 ?>"></i> <?php echo abs(round(($distancecount-$lastmonthdistancecount)/$lastmonthdistancecount *100))?>%</span>
                 <h5 class="description-header"><?php echo $distancecount?>(KM)</h5>
                 <span class="description-text">TOTAL DISTANCE</span>
               </div>
@@ -173,7 +173,7 @@
             <!-- /.col -->
             <div class="col-sm-3 col-xs-6">
               <div class="description-block border-right">
-                <span class="description-percentage text-yellow"><i class="<?php echo $cls2 ?>"></i> <?php echo abs(round(($fuelsum-$lastmonthfuelsum)/$lastmonthfuelsum*100))?>%</span>
+                <span class="<?php echo $colorclassfuel ?>"><i class="<?php echo $cls2 ?>"></i> <?php echo abs(round(($fuelsum-$lastmonthfuelsum)/$lastmonthfuelsum*100))?>%</span>
                 <h5 class="description-header"><?php echo $fuelsum?>(Lt)</h5>
                 <span class="description-text">FUEL USAGE</span>
               </div>
@@ -182,7 +182,7 @@
             <!-- /.col -->
             <div class="col-sm-3 col-xs-6">
               <div class="description-block border-right">
-                <span class="description-percentage text-green"><i class="<?php echo $cls3 ?>"></i> <?php echo abs(round(($nonprodhrssum-$lastmonthnonprodhrssum) / $lastmonthnonprodhrssum*100))?>%</span>
+                <span class="<?php echo $colorclassnonprodhrs ?>"><i class="<?php echo $cls3 ?>"></i> <?php echo abs(round(($nonprodhrssum-$lastmonthnonprodhrssum) / $lastmonthnonprodhrssum*100))?>%</span>
                 <h5 class="description-header"><?php echo round($nonprodhrssum)?>(Hrs)</h5>
                 <span class="description-text">Non productive Hours</span>
               </div>
@@ -192,7 +192,7 @@
           
             <div class="col-sm-3 col-xs-6">
               <div class="description-block">
-                <span class="description-percentage text-red"><i class="<?php echo $cls4 ?>"></i> <?php echo abs(round(($runtimesum-$lastmonthruntimesum) / $lastmonthruntimesum*100))?>%</span>
+                <span class="<?php echo $colorclassruntime ?>"><i class="<?php echo $cls4 ?>"></i> <?php echo abs(round(($runtimesum-$lastmonthruntimesum) / $lastmonthruntimesum*100))?>%</span>
                 <h5 class="description-header"><?php echo round($runtimesum)?>(Hrs)</h5>
                 <span class="description-text">TOTAL RUNTIME</span>
               </div>
@@ -320,7 +320,7 @@
           <span class="info-box-number"><?php echo $totalremindercount ?></span>
 
           <div class="progress">
-            <div class="progress-bar" style="width: 70%"></div>
+            <div class="progress-bar" style="width: <?php echo $widthreminder?>%"></div>
           </div>
               <span class="progress-description">
                  <?php echo $remindercount ?> Completed Today
@@ -337,7 +337,7 @@
           <span class="info-box-number"><?php echo $totalpendingmaintenancecount ?> </span>
 
           <div class="progress">
-            <div class="progress-bar" style="width: 40%"></div>
+            <div class="progress-bar" style="width: <?php echo $widthpendingmaintenance ?>%"></div>
           </div>
               <span class="progress-description">
                 <?php echo $pendingmaintenancecount ?>  Completed Today
@@ -377,6 +377,7 @@ $this->Html->script([
 ], 
 ['block' => 'script']); 
 ?>
+
 
 <?php $this->start('scriptBotton'); ?>
     <script type="text/javascript">
