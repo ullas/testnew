@@ -130,10 +130,7 @@ class ControllerTask extends BakeTask
         $singularName = $this->_singularName($currentModelName);
         $singularHumanName = $this->_singularHumanName($controllerName);
         $pluralHumanName = $this->_variableName($controllerName);
-		
-		
-		$modelConfigs = TableRegistry::get("CreateConfigs");
-		
+
         $data = compact(
             'actions',
             'admin',
@@ -147,9 +144,7 @@ class ControllerTask extends BakeTask
             'pluralName',
             'prefix',
             'singularHumanName',
-            'singularName',
-            'modelConfigs'
-            
+            'singularName'
         );
         $data['name'] = $controllerName;
 
@@ -218,7 +213,7 @@ class ControllerTask extends BakeTask
      */
     public function getComponents()
     {
-        $components = ['Datatable'];
+        $components = [];
         if (!empty($this->params['components'])) {
             $components = explode(',', $this->params['components']);
             $components = array_values(array_filter(array_map('trim', $components)));

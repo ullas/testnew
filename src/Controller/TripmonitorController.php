@@ -3,6 +3,7 @@ namespace App\Controller;
 
 use App\Controller\AppController;
 use Cake\Event\Event;
+use Cake\ORM\TableRegistry;
 /**
  * Users Controller
  *
@@ -20,8 +21,13 @@ class TripmonitorController extends AppController
      */
     public function index()
     {
-        
-		
+        $this->loadModel('Trips');
+		$trips = $this->Trips->getTripmondata( $this->loggedinuser['id']);
+		//$this->log($trips );
+		 $this->set('trips',$trips);
+		// $this->set('lastid',-1);
+			
+         $this->set('_serialize', ['trips']);
     }
 	
 	 public function operations()

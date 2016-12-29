@@ -25,7 +25,6 @@ $compact = ["'" . $singularName . "'"];
         $<%= $singularName %> = $this-><%= $currentModelName %>->newEntity();
         if ($this->request->is('post')) {
             $<%= $singularName %> = $this-><%= $currentModelName %>->patchEntity($<%= $singularName %>, $this->request->data);
-            $<%= $singularName %>['customer_id']=$this->currentuser['customer_id'];
             if ($this-><%= $currentModelName; %>->save($<%= $singularName %>)) {
                 $this->Flash->success(__('The <%= strtolower($singularHumanName) %> has been saved.'));
 
@@ -44,16 +43,7 @@ $compact = ["'" . $singularName . "'"];
             $otherName = $association->target()->alias();
             $otherPlural = $this->_variableName($otherName);
 %>
-        <% if($otherName!='Customers'): %>
-
-        $<%= $otherPlural %> = $this-><%= $currentModelName %>-><%= $otherName %>->find('list', ['limit' => 200])->where("customer_id=".$this->loggedinuser['customer_id'])->where("customer_id=0");
-        
-        <% else:   %>
-        
-          $<%= $otherPlural %> = $this-><%= $currentModelName %>-><%= $otherName %>->find('list', ['limit' => 200])->where("id=".$this->loggedinuser['customer_id']);
-      
-        
-        <% endif; %>
+        $<%= $otherPlural %> = $this-><%= $currentModelName %>-><%= $otherName %>->find('list', ['limit' => 200]);
 <%
             $compact[] = "'$otherPlural'";
         endforeach;

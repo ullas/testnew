@@ -31,6 +31,9 @@
             echo $this->Form->input('fueltype',['label'=>'Fuel Type','templateVars' => ['help' => 'Optional (e.g. Petrol)']]);
             echo $this->Form->input('vendor_id',['options' => $vendors, 'empty' => true,'templateVars' => ['help' => 'Select an existing vendor'],'class'=>'select2']);
             echo $this->Form->input('ref',['label'=> 'Reference','empty' => true,'type'=>'text','templateVars' => ['help' => 'Optional (e.g. Bill Number, Invoice Number etc.)']]);
+			echo $this->Form->input('quantity', ['type'=>'text','empty' => true,'templateVars' => ['icon' => '<div class="input-group-addon">' .$mptluservolumeunit.' </div>']]);
+			
+           
            // echo $this->Form->input('partialfill');
            // echo $this->Form->input('markaspersonal',['label'=>'Mark As Personal']);
         ?>

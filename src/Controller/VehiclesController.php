@@ -225,7 +225,7 @@ private function getDateRangeFilters($dates,$basic)  {
 		
         if ($this->request->is('post')) {
             $vehicle = $this->Vehicles->patchEntity($vehicle, $this->request->data,
-            ['associated' => ['Vehiclespecifications',
+            ['associated' => ['Drivers','Vehiclespecifications',
 		                       'Vehicleengines',
 			                   'Vehiclewheelstyres',
 			                   'Vehiclefluids',
@@ -270,7 +270,7 @@ private function getDateRangeFilters($dates,$basic)  {
         $driverdetectionmodes = $this->Vehicles->Driverdetectionmodes->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
         $purposes = $this->Vehicles->Purposes->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
         $transporters = $this->Vehicles->Transporters->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
-        $drivers = $this->Vehicles->Drivers->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
+        $drivers = $this->Vehicles->Drivers->find('list', ['limit' => 200]);
         $currencies = $this->Vehicles->Currencies->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
         $this->set(compact('vehicle', 'vehicletypes', 'vehiclestatuses', 'ownerships', 'symbols', 'stations', 'departments',  'purposes', 'transporters', 'drivers','driverdetectionmodes','currencies'));
         $this->set('_serialize', ['vehicle']);

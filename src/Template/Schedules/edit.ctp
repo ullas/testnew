@@ -24,23 +24,29 @@
         <div class="tab-content">
           <div class="active tab-pane" id="details">
              <div class="form-horizontal">
-        <?php
-                   	echo $this->Form->input('validfrom', ['empty' => true,'type'=>'text', 'class'=>'datemask']);
-                   	echo $this->Form->input('validtill', ['empty' => true,'type'=>'text', 'class'=>'datemask']);
+         <?php
+        echo $this->Form->input('validfrom', ['type'=>'text','empty' => true,'label'=>'Valid From','required' => 'required','class'=>'datemask','templateVars' => ['icon' => '<div class="input-group-addon"><i class="fa fa-calendar"></i></div>']]);
+          echo $this->Form->input('validtill', ['type'=>'text','empty' => true,'label'=>'Valid Till','required' => 'required','class'=>'datemask','templateVars' => ['icon' => '<div class="input-group-addon"><i class="fa fa-calendar"></i></div>']]);
+         
+                   //	echo $this->Form->input('validfrom', ['empty' => true,'type'=>'text', 'class'=>'datemask','required'=>'required']);
+                   	//echo $this->Form->input('validtill', ['empty' => true,'type'=>'text', 'class'=>'datemask','required'=>'required']);
                   	echo $this->Form->input('startloc_id');
 					echo $this->Form->input('endloc_id');
 					echo $this->Form->input('route_id', ['options' => $routes, 'empty' => true,'class'=>'select2']);
-					echo $this->Form->input('start_time',['empty' => true,'type'=>'text', 'class'=>'timepicker']);
-					echo $this->Form->input('end_time',['empty' => true,'type'=>'text', 'class'=>'timepicker']);
-					echo $this->Form->input('customer_id', ['options' => $customers, 'empty' => true,'class'=>'select2']);
+					echo $this->Form->input('start_time',['class' => 'timepicker','type' => 'text','templateVars' => ['opentag' => '<div class="bootstrap-timepicker">','closetag' => '</div>','icon' => '<div class="input-group-addon"><i class="fa fa-clock-o"></i></div>']]);
+            		echo $this->Form->input('end_time',['class' => 'timepicker','type' => 'text','templateVars' => ['opentag' => '<div class="bootstrap-timepicker">','closetag' => '</div>','icon' => '<div class="input-group-addon"><i class="fa fa-clock-o"></i></div>']]);
+           
+					//echo $this->Form->input('start_time',['empty' => true,'type'=>'text', 'class'=>'timepicker']);
+					//echo $this->Form->input('end_time',['empty' => true,'type'=>'text', 'class'=>'timepicker']);
 					echo $this->Form->input('timepolicy_id', ['options' => $timepolicies, 'empty' => true,'class'=>'select2']);
 					echo $this->Form->input('default_driver_id');
 					echo $this->Form->input('default_veh_id');
 					echo $this->Form->input('name');
 					echo $this->Form->input('nodays');
 					echo $this->Form->input('brktime_bfr_nxt_trip');
-					echo $this->Form->input('default_paxgrpid');
+					echo $this->Form->input('default_paxgrpid', ['label'=>'Passenger Group','options' => $passengergroups,'class'=>'select2']);
 					echo $this->Form->input('locations._ids', ['options' => $locations,'class'=>'select2']);
+					echo $this->Form->input('drivers._ids', ['options' => $drivers,'class'=>'select2']);
 		?>
     </div>
  
@@ -59,7 +65,7 @@
   <div class="row">
    <div class="form-group">
                 <div class="col-sm-offset-6 col-sm-10">
-                  <button type="submit" class="btn-success">Save</button>
+                  <button type="submit" class="btn btn-success">Save</button>
                 </div>
    </div>
    </div>
