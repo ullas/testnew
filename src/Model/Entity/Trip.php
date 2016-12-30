@@ -33,6 +33,9 @@ use Cake\ORM\Entity;
  * @property int $vehiclecategory_id
  * @property int $platform
  * @property int $triptype_id
+ * @property bool $softwaretriggered
+ * @property bool $hwtriggered
+ * @property int $completedstops
  *
  * @property \App\Model\Entity\Customer $customer
  * @property \App\Model\Entity\Vehicle $vehicle
@@ -41,9 +44,9 @@ use Cake\ORM\Entity;
  * @property \App\Model\Entity\Location $startpoint
  * @property \App\Model\Entity\Location $endpoint
  * @property \App\Model\Entity\Schedule $schedule
- * @property \App\Model\Entity\Passengergroup $passengergroup
  * @property \App\Model\Entity\Tripstatus $tripstatus
  * @property \App\Model\Entity\Vehiclecategory $vehiclecategory
+ * @property \App\Model\Entity\Triptype $triptype
  */
 class Trip extends Entity
 {

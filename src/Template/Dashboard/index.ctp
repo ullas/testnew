@@ -130,7 +130,8 @@
                 <span class="progress-number"><b><?php echo $harshbreakingalertcount ?></b>/<?php echo $totalharshbreakingalertcount ?></span>
 
                 <div class="progress sm">
-                  <div class="progress-bar progress-bar-red" style="width: <?php echo ($harshbreakingalertcount/$totalharshbreakingalertcount * 100);  ?>%"></div>
+                  <div class="progress-bar progress-bar-red" style="width: <?php
+                      echo ($harshbreakingalertcount/$totalharshbreakingalertcount * 100);  ?>%"></div>
                 </div>
               </div>
               <!-- /.progress-group -->

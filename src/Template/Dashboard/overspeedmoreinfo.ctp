@@ -1,9 +1,9 @@
 <?php echo $this->element('templateelement'); ?>
   <div >
     <div class="content">
-    	<?= $this->Form->create($locations,['id'=>'scheduleCheck']) ?>
+    	<!--<?= $this->Form->create($alert) ?>-->
       <div class="modal-header" style="padding-bottom:0">
-        <h3 class="modal-title" id="modalSettings">TimeTable</h3>
+        <h3 class="modal-title" id="modalSettings">Over Speed Alerts</h3>
       </div>
       <div class="modal-body" style="padding-bottom:0">
       	<div class="box box-primary">
@@ -22,28 +22,35 @@
 	            <table id="timetable" class="table table-hover  table-bordered ">
 	            	<thead>
 	            		<tr id="trheader">
-	            			<th>  </th>
+	            			
+	            			<th> Alert </th>
+	            			<th> Alert Time</th>
+	            			<th> Acknowledged</th>
 	            			<th> Location</th>
-	            			<th> Day</th>
+	            			<th> Velocity</th>
+	            			<!-- <th> Day</th>
 	            			<th> SAT</th>
 	            			<th> Day</th>
-	            			<th> ADT</th>
+	            			<th> ADT</th> -->
 	            		</tr>
 	            	</thead>
 	            	<tbody>
 	            		<?php
                 			// echo json_encode($locations);
-							//print_r($locations);
-	            			for ($i = 0; $i < count($locations); $i++) {
-	            				$p = $locations[$i]['id'];
-								
-								echo "<td> <input type = hidden name = oid.$i></td>";
-								//echo "<td>".$this->Form->input('oid'.$i)."</td>";
-								echo "<td>".$locations[$i]['Locations']['name']."</td>";
-								echo "<td>".$this->Form->input('dys'.$p, ['options' => $days,'class'=>'mptl-schitem1 select2','label'=>false])."</td>";
-								echo "<td>".$this->Form->input('sat'.$p, ['options' => $times,'class'=>'mptl-schitem2 select2','label'=>false])."</td>";
-								echo "<td>".$this->Form->input('dye'.$p, ['options' => $days,'class'=>'mptl-schitem3 select2','label'=>false])."</td>";
-								echo "<td>".$this->Form->input('sdt'.$p, ['options' => $times,'class'=>'mptl-schitem4 select2','label'=>false])."</td>";
+							
+	            			for ($i = 0; $i < count($alertscontent); $i++) {
+	            				echo "<tr id=".$alertscontent[$i]['id'].">";
+								echo "<td>".$alertscontent[$i]['alert']."</td>";
+								echo "<td>".$alertscontent[$i]['alert_dtime']."</td>";
+								echo "<td>".$alertscontent[$i]['ack']."</td>";
+								echo "<td>".$alertscontent[$i]['location']."</td>";
+								echo "<td>".$alertscontent[$i]['velocity']."</td>";
+								// echo "<td>".$alertscontent[$i]['Trackingobjects']['name']."</td>";
+							//	echo "<td>".$alertscontent[$i]['Locations']['name']."</td>";
+							//	echo "<td>".$this->Form->input('day_start', ['options' => $days,'class'=>'select2','label'=>false])."</td>";
+							//	echo "<td>".$this->Form->input('sat', ['options' => $times,'class'=>'select2','label'=>false])."</td>";
+							//	echo "<td>".$this->Form->input('day_end', ['options' => $days,'class'=>'select2','label'=>false])."</td>";
+							//	echo "<td>".$this->Form->input('sdt', ['options' => $times,'class'=>'select2','label'=>false])."</td>";
 								
 
 								echo "</tr>";
@@ -56,7 +63,7 @@
         </div>
       </div>
       <div class="modal-footer">
-      	<input type="submit" class="scheduleCheck" value="Save" class="mptl-settings-save btn btn-success"/>
+      	<!-- <input type="submit" class="scheduleCheck" value="Save" class="mptl-settings-save btn btn-success"/>-->
       	<!-- <button class="mptl-settings-save btn btn-success" onclick="validate()">Save Changes</button> -->
         <!-- <button type="button" class="mptl-settings-save btn btn-success">Save changes</button>
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button> -->
@@ -101,12 +108,12 @@ jQuery("#scheduleCheck").submit(function(){
 		
 		jQuery("#sat").each(
 	  function(){
-	  	//alert($(this).attr("id"));
+	  	alert($(this).attr("id"));
 		var lineErr2=0;
 		var p=jQuery(this).attr("id");
 		var id=p.substring(3);
 		var sat= jQuery(this).val();
-		var sdt= jQuery('.mptl-schitem4').val();
+		var sdt= jQuery("#sdt"+id).val();
 		var dys= jQuery("#dys"+id).val();
 		var dye= jQuery("#dye"+id).val();
 		var strTime= jQuery("#start_time").val();
