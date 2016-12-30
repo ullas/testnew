@@ -203,9 +203,16 @@ class SchedulesController extends AppController
         if ($this->request->is('post')) {
             $schedule = $this->Schedules->patchEntity($schedule, $this->request->data,['associated'=>['Drivers','Locations']]);
             $schedule['customer_id']=$this->loggedinuser['customer_id'];
-            if ($id = $this->Schedules->save($schedule)) {
+			
+			
+			
+			if ($id = $this->Schedules->save($schedule)) {
+            	$nodays = $schedule['nodays'];
+				
                 //$this->Flash->success(__('The schedule has been saved.'));
- 			return $this->redirect(['action' => 'timetable',$id->id ]);
+				return $this->redirect(['action' => 'timetable',$id->id ]);
+ 				//return $this->redirect(['action' => 'timetable/'.$nodays.'',$id->id ]);
+				//return $this->redirect(['action' => 'timetable',$id->id,$nodays ]);
             } else {
                 $this->Flash->error(__('The schedule could not be saved. Please, try again.'));
             }
@@ -333,27 +340,51 @@ class SchedulesController extends AppController
 
              return $this->redirect(['action' => 'index']);	
      }
-
+	
+	
 	public function timetable($id)
 	    {
 	    	 $schedule = $this->Schedules->get($id, ['contain' => ['Locations'] ]);
 			 
-			 $locations = $this->Schedules->Locationsschedules->find()->select(['id','orderid','sat','sdt','Locations.name'])->where("schedule_id=".$id)
-			  					->leftJoin('Locations', 'Locations.id = Locationsschedules.location_id')->andWhere("locationsschedules.customer_id=".$this->loggedinuser['customer_id'])->toArray();
-								
+			  $locations = $this->Schedules->Locationsschedules->find()->select(['id','orderid','sat','sdt','Locations.name'])->where("schedule_id=".$id)
+			  					 ->leftJoin('Locations', 'Locations.id = Locationsschedules.location_id')->toArray();
+ 				
+				$param = $this->request->data;
+				echo $id;
+				foreach($param as $key=>$value)
+				{
+					if(strlen($key) > 3 && substr($key,0,3) == 'sat')
+					{
+							$token = substr($key,3);
+							$value1 = $param['sat'.$token];
+							$value2 = $param['sdt'.$token];
+							$value3 = $param['dys'.$token];
+							$value4 = $param['dye'.$token];
+							//$value5 = $param['oid'.$token];
+							$timetable=$this->Schedules->Locationsschedules->get($token);
+							$timetable['day_start'] = $value3;
+							$timetable['day_end'] = $value4;
+							$timetable['sat'] = $value1;
+							$timetable['sdt'] = $value2;
+							$timetable['customer_id'] = $this->loggedinuser['customer_id'];
+							
+							$this->Schedules->Locationsschedules->save($timetable);
+					}
+					
+				}				
 			 
-			  isset($locations[0])?$timetable=$locations[0] : $timetable=$this->Schedules->Locationsschedules->newEntity();
-			  if ($this->request->is(['patch', 'post', 'put'])) {
-            	$timetable = $this->Schedules->Locationsschedules->patchEntity($timetable, $this->request->data);
-				$timetable['customer_id']=$this->loggedinuser['customer_id'];
-            	if ($this->Schedules->Locationsschedules->save($timetable)) {
-                	$this->Flash->success(__('The timetable has been saved.'));
-
-                	return $this->redirect(['action' => 'index']);
-            	} else {
-                	$this->Flash->error(__('The timetable could not be saved. Please, try again.'));
-            	}
-        	  }
+			   // isset($locations[0])?$timetable=$locations[0] : $timetable=$this->Schedules->Locationsschedules->newEntity();
+			   // if ($this->request->is(['patch', 'post', 'put'])) {
+            	 // $timetable = $this->Schedules->Locationsschedules->patchEntity($timetable, $this->request->data);
+				 // $timetable['customer_id']=$this->loggedinuser['customer_id'];
+            	 // if ($this->Schedules->Locationsschedules->save($timetable)) {
+                	 // $this->Flash->success(__('The timetable has been saved.'));
+//  		
+                	// // return $this->redirect(['action' => 'index']);
+            	 // } else {
+                	 // $this->Flash->error(__('The timetable could not be saved. Please, try again.'));
+            	 // }
+        	   // }
 			  
 			  
        
