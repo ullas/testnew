@@ -1,32 +1,44 @@
-<section class="content-header">
-  <h1>
-     <?php echo $this->request->params['controller'] ?> Details
-  </h1>
-  <ol class="breadcrumb">
-  	<li><a href="#"><i class="fa fa-dashboard"></i>Home</a></li>
-    <li><a href="#"> Trip Management</a></li>
-    <li><a href="/servicesentries/"> Schedules</a></li>
-    <li class="active">View</li>
-  </ol>
-</section>
-<section class="content">
-  <div class="row">
-  <div class="col-md-12">
-  	
-  	<div class="box box-primary">
-  		<div class="box-body">
-  		<table class="table table-hover">
+<nav class="large-3 medium-4 columns" id="actions-sidebar">
+    <ul class="side-nav">
+        <li class="heading"><?= __('Actions') ?></li>
+        <li><?= $this->Html->link(__('Edit Trip'), ['action' => 'edit', $trip->id]) ?> </li>
+        <li><?= $this->Form->postLink(__('Delete Trip'), ['action' => 'delete', $trip->id], ['confirm' => __('Are you sure you want to delete # {0}?', $trip->id)]) ?> </li>
+        <li><?= $this->Html->link(__('List Trips'), ['action' => 'index']) ?> </li>
+        <li><?= $this->Html->link(__('New Trip'), ['action' => 'add']) ?> </li>
+        <li><?= $this->Html->link(__('List Customers'), ['controller' => 'Customers', 'action' => 'index']) ?> </li>
+        <li><?= $this->Html->link(__('New Customer'), ['controller' => 'Customers', 'action' => 'add']) ?> </li>
+        <li><?= $this->Html->link(__('List Vehicles'), ['controller' => 'Vehicles', 'action' => 'index']) ?> </li>
+        <li><?= $this->Html->link(__('New Vehicle'), ['controller' => 'Vehicles', 'action' => 'add']) ?> </li>
+        <li><?= $this->Html->link(__('List Timepolicies'), ['controller' => 'Timepolicies', 'action' => 'index']) ?> </li>
+        <li><?= $this->Html->link(__('New Timepolicy'), ['controller' => 'Timepolicies', 'action' => 'add']) ?> </li>
+        <li><?= $this->Html->link(__('List Routes'), ['controller' => 'Routes', 'action' => 'index']) ?> </li>
+        <li><?= $this->Html->link(__('New Route'), ['controller' => 'Routes', 'action' => 'add']) ?> </li>
+        <li><?= $this->Html->link(__('List Schedules'), ['controller' => 'Schedules', 'action' => 'index']) ?> </li>
+        <li><?= $this->Html->link(__('New Schedule'), ['controller' => 'Schedules', 'action' => 'add']) ?> </li>
+        <li><?= $this->Html->link(__('List Tripstatuses'), ['controller' => 'Tripstatuses', 'action' => 'index']) ?> </li>
+        <li><?= $this->Html->link(__('New Tripstatus'), ['controller' => 'Tripstatuses', 'action' => 'add']) ?> </li>
+        <li><?= $this->Html->link(__('List Vehiclecategories'), ['controller' => 'Vehiclecategories', 'action' => 'index']) ?> </li>
+        <li><?= $this->Html->link(__('New Vehiclecategory'), ['controller' => 'Vehiclecategories', 'action' => 'add']) ?> </li>
+        <li><?= $this->Html->link(__('List Triptypes'), ['controller' => 'Triptypes', 'action' => 'index']) ?> </li>
+        <li><?= $this->Html->link(__('New Triptype'), ['controller' => 'Triptypes', 'action' => 'add']) ?> </li>
+        <li><?= $this->Html->link(__('List Locations'), ['controller' => 'Locations', 'action' => 'index']) ?> </li>
+        <li><?= $this->Html->link(__('New Location'), ['controller' => 'Locations', 'action' => 'add']) ?> </li>
+    </ul>
+</nav>
+<div class="trips view large-9 medium-8 columns content">
+    <h3><?= h($trip->name) ?></h3>
+    <table class="vertical-table">
         <tr>
             <th><?= __('Name') ?></th>
             <td><?= h($trip->name) ?></td>
         </tr>
-        <!-- <tr>
+        <tr>
             <th><?= __('Customer') ?></th>
             <td><?= $trip->has('customer') ? $this->Html->link($trip->customer->name, ['controller' => 'Customers', 'action' => 'view', $trip->customer->id]) : '' ?></td>
-        </tr> -->
+        </tr>
         <tr>
             <th><?= __('Vehicle') ?></th>
-            <td><?= $trip->has('vehicle') ? $this->Html->link($trip->vehicle->id, ['controller' => 'Vehicles', 'action' => 'view', $trip->vehicle->id]) : '' ?></td>
+            <td><?= $trip->has('vehicle') ? $this->Html->link($trip->vehicle->name, ['controller' => 'Vehicles', 'action' => 'view', $trip->vehicle->id]) : '' ?></td>
         </tr>
         <tr>
             <th><?= __('Timepolicy') ?></th>
@@ -35,14 +47,6 @@
         <tr>
             <th><?= __('Route') ?></th>
             <td><?= $trip->has('route') ? $this->Html->link($trip->route->name, ['controller' => 'Routes', 'action' => 'view', $trip->route->id]) : '' ?></td>
-        </tr>
-        <tr>
-            <th><?= __('Startpoint') ?></th>
-            <td><?= $trip->has('startpoint') ? $this->Html->link($trip->startpoint->name, ['controller' => 'Locations', 'action' => 'view', $trip->startpoint->id]) : '' ?></td>
-        </tr>
-        <tr>
-            <th><?= __('Endpoint') ?></th>
-            <td><?= $trip->has('endpoint') ? $this->Html->link($trip->endpoint->name, ['controller' => 'Locations', 'action' => 'view', $trip->endpoint->id]) : '' ?></td>
         </tr>
         <tr>
             <th><?= __('Schedule') ?></th>
@@ -61,8 +65,20 @@
             <td><?= $trip->has('vehiclecategory') ? $this->Html->link($trip->vehiclecategory->name, ['controller' => 'Vehiclecategories', 'action' => 'view', $trip->vehiclecategory->id]) : '' ?></td>
         </tr>
         <tr>
+            <th><?= __('Triptype') ?></th>
+            <td><?= $trip->has('triptype') ? $this->Html->link($trip->triptype->name, ['controller' => 'Triptypes', 'action' => 'view', $trip->triptype->id]) : '' ?></td>
+        </tr>
+        <tr>
             <th><?= __('Id') ?></th>
             <td><?= $this->Number->format($trip->id) ?></td>
+        </tr>
+        <tr>
+            <th><?= __('Startpoint Id') ?></th>
+            <td><?= $this->Number->format($trip->startpoint_id) ?></td>
+        </tr>
+        <tr>
+            <th><?= __('Endpoint Id') ?></th>
+            <td><?= $this->Number->format($trip->endpoint_id) ?></td>
         </tr>
         <tr>
             <th><?= __('Trackingcode') ?></th>
@@ -71,6 +87,10 @@
         <tr>
             <th><?= __('Platform') ?></th>
             <td><?= $this->Number->format($trip->platform) ?></td>
+        </tr>
+        <tr>
+            <th><?= __('Completedstops') ?></th>
+            <td><?= $this->Number->format($trip->completedstops) ?></td>
         </tr>
         <tr>
             <th><?= __('Start Date') ?></th>
@@ -117,13 +137,51 @@
             <td><?= $trip->active ? __('Yes') : __('No'); ?></td>
         </tr>
         <tr>
-            <th><?= __('From Schedule') ?></th>
+            <th><?= __('Fromschedule') ?></th>
             <td><?= $trip->fromschedule ? __('Yes') : __('No'); ?></td>
         </tr>
+        <tr>
+            <th><?= __('Softwaretriggered') ?></th>
+            <td><?= $trip->softwaretriggered ? __('Yes') : __('No'); ?></td>
+        </tr>
+        <tr>
+            <th><?= __('Hwtriggered') ?></th>
+            <td><?= $trip->hwtriggered ? __('Yes') : __('No'); ?></td>
+        </tr>
     </table>
-</div><!--boxbody-->
-   </div><!-- box -->
-  
-  </div><!-- col12-->
-  </div>
-  </section>
+    <div class="related">
+        <h4><?= __('Related Locations') ?></h4>
+        <?php if (!empty($trip->locations)): ?>
+        <table cellpadding="0" cellspacing="0">
+            <tr>
+                <th><?= __('Id') ?></th>
+                <th><?= __('Pointdata') ?></th>
+                <th><?= __('Name') ?></th>
+                <th><?= __('User Id') ?></th>
+                <th><?= __('Customer Id') ?></th>
+                <th><?= __('Accesslevel') ?></th>
+                <th><?= __('Group Id') ?></th>
+                <th><?= __('Reg Name') ?></th>
+                <th class="actions"><?= __('Actions') ?></th>
+            </tr>
+            <?php foreach ($trip->locations as $locations): ?>
+            <tr>
+                <td><?= h($locations->id) ?></td>
+                <td><?= h($locations->pointdata) ?></td>
+                <td><?= h($locations->name) ?></td>
+                <td><?= h($locations->user_id) ?></td>
+                <td><?= h($locations->customer_id) ?></td>
+                <td><?= h($locations->accesslevel) ?></td>
+                <td><?= h($locations->group_id) ?></td>
+                <td><?= h($locations->reg_name) ?></td>
+                <td class="actions">
+                    <?= $this->Html->link(__('View'), ['controller' => 'Locations', 'action' => 'view', $locations->id]) ?>
+                    <?= $this->Html->link(__('Edit'), ['controller' => 'Locations', 'action' => 'edit', $locations->id]) ?>
+                    <?= $this->Form->postLink(__('Delete'), ['controller' => 'Locations', 'action' => 'delete', $locations->id], ['confirm' => __('Are you sure you want to delete # {0}?', $locations->id)]) ?>
+                </td>
+            </tr>
+            <?php endforeach; ?>
+        </table>
+        <?php endif; ?>
+    </div>
+</div>

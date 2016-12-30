@@ -60,6 +60,8 @@ class DashboardController extends AppController
 		  $query=$alertTable->find('All')->where (['alertcategories_id' => '2'])->andwhere(['customer_id'=>$this->loggedinuser['customer_id']]);
 		  (isset($query)) ? $totalharshbreakingalertcount=$query->count() : $totalharshbreakingalertcount="";
 		  
+		  
+		  
 		  $query=$alertTable->find('All')->where (['alertcategories_id' => '3'])->andwhere(['EXTRACT(month from alert_dtime) = EXTRACT(month from date(now()))'])->andwhere(['customer_id'=>$this->loggedinuser['customer_id']]);
 		  (isset($query)) ? $fenceviolationalertcount=$query->count() : $fenceviolationalertcount="";
 		  
@@ -133,7 +135,7 @@ class DashboardController extends AppController
 		  	 $colorclassruntime = "description-percentage text-red";	
 		  	}
 		  
-		  $query=$ragtable->find('All')->where(['EXTRACT(day from idate)  = EXTRACT(day from date(now()))'])->andwhere(['customer_id'=>$this->loggedinuser['customer_id']])->toArray();
+		  $query=$ragtable->find('All')->where(['idate=date(now())'])->andwhere(['customer_id'=>$this->loggedinuser['customer_id']])->toArray();
 		  (isset($query)) ? $ragcontent=$query : $ragcontent="";
 		  // $this->log($ragcontent);
 		  $query=$triptable->find('All')->where(['EXTRACT(day from start_date) = EXTRACT(day from date(now()))'])->orwhere(['EXTRACT(day from end_date) = EXTRACT(day from date(now()))'])->andwhere(['customer_id'=>$this->loggedinuser['customer_id']]);
@@ -195,11 +197,11 @@ class DashboardController extends AppController
 		  	}
 		  
 		  
-		  $query=$remindertable->find('All')->where(['servicetask_id = 2'])->andwhere(['EXTRACT(day from date) = EXTRACT(day from date(now()))'])->andwhere(['customer_id'=>$this->loggedinuser['customer_id']]);
+		  $query=$remindertable->find('All')->where(['servicetask_id = 2'])->andwhere(['date=date(now())'])->andwhere(['customer_id'=>$this->loggedinuser['customer_id']]);
 		  (isset($query)) ? $totalpendingmaintenancecount=$query->count() : $totalpendingmaintenancecount="";
 		  $totalpendingmaintenancecount=$query->count();
 		  
-		  $query=$remindertable->find('All')->where(['servicetask_id = 2'])->andwhere(['EXTRACT(day from date) = EXTRACT(day from date(now()))'])->andwhere(['status = 1'])->andwhere(['customer_id'=>$this->loggedinuser['customer_id']]);
+		  $query=$remindertable->find('All')->where(['servicetask_id = 2'])->andwhere(['date=date(now())'])->andwhere(['status = 1'])->andwhere(['customer_id'=>$this->loggedinuser['customer_id']]);
 		  (isset($query)) ? $pendingmaintenancecount=$query->count() : $pendingmaintenancecount="";
 		 
 		  if($totalpendingmaintenancecount > 0)
@@ -340,5 +342,68 @@ class DashboardController extends AppController
 								'overdueworkordercount','runningdriverscount','comfailurecount','alertscontent','results'));
 		
 		}
+		
+		public function overspeedmoreinfo()
+    	{
+    		$alertTable = TableRegistry::get('Alerts');
+			//$currdate = date("Y-m-d",strtotime($datetime));
+			//$query=$alertTable->find('All')->where (['alertcategories_id' => '1'])->andwhere(['date("Y-m-d",strtotime(alert_dtime)) = date(now())'])->andwhere(['customer_id'=>$this->loggedinuser['customer_id']]);
+			 $query=$alertTable->find('All')->where (['alertcategories_id' => '1'])->andwhere(['EXTRACT(day from alert_dtime) = EXTRACT(day from date(now()))'])->andwhere(['customer_id'=>$this->loggedinuser['customer_id']]);
+			  (isset($query)) ? $overspeedalertcount=$query->count(): $overspeedalertcount="";
+			 
+			  $query=$alertTable->find('All')->where(['EXTRACT(day from alert_dtime) = EXTRACT(day from (now()))'])->andwhere (['alertcategories_id' => '1'])->andwhere(['customer_id'=>$this->loggedinuser['customer_id']])->toArray();
+			  (isset($query)) ? $alertscontent=$query : $alertscontent="";
+			  
+			   $this->set(compact('overspeedalertcount','alertscontent'));
+		
+    	}
+		public function runningmoreinfo()
+    	{
+    		$gpsdatatable = TableRegistry::get('Gpsdata');
+			
+			  $var = "'running'";
+			  $query=$gpsdatatable->find('All')->where(['EXTRACT(day from msgdtime)  = EXTRACT(day from now())'])->andwhere(['status = '. $var .'' ])->andwhere(['customer_id'=>$this->loggedinuser['customer_id']]);
+			 
+			  (isset($query)) ? $runningvehiclescount=$query->count(): $runningvehiclescount="";
+			  $query2=$gpsdatatable->find('All')->where(['EXTRACT(day from msgdtime)  = EXTRACT(day from now())'])->andwhere(['customer_id'=>$this->loggedinuser['customer_id']]);
+			  $vehiclescount=$query2->count();
+			  (isset($query2)) ? $vehiclescount=$query2->count(): $vehiclescount="";
+			 
+			   if($vehiclescount > 0)
+		  		{
+		  			 $percentagerunning = ($runningvehiclescount / $vehiclescount)*100;
+		  		}
+			   else
+			   	{
+			   		 $percentagerunning = 0;
+					
+			   	}
+			   $this->set(compact('overspeedalertcount','alertscontent'));
+		
+    	}
+		public function driversmoreinfo()
+    	{
+    		$alertTable = TableRegistry::get('Alerts');
+			
+			 $query=$alertTable->find('All')->where (['alertcategories_id' => '1'])->andwhere(['EXTRACT(day from alert_dtime) = EXTRACT(day from date(now()))'])->andwhere(['customer_id'=>$this->loggedinuser['customer_id']]);
+			  (isset($query)) ? $overspeedalertcount=$query->count(): $overspeedalertcount="";
+			 
+			  $query=$alertTable->find('All')->where(['EXTRACT(day from alert_dtime) = EXTRACT(day from (now()))'])->andwhere (['alertcategories_id' => '1'])->andwhere(['customer_id'=>$this->loggedinuser['customer_id']])->toArray();
+			  (isset($query)) ? $alertscontent=$query : $alertscontent="";
+			   $this->set(compact('overspeedalertcount','alertscontent'));
+		
+    	}
+		public function comfailuremoreinfo()
+    	{
+    		$alertTable = TableRegistry::get('Alerts');
+			
+			 $query=$alertTable->find('All')->where (['alertcategories_id' => '1'])->andwhere(['EXTRACT(day from alert_dtime) = EXTRACT(day from date(now()))'])->andwhere(['customer_id'=>$this->loggedinuser['customer_id']]);
+			  (isset($query)) ? $overspeedalertcount=$query->count(): $overspeedalertcount="";
+			 
+			  $query=$alertTable->find('All')->where(['EXTRACT(day from alert_dtime) = EXTRACT(day from (now()))'])->andwhere (['alertcategories_id' => '1'])->andwhere(['customer_id'=>$this->loggedinuser['customer_id']])->toArray();
+			  (isset($query)) ? $alertscontent=$query : $alertscontent="";
+			   $this->set(compact('overspeedalertcount','alertscontent'));
+		
+    	}
 
 }

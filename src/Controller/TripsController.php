@@ -1,8 +1,8 @@
 <?php
 namespace App\Controller;
-
-use App\Controller\AppController;
 use Cake\ORM\TableRegistry;
+use App\Controller\AppController;
+use Cake\I18n\Time;
 /**
  * Trips Controller
  *
@@ -16,13 +16,15 @@ class TripsController extends AppController
      * @var array
      */
     public $components = ['Datatable'];
-     /* Index method
+
+    /**
+     * Index method
      *
      * @return \Cake\Network\Response|null
      */
     public function index()
     {
-         $this->loadModel('CreateConfigs');
+        $this->loadModel('CreateConfigs');
          $configs=$this->CreateConfigs->find('all')->where(['table_name' => 'Trips'])->order(['"order"' => 'ASC'])->toArray();
         
          	 $this->loadModel('Usersettings');
@@ -51,11 +53,11 @@ class TripsController extends AppController
 		 $this->set('actions',$actions);	
          $this->set('configs',$configs);	
          $this->set('_serialize', ['configs','usersettings','actions','additional']);
+   
+        
     }
-
-
 	public function updateSettings()
-{
+	{
    	
 	$this->autoRender= false;	
 	$columns=$_POST['columns'];
@@ -80,7 +82,7 @@ class TripsController extends AppController
 	    ->execute();
 	$this->response->body($res);
 	
-   }else{
+   	}else{
    	  
 	   $query1 = $userSettings->query();
 	   $res=$query1->insert(['key','value','user_id','module'])
@@ -93,11 +95,11 @@ class TripsController extends AppController
 	   $this->response->body($res);
 	
 	   
-   }
+   		}
 	
-}
+	}
 
-private function toPostDBDate($date){
+	private function toPostDBDate($date){
 	
 		 $ret="";
 		 $parts=explode("/",$date);
@@ -107,9 +109,9 @@ private function toPostDBDate($date){
 		 }
 		
 	  return $ret;
-}
+	}
 
-private function getDateRangeFilters($dates,$basic)  {
+	private function getDateRangeFilters($dates,$basic)  {
 	
 	$sql="";	
 		
@@ -173,9 +175,7 @@ private function getDateRangeFilters($dates,$basic)  {
 	    return $this->response;
 	     
              
- } 
-	
-
+ 	} 
     /**
      * View method
      *
@@ -186,7 +186,7 @@ private function getDateRangeFilters($dates,$basic)  {
     public function view($id = null)
     {
         $trip = $this->Trips->get($id, [
-            'contain' => ['Customers', 'Vehicles', 'Timepolicies', 'Routes', 'Startpoints', 'Endpoints', 'Schedules', 'Tripstatuses', 'Vehiclecategories', 'Triptypes']
+            'contain' => ['Customers', 'Vehicles', 'Timepolicies', 'Routes', 'Startpoints', 'Endpoints', 'Schedules', 'Tripstatuses', 'Vehiclecategories', 'Triptypes', 'Locations']
         ]);
 
         $this->set('trip', $trip);
@@ -202,28 +202,38 @@ private function getDateRangeFilters($dates,$basic)  {
     {
         $trip = $this->Trips->newEntity();
         if ($this->request->is('post')) {
-            $trip = $this->Trips->patchEntity($trip, $this->request->data);
-            $trip['customer_id']=$this->loggedinuser['customer_id'];
-			$trip['adt'] = '2016-09-27'.' '.$trip['adt'];
-            if ($this->Trips->save($trip)) {
-                $this->Flash->success(__('The trip has been saved.'));
-
-                return $this->redirect(['action' => 'index']);
+            $trip = $this->Trips->patchEntity($trip, $this->request->data,['associated'=>['Locations']]);
+			 $trip['customer_id']=$this->loggedinuser['customer_id'];
+			 $cdate = strtotime(Time::now());
+			 $todatey = (date('Y', $cdate)) ;
+			 $todatem = (date('m', $cdate)) ;
+			 $todated = (date('d', $cdate)) ;
+			 $todaydate = $todatey.'-'.$todatem.'-'.$todated;
+			 
+			 $trip['adt'] = $todaydate.' '.$trip['adt'];
+			 $trip['aat'] = $todaydate.' '.$trip['aat'];
+			 $trip['edt'] = $todaydate.' '.$trip['edt'];
+			 $trip['eat'] = $todaydate.' '.$trip['eat'];
+             if ($id = $this->Trips->save($trip)) {
+                	return $this->redirect(['action' => 'timetable',$id->id ]);
+                //$this->Flash->success(__('The trip has been saved.'));
+				//return $this->redirect(['action' => 'index']);
             } else {
                 $this->Flash->error(__('The trip could not be saved. Please, try again.'));
             }
         }
-		$customers = $this->Trips->Customers->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
-        $vehicles = $this->Trips->Vehicles->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
-        $timepolicies = $this->Trips->Timepolicies->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
-        $routes = $this->Trips->Routes->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
-        $startpoints = $this->Trips->Startpoints->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
-        $endpoints = $this->Trips->Endpoints->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
-        $schedules = $this->Trips->Schedules->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
-        $tripstatuses = $this->Trips->Tripstatuses->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
-        $vehiclecategories = $this->Trips->Vehiclecategories->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
-        $triptypes = $this->Trips->Triptypes->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
-        $this->set(compact('trip', 'customers', 'vehicles', 'timepolicies', 'routes', 'startpoints', 'endpoints', 'schedules', 'tripstatuses', 'vehiclecategories', 'triptypes'));
+        $customers = $this->Trips->Customers->find('list', ['limit' => 200]);
+        $vehicles = $this->Trips->Vehicles->find('list', ['limit' => 200]);
+        $timepolicies = $this->Trips->Timepolicies->find('list', ['limit' => 200]);
+        $routes = $this->Trips->Routes->find('list', ['limit' => 200]);
+        $startpoints = $this->Trips->Startpoints->find('list', ['limit' => 200]);
+        $endpoints = $this->Trips->Endpoints->find('list', ['limit' => 200]);
+        $schedules = $this->Trips->Schedules->find('list', ['limit' => 200])->where("customer_id=".$this->loggedinuser['customer_id']);
+        $tripstatuses = $this->Trips->Tripstatuses->find('list', ['limit' => 200]);
+        $vehiclecategories = $this->Trips->Vehiclecategories->find('list', ['limit' => 200]);
+        $triptypes = $this->Trips->Triptypes->find('list', ['limit' => 200]);
+        $locations = $this->Trips->Locations->find('list', ['limit' => 200])->where("customer_id=".$this->loggedinuser['customer_id']);
+        $this->set(compact('trip', 'customers', 'vehicles', 'timepolicies', 'routes', 'startpoints', 'endpoints', 'schedules', 'tripstatuses', 'vehiclecategories', 'triptypes', 'locations'));
         $this->set('_serialize', ['trip']);
     }
 
@@ -237,7 +247,7 @@ private function getDateRangeFilters($dates,$basic)  {
     public function edit($id = null)
     {
         $trip = $this->Trips->get($id, [
-            'contain' => []
+            'contain' => ['Locations']
         ]);
 		if($trip['customer_id']!= $this->loggedinuser['customer_id'])
 		{
@@ -246,6 +256,8 @@ private function getDateRangeFilters($dates,$basic)  {
 		}
         if ($this->request->is(['patch', 'post', 'put'])) {
             $trip = $this->Trips->patchEntity($trip, $this->request->data);
+			$trip['customer_id']=$this->loggedinuser['customer_id'];
+			
             if ($this->Trips->save($trip)) {
                 $this->Flash->success(__('The trip has been saved.'));
 
@@ -254,17 +266,18 @@ private function getDateRangeFilters($dates,$basic)  {
                 $this->Flash->error(__('The trip could not be saved. Please, try again.'));
             }
         }
-        $customers = $this->Trips->Customers->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
-        $vehicles = $this->Trips->Vehicles->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
-        $timepolicies = $this->Trips->Timepolicies->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
-        $routes = $this->Trips->Routes->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
-        $startpoints = $this->Trips->Startpoints->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
-        $endpoints = $this->Trips->Endpoints->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
-        $schedules = $this->Trips->Schedules->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
-        $tripstatuses = $this->Trips->Tripstatuses->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
-        $vehiclecategories = $this->Trips->Vehiclecategories->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
-        $triptypes = $this->Trips->Triptypes->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
-        $this->set(compact('trip', 'customers', 'vehicles', 'timepolicies', 'routes', 'startpoints', 'endpoints', 'schedules', 'tripstatuses', 'vehiclecategories', 'triptypes'));
+        $customers = $this->Trips->Customers->find('list', ['limit' => 200]);
+        $vehicles = $this->Trips->Vehicles->find('list', ['limit' => 200]);
+        $timepolicies = $this->Trips->Timepolicies->find('list', ['limit' => 200]);
+        $routes = $this->Trips->Routes->find('list', ['limit' => 200]);
+        $startpoints = $this->Trips->Startpoints->find('list', ['limit' => 200]);
+        $endpoints = $this->Trips->Endpoints->find('list', ['limit' => 200]);
+        $schedules = $this->Trips->Schedules->find('list', ['limit' => 200]);
+        $tripstatuses = $this->Trips->Tripstatuses->find('list', ['limit' => 200]);
+        $vehiclecategories = $this->Trips->Vehiclecategories->find('list', ['limit' => 200]);
+        $triptypes = $this->Trips->Triptypes->find('list', ['limit' => 200]);
+        $locations = $this->Trips->Locations->find('list', ['limit' => 200]);
+        $this->set(compact('trip', 'customers', 'vehicles', 'timepolicies', 'routes', 'startpoints', 'endpoints', 'schedules', 'tripstatuses', 'vehiclecategories', 'triptypes', 'locations'));
         $this->set('_serialize', ['trip']);
     }
 
@@ -279,7 +292,7 @@ private function getDateRangeFilters($dates,$basic)  {
     {
         $this->request->allowMethod(['post', 'delete']);
         $trip = $this->Trips->get($id);
-		if($trip['customer_id'] = $this->loggedinuser['customer_id'])
+        if($trip['customer_id'] = $this->loggedinuser['customer_id'])
 		{
 	        if ($this->Trips->delete($trip)) {
 	            $this->Flash->success(__('The trip has been deleted.'));
@@ -292,9 +305,10 @@ private function getDateRangeFilters($dates,$basic)  {
 	   	    $this->Flash->error(__('You are not authorized'));
 		
 	    }
+
         return $this->redirect(['action' => 'index']);
     }
-	
+
 	public function deleteAll($id=null){
     	
 		$this->request->allowMethod(['post', 'deleteall']);
@@ -333,4 +347,58 @@ private function getDateRangeFilters($dates,$basic)  {
 
              return $this->redirect(['action' => 'index']);	
      }
+ public function timetable($id)
+	    {
+	    	 $trip = $this->Trips->get($id, ['contain' => ['Locations'] ]);
+			 $locations = $this->Trips->Locationstrips->find()->select(['id','orderid','sat','sdt','Locations.name'])->where("trip_id=".$id)
+			  					 ->leftJoin('Locations', 'Locations.id = Locationstrips.location_id')->toArray();
+ 				
+				$param = $this->request->data;
+				echo $id;
+				foreach($param as $key=>$value)
+				{
+					if(strlen($key) > 3 && substr($key,0,3) == 'sat')
+					{
+							$token = substr($key,3);
+							$value1 = $param['sat'.$token];
+							$value2 = $param['sdt'.$token];
+							$value3 = $param['dys'.$token];
+							$value4 = $param['dye'.$token];
+							//$value5 = $param['oid'.$token];
+							$timetable=$this->Trips->Locationstrips->get($token);
+							$timetable['day_start'] = $value3;
+							$timetable['day_end'] = $value4;
+							$timetable['sat'] = $value1;
+							$timetable['sdt'] = $value2;
+							$timetable['customer_id'] = $this->loggedinuser['customer_id'];
+							
+							$this->Trips->Locationstrips->save($timetable);
+					}
+					
+				}				
+			 
+			   // isset($locations[0])?$timetable=$locations[0] : $timetable=$this->Schedules->Locationsschedules->newEntity();
+			   // if ($this->request->is(['patch', 'post', 'put'])) {
+            	 // $timetable = $this->Schedules->Locationsschedules->patchEntity($timetable, $this->request->data);
+				 // $timetable['customer_id']=$this->loggedinuser['customer_id'];
+            	 // if ($this->Schedules->Locationsschedules->save($timetable)) {
+                	 // $this->Flash->success(__('The timetable has been saved.'));
+//  		
+                	// // return $this->redirect(['action' => 'index']);
+            	 // } else {
+                	 // $this->Flash->error(__('The timetable could not be saved. Please, try again.'));
+            	 // }
+        	   // }
+			  
+			  
+       
+	   		  $times = array('00:00'=>'00:00','00:30'=>'00:30','01:00'=>'01:00');
+			  $days = array('1'=>'1','2'=>'2','3'=>'3');
+	   
+	   
+			  $this->set(compact('times', 'locations','days'));
+			  // $this->set( 'locations',$locations );
+              $this->set('_serialize', ['locations']);
+			
+	    }
 }
