@@ -45,7 +45,7 @@
 								echo "<td>".$this->Form->input('dye'.$p, ['options' => $days,'class'=>'mptl-schitem3 select2','label'=>false])."</td>";
 								echo "<td>".$this->Form->input('sdt'.$p, ['options' => $times,'class'=>'mptl-schitem4 select2','label'=>false])."</td>";
 								
-
+								echo "<td class='err'></td>";
 								echo "</tr>";
 	            			}
 	            	            
@@ -56,7 +56,7 @@
         </div>
       </div>
       <div class="modal-footer">
-      	<input type="submit" class="scheduleCheck" value="Save" class="mptl-settings-save btn btn-success"/>
+      	<input type="submit" value="Save" class="scheduleCheck mptl-settings-save btn btn-success"/>
       	<!-- <button class="mptl-settings-save btn btn-success" onclick="validate()">Save Changes</button> -->
         <!-- <button type="button" class="mptl-settings-save btn btn-success">Save changes</button>
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button> -->
@@ -81,52 +81,58 @@ jQuery("#scheduleCheck").submit(function(){
     		if($(this).attr('id')!="trheader"){
   				$this = $(this);
   				  				
-  				var csdt=$this.find('#sdt option:selected').val();
-  				var csdd=$this.find('#day-end option:selected').val();
+  				var csdt=$this.find('.mptl-schitem4 option:selected').val();
+  				var csdd=$this.find('.mptl-schitem3 option:selected').val();
   				
-  				var nsad=$this.find('#day-start option:selected').val();
-  				var nsat=$this.find('#sat option:selected').val();
+  				var nsad=$this.next().find('.mptl-schitem1 option:selected').val();
+  				var nsat=$this.next().find('.mptl-schitem2 option:selected').val();
+  				//alert(nsad+"----"+nsat);
   				
   				if(nsat){
 					if (checkSheduleDate(nsat, csdt, nsad, csdd)) {
-						$this.css('background-color', 'red');
+						// $this.css('background-color', 'red');
 						errCount++;
-						// jQuery('div[@id^=err]:first', jQuery(this).next()).html("*");
+						$this.find('td.err').html('<span class="text-red">*</span>');
+						$this.next().find('td.err').html('<span class="text-red">*</span>');
 					}else{
-						$this.css('background-color', '');
+						// $this.css('background-color', '');
+						$this.find('td.err').html('');
+						$this.next().find('td.err').html('');
 					}
 				}
   			}
 		});
 		
-		jQuery("#sat").each(
-	  function(){
-	  	//alert($(this).attr("id"));
+	
+	$('.mptl-schitem2').each(function() {
+		
 		var lineErr2=0;
-		var p=jQuery(this).attr("id");
+		var p=jQuery(this).attr("id");//alert(p);
 		var id=p.substring(3);
 		var sat= jQuery(this).val();
-		var sdt= jQuery('.mptl-schitem4').val();
+		var sdt=  jQuery("#sdt"+id).val();
 		var dys= jQuery("#dys"+id).val();
 		var dye= jQuery("#dye"+id).val();
 		var strTime= jQuery("#start_time").val();
 		var endTime= jQuery("#end_time").val();
 		var nodays=jQuery("#nodays").val();
 		if(!nodays)nodays=1;
-		if(!compareTime(sat+":00",strTime,dys,1)){errCount++;	lineErr2++;  }
-		if(!compareTime(endTime,sat+":00",nodays,dys)){errCount++;	lineErr2++; }
-		if(!compareTime(sdt+":00",strTime,dye,1)){errCount++;	lineErr2++; }
-		if(!compareTime(endTime,sdt+":00",nodays,dye)){errCount++;	lineErr2++;}
+		// if(!compareTime(sat+":00",strTime,dys,1)){errCount++;	lineErr2++;  }return false;
+		// if(!compareTime(endTime,sat+":00",nodays,dys)){errCount++;	lineErr2++; }
+		// if(!compareTime(sdt+":00",strTime,dye,1)){errCount++;	lineErr2++; }
+		// if(!compareTime(endTime,sdt+":00",nodays,dye)){errCount++;	lineErr2++;}
 		if(!checkSheduleDate(sat,sdt,dys,dye)){	errCount++;	lineErr2++;}
 		
-		    if(lineErr2>0){
-				jQuery("#err"+id).html("*");
-			}
-				
-	  }
-	);
+		if(lineErr2>0){
+			$this.find('td.err').html('<span class="text-red">*</span>');
+		}else{
+			$this.find('td.err').html('');
+		}
+    	
+	});
+
 	return errCount >0 ? false :true;
-	}
+}
 function compareTime(strTime,endTime,dys,dye)
 {
      var sTime=strTime.split(":");
