@@ -418,5 +418,23 @@ class DashboardController extends AppController
 			   $this->set(compact('overspeedalertcount','alertscontent'));
 		
     	}
+		public function getChartData(){
+     	
+			$this->autoRender= false;
+		
+			$dailysummaryTable = TableRegistry::get('Dailysummary');
+			$query=$dailysummaryTable->find('All')->andwhere(['customer_id'=>$this->loggedinuser['customer_id']])->toArray();
+		
+			$businesstime=[];
+			$fuel=[];
+			for ($x = 0; $x < count($query); $x++) {
+				$businesstime[$x]=$query[$x]['businesstime'];
+				$fuel[$x]=$query[$x]['fuel'];
+			}
+		 
+			$this->response->body($businesstime."$".$fuel);
+	    	return $this->response;
+		
+		}
 
 }
