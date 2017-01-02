@@ -27,7 +27,7 @@
 	            			<th> Day</th>
 	            			<th> SAT</th>
 	            			<th> Day</th>
-	            			<th> ADT</th>
+	            			<th> SDT</th>
 	            		</tr>
 	            	</thead>
 	            	<tbody>

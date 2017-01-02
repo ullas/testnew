@@ -323,10 +323,23 @@ class DashboardController extends AppController
 			  $query=$workordertable->find('All')->where(['CURRENT_DATE BETWEEN startdate AND completiondate'])->andwhere(['customer_id'=>$this->loggedinuser['customer_id']]);
 			  (isset($query)) ? $totalworkordercount=$query->count() : $totalworkordercount="";
 			   
-			  $percentageopenworkorder = ($openworkordercount / $totalworkordercount) * 100;
-			  $percentageoverdueworkorder = ($overdueworkordercount / $totalworkordercount) * 100;
-			  $percentagedeferredworkorder = ($deferredworkordercount / $totalworkordercount) * 100;
-			  $percentageclosedworkorder = ($closedworkordercount / $totalworkordercount) * 100;
+			   
+			  if($totalworkordercount > 0)
+		  		{
+		  			$percentageopenworkorder = ($openworkordercount / $totalworkordercount) * 100;
+			  		$percentageoverdueworkorder = ($overdueworkordercount / $totalworkordercount) * 100;
+			  		$percentagedeferredworkorder = ($deferredworkordercount / $totalworkordercount) * 100;
+			  		$percentageclosedworkorder = ($closedworkordercount / $totalworkordercount) * 100;
+		  		}
+			   else
+			   	{
+			   		 $percentageopenworkorder = 0;
+			  		$percentageoverdueworkorder = 0;
+			  		$percentagedeferredworkorder = 0;
+			  		$percentageclosedworkorder = 0;
+					
+			   	} 
+			 
 			  
 			  
 			  
@@ -405,5 +418,23 @@ class DashboardController extends AppController
 			   $this->set(compact('overspeedalertcount','alertscontent'));
 		
     	}
+		public function getChartData(){
+     	
+			$this->autoRender= false;
+		
+			$dailysummaryTable = TableRegistry::get('Dailysummary');
+			$query=$dailysummaryTable->find('All')->andwhere(['customer_id'=>$this->loggedinuser['customer_id']])->toArray();
+		
+			$businesstime=[];
+			$fuel=[];
+			for ($x = 0; $x < count($query); $x++) {
+				$businesstime[$x]=$query[$x]['businesstime'];
+				$fuel[$x]=$query[$x]['fuel'];
+			}
+		 
+			$this->response->body($businesstime."$".$fuel);
+	    	return $this->response;
+		
+		}
 
 }

@@ -249,15 +249,31 @@ class TripsController extends AppController
         $trip = $this->Trips->get($id, [
             'contain' => ['Locations']
         ]);
+
+		//get time alone after splitting from datetime
+		if( strpos( $trip['adt'], " " ) !== false ) { $splits =  explode(" ",$trip['adt']); $trip['adt'] = $splits[1]; }
+		if( strpos( $trip['aat'], " " ) !== false ) { $splits =  explode(" ",$trip['aat']); $trip['aat'] = $splits[1]; }
+		
 		if($trip['customer_id']!= $this->loggedinuser['customer_id'])
 		{
 			 $this->Flash->success(__('You are not Authorized.'));
 			 return $this->redirect(['action' => 'index']);
 		}
+		
         if ($this->request->is(['patch', 'post', 'put'])) {
             $trip = $this->Trips->patchEntity($trip, $this->request->data);
 			$trip['customer_id']=$this->loggedinuser['customer_id'];
-			
+			$cdate = strtotime(Time::now());
+			$todatey = (date('Y', $cdate)) ;
+			$todatem = (date('m', $cdate)) ;
+			$todated = (date('d', $cdate)) ;
+			$todaydate = $todatey.'-'.$todatem.'-'.$todated;
+			 
+			$trip['adt'] = $todaydate.' '.$trip['adt'];
+			$trip['aat'] = $todaydate.' '.$trip['aat'];
+			$trip['edt'] = $todaydate.' '.$trip['edt'];
+			$trip['eat'] = $todaydate.' '.$trip['eat'];
+			 
             if ($this->Trips->save($trip)) {
                 $this->Flash->success(__('The trip has been saved.'));
 
