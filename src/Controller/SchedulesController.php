@@ -43,7 +43,7 @@ class SchedulesController extends AppController
                 ['name'=>'delete','title'=>'Delete','class'=>' label-danger ']
                 ];
          $additional= [
-      	                          'basic'=>['Not Void'],
+      	                          'basic'=>[],
       	                          'additional'=>[
       	                                ['name'=>'validfrom','title'=>'Valid From'],
       	                                ['name'=>'validtill','title'=>'Valid Till']  	                          
@@ -127,11 +127,12 @@ class SchedulesController extends AppController
 		
 		$sql .=  count($datecol)>1? " $pre validtill between '" . $this->toPostDBDate($datecol[0]) . "' and '" . $this->toPostDBDate($datecol[1]) . "'": "" ;
 		
-		$datecol=explode("-",$alldates[2]);
+		// $datecol=explode("-",$alldates[2]);
+		
+		
 		//$pre=(strlen($sql)>0)?" and ":"";
 		
 		//$sql .= count($datecol)>1? " $pre completiondate between '" . $this->toPostDBDate($datecol[0]) . "' and '" . $this->toPostDBDate($datecol[1]) . "'": "" ;
-		
 		
 		return $sql;
 		}
@@ -154,6 +155,9 @@ class SchedulesController extends AppController
 			$usrfiter.=(") ");
         }
 		$usrfiter.=$this->getDateRangeFilters($additional,$basic);*/
+		
+		$usrfiter.=$this->getDateRangeFilters($additional,0);
+		
 		
           
        $this->loadModel('CreateConfigs');
