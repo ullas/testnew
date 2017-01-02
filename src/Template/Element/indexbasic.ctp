@@ -315,9 +315,12 @@ $this->Html->script([
 
    });
 
-	 $('.mptl-daterange').on('cancel.daterangepicker', function(ev, picker) {
-      $(this).val('');
+	 $('.mptl-daterange').on('cancel.daterangepicker', function() {
+      	$(this).val('');
 			updateFilterActiveFlag();
+			table.ajax.reload(null,false);
+    	    table.draw();
+			
 		});
 
     $('.mptl-daterange').change(function(){
