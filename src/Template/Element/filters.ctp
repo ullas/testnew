@@ -1,13 +1,13 @@
  <div class="nav-tabs-custom">
 	        <ul class="nav nav-tabs">
-	          <li  class="active"><a href="#details" data-toggle="tab">Filter</a></li>
+	          <li  class="active" id="fltrlst"><a href="#filterdiv" data-toggle="tab">Filter</a></li>
 	            <?php if(count($additional)>0) : ?>
-	            <li><a href="#specs" data-toggle="tab">Additional Filters</a></li>
+	            <li id="additionalfltrlst"><a href="#addfilterdiv" data-toggle="tab" id="addfilterlink">Additional Filters</a></li>
 	            <?php endif ; ?>
               <span id="filterstatus" class="label label-success pull-right" style="margin-right:10px;margin-top:10px" disabled>Filter Active</span>
 	        </ul>
 	         <div class=" tab-content" style="min-height:85px">
-             <div class="active tab-pane" id="details">
+             <div class="active tab-pane" id="filterdiv">
 							 <div class="box-body">
 							      	       <div class="form-group">
 							      	       	
@@ -27,7 +27,7 @@
 							      </div>
 				</div> <!-- tab pane -->
 				<?php if(count($additional)>0) : ?>
-				<div class="tab-pane" id="specs">
+				<div class="tab-pane" id="addfilterdiv">
 							
 					     <?php  foreach($additional as $item ):  ?>
 					    

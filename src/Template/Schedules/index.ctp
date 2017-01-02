@@ -13,5 +13,20 @@
   </ol>
 </section>
 
-<?php echo $this->element('indexbasic'); ?>
 
+
+    <script type="text/javascript">
+    $( document ).ready(function() {
+    	//hide and remove active class for filter tab
+		$( "#fltrlst" ).hide();
+		$("#filterdiv").removeClass("active");
+		//make additional filter tab active
+		$("#additionalfltrlst").addClass("active");
+		$("#addfilterdiv").addClass("active");
+		//change text of addfilter
+		$("#addfilterlink").text('Filter');
+		
+	});
+	</script>
+
+<?php echo $this->element('indexbasic'); ?>
