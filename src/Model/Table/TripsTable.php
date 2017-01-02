@@ -6,6 +6,7 @@ use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
 use Cake\Validation\Validator;
 use Cake\Datasource\ConnectionManager;
+
 /**
  * Trips Model
  *
@@ -19,6 +20,7 @@ use Cake\Datasource\ConnectionManager;
  * @property \Cake\ORM\Association\BelongsTo $Tripstatuses
  * @property \Cake\ORM\Association\BelongsTo $Vehiclecategories
  * @property \Cake\ORM\Association\BelongsTo $Triptypes
+ * @property \Cake\ORM\Association\BelongsToMany $Locations
  *
  * @method \App\Model\Entity\Trip get($primaryKey, $options = [])
  * @method \App\Model\Entity\Trip newEntity($data = null, array $options = [])
@@ -76,6 +78,11 @@ class TripsTable extends Table
         ]);
         $this->belongsTo('Triptypes', [
             'foreignKey' => 'triptype_id'
+        ]);
+        $this->belongsToMany('Locations', [
+            'foreignKey' => 'trip_id',
+            'targetForeignKey' => 'location_id',
+            'joinTable' => 'locations_trips'
         ]);
     }
 
@@ -135,7 +142,7 @@ class TripsTable extends Table
         // $validator
             // ->dateTime('adt')
             // ->allowEmpty('adt');
-
+// 
         // $validator
             // ->dateTime('aat')
             // ->allowEmpty('aat');
@@ -151,6 +158,18 @@ class TripsTable extends Table
         $validator
             ->integer('platform')
             ->allowEmpty('platform');
+
+        $validator
+            ->boolean('softwaretriggered')
+            ->allowEmpty('softwaretriggered');
+
+        $validator
+            ->boolean('hwtriggered')
+            ->allowEmpty('hwtriggered');
+
+        $validator
+            ->integer('completedstops')
+            ->allowEmpty('completedstops');
 
         return $validator;
     }
@@ -177,7 +196,6 @@ class TripsTable extends Table
 
         return $rules;
     }
-	
 	public function getActiveTrips($cid)
 	{
 		
