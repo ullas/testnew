@@ -79,7 +79,7 @@
       <!-- Main row -->
       <div class="row">
         <!-- Left col -->
-        <section class="col-lg-7 connectedSortable">
+        <section class="col-lg-7 connectedSortable" style="min-height: 180px;">
           <!-- Custom tabs (Charts with tabs)-->
           
 
@@ -407,8 +407,8 @@
           </div>
           <!-- /.box -->
         	
-        	
-        <section>
+        </div>	
+        </section>
         	
         </div>
 

@@ -245,6 +245,7 @@ $this->Html->script([
       // Check/uncheck checkboxes for all rows in the table
       $('input[type="checkbox"]', rows).prop('checked', this.checked);
       
+      setTurben();
    });
    // Handle click on checkbox to set state of "Select all" control
    $('#mptlindextbl tbody').on('change', 'input[type="checkbox"]', function(){
@@ -259,8 +260,6 @@ $this->Html->script([
          }
       }
       setTurben();
-        
-       
        
    });
    // Handle click on " Settings Select all" control
@@ -331,10 +330,15 @@ $this->Html->script([
    });
 
     $('.mptl-daterange').change(function(){
+    	
+    	updateFilterActiveFlag();
+    	
     	// var ordr=table.colReorder.order();
     	 table.ajax.reload(null,false);
     	// table.colReorder.order(ordr);
     	 table.draw();
+    	 
+    	 
     	
     });
   
@@ -346,9 +350,6 @@ $this->Html->script([
         zIndex: 999999
     });
     
-     $(".mptl-daterange").change(function(){
-          updateFilterActiveFlag();
-     });
      
      setTurben();
   });
