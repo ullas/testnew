@@ -132,7 +132,8 @@ $this->Html->script([
     //daterangepicker for advanced filtering
     $('.mptl-daterange').daterangepicker(
     	{locale : {
-      format : 'DD/MM/YY'
+      format : 'DD/MM/YY',
+			cancelLabel: 'Clear'
     }}).val('');
      table= $('#mptlindextbl').DataTable({
           "paging": true,
@@ -317,10 +318,9 @@ $this->Html->script([
 
 	 $('.mptl-daterange').on('cancel.daterangepicker', function() {
       	$(this).val('');
-			updateFilterActiveFlag();
-			table.ajax.reload(null,false);
-    	    table.draw();
-			
+				updateFilterActiveFlag();
+				table.ajax.reload(null,false);
+    	  table.draw();
 		});
 
     $('.mptl-daterange').change(function(){
