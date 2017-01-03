@@ -388,9 +388,9 @@ $this->Html->script([
             url : '/Dashboard/getChartData',
             success : function(response) {
                 // data1="[" +response + "]";
-                for (i = 0; i < response.length; i++) { 
-   					console.log(response);
-				}
+                // for (i = 0; i < response.length; i++) { 
+   					// console.log(response);
+				// }
 				
                 data1[0] = 25;data1[1] = 105;data1[2] = 45;
                 data2[0] = 55;data2[1] = 35;data2[2] = 75;
