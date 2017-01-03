@@ -108,6 +108,7 @@ mb_internal_encoding(Configure::read('App.encoding'));
 
 //edited by sreekanth
 ini_set('intl.default_locale', 'pl_PL');
+// Cake\I18n\Time::setToStringFormat('HH:mm');
 Cake\I18n\Date::setToStringFormat('dd/MM/yy');
 Cake\I18n\FrozenDate::setToStringFormat('dd/MM/yy');
 
@@ -115,6 +116,8 @@ Cake\I18n\FrozenDate::setToStringFormat('dd/MM/yy');
     ->useImmutable()
     ->useLocaleParser()
     ->setLocaleFormat('dd/MM/yy');
+	
+	
 
 /**
  * Register application error and exception handlers.
@@ -187,7 +190,7 @@ Request::addDetector('tablet', function ($request) {
  * @link http://book.cakephp.org/3.0/en/core-libraries/internationalization-and-localization.html#parsing-localized-datetime-data
  */
 Type::build('time')
-    ->useImmutable();
+    ->useLocaleParser();
 Type::build('date')
     ->useImmutable();
 Type::build('datetime')
