@@ -432,7 +432,12 @@ class DashboardController extends AppController
 				$fuel[$x]=$query[$x]['fuel'];
 			}
 		 
-			$this->response->body($businesstime."$".$fuel);
+		 	$chartarray = [
+    			"businesstime" => $businesstime,
+    			"fuel" => $fuel,
+			];
+
+			$this->response->body(json_encode($chartarray));
 	    	return $this->response;
 		
 		}

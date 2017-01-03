@@ -388,8 +388,14 @@ $this->Html->script([
             url : '/Dashboard/getChartData',
             success : function(response) {
                 // data1="[" +response + "]";
-                for (i = 0; i < response.length; i++) { 
-   					console.log(response);
+                // for (i = 0; i < response.length; i++) { 
+   					var data = response.serialize();alert(data);
+				// }
+				if(!(typeof response['businesstime'] !== 'undefined' && response['businesstime'] !== null)){
+					var businesstimearr=response['businesstime'];console.log(response[0]);
+					 // for (i = 0; i < businesstimearr.length; i++) { 
+//    						
+					// }
 				}
 				
                 data1[0] = 25;data1[1] = 105;data1[2] = 45;
