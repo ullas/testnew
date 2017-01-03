@@ -214,7 +214,7 @@ div.dataTables_wrapper { clear: both; }
     $(document).ready(function(){
     	
     	$(".timepicker").timepicker({
-      		showInputs: false,autoclose: true,
+      		showInputs: false,autoclose: true,maxHours:24,showMeridian:false
     	});
     	//select 2 
     	$(".select2").select2({ width: '100%',allowClear: true,placeholder: "Select" });

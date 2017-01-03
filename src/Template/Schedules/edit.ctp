@@ -102,9 +102,7 @@ $this->Html->script([
     //Initialize Select2 Elements
    $(".select2").select2({ width: '100%' });
    $(".datemask").inputmask("yyyy/mm/dd", {"placeholder": "yyyy/mm/dd"});
-    $(".timepicker").timepicker({
-      showInputs: false
-    });
+   
 
   });
 </script>
