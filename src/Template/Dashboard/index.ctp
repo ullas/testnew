@@ -387,19 +387,16 @@ $this->Html->script([
             type : 'get',
             url : '/Dashboard/getChartData',
             success : function(response) {
-                // data1="[" +response + "]";
-                // for (i = 0; i < response.length; i++) { 
-   					var data = response.serialize();alert(data);
-				// }
+              
 				if(!(typeof response['businesstime'] !== 'undefined' && response['businesstime'] !== null)){
-					var businesstimearr=response['businesstime'];console.log(response[0]);
-					 // for (i = 0; i < businesstimearr.length; i++) { 
-//    						
-					// }
+					var data=JSON.parse(response);
+					
+					data1=data['businesstime'];
+					data2=data['fuel'];
 				}
 				
-                data1[0] = 25;data1[1] = 105;data1[2] = 45;
-                data2[0] = 55;data2[1] = 35;data2[2] = 75;
+                // data1[0] = 25;data1[1] = 105;data1[2] = 45;
+                // data2[0] = 55;data2[1] = 35;data2[2] = 75;
                 // Get context with jQuery - using jQuery's .get() method.
                 var salesChartCanvas = $("#salesChart").get(0).getContext("2d");
                 // This will get the first returned node in the jQuery collection.
