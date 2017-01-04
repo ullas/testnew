@@ -355,14 +355,15 @@ class SchedulesController extends AppController
 			 
 			  $locations = $this->Schedules->Locationsschedules->find()->select(['id','orderid','sat','sdt','Locations.name'])->where("schedule_id=".$id)
 			  					 ->leftJoin('Locations', 'Locations.id = Locationsschedules.location_id')->toArray();
+								 
  				$nodays = $schedule['nodays'];
 				$strTime = $schedule['start_time'];
 				$endTime = $schedule['end_time'];
-				$this->log(json_encode($locations));
+				$this->log(json_encode($strTime."--".$endTime));
 				//$this->log($sttime);
 				//$this->log($endtime);
 				$param = $this->request->data;
-				echo $strTime;
+				// echo $strTime;
 				foreach($param as $key=>$value)
 				{
 					if(strlen($key) > 3 && substr($key,0,3) == 'sat')
@@ -400,19 +401,13 @@ class SchedulesController extends AppController
 			  
 			  
        
-	   		  $times = array('10:00'=>'10:00','10:30'=>'10:30','10:35'=>'10:35','10:45'=>'10:45','11:00'=>'11:00','11:30'=>'11:30','11:35'=>'11:35','11:40'=>'11:40','11:50'=>'11:50','12:00'=>'12:00');
-			   for($s=1;$s<=$nodays;$s++)
-			        {
-			  			$days[$s] = $s;
-			  	    }
+	   		  $times = array('00:00'=>'00:00','00:30'=>'00:30','10:00'=>'10:00','10:30'=>'10:30','10:35'=>'10:35','10:45'=>'10:45','11:00'=>'11:00','11:30'=>'11:30','11:35'=>'11:35','11:40'=>'11:40','11:50'=>'11:50','12:00'=>'12:00');
+			  for($s=1;$s<=$nodays;$s++)
+			  {
+			  		$days[$s] = $s;
+			  }
 			  //$days = array('1'=>'1','2'=>'2','3'=>'3');
-			  // $date_arr= explode(" ", $sttime);
-				// $date1= $date_arr[0];
-				// $strTime= $date_arr[1];
-// 				
-				// $date_arr= explode(" ", $endtime);
-				// $date2= $date_arr[0];
-				// $endTime= $date_arr[1];
+			 
 	   
 	   print_r(json_encode($days));
 			  $this->set(compact('times', 'locations','days','strTime','endTime','nodays'));
