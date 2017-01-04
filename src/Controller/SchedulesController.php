@@ -255,9 +255,12 @@ class SchedulesController extends AppController
 		}
         if ($this->request->is(['patch', 'post', 'put'])) {
             $schedule = $this->Schedules->patchEntity($schedule, $this->request->data);
-             $schedule['customer_id']=$this->currentuser['customer_id'];
-            if ($this->Schedules->save($schedule)) {
-                $this->Flash->success(__('The schedule has been saved.'));
+             $schedule['customer_id']=$this->loggedinuser['customer_id'];
+            if ($id =$this->Schedules->save($schedule)) {
+               		
+               	$nodays = $schedule['nodays'];
+				return $this->redirect(['action' => 'timetable',$id->id ]);
+               // $this->Flash->success(__('The schedule has been saved.'));
 
                 return $this->redirect(['action' => 'index']);
             } else {
@@ -352,9 +355,14 @@ class SchedulesController extends AppController
 			 
 			  $locations = $this->Schedules->Locationsschedules->find()->select(['id','orderid','sat','sdt','Locations.name'])->where("schedule_id=".$id)
 			  					 ->leftJoin('Locations', 'Locations.id = Locationsschedules.location_id')->toArray();
- 				
+ 				$nodays = $schedule['nodays'];
+				$strTime = $schedule['start_time'];
+				$endTime = $schedule['end_time'];
+				$this->log(json_encode($locations));
+				//$this->log($sttime);
+				//$this->log($endtime);
 				$param = $this->request->data;
-				echo $id;
+				echo $strTime;
 				foreach($param as $key=>$value)
 				{
 					if(strlen($key) > 3 && substr($key,0,3) == 'sat')
@@ -362,8 +370,8 @@ class SchedulesController extends AppController
 							$token = substr($key,3);
 							$value1 = $param['sat'.$token];
 							$value2 = $param['sdt'.$token];
-							$value3 = $param['dys'.$token];
-							$value4 = $param['dye'.$token];
+							$value3 = $param['dys'.$token]+ 1;
+							$value4 = $param['dye'.$token]+ 1;
 							//$value5 = $param['oid'.$token];
 							$timetable=$this->Schedules->Locationsschedules->get($token);
 							$timetable['day_start'] = $value3;
@@ -392,11 +400,22 @@ class SchedulesController extends AppController
 			  
 			  
        
-	   		  $times = array('00:00'=>'00:00','00:30'=>'00:30','01:00'=>'01:00');
-			  $days = array('1'=>'1','2'=>'2','3'=>'3');
+	   		  $times = array('10:00'=>'10:00','10:30'=>'10:30','10:35'=>'10:35','10:45'=>'10:45','11:00'=>'11:00','11:30'=>'11:30','11:35'=>'11:35','11:40'=>'11:40','11:50'=>'11:50','12:00'=>'12:00');
+			   for($s=1;$s<=$nodays;$s++)
+			        {
+			  			$days[$s] = $s;
+			  	    }
+			  //$days = array('1'=>'1','2'=>'2','3'=>'3');
+			  // $date_arr= explode(" ", $sttime);
+				// $date1= $date_arr[0];
+				// $strTime= $date_arr[1];
+// 				
+				// $date_arr= explode(" ", $endtime);
+				// $date2= $date_arr[0];
+				// $endTime= $date_arr[1];
 	   
-	   
-			  $this->set(compact('times', 'locations','days'));
+	   print_r(json_encode($days));
+			  $this->set(compact('times', 'locations','days','strTime','endTime','nodays'));
 			  // $this->set( 'locations',$locations );
               $this->set('_serialize', ['locations']);
 			

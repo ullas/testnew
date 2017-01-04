@@ -105,9 +105,7 @@ $this->Html->script([
             format:"dd/mm/yy",
               autoclose: true
    });
-    $(".timepicker").timepicker({
-      showInputs: false
-    });
+  
 
   });
 </script>
