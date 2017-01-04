@@ -409,7 +409,7 @@ class SchedulesController extends AppController
 			  //$days = array('1'=>'1','2'=>'2','3'=>'3');
 			 
 	   
-	   print_r(json_encode($days));
+	   // print_r(json_encode($days));
 			  $this->set(compact('times', 'locations','days','strTime','endTime','nodays'));
 			  // $this->set( 'locations',$locations );
               $this->set('_serialize', ['locations']);

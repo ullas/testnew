@@ -49,6 +49,8 @@
 								echo "<td>".$this->Form->input('dye'.$p, ['value' => $locations[$i]['dye'],'options' => $days,'class'=>'mptl-schitem3 select2','label'=>false])."</td>";
 								echo "<td>".$this->Form->input('sdt'.$p, ['value' => $locations[$i]['sdt'],'options' => $times,'class'=>'mptl-schitem4 select2','label'=>false])."</td>";
 								
+								echo '<td class="text-center"><a class="move up"><i class="fa fa-arrow-up"></i></a> <a class="move down"><i class="fa fa-arrow-down"></i></a></td>';
+        
 								echo "<td class='err'></td>";
 								echo "</tr>";
 	            			}
@@ -69,6 +71,14 @@
 <!-- /.content -->
 <?php $this->start('scriptBotton'); ?>
 <script>
+$('#timetable a.move').click(function() {
+    var row = $(this).closest('tr');
+    if ($(this).hasClass('up'))
+        row.prev().before(row);
+    else
+        row.next().after(row);
+});
+
 jQuery("#scheduleCheck").submit(function(){
 			if (validateschedule()) {
 				return true;
