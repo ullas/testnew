@@ -7,15 +7,8 @@
       </div>
       <div class="modal-body" style="padding-bottom:0">
       	<div class="box box-primary">
-          <!-- <ul class="todo-list" style="margin-bottom:2px">
-              <li>
-                
-               
-                <small class="label label-success"><i class="fa fa-check-square"></i>
-                  Drag <i class="fa fa-ellipsis-v"></i>&nbsp;<i class="fa fa-ellipsis-v"></i> to re-order the columns.
-                </small>
-              </li>
-            </ul> -->
+          
+
             <ul class="todo-list column-list">
               <?php
               echo "<td>  <input type=hidden id=nodays name=nodays value=".$nodays."></td>";
@@ -51,10 +44,10 @@
 								echo "<td> <input type = hidden name = oid.$i></td>";
 								//echo "<td>".$this->Form->input('oid'.$i)."</td>";
 								echo "<td>".$locations[$i]['Locations']['name']."</td>";
-								echo "<td>".$this->Form->input('dys'.$p, ['options' => $days,'class'=>'mptl-schitem1 select2','label'=>false])."</td>";
-								echo "<td>".$this->Form->input('sat'.$p, ['options' => $times,'class'=>'mptl-schitem2 select2','label'=>false])."</td>";
-								echo "<td>".$this->Form->input('dye'.$p, ['options' => $days,'class'=>'mptl-schitem3 select2','label'=>false])."</td>";
-								echo "<td>".$this->Form->input('sdt'.$p, ['options' => $times,'class'=>'mptl-schitem4 select2','label'=>false])."</td>";
+								echo "<td>".$this->Form->input('dys'.$p, ['value' => $locations[$i]['dys'], 'options' => $days,'class'=>'mptl-schitem1 select2','label'=>false])."</td>";
+								echo "<td>".$this->Form->input('sat'.$p, ['value' => $locations[$i]['sat'],'options' => $times,'class'=>'mptl-schitem2 select2','label'=>false])."</td>";
+								echo "<td>".$this->Form->input('dye'.$p, ['value' => $locations[$i]['dye'],'options' => $days,'class'=>'mptl-schitem3 select2','label'=>false])."</td>";
+								echo "<td>".$this->Form->input('sdt'.$p, ['value' => $locations[$i]['sdt'],'options' => $times,'class'=>'mptl-schitem4 select2','label'=>false])."</td>";
 								
 								echo "<td class='err'></td>";
 								echo "</tr>";
@@ -68,9 +61,7 @@
       </div>
       <div class="modal-footer">
       	<input type="submit" value="Save" class="scheduleCheck mptl-settings-save btn btn-success"/>
-      	<!-- <button class="mptl-settings-save btn btn-success" onclick="validate()">Save Changes</button> -->
-        <!-- <button type="button" class="mptl-settings-save btn btn-success">Save changes</button>
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button> -->
+      	
       </div>
     </div>
     <?= $this->Form->end() ?>

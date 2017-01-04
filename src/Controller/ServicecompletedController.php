@@ -51,7 +51,7 @@ class ServicecompletedController extends AppController
          $fields = array();
 		 
 				$fields[0] = array("name" =>"Servicecompleted.id"  , "type" => "num");
-				$fields[1] = array("name" =>"Servicecompleted.servicesentry_id"  , "type" => "char");
+				$fields[1] = array("name" =>"Servicecompleted.servicesentry_id"  , "type" => "num");
 				$fields[2] = array("name" =>"Servicecompleted.servicescompleted"  , "type" => "char");
 				$fields[3] = array("name" =>"Servicecompleted.description"  , "type" => "char");
 				
