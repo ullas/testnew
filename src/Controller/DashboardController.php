@@ -361,10 +361,10 @@ class DashboardController extends AppController
     		$alertTable = TableRegistry::get('Alerts');
 			//$currdate = date("Y-m-d",strtotime($datetime));
 			//$query=$alertTable->find('All')->where (['alertcategories_id' => '1'])->andwhere(['date("Y-m-d",strtotime(alert_dtime)) = date(now())'])->andwhere(['customer_id'=>$this->loggedinuser['customer_id']]);
-			 $query=$alertTable->find('All')->where (['alertcategories_id' => '1'])->andwhere(['EXTRACT(day from alert_dtime) = EXTRACT(day from date(now()))'])->andwhere(['customer_id'=>$this->loggedinuser['customer_id']]);
+			 $query=$alertTable->find('All')->where (['alertcategories_id' => '1'])->andwhere(['date(alert_dtime)  = date(now())'])->andwhere(['customer_id'=>$this->loggedinuser['customer_id']]);
 			  (isset($query)) ? $overspeedalertcount=$query->count(): $overspeedalertcount="";
 			 
-			  $query=$alertTable->find('All')->where(['EXTRACT(day from alert_dtime) = EXTRACT(day from (now()))'])->andwhere (['alertcategories_id' => '1'])->andwhere(['customer_id'=>$this->loggedinuser['customer_id']])->toArray();
+			  $query=$alertTable->find('All')->where(['date(alert_dtime)  = date(now())'])->andwhere (['alertcategories_id' => '1'])->andwhere(['customer_id'=>$this->loggedinuser['customer_id']])->toArray();
 			  (isset($query)) ? $alertscontent=$query : $alertscontent="";
 			  
 			   $this->set(compact('overspeedalertcount','alertscontent'));
@@ -375,12 +375,15 @@ class DashboardController extends AppController
     		$gpsdatatable = TableRegistry::get('Gpsdata');
 			
 			  $var = "'running'";
-			  $query=$gpsdatatable->find('All')->where(['EXTRACT(day from msgdtime)  = EXTRACT(day from now())'])->andwhere(['status = '. $var .'' ])->andwhere(['customer_id'=>$this->loggedinuser['customer_id']]);
-			 
+			  $query=$gpsdatatable->find('All')->where(['date(msgdtime)  = date(now())'])->andwhere(['status = '. $var .'' ])->andwhere(['customer_id'=>$this->loggedinuser['customer_id']]);
 			  (isset($query)) ? $runningvehiclescount=$query->count(): $runningvehiclescount="";
-			  $query2=$gpsdatatable->find('All')->where(['EXTRACT(day from msgdtime)  = EXTRACT(day from now())'])->andwhere(['customer_id'=>$this->loggedinuser['customer_id']]);
+			  
+			  $query2=$gpsdatatable->find('All')->where(['date(msgdtime)  = date(now())'])->andwhere(['customer_id'=>$this->loggedinuser['customer_id']]);
 			  $vehiclescount=$query2->count();
 			  (isset($query2)) ? $vehiclescount=$query2->count(): $vehiclescount="";
+			 
+			 $query2=$gpsdatatable->find('All')->where(['date(msgdtime)  = date(now())'])->andwhere(['status = '. $var .'' ])->andwhere(['customer_id'=>$this->loggedinuser['customer_id']])->toArray();
+			 (isset($query2)) ? $vehiclescontent=$query2: $vehiclescontent="";
 			 
 			   if($vehiclescount > 0)
 		  		{
@@ -391,7 +394,7 @@ class DashboardController extends AppController
 			   		 $percentagerunning = 0;
 					
 			   	}
-			   $this->set(compact('overspeedalertcount','alertscontent'));
+			   $this->set(compact('runningvehiclescount','percentagerunning','vehiclescontent'));
 		
     	}
 		public function driversmoreinfo()
