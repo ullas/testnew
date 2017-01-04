@@ -3,7 +3,7 @@
     <div class="content">
     	<!--<?= $this->Form->create($alert) ?>-->
       <div class="modal-header" style="padding-bottom:0">
-        <h3 class="modal-title" id="modalSettings">Over Speed Alerts</h3>
+        <h3 class="modal-title" id="modalSettings">Running Vehicles</h3>
       </div>
       <div class="modal-body" style="padding-bottom:0">
       	<div class="box box-primary">
@@ -23,11 +23,10 @@
 	            	<thead>
 	            		<tr id="trheader">
 	            			
-	            			<th> Alert </th>
-	            			<th> Alert Time</th>
-	            			<th> Acknowledged</th>
-	            			<th> Location</th>
-	            			<th> Velocity</th>
+	            			<th> IMEI </th>
+	            			<th> Message Time</th>
+	            			<th> Status</th>
+	            			<th> Odometer</th>
 	            			<!-- <th> Day</th>
 	            			<th> SAT</th>
 	            			<th> Day</th>
@@ -38,13 +37,13 @@
 	            		<?php
                 			// echo json_encode($locations);
 							
-	            			for ($i = 0; $i < count($alertscontent); $i++) {
-	            				echo "<tr id=".$alertscontent[$i]['id'].">";
-								echo "<td>".$alertscontent[$i]['alert']."</td>";
-								echo "<td>".$alertscontent[$i]['alert_dtime']."</td>";
-								echo "<td>".$alertscontent[$i]['ack']."</td>";
-								echo "<td>".$alertscontent[$i]['location']."</td>";
-								echo "<td>".$alertscontent[$i]['velocity']."</td>";
+	            			for ($i = 0; $i < count($vehiclescontent); $i++) {
+	            				echo "<tr id=".$vehiclescontent[$i]['id'].">";
+								echo "<td>".$vehiclescontent[$i]['imei']."</td>";
+								echo "<td>".$vehiclescontent[$i]['msgdtime']."</td>";
+								echo "<td>".$vehiclescontent[$i]['status']."</td>";
+								echo "<td>".$vehiclescontent[$i]['odometer']."</td>";
+							//	echo "<td>".$runningvehiclescount[$i]['velocity']."</td>";
 								// echo "<td>".$alertscontent[$i]['Trackingobjects']['name']."</td>";
 							//	echo "<td>".$alertscontent[$i]['Locations']['name']."</td>";
 							//	echo "<td>".$this->Form->input('day_start', ['options' => $days,'class'=>'select2','label'=>false])."</td>";

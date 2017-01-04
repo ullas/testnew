@@ -101,8 +101,10 @@ $this->Html->script([
   $(function () {
     //Initialize Select2 Elements
    $(".select2").select2({ width: '100%' });
-   $(".datemask").inputmask("yyyy/mm/dd", {"placeholder": "yyyy/mm/dd"});
-   
+   $('.datemask').datepicker({
+            format:"dd/mm/yy",
+              autoclose: true
+   });
 
   });
 </script>
