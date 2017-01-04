@@ -426,7 +426,7 @@ div.dataTables_wrapper { clear: both; }
   	
   	$(".mptlmaster-delete").click(function(){
   		var url=$(this).attr("data-id");
-  		alert(url);
+  		// alert(url);
   		$.ajax(
 			    {
 			        url : url,
