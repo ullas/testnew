@@ -275,8 +275,9 @@ class TripsController extends AppController
 			$trip['edt'] = $todaydate.' '.$trip['edt'];
 			$trip['eat'] = $todaydate.' '.$trip['eat'];
 			 
-            if ($this->Trips->save($trip)) {
-                $this->Flash->success(__('The trip has been saved.'));
+            if ($id = $this->Trips->save($trip)) {
+                return $this->redirect(['action' => 'timetable',$id->id ]);	
+                //$this->Flash->success(__('The trip has been saved.'));
 
                 return $this->redirect(['action' => 'index']);
             } else {
@@ -364,14 +365,22 @@ class TripsController extends AppController
 
              return $this->redirect(['action' => 'index']);	
      }
- public function timetable($id)
+	
+	public function timetable($id)
 	    {
 	    	 $trip = $this->Trips->get($id, ['contain' => ['Locations'] ]);
-			 $locations = $this->Trips->Locationstrips->find()->select(['id','orderid','sat','sdt','Locations.name'])->where("trip_id=".$id)
+			 
+			  $locations = $this->Trips->Locationstrips->find()->select(['id','orderid','sat','sdt','Locations.name'])->where("trip_id=".$id)
 			  					 ->leftJoin('Locations', 'Locations.id = Locationstrips.location_id')->toArray();
- 				
+								 
+ 				$nodays = $trip['nodays'];
+				$strTime = $trip['start_time'];
+				$endTime = $trip['end_time'];
+				//$this->log(json_encode($strTime."--".$endTime));
+				//$this->log($sttime);
+				//$this->log($endtime);
 				$param = $this->request->data;
-				echo $id;
+				// echo $strTime;
 				foreach($param as $key=>$value)
 				{
 					if(strlen($key) > 3 && substr($key,0,3) == 'sat')
@@ -383,8 +392,8 @@ class TripsController extends AppController
 							$value4 = $param['dye'.$token];
 							//$value5 = $param['oid'.$token];
 							$timetable=$this->Trips->Locationstrips->get($token);
-							$timetable['day_start'] = $value3;
-							$timetable['day_end'] = $value4;
+							$timetable['day_start_s'] = $value3;
+							$timetable['day_end_s'] = $value4;
 							$timetable['sat'] = $value1;
 							$timetable['sdt'] = $value2;
 							$timetable['customer_id'] = $this->loggedinuser['customer_id'];
@@ -393,6 +402,12 @@ class TripsController extends AppController
 					}
 					
 				}				
+			 $start=strtotime('00:00');
+				$end=strtotime('24:00');
+				for ($halfhour=$start;$halfhour<=$end;$halfhour=$halfhour+5*60) {
+    				$timeintrvl=date('H:i',$halfhour);
+    				$times[$timeintrvl]=$timeintrvl;
+				}
 			 
 			   // isset($locations[0])?$timetable=$locations[0] : $timetable=$this->Schedules->Locationsschedules->newEntity();
 			   // if ($this->request->is(['patch', 'post', 'put'])) {
@@ -409,11 +424,18 @@ class TripsController extends AppController
 			  
 			  
        
-	   		  $times = array('00:00'=>'00:00','00:30'=>'00:30','01:00'=>'01:00');
-			  $days = array('1'=>'1','2'=>'2','3'=>'3');
-	   
-	   
-			  $this->set(compact('times', 'locations','days'));
+	   		 // $times = array('00:00'=>'00:00','00:30'=>'00:30','10:00'=>'10:00','10:30'=>'10:30','10:35'=>'10:35','10:45'=>'10:45','11:00'=>'11:00','11:30'=>'11:30','11:35'=>'11:35','11:40'=>'11:40','11:50'=>'11:50','12:00'=>'12:00');
+			  for($s=1;$s<=$nodays;$s++)
+			  {
+			  		$days[$s] = $s;
+			  }
+			  //$days = array('1'=>'1','2'=>'2','3'=>'3');
+			 $this->log('strTime'.$strTime);
+			$this->log('endtime'.$endTime);
+			$this->log('days'.$nodays);
+			 
+	   // print_r(json_encode($days));
+			  $this->set(compact('times', 'locations','days','strTime','endTime','nodays'));
 			  // $this->set( 'locations',$locations );
               $this->set('_serialize', ['locations']);
 			

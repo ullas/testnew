@@ -227,7 +227,7 @@ class SchedulesController extends AppController
         $routes = $this->Schedules->Routes->find('list', ['limit' => 200])->where("customer_id=".$this->loggedinuser['customer_id']);
         $timepolicies = $this->Schedules->Timepolicies->find('list', ['limit' => 200])->where("customer_id=".$this->loggedinuser['customer_id'])->orwhere("customer_id=0");
         $defaultDrivers = $this->Schedules->DefaultDrivers->find('list', ['limit' => 200])->where("customer_id=".$this->loggedinuser['customer_id']);
-        $defaultVehs = $this->Schedules->DefaultVehs->find('list', ['limit' => 200])->where("customer_id=".$this->loggedinuser['customer_id'])->where("customer_id=0");
+        $defaultVehs = $this->Schedules->DefaultVehs->find('list', ['limit' => 200])->where("customer_id=".$this->loggedinuser['customer_id'])->orwhere("customer_id=0");
         $locations = $this->Schedules->Locations->find('list', ['limit' => 200])->where("customer_id=".$this->loggedinuser['customer_id']);
         $passengergroups = $this->Schedules->Passengergroups->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']]) ;
         $drivers = $this->Schedules->Drivers->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']]) ;
@@ -274,7 +274,7 @@ class SchedulesController extends AppController
         $customers = $this->Schedules->Customers->find('list', ['limit' => 200])->where("id=".$this->loggedinuser['customer_id']);
       	$timepolicies = $this->Schedules->Timepolicies->find('list', ['limit' => 200])->where("customer_id=".$this->loggedinuser['customer_id'])->orwhere("customer_id=0");
         $defaultDrivers = $this->Schedules->DefaultDrivers->find('list', ['limit' => 200])->where("customer_id=".$this->loggedinuser['customer_id']);
-        $defaultVehs = $this->Schedules->DefaultVehs->find('list', ['limit' => 200])->where("customer_id=".$this->loggedinuser['customer_id'])->where("customer_id=0");
+        $defaultVehs = $this->Schedules->DefaultVehs->find('list', ['limit' => 200])->where("customer_id=".$this->loggedinuser['customer_id'])->orwhere("customer_id=0");
         $locations = $this->Schedules->Locations->find('list', ['limit' => 200])->where("customer_id=".$this->loggedinuser['customer_id']);
         $passengergroups = $this->Schedules->Passengergroups->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']]) ;
         $drivers = $this->Schedules->Drivers->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']]) ;
