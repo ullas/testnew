@@ -92,9 +92,9 @@ class AppController extends Controller
 		  (isset($query)) ? $this->set('alertcontent',$query): $this->set('alertcontent',"");
 		
 		  $messagesTable = TableRegistry::get('Messages');	
-		  $query=$messagesTable->find('All')->where(['customer_id'=>$this->loggedinuser['customer_id']])->andwhere(['ack = false']);
+		  $query=$messagesTable->find('All')->where(['customer_id'=>$this->loggedinuser['customer_id']])->andwhere(['ack = false'])->andwhere(['date(msg_dtime) = date(now())']);
 		  $this->set('totalmessagescount',$query->count());
-		  $query =$messagesTable->find('All')->where(['customer_id'=>$this->loggedinuser['customer_id']])->andwhere(['ack = false'])->toArray();
+		  $query =$messagesTable->find('All')->where(['customer_id'=>$this->loggedinuser['customer_id']])->andwhere(['ack = false'])->andwhere(['date(msg_dtime) = date(now())'])->toArray();
 		  (isset($query)) ? $this->set('messagescontent',$query): $this->set('messagescontent',"");
 		
     }

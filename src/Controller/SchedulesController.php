@@ -227,7 +227,7 @@ class SchedulesController extends AppController
         $routes = $this->Schedules->Routes->find('list', ['limit' => 200])->where("customer_id=".$this->loggedinuser['customer_id']);
         $timepolicies = $this->Schedules->Timepolicies->find('list', ['limit' => 200])->where("customer_id=".$this->loggedinuser['customer_id'])->orwhere("customer_id=0");
         $defaultDrivers = $this->Schedules->DefaultDrivers->find('list', ['limit' => 200])->where("customer_id=".$this->loggedinuser['customer_id']);
-        $defaultVehs = $this->Schedules->DefaultVehs->find('list', ['limit' => 200])->where("customer_id=".$this->loggedinuser['customer_id'])->where("customer_id=0");
+        $defaultVehs = $this->Schedules->DefaultVehs->find('list', ['limit' => 200])->where("customer_id=".$this->loggedinuser['customer_id'])->orwhere("customer_id=0");
         $locations = $this->Schedules->Locations->find('list', ['limit' => 200])->where("customer_id=".$this->loggedinuser['customer_id']);
         $passengergroups = $this->Schedules->Passengergroups->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']]) ;
         $drivers = $this->Schedules->Drivers->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']]) ;
@@ -274,7 +274,7 @@ class SchedulesController extends AppController
         $customers = $this->Schedules->Customers->find('list', ['limit' => 200])->where("id=".$this->loggedinuser['customer_id']);
       	$timepolicies = $this->Schedules->Timepolicies->find('list', ['limit' => 200])->where("customer_id=".$this->loggedinuser['customer_id'])->orwhere("customer_id=0");
         $defaultDrivers = $this->Schedules->DefaultDrivers->find('list', ['limit' => 200])->where("customer_id=".$this->loggedinuser['customer_id']);
-        $defaultVehs = $this->Schedules->DefaultVehs->find('list', ['limit' => 200])->where("customer_id=".$this->loggedinuser['customer_id'])->where("customer_id=0");
+        $defaultVehs = $this->Schedules->DefaultVehs->find('list', ['limit' => 200])->where("customer_id=".$this->loggedinuser['customer_id'])->orwhere("customer_id=0");
         $locations = $this->Schedules->Locations->find('list', ['limit' => 200])->where("customer_id=".$this->loggedinuser['customer_id']);
         $passengergroups = $this->Schedules->Passengergroups->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']]) ;
         $drivers = $this->Schedules->Drivers->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']]) ;
@@ -371,8 +371,8 @@ class SchedulesController extends AppController
 							$token = substr($key,3);
 							$value1 = $param['sat'.$token];
 							$value2 = $param['sdt'.$token];
-							$value3 = $param['dys'.$token]+ 1;
-							$value4 = $param['dye'.$token]+ 1;
+							$value3 = $param['dys'.$token];
+							$value4 = $param['dye'.$token];
 							//$value5 = $param['oid'.$token];
 							$timetable=$this->Schedules->Locationsschedules->get($token);
 							$timetable['day_start'] = $value3;
@@ -386,6 +386,14 @@ class SchedulesController extends AppController
 					
 				}				
 			 
+			 
+				$start=strtotime('00:00');
+				$end=strtotime('24:00');
+				for ($halfhour=$start;$halfhour<=$end;$halfhour=$halfhour+5*60) {
+    				$timeintrvl=date('H:i',$halfhour);
+    				$times[$timeintrvl]=$timeintrvl;
+				}
+
 			   // isset($locations[0])?$timetable=$locations[0] : $timetable=$this->Schedules->Locationsschedules->newEntity();
 			   // if ($this->request->is(['patch', 'post', 'put'])) {
             	 // $timetable = $this->Schedules->Locationsschedules->patchEntity($timetable, $this->request->data);
@@ -401,7 +409,7 @@ class SchedulesController extends AppController
 			  
 			  
        
-	   		  $times = array('00:00'=>'00:00','00:30'=>'00:30','10:00'=>'10:00','10:30'=>'10:30','10:35'=>'10:35','10:45'=>'10:45','11:00'=>'11:00','11:30'=>'11:30','11:35'=>'11:35','11:40'=>'11:40','11:50'=>'11:50','12:00'=>'12:00');
+	   		  // $times = array('00:00'=>'00:00','00:30'=>'00:30','10:00'=>'10:00','10:30'=>'10:30','10:35'=>'10:35','10:45'=>'10:45','11:00'=>'11:00','11:30'=>'11:30','11:35'=>'11:35','11:40'=>'11:40','11:50'=>'11:50','12:00'=>'12:00');
 			  for($s=1;$s<=$nodays;$s++)
 			  {
 			  		$days[$s] = $s;
@@ -409,7 +417,7 @@ class SchedulesController extends AppController
 			  //$days = array('1'=>'1','2'=>'2','3'=>'3');
 			 
 	   
-	   print_r(json_encode($days));
+	   // print_r(json_encode($days));
 			  $this->set(compact('times', 'locations','days','strTime','endTime','nodays'));
 			  // $this->set( 'locations',$locations );
               $this->set('_serialize', ['locations']);

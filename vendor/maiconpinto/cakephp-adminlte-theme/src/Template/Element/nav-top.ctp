@@ -65,7 +65,7 @@ if (file_exists($file)) {
 							?>
                         </ul>
                     </li>
-                    <li class="footer"><a href="/messages/">See All Messages</a></li>
+                    <li class="footer"><a href="/Dashboard/messagesviewall/">See All Messages</a></li>
                 </ul>
             </li>
             <!-- Notifications: style can be found in dropdown.less -->
@@ -90,7 +90,7 @@ if (file_exists($file)) {
 							?>
                         </ul>
                     </li>
-                    <li class="footer"><a href="#">View all</a></li>
+                    <li class="footer"><a href="/Dashboard/alertsviewall/">View all</a></li>
                 </ul>
             </li>
             <!-- Tasks: style can be found in dropdown.less -->

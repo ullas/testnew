@@ -88,6 +88,7 @@
 			echo $this->Form->input('eat', ['label'=>'EAT','class' => 'timepicker','type' => 'text','templateVars' => ['opentag' => '<div class="bootstrap-timepicker">','closetag' => '</div>','icon' => '<div class="input-group-addon"><i class="fa fa-clock-o"></i></div>']]);
 			echo $this->Form->input('vehiclecategory_id', ['label'=>'Vehicle Category','options' => $vehiclecategories, 'empty' => true,'class'=>'select2']);
             echo $this->Form->input('platform');
+			echo $this->Form->input('nodays',['label'=>'No of Days']);
 			echo $this->Form->input('triptype_id', ['label'=>'Trip Type','options' => $triptypes, 'empty' => true,'class'=>'select2']);
         	?>
         	<div class="form-group">
