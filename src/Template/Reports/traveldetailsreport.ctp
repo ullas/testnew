@@ -16,157 +16,102 @@
     	 <div class="box box-primary">
      
       <div class="modal-body" style="padding-bottom:0">
-      	<div class="form-horizontal">
-          
+	          
 <div class="row">
 	<div class="col-md-4">
-		<div class="form-group">
-			<!-- <label class="col-sm-3 control-label" for="name">Report</label> -->
-			<div class="col-sm-9"><div class="input-group">
+			<div class="col-sm-12">
 				<?php 
-				echo $this->Form->input('reporttype', [ 'options' => $reporttypes,'class'=>'mptl-schitem1 select2','label'=>'Report']);
-            
+					echo $this->Form->input('reporttype', [ 'options' => $reporttypes,'class'=>'select2','label'=>'Report']);
 				?>
-				<!-- <input type="text" name="name" maxlength="50" id="name" class="form-control"> -->
+			</div>		
+	</div>
+	
+	
+	<div class="col-md-4">
+			<div class="col-sm-12">
+				<?php 
+				echo $this->Form->input('Group Name', [ 'options' => $groupsdatanames,'class'=>'select2','label'=>'Group Name']);
+				?>
+			</div>		
+	</div>
+	
+	
+	<div class="col-md-4">
+			<div class="col-sm-12">
+				<?php 
+				echo $this->Form->input('Asset Name', [ 'options' => $groupsdatanames,'class'=>'select2','label'=>'Asset Name'])
+				?>
+			</div>		
+	</div>
+	
+	
+	
+</div>
+
+<div class="row">
+	<div class="col-md-3"><div class="col-sm-12">
+		<div class="form-group">
+			<label for="startdate">Start Date</label>
+			<div class="input-group"><div class="input-group-addon"><i class="fa fa-calendar"></i></div>
+			<input type="text" name="startdate" empty="1" required="required" class="datemask form-control" id="startdate">
+				<!-- <?php 
+				echo $this->Form->input('startdate', [ 'type'=>'text','empty' => true,'class'=>'datemask','label'=>'Start Date','templateVars' => ['icon' => '<div class="input-group-addon"><i class="fa fa-calendar"></i></div>']]);
+				?> -->
 			</div></div>
 		</div>
 		
 	</div>
 	
-	
-	<div class="col-md-4">
-		<div class="form-group">
-			<!-- <label class="col-sm-3 control-label" for="name">Report</label> -->
-			<div class="col-sm-9"><div class="input-group">
+	<div class="col-md-3">
+			<div class="col-sm-12">
 				<?php 
-				echo $this->Form->input('Group Name', [ 'options' => $groupsdatanames,'class'=>'mptl-schitem1 select2','label'=>'Group Name']);
+				echo $this->Form->input('starttime', [ 'options' => $times,'class'=>'select2','label'=>'Start Time']);
 				?>
-				<!-- <input type="text" name="name" maxlength="50" id="name" class="form-control"> -->
-			</div></div><div class="col-sm-offset-3 col-sm-6" style="margin-top:4px"></div>
-		</div>
+			</div>		
+	</div>
+	
+	<div class="col-md-3"><div class="col-sm-12">
+		<div class="form-group">
+			<label for="enddate">End Date</label>
+			<div class="input-group"><div class="input-group-addon"><i class="fa fa-calendar"></i></div>
+			<input type="text" name="enddate" empty="1" required="required" class="datemask form-control" id="enddate">
+				<!-- <?php 
+				echo $this->Form->input('enddate', [ 'type'=>'text','empty' => true,'class'=>'datemask','label'=>'End Date']);
+				?> -->
+			</div>
+		</div></div>
 		
 	</div>
 	
-	
-	<div class="col-md-4">
-		<div class="form-group">
-			<!-- <label class="col-sm-3 control-label" for="name">Report</label> -->
-			<div class="col-sm-9"><div class="input-group">
+	<div class="col-md-3">
+			<div class="col-sm-12">
 				<?php 
-				echo $this->Form->input('Asset Name', [ 'options' => $groupsdatanames,'class'=>'mptl-schitem1 select2','label'=>'Asset Name'])
+				echo $this->Form->input('endtime', [ 'options' => $times,'class'=>'select2','label'=>'End Time']);
 				?>
-				<!-- <input type="text" name="name" maxlength="50" id="name" class="form-control"> -->
-			</div></div><div class="col-sm-offset-3 col-sm-6" style="margin-top:4px"></div>
-		</div>
-		
+			</div>		
 	</div>
 	
 	
 	
 </div>
 
-<div class="row">
-	<div class="col-md-3">
-		<div class="form-group">
-			<!-- <label class="col-sm-3 control-label" for="name">Report</label> -->
-			<div class="col-sm-6"><div class="input-group">
-				<?php 
-				echo $this->Form->input('startdate', [ 'type'=>'text','empty' => true,'class'=>'datemask','label'=>'Start Date','templateVars' => ['icon' => '<div class="input-group-addon"><i class="fa fa-calendar"></i></div>']]);
-				?>
-				<!-- <input type="text" name="name" maxlength="50" id="name" class="form-control"> -->
-			</div></div><div class="col-sm-offset-3 col-sm-6" style="margin-top:4px"></div>
-		</div>
-		
-	</div>
-	
-	<div class="col-md-3">
-		<div class="form-group">
-			<!-- <label class="col-sm-3 control-label" for="name">Report</label> -->
-			<div class="col-sm-6"><div class="input-group">
-				<?php 
-				echo $this->Form->input('starttime', [ 'options' => $times,'class'=>'mptl-schitem2 select2','label'=>'Start Time']);
-				?>
-				<!-- <input type="text" name="name" maxlength="50" id="name" class="form-control"> -->
-			</div></div><div class="col-sm-offset-3 col-sm-6" style="margin-top:4px"></div>
-		</div>
-		
-	</div>
-	
-	<div class="col-md-3">
-		<div class="form-group">
-			<!-- <label class="col-sm-3 control-label" for="name">Report</label> -->
-			<div class="col-sm-6"><div class="input-group">
-				<?php 
-				echo $this->Form->input('enddate', [ 'type'=>'text','empty' => true,'class'=>'datemask','label'=>'End Date','templateVars' => ['icon' => '<div class="input-group-addon"><i class="fa fa-calendar"></i></div>']]);
-				?>
-				<!-- <input type="text" name="name" maxlength="50" id="name" class="form-control"> -->
-			</div></div><div class="col-sm-offset-3 col-sm-6" style="margin-top:4px"></div>
-		</div>
-		
-	</div>
-	<div class="col-md-3">
-		<div class="form-group">
-			<!-- <label class="col-sm-3 control-label" for="name">Report</label> -->
-			<div class="col-sm-6"><div class="input-group">
-				<?php 
-				echo $this->Form->input('endtime', [ 'options' => $times,'class'=>'mptl-schitem1 select2','label'=>'End Time']);
-				?>
-				<!-- <input type="text" name="name" maxlength="50" id="name" class="form-control"> -->
-			</div></div><div class="col-sm-offset-3 col-sm-6" style="margin-top:4px"></div>
-		</div>
-		
-	</div>
-	
-	
-	
-</div>
-
-</div>
-              <!-- <?php
-               				
-             
-              		echo "<td>".$this->Form->input('reporttype', [ 'options' => $reporttypes,'class'=>'mptl-schitem1 select2','label'=>'Report'])."</td>";
-				 	echo "<td>".$this->Form->input('startdate', [ 'type'=>'text','empty' => true,'class'=>'datemask','label'=>'Start Date','templateVars' => ['icon' => '<div class="input-group-addon"><i class="fa fa-calendar"></i></div>']])."</td>";
-					echo "<td>".$this->Form->input('starttime', [ 'options' => $times,'class'=>'mptl-schitem2 select2','label'=>'Start Time'])."</td>";
-			 		echo "<td>".$this->Form->input('enddate', [ 'type'=>'text','empty' => true,'class'=>'datemask','label'=>'End Date','templateVars' => ['icon' => '<div class="input-group-addon"><i class="fa fa-calendar"></i></div>']])."</td>";
-					echo "<td>".$this->Form->input('endtime', [ 'options' => $times,'class'=>'mptl-schitem1 select2','label'=>'End Time'])."</td>";
-					echo "<td>".$this->Form->input('Group Name', [ 'options' => $groupsdatanames,'class'=>'mptl-schitem1 select2','label'=>'Group Name'])."</td>";
-					echo "<td>".$this->Form->input('Asset Name', [ 'options' => $groupsdatanames,'class'=>'mptl-schitem1 select2','label'=>'Asset Name'])."</td>";
-							
-              ?> -->
+            
 <div class="modal-footer">
-      	<input type="submit" value="Generate Report" class="scheduleCheck mptl-settings-save btn btn-success"/>
+      	<input type="button" value="Generate Report" class="scheduleCheck mptl-settings-save btn btn-success" id="generatereport"/>
       	
 </div></div></div>
       
       
  <div class="box box-primary">   
  	<div class="box-body">  
-	           <table id="mptlindextbl" class="table table-hover  table-bordered ">
+	           <table id="traveldetailstbl" class="table table-hover  table-bordered ">
         <thead>
             <tr>
             	<th data-orderable="false"><input type="checkbox" name="select_all" value="1" id="select-all" ></th>
            	
-               <?php
-               if(isset($colheads))
-			   {
-			   
-	               	 for($i=1;$i<count($colheads);$i++)
-	               	 {
-	                 echo "<th>". $colheads[$i]["title"] ."</th>";
-	                 }
-				
-			   }
-			   else
-			   {
-                    // for($i=1;$i<count($configs);$i++)
-                    // {
-                    // echo "<th>". $configs[$i]['title'] ."</th>";
-                    // }
-				  
-			   }
-			   ?>  
-                
+             
+                <th>IMEI</th>
+                <th>Heading</th>
                 <th data-orderable="false">Actions</th>
             </tr>
         </thead>
@@ -179,6 +124,47 @@
 <!-- /.content -->
 <?php $this->start('scriptBotton'); ?>
 <script>
+$('#generatereport').click(function(){
+	var table= $('#traveldetailstbl').DataTable({
+          "paging": true,
+          //disable 0th column checkbox default sort order
+          "order": [[ 1, 'asc' ]],
+          "lengthChange": true,
+          "searching": true,
+          "ordering": true,
+          "info": true,
+          "autoWidth": false,
+          "scrollX":true,
+          colReorder: false,
+          stateSave:false,
+          responsive: true,
+          // "initComplete": function(settings, json) {
+          // },
+          "drawCallback": function( settings ) {
+        		tableLoaded();
+   		  },
+          oLanguage        : {
+        		sSearch: '<div class="input-group"><span class="input-group-addon"><span class="fa fa-search"></span></span>',
+            	sSearchPlaceholder: 'Search here...',
+		},
+        //server side processing
+          "processing": true,
+          "serverSide": true,
+          "ajax": "/Tracking/ajax_data",'data':{'value_to_send':'value'}, 
+          'columnDefs': [{
+        'targets': 0,
+        'className': 'dt-body-center',
+        'render': function (data, type, full, meta){
+            return '<input type="checkbox" class="mptl-lst-chkbox" name="chk-' + data + '" value="' + $('<div/>').text(data).html() + '">';
+        },
+           
+     },
+     
+     ]
+    });
+});
+
+
 $('#timetable a.move').click(function() {
     var row = $(this).closest('tr');
     if ($(this).hasClass('up'))

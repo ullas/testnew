@@ -15,7 +15,7 @@ class TrackingController extends AppController
    
 
    
-  
+  public $components = ['Datatablemaster'];
     /**
      * Index method
      *
@@ -76,5 +76,31 @@ class TrackingController extends AppController
 	     return $this->response;
 	}
 
-    
+    public function ajaxData() 
+	{
+        
+        $this->loadModel('Tracking');
+        $dbout=$this->Tracking->find('all')->toArray();
+     
+        $fields = array();
+		 
+				$fields[0] = array("name" =>"Tracking.id"  , "type" => "num");
+				$fields[1] = array("name" =>"Tracking.imei"  , "type" => "char");
+				$fields[2] = array("name" =>"Tracking.heading"  , "type" => "char");
+				
+		// if( $this->request->is('ajax') ) {
+     		// echo $_POST['value_to_send'];
+     		// echo   $value = $this->request->data();
+
+     		//or debug($this->request->data);
+        	debug($this->request->data());
+    	// }
+
+		// $this->log($fields);
+		$output =$this->Datatablemaster->getView($fields,['Customers'],null);
+		$out =json_encode($output);  
+	   
+		$this->response->body($out);
+	    return $this->response;
+	}
 }
