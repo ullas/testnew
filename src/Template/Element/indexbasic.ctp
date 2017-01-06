@@ -17,6 +17,12 @@
         <div class="col-md-12">
   <div class="box box-primary">
       <div class="box-body">
+      	<!-- export buttons without flash -->
+      	<div id="exportdiv" style="margin-bottom: 5px;"><a href="#" id="copydt" class="btn btn-sm btn-success" style="margin-left:5px;" title="Copy"><i class='fa fa-files-o'></i></a>
+      	<a href="#" id="printdt" class="btn btn-sm btn-success" style="margin-left:5px;" title="Print"><i class='fa fa-print'></i></a>
+      	<a href="#" id="savexlsx" class="btn btn-sm btn-success" style="margin-left:5px;" title="Save as xlsx"><i class='fa fa-file-excel-o'></i></a>
+      	<!-- <a href="#" id="savepdf" class="btn btn-sm btn-success" style="margin-left:5px;" title="Save as pdf"><i class='fa fa-file-pdf-o'></i></a> --></div>
+      	
     <table id="mptlindextbl" class="table table-hover  table-bordered ">
         <thead>
             <tr>
@@ -36,7 +42,7 @@
 			   {
                     for($i=1;$i<count($configs);$i++)
                     {
-                    echo "<th>". $configs[$i]['title'] ."</th>";
+                    	echo "<th>". $configs[$i]['title'] ."</th>";
                     }
 
 			   }
@@ -66,6 +72,11 @@
     </div>
   </div>
 </div>
+<!-- export plugin scripts -->
+<script type="text/javascript" src="http://oss.sheetjs.com/js-xlsx/xlsx.core.min.js"></script>
+<script type="text/javascript" src="http://sheetjs.com/demos/FileSaver.js"></script>
+<!-- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/2.1.0/jspdf.plugin.autotable.js"></script> -->
+
  <?php
 
   if(isset($colheadsformasters))
@@ -106,6 +117,153 @@ $this->Html->script([
         }
   }
   $(function () {
+  	
+  	
+  	
+  	// xlxsx 
+  	$.fn.dataTable.Api.register('column().title()', function() {
+        var colheader = this.header();
+        return $(colheader).text().trim();
+    });
+
+    var table = $('#example').DataTable();
+
+    function Workbook() {
+        if (!(this instanceof Workbook)) return new Workbook();
+        this.SheetNames = [];
+        this.Sheets = {};
+    }
+
+    function datenum1(v, date1904) {
+        if (date1904) v += 1462;
+        var epoch = Date.parse(v);
+        return (epoch - new Date(Date.UTC(1899, 11, 30))) / (24 * 60 * 60 * 1000);
+    }
+
+    function s2ab(s) {
+        var buf = new ArrayBuffer(s.length);
+        var view = new Uint8Array(buf);
+        for (var i = 0; i != s.length; ++i) view[i] = s.charCodeAt(i) & 0xFF;
+        return buf;
+    }
+
+    function sheet_from_array_of_arrays(data, opts) {
+        var ws = {};
+        var range = {
+            s: {
+                c: 10000000,
+                r: 10000000
+            },
+            e: {
+                c: 0,
+                r: 0
+            }
+        };
+        for (var R = 0; R != data.length; ++R) {
+            for (var C = 0; C != data[R].length; ++C) {
+                if (range.s.r > R) range.s.r = R;
+                if (range.s.c > C) range.s.c = C;
+                if (range.e.r < R) range.e.r = R;
+                if (range.e.c < C) range.e.c = C;
+                var cell = {
+                    v: data[R][C]
+                };
+                if (cell.v == null) continue;
+                var cell_ref = XLSX.utils.encode_cell({
+                    c: C,
+                    r: R
+                });
+
+                if (typeof cell.v === 'number') cell.t = 'n';
+                else if (typeof cell.v === 'boolean') cell.t = 'b';
+                else if (cell.v instanceof Date) {
+                    cell.t = 'n';
+                    cell.z = XLSX.SSF._table[14];
+                    cell.v = datenum(cell.v);
+                } else cell.t = 's';
+
+                ws[cell_ref] = cell;
+            }
+        }
+        if (range.s.c < 10000000) ws['!ref'] = XLSX.utils.encode_range(range);
+        return ws;
+    }
+
+    $('#savexlsx').on('click', function(btn) {
+        var ws_name = "DataTables";
+
+        var data = table.data();
+
+        var names = [];
+        table.columns().every(function() {
+            names.push(this.title());
+        });
+
+        data.unshift(names);
+
+        var wb = new Workbook();
+        var ws = sheet_from_array_of_arrays(data);
+
+        wb.SheetNames.push(ws_name);
+        wb.Sheets[ws_name] = ws;
+        var wbout = XLSX.write(wb, {
+            bookType: 'xlsx',
+            bookSST: true,
+            type: 'binary'
+        });
+
+        saveAs(new Blob([s2ab(wbout)], {
+            type: "application/octet-stream"
+        }), "DataTables.xlsx");
+
+    });
+    // xlsx end
+    //copy start
+    $('#copydt').click(function(){
+		var rows = [];
+		// $('tr[role="row"]').each(function() {
+		$('#mptlindextbl tr:visible').each(function() {
+			var columns = [];
+			$(this).children("th").each(function() {
+				columns.push($(this).text());
+			});
+			$(this).children("td").each(function() {
+				columns.push($(this).text());
+			});
+			//delimiter tab between each cell
+			rows.push(columns.join("\t"));
+		});
+		//delimit newline between each row
+		var data = rows.join("\n"); //console.log(data);
+		copyToClipboard(data);
+		alert('Copied to Clipboard !');
+	});
+	function copyToClipboard(arr) {
+    	var $temp = $("<input>");
+    	$("body").append($temp);
+    	$temp.val(arr);
+    	$temp.select();
+    	document.execCommand("copy");
+    	$temp.remove();
+	}
+	//copy end
+	//print start
+	$('#printdt').click(function(){
+
+		var divToPrint=document.getElementById("mptlindextbl");
+		$('.dataTables_sizing').css('height', '20px');
+   		newWin= window.open("");
+   		newWin.document.write(divToPrint.outerHTML);
+   		newWin.print();
+   		newWin.close();
+   		$('.dataTables_sizing').css('height', '0px');
+	});
+	//print end here
+
+
+
+
+    
 
   	 updateFilterActiveFlag();
 
@@ -143,7 +301,7 @@ $this->Html->script([
           "info": true,
           "autoWidth": false,
           "scrollX":true,
-          colReorder: false,
+          colReorder: true,
           stateSave:false,
           responsive: true,
           "initComplete": function(settings, json) {
@@ -203,15 +361,15 @@ $this->Html->script([
      ]
     });
 
-    $('<a href="/<?php echo $this->request->params['controller'] ?>/add/" class="btn btn-sm btn-success" style="margin-left:5px;" title="Add New"><i class="fa fa-plus" aria-hidden="true"></i></a>').appendTo('div.dataTables_filter');
+    $('<a href="/<?php echo $this->request->params['controller'] ?>/add/" id="addfltr" class="btn btn-sm btn-success" style="margin-left:5px;" title="Add New"><i class="fa fa-plus" aria-hidden="true"></i></a>').appendTo('div.dataTables_filter');
 
     //table tools like export
-    var tt = new $.fn.dataTable.TableTools( table, {aButtons: [ { "sExtends": "copy","sButtonText": "<i class='fa fa-files-o'></i>","sToolTip": "Copy" },
-    																						 { "sExtends": "csv","sButtonText": "<i class='fa fa-file-word-o'></i>","sToolTip": "Csv"  },
- 																							 { "sExtends": "xls","sFileName": "*.xls","sButtonText": "<i class='fa fa-file-excel-o'></i>","sToolTip": "Excel"  },
-   																							 { "sExtends": "pdf","sButtonText": "<i class='fa fa-file-pdf-o'></i>","sToolTip": "Pdf"  },
-   																							 { "sExtends": "print","sButtonText": "<i class='fa fa-print'></i>","sToolTip": "Print" } ]} );
-	$( tt.fnContainer() ).appendTo('div.dataTables_filter');
+    // var tt = new $.fn.dataTable.TableTools( table, {aButtons: [ { "sExtends": "copy","sButtonText": "<i class='fa fa-files-o'></i>","sToolTip": "Copy" },
+    																						 // { "sExtends": "csv","sButtonText": "<i class='fa fa-file-word-o'></i>","sToolTip": "Csv"  },
+ 																							 // { "sExtends": "xls","sFileName": "*.xls","sButtonText": "<i class='fa fa-file-excel-o'></i>","sToolTip": "Excel"  },
+   																							 // { "sExtends": "pdf","sButtonText": "<i class='fa fa-file-pdf-o'></i>","sToolTip": "Pdf"  },
+   																							 // { "sExtends": "print","sButtonText": "<i class='fa fa-print'></i>","sToolTip": "Print" } ]} );
+	// $( tt.fnContainer() ).appendTo('div.dataTables_filter');
 
 
     $('<a href="#" class="btn btn-sm btn-success" data-toggle="modal" data-target="#settings" style="margin-left:5px;" title="Table Settings"><i class="fa fa-gear" aria-hidden="true"></i></a>').appendTo('div.dataTables_filter');
@@ -227,7 +385,8 @@ $this->Html->script([
    table.search(searchTerm).draw();
    $.fn.dataTable.ext.search.pop();
 })
- //order= new $.fn.dataTable.ColReorder( table );
+//col reorder
+ order= new $.fn.dataTable.ColReorder( table );
   // Handle click on "Select all" control
    $('#select-all').on('click', function(){
       // Get all rows with search applied
