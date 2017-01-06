@@ -7,22 +7,22 @@ use Cake\ORM\Table;
 use Cake\Validation\Validator;
 use Cake\Datasource\ConnectionManager;
 /**
- * Gpsdata Model
+ * History Model
  *
  * @property \Cake\ORM\Association\BelongsTo $Trackingobjects
  * @property \Cake\ORM\Association\BelongsTo $Customers
  * @property \Cake\ORM\Association\BelongsTo $Devices
  * @property \Cake\ORM\Association\BelongsTo $Eventtypes
  *
- * @method \App\Model\Entity\Gpsdata get($primaryKey, $options = [])
- * @method \App\Model\Entity\Gpsdata newEntity($data = null, array $options = [])
- * @method \App\Model\Entity\Gpsdata[] newEntities(array $data, array $options = [])
- * @method \App\Model\Entity\Gpsdata|bool save(\Cake\Datasource\EntityInterface $entity, $options = [])
- * @method \App\Model\Entity\Gpsdata patchEntity(\Cake\Datasource\EntityInterface $entity, array $data, array $options = [])
- * @method \App\Model\Entity\Gpsdata[] patchEntities($entities, array $data, array $options = [])
- * @method \App\Model\Entity\Gpsdata findOrCreate($search, callable $callback = null)
+ * @method \App\Model\Entity\History get($primaryKey, $options = [])
+ * @method \App\Model\Entity\History newEntity($data = null, array $options = [])
+ * @method \App\Model\Entity\History[] newEntities(array $data, array $options = [])
+ * @method \App\Model\Entity\History|bool save(\Cake\Datasource\EntityInterface $entity, $options = [])
+ * @method \App\Model\Entity\History patchEntity(\Cake\Datasource\EntityInterface $entity, array $data, array $options = [])
+ * @method \App\Model\Entity\History[] patchEntities($entities, array $data, array $options = [])
+ * @method \App\Model\Entity\History findOrCreate($search, callable $callback = null)
  */
-class GpsdataTable extends Table
+class HistoryTable extends Table
 {
 
     /**
@@ -35,7 +35,7 @@ class GpsdataTable extends Table
     {
         parent::initialize($config);
 
-        $this->table('gpsdata');
+        $this->table('history');
         $this->displayField('id');
         $this->primaryKey('id');
 
@@ -201,6 +201,9 @@ class GpsdataTable extends Table
             ->integer('additionalstat')
             ->allowEmpty('additionalstat');
 
+        $validator
+            ->allowEmpty('updatetime');
+
         return $validator;
     }
 
@@ -220,22 +223,13 @@ class GpsdataTable extends Table
 
         return $rules;
     }
-	public function getTravelDetails($cid)
+	
+	public function getTravelDetailsRpt($cid,$datefrom,$dateto,$timefrom,$timeto)
 	{
 		
 		$con = ConnectionManager::get('default');
-		$stmt = $con->execute("select * from zorba.gpsdata where  customer_id = 1 ");
+		$stmt = $con->execute("select date(msgdtime),msgdtime,speed, location, status from zorba.tracking where  date(msgdtime) between '2017-01-05'and'2017-01-06' and msgdtime between '2017-01-05 08:00:00'and'2017-01-06 10:00:00'");
 		$results = $stmt->fetchAll('assoc');
-		
-		return $results;
-	}
-	public function getTrackingObjects($cid,$groupid)
-	{
-		
-		$con = ConnectionManager::get('default');
-		$stmt = $con->execute("select trackingobject_id,zorba.trackingobjects.name from zorba.trackingobjects_groups left join zorba.trackingobjects on zorba.trackingobjects.id =  trackingobjects_groups.trackingobject_id where trackingobjects_groups.group_id =$groupid and customer_id = $cid ");
-		$results = $stmt->fetchAll('assoc');
-		
 		return $results;
 	}
 }

@@ -71,7 +71,6 @@ if (file_exists($file)) {
             <li><a href="<?php echo $this->Url->build('/issues'); ?>"><i class="glyphicon glyphicon-warning-sign"></i>Issues <span class="label label-primary pull-right">13</span></a></li>
             <li><a href="<?php echo $this->Url->build('/workorders'); ?>"><i class="glyphicon glyphicon-list-alt"></i>Work Orders <span class="label label-primary pull-right">13</span></a></li>
             <li><a href="<?php echo $this->Url->build('/parts'); ?>"><i class="glyphicon glyphicon-equalizer"></i>Parts</a></li>
-            <li><a href="<?php echo $this->Url->build('/drivers'); ?>"><div class="pull-left image mptl-driver"></div>Drivers </a></li>
         </ul>
     </li>
 
@@ -171,8 +170,9 @@ if (file_exists($file)) {
 
         </ul>
     </li>
-
+	<li><a href="<?php echo $this->Url->build('/drivers'); ?>"><div class="pull-left image mptl-driver"></div>Drivers </a></li>
     <li><a href="<?php echo $this->Url->build('/vendors'); ?>"><i class="fa fa-book"></i> <span>Vendors</span></a></li>
+        
 
         </ul>
     </li>

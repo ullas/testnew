@@ -451,5 +451,9 @@ class DashboardController extends AppController
 		{
      	
 		}
+		public function dailyreports()
+		{
+     	
+		}
 
 }
