@@ -399,26 +399,25 @@ class DashboardController extends AppController
     	}
 		public function driversmoreinfo()
     	{
-    		$alertTable = TableRegistry::get('Alerts');
+    		$gpsdatatable = TableRegistry::get('Gpsdata');
+			  $query = $gpsdatatable->find('All')->where(['date(msgdtime)  = date(now())'])->andwhere(['customer_id'=>$this->loggedinuser['customer_id']]) ->distinct(['ibuttoncode']);
+			  (isset($query)) ? $runningdriverscount=$query->count(): $runningdriverscount="";
+			$query = $gpsdatatable->find('All')->where(['date(msgdtime)  = date(now())'])->andwhere(['customer_id'=>$this->loggedinuser['customer_id']]) ->distinct(['ibuttoncode'])->toArray();
+			  (isset($query)) ? $driversmorecontent=$query: $driversmorecontent="";
 			
-			 $query=$alertTable->find('All')->where (['alertcategories_id' => '1'])->andwhere(['EXTRACT(day from alert_dtime) = EXTRACT(day from date(now()))'])->andwhere(['customer_id'=>$this->loggedinuser['customer_id']]);
-			  (isset($query)) ? $overspeedalertcount=$query->count(): $overspeedalertcount="";
-			 
-			  $query=$alertTable->find('All')->where(['EXTRACT(day from alert_dtime) = EXTRACT(day from (now()))'])->andwhere (['alertcategories_id' => '1'])->andwhere(['customer_id'=>$this->loggedinuser['customer_id']])->toArray();
-			  (isset($query)) ? $alertscontent=$query : $alertscontent="";
-			   $this->set(compact('overspeedalertcount','alertscontent'));
+			   $this->set(compact('runningdriverscount','driversmorecontent'));
 		
     	}
 		public function comfailuremoreinfo()
     	{
-    		$alertTable = TableRegistry::get('Alerts');
+    		$gpsdatatable = TableRegistry::get('Gpsdata');
 			
-			 $query=$alertTable->find('All')->where (['alertcategories_id' => '1'])->andwhere(['EXTRACT(day from alert_dtime) = EXTRACT(day from date(now()))'])->andwhere(['customer_id'=>$this->loggedinuser['customer_id']]);
-			  (isset($query)) ? $overspeedalertcount=$query->count(): $overspeedalertcount="";
-			 
-			  $query=$alertTable->find('All')->where(['EXTRACT(day from alert_dtime) = EXTRACT(day from (now()))'])->andwhere (['alertcategories_id' => '1'])->andwhere(['customer_id'=>$this->loggedinuser['customer_id']])->toArray();
-			  (isset($query)) ? $alertscontent=$query : $alertscontent="";
-			   $this->set(compact('overspeedalertcount','alertscontent'));
+			  $query = $gpsdatatable->find('All')->where(['date(msgdtime)  != date(now())'])->andwhere(['customer_id'=>$this->loggedinuser['customer_id']]) ->distinct(['imei']);
+			  (isset($query)) ? $comfailurecount=$query->count(): $comfailurecount="";
+			  
+			  $query = $gpsdatatable->find('All')->where(['date(msgdtime)  != date(now())'])->andwhere(['customer_id'=>$this->loggedinuser['customer_id']]) ->distinct(['imei'])->toArray();
+			   (isset($query)) ? $comfailurecontent=$query : $comfailurecontent="";
+			   $this->set(compact('comfailurecount','comfailurecontent'));
 		
     	}
 		public function getChartData(){
@@ -443,6 +442,14 @@ class DashboardController extends AppController
 			$this->response->body(json_encode($chartarray));
 	    	return $this->response;
 		
+		}
+		public function messagesviewall()
+		{
+     	
+		}
+		public function alertsviewall()
+		{
+     	
 		}
 
 }
