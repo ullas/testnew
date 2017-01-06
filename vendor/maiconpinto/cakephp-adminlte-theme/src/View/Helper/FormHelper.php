@@ -103,7 +103,7 @@ class FormHelper extends CakeFormHelper {
                 break;
             case 'password':
                 $options['templates']['inputContainer'] = '<div class="form-group {{type}}{{required}}">{{content}}</div>';
-                $options['templates']['label'] = '<label>{{input}}{{text}}</label>';
+                $options['templates']['label'] = '<label class="col-sm-3 control-label">{{input}}{{text}}</label>';
                 if (!empty($options['value'])) {
                     $label = $options['label'] ? $options['label'] : Inflector::humanize($fieldName);
                     $function_name = "enable_{$fieldName}()";
