@@ -52,9 +52,7 @@ class ContractorsController extends AppController
 		$basic = isset($this->request->query['basic'])?$this->request->query['basic']:"" ;
 		$additional = isset($this->request->query['additional'])?$this->request->query['additional']:"";
 		
-		
-
-        $this->loadModel('Contractors');
+		$this->loadModel('Contractors');
         $dbout=$this->Contractors->find('all')->toArray();
      
          $fields = array();

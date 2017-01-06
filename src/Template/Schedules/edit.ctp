@@ -39,11 +39,11 @@
 					//echo $this->Form->input('start_time',['empty' => true,'type'=>'text', 'class'=>'timepicker']);
 					//echo $this->Form->input('end_time',['empty' => true,'type'=>'text', 'class'=>'timepicker']);
 					echo $this->Form->input('timepolicy_id', ['options' => $timepolicies, 'empty' => true,'class'=>'select2']);
-					echo $this->Form->input('default_driver_id');
-					echo $this->Form->input('default_veh_id');
+					echo $this->Form->input('default_driver_id', ['options' => $drivers,'class'=>'select2']);
+					echo $this->Form->input('default_veh_id', ['label'=>'Default Vehicle','options' => $defaultVehs,'class'=>'select2']);
 					echo $this->Form->input('name');
-					echo $this->Form->input('nodays');
-					echo $this->Form->input('brktime_bfr_nxt_trip');
+					echo $this->Form->input('nodays',['label'=>'No of Days']);
+					echo $this->Form->input('brktime_bfr_nxt_trip',['label'=>'Break time before next trip']);
 					echo $this->Form->input('default_paxgrpid', ['label'=>'Passenger Group','options' => $passengergroups,'class'=>'select2']);
 					echo $this->Form->input('locations._ids', ['options' => $locations,'class'=>'select2']);
 					echo $this->Form->input('drivers._ids', ['options' => $drivers,'class'=>'select2']);
