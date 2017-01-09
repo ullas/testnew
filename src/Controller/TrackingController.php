@@ -100,16 +100,22 @@ class TrackingController extends AppController
 		$fields[2] = array("name" =>"Tracking.msgdtime"  , "type" => "timestamp");
 				
 		$usrfiter="";
-        // debug($this->request->query['startdate']);
-        if(isset($this->request->query['startdate']) && isset($this->request->query['enddate']) && isset($this->request->query['starttime']) && isset($this->request->query['endtime'])){
+        // msgdtime filter
+        if(isset($this->request->query['startdate']) && ($this->request->query['startdate'])!=null && isset($this->request->query['enddate']) && ($this->request->query['enddate'])!=null 
+        															&& isset($this->request->query['starttime']) && isset($this->request->query['endtime'])){
         	
 			$usrfiter.="msgdtime BETWEEN '" .$this->toPostDBDate($this->request->query['startdate']). " ".$this->request->query['starttime']
 						   ."' AND '" .$this->toPostDBDate($this->request->query['enddate']). " " .$this->request->query['endtime']. "'";
 		}
-			
+		//Asset filter	
+        if(isset($this->request->query['assetname'])){
         	
+        	$pre=(strlen($usrfiter)>0)?" and ":"";
+			$usrfiter.=$pre. " trackingobject_id ='" .$this->request->query['assetname']. "'";
+        	
+        }
     	
-
+	
 		$output =$this->Datatable->getView($fields,['Customers'],$usrfiter);
 		$out =json_encode($output);  
 	   
