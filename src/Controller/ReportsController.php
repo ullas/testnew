@@ -49,7 +49,8 @@ class ReportsController extends AppController
 			$groupsdatanames[$key]=$value['name'];
 		 }
 		
-		
+		$trackingobjects = $this->Tracking->TrackingObjects->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
+        
 		$fields = array();
 				$fields[0] = array("title" =>"Date"  , "type" => "date");
 				$fields[1] = array("title" =>"Time"  , "type" => "time");
@@ -60,7 +61,7 @@ class ReportsController extends AppController
 				$fields[6] = array("title" =>"Status"  , "type" => "char");
 		$colheads =$fields;
 		 $this->set('gpsdata',$gpsdata);	
-		 $this->set(compact('reporttypes', 'gpsdata','times','groupsdatanames','colheads'));
+		 $this->set(compact('reporttypes', 'gpsdata','times','groupsdatanames','colheads','trackingobjects'));
 		
          //$this->set('_serialize', ['configs','actions']);
 		 //$this->set('_serialize', ['configs','usersettings','actions','additional']);

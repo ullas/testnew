@@ -21,7 +21,7 @@
 	<div class="col-md-4">
 			<div class="col-sm-12">
 				<?php 
-					echo $this->Form->input('reporttype', [ 'options' => $reporttypes,'class'=>'select2','label'=>'Report']);
+					echo $this->Form->input('reporttype', [ 'options' => $reporttypes,'class'=>'select2','label'=>['text'=>'Report','class'=>'mandatory']]);
 				?>
 			</div>		
 	</div>
@@ -30,7 +30,7 @@
 	<div class="col-md-4">
 			<div class="col-sm-12">
 				<?php 
-				echo $this->Form->input('Group Name', [ 'options' => $groupsdatanames,'class'=>'select2','label'=>'Group Name']);
+				echo $this->Form->input('Group Name', [ 'options' => $groupsdatanames,'class'=>'select2','label'=>['text'=>'Group Name','class'=>'mandatory']]);
 				?>
 			</div>		
 	</div>
@@ -39,7 +39,7 @@
 	<div class="col-md-4">
 			<div class="col-sm-12">
 				<?php 
-				echo $this->Form->input('Asset Name', [ 'options' => $groupsdatanames,'class'=>'select2','label'=>'Asset Name'])
+				echo $this->Form->input('Asset Name', [ 'options' => $trackingobjects ,'class'=>'select2','label'=>['text'=>'Asset Name','class'=>'mandatory']])
 				?>
 			</div>		
 	</div>
@@ -65,7 +65,7 @@
 	<div class="col-md-3">
 			<div class="col-sm-12">
 				<?php 
-				echo $this->Form->input('starttime', [ 'options' => $times,'class'=>'select2','label'=>'Start Time']);
+				echo $this->Form->input('starttime', [ 'options' => $times,'class'=>'select2','label'=>['text'=>'Start Time','class'=>'mandatory']]);
 				?>
 			</div>		
 	</div>
@@ -86,7 +86,7 @@
 	<div class="col-md-3">
 			<div class="col-sm-12">
 				<?php 
-				echo $this->Form->input('endtime', [ 'options' => $times,'class'=>'select2']);
+				echo $this->Form->input('endtime', [ 'options' => $times,'class'=>'select2','label'=>['text'=>'End Time','class'=>'mandatory']]);
 				?>
 			</div>		
 	</div>
@@ -139,6 +139,7 @@
           colReorder: false,
           stateSave:false,
           responsive: true,
+          "deferLoading": 0, // here
         //server side processing
           "processing": true,
           "serverSide": true,
@@ -154,7 +155,7 @@ $(function () {
 		var groupname = groupnameelm.options[groupnameelm.selectedIndex].value;
 		var assetnameelm = document.getElementById("asset-name");
 		var assetname = assetnameelm.options[assetnameelm.selectedIndex].value;
-		var startdate = $('#startdate').val();
+		var startdate = document.getElementById('startdate').value;
 		var enddate = document.getElementById('enddate').value;
 		var starttimeelm = document.getElementById("starttime");
 		var starttime = starttimeelm.options[starttimeelm.selectedIndex].value;
@@ -162,7 +163,7 @@ $(function () {
 		var endtime = endtimeelm.options[endtimeelm.selectedIndex].value;
     	// table.ajax.url( '/Tracking/ajax_data' ).load();
     	// table.ajax.reload( null, false );table.ajax.data({starttime: starttime});
-    	table.ajax.url('/Tracking/ajax_data?reporttype='+reporttype+'&starttime='+starttime+'&endtime='+endtime+'&startdate='+startdate+'&enddate='+enddate).load();
+    	table.ajax.url('/Tracking/ajax_data?reporttype='+reporttype+'&assetname='+assetname+'&starttime='+starttime+'&endtime='+endtime+'&startdate='+startdate+'&enddate='+enddate).load();
    
 	});
 });
