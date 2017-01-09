@@ -6,7 +6,6 @@
       <?php
       $title="Manage ". $this->request->params['controller'] ;
       echo $this->element('actions',[$actions,'title'=>$title]);
-	 // echo count($colheadsformasters);
 	  ?>
      </div>
       <div class="col-md-8">
@@ -22,8 +21,7 @@
       	<a href="#" id="printdt" class="btn btn-sm btn-success" style="margin-left:5px;" title="Print"><i class='fa fa-print'></i></a>
       	<a href="#" id="savexlsx" class="btn btn-sm btn-success" style="margin-left:5px;" title="Save as xlsx"><i class='fa fa-file-excel-o'></i></a>
       	<!-- <a href="#" id="savepdf" class="btn btn-sm btn-success" style="margin-left:5px;" title="Save as pdf"><i class='fa fa-file-pdf-o'></i></a> --></div>
-      	
-    <table id="mptlindextbl" class="table table-hover  table-bordered ">
+		<table id="mptlindextbl" class="table table-hover  table-bordered ">
         <thead>
             <tr>
             	<th data-orderable="false"><input type="checkbox" name="select_all" value="1" id="select-all" ></th>
@@ -47,7 +45,6 @@
 
 			   }
 			   ?>
-
                 <th data-orderable="false">Actions</th>
             </tr>
         </thead>
@@ -117,10 +114,10 @@ $this->Html->script([
         }
   }
   $(function () {
-  	
-  	
-  	
-  	// xlxsx 
+
+
+
+  	// xlxsx
   	$.fn.dataTable.Api.register('column().title()', function() {
         var colheader = this.header();
         return $(colheader).text().trim();
@@ -259,12 +256,6 @@ $this->Html->script([
    		$('.dataTables_sizing').css('height', '0px');
 	});
 	//print end here
-
-
-
-
-    
-
   	 updateFilterActiveFlag();
 
      $("#delete").click(function(){
@@ -289,7 +280,9 @@ $this->Html->script([
     });
     //daterangepicker for advanced filtering
     $('.mptl-daterange').daterangepicker(
-    	{locale : {
+    	{
+				autoApply:false,
+				locale : {
       format : 'DD/MM/YY',
 			cancelLabel: 'Clear'
     }}).val('');
@@ -361,7 +354,7 @@ $this->Html->script([
      ]
     });
 
-    $('<a href="/<?php echo $this->request->params['controller'] ?>/add/" id="addfltr" class="btn btn-sm btn-success" style="margin-left:5px;" title="Add New"><i class="fa fa-plus" aria-hidden="true"></i></a>').appendTo('div.dataTables_filter');
+		$('<a href="/<?php echo $this->request->params['controller'] ?>/add/" id="addfltr" class="btn btn-sm btn-success" style="margin-left:5px;" title="Add New"><i class="fa fa-plus" aria-hidden="true"></i></a>').appendTo('div.dataTables_filter');
 
     //table tools like export
     // var tt = new $.fn.dataTable.TableTools( table, {aButtons: [ { "sExtends": "copy","sButtonText": "<i class='fa fa-files-o'></i>","sToolTip": "Copy" },
@@ -474,6 +467,14 @@ $this->Html->script([
 	     $('#settings').modal('hide');
 
    });
+
+	 $('#datatabfilter').on('click',function(){$('#datatabfilterul').toggle()});
+
+	 $(document).on('click', function (e) {
+	 if (!$('.daterangepicker').is(e.target) && $('.daterangepicker').has(e.target).length === 0 && !$('#datatabfilterul').is(e.target) && $('#datatabfilterul').has(e.target).length === 0) {
+			 $("#datatabfilterul").hide();
+	 }
+ 	});
 
 	 $('.mptl-daterange').on('cancel.daterangepicker', function() {
       	$(this).val('');
