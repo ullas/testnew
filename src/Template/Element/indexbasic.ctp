@@ -17,9 +17,9 @@
   <div class="box box-primary">
       <div class="box-body">
       	<!-- export buttons without flash -->
-      	<div id="exportdiv" style="margin-bottom: 5px;"><a href="#" id="copydt" class="btn btn-sm btn-success" style="margin-left:5px;" title="Copy"><i class='fa fa-files-o'></i></a>
-      	<a href="#" id="printdt" class="btn btn-sm btn-success" style="margin-left:5px;" title="Print"><i class='fa fa-print'></i></a>
-      	<a href="#" id="savexlsx" class="btn btn-sm btn-success" style="margin-left:5px;" title="Save as xlsx"><i class='fa fa-file-excel-o'></i></a>
+      	<div id="exportdiv" style="margin-bottom: 5px;"><a href="#" id="copydt" class="btn btn-sm btn-success" style="margin-left:5px;display:none;" title="Copy"><i class='fa fa-files-o'></i></a>
+      	<a href="#" id="printdt" class="btn btn-sm btn-success" style="margin-left:5px;display:none;" title="Print"><i class='fa fa-print'></i></a>
+      	<a href="#" id="savexlsx" class="btn btn-sm btn-success" style="margin-left:5px;display:none;" title="Save as xlsx"><i class='fa fa-file-excel-o'></i></a>
       	<!-- <a href="#" id="savepdf" class="btn btn-sm btn-success" style="margin-left:5px;" title="Save as pdf"><i class='fa fa-file-pdf-o'></i></a> --></div>
 		<table id="mptlindextbl" class="table table-hover  table-bordered ">
         <thead>
@@ -356,6 +356,15 @@ $this->Html->script([
 
 		$('<a href="/<?php echo $this->request->params['controller'] ?>/add/" id="addfltr" class="btn btn-sm btn-success" style="margin-left:5px;" title="Add New"><i class="fa fa-plus" aria-hidden="true"></i></a>').appendTo('div.dataTables_filter');
 
+	$('#copydt').appendTo('div.dataTables_filter');$('#copydt').css("display", "");
+	$('#printdt').appendTo('div.dataTables_filter');$('#printdt').css("display", "");
+	$('#savexlsx').appendTo('div.dataTables_filter');$('#savexlsx').css("display", "");
+	
+	// $('.fmaction').appendTo('div.dataTables_length');
+	$('.btn-group').appendTo('div.dataTables_length');
+	$('.btn-group').addClass('pull-right');
+	
+	
     //table tools like export
     // var tt = new $.fn.dataTable.TableTools( table, {aButtons: [ { "sExtends": "copy","sButtonText": "<i class='fa fa-files-o'></i>","sToolTip": "Copy" },
     																						 // { "sExtends": "csv","sButtonText": "<i class='fa fa-file-word-o'></i>","sToolTip": "Csv"  },
