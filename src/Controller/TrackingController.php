@@ -15,7 +15,7 @@ class TrackingController extends AppController
    
 
    
-  public $components = ['Datatablemaster'];
+  public $components = ['Datatable'];
     /**
      * Index method
      *
@@ -75,29 +75,42 @@ class TrackingController extends AppController
 	     $this->response->body($d);
 	     return $this->response;
 	}
-
+	private function toPostDBDate($date){
+	
+		 $ret="";
+		 $parts=explode("/",$date);
+		 if(count($parts)==3){
+		 	$ret= $date= '20' .trim($parts[2]) . "-" . trim($parts[1]) . "-" . trim($parts[0]);
+			
+		 }
+		
+	  return $ret;
+	}
     public function ajaxData() 
 	{
+		$this->autoRender= false;
         
         $this->loadModel('Tracking');
         $dbout=$this->Tracking->find('all')->toArray();
      
         $fields = array();
 		 
-				$fields[0] = array("name" =>"Tracking.id"  , "type" => "num");
-				$fields[1] = array("name" =>"Tracking.imei"  , "type" => "char");
-				$fields[2] = array("name" =>"Tracking.heading"  , "type" => "char");
+		$fields[0] = array("name" =>"Tracking.id"  , "type" => "num");
+		$fields[1] = array("name" =>"Tracking.imei"  , "type" => "char");
+		$fields[2] = array("name" =>"Tracking.msgdtime"  , "type" => "timestamp");
 				
-		// if( $this->request->is('ajax') ) {
-     		// echo $_POST['value_to_send'];
-     		// echo   $value = $this->request->data();
+		$usrfiter="";
+        // debug($this->request->query['startdate']);
+        if(isset($this->request->query['startdate']) && isset($this->request->query['enddate']) && isset($this->request->query['starttime']) && isset($this->request->query['endtime'])){
+        	
+			$usrfiter.="msgdtime BETWEEN '" .$this->toPostDBDate($this->request->query['startdate']). " ".$this->request->query['starttime']
+						   ."' AND '" .$this->toPostDBDate($this->request->query['enddate']). " " .$this->request->query['endtime']. "'";
+		}
+			
+        	
+    	
 
-     		//or debug($this->request->data);
-        	debug($this->request->data());
-    	// }
-
-		// $this->log($fields);
-		$output =$this->Datatablemaster->getView($fields,['Customers'],null);
+		$output =$this->Datatable->getView($fields,['Customers'],$usrfiter);
 		$out =json_encode($output);  
 	   
 		$this->response->body($out);
