@@ -126,7 +126,7 @@ $this->Html->script([
         return $(colheader).text().trim();
     });
 
-    var table = $('#example').DataTable();
+    // var table = $('#example').DataTable();
 
     function Workbook() {
         if (!(this instanceof Workbook)) return new Workbook();
