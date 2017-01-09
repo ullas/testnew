@@ -1,14 +1,13 @@
 <style>
+.fmactionbtn{
+  float:right;
+  }
 .fmactions{
-  padding-top:5px;
-  min-height:65px;
-}
-
+  float:left;
+  }
 .fmactions .fmaction{
     float:left;
-    padding-bottom: 15px
 }
-
 .fmactions .fmaction span{
     position: relative;
     top: -20px;
@@ -38,6 +37,4 @@
       transform: translate3d(4px, 0, 0);
     }
   }
-  
-  
 </style>
