@@ -1,4 +1,4 @@
-            <div class="btn-group">
+            <div class="btn-group pull-right">
                   <button type="button" class="btn btn-default">Filters</button>
                   <button id="datatabfilter" type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
                     <span class="caret"></span>
@@ -34,5 +34,6 @@
                     <?php endif;?>
                     <li></li>
                   </ul>
-                  <span id="filterstatus" class="label label-success pull-right" style="margin:10px" disabled>Filter Active</span>
+
                 </div>
+                <span id="filterstatus" class="label label-success" style="margin:10px;display:none;" disabled>Filter Active</span>
