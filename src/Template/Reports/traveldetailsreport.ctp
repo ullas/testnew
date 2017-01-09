@@ -86,7 +86,7 @@
 	<div class="col-md-3">
 			<div class="col-sm-12">
 				<?php 
-				echo $this->Form->input('endtime', [ 'options' => $times,'class'=>'select2','label'=>'End Time']);
+				echo $this->Form->input('endtime', [ 'options' => $times,'class'=>'select2']);
 				?>
 			</div>		
 	</div>
@@ -97,7 +97,7 @@
 
             
 <div class="modal-footer">
-      	<input type="button" value="Generate Report" class="scheduleCheck mptl-settings-save btn btn-success" id="generatereport"/>
+      	<input type="button" value="Generate Report" class="mptl-settings-save btn btn-success" id="generatereport"/>
       	
 </div></div></div>
       
@@ -108,10 +108,9 @@
         <thead>
             <tr>
             	<th data-orderable="false"><input type="checkbox" name="select_all" value="1" id="select-all" ></th>
-           	
-             
+           	             
                 <th>IMEI</th>
-                <th>Heading</th>
+                <th>MsgdTime</th>
                 <th data-orderable="false">Actions</th>
             </tr>
         </thead>
@@ -124,7 +123,9 @@
 <!-- /.content -->
 <?php $this->start('scriptBotton'); ?>
 <script>
-$('#generatereport').click(function(){
+
+	
+	
 	var table= $('#traveldetailstbl').DataTable({
           "paging": true,
           //disable 0th column checkbox default sort order
@@ -138,125 +139,33 @@ $('#generatereport').click(function(){
           colReorder: false,
           stateSave:false,
           responsive: true,
-          // "initComplete": function(settings, json) {
-          // },
-          "drawCallback": function( settings ) {
-        		tableLoaded();
-   		  },
-          oLanguage        : {
-        		sSearch: '<div class="input-group"><span class="input-group-addon"><span class="fa fa-search"></span></span>',
-            	sSearchPlaceholder: 'Search here...',
-		},
         //server side processing
           "processing": true,
           "serverSide": true,
-          "ajax": "/Tracking/ajax_data",'data':{'value_to_send':'value'}, 
-          'columnDefs': [{
-        'targets': 0,
-        'className': 'dt-body-center',
-        'render': function (data, type, full, meta){
-            return '<input type="checkbox" class="mptl-lst-chkbox" name="chk-' + data + '" value="' + $('<div/>').text(data).html() + '">';
-        },
-           
-     },
-     
-     ]
-    });
-});
+          "ajax": {url:"/Tracking/ajax_data"}, 
+   });
 
-
-$('#timetable a.move').click(function() {
-    var row = $(this).closest('tr');
-    if ($(this).hasClass('up'))
-        row.prev().before(row);
-    else
-        row.next().after(row);
-});
-
-jQuery("#scheduleCheck").submit(function(){
-			if (validateschedule()) {
-				return true;
-			}else{
-				return false;
-			}
-		
-});
-	function validateschedule() {
-		var errCount=0;
-    	$("#timetable tr").each(function() {
-    		if($(this).attr('id')!="trheader"){
-  				$this = $(this);
-  				  				
-  				var csdt=$this.find('.mptl-schitem4 option:selected').val();
-  				var csdd=$this.find('.mptl-schitem3 option:selected').val();
-  				
-  				var nsad=$this.next().find('.mptl-schitem1 option:selected').val();
-  				var nsat=$this.next().find('.mptl-schitem2 option:selected').val();
-  				//alert(nsad+"----"+nsat);
-  				
-  				if(nsat){
-					if (checkSheduleDate(nsat, csdt, nsad, csdd)) {
-						// $this.css('background-color', 'red');
-						errCount++;
-						$this.find('td.err').html('<span class="text-red">*</span>');
-						$this.next().find('td.err').html('<span class="text-red">*</span>');
-					}else{
-						// $this.css('background-color', '');
-						$this.find('td.err').html('');
-						$this.next().find('td.err').html('');
-					}
-				}
-  			}
-		});
-		
-	
-	$('.mptl-schitem2').each(function() {
-		
-		var lineErr2=0;
-		var p=jQuery(this).attr("id");//alert(p);
-		var id=p.substring(3);
-		var sat= jQuery(this).val();
-		var sdt=  jQuery("#sdt"+id).val();
-		var dys= jQuery("#dys"+id).val();
-		var dye= jQuery("#dye"+id).val();
-		var strTime= jQuery("#start_time").val();
-		//alert(strTime);
-		var endTime= jQuery("#end_time").val();
-		var nodays=jQuery("#nodays").val();
-		if(!nodays)nodays=1;
-		 if(!compareTime(sat+":00",strTime,dys,1)){errCount++;	lineErr2++;  }
-		 if(!compareTime(endTime,sat+":00",nodays,dys)){errCount++;	lineErr2++; }
-		 if(!compareTime(sdt+":00",strTime,dye,1)){errCount++;	lineErr2++; }
-		 if(!compareTime(endTime,sdt+":00",nodays,dye)){errCount++;	lineErr2++;}
-		if(!checkSheduleDate(sat,sdt,dys,dye)){	errCount++;	lineErr2++;}
-		
-		if(lineErr2>0){
-			$this.find('td.err').html('<span class="text-red">*</span>');
-		}else{
-			$this.find('td.err').html('');
-		}
-    	
+$(function () {
+	$('#generatereport').click(function(){
+    	//get input value
+		var reporttypeelm = document.getElementById("reporttype");
+		var reporttype = reporttypeelm.options[reporttypeelm.selectedIndex].value;
+		var groupnameelm = document.getElementById("group-name");
+		var groupname = groupnameelm.options[groupnameelm.selectedIndex].value;
+		var assetnameelm = document.getElementById("asset-name");
+		var assetname = assetnameelm.options[assetnameelm.selectedIndex].value;
+		var startdate = $('#startdate').val();
+		var enddate = document.getElementById('enddate').value;
+		var starttimeelm = document.getElementById("starttime");
+		var starttime = starttimeelm.options[starttimeelm.selectedIndex].value;
+		var endtimeelm = document.getElementById("endtime");
+		var endtime = endtimeelm.options[endtimeelm.selectedIndex].value;
+    	// table.ajax.url( '/Tracking/ajax_data' ).load();
+    	// table.ajax.reload( null, false );table.ajax.data({starttime: starttime});
+    	table.ajax.url('/Tracking/ajax_data?reporttype='+reporttype+'&starttime='+starttime+'&endtime='+endtime+'&startdate='+startdate+'&enddate='+enddate).load();
+   
 	});
+});
 
-	return errCount >0 ? false :true;
-}
-function compareTime(strTime,endTime,dys,dye)
-{
-	
-     var sTime=strTime.split(":");
-	 var s3=((dys*1440)+(sTime[0]*60)+(sTime[1]*1))*1;
-	 var eTime=endTime.split(":");
-	 var s4=((dye*1440)+(eTime[0]*60)+(eTime[1]*1))*1;
-	 return s3>s4 ?true:false
-}
-function checkSheduleDate(sat,sdt,dys,dye)
-{
-	var asat=sat.split(":");
-	var asdt=sdt.split(":");
-	var day1=(1440*dys)+(asat[0]*60)+(asat[1]*1);
-	var day2=(1440*dye)+(asdt[0]*60)+(asdt[1]*1);//alert(day1+"---"+day2);
-	return day2>day1 ? true: false;
-	
-}
 </script>
 <?php $this->end(); ?>
