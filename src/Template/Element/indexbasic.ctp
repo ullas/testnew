@@ -1,17 +1,17 @@
 <section class="content">
 	<?php echo $this->Form->create($this->request->params['controller'],array('url' => array('controller' => $this->request->params['controller'], 'action' => 'deleteAll')));?>
    <input type="hidden" value="1"  id="basicfilter"/>
-  <div class="row">
-        <div class="col-md-4">
+	 			<div class="fmactionbtn"></div>
+				<div>
       <?php
       $title="Manage ". $this->request->params['controller'] ;
       echo $this->element('actions',[$actions,'title'=>$title]);
 	  ?>
      </div>
-      <div class="col-md-8">
+      <div>
       	<?php echo  $this->element('filters',$additional) ?>
      </div> <!-- COL-7-->
-  </div> <!--Row -->
+
   <div class="row">
         <div class="col-md-12">
   <div class="box box-primary">
@@ -359,12 +359,13 @@ $this->Html->script([
 	$('#copydt').appendTo('div.dataTables_filter');$('#copydt').css("display", "");
 	$('#printdt').appendTo('div.dataTables_filter');$('#printdt').css("display", "");
 	$('#savexlsx').appendTo('div.dataTables_filter');$('#savexlsx').css("display", "");
-	
-	// $('.fmaction').appendTo('div.dataTables_length');
-	$('.btn-group').appendTo('div.dataTables_length');
-	$('.btn-group').addClass('pull-right');
-	
-	
+
+	// fmactions are added through setTurben. btn-group div is added separately.
+	$('div.fmactionbtn').appendTo('div.dataTables_length');
+	$('div.btn-group').appendTo('div.fmactionbtn');
+	$('#filterstatus').appendTo('div.dataTables_filter');
+	$('#filterstatus').addClass('pull-left');
+
     //table tools like export
     // var tt = new $.fn.dataTable.TableTools( table, {aButtons: [ { "sExtends": "copy","sButtonText": "<i class='fa fa-files-o'></i>","sToolTip": "Copy" },
     																						 // { "sExtends": "csv","sButtonText": "<i class='fa fa-file-word-o'></i>","sToolTip": "Csv"  },
@@ -396,7 +397,6 @@ $this->Html->script([
       var rows = table.rows({ 'search': 'applied' }).nodes();
       // Check/uncheck checkboxes for all rows in the table
       $('input[type="checkbox"]', rows).prop('checked', this.checked);
-
       setTurben();
    });
    // Handle click on checkbox to set state of "Select all" control
@@ -506,18 +506,21 @@ $this->Html->script([
         forcePlaceholderSize: true,
         zIndex: 999999
     });
-
      setTurben();
   });
+
 function setTurben()
 {
 	var c=$(".mptl-lst-chkbox:checked").length;
       $(".mptl-itemsel").html(c);
       if(c==0){
+				   $('div.fmactions').hide();
       	   $( ".mptl-itemsel" ).fadeTo( "slow" , 0, function() {
 		    // Animation complete.
 		  });
       }else{
+				 $('div.fmactions').appendTo('div.fmactionbtn');
+				 $('div.fmactions').show()
       	  $( ".mptl-itemsel" ).fadeTo( "slow" , 1, function() {
 		    // Animation complete.
 		  });
