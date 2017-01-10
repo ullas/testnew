@@ -15,7 +15,7 @@ class TrackingController extends AppController
    
 
    
-  public $components = ['Datatable'];
+  public $components = ['Datatablemerge'];
     /**
      * Index method
      *
@@ -116,7 +116,7 @@ class TrackingController extends AppController
         }
     	
 	
-		$output =$this->Datatable->getView($fields,['Customers'],$usrfiter);
+		$output =$this->Datatablemerge->getView($fields,['Customers'],$usrfiter,'History');
 		$out =json_encode($output);  
 	   
 		$this->response->body($out);
