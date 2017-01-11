@@ -6,7 +6,7 @@ use Cake\ORM\TableRegistry;
 
    class DatatablemergeComponent extends Component {
 
-       public function getView($fields,$contains,$usrFlier,$mergetbl)
+       public function getView($fields,$contains,$usrFlier,$mergetbl,$mergefields)
        {
 
            $length = count($fields);
@@ -35,6 +35,31 @@ use Cake\ORM\TableRegistry;
                 }
                 
             }
+		   
+		   //2nd tbl fields
+		   $mergecolmns = array();
+		   foreach($mergefields as $value){
+                if($value['type']=='boolean'){
+                    
+                    $mergecolmns[] =array( 
+                    'db' => $value['name'], 
+                    'dt' => $i++,
+                    'formatter' => function( $d, $row ,$modalname) {
+                        $div='<div class="mptldtbool">'.$d.'</div>';
+                        return $div;
+                    }
+                       );
+                    
+                }else{
+                    if(is_array($value)) {
+                          $mergecolmns[] = array("db" => $value['name'] , "dt" => $i++);
+                    }else{
+                        $mergecolmns[] = array("db" => $value , "dt" => $i++);
+                    }
+                }
+                
+            }
+		   //
 		   
 		   if($controller->loggedinuser['customer_id']=="0"){
            		$colmns[] =array(
@@ -65,7 +90,7 @@ use Cake\ORM\TableRegistry;
               	);
 			  }
            //getting orderby
-              $order = $this->Order( $colmns );
+           $order = $this->Order( $colmns );
            //getting filter
            
            $where = $this->Filter( $colmns, $fields );
@@ -96,20 +121,43 @@ use Cake\ORM\TableRegistry;
            	  }
            }
           
-           $data1 = $model->find('all')->contain($contains)->where($wherestr)->order($order)->limit($limit)->page($page)->toArray();
+           // $data1 = $model->find('all')->contain($contains)->where($wherestr)->order($order)->limit($limit)->page($page)->toArray();
 		   
-		   $table = TableRegistry::get($mergetbl);
-		   $data2 = $table->find('all')->contain($contains)->where($wherestr)->limit($limit)->page($page)->toArray();
+		   
+		   
+		   
+		   //getting filter
+           $mergewhere = $this->Filter( $mergecolmns, $mergefields );
+		   $mergewherestr="";
+           foreach($mergewhere  as $key => $value){
+               if($mergewherestr != ''){$mergewherestr.=" OR ";}
+               
+               $mergewherestr.=$key. " '". $value. "'";
+           }
+           if(strlen($mergewherestr)>3 && strlen($usrFlier)>3){
+           	 $mergewherestr.= " and ".$usrFlier;
+           }else{
+           	  if(strlen($usrFlier)>3){
+           	    $mergewherestr=$usrFlier;
+           	  }
+           }
+		   //getting orderby
+           $mergeorder = $this->Order( $mergecolmns );
            
-		   $data = array_merge($data1,$data2);
+		   // $table = TableRegistry::get($mergetbl);
+		   // $data2 = $table->find('all')->contain($contains)->where($mergewherestr)->order($mergeorder)->limit($limit)->page($page)->toArray();
+           
+		   
+		   
+		   // $data = array_merge($data1,$data2);
            //getting totalcount
-           $totalCount = $model->find() ->contain($contains)->count();
+           // $totalCount = $model->find() ->contain($contains)->count();
            //getting filteredcount
-           $filteredCount = $model->find()->contain($contains)->where($wherestr)->count();
+           // $filteredCount = $model->find()->contain($contains)->where($wherestr)->count();
 
-           $output =$this->GetData($colmns,$data,$totalCount,$filteredCount);
+           // $output =$this->GetData($colmns,$data,$totalCount,$filteredCount);
 
-           return  $output;
+           return  $mergewhere;
        }
        public function Limit(){
            $limit = '';
@@ -140,7 +188,7 @@ use Cake\ORM\TableRegistry;
                for ( $i=0, $ien=count($this->request->query['columns']) ; $i<$ien ; $i++ ) {
                    $requestColumn = $this->request->query['columns'][$i];
                    $columnIdx = array_search( $requestColumn['data'], $dtColumns );
-                   $column = $columns[ $columnIdx ];
+                   $column = $columns[ $columnIdx ];    //$globalSearch[$column['db']]="tttt".$requestColumn['searchable'];
                    if ( $requestColumn['searchable'] == 'true' ) {
 
                        foreach ($fields as $rowval) {
@@ -149,7 +197,7 @@ use Cake\ORM\TableRegistry;
                            }
                            else if( ($rowval['name']==$column['db']) && ($rowval['type']=="num") ){
                                if(is_numeric($str))	{
-                                  $globalSearch[$column['db']. '='] = "" . $str. "";
+                                  $globalSearch[$column['db']. ' ='] = "" . $str. "";
 							   }
                            }
                            else if( ($rowval['name']==$column['db']) && ($rowval['type']=="date") ){
