@@ -107,10 +107,9 @@
 	           <table id="traveldetailstbl" class="table table-hover  table-bordered ">
         <thead>
             <tr>
-            	<th data-orderable="false"><input type="checkbox" name="select_all" value="1" id="select-all" ></th>
-           	             
-                <th>IMEI</th>
-                <th>MsgdTime</th>
+            	<th class="th1"></th>
+           	    <th class="th2"></th>        
+                <th class="th3"></th>
                 <th data-orderable="false">Actions</th>
             </tr>
         </thead>
@@ -129,7 +128,7 @@
 	var table= $('#traveldetailstbl').DataTable({
           "paging": true,
           //disable 0th column checkbox default sort order
-          "order": [[ 1, 'asc' ]],
+          // "order": [[ 1, 'asc' ]],
           "lengthChange": true,
           "searching": true,
           "ordering": true,
@@ -143,7 +142,7 @@
         //server side processing
           "processing": true,
           "serverSide": true,
-          "ajax": {url:"/Tracking/ajax_data"}, 
+          "ajax": {url:""}, 
    });
 
 $(function () {
@@ -163,8 +162,14 @@ $(function () {
 		var endtime = endtimeelm.options[endtimeelm.selectedIndex].value;
     	// table.ajax.url( '/Tracking/ajax_data' ).load();
     	// table.ajax.reload( null, false );table.ajax.data({starttime: starttime});
-    	table.ajax.url('/Tracking/ajax_data?reporttype='+reporttype+'&assetname='+assetname+'&starttime='+starttime+'&endtime='+endtime+'&startdate='+startdate+'&enddate='+enddate).load();
-   
+    	
+    	if(reporttype==0){//travel details report
+    		$(".dataTables_scrollHead .th1").text("Id");$(".dataTables_scrollHead .th2").text("IMEI");$(".dataTables_scrollHead .th3").text("MsgdTime");
+    		table.ajax.url('/Tracking/ajax_data?reporttype='+reporttype+'&assetname='+assetname+'&starttime='+starttime+'&endtime='+endtime+'&startdate='+startdate+'&enddate='+enddate).load();
+   		}else{
+   			$('#traveldetailstbl tbody').empty();
+   		}
+   		
 	});
 });
 

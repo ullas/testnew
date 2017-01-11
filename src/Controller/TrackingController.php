@@ -98,6 +98,11 @@ class TrackingController extends AppController
 		$fields[0] = array("name" =>"Tracking.id"  , "type" => "num");
 		$fields[1] = array("name" =>"Tracking.imei"  , "type" => "char");
 		$fields[2] = array("name" =>"Tracking.msgdtime"  , "type" => "timestamp");
+		
+		$asscfields = array();
+		$asscfields[0] = array("name" =>"History.id"  , "type" => "num");
+		$asscfields[1] = array("name" =>"History.imei"  , "type" => "char");
+		$asscfields[2] = array("name" =>"History.msgdtime"  , "type" => "timestamp");
 				
 		$usrfiter="";
         // msgdtime filter
@@ -116,7 +121,7 @@ class TrackingController extends AppController
         }
     	
 	
-		$output =$this->Datatablemerge->getView($fields,['Customers'],$usrfiter,'History');
+		$output =$this->Datatablemerge->getView($fields,['Customers'],$usrfiter,'History',$asscfields);
 		$out =json_encode($output);  
 	   
 		$this->response->body($out);
