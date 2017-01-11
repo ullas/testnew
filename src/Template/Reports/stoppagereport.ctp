@@ -104,14 +104,13 @@
       
  <div class="box box-primary">   
  	<div class="box-body">  
-	           <table id="traveldetailstbl" class="table table-hover  table-bordered ">
+	           <table id="fencingalertstbl" class="table table-hover  table-bordered ">
         <thead>
             <tr>
-            	<th class="th1"></th>
-           	    <th class="th2"></th>        
-                <th class="th3"></th>
-                <th class="th4"></th>
-                <th class="th5"></th>
+            	<th data-orderable="false"><input type="checkbox" name="select_all" value="1" id="select-all" ></th>
+           	             
+                <th>Date & Time</th>
+               	<th>Location</th>
                 <th data-orderable="false">Actions</th>
             </tr>
         </thead>
@@ -127,10 +126,10 @@
 
 	
 	
-	var table= $('#traveldetailstbl').DataTable({
+	var table= $('#fencingalertstbl').DataTable({
           "paging": true,
           //disable 0th column checkbox default sort order
-          // "order": [[ 1, 'asc' ]],
+          "order": [[ 1, 'asc' ]],
           "lengthChange": true,
           "searching": true,
           "ordering": true,
@@ -144,7 +143,7 @@
         //server side processing
           "processing": true,
           "serverSide": true,
-          "ajax": {url:""}, 
+          "ajax": {url:"/Alerts/stoppageAjaxData"}, 
    });
 
 $(function () {
@@ -162,20 +161,10 @@ $(function () {
 		var starttime = starttimeelm.options[starttimeelm.selectedIndex].value;
 		var endtimeelm = document.getElementById("endtime");
 		var endtime = endtimeelm.options[endtimeelm.selectedIndex].value;
-    	// table.ajax.url( '/Tracking/ajax_data' ).load();
+    	// table.ajax.url( '/Alerts/stoppageAjaxData' ).load();
     	// table.ajax.reload( null, false );table.ajax.data({starttime: starttime});
-    	
-    	if(reporttype==0){//travel details report
-    		$(".dataTables_scrollHead .th1").text("Id");$(".dataTables_scrollHead .th2").text("Date&Time");$(".dataTables_scrollHead .th3").text("Speed");$(".dataTables_scrollHead .th4").text("Location");$(".dataTables_scrollHead .th5").text("Status");
-    		table.ajax.url('/Tracking/ajax_data?reporttype='+reporttype+'&assetname='+assetname+'&starttime='+starttime+'&endtime='+endtime+'&startdate='+startdate+'&enddate='+enddate).load();
-   		}else if(reporttype==1){
-   			$(".dataTables_scrollHead .th1").text("Id");$(".dataTables_scrollHead .th2").text("Date&Time");$(".dataTables_scrollHead .th3").text("Speed");$(".dataTables_scrollHead .th4").text("Location");
-    		table.ajax.url('/Alerts/fencingAjaxData?reporttype='+reporttype+'&assetname='+assetname+'&starttime='+starttime+'&endtime='+endtime+'&startdate='+startdate+'&enddate='+enddate).load();
-   		}
-   		else{
-   			$('#traveldetailstbl tbody').empty();
-   		}
-   		
+    	table.ajax.url('/Alerts/stoppageAjaxData?reporttype='+reporttype+'&assetname='+assetname+'&starttime='+starttime+'&endtime='+endtime+'&startdate='+startdate+'&enddate='+enddate).load();
+   
 	});
 });
 
