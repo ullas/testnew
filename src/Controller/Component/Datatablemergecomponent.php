@@ -121,7 +121,7 @@ use Cake\ORM\TableRegistry;
            	  }
            }
           
-           // $data1 = $model->find('all')->contain($contains)->where($wherestr)->order($order)->limit($limit)->page($page)->toArray();
+           $data1 = $model->find('all')->contain($contains)->where($wherestr)->order($order)->limit($limit)->page($page)->toArray();
 		   
 		   
 		   
@@ -144,20 +144,20 @@ use Cake\ORM\TableRegistry;
 		   //getting orderby
            $mergeorder = $this->Order( $mergecolmns );
            
-		   // $table = TableRegistry::get($mergetbl);
-		   // $data2 = $table->find('all')->contain($contains)->where($mergewherestr)->order($mergeorder)->limit($limit)->page($page)->toArray();
+		   $table = TableRegistry::get($mergetbl);
+		   $data2 = $table->find('all')->contain($contains)->where($mergewherestr)->order($mergeorder)->limit($limit)->page($page)->toArray();
            
 		   
 		   
-		   // $data = array_merge($data1,$data2);
+		   $data = array_merge($data1,$data2);
            //getting totalcount
-           // $totalCount = $model->find() ->contain($contains)->count();
+           $totalCount = $model->find() ->contain($contains)->count();
            //getting filteredcount
-           // $filteredCount = $model->find()->contain($contains)->where($wherestr)->count();
+           $filteredCount = $model->find()->contain($contains)->where($wherestr)->count();
 
-           // $output =$this->GetData($colmns,$data,$totalCount,$filteredCount);
+           $output =$this->GetData($colmns,$data,$totalCount,$filteredCount);
 
-           return  $mergewhere;
+           return  $output;
        }
        public function Limit(){
            $limit = '';

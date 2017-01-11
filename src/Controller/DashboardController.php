@@ -284,12 +284,19 @@ class DashboardController extends AppController
 			  (isset($query)) ? $comfailurecount=$query->count(): $comfailurecount="";
 			  
 			  
-			  //status = 1 for completed & status = 0 for notstarted
+			  //status = 1 for completed & status = 0 for notstarted. 2 - scheduled, 3- Inprogress
 			  $query=$jobtable->find('All')->where(['EXTRACT(day from jobdate) = EXTRACT(day from date(now()))'])->andwhere(['status = 1'])->andwhere(['customer_id'=>$this->loggedinuser['customer_id']]);
 			  (isset($query)) ? $completedjobcount=$query->count() : $completedjobcount="";
+			  
 			  $query=$jobtable->find('All')->where(['EXTRACT(day from jobdate) = EXTRACT(day from date(now()))'])->andwhere(['status = 0'])->andwhere(['customer_id'=>$this->loggedinuser['customer_id']]);
 			  (isset($query)) ? $notstartedjobcount=$query->count() : $notstartedjobcount="";
-			  $notstartedjobcount=$query->count();
+			  
+			  $query=$jobtable->find('All')->where(['EXTRACT(day from jobdate) = EXTRACT(day from date(now()))'])->andwhere(['status = 2'])->andwhere(['customer_id'=>$this->loggedinuser['customer_id']]);
+			  (isset($query)) ? $scheduledjobcount=$query->count() : $scheduledjobcount="";
+			  
+			  $query=$jobtable->find('All')->where(['EXTRACT(day from jobdate) = EXTRACT(day from date(now()))'])->andwhere(['status = 3'])->andwhere(['customer_id'=>$this->loggedinuser['customer_id']]);
+			  (isset($query)) ? $inprogressjobcount=$query->count() : $inprogressjobcount="";
+			  
 			  
 			  $query3=$jobtable->find('All')->where(['EXTRACT(day from jobdate) = EXTRACT(day from date(now()))'])->andwhere(['customer_id'=>$this->loggedinuser['customer_id']]);
 			  (isset($query)) ? $totaljobcount=$query3->count() : $notstartedjobcount="";
@@ -298,11 +305,15 @@ class DashboardController extends AppController
 		  		{
 		  			$percentagecompletedjob = ($completedjobcount / $totaljobcount) * 100;
 			  		$percentagenotstartedjob = ($notstartedjobcount / $totaljobcount) * 100;
+					$percentagescheduledjob = ($scheduledjobcount / $totaljobcount) * 100;
+					$percentageinprogressjob = ($inprogressjobcount / $totaljobcount) * 100;
 		  		}
 			   else
 			   	{
 			   		 $percentagecompletedjob = 0;
 			  		 $percentagenotstartedjob = 0;
+					 $percentagescheduledjob = 0;
+					 $percentageinprogressjob = 0;
 					
 			   	}
 			  
@@ -352,7 +363,8 @@ class DashboardController extends AppController
 								'percentagenotstartedjob','percentageopenworkorder','percentageoverdueworkorder',
 								'percentagedeferredworkorder','percentageclosedworkorder','openworkordercount',
 								'completedjobcount','notstartedjobcount','deferredworkordercount','closedworkordercount',
-								'overdueworkordercount','runningdriverscount','comfailurecount','alertscontent','results'));
+								'overdueworkordercount','runningdriverscount','comfailurecount','alertscontent','results',
+								'scheduledjobcount','inprogressjobcount'));
 		
 		}
 		

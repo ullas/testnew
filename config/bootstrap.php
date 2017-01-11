@@ -108,7 +108,7 @@ mb_internal_encoding(Configure::read('App.encoding'));
 
 //edited by sreekanth
 ini_set('intl.default_locale', 'pl_PL');
-Cake\I18n\Time::setToStringFormat('HH:mm');
+//Cake\I18n\Time::setToStringFormat('HH:mm');
 Cake\I18n\Date::setToStringFormat('dd/MM/yy');
 Cake\I18n\FrozenDate::setToStringFormat('dd/MM/yy');
 
