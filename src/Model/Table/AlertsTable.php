@@ -65,7 +65,7 @@ class AlertsTable extends Table
             ->allowEmpty('id', 'create');
 
         $validator
-            ->allowEmpty('alert');
+            ->allowEmpty('alert_message');
 
         $validator
             ->numeric('latitude')

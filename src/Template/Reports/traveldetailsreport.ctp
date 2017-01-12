@@ -95,6 +95,18 @@
 	
 </div>
 
+<!-- <div class="row">
+	<div class="col-md-3">
+			<div class="col-sm-12">
+				
+				<?php 
+				echo $this->Form->input('speedlimit', [ 'type' => 'hidden','label'=>'Speed Limit']);
+				?>
+				
+			</div>		
+	</div>
+</div>	 -->
+	
             
 <div class="modal-footer">
       	<input type="button" value="Generate Report" class="mptl-settings-save btn btn-success" id="generatereport"/>
@@ -165,12 +177,38 @@ $(function () {
     	// table.ajax.url( '/Tracking/ajax_data' ).load();
     	// table.ajax.reload( null, false );table.ajax.data({starttime: starttime});
     	
-    	if(reporttype==0){//travel details report
+    	if(reporttype==0){//travel details report 
     		$(".dataTables_scrollHead .th1").text("Id");$(".dataTables_scrollHead .th2").text("Date&Time");$(".dataTables_scrollHead .th3").text("Speed");$(".dataTables_scrollHead .th4").text("Location");$(".dataTables_scrollHead .th5").text("Status");
     		table.ajax.url('/Tracking/ajax_data?reporttype='+reporttype+'&assetname='+assetname+'&starttime='+starttime+'&endtime='+endtime+'&startdate='+startdate+'&enddate='+enddate).load();
-   		}else if(reporttype==1){
-   			$(".dataTables_scrollHead .th1").text("Id");$(".dataTables_scrollHead .th2").text("Date&Time");$(".dataTables_scrollHead .th3").text("Speed");$(".dataTables_scrollHead .th4").text("Location");
+   		}
+		else if(reporttype==1){//fencing report
+			$(".spdlmt").type = "text";
+   			$(".dataTables_scrollHead .th1").text("Id");$(".dataTables_scrollHead .th2").text("Date&Time");$(".dataTables_scrollHead .th3").text("Speed");$(".dataTables_scrollHead .th4").text("Location");$(".dataTables_scrollHead .th5").text("Alert Message");
     		table.ajax.url('/Alerts/fencingAjaxData?reporttype='+reporttype+'&assetname='+assetname+'&starttime='+starttime+'&endtime='+endtime+'&startdate='+startdate+'&enddate='+enddate).load();
+   		}
+   		if(reporttype==2){//top speed report
+   			$(".dataTables_scrollHead .th1").text("Id");$(".dataTables_scrollHead .th2").text("Start Date&Time");$(".dataTables_scrollHead .th3").text("End Date&Time");$(".dataTables_scrollHead .th4").text("Max Speed");$(".dataTables_scrollHead .th5").text("Distance");
+    		table.ajax.url('/Journeys/topSpeedAjaxData?reporttype='+reporttype+'&assetname='+assetname+'&starttime='+starttime+'&endtime='+endtime+'&startdate='+startdate+'&enddate='+enddate).load();
+   		}
+   		else if(reporttype==3){//overspeed report
+   			$(".dataTables_scrollHead .th1").text("Id");$(".dataTables_scrollHead .th2").text("Date&Time");$(".dataTables_scrollHead .th3").text("Speed");$(".dataTables_scrollHead .th4").text("Location");$(".dataTables_scrollHead .th5").text("Alert Message");
+    		table.ajax.url('/Alerts/overSpeedAjaxData?reporttype='+reporttype+'&assetname='+assetname+'&starttime='+starttime+'&endtime='+endtime+'&startdate='+startdate+'&enddate='+enddate).load();
+   		}
+   		else if(reporttype==4){//Distance travelled report
+   			$(".dataTables_scrollHead .th1").text("Id");$(".dataTables_scrollHead .th2").text("Date");$(".dataTables_scrollHead .th3").text("Distance");$(".dataTables_scrollHead .th4").text("Running time");$(".dataTables_scrollHead .th5").text("Business time");
+    		table.ajax.url('/Dailysummary/distanceTravelledAjaxData?reporttype='+reporttype+'&assetname='+assetname+'&starttime='+starttime+'&endtime='+endtime+'&startdate='+startdate+'&enddate='+enddate).load();
+   		}
+   		else if(reporttype==5){//Stoppage report
+   			$(".dataTables_scrollHead .th1").text("Id");$(".dataTables_scrollHead .th2").text("Date&Time");$(".dataTables_scrollHead .th3").text("Location");$(".dataTables_scrollHead .th4").text("Speed");$(".dataTables_scrollHead .th5").text("Alert Message");
+    		table.ajax.url('/Alerts/stoppageAjaxData?reporttype='+reporttype+'&assetname='+assetname+'&starttime='+starttime+'&endtime='+endtime+'&startdate='+startdate+'&enddate='+enddate).load();
+   		}
+   		else if(reporttype==6){//Idle time report
+   			$(".dataTables_scrollHead .th1").text("Id");$(".dataTables_scrollHead .th2").text("Date&Time");$(".dataTables_scrollHead .th3").text("Location");$(".dataTables_scrollHead .th4").text("Idle Time");$(".dataTables_scrollHead .th5").text("Distance");
+    		table.ajax.url('/Journeys/idleTimeAjaxData?reporttype='+reporttype+'&assetname='+assetname+'&starttime='+starttime+'&endtime='+endtime+'&startdate='+startdate+'&enddate='+enddate).load();
+   		}
+   		else if(reporttype==7){//Travel Summary report
+   			$(".dataTables_scrollHead .th1").text("Id");$(".dataTables_scrollHead .th2").text("Date&Time");$(".dataTables_scrollHead .th3").text("Distance");$(".dataTables_scrollHead .th4").text("Max Speed");$(".dataTables_scrollHead .th5").text("Average Speed");
+    		table.ajax.url('/Journeys/travelSummaryAjaxData?reporttype='+reporttype+'&assetname='+assetname+'&starttime='+starttime+'&endtime='+endtime+'&startdate='+startdate+'&enddate='+enddate).load();
    		}
    		else{
    			$('#traveldetailstbl tbody').empty();

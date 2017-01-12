@@ -113,7 +113,7 @@
             <!-- /.col -->
             <div class="col-md-4">
               <p class="text-center">
-                <strong>Critical Violations(Aug/YTD)</strong>
+                <strong>Critical Violations (<?php echo date('M'); ?>/YTD)</strong>
               </p>
 
               <div class="progress-group">
