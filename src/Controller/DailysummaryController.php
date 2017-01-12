@@ -35,10 +35,12 @@ class DailysummaryController extends AppController
        // $dbout=$this->Alerts->find('all')->toArray();
      	$fields = array();
 		 
-		$fields[0] = array("name" =>"id"  , "type" => "num");
-		$fields[1] = array("name" =>"mdate"  , "type" => "date");
-		$fields[2] = array("name" =>"distance"  , "type" => "num");
+		$fields[0] = array("name" =>"Dailysummary.id"  , "type" => "num");
+		$fields[1] = array("name" =>"Dailysummary.mdate"  , "type" => "date");
+		$fields[2] = array("name" =>"Dailysummary.distance"  , "type" => "num");
 		//$fields[3] = array("name" =>"location"  , "type" => "char");
+		$fields[3] = array("name" =>"Dailysummary.runningtime"  , "type" => "char");
+		$fields[4] = array("name" =>"Dailysummary.businesstime"  , "type" => "char");
 				
 		$usrfiter="";
         // msgdtime filter
@@ -57,6 +59,7 @@ class DailysummaryController extends AppController
         	
         }
     	
+	// $distancecount=$query->sumOf('distance') 
 	
 		$output =$this->Datatable->getView($fields,['Customers'],$usrfiter);
 		$out =json_encode($output);  
@@ -64,5 +67,7 @@ class DailysummaryController extends AppController
 		$this->response->body($out);
 	    return $this->response;
 	}
+
+
    
 }

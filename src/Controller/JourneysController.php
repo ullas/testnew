@@ -35,10 +35,11 @@ class JourneysController extends AppController
         $dbout=$this->Journeys->find('all')->toArray();
      	$fields = array();
 		 
-		$fields[0] = array("name" =>"id"  , "type" => "num");
-		$fields[1] = array("name" =>"start_time"  , "type" => "date");
-		$fields[2] = array("name" =>"end_time"  , "type" => "num");
-		$fields[3] = array("name" =>"maxspeed"  , "type" => "char");
+		$fields[0] = array("name" =>"Journeys.id"  , "type" => "num");
+		$fields[1] = array("name" =>"Journeys.start_time"  , "type" => "date");
+		$fields[2] = array("name" =>"Journeys.end_time"  , "type" => "num");
+		$fields[3] = array("name" =>"Journeys.maxspeed"  , "type" => "char");
+		$fields[4] = array("name" =>"Journeys.distance"  , "type" => "num");
 				
 		$usrfiter="";
         // msgdtime filter
@@ -57,9 +58,8 @@ class JourneysController extends AppController
         	
         	$pre=(strlen($usrfiter)>0)?" and ":"";
 			$usrfiter.=$pre. " trackingobject_id ='" .$this->request->query['assetname']. "'";
-			$splmt = $this->request->query['speedlimit'];
-			//$usrfiter.=$pre. " maxspeed > intval('" .$splmt. "')";
-			$usrfiter.=$pre. " maxspeed > ".$splmt;
+			// $splmt = $this->request->query['speedlimit'];
+			// $usrfiter.=$pre. " maxspeed > ".$splmt;
 			
 			
         	
@@ -80,12 +80,18 @@ class JourneysController extends AppController
         
         $this->loadModel('Journeys');
         $dbout=$this->Journeys->find('all')->toArray();
+		
+		$journeyTable = TableRegistry::get('Journeys');
+		$query=$journeyTable->find('All')->where(['customer_id'=>$this->loggedinuser['customer_id']]);
+		$idletimesum=$query->sumOf('idletime') ;
+		
      	$fields = array();
 		 
-		$fields[0] = array("name" =>"id"  , "type" => "num");
-		$fields[1] = array("name" =>"start_time"  , "type" => "date");
-		$fields[2] = array("name" =>"start_loc"  , "type" => "char");
-		$fields[3] = array("name" =>"idletime"  , "type" => "num");
+		$fields[0] = array("name" =>"Journeys.id"  , "type" => "num");
+		$fields[1] = array("name" =>"Journeys.start_time"  , "type" => "date");
+		$fields[2] = array("name" =>"Journeys.start_loc"  , "type" => "char");
+		$fields[3] = array("name" =>"Journeys.idletime" , "type" => "num");
+		$fields[4] = array("name" =>"Journeys.distance"  , "type" => "num");
 				
 		$usrfiter="";
         // msgdtime filter
@@ -107,9 +113,7 @@ class JourneysController extends AppController
 			
         	
         }
-    	
-	
-		$output =$this->Datatable->getView($fields,['Customers'],$usrfiter);
+    	$output =$this->Datatable->getView($fields,['Customers'],$usrfiter);
 		$out =json_encode($output);  
 	   
 		$this->response->body($out);
@@ -125,11 +129,11 @@ class JourneysController extends AppController
         $dbout=$this->Journeys->find('all')->toArray();
      	$fields = array();
 		 
-		$fields[0] = array("name" =>"id"  , "type" => "num");
-		$fields[1] = array("name" =>"start_time"  , "type" => "date");
-		$fields[2] = array("name" =>"distance"  , "type" => "char");
-		$fields[3] = array("name" =>"maxspeed"  , "type" => "num");
-		$fields[4] = array("name" =>"averagespeed"  , "type" => "num");
+		$fields[0] = array("name" =>"Journeys.id"  , "type" => "num");
+		$fields[1] = array("name" =>"Journeys.start_time"  , "type" => "date");
+		$fields[2] = array("name" =>"Journeys.distance"  , "type" => "char");
+		$fields[3] = array("name" =>"Journeys.maxspeed"  , "type" => "num");
+		$fields[4] = array("name" =>"Journeys.averagespeed"  , "type" => "num");
 				
 		$usrfiter="";
         // msgdtime filter
