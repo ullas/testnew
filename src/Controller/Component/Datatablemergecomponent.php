@@ -6,61 +6,35 @@ use Cake\ORM\TableRegistry;
 
    class DatatablemergeComponent extends Component {
 
-       public function getView($fields,$contains,$usrFlier,$mergetbl,$mergefields)
+       public function getView($fields,$contains,$usrFlier,$mergetbl)
        {
 
            $length = count($fields);
            $colmns = array();
            $i = 0;
 		   $controller = $this->_registry->getController();
+		   $model=$controller->loadModel($controller->modelClass);
+		   $modalname=$controller->modelClass;
 		   
+
            foreach($fields as $value){
+           	
                 if($value['type']=='boolean'){
                     
-                    $colmns[] =array( 
-                    'db' => $value['name'], 
-                    'dt' => $i++,
-                    'formatter' => function( $d, $row ,$modalname) {
-                        $div='<div class="mptldtbool">'.$d.'</div>';
-                        return $div;
-                    }
-                       );
-                    
+                    $colmns[] =array( 'db' => $value['name'], 'dt' => $i++,
+                    						   'formatter' => function( $d, $row ,$modalname) {
+                        						    $div='<div class="mptldtbool">'.$d.'</div>';
+                                                    return $div;
+                    							}
+                       						);
                 }else{
-                    if(is_array($value)) {
-                          $colmns[] = array("db" => $value['name'] , "dt" => $i++);
-                    }else{
-                        $colmns[] = array("db" => $value , "dt" => $i++);
-                    }
+                	is_array($value) ? $colmns[] = array("db" => $value['name'] , "dt" => $i++) : $colmns[] = array("db" => $value , "dt" => $i++);
                 }
                 
             }
 		   
-		   //2nd tbl fields
-		   $mergecolmns = array();
-		   foreach($mergefields as $value){
-                if($value['type']=='boolean'){
-                    
-                    $mergecolmns[] =array( 
-                    'db' => $value['name'], 
-                    'dt' => $i++,
-                    'formatter' => function( $d, $row ,$modalname) {
-                        $div='<div class="mptldtbool">'.$d.'</div>';
-                        return $div;
-                    }
-                       );
-                    
-                }else{
-                    if(is_array($value)) {
-                          $mergecolmns[] = array("db" => $value['name'] , "dt" => $i++);
-                    }else{
-                        $mergecolmns[] = array("db" => $value , "dt" => $i++);
-                    }
-                }
-                
-            }
-		   //
-		   
+		 
+		   //enable/disable action buttons
 		   if($controller->loggedinuser['customer_id']=="0"){
            		$colmns[] =array(
                		'db' => 'id',
@@ -89,12 +63,9 @@ use Cake\ORM\TableRegistry;
                		}
               	);
 			  }
-           //getting orderby
-           $order = $this->Order( $colmns );
-           //getting filter
            
+           //getting filter 
            $where = $this->Filter( $colmns, $fields );
-
            //getting limit
            $limit = $this->Limit( );//echo 1/0;
            //set value to limit if it is null
@@ -104,15 +75,16 @@ use Cake\ORM\TableRegistry;
            // }
            
 
-
-		   $model=$controller->loadModel($controller->modelClass);
-
-           $wherestr="";
+		   //append OR inbetween where string
+           $wherestr="";$mergewherestr="";
            foreach($where  as $key => $value){
                if($wherestr != ''){$wherestr.=" OR ";}
+               if($mergewherestr != ''){$mergewherestr.=" OR ";}
                
-               $wherestr.=$key. " '". $value. "'";
+               $wherestr.=$modalname.".".$key. " '". $value. "'";
+			   $mergewherestr.=$mergetbl.".".$key. " '". $value. "'";
            }
+           //append AND before usrfilter
            if(strlen($wherestr)>3 && strlen($usrFlier)>3){
            	 $wherestr.= " and ".$usrFlier;
            }else{
@@ -120,45 +92,69 @@ use Cake\ORM\TableRegistry;
            	    $wherestr=$usrFlier;
            	  }
            }
-          
-           $data1 = $model->find('all')->contain($contains)->where($wherestr)->order($order)->limit($limit)->page($page)->toArray();
+           
+           $data1 = $model->find('all')->contain($contains)->where($wherestr)->limit($limit)->page($page)->toArray();
 		   
 		   
-		   
-		   
-		   //getting filter
-           $mergewhere = $this->Filter( $mergecolmns, $mergefields );
-		   $mergewherestr="";
-           foreach($mergewhere  as $key => $value){
-               if($mergewherestr != ''){$mergewherestr.=" OR ";}
-               
-               $mergewherestr.=$key. " '". $value. "'";
-           }
-           if(strlen($mergewherestr)>3 && strlen($usrFlier)>3){
+		   if(strlen($mergewherestr)>3 && strlen($usrFlier)>3){
            	 $mergewherestr.= " and ".$usrFlier;
            }else{
            	  if(strlen($usrFlier)>3){
            	    $mergewherestr=$usrFlier;
            	  }
            }
-		   //getting orderby
-           $mergeorder = $this->Order( $mergecolmns );
-           
 		   $table = TableRegistry::get($mergetbl);
-		   $data2 = $table->find('all')->contain($contains)->where($mergewherestr)->order($mergeorder)->limit($limit)->page($page)->toArray();
+		   $data2 = $table->find('all')->contain($contains)->where($mergewherestr)->limit($limit)->page($page)->toArray();
            
 		   
-		   
+		   //getting orderby
+           // $order = $this->Order( $colmns );
+           
 		   $data = array_merge($data1,$data2);
+		   
            //getting totalcount
-           $totalCount = $model->find() ->contain($contains)->count();
+           $totalCount = $model->find() ->contain($contains)->count() + $table->find() ->contain($contains)->count();
            //getting filteredcount
-           $filteredCount = $model->find()->contain($contains)->where($wherestr)->count();
+           $filteredCount = $model->find()->contain($contains)->where($wherestr)->count() + $table->find() ->contain($contains)->where($mergewherestr)->count();
 
            $output =$this->GetData($colmns,$data,$totalCount,$filteredCount);
-
-           return  $output;
+		   // $output = $this->array_sort($output['data'], 'id', SORT_ASC);
+		   return  $output;
        }
+		public function array_sort($array, $on, $order=SORT_ASC){
+
+    		$new_array = array();
+    		$sortable_array = array();
+
+    		if (count($array) > 0) {
+        		foreach ($array as $k => $v) {
+            		if (is_array($v)) {
+                		foreach ($v as $k2 => $v2) {
+                    		if ($k2 == $on) {
+                        		$sortable_array[$k] = $v2;
+                    		}
+                		}
+            		} else {
+                		$sortable_array[$k] = $v;
+            		}
+        		}
+
+        		switch ($order) {
+            		case SORT_ASC:
+                		asort($sortable_array);
+                	break;
+            		case SORT_DESC:
+                		arsort($sortable_array);
+                	break;
+        		}
+
+        		foreach ($sortable_array as $k => $v) {
+            		$new_array[$k] = $array[$k];
+        		}
+    		}
+
+    		return $new_array;
+	   }
        public function Limit(){
            $limit = '';
            if ( isset($this->request->query['start']) && $this->request->query['length'] != -1 ) {
