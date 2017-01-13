@@ -93,37 +93,30 @@ class TrackingController extends AppController
      
         $fields = array();
 		 
-		$fields[0] = array("name" =>"Tracking.id"  , "type" => "num");
-		$fields[1] = array("name" =>"Tracking.msgdtime"  , "type" => "char");
-		$fields[2] = array("name" =>"Tracking.speed"  , "type" => "num");
-		$fields[3] = array("name" =>"Tracking.location"  , "type" => "char");
-		$fields[4] = array("name" =>"Tracking.status"  , "type" => "char");
+		$fields[0] = array("name" =>"id"  , "type" => "num");
+		$fields[1] = array("name" =>"msgdtime"  , "type" => "timestamp");
+		$fields[2] = array("name" =>"speed"  , "type" => "num");
+		$fields[3] = array("name" =>"location"  , "type" => "char");
+		$fields[4] = array("name" =>"status"  , "type" => "char");
 		
-		$asscfields = array();
-		$asscfields[0] = array("name" =>"History.id"  , "type" => "num");
-		$asscfields[1] = array("name" =>"History.msgdtime"  , "type" => "char");
-		$asscfields[2] = array("name" =>"History.speed"  , "type" => "num");
-		$asscfields[3] = array("name" =>"History.location"  , "type" => "char");
-		$asscfields[4] = array("name" =>"History.status"  , "type" => "char");
-				
-		$usrfiter="";
+		$usrfilter="";
         // msgdtime filter
         if(isset($this->request->query['startdate']) && ($this->request->query['startdate'])!=null && isset($this->request->query['enddate']) && ($this->request->query['enddate'])!=null 
         															&& isset($this->request->query['starttime']) && isset($this->request->query['endtime'])){
         	
-			$usrfiter.="msgdtime BETWEEN '" .$this->toPostDBDate($this->request->query['startdate']). " ".$this->request->query['starttime']
+			$usrfilter.="msgdtime BETWEEN '" .$this->toPostDBDate($this->request->query['startdate']). " ".$this->request->query['starttime']
 						   ."' AND '" .$this->toPostDBDate($this->request->query['enddate']). " " .$this->request->query['endtime']. "'";
 		}
 		//Asset filter	
         if(isset($this->request->query['assetname'])){
         	
-        	$pre=(strlen($usrfiter)>0)?" and ":"";
-			$usrfiter.=$pre. " trackingobject_id ='" .$this->request->query['assetname']. "'";
+        	$pre=(strlen($usrfilter)>0)?" and ":"";
+			$usrfilter.=$pre. " trackingobject_id ='" .$this->request->query['assetname']. "'";
         	
         }
     	
 	
-		$output =$this->Datatablemerge->getView($fields,['Customers'],$usrfiter,'History',$asscfields);
+		$output =$this->Datatablemerge->getView($fields,['Customers'],$usrfilter,'History');
 		$out =json_encode($output);  
 	   
 		$this->response->body($out);

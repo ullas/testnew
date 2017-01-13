@@ -193,7 +193,7 @@ if (file_exists($file)) {
             <i class="fa fa-angle-left pull-right"></i>
         </a>
         <ul class="treeview-menu">
-        	<li><a href="<?php echo $this->Url->build('/reports/traveldetailsreport'); ?>"><div class="pull-left image mptl-greports"></div>Travel Reports</a></li>
+        	<li><a href="<?php echo $this->Url->build('/reports/adhocreport'); ?>"><div class="pull-left image mptl-greports"></div>Adhoc Reports</a></li>
             <li><a href="<?php echo $this->Url->build('/reports/group'); ?>"><div class="pull-left image mptl-greports"></div>Group Reports</a></li>
             <li><a href="<?php echo $this->Url->build('/reports/individul'); ?>"><div class="pull-left image mptl-ireports"></div>Individual Reports</a></li>
 
