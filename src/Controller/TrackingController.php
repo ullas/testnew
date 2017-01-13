@@ -1,6 +1,5 @@
 <?php
 namespace App\Controller;
-
 use App\Controller\AppController;
 use Cake\Event\Event;
 use Cake\ORM\TableRegistry;
@@ -13,9 +12,8 @@ use Cake\Datasource\ConnectionManager;
 class TrackingController extends AppController
 {
    
-
    
-  public $components = ['Datatable'];
+  public $components = ['Datatablemerge'];
     /**
      * Index method
      *
@@ -90,14 +88,23 @@ class TrackingController extends AppController
 	{
 		$this->autoRender= false;
         
-        $this->loadModel('Tracking');
+        // $this->loadModel('Tracking');
         $dbout=$this->Tracking->find('all')->toArray();
      
         $fields = array();
 		 
 		$fields[0] = array("name" =>"Tracking.id"  , "type" => "num");
-		$fields[1] = array("name" =>"Tracking.imei"  , "type" => "char");
-		$fields[2] = array("name" =>"Tracking.msgdtime"  , "type" => "timestamp");
+		$fields[1] = array("name" =>"Tracking.msgdtime"  , "type" => "char");
+		$fields[2] = array("name" =>"Tracking.speed"  , "type" => "num");
+		$fields[3] = array("name" =>"Tracking.location"  , "type" => "char");
+		$fields[4] = array("name" =>"Tracking.status"  , "type" => "char");
+		
+		$asscfields = array();
+		$asscfields[0] = array("name" =>"History.id"  , "type" => "num");
+		$asscfields[1] = array("name" =>"History.msgdtime"  , "type" => "char");
+		$asscfields[2] = array("name" =>"History.speed"  , "type" => "num");
+		$asscfields[3] = array("name" =>"History.location"  , "type" => "char");
+		$asscfields[4] = array("name" =>"History.status"  , "type" => "char");
 				
 		$usrfiter="";
         // msgdtime filter
@@ -116,7 +123,7 @@ class TrackingController extends AppController
         }
     	
 	
-		$output =$this->Datatable->getView($fields,['Customers'],$usrfiter);
+		$output =$this->Datatablemerge->getView($fields,['Customers'],$usrfiter,'History',$asscfields);
 		$out =json_encode($output);  
 	   
 		$this->response->body($out);

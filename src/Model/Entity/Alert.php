@@ -7,7 +7,7 @@ use Cake\ORM\Entity;
  * Alert Entity
  *
  * @property int $id
- * @property string $alert
+ * @property string $alert_message
  * @property int $trackingobject_id
  * @property float $latitude
  * @property float $longitude

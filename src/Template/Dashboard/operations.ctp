@@ -247,18 +247,18 @@
             <div class="box-footer no-border">
               <div class="row">
                 <div class="col-xs-3 text-center" style="border-right: 1px solid #f4f4f4">
-                  <input type="text" class="knob" data-readonly="true" value="20" data-width="60" data-height="60" data-fgColor="#39CCCC">
+                  <input type="text" class="knob" data-readonly="true" value="<?php echo $scheduledjobcount?>" data-width="60" data-height="60" data-fgColor="#39CCCC">
 
                   <div class="knob-label">Scheduled</div>
                 </div>
                 <!-- ./col -->
                 <div class="col-xs-3 text-center" style="border-right: 1px solid #f4f4f4">
-                  <input type="text" class="knob" data-readonly="true" value="50" data-width="60" data-height="60" data-fgColor="#39CCCC">
+                  <input type="text" class="knob" data-readonly="true" value="<?php echo $inprogressjobcount?>" data-width="60" data-height="60" data-fgColor="#39CCCC">
 
                   <div class="knob-label">In Progress</div>
                 </div>
                 <!-- ./col -->
-                <div class="col-xs-3 text-center">
+                <div class="col-xs-3 text-center">  
                   <input type="text" class="knob" data-readonly="true" value="<?php echo $completedjobcount?>" data-width="60" data-height="60" data-fgColor="#39CCCC">
 
                   <div class="knob-label">Completed</div>
