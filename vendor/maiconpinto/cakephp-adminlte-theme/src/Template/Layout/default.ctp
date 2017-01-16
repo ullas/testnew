@@ -220,7 +220,7 @@ div.dataTables_wrapper { clear: both; }
     	$(".select2").select2({ width: '100%',allowClear: true,placeholder: "Select" });
 		//datepicker
     	$('.datemask').datepicker({
-    		format:"dd/mm/yy",
+    		format:"dd/mm/yyyy",
       		autoclose: true,clearBtn: true
     	});
     	

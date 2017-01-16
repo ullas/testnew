@@ -34,7 +34,9 @@ use Cake\Utility\Inflector;
                 }
                 
             }
+		   $reportcontrollers = array("Alerts", "Journey");
 		   
+		  // if (!(in_array($controller->name, $reportcontrollers))) {
 		   if($controller->loggedinuser['customer_id']=="0"){
            		$colmns[] =array(
                		'db' => 'id',
@@ -63,6 +65,8 @@ use Cake\Utility\Inflector;
                		}
               	);
 			  }
+			  // }
+
            //getting orderby
               $order = $this->Order( $colmns );
            //getting filter
@@ -73,7 +77,7 @@ use Cake\Utility\Inflector;
            $limit = $this->Limit( );//echo 1/0;
            //set value to limit if it is null
            // if($limit!=""){
-           	//getting page no
+           //getting page no
            	$page=ceil($this->request->query['start']/$limit)+1;
            // }
            
