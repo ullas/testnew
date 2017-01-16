@@ -33,7 +33,8 @@ use Cake\ORM\TableRegistry;
                 
             }
 		   
-		 
+		   $reportcontrollers = array("Tracking");
+		  // if (!(in_array($controller->name, $reportcontrollers))) {
 		   //enable/disable action buttons
 		   if($controller->loggedinuser['customer_id']=="0"){
            		$colmns[] =array(
@@ -63,6 +64,7 @@ use Cake\ORM\TableRegistry;
                		}
               	);
 			  }
+			  // }
            
            //getting filter 
            $where = $this->Filter( $colmns, $fields );

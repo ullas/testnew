@@ -122,4 +122,47 @@ class TrackingController extends AppController
 		$this->response->body($out);
 	    return $this->response;
 	}
+
+	public function duringbehaviorAjaxData() 
+	{
+		$this->autoRender= false;
+        
+        // $this->loadModel('Tracking');
+        $dbout=$this->Tracking->find('all')->toArray();
+     
+        $fields = array();
+		 
+		$fields[0] = array("name" =>"id"  , "type" => "num");
+		$fields[1] = array("name" =>"msgdtime"  , "type" => "timestamp");
+		$fields[2] = array("name" =>"speed"  , "type" => "num");
+		$fields[3] = array("name" =>"location"  , "type" => "char");
+		$fields[4] = array("name" =>"status"  , "type" => "char");
+		
+		$usrfilter="";
+        // msgdtime filter
+        if(isset($this->request->query['startdate']) && ($this->request->query['startdate'])!=null && isset($this->request->query['enddate']) && ($this->request->query['enddate'])!=null 
+        															&& isset($this->request->query['starttime']) && isset($this->request->query['endtime'])){
+        	
+			$usrfilter.="msgdtime BETWEEN '" .$this->toPostDBDate($this->request->query['startdate']). " ".$this->request->query['starttime']
+						   ."' AND '" .$this->toPostDBDate($this->request->query['enddate']). " " .$this->request->query['endtime']. "'";
+		}
+		//Asset filter	
+        if(isset($this->request->query['assetname'])){
+        	
+        	$pre=(strlen($usrfilter)>0)?" and ":"";
+			$usrfilter.=$pre. " trackingobject_id ='" .$this->request->query['assetname']. "'";
+        	
+        }
+    	
+		
+		$pre=(strlen($usrfilter)>0)?" and ":"";
+		$usrfilter.=$pre. " speed > 0";
+			
+	
+		$output =$this->Datatablemerge->getView($fields,['Customers'],$usrfilter,'History');
+		$out =json_encode($output);  
+	   
+		$this->response->body($out);
+	    return $this->response;
+	}
 }
