@@ -21,7 +21,7 @@ class ReportsController extends AppController
      *
      * @return \Cake\Network\Response|null
      */
-    public function traveldetailsreport()
+    public function adhocreport()
     {
          $this->loadModel('Tracking');
          $gpsdata=$this->Tracking->find('all')->toArray();
