@@ -21,7 +21,7 @@
       	<a href="#" id="printdt" class="btn btn-sm btn-success" style="margin-left:5px;display:none;" title="Print"><i class='fa fa-print'></i></a>
       	<a href="#" id="savexlsx" class="btn btn-sm btn-success" style="margin-left:5px;display:none;" title="Save as xlsx"><i class='fa fa-file-excel-o'></i></a>
       	<!-- <a href="#" id="savepdf" class="btn btn-sm btn-success" style="margin-left:5px;" title="Save as pdf"><i class='fa fa-file-pdf-o'></i></a> --></div>
-		<table id="mptlindextbl" class="table table-hover  table-bordered ">
+		<table id="mptlindextbl" class="table table-hover table-bordered">
         <thead>
             <tr>
             	<th data-orderable="false"><input type="checkbox" name="select_all" value="1" id="select-all" ></th>
@@ -106,6 +106,8 @@ $this->Html->script([
 <?php $this->start('scriptBotton'); ?>
 <script>
   var table; var order;
+	var prevselection = [];
+
    function deleteRecord(btn){
 
   	    if (btn == 'yes') {
@@ -114,9 +116,6 @@ $this->Html->script([
         }
   }
   $(function () {
-
-
-
   	// xlxsx
   	$.fn.dataTable.Api.register('column().title()', function() {
         var colheader = this.header();
@@ -231,7 +230,7 @@ $this->Html->script([
 			rows.push(columns.join("\t"));
 		});
 		//delimit newline between each row
-		var data = rows.join("\n"); //console.log(data);
+		var data = rows.join("\n");
 		copyToClipboard(data);
 		alert('Copied to Clipboard !');
 	});
@@ -264,9 +263,17 @@ $this->Html->script([
       	alert("No item selected. Please select at least one item ");
       	return;
       }
-       if (confirm("Do you want to delete the record?")) {
-	   	deleteRecord('yes');
-	   }
+
+			if($(".mptl-lst-chkbox:checked").length==1){
+				if (confirm("Do you want to delete the record?")) {
+		   	deleteRecord('yes');
+		    }
+			}
+			else if($(".mptl-lst-chkbox:checked").length>1){
+				if (confirm("Do you want to delete " + $(".mptl-lst-chkbox:checked").length + " records?")) {
+		   	deleteRecord('yes');
+		    }
+			}
   	});
 
     $('#settings').on('shown.bs.modal', function() {
@@ -377,47 +384,54 @@ $this->Html->script([
 
     $('<a href="#" class="btn btn-sm btn-success" data-toggle="modal" data-target="#settings" style="margin-left:5px;" title="Table Settings"><i class="fa fa-gear" aria-hidden="true"></i></a>').appendTo('div.dataTables_filter');
 
-       $('.dataTables_filter input').unbind().on('keyup', function() {
-
-	var searchTerm = this.value.toLowerCase();
-	$.fn.dataTable.ext.search.push(function(settings, data, dataIndex) {
+$('.dataTables_filter input').unbind().on('keyup', function() {
+		var searchTerm = this.value.toLowerCase();
+		$.fn.dataTable.ext.search.push(function(settings, data, dataIndex) {
        //search only the following columns
        return true;
-   })
-   console.log(searchTerm);
-   table.search(searchTerm).draw();
-   $.fn.dataTable.ext.search.pop();
+   	})
+   	table.search(searchTerm).draw();
+   	$.fn.dataTable.ext.search.pop();
 })
 //col reorder
  order= new $.fn.dataTable.ColReorder( table );
   // Handle click on "Select all" control
    $('#select-all').on('click', function(){
       // Get all rows with search applied
-
       var rows = table.rows({ 'search': 'applied' }).nodes();
       // Check/uncheck checkboxes for all rows in the table
       $('input[type="checkbox"]', rows).prop('checked', this.checked);
-      setTurben();
+      prevselection = setSelection();
+			setTurben();
    });
-   // Handle click on checkbox to set state of "Select all" control
-   $('#mptlindextbl tbody').on('change', 'input[type="checkbox"]', function(){
-      // If checkbox is not checked
-      if(!this.checked){
-         var el = $('#select-all').get(0);
-         // If "Select all" control is checked and has 'indeterminate' property
-         if(el && el.checked && ('indeterminate' in el)){
-            // Set visual state of "Select all" control
-            // as 'indeterminate'
-            el.indeterminate = true;
-         }
-      }
-      setTurben();
-   });
+	 // Handle click on checkbox to set state of "Select all" control
+	$('#mptlindextbl tbody').on('change', 'input[type="checkbox"]', function(){
+		 var el = $('#select-all').get(0);
+		 var c =	$(".mptl-lst-chkbox:checked").length;
+		 var rows = table.rows({ 'search': 'applied' }).nodes();
+		 // If checkbox is not checked
+		 if(!this.checked && !(c==0)){
+				// If "Select all" control is checked and has 'indeterminate' property
+				if(el && el.checked && ('indeterminate' in el)){
+					 // Set visual state of "Select all" control
+					 // as 'indeterminate'
+					 el.indeterminate = true;
+				}
+		 }
+		 if (c==0){
+				 el.indeterminate = false;
+				 el.checked = false;
+		 }
+		 if (c==rows.length){
+ 			  el.checked = true;
+				el.indeterminate = false;
+ 		 }
+		 prevselection = setSelection();
+		 setTurben();
+	});
    // Handle click on " Settings Select all" control
    $('#mptl_settings_chk_all').on('click', function(){
       // Check/uncheck checkboxes for all rows in the table
-
-
       if( $(this).is(':checked') ){
          $('.mptl_settings_chk').prop('checked', true);
       }else{
@@ -436,9 +450,7 @@ $this->Html->script([
             // as 'indeterminate'
             el.indeterminate = true;
          }
-
       }
-
    });
    $(".mptl-settings-save").click(function(){
        var hiddencols="";
@@ -453,7 +465,6 @@ $this->Html->script([
 			    if(sThisVal){
 
 			    	table.column(col).visible(true);
-
 			    }else{
 			    	hiddencols.length>0? hiddencols+="," :hiddencols;
 			    	hiddencols+=col;
@@ -461,8 +472,6 @@ $this->Html->script([
 			    }
 		    }
 	   });
-
-
 
 	   $.post("/<?php echo $this->request->params['controller'] ?>/updateSettings",
    		 {
@@ -499,7 +508,7 @@ $this->Html->script([
     	// table.colReorder.order(ordr);
     	 table.draw();
     });
-        //jQuery UI sortable for the settings modal
+    //jQuery UI sortable for the settings modal
     $(".column-list").sortable({
         placeholder: "sort-highlight",
         handle: ".handle",
@@ -508,6 +517,14 @@ $this->Html->script([
     });
      setTurben();
   });
+
+function setSelection(){
+		var valuearray = [];
+		$(".mptl-lst-chkbox:checked").each(function(){
+				valuearray.push($(this).attr("value"));
+		});
+		return valuearray;
+}
 
 function setTurben()
 {
@@ -527,6 +544,7 @@ function setTurben()
       }
 }
 
+
 function updateFilterActiveFlag()
 {
 	    var flagActive=false;
@@ -540,7 +558,6 @@ function updateFilterActiveFlag()
 	 	$('.mptl-filter-base').each(function (){
     		if(this.checked  && !($(this).is(':disabled'))){
     			flagActive=true;
-
     		}
     	});
     	  flagActive  ? $("#filterstatus").show() : 	$("#filterstatus").hide();
@@ -576,9 +593,64 @@ $('.mptl-filter-base').on('ifUnchecked', function(event){
     	 table.ajax.reload(null,true);
     	 table.draw();
   }
-  function setOrder()
-  {
+  function setOrder(){}
 
-  }
+$(document).ajaxComplete(function () {
+	    ajaxInitialise();
+});
+//Determines the fmaction and selection behaviour during asynchronous calls
+function ajaxInitialise(){
+		var el = $('#select-all').get(0);
+		var rows = table.rows({ 'search': 'applied' }).nodes();
+		var c =	$(".mptl-lst-chkbox:checked").length;
+		if(rows.length == 0){
+			$('#select-all').attr("disabled", true);
+		}
+		else{
+			$('#select-all').attr("disabled", false);
+		}
+		if(prevselection.length > 0){
+			var newselection = [];
+			$(".mptl-lst-chkbox").each(function(){
+				newselection.push($(this).attr("value"));
+			});
+			var commonselection = $.grep(prevselection, function(element) {
+			    return $.inArray(element, newselection ) !== -1;
+				});
+			if (commonselection.length > 0){
+					$.each(commonselection,function(key,val){
+        	  $("input[type='checkbox'][value="+val+"]").prop("checked",true);
+    			});
+			}
+			if (el && el.checked && (commonselection.length == newselection.length)){
+					el.indeterminate = false;
+			}
+			else if (el && el.checked && (commonselection.length < newselection.length)){
+					el.indeterminate = true;
+			}
+			else if(el && el.checked && ('indeterminate' in el)){
+					 el.indeterminate = true;
+			}
+			else if(el && el.checked && (c == 0)){
+					el.indeterminate = false;
+			}
+			else if (el && el.checked && (rows.length == newselection.length)){
+					el.indeterminate = false;
+			}
+			else{
+					el.checked = false;
+					el.indeterminate = false;
+			}
+			if (el && el.checked && (rows.length == 0)){
+				  el.checked = false;
+					el.indeterminate = false;
+			}
+			setTurben();
+		}
+		else{
+			 prevselection = setSelection();
+			 setTurben();
+		}
+	}
 </script>
 <?php $this->end(); ?>
