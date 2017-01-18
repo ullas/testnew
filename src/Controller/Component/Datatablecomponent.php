@@ -12,6 +12,10 @@ use Cake\Utility\Inflector;
            $colmns = array();
            $i = 0;
 		   $controller = $this->_registry->getController();
+		   $model=$controller->loadModel($controller->modelClass);
+		   $select = array();
+		   
+		   $query = $model->find();
 		   
            foreach($fields as $value){
                 if($value['type']=='boolean'){
@@ -33,10 +37,20 @@ use Cake\Utility\Inflector;
                     }
                 }
                 
+				//select query
+				if($value['type']!='count'){
+					$select[] = $value['name'] ;
+				}else{
+					$tempquerystr="";
+					$tempquerystr=$query->func()->count($value['name']);
+					$select[$value['name']] = $tempquerystr;
+				}
             }
+		   
+		   
 		   $reportcontrollers = array("Alerts", "Journey");
 		   
-		  // if (!(in_array($controller->name, $reportcontrollers))) {
+		   // if (!(in_array($controller->name, $reportcontrollers))) {
 		   if($controller->loggedinuser['customer_id']=="0"){
            		$colmns[] =array(
                		'db' => 'id',
@@ -68,7 +82,7 @@ use Cake\Utility\Inflector;
 			  // }
 
            //getting orderby
-              $order = $this->Order( $colmns );
+           $order = $this->Order( $colmns );
            //getting filter
            
            $where = $this->Filter( $colmns, $fields );
@@ -83,7 +97,7 @@ use Cake\Utility\Inflector;
            
 
 
-$model=$controller->loadModel($controller->modelClass);
+		   
 
            $wherestr="";
            foreach($where  as $key => $value){
@@ -99,7 +113,8 @@ $model=$controller->loadModel($controller->modelClass);
            	  }
            }
           
-           $data = $model->find('all')->contain($contains)->where($wherestr)->order($order)->limit($limit)->page($page)->toArray();
+		 
+           $data = $query->select($select)->contain($contains)->where($wherestr)->order($order)->limit($limit)->page($page)->toArray();
            
 
            //getting totalcount
@@ -109,7 +124,7 @@ $model=$controller->loadModel($controller->modelClass);
 
            $output =$this->GetData($colmns,$data,$totalCount,$filteredCount);
 
-           return  $output;
+           return $output;
        }
        public function Limit(){
            $limit = '';
