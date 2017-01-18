@@ -17,7 +17,7 @@ use Cake\ORM\Entity;
  * @property int $runningtime
  * @property int $stoppedtime
  * @property int $parkedtime
- * @property int $idletime
+ * @property float $idletime
  * @property int $businesstime
  *
  * @property \App\Model\Entity\Trackingobject $trackingobject

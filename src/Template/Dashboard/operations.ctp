@@ -122,7 +122,7 @@
                   <!-- checkbox -->
                   <input type="checkbox" value="" name="">
                   <!-- todo text -->
-                  <span class="text"><?php echo $alertscontent[$x]['alert'] ?></span>
+                  <span class="text"><?php echo $alertscontent[$x]['alert_message'] ?></span>
                   <!-- Emphasis label -->
                   <small class="label label-danger"><i class="fa fa-clock-o"></i>
                   	<?php 
