@@ -89,7 +89,7 @@ class DailysummaryTable extends Table
             ->allowEmpty('parkedtime');
 
         $validator
-            ->integer('idletime')
+            ->numeric('idletime')
             ->allowEmpty('idletime');
 
         $validator

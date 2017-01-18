@@ -83,7 +83,7 @@ if (file_exists($file)) {
 						   for ($x = 0; $x < count($alertcontent); $x++) { ?>
                            <li>
                                 <a href="#">
-                                	<i class="fa fa-users text-aqua"></i><?php echo $alertcontent[$x]['alert']; ?> 
+                                	<i class="fa fa-users text-aqua"></i><?php echo $alertcontent[$x]['alert_message']; ?> 
                             	</a>
                             </li>
                             <?php } 
