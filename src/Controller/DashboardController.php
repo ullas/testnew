@@ -48,13 +48,13 @@ class DashboardController extends AppController
 		  $query=$assetTable->find('All')->where(['customer_id'=>$this->loggedinuser['customer_id']]);
 		  (isset($query)) ? $assetcount=$query->count() : $assetcount="";
 		  
-		  $query=$alertTable->find('All')->where (['alertcategories_id' => '1'])->andwhere(['EXTRACT(month from alert_dtime) = EXTRACT(month from date(now()))'])->andwhere(['customer_id'=>$this->loggedinuser['customer_id']]);
+		  $query=$alertTable->find('All')->where (['alertcategories_id' => '1'])->andwhere(['EXTRACT(month from alert_dtime) = EXTRACT(month from date(now()))'])->andwhere(['EXTRACT(year from alert_dtime) = EXTRACT(year from date(now()))'])->andwhere(['customer_id'=>$this->loggedinuser['customer_id']]);
 		  (isset($query)) ? $overspeedalertcount=$query->count() : $overspeedalertcount="";
 		  
 		  $query=$alertTable->find('All')->where (['alertcategories_id' => '1'])->andwhere(['customer_id'=>$this->loggedinuser['customer_id']]);
 		  (isset($query)) ? $totaloverspeedalertcount=$query->count() : $totaloverspeedalertcount="";
 		  
-		  $query=$alertTable->find('All')->where (['alertcategories_id' => '2'])->andwhere(['EXTRACT(month from alert_dtime) = EXTRACT(month from date(now()))'])->andwhere(['customer_id'=>$this->loggedinuser['customer_id']]);
+		  $query=$alertTable->find('All')->where (['alertcategories_id' => '2'])->andwhere(['EXTRACT(month from alert_dtime) = EXTRACT(month from date(now()))'])->andwhere(['EXTRACT(year from alert_dtime) = EXTRACT(year from date(now()))'])->andwhere(['customer_id'=>$this->loggedinuser['customer_id']]);
 		  (isset($query)) ? $harshbreakingalertcount=$query->count() : $harshbreakingalertcount="";
 		  
 		  $query=$alertTable->find('All')->where (['alertcategories_id' => '2'])->andwhere(['customer_id'=>$this->loggedinuser['customer_id']]);
@@ -68,7 +68,7 @@ class DashboardController extends AppController
 		  $query=$alertTable->find('All')->where (['alertcategories_id' => '3'])->andwhere(['customer_id'=>$this->loggedinuser['customer_id']]);
 		  (isset($query)) ? $totalfenceviolationalertcount=$query->count() : $totalfenceviolationalertcount="";
 		  
-		  $query=$alertTable->find('All')->where (['alertcategories_id' => '4'])->andwhere(['EXTRACT(month from alert_dtime) = EXTRACT(month from date(now()))'])->andwhere(['customer_id'=>$this->loggedinuser['customer_id']]);
+		  $query=$alertTable->find('All')->where (['alertcategories_id' => '4'])->andwhere(['EXTRACT(month from alert_dtime) = EXTRACT(month from date(now()))'])->andwhere(['EXTRACT(year from alert_dtime) = EXTRACT(year from date(now()))'])->andwhere(['customer_id'=>$this->loggedinuser['customer_id']]);
 		  (isset($query)) ? $eccessiveaccelalertcount=$query->count() : $eccessiveaccelalertcount="";
 		  
 		  $query=$alertTable->find('All')->where (['alertcategories_id' => '4'])->andwhere(['customer_id'=>$this->loggedinuser['customer_id']]);
@@ -83,7 +83,7 @@ class DashboardController extends AppController
 		  $query =$alertTable->find('All')->where(['customer_id'=>$this->loggedinuser['customer_id']])->andwhere(['ack = false'])->toArray();
 		  (isset($query)) ? $alertcontent=$query : $alertcontent="";
 		  
-		  $query=$dailysummaryTable->find('All')->where(['EXTRACT(month from mdate) = EXTRACT(month from date(now()))'])->andwhere(['customer_id'=>$this->loggedinuser['customer_id']]);
+		  $query=$dailysummaryTable->find('All')->where(['EXTRACT(month from mdate) = EXTRACT(month from date(now()))'])->andwhere(['EXTRACT(year from mdate) = EXTRACT(year from date(now()))'])->andwhere(['customer_id'=>$this->loggedinuser['customer_id']]);
 		  (isset($query)) ? $distancecount=$query->sumOf('distance') : $distancecount="";
 		  (isset($query)) ? $fuelsum=$query->sumOf('fuel') : $fuelsum="";
 		  (isset($query)) ? $runtimesum=$query->sumOf('runningtime')/3600 : $runtimesum="";
@@ -91,7 +91,7 @@ class DashboardController extends AppController
 		  (isset($query)) ? $nonprodhrssum = ($countrecs*86400 - $query->sumOf('businesstime')) / 3600: $nonprodhrssum="";
 		  
 		  $var = "'1 months'";
-		  $query=$dailysummaryTable->find('All')->where(['EXTRACT(month from mdate) = EXTRACT(month from date(now()) - INTERVAL  '.$var.')'])->andwhere(['customer_id'=>$this->loggedinuser['customer_id']]);
+		  $query=$dailysummaryTable->find('All')->where(['EXTRACT(month from mdate) = EXTRACT(month from date(now()) - INTERVAL  '.$var.')'])->andwhere(['EXTRACT(year from mdate) = EXTRACT(year from date(now()) - INTERVAL  '.$var.')'])->andwhere(['customer_id'=>$this->loggedinuser['customer_id']]);
 		  (isset($query)) ? $lastmonthdistancecount=$query->sumOf('distance') : $lastmonthdistancecount="";
 		  (isset($query)) ? $lastmonthfuelsum=$query->sumOf('fuel') : $lastmonthfuelsum="";
 		  (isset($query)) ? $lastmonthcountrecs = $query->count() : $lastmonthcountrecs="";
@@ -138,7 +138,7 @@ class DashboardController extends AppController
 		  $query=$ragtable->find('All')->where(['idate=date(now())'])->andwhere(['customer_id'=>$this->loggedinuser['customer_id']])->toArray();
 		  (isset($query)) ? $ragcontent=$query : $ragcontent="";
 		  // $this->log($ragcontent);
-		  $query=$triptable->find('All')->where(['EXTRACT(day from start_date) = EXTRACT(day from date(now()))'])->orwhere(['EXTRACT(day from end_date) = EXTRACT(day from date(now()))'])->andwhere(['customer_id'=>$this->loggedinuser['customer_id']]);
+		  $query=$triptable->find('All')->where(['start_date = date(now())'])->orwhere(['end_date = date(now())'])->andwhere(['customer_id'=>$this->loggedinuser['customer_id']]);
 		  (isset($query)) ? $tripscount=$query->count() : $tripscount="";
 		  $query2=$triptable->find('All')->where(['CURRENT_TIME BETWEEN start_time AND end_time'])->andwhere(['tripstatus_id = 1'])->andwhere(['EXTRACT(day from start_date) = EXTRACT(day from date(now()))'])->orwhere(['EXTRACT(day from end_date) = EXTRACT(day from date(now()))'])->andwhere(['customer_id'=>$this->loggedinuser['customer_id']]);
 		  (isset($query2)) ? $currenttripscount=$query2->count() : $currenttripscount="";
@@ -246,7 +246,8 @@ class DashboardController extends AppController
 			  $query=$alertTable->find('All')->where (['alertcategories_id' => '1'])->andwhere(['EXTRACT(day from alert_dtime) = EXTRACT(day from date(now()))'])->andwhere(['customer_id'=>$this->loggedinuser['customer_id']]);
 			  (isset($query)) ? $overspeedalertcount=$query->count(): $overspeedalertcount="";
 			 
-			  $query=$alertTable->find('All')->where(['EXTRACT(day from alert_dtime) = EXTRACT(day from (now()))'])->andwhere(['customer_id'=>$this->loggedinuser['customer_id']])->toArray();
+			  //$query=$alertTable->find('All')->where(['EXTRACT(day from alert_dtime) = EXTRACT(day from (now()))'])->andwhere(['customer_id'=>$this->loggedinuser['customer_id']])->toArray();
+			  $query=$alertTable->find('All')->where(['date(alert_dtime) = date(now())'])->andwhere(['customer_id'=>$this->loggedinuser['customer_id']])->toArray();
 			  (isset($query)) ? $alertscontent=$query : $alertscontent="";
 			  
 			  
@@ -254,15 +255,15 @@ class DashboardController extends AppController
 			  
 			  $query=$vehicletable->find('All')->where(['customer_id'=>$this->loggedinuser['customer_id']]);
 			  (isset($query)) ? $vehiclescount=$query->count(): $vehiclescount="";
-			  $query2=$triptable->find('All')->where(['CURRENT_TIME BETWEEN start_time AND end_time'])->andwhere(['tripstatus_id = 1'])->andwhere(['EXTRACT(day from start_date) = EXTRACT(day from date(now()))'])->orwhere(['EXTRACT(day from end_date) = EXTRACT(day from date(now()))'])->andwhere(['customer_id'=>$this->loggedinuser['customer_id']]);
+			  $query2=$triptable->find('All')->where(['CURRENT_TIME BETWEEN start_time AND end_time'])->andwhere(['tripstatus_id = 1'])->andwhere(['start_date = date(now())'])->orwhere(['end_date = date(now())'])->andwhere(['customer_id'=>$this->loggedinuser['customer_id']]);
 			  (isset($query2)) ? $currenttripscount=$query2->count(): $currenttripscount="";
 			  $percentagerunning = abs(($currenttripscount / $vehiclescount)*100);
 			  
 			  $var = "'running'";
-			  $query=$gpsdatatable->find('All')->where(['EXTRACT(day from msgdtime)  = EXTRACT(day from now())'])->andwhere(['status = '. $var .'' ])->andwhere(['customer_id'=>$this->loggedinuser['customer_id']]);
+			  $query=$gpsdatatable->find('All')->where(['date(msgdtime)  = date(now())'])->andwhere(['status = '. $var .'' ])->andwhere(['customer_id'=>$this->loggedinuser['customer_id']]);
 			 
 			  (isset($query)) ? $runningvehiclescount=$query->count(): $runningvehiclescount="";
-			  $query2=$gpsdatatable->find('All')->where(['EXTRACT(day from msgdtime)  = EXTRACT(day from now())'])->andwhere(['customer_id'=>$this->loggedinuser['customer_id']]);
+			  $query2=$gpsdatatable->find('All')->where(['date(msgdtime)  = date(now())'])->andwhere(['customer_id'=>$this->loggedinuser['customer_id']]);
 			  $vehiclescount=$query2->count();
 			  (isset($query2)) ? $vehiclescount=$query2->count(): $vehiclescount="";
 			 
@@ -277,28 +278,28 @@ class DashboardController extends AppController
 			   	}
 			  
 			  
-			  $query = $gpsdatatable->find('All')->where(['EXTRACT(day from msgdtime)  = EXTRACT(day from now())'])->andwhere(['customer_id'=>$this->loggedinuser['customer_id']]) ->distinct(['ibuttoncode']);
+			  $query = $gpsdatatable->find('All')->where(['date(msgdtime)  = date(now())'])->andwhere(['customer_id'=>$this->loggedinuser['customer_id']]) ->distinct(['ibuttoncode']);
 			  (isset($query)) ? $runningdriverscount=$query->count(): $runningdriverscount="";
 			  
-			  $query = $gpsdatatable->find('All')->where(['EXTRACT(day from msgdtime)  != EXTRACT(day from now())'])->andwhere(['customer_id'=>$this->loggedinuser['customer_id']]) ->distinct(['imei']);
+			  $query = $gpsdatatable->find('All')->where(['date(msgdtime)  != date(now())'])->andwhere(['customer_id'=>$this->loggedinuser['customer_id']]) ->distinct(['imei']);
 			  (isset($query)) ? $comfailurecount=$query->count(): $comfailurecount="";
 			  
 			  
 			  //status = 1 for completed & status = 0 for notstarted. 2 - scheduled, 3- Inprogress
-			  $query=$jobtable->find('All')->where(['EXTRACT(day from jobdate) = EXTRACT(day from date(now()))'])->andwhere(['status = 1'])->andwhere(['customer_id'=>$this->loggedinuser['customer_id']]);
+			  $query=$jobtable->find('All')->where(['jobdate = date(now())'])->andwhere(['status = 1'])->andwhere(['customer_id'=>$this->loggedinuser['customer_id']]);
 			  (isset($query)) ? $completedjobcount=$query->count() : $completedjobcount="";
 			  
-			  $query=$jobtable->find('All')->where(['EXTRACT(day from jobdate) = EXTRACT(day from date(now()))'])->andwhere(['status = 0'])->andwhere(['customer_id'=>$this->loggedinuser['customer_id']]);
+			  $query=$jobtable->find('All')->where(['jobdate = date(now())'])->andwhere(['status = 0'])->andwhere(['customer_id'=>$this->loggedinuser['customer_id']]);
 			  (isset($query)) ? $notstartedjobcount=$query->count() : $notstartedjobcount="";
 			  
-			  $query=$jobtable->find('All')->where(['EXTRACT(day from jobdate) = EXTRACT(day from date(now()))'])->andwhere(['status = 2'])->andwhere(['customer_id'=>$this->loggedinuser['customer_id']]);
+			  $query=$jobtable->find('All')->where(['jobdate = date(now())'])->andwhere(['status = 2'])->andwhere(['customer_id'=>$this->loggedinuser['customer_id']]);
 			  (isset($query)) ? $scheduledjobcount=$query->count() : $scheduledjobcount="";
 			  
-			  $query=$jobtable->find('All')->where(['EXTRACT(day from jobdate) = EXTRACT(day from date(now()))'])->andwhere(['status = 3'])->andwhere(['customer_id'=>$this->loggedinuser['customer_id']]);
+			  $query=$jobtable->find('All')->where(['jobdate = date(now())'])->andwhere(['status = 3'])->andwhere(['customer_id'=>$this->loggedinuser['customer_id']]);
 			  (isset($query)) ? $inprogressjobcount=$query->count() : $inprogressjobcount="";
 			  
 			  
-			  $query3=$jobtable->find('All')->where(['EXTRACT(day from jobdate) = EXTRACT(day from date(now()))'])->andwhere(['customer_id'=>$this->loggedinuser['customer_id']]);
+			  $query3=$jobtable->find('All')->where(['jobdate = date(now())'])->andwhere(['customer_id'=>$this->loggedinuser['customer_id']]);
 			  (isset($query)) ? $totaljobcount=$query3->count() : $notstartedjobcount="";
 			  $totaljobcount=$query3->count();
 			   if($totaljobcount > 0)
