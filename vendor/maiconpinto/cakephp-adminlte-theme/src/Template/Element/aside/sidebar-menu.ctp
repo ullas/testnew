@@ -194,9 +194,33 @@ if (file_exists($file)) {
         </a>
         <ul class="treeview-menu">
         	<li><a href="<?php echo $this->Url->build('/reports/adhocreport'); ?>"><div class="pull-left image mptl-greports"></div>Adhoc Reports</a></li>
-            <li><a href="<?php echo $this->Url->build('/reports/group'); ?>"><div class="pull-left image mptl-greports"></div>Group Reports</a></li>
-            <li><a href="<?php echo $this->Url->build('/reports/individul'); ?>"><div class="pull-left image mptl-ireports"></div>Individual Reports</a></li>
-
+            
+						            	 <li class="treeview">
+						        			<a href="#">
+						            		<i class="fa fa-table"></i> <span>Group Reports</span>
+						            		<i class="fa fa-angle-left pull-right"></i>
+						       				</a>
+						       			 	<ul class="treeview-menu">
+						            		<li><a href="<?php echo $this->Url->build('/reports/groupdailyreport'); ?>"><i class="fa fa-table"></i>Groups Daily</a></li>
+											<li><a href="<?php echo $this->Url->build('/reports/groupweeklyreport'); ?>"><i class="fa fa-table"></i>Groups Weekly</a></li>
+											<li><a href="<?php echo $this->Url->build('/reports/groupmonthlyreport'); ?>"><i class="fa fa-table"></i>Groups Monthly</a></li>
+											</ul>
+						    			</li>
+						    			
+						    			<li class="treeview">
+						        			<a href="#">
+						            		<i class="fa fa-table"></i> <span>Individual Reports</span>
+						            		<i class="fa fa-angle-left pull-right"></i>
+						       				</a>
+						       			 	<ul class="treeview-menu">
+						            		<li><a href="<?php echo $this->Url->build('/reports/assetdailyreport'); ?>"><i class="fa fa-table"></i>Asset Daily</a></li>
+											<li><a href="<?php echo $this->Url->build('/reports/assetweeklyreport'); ?>"><i class="fa fa-table"></i>Asset Weekly</a></li>
+											<li><a href="<?php echo $this->Url->build('/reports/assetmonthlyreport'); ?>"><i class="fa fa-table"></i>Asset Monthly</a></li>
+											</ul>
+						    			</li>
+            
+            <!-- <li><a href="<?php echo $this->Url->build('/reports/groupdailyreport'); ?>"><div class="pull-left image mptl-greports"></div>Group Reports</a></li>
+            <li><a href="<?php echo $this->Url->build('/reports/individul'); ?>"><div class="pull-left image mptl-ireports"></div>Individual Reports</a></li> -->
         </ul>
     </li>
 

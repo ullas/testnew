@@ -37,9 +37,9 @@ class JourneysController extends AppController
 		 
 		$fields[0] = array("name" =>"Journeys.id"  , "type" => "num");
 		$fields[1] = array("name" =>"Journeys.start_time"  , "type" => "date");
-		$fields[2] = array("name" =>"Journeys.end_time"  , "type" => "num");
+		$fields[2] = array("name" =>"Journeys.end_time"  , "type" => "date");
 		$fields[3] = array("name" =>"Journeys.maxspeed"  , "type" => "num");
-		$fields[4] = array("name" =>"Journeys.distance"  , "type" => "num");
+		$fields[4] = array("name" =>"Journeys.distance"  , "type" => "char");
 				
 		$usrfiter="";
         // msgdtime filter
@@ -64,7 +64,11 @@ class JourneysController extends AppController
         if(isset($this->request->query['speedlimit'])){
         	
         	$pre=(strlen($usrfiter)>0)?" and ":"";
-			$usrfiter.=$pre. " max_speed ='" .$this->request->query['speedlimit']. "'";
+			$usrfiter.=$pre. " maxspeed >='" .$this->request->query['speedlimit']. "'";
+		}else if($this->request->query['speedlimit'] =""){
+        	
+        	$pre=(strlen($usrfiter)>0)?" and ":"";
+			$usrfiter.=$pre. " maxspeed >=-1" ;
 		}
 	
 		$output =$this->Datatable->getView($fields,['Customers'],$usrfiter);
