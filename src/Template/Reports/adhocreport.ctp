@@ -248,15 +248,64 @@ $(function () {
    			$(".dataTables_scrollHead .th1").text("Id");$(".dataTables_scrollHead .th2").text("Date & Time");$(".dataTables_scrollHead .th3").text("Location");$(".dataTables_scrollHead .th4").text("Speed");$(".dataTables_scrollHead .th5").text("Alert Message");
     		table.ajax.url('/Alerts/routeViolationsAjaxData?reporttype='+reporttype+'&assetname='+assetname+'&starttime='+starttime+'&endtime='+endtime+'&startdate='+startdate+'&enddate='+enddate).load();
    		}
-   		else if(reporttype==13){//Mileage report
+   		else if(reporttype==13){//Zone Visit report
+   			$(".dataTables_scrollHead .th1").text("Id");$(".dataTables_scrollHead .th2").text("Zone");$(".dataTables_scrollHead .th3").text("Date&Time");$(".dataTables_scrollHead .th4").text("Location");$(".dataTables_scrollHead .th5").text("Speed");
+    		table.ajax.url('/Alerts/zoneVisitAjaxData?reporttype='+reporttype+'&assetname='+assetname+'&starttime='+starttime+'&endtime='+endtime+'&startdate='+startdate+'&enddate='+enddate).load();
+   		}
+   		else if(reporttype==14){//Mileage report
    			$(".dataTables_scrollHead .th1").text("Id");$(".dataTables_scrollHead .th2").text("Date & Time");$(".dataTables_scrollHead .th3").text("Idle Time");$(".dataTables_scrollHead .th4").text("Milage");$(".dataTables_scrollHead .th5").text("Distance");
     		table.ajax.url('/Dailysummary/mileageAjaxData?reporttype='+reporttype+'&assetname='+assetname+'&starttime='+starttime+'&endtime='+endtime+'&startdate='+startdate+'&enddate='+enddate).load();
    		}
-   		else if(reporttype==14){//Running Time Summary report
+   		
+   		//todo
+   		else if(reporttype==15){//Usage Details
+   			$(".dataTables_scrollHead .th1").text("Id");$(".dataTables_scrollHead .th2").text("Date & Time");$(".dataTables_scrollHead .th3").text("Idle Time");$(".dataTables_scrollHead .th4").text("Milage");$(".dataTables_scrollHead .th5").text("Distance");
+    		table.ajax.url('/Dailysummary/mileageAjaxData?reporttype='+reporttype+'&assetname='+assetname+'&starttime='+starttime+'&endtime='+endtime+'&startdate='+startdate+'&enddate='+enddate).load();
+   		}
+   		
+   		//todo
+   		else if(reporttype==16){//Debug
+   			$(".dataTables_scrollHead .th1").text("Date & Time");$(".dataTables_scrollHead .th2").text("Speed");$(".dataTables_scrollHead .th3").text("Digital");$(".dataTables_scrollHead .th4").text("Analog");$(".dataTables_scrollHead .th5").text("Location");
+    		table.ajax.url('/Tracking/debugAjaxData?reporttype='+reporttype+'&assetname='+assetname+'&starttime='+starttime+'&endtime='+endtime+'&startdate='+startdate+'&enddate='+enddate).load();
+   		}
+   		
+   		
+   		
+   		else if(reporttype==17){//Driver Error Summary report
+   			$(".dataTables_scrollHead .th1").text("Id");$(".dataTables_scrollHead .th2").text("Vehicle");$(".dataTables_scrollHead .th3").text("Date & Time");$(".dataTables_scrollHead .th4").text("Speed");$(".dataTables_scrollHead .th5").text("Location");
+    		table.ajax.url('/Alerts/driverErrorAjaxData?reporttype='+reporttype+'&assetname='+assetname+'&starttime='+starttime+'&endtime='+endtime+'&startdate='+startdate+'&enddate='+enddate).load();
+   		}
+   		
+   		//todo
+   		else if(reporttype==18){//Zone visit count report
+   			$(".dataTables_scrollHead .th1").text("Id");$(".dataTables_scrollHead .th2").text("Date");$(".dataTables_scrollHead .th3").text("Vehicle");$(".dataTables_scrollHead .th4").text("Count");
+    		table.ajax.url('/Alerts/zoneVisitCountAjaxData?reporttype='+reporttype+'&assetname='+assetname+'&starttime='+starttime+'&endtime='+endtime+'&startdate='+startdate+'&enddate='+enddate).load();
+   		}
+   		
+   		else if(reporttype==19){//Trip Start report
+   			$(".dataTables_scrollHead .th1").text("Id");$(".dataTables_scrollHead .th2").text("Vehicle");$(".dataTables_scrollHead .th3").text("Date & Time");$(".dataTables_scrollHead .th4").text("Speed");$(".dataTables_scrollHead .th5").text("Location");
+    		table.ajax.url('/Alerts/tripStartAjaxData?reporttype='+reporttype+'&assetname='+assetname+'&starttime='+starttime+'&endtime='+endtime+'&startdate='+startdate+'&enddate='+enddate).load();
+   		}
+   		else if(reporttype==20){//Trip Endreport
+   			$(".dataTables_scrollHead .th1").text("Id");$(".dataTables_scrollHead .th2").text("Vehicle");$(".dataTables_scrollHead .th3").text("Date & Time");$(".dataTables_scrollHead .th4").text("Speed");$(".dataTables_scrollHead .th5").text("Location");
+    		table.ajax.url('/Alerts/tripEndAjaxData?reporttype='+reporttype+'&assetname='+assetname+'&starttime='+starttime+'&endtime='+endtime+'&startdate='+startdate+'&enddate='+enddate).load();
+   		}
+   		
+   		else if(reporttype==21){//Loading&Unloading
+   			$(".dataTables_scrollHead .th1").text("Id");$(".dataTables_scrollHead .th2").text("Vehicle");$(".dataTables_scrollHead .th3").text("Date & Time");$(".dataTables_scrollHead .th4").text("Location");$(".dataTables_scrollHead .th5").text("Activity");
+    		table.ajax.url('/Alerts/loadingUnLoadingAjaxData?reporttype='+reporttype+'&assetname='+assetname+'&starttime='+starttime+'&endtime='+endtime+'&startdate='+startdate+'&enddate='+enddate).load();
+   		}
+   		else if(reporttype==22){//Nonoperative vehicles
+   			$(".dataTables_scrollHead .th1").text("Id");$(".dataTables_scrollHead .th2").text("Vehicle");$(".dataTables_scrollHead .th3").text("Date & Time");$(".dataTables_scrollHead .th4").text("Speed");$(".dataTables_scrollHead .th5").text("Location");
+    		table.ajax.url('/Alerts/tripEndAjaxData?reporttype='+reporttype+'&assetname='+assetname+'&starttime='+starttime+'&endtime='+endtime+'&startdate='+startdate+'&enddate='+enddate).load();
+   		}
+   		
+   		
+   		else if(reporttype==24){//Running Time Summary report
    			$(".dataTables_scrollHead .th1").text("Id");$(".dataTables_scrollHead .th2").text("Date & Time");$(".dataTables_scrollHead .th3").text("Vehicle");$(".dataTables_scrollHead .th4").text("Running Time");$(".dataTables_scrollHead .th5").text("Distance");
     		table.ajax.url('/Dailysummary/runningTimeSummaryAjaxData?reporttype='+reporttype+'&assetname='+assetname+'&starttime='+starttime+'&endtime='+endtime+'&startdate='+startdate+'&enddate='+enddate).load();
    		}
-   		else if(reporttype==15){//Overspeed Summary report
+   		else if(reporttype==25){//Overspeed Summary report
    			$(".dataTables_scrollHead .th1").text("Id");$(".dataTables_scrollHead .th2").text("Vehicle");$(".dataTables_scrollHead .th3").text("Date & Time");$(".dataTables_scrollHead .th4").text("Speed");$(".dataTables_scrollHead .th5").text("Location");
     		table.ajax.url('/Alerts/overSpeedSummaryAjaxData?reporttype='+reporttype+'&assetname='+assetname+'&starttime='+starttime+'&endtime='+endtime+'&startdate='+startdate+'&enddate='+enddate).load();
    		}
