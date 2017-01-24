@@ -69,25 +69,66 @@ class ReportsController extends AppController
 		 //$this->set('_serialize', ['configs','usersettings','actions','additional']);
     }
 
-	 public function groupdailyreport()
+	public function groupdailyreport()
     {
-       $start=strtotime('00:00');
-				$end=strtotime('24:00');
-				for ($halfhour=$start;$halfhour<=$end;$halfhour=$halfhour+5*60) {
+        $start=strtotime('00:00');
+		$end=strtotime('24:00');
+				for ($halfhour=$start;$halfhour<=$end;$halfhour=$halfhour+5*60)
+				 {
     				$timeintrvl=date('H:i',$halfhour);
     				$times[$timeintrvl]=$timeintrvl;
-				}
+				 }
 				
 		$this->loadModel('Groups');
-         $groupsdata=$this->Groups->find('all')->toArray();
-		 foreach($groupsdata as $key => $value)
-		 {
-		 	
-			$groupsdatanames[$key]=$value['name'];
-		 }
+        $groupsdata=$this->Groups->find('all')->toArray();
+         	
+		 	foreach($groupsdata as $key => $value)
+		 		{
+		 			$groupsdatanames[$key]=$value['name'];
+		 		}
+			$this->set(compact('groupsdatanames'));
 		
+      }
+	
+	public function groupweeklyreport()
+    {
+        $start=strtotime('00:00');
+		$end=strtotime('24:00');
+				for ($halfhour=$start;$halfhour<=$end;$halfhour=$halfhour+5*60)
+				 {
+    				$timeintrvl=date('H:i',$halfhour);
+    				$times[$timeintrvl]=$timeintrvl;
+				 }
+				
+		$this->loadModel('Groups');
+        $groupsdata=$this->Groups->find('all')->toArray();
+         	
+		 	foreach($groupsdata as $key => $value)
+		 		{
+		 			$groupsdatanames[$key]=$value['name'];
+		 		}
+			$this->set(compact('groupsdatanames'));
 		
-		 $this->set(compact('groupsdatanames'));
+      }
+
+	public function groupmonthlyreport()
+    {
+        $start=strtotime('00:00');
+		$end=strtotime('24:00');
+				for ($halfhour=$start;$halfhour<=$end;$halfhour=$halfhour+5*60)
+				 {
+    				$timeintrvl=date('H:i',$halfhour);
+    				$times[$timeintrvl]=$timeintrvl;
+				 }
+				
+		$this->loadModel('Groups');
+        $groupsdata=$this->Groups->find('all')->toArray();
+         	
+		 	foreach($groupsdata as $key => $value)
+		 		{
+		 			$groupsdatanames[$key]=$value['name'];
+		 		}
+			$this->set(compact('groupsdatanames'));
 		
       }
 
