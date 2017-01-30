@@ -14,7 +14,7 @@ use Cake\Datasource\ConnectionManager;
  */
 class JourneysController extends AppController
 {
-	 public $components = ['Datatable'];
+	 public $components = ['Datatable','Datatabletest'];
 
     private function toPostDBDate($date){
 	
@@ -223,10 +223,10 @@ class JourneysController extends AppController
      	$fields = array();
 		
 		 $fields[0] = array("name" =>"Trackingobjects.name"  , "type" => "char");
-		 $fields[1] = array("name" =>"Journeys.distance"  , "type" => "num");
-		 $fields[2] = array("name" =>"Journeys.maxspeed"  , "type" => "num");
-		 $fields[3] = array("name" =>"maxspeed"  , "type" => "count");
-		 $fields[4] = array("name" =>"Journeys.start_time - Journeys.end_time"  , "type" => "char");
+		 $fields[1] = array("name" =>"Journeys.distance"  , "type" => "sum1");
+		 $fields[2] = array("name" =>"Journeys.maxspeed"  , "type" => "sum2");
+		 $fields[3] = array("name" =>"Count"  , "type" => "countall");
+		 $fields[4] = array("name" =>"sum(Journeys.end_time )"  , "type" => "sum3");
 		 
 		// $fields[0] = array("name" =>"Journeys.id"  , "type" => "count");
 		// $fields[1] = array("name" =>"(Journeys.start_time - Journeys.start_time)"  , "type" => "date");
@@ -236,32 +236,139 @@ class JourneysController extends AppController
 				
 		$usrfiter="";
         // msgdtime filter
-        if(isset($this->request->query['startdate']) && ($this->request->query['startdate'])!=null && isset($this->request->query['enddate']) && ($this->request->query['enddate'])!=null 
-        															&& isset($this->request->query['starttime']) && isset($this->request->query['endtime']))
-        	{
+        // if(isset($this->request->query['startdate']) && ($this->request->query['startdate'])!=null && isset($this->request->query['enddate']) && ($this->request->query['enddate'])!=null 
+        															// && isset($this->request->query['starttime']) && isset($this->request->query['endtime']))
+        	// {
+//         	
+			// $usrfiter.="start_time BETWEEN '" .$this->toPostDBDate($this->request->query['startdate']). " ".$this->request->query['starttime']
+						   // ."' AND '" .$this->toPostDBDate($this->request->query['enddate']). " " .$this->request->query['endtime']. "'";
+// 						   
+			// }
+			
+			
+			if(isset($this->request->query['startdate']) && ($this->request->query['startdate'])!=null )
+			{
         	
-			$usrfiter.="start_time BETWEEN '" .$this->toPostDBDate($this->request->query['startdate']). " ".$this->request->query['starttime']
-						   ."' AND '" .$this->toPostDBDate($this->request->query['enddate']). " " .$this->request->query['endtime']. "'";
-						   
+			$usrfiter.="('".$this->request->query['startdate']." 'BETWEEN date(start_time) and date(end_time))"; 
 			}
+			
+			
 		//Asset filter	
-        if(isset($this->request->query['assetname'])){
+        if(isset($this->request->query['gpname'])){
         	
         	$pre=(strlen($usrfiter)>0)?" and ":"";
 			//$usrfiter.=$pre. " trackingobject_id ='" .$this->request->query['assetname']. "'";
-			$usrfiter.=$pre. " trackingobject_id1 =165";
+			//$usrfiter.=$pre. " trackingobject_id in (165,169)";
+			$usrfiter.=$pre. " trackingobject_id in (select trackingobject_id from zorba.trackingobjects_groups where group_id =".$this->request->query['gpname'].")";
 				
         }
     	
     	//
     	$pre=(strlen($usrfiter)>0)?" and ":"";
-		$usrfiter.=$pre. " Journeys.customer_id1 ='" .$this->loggedinuser['customer_id']. "'group by trackingobjects.name,Journeys.distance,Journeys.maxspeed,Journeys.start_time,Journeys.end_time";
+		$usrfiter.=$pre. " Journeys.customer_id ='" .$this->loggedinuser['customer_id']. "'group by trackingobjects.name";
 	
-		$output =$this->Datatable->getView($fields,['Trackingobjects','Customers'],$usrfiter);
+		$output =$this->Datatabletest->getView($fields,['Trackingobjects','Customers'],$usrfiter);
 		$out =json_encode($output);  
 	   
 		$this->response->body($out);
 	    return $this->response;
 	}
 
+		public function groupWeeklyReportAjaxData()
+	{
+		$this->autoRender= false;
+        
+        $this->loadModel('Journeys');
+        $dbout=$this->Journeys->find('all')->toArray();
+     	$fields = array();
+		
+		 $fields[0] = array("name" =>"Trackingobjects.name"  , "type" => "char");
+		 $fields[1] = array("name" =>"Journeys.distance"  , "type" => "sum1");
+		 $fields[2] = array("name" =>"Journeys.maxspeed"  , "type" => "sum2");
+		 $fields[3] = array("name" =>"Count"  , "type" => "countall");
+		 $fields[4] = array("name" =>"sum(Journeys.end_time )"  , "type" => "sum3");
+		 
+		$usrfiter="";
+		// if(isset($this->request->query['startdate']) && ($this->request->query['startdate'])!=null )
+			// {
+        	
+			$usrfiter.="NOW()::DATE BETWEEN    NOW()::DATE-EXTRACT(DOW FROM NOW()) ::INTEGER     AND NOW()::DATE"; 
+			// }
+			
+			
+		//Asset filter	
+        if(isset($this->request->query['gpname'])){
+        	
+        	$pre=(strlen($usrfiter)>0)?" and ":"";
+			$usrfiter.=$pre. " trackingobject_id in (select trackingobject_id from zorba.trackingobjects_groups where group_id =".$this->request->query['gpname'].")";
+				
+        }
+    	
+    	//
+    	$pre=(strlen($usrfiter)>0)?" and ":"";
+		$usrfiter.=$pre. " Journeys.customer_id ='" .$this->loggedinuser['customer_id']. "'group by trackingobjects.name";
+	
+		$output =$this->Datatabletest->getView($fields,['Trackingobjects','Customers'],$usrfiter);
+		$out =json_encode($output);  
+	   
+		$this->response->body($out);
+	    return $this->response;
+	}
+		public function groupMonthlyReportAjaxData()
+	{
+		$this->autoRender= false;
+        
+        $this->loadModel('Journeys');
+        $dbout=$this->Journeys->find('all')->toArray();
+     	$fields = array();
+		
+		 $fields[0] = array("name" =>"Trackingobjects.name"  , "type" => "char");
+		 $fields[1] = array("name" =>"Journeys.distance"  , "type" => "sum1");
+		 $fields[2] = array("name" =>"Journeys.maxspeed"  , "type" => "sum2");
+		 $fields[3] = array("name" =>"Count"  , "type" => "countall");
+		 $fields[4] = array("name" =>"sum(Journeys.end_time )"  , "type" => "sum3");
+		 
+		$usrfiter="";
+			//if current month is January previous month is dec of last year
+			if (isset($this->request->query['monthname']) && $this->request->query['monthname'] == 0 )//curent month
+			{
+				 
+        	 		$usrfiter.="EXTRACT('month' FROM START_TIME)  = EXTRACT('month' FROM NOW()::DATE) and EXTRACT('YEAR' FROM START_TIME)  =  EXTRACT('YEAR' FROM NOW()::DATE)  "; 
+	        	 	
+			}
+			
+			if (isset($this->request->query['monthname']) && $this->request->query['monthname'] == 1 )// last month
+			{
+				 if (date('m')==1)// for jan
+        	 		{
+        	 		$usrfiter.="EXTRACT('month' FROM START_TIME)  = 12 and EXTRACT('YEAR' FROM START_TIME)  =  EXTRACT('YEAR' FROM NOW()::DATE)-1  "; 
+	        	 	}
+	        	 else
+	        	 	{
+	        	 	$usrfiter.="EXTRACT('month' FROM START_TIME)  = EXTRACT('month' FROM NOW()::DATE)-1 and EXTRACT('YEAR' FROM START_TIME)  =  EXTRACT('YEAR' FROM NOW()::DATE)   "; 
+	        	 	}
+			}
+        	
+			
+			
+			
+		//Asset filter	
+        if(isset($this->request->query['gpname'])){
+        	
+        	$pre=(strlen($usrfiter)>0)?" and ":"";
+			$usrfiter.=$pre. " trackingobject_id in (select trackingobject_id from zorba.trackingobjects_groups where group_id =".$this->request->query['gpname'].")";
+				
+        }
+    	
+    	//
+    	$pre=(strlen($usrfiter)>0)?" and ":"";
+		$usrfiter.=$pre. " Journeys.customer_id ='" .$this->loggedinuser['customer_id']. "'group by trackingobjects.name";
+	
+		$output =$this->Datatabletest->getView($fields,['Trackingobjects','Customers'],$usrfiter);
+		$out =json_encode($output);  
+	   
+		$this->response->body($out);
+	    return $this->response;
+	}
+	
 }
