@@ -78,7 +78,8 @@ class TrackingController extends AppController
 		 $ret="";
 		 $parts=explode("/",$date);
 		 if(count($parts)==3){
-		 	$ret= $date= '20' .trim($parts[2]) . "-" . trim($parts[1]) . "-" . trim($parts[0]);
+		 	//$ret= $date= '20' .trim($parts[2]) . "-" . trim($parts[1]) . "-" . trim($parts[0]);
+		 	$ret= $date= trim($parts[2]) . "-" . trim($parts[1]) . "-" . trim($parts[0]);
 			
 		 }
 		
@@ -180,10 +181,9 @@ class TrackingController extends AppController
 		$fields[1] = array("name" =>"speed"  , "type" => "num");
 		$fields[2] = array("name" =>"digitalvalues"  , "type" => "num");
 		$fields[3] = array("name" =>"analogvalues"  , "type" => "char");
-		//$fields[4] = array("name" =>"location"  , "type" => "char");
-		$fields[4] = array("name" =>"(location||status)"  , "type" => "char");
+		$fields[4] = array("name" =>"location"  , "type" => "char");
+		//$fields[4] = array("name" =>"(location||status)"  , "type" => "char");
 		//$fields[4] = array("name" =>"status"  , "type" => "char");
-		
 		$usrfilter="";
         // msgdtime filter
         if(isset($this->request->query['startdate']) && ($this->request->query['startdate'])!=null && isset($this->request->query['enddate']) && ($this->request->query['enddate'])!=null 
@@ -196,15 +196,15 @@ class TrackingController extends AppController
         if(isset($this->request->query['assetname'])){
         	
         	$pre=(strlen($usrfilter)>0)?" and ":"";
-			$usrfilter.=$pre. " trackingobject_id ='" .$this->request->query['assetname']. "'";
+			$usrfilter.=$pre. " trackingobject_id1 ='" .$this->request->query['assetname']. "'";
         	
         }
     	
 	
 		$output =$this->Datatablemerge->getView($fields,['Customers'],$usrfilter,'History');
 		$out =json_encode($output);  
-	   
+	//   $this->log($out);
 		$this->response->body($out);
-	    return $this->response;
+	   return $this->response;
 	}
 }
