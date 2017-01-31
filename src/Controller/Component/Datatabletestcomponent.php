@@ -2,7 +2,7 @@
 namespace App\Controller\Component;
 use Cake\Controller\Component;
 use Cake\Utility\Inflector;
-   class DatatableComponent extends Component {
+   class DatatableTestComponent extends Component {
        public function getView($fields,$contains,$usrFlier)
        {
            $length = count($fields);
@@ -26,26 +26,71 @@ use Cake\Utility\Inflector;
                     }
                        );
                     
-                }else{
+              }else{
                     if(is_array($value)) {
                           $colmns[] = array("db" => $value['name'] , "dt" => $i++);
+						//print_r($value['name']);
+						// if($value['name']=='alert_dtime'){$value['name']="";}
                     }else{
                         $colmns[] = array("db" => $value , "dt" => $i++);
                     }
                 }
                 
 				//select query
-				if($value['type']!='count'){
-					$select[] = $value['name'] ;
-				}else{
+				if($value['type']=='count' ){
 					$tempquerystr="";
 					$tempquerystr=$query->func()->count($value['name']);
 					$select[$value['name']] = $tempquerystr;
+				}else if($value['type']=='dateof' ){
+					$select['alert_dtime'] = 'date(alert_dtime)';
+				}else if($value['type']=='sum1' ){
+					$select['distance'] = 'sum(Journeys.distance)';
+				}else if($value['type']=='sum2' ){
+					$select['maxspeed'] = 'max(maxspeed)';
+				}else if($value['type']=='sum3' ){
+					//TO_CHAR((sum(Journeys.end_time - Journeys.start_time) || ' second')::interval, 'DD:HH24:MI:SS')
+					//$select['duration'] = 'to_char (sum(Journeys.end_time - Journeys.start_time), text)';
+					$select['duration'] = "cast(TO_CHAR((sum(Journeys.end_time - Journeys.start_time) || 'second')::interval, 'DD:HH24:MI:SS') as varchar)";
+					// print_r($select['duration'] );
+				}else{
+					$select[] = $value['name'] ;
 				}
+				
+				// if($value['type']!='dateof'){
+					// $select[] = $value['name'] ;
+				// }else{
+					// $tempquerystr="";
+					// $tempquerystr=date("Y-m-d",strtotime($value['name']));
+					// // $select[$value['name']] = date($value["name"]);
+					// $select['alert_dtime'] = 'date(alert_dtime)';
+// 					
+					// // $select[$value['name']] = 'date('.$value["name"].')';
+					// //print_r($value['name']);
+					  // // $select[$value['name']] = $tempquerystr;
+					// //$select[] = "dateonly" ;
+				// }
+				
+				
+				
+				/*if($value['type']!='countall'){
+					$select[] = $value['name'] ;
+				}else{
+					$tempquerystr="";
+					$tempquerystr=date("Y-m-d",strtotime($value['name']));
+					
+					$select[$value['name']] = 'count(*)';
+					// print_r($value['name']);
+					 // $select[$value['name']] = $tempquerystr;
+					//$select[] = "dateonly" ;
+				}*/
+				
+				
+			// print_r($select[$value['name']] );	
             }
 		   
+		   // $select['alert_dtime'] = 'date(alert_dtime)';
 		   
-		   $reportcontrollers = array("Alerts", "Journey");
+		   $reportcontrollers = array("Alerts", "Journeys");
 		   
 		   // if (!(in_array($controller->name, $reportcontrollers))) {
 		   if($controller->loggedinuser['customer_id']=="0"){
@@ -110,6 +155,7 @@ use Cake\Utility\Inflector;
            $totalCount = $model->find() ->contain($contains)->count();
            //getting filteredcount
            $filteredCount = $model->find()->contain($contains)->where($wherestr)->count();
+		   // print_r($colmns);
            $output =$this->GetData($colmns,$data,$totalCount,$filteredCount);
            return $output;
        }
@@ -203,7 +249,7 @@ use Cake\Utility\Inflector;
            return $out;
        }
        public function GetData($columns,$data,$totalCount,$filteredCount){
-           $controller = $this->_registry->getController();
+       	   $controller = $this->_registry->getController();
            $modalname=$controller->modelClass;
            $out = array();
            for ( $i=0, $ien=count($data) ; $i<$ien ; $i++ ) {
@@ -211,7 +257,7 @@ use Cake\Utility\Inflector;
                for ( $j=0, $jen=count($columns) ; $j<$jen ; $j++ ) {
                    $column = $columns[$j];
                    if (isset( $column['alias'] )){
-                       if ($column['alias']!= '' ){
+                   		 if ($column['alias']!= '' ){
                            $c = $column['alias'];
                        }else{
                            $c = $column['db'];

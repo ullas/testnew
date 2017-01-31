@@ -39,7 +39,7 @@ class DailysummaryController extends AppController
 		$fields[1] = array("name" =>"Dailysummary.mdate"  , "type" => "date");
 		$fields[2] = array("name" =>"Dailysummary.distance"  , "type" => "num");
 		//$fields[3] = array("name" =>"location"  , "type" => "char");
-		$fields[3] = array("name" =>"Dailysummary.runningtime"  , "type" => "char");
+		$fields[3] = array("name" =>"Dailysummary.idletime"  , "type" => "char");
 		$fields[4] = array("name" =>"Dailysummary.businesstime"  , "type" => "char");
 				
 		$usrfiter="";
@@ -212,5 +212,45 @@ class DailysummaryController extends AppController
 	    return $this->response;
 	}
 	
+	 public function usageDetailsAjaxData()
+		{
+		$this->autoRender= false;
+        
+       // $this->loadModel('Alerts');
+       // $dbout=$this->Alerts->find('all')->toArray();
+     	$fields = array();
+		 
+		$fields[0] = array("name" =>"Dailysummary.id"  , "type" => "num");
+		$fields[1] = array("name" =>"Dailysummary.mdate"  , "type" => "date");
+		$fields[2] = array("name" =>"Dailysummary.distance"  , "type" => "num");
+		//$fields[3] = array("name" =>"location"  , "type" => "char");
+		$fields[3] = array("name" =>"Dailysummary.runningtime"  , "type" => "char");
+		$fields[4] = array("name" =>"Dailysummary.businesstime"  , "type" => "char");
+				
+		$usrfiter="";
+        // msgdtime filter
+        if(isset($this->request->query['startdate']) && ($this->request->query['startdate'])!=null && isset($this->request->query['enddate']) && ($this->request->query['enddate'])!=null 
+        															&& isset($this->request->query['starttime']) && isset($this->request->query['endtime'])){
+        	
+			$usrfiter.="mdate BETWEEN '" .$this->toPostDBDate($this->request->query['startdate']). " ".$this->request->query['starttime']
+						   ."' AND '" .$this->toPostDBDate($this->request->query['enddate']). " " .$this->request->query['endtime']. "'";
+		}
+		//Asset filter	
+        if(isset($this->request->query['assetname'])){
+        	
+        	$pre=(strlen($usrfiter)>0)?" and ":"";
+			$usrfiter.=$pre. " trackingobject_id ='" .$this->request->query['assetname']. "'";
+			
+        	
+        }
+    	
+	// $distancecount=$query->sumOf('distance') 
+	
+		$output =$this->Datatable->getView($fields,['Customers'],$usrfiter);
+		$out =json_encode($output);  
+	   
+		$this->response->body($out);
+	    return $this->response;
+	}
    
 }

@@ -13,7 +13,7 @@ use Cake\Datasource\ConnectionManager;
  */
 class AlertsController extends AppController
 {
-	 public $components = ['Datatable'];
+	 public $components = ['Datatabletest'];
     /**
      * Index method
      *
@@ -494,6 +494,46 @@ class AlertsController extends AppController
     	
 	
 		$output =$this->Datatable->getView($fields,['Customers','Trackingobjects'],$usrfiter);
+		$out =json_encode($output);  
+	   
+		$this->response->body($out);
+	    return $this->response;
+	}	
+
+	public function zoneVisitCountAjaxData()
+	{
+		$this->autoRender= false;
+        
+        //$this->loadModel('Alerts');
+        // $dbout=$this->Alerts->find('all')->toArray();
+     	$fields = array();
+		 
+		$fields[0] = array("name" =>"Alerts.location"  , "type" => "num");
+		
+		$fields[1] = array("name" =>"Alerts.alert_dtime"  , "type" => "dateof");
+		$fields[2] = array("name" =>"Trackingobjects.name"  , "type" => "char");
+		$fields[3] = array("name" =>"Count"  , "type" => "countall");
+				
+		$usrfiter="";
+        // msgdtime filter
+        if(isset($this->request->query['startdate']) && ($this->request->query['startdate'])!=null && isset($this->request->query['enddate']) && ($this->request->query['enddate'])!=null 
+        															&& isset($this->request->query['starttime']) && isset($this->request->query['endtime'])){
+        	
+			$usrfiter.="alert_dtime BETWEEN '" .$this->toPostDBDate($this->request->query['startdate']). " ".$this->request->query['starttime']
+						   ."' AND '" .$this->toPostDBDate($this->request->query['enddate']). " " .$this->request->query['endtime']. "'";
+		}
+		//Asset filter	
+        if(isset($this->request->query['assetname'])){
+        	
+        	$pre=(strlen($usrfiter)>0)?" and ":""; 
+			$usrfiter.=$pre. " alertcategories_id = 13 and  alert_message like  'Entering%' group by trackingobjects.name, date(alert_dtime),location";
+			
+			
+        	
+        }
+    	
+	
+		$output =$this->Datatabletest->getView($fields,['Customers','Trackingobjects'],$usrfiter);
 		$out =json_encode($output);  
 	   
 		$this->response->body($out);

@@ -141,7 +141,9 @@ $(function () {
     	// table.ajax.reload( null, false );table.ajax.data({starttime: starttime});
     	
     	// if(isset(groupname)){//travel details report 
-    		$(".dataTables_scrollHead .th1").text("Vehicle");$(".dataTables_scrollHead .th2").text("Distance");$(".dataTables_scrollHead .th3").text("Max Speed");$(".dataTables_scrollHead .th4").text("No Of Journeys");$(".dataTables_scrollHead .th5").text("Running Time");
+    		$(".dataTables_scrollHead .th1").text("Vehicle");$(".dataTables_scrollHead .th2").text("Distance");$(".dataTables_scrollHead .th3").text("Max Speed");
+    		$(".dataTables_scrollHead .th4").text("No Of Journeys");
+    		$(".dataTables_scrollHead .th5").text("Running Time");
     		table.ajax.url('/Journeys/groupDailyReportAjaxData?startdate='+startdate+'&gpname='+groupname).load();
    		// }
 		// else{//clear table body content

@@ -84,6 +84,8 @@ class ReportsController extends AppController
          	
 		 	foreach($groupsdata as $key => $value)
 		 		{
+		 			$key=$value['id'];
+		 				
 		 			$groupsdatanames[$key]=$value['name'];
 		 		}
 			$this->set(compact('groupsdatanames'));
@@ -105,6 +107,8 @@ class ReportsController extends AppController
          	
 		 	foreach($groupsdata as $key => $value)
 		 		{
+		 			$key=$value['id'];
+		 				
 		 			$groupsdatanames[$key]=$value['name'];
 		 		}
 			$this->set(compact('groupsdatanames'));
@@ -113,19 +117,14 @@ class ReportsController extends AppController
 
 	public function groupmonthlyreport()
     {
-        $start=strtotime('00:00');
-		$end=strtotime('24:00');
-				for ($halfhour=$start;$halfhour<=$end;$halfhour=$halfhour+5*60)
-				 {
-    				$timeintrvl=date('H:i',$halfhour);
-    				$times[$timeintrvl]=$timeintrvl;
-				 }
-				
+       
 		$this->loadModel('Groups');
         $groupsdata=$this->Groups->find('all')->toArray();
          	
 		 	foreach($groupsdata as $key => $value)
 		 		{
+		 			$key=$value['id'];
+		 				
 		 			$groupsdatanames[$key]=$value['name'];
 		 		}
 			$this->set(compact('groupsdatanames'));
