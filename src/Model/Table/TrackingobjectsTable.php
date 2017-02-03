@@ -5,7 +5,7 @@ use Cake\ORM\Query;
 use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
 use Cake\Validation\Validator;
-
+use Cake\Datasource\ConnectionManager;
 /**
  * Trackingobjects Model
  *
@@ -135,4 +135,15 @@ class TrackingobjectsTable extends Table
 
         return $rules;
     }
+	
+	//for adhoc reports
+	public function getTrackingobjects($cid,$gid)
+	{
+		// echo "sdfdzfzdfs";
+		$con = ConnectionManager::get('default');
+		
+	    $stmt = $con->execute("select trackingobjects.name,trackingobjects.id from zorba.trackingobjects_groups left join zorba.trackingobjects on trackingobjects.id = trackingobjects_groups.trackingobject_id where group_id = $gid ");
+		$results = $stmt->fetchAll('assoc');
+		return $results;
+	}
 }

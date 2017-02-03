@@ -46,7 +46,7 @@ class ReportsController extends AppController
          $groupsdata=$this->Groups->find('all')->toArray();
 		 foreach($groupsdata as $key => $value)
 		 {
-		 	
+		 	$key=$value['id'];
 			$groupsdatanames[$key]=$value['name'];
 		 }
 		
@@ -69,6 +69,103 @@ class ReportsController extends AppController
 		 //$this->set('_serialize', ['configs','usersettings','actions','additional']);
     }
 
+
+	public function checkAjax(){
+    	// $this->autoRender = false;
+    	//echo 'Test string';
+		
+	  	 $this->loadModel('Journeys');
+		 // echo $this->request->query['assetname'];
+         // $assetmonthlydata=$this->Journeys->getMonthlySummary(1,$this->request->query['assetname']);
+         $assetmonthlydata=$this->Journeys->getMonthlySummary($this->loggedinuser['customer_id'],$this->request->query['assetname']);
+        
+        $this->set('assetmonthlydata',$assetmonthlydata);
+		$this->set('_serialize', ['assetmonthlydata']);
+        echo json_encode($assetmonthlydata);
+         // $assetmonthlydata=$this->Journeys->find('all');
+		  $out= json_encode($assetmonthlydata) ;
+		 // echo json_encode(compact('assetmonthlydata'));
+	     //return $this->set(compact('assetmonthlydata'));
+		 
+		 // print_r( $assetmonthlydata );
+		 // $this->set('trips', $assetmonthlydata);
+		// $this->set('lastid',-1);
+			
+          // $this->set('_serialize', ['trips']);
+		 // print_r( $trips );
+		 
+		 $this->response->body($out);
+		return $this->response;
+	}
+
+	public function checkAjax2(){
+    	// $this->autoRender = false;
+    	//echo 'Test string';
+		// echo "sdfs";
+	  	 $this->loadModel('Trackingobjects');
+		 // echo $this->request->query['assetname'];
+         // $assetmonthlydata=$this->Journeys->getMonthlySummary(1,$this->request->query['assetname']);
+         $assetmonthlydata=$this->Trackingobjects->getTrackingobjects($this->loggedinuser['customer_id'],$this->request->query['groupname']);
+        
+        $this->set('assetmonthlydata',$assetmonthlydata);
+		$this->set('_serialize', ['assetmonthlydata']);
+        echo json_encode($assetmonthlydata);
+         // $assetmonthlydata=$this->Journeys->find('all');
+		  $out= json_encode($assetmonthlydata) ;
+		 // echo json_encode(compact('assetmonthlydata'));
+	     //return $this->set(compact('assetmonthlydata'));
+		 
+		 // print_r( $assetmonthlydata );
+		 // $this->set('trips', $assetmonthlydata);
+		// $this->set('lastid',-1);
+			
+          // $this->set('_serialize', ['trips']);
+		 // print_r( $trips );
+		 
+		 $this->response->body($out);
+		return $this->response;
+	}
+	
+	public function checkAjax3(){
+    	// $this->autoRender = false;
+    	//echo 'Test string';
+		
+	  	 $this->loadModel('Journeys');
+		 // echo $this->request->query['assetname'];
+         // $assetmonthlydata=$this->Journeys->getMonthlySummary(1,$this->request->query['assetname']);
+         $assetmonthlydata=$this->Journeys->getWeeklySummary($this->loggedinuser['customer_id'],$this->request->query['assetname']);
+        
+        $this->set('assetmonthlydata',$assetmonthlydata);
+		$this->set('_serialize', ['assetmonthlydata']);
+        echo json_encode($assetmonthlydata);
+         // $assetmonthlydata=$this->Journeys->find('all');
+		  $out= json_encode($assetmonthlydata) ;
+		 // echo json_encode(compact('assetmonthlydata'));
+	     //return $this->set(compact('assetmonthlydata'));
+		 
+		 // print_r( $assetmonthlydata );
+		 // $this->set('trips', $assetmonthlydata);
+		// $this->set('lastid',-1);
+			
+          // $this->set('_serialize', ['trips']);
+		 // print_r( $trips );
+		 
+		 $this->response->body($out);
+		return $this->response;
+	}
+
+	public function checkAjax4()
+	{
+    		
+    	$this->loadModel('Journeys');
+		$assetdailydata=$this->Journeys->getAssetsDailySummary($this->loggedinuser['customer_id'],$this->request->query['assetname'],$this->request->query['date']);
+        $this->set('assetdailydata',$assetdailydata);
+		$this->set('_serialize', ['assetdailydata']);
+        $out= json_encode($assetdailydata) ;
+		$this->response->body($out);
+		return $this->response;
+	}
+	
 	public function groupdailyreport()
     {
         $start=strtotime('00:00');
@@ -114,6 +211,8 @@ class ReportsController extends AppController
 			$this->set(compact('groupsdatanames'));
 		
       }
+	
+	
 
 	public function groupmonthlyreport()
     {
@@ -128,6 +227,65 @@ class ReportsController extends AppController
 		 			$groupsdatanames[$key]=$value['name'];
 		 		}
 			$this->set(compact('groupsdatanames'));
+		
+      }
+	public function assetmonthlyreport()
+    {
+       
+		$this->loadModel('Groups');
+        $groupsdata=$this->Groups->find('all')->toArray();
+         	
+		 	foreach($groupsdata as $key => $value)
+		 		{
+		 			$key=$value['id'];
+		 				
+		 			$groupsdatanames[$key]=$value['name'];
+		 		}
+			$this->loadModel('Tracking');	
+			$trackingobjects = $this->Tracking->TrackingObjects->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
+       
+	 
+			$this->set(compact('groupsdatanames','trackingobjects'));
+		
+      }
+	
+	public function assetweeklyreport()
+ 	{
+       
+		$this->loadModel('Groups');
+        $groupsdata=$this->Groups->find('all')->toArray();
+         	
+		 	foreach($groupsdata as $key => $value)
+		 		{
+		 			$key=$value['id'];
+		 				
+		 			$groupsdatanames[$key]=$value['name'];
+		 		}
+			$this->loadModel('Tracking');	
+			$trackingobjects = $this->Tracking->TrackingObjects->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
+       
+	 
+			$this->set(compact('groupsdatanames','trackingobjects'));
+		
+      }
+	
+	public function assetdailyreport()
+ 	{
+       
+		$this->loadModel('Groups');
+        $groupsdata=$this->Groups->find('all')->toArray();
+         	
+		 	foreach($groupsdata as $key => $value)
+		 		{
+		 			$key=$value['id'];
+		 				
+		 			$groupsdatanames[$key]=$value['name'];
+		 		}
+			$this->loadModel('Tracking');	
+			$trackingobjects = $this->Tracking->TrackingObjects->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
+       
+	 
+			$this->set(compact('groupsdatanames','trackingobjects'));
 		
       }
 

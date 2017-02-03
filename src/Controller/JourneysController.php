@@ -226,26 +226,9 @@ class JourneysController extends AppController
 		 $fields[1] = array("name" =>"Journeys.distance"  , "type" => "sum1");
 		 $fields[2] = array("name" =>"Journeys.maxspeed"  , "type" => "sum2");
 		 $fields[3] = array("name" =>"Count"  , "type" => "countall");
-		 $fields[4] = array("name" =>"sum(Journeys.end_time )"  , "type" => "sum3");
+		 $fields[4] = array("name" =>"duration"  , "type" => "sum3");
 		 
-		// $fields[0] = array("name" =>"Journeys.id"  , "type" => "count");
-		// $fields[1] = array("name" =>"(Journeys.start_time - Journeys.start_time)"  , "type" => "date");
-		// $fields[2] = array("name" =>"Journeys.distance"  , "type" => "num");
-		// $fields[3] = array("name" =>"Journeys.maxspeed"  , "type" => "num");
-		// $fields[4] = array("name" =>"Journeys.averagespeed"  , "type" => "num");
-				
 		$usrfiter="";
-        // msgdtime filter
-        // if(isset($this->request->query['startdate']) && ($this->request->query['startdate'])!=null && isset($this->request->query['enddate']) && ($this->request->query['enddate'])!=null 
-        															// && isset($this->request->query['starttime']) && isset($this->request->query['endtime']))
-        	// {
-//         	
-			// $usrfiter.="start_time BETWEEN '" .$this->toPostDBDate($this->request->query['startdate']). " ".$this->request->query['starttime']
-						   // ."' AND '" .$this->toPostDBDate($this->request->query['enddate']). " " .$this->request->query['endtime']. "'";
-// 						   
-			// }
-			
-			
 			if(isset($this->request->query['startdate']) && ($this->request->query['startdate'])!=null )
 			{
         	
@@ -286,7 +269,7 @@ class JourneysController extends AppController
 		 $fields[1] = array("name" =>"Journeys.distance"  , "type" => "sum1");
 		 $fields[2] = array("name" =>"Journeys.maxspeed"  , "type" => "sum2");
 		 $fields[3] = array("name" =>"Count"  , "type" => "countall");
-		 $fields[4] = array("name" =>"sum(Journeys.end_time )"  , "type" => "sum3");
+		 $fields[4] = array("name" =>"duration"  , "type" => "sum3");
 		 
 		$usrfiter="";
 		// if(isset($this->request->query['startdate']) && ($this->request->query['startdate'])!=null )
@@ -326,7 +309,7 @@ class JourneysController extends AppController
 		 $fields[1] = array("name" =>"Journeys.distance"  , "type" => "sum1");
 		 $fields[2] = array("name" =>"Journeys.maxspeed"  , "type" => "sum2");
 		 $fields[3] = array("name" =>"Count"  , "type" => "countall");
-		 $fields[4] = array("name" =>"sum(Journeys.end_time )"  , "type" => "sum3");
+		 $fields[4] = array("name" =>"duration"  , "type" => "sum3");
 		 
 		$usrfiter="";
 			//if current month is January previous month is dec of last year
@@ -371,4 +354,134 @@ class JourneysController extends AppController
 	    return $this->response;
 	}
 	
+	public function assetMonthlyReportAjaxData()
+	{
+		$this->autoRender= false;
+        
+        $this->loadModel('Journeys');
+        $dbout=$this->Journeys->find('all')->toArray();
+     	$fields = array();
+		
+		 $fields[0] = array("name" =>"Journeys.start_time"  , "type" => "dateofjourney");
+		 $fields[1] = array("name" =>"Journeys.distance"  , "type" => "sum1");
+		 $fields[2] = array("name" =>"Journeys.maxspeed"  , "type" => "sum2");
+		 $fields[3] = array("name" =>"Count"  , "type" => "countall");
+		 $fields[4] = array("name" =>"duration"  , "type" => "sum3");
+		 
+		$usrfiter="";
+			//if current month is January previous month is dec of last year
+			if (isset($this->request->query['monthname']) && $this->request->query['monthname'] == 0 )//curent month
+			{
+				 
+        	 		$usrfiter.="EXTRACT('month' FROM START_TIME)  = EXTRACT('month' FROM NOW()::DATE) and EXTRACT('YEAR' FROM START_TIME)  =  EXTRACT('YEAR' FROM NOW()::DATE)  "; 
+	        	 	
+			}
+			
+			if (isset($this->request->query['monthname']) && $this->request->query['monthname'] == 1 )// last month
+			{
+				 if (date('m')==1)// for jan
+        	 		{
+        	 		$usrfiter.="EXTRACT('month' FROM START_TIME)  = 12 and EXTRACT('YEAR' FROM START_TIME)  =  EXTRACT('YEAR' FROM NOW()::DATE)-1  "; 
+	        	 	}
+	        	 else
+	        	 	{
+	        	 	$usrfiter.="EXTRACT('month' FROM START_TIME)  = EXTRACT('month' FROM NOW()::DATE)-1 and EXTRACT('YEAR' FROM START_TIME)  =  EXTRACT('YEAR' FROM NOW()::DATE)   "; 
+	        	 	}
+			}
+        	
+			
+			
+			
+		//Asset filter	
+        if(isset($this->request->query['gpname'])){
+        	
+        	$pre=(strlen($usrfiter)>0)?" and ":"";
+			$usrfiter.=$pre. " trackingobject_id ='" .$this->request->query['assetname']. "'";	
+        }
+    	
+    	//
+    	$pre=(strlen($usrfiter)>0)?" and ":"";
+		$usrfiter.=$pre. " Journeys.customer_id ='" .$this->loggedinuser['customer_id']. "'group by trackingobjects.name,Journeys.start_time";
+		
+		$output =$this->Datatabletest->getView($fields,['Trackingobjects','Customers'],$usrfiter);
+		$out =json_encode($output);  
+	   	$this->response->body($out);
+		return $this->response;
+	}
+	
+	public function assetWeeklyReportAjaxData()
+	{
+		$this->autoRender= false;
+        
+        $this->loadModel('Journeys');
+        $dbout=$this->Journeys->find('all')->toArray();
+     	$fields = array();
+		
+		 $fields[0] = array("name" =>"Journeys.start_time"  , "type" => "dateofjourney");
+		 $fields[1] = array("name" =>"Journeys.distance"  , "type" => "sum1");
+		 $fields[2] = array("name" =>"Journeys.maxspeed"  , "type" => "sum2");
+		 $fields[3] = array("name" =>"Count"  , "type" => "countall");
+		 $fields[4] = array("name" =>"duration"  , "type" => "sum3");
+		 
+		$usrfiter="";
+			//if current month is January previous month is dec of last year
+			$usrfiter.="date(start_time) BETWEEN    NOW()::DATE-EXTRACT(DOW FROM NOW()) ::INTEGER     AND NOW()::DATE"; 
+        	
+			
+			
+			
+		//Asset filter	
+        if(isset($this->request->query['gpname'])){
+        	
+        	$pre=(strlen($usrfiter)>0)?" and ":"";
+			$usrfiter.=$pre. " trackingobject_id ='" .$this->request->query['assetname']. "'";	
+        }
+    	
+    	//
+    	$pre=(strlen($usrfiter)>0)?" and ":"";
+		$usrfiter.=$pre. " Journeys.customer_id ='" .$this->loggedinuser['customer_id']. "'group by trackingobjects.name,Journeys.start_time";
+		
+		$output =$this->Datatabletest->getView($fields,['Trackingobjects','Customers'],$usrfiter);
+		$out =json_encode($output);  
+	   	$this->response->body($out);
+		return $this->response;
+	}
+
+public function assetDailyReportAjaxData()
+	{
+		$this->autoRender= false;
+        
+        $this->loadModel('Journeys');
+        $dbout=$this->Journeys->find('all')->toArray();
+     	$fields = array();
+		
+		 $fields[0] = array("name" =>"Journeys.start_time"  , "type" => "dateofjourney");
+		 $fields[1] = array("name" =>"Journeys.end_time"  , "type" => "enddateofjourney");
+		 $fields[2] = array("name" =>"Journeys.maxspeed"  , "type" => "num");
+		 $fields[3] = array("name" =>"Journeys.idletime"  , "type" => "num");
+		 $fields[4] = array("name" =>"Journeys.distance"  , "type" => "num");
+		 
+		$usrfiter="";
+			
+			// $usrfiter.="date(start_time) BETWEEN    NOW()::DATE-EXTRACT(DOW FROM NOW()) ::INTEGER     AND NOW()::DATE"; 
+        	
+			
+			
+			
+		//Asset filter	
+        if(isset($this->request->query['assetname'])){
+        	
+        	$pre=(strlen($usrfiter)>0)?" and ":"";
+			$usrfiter.=$pre. " trackingobject_id ='" .$this->request->query['assetname']. "' and date(start_time) = '".$this->request->query['date']."'";	
+        }
+    	
+    	//
+    	$pre=(strlen($usrfiter)>0)?" and ":"";
+		$usrfiter.=$pre. " Journeys.customer_id ='" .$this->loggedinuser['customer_id']."'";
+		
+		$output =$this->Datatabletest->getView($fields,['Customers'],$usrfiter);
+		$out =json_encode($output);  
+	   	$this->response->body($out);
+		return $this->response;
+	}
 }
