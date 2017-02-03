@@ -3,7 +3,7 @@
 <!-- Content Header (Page header) -->
 <section class="content-header">
   <h1>
-    Group Daily Report
+    Group Monthly Report
   </h1>
   <ol class="breadcrumb">
   	<li><a href="#"><i class="fa fa-dashboard"></i>Home</a></li>
@@ -29,7 +29,7 @@
 	</div>
 	
 	
-	<div class="col-md-3"><div class="col-sm-12">
+	<div class="col-md-3">
 		<div class="col-sm-12" id="monthname">
 				<?php 
 				echo $this->Form->input('monthname', [ 'options' => array('This Month','Last Month'),'class'=>'select2','id'=>'month','label'=>['class'=>'mandatory']]);

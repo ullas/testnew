@@ -43,14 +43,19 @@ use Cake\Utility\Inflector;
 					$select[$value['name']] = $tempquerystr;
 				}else if($value['type']=='dateof' ){
 					$select['alert_dtime'] = 'date(alert_dtime)';
+				}else if($value['type']=='dateofjourney' ){
+					$select['start_time'] = 'date(start_time)';
+				}else if($value['type']=='enddateofjourney' ){
+					$select['end_time'] = 'date(end_time)';
 				}else if($value['type']=='sum1' ){
 					$select['distance'] = 'sum(Journeys.distance)';
 				}else if($value['type']=='sum2' ){
 					$select['maxspeed'] = 'max(maxspeed)';
 				}else if($value['type']=='sum3' ){
+					$select['duration'] ="sum(Journeys.end_time - Journeys.start_time) ";
 					//TO_CHAR((sum(Journeys.end_time - Journeys.start_time) || ' second')::interval, 'DD:HH24:MI:SS')
 					//$select['duration'] = 'to_char (sum(Journeys.end_time - Journeys.start_time), text)';
-					$select['duration'] = "cast(TO_CHAR((sum(Journeys.end_time - Journeys.start_time) || 'second')::interval, 'DD:HH24:MI:SS') as varchar)";
+					// $select['duration'] = "cast(TO_CHAR((sum(Journeys.end_time - Journeys.start_time) || 'second')::interval, 'DD:HH24:MI:SS') as varchar)";
 					// print_r($select['duration'] );
 				}else{
 					$select[] = $value['name'] ;

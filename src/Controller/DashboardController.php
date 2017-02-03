@@ -99,6 +99,47 @@ class DashboardController extends AppController
 		  (isset($query)) ? $lastmonthnonprodhrssum = ($lastmonthcountrecs*86400 - $query->sumOf('businesstime')) / 3600 : $lastmonthnonprodhrssum="";
 		  (isset($query)) ? $lastmonthruntimesum=$query->sumOf('runningtime') / 3600 : $lastmonthruntimesum="";
 		   
+		   //for handling division by zero
+		   if($lastmonthdistancecount>0)
+		  	{
+		  	$distancerate = abs(round(($distancecount-$lastmonthdistancecount)/$lastmonthdistancecount *100));	
+		  	}
+		   if($lastmonthdistancecount<=0)
+		  	{
+		  	 $distancerate = abs(round($distancecount));	
+		  	}
+			
+			 if($lastmonthfuelsum>0)
+		  	{
+		  	$fuelrate = abs(round(($fuelsum-$lastmonthfuelsum)/$lastmonthfuelsum *100));	
+		  	}
+		   if($lastmonthfuelsum<=0)
+		  	{
+		  	 $fuelrate = abs(round($fuelsum));	
+		  	}
+			
+			 if($lastmonthnonprodhrssum>0)
+		  	{
+		  	$nonprodhrsrate = abs(round(($nonprodhrssum-$lastmonthnonprodhrssum)/$lastmonthnonprodhrssum *100));	
+		  	}
+		   if($lastmonthnonprodhrssum<=0)
+		  	{
+		  	 $nonprodhrsrate = abs(round($nonprodhrssum));	
+		  	}
+			
+			 if($lastmonthruntimesum>0)
+		  	{
+		  	$runtimerate = abs(round(($runtimesum-$lastmonthruntimesum)/$lastmonthruntimesum *100));	
+		  	}
+		   if($lastmonthruntimesum<=0)
+		  	{
+		  	 $runtimerate = abs(round($runtimesum));	
+		  	}
+		   
+		   
+		   
+		   
+		   
 		  if(($distancecount-$lastmonthdistancecount)>0)
 		  	{
 		  	 $colorclassdistance = "description-percentage text-green";	
@@ -226,7 +267,7 @@ class DashboardController extends AppController
 		  'currenttripscount','jobcount','pendingjobcount','remindercount','totalremindercount','cls1','cls2','cls3','cls4',
 		  'widthtrip','widthjob','totalpendingmaintenancecount','pendingmaintenancecount','widthreminder','widthpendingmaintenance',
 		  'totalalertcount','totalnonackalertcount','alertcontent','colorclassdistance','colorclassfuel','colorclassnonprodhrs',
-		  'colorclassruntime'));
+		  'colorclassruntime','runtimerate','nonprodhrsrate','fuelrate','distancerate'));
     }
 	
 	 public function operations()
