@@ -196,7 +196,7 @@ class TrackingController extends AppController
         if(isset($this->request->query['assetname'])){
         	
         	$pre=(strlen($usrfilter)>0)?" and ":"";
-			$usrfilter.=$pre. " trackingobject_id1 ='" .$this->request->query['assetname']. "'";
+			$usrfilter.=$pre. " trackingobject_id ='" .$this->request->query['assetname']. "'";
         	
         }
     	

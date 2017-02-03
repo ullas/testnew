@@ -30,7 +30,7 @@
 	<div class="col-md-3">
 			<div class="col-sm-12" id="gpname">
 				<?php 
-				echo $this->Form->input('Group Name', [ 'options' => $groupsdatanames,'class'=>'select2','label'=>['text'=>'Group Name','class'=>'mandatory']]);
+				echo $this->Form->input('groupname', [ 'options' => $groupsdatanames,'class'=>'select2','label'=>['text'=>'Group Name','class'=>'mandatory']]);
 				?>
 			</div>		
 	</div>
@@ -39,7 +39,9 @@
 	<div class="col-md-3">
 			<div class="col-sm-12" id="astname">
 				<?php 
-				echo $this->Form->input('Asset Name', [ 'options' => $trackingobjects ,'class'=>'select2','label'=>['text'=>'Asset Name','class'=>'mandatory']])
+				// echo $this->Form->input('Asset Name', [ 'options' => $trackingobjects ,'class'=>'select2','label'=>['text'=>'Asset Name','class'=>'mandatory']])
+				echo $this->Form->input('Asset Name', ['options' => "", 'class'=>'select2','label'=>['text'=>'Asset Name']]);
+				// echo $this->Form->select('rooms', [    'multiple' => true,      'default' => [1, 3]]);
 				?>
 			</div>		
 	</div>
@@ -161,7 +163,34 @@ $(function () {
     		format:"dd/mm/yyyy",
       		autoclose: true,clearBtn: true
     	});
-	//hide speed limit input
+		
+		var groupnameelm = document.getElementById("groupname");
+		var groupname = groupnameelm.options[groupnameelm.selectedIndex].value;
+	
+	
+	
+	
+	$('#groupname').change(function(){ 
+		$('#asset-name').empty();
+		// alert(document.getElementById("groupname").value);// when dropdown value gets changed function executes
+    $.ajax({
+         type : "POST",
+                url  : '/Reports/check_ajax2?groupname='+document.getElementById("groupname").value,
+                success : function(array1){
+                	 	var array = JSON.parse(array1);
+        				for (var key in array) 
+        					{
+								if (array.hasOwnProperty(key)) 
+									{
+									$("<option value='" + array[key].id+ "'>" + array[key].name + "</option>").appendTo('#asset-name');
+									}
+							}  // assign the output to asset names
+                    }
+            })
+            });
+	
+	
+	
 	$("#spthr").hide(); 
 	$('#reporttype').change(function() {
     	if(this.value==2){//top speed report
@@ -180,8 +209,8 @@ $(function () {
     	//get input value
 		var reporttypeelm = document.getElementById("reporttype");
 		var reporttype = reporttypeelm.options[reporttypeelm.selectedIndex].value;
-		var groupnameelm = document.getElementById("group-name");
-		var groupname = groupnameelm.options[groupnameelm.selectedIndex].value;
+		// var groupnameelm = document.getElementById("group-name");
+		// var groupname = groupnameelm.options[groupnameelm.selectedIndex].value;
 		var assetnameelm = document.getElementById("asset-name");
 		var assetname = assetnameelm.options[assetnameelm.selectedIndex].value;
 		var startdate = document.getElementById('startdate').value;
