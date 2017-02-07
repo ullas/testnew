@@ -486,8 +486,7 @@ $('.dataTables_filter input').unbind().on('keyup', function() {
    });
 
 	 $('#datatabfilter').on('click',function(){
-		 $('#datatabfilterul').toggle();
-		 $('#datatabfilterul').css('border','1px solid #D2D6DE');
+		 $('#datatabfilterul').toggle().css('border','1px solid #D2D6DE');
 	 });
 
 	 $(document).on('click', function (e) {
