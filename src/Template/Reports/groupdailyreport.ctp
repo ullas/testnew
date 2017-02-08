@@ -62,7 +62,7 @@
                 <th class="th4"></th>
                 <th class="th5"></th>
               
-                <th data-orderable="false">Actions</th>
+                <!-- <th data-orderable="false">Actions</th> -->
             </tr>
         </thead>
         <tbody></tbody>

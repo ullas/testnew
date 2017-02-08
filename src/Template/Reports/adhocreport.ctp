@@ -30,7 +30,7 @@
 	<div class="col-md-3">
 			<div class="col-sm-12" id="gpname">
 				<?php 
-				echo $this->Form->input('groupname', [ 'options' => $groupsdatanames,'class'=>'select2','label'=>['text'=>'Group Name','class'=>'mandatory']]);
+				echo $this->Form->input('groupname',[ 'empty'=>true, 'options' => $groupsdatanames,'class'=>'select2','label'=>['text'=>'Group Name']]);
 				?>
 			</div>		
 	</div>
@@ -40,7 +40,7 @@
 			<div class="col-sm-12" id="astname">
 				<?php 
 				// echo $this->Form->input('Asset Name', [ 'options' => $trackingobjects ,'class'=>'select2','label'=>['text'=>'Asset Name','class'=>'mandatory']])
-				echo $this->Form->input('Asset Name', ['options' => "", 'class'=>'select2','label'=>['text'=>'Asset Name']]);
+				echo $this->Form->input('Asset Name', ['options' => "",'label'=>['text'=>'Asset Name']]);
 				// echo $this->Form->select('rooms', [    'multiple' => true,      'default' => [1, 3]]);
 				?>
 			</div>		
@@ -122,7 +122,7 @@
                 <th class="th4"></th>
                 <th class="th5"></th>
               
-                <th data-orderable="false">Actions</th>
+                <!-- <th data-orderable="false">Actions</th> -->
             </tr>
         </thead>
         <tbody></tbody>
