@@ -25,7 +25,7 @@
 <div class="row">
 	
 	
-	<div class="col-md-3">
+	<div class="col-md-4">
 			<div class="col-sm-12" id="gpname">
 				<?php 
 				echo $this->Form->input('groupname', [ 'options' => $groupsdatanames,'empty' =>true, 'class'=>'select2','label'=>['text'=>'Group Name','class'=>'mandatory']]);
@@ -34,19 +34,19 @@
 	</div>
 	
 	
-	<div class="col-md-3">
+	<div class="col-md-4">
 			<div class="col-sm-12" id="astname">
 				<?php 
 				// echo $this->Form->input('Asset Name', [ 'options' => $trackingobjects ,'class'=>'select2','label'=>['text'=>'Asset Name','class'=>'mandatory']])
-				echo $this->Form->input('Asset Name', ['options' => "", 'class'=>'select2','label'=>['text'=>'Asset Name']]);
+				echo $this->Form->input('Asset Name', ['options' => "",'label'=>['text'=>'Asset Name']]);
 				// echo $this->Form->select('rooms', [    'multiple' => true,      'default' => [1, 3]]);
 				?>
 			</div>		
 	</div>
 	
-	<div class="col-md-3"><div class="col-sm-12">
+	<div class="col-md-4"><div class="col-sm-12">
 		<div class="form-group">
-			<label for="startdate">Start Date</label>
+			<label for="startdate">Date</label>
 			<div class="input-group"><div class="input-group-addon"><i class="fa fa-calendar"></i></div>
 			<input type="text" name="startdate" empty="1" required="required" class="datemask form-control" id="startdate">
 				<!-- <?php 
@@ -148,7 +148,7 @@
           </div>
  
       
- <div class="box box-primary">Journey Details
+ <div id="journeydetailstable" class="box box-primary">Journey Details
  	<div class="box-body">  
 	           <table id="traveldetailstbl" class="table table-hover  table-bordered ">
         <thead>
@@ -160,7 +160,7 @@
                 <th class="th4"></th>
                 <th class="th5"></th>
               
-                <th data-orderable="false">Actions</th>
+                <!-- <th data-orderable="false">Actions</th> -->
             </tr>
         </thead>
         <tbody></tbody>
@@ -169,7 +169,7 @@
           </div>
           
           
-  <div class="box box-primary">Alert Details Over Speed
+  <div id="alertdetailstable" class="box box-primary">Alert Details 
  	<div class="box-body">  
 	           <table id="traveldetailstbl2" class="table table-hover  table-bordered ">
         <thead>
@@ -178,10 +178,10 @@
          		<th class="th6"></th>
            	    <th class="th7"></th>        
                 <th class="th8"></th>
-                <!-- <th class="th4"></th>
-                <th class="th5"></th> -->
+                <th class="th9"></th>
+                <!-- <th class="th5"></th> --> 
               
-                <th data-orderable="false">Actions</th>
+                <!-- <th data-orderable="false">Actions</th> -->
             </tr>
         </thead>
         <tbody></tbody>
@@ -244,6 +244,8 @@ $(function () {
     	});
 	
 	$("#summarybox").hide();
+	$("#journeydetailstable").hide();
+	$("#alertdetailstable").hide();
 	
 	$('#groupname').change(function(){ 
 		$('#asset-name').empty();
@@ -266,12 +268,26 @@ $(function () {
 				
 	
 	$('#generatereport').click(function(){
-		$("#summarybox").hide();
-		var assetnameelm = document.getElementById("asset-name");
-		var assetname = assetnameelm.options[assetnameelm.selectedIndex].value;
-		var date = document.getElementById('startdate').value;
 		
-		$.ajax({
+		$("#summarybox").hide();
+		$("#journeydetailstable").hide();
+		$("#alertdetailstable").hide();
+		// alert("startdate---"+ document.getElementById("startdate").value);
+		// alert("asset-name----"+  document.getElementById("asset-name").value);
+		// alert("groupname---"+  document.getElementById("groupname").value);
+		
+		
+		if(document.getElementById("groupname").value != "" && document.getElementById("asset-name").value != "" && document.getElementById("startdate").value != "")
+		{
+			
+			$("#journeydetailstable").show();
+			$("#alertdetailstable").show();
+		
+			var assetnameelm = document.getElementById("asset-name");
+			var assetname = assetnameelm.options[assetnameelm.selectedIndex].value;
+			var date = document.getElementById('startdate').value;
+		
+			$.ajax({
 			url: '/Reports/check_ajax4?assetname='+assetname+'&date='+date,
 			success: function(result){
         		
@@ -295,30 +311,34 @@ $(function () {
        		}
     	});
     	
-    
-    	//get input value
+		//get input value
 		var groupnameelm = document.getElementById("groupname");
 		var groupname = groupnameelm.options[groupnameelm.selectedIndex].value;
 		
 		
+			table.ajax.url('/Journeys/assetDailyReportAjaxData?date='+date+'&assetname='+assetname).load();
+    		
     		$(".dataTables_scrollHead .th1").text("Start Date");$(".dataTables_scrollHead .th2").text("End Date");$(".dataTables_scrollHead .th3").text("Max Speed");$(".dataTables_scrollHead .th4").text("Idle Time");$(".dataTables_scrollHead .th5").text("Distance");
-    		table.ajax.url('/Journeys/assetDailyReportAjaxData?date='+date+'&assetname='+assetname).load();
-    		
-    		$(".dataTables_scrollHead .th6").text("Date");$(".dataTables_scrollHead .th7").text("Location");$(".dataTables_scrollHead .th8").text("Speed");
-    		table2.ajax.url('/Alerts/overSpeed2AjaxData?assetname='+assetname+'&date='+date).load();
     		
     		
-    		
-    		// $("#traveldetailstbl2_wrapper .dataTables_scrollHead  .th1").text("Date");
-    		// $("#traveldetailstbl2_wrapper .dataTables_scrollHead   .th2").text("Location");
-    		// $("#traveldetailstbl2_wrapper  .dataTables_scrollHead  .th3").text("Speed");
-    		
-    	// }
-		// else{//clear table body content
-   			// $('#traveldetailstbl tbody').empty();
-   		// }
-   		
-	});
+    		$(".dataTables_scrollHead .th6").text("Date");$(".dataTables_scrollHead .th7").text("Alerty Category");$(".dataTables_scrollHead .th8").text("Location");$(".dataTables_scrollHead .th9").text("Speed");
+    		table2.ajax.url('/Alerts/alertDetailsforAssetDailyAjaxData?assetname='+assetname+'&date='+date).load();
+    	
+		
+		
+		}
+		else
+		{
+			// alert("Please select all")
+			
+		}
+		
+    	
+    
+    	
+		
+				
+    	});
 });
 
 </script>

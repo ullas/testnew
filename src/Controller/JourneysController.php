@@ -39,7 +39,7 @@ class JourneysController extends AppController
 		$fields[1] = array("name" =>"Journeys.start_time"  , "type" => "date");
 		$fields[2] = array("name" =>"Journeys.end_time"  , "type" => "date");
 		$fields[3] = array("name" =>"Journeys.maxspeed"  , "type" => "num");
-		$fields[4] = array("name" =>"Journeys.distance"  , "type" => "char");
+		$fields[4] = array("name" =>"Journeys.distance"  , "type" => "num");
 				
 		$usrfiter="";
         // msgdtime filter

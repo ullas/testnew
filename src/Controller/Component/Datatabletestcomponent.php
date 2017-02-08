@@ -120,7 +120,7 @@ use Cake\Utility\Inflector;
                                    <input type="hidden" name="_method" value="POST"></form>
                                    <a href="#" onclick="if (confirm(&quot;Are you sure you want to delete # '.$d.'?&quot;)) { document.getElementById(&quot;formdelete'.$d.'&quot;).submit(); }
                                     event.returnValue = false; return false;" class="fa fa-trash"></a>';
-                   		return $buttons;
+                   		// return $buttons;
                		}
               	);
 			  }
@@ -130,7 +130,7 @@ use Cake\Utility\Inflector;
            //getting filter
            
            $where = $this->Filter( $colmns, $fields );
-           //getting limit
+		   //getting limit
            $limit = $this->Limit( );//echo 1/0;
            //set value to limit if it is null
            // if($limit!=""){
@@ -218,7 +218,7 @@ use Cake\Utility\Inflector;
                    }
                }
            }
-          
+           // echo json_encode($globalSearch) ;
            return $globalSearch;
        }
        public function Order ( $columns )

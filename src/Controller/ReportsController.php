@@ -77,7 +77,7 @@ class ReportsController extends AppController
 	  	 $this->loadModel('Journeys');
 		 // echo $this->request->query['assetname'];
          // $assetmonthlydata=$this->Journeys->getMonthlySummary(1,$this->request->query['assetname']);
-         $assetmonthlydata=$this->Journeys->getMonthlySummary($this->loggedinuser['customer_id'],$this->request->query['assetname']);
+         $assetmonthlydata=$this->Journeys->getMonthlySummary($this->loggedinuser['customer_id'],$this->request->query['assetname'],$this->request->query['monthname']);
         
         $this->set('assetmonthlydata',$assetmonthlydata);
 		$this->set('_serialize', ['assetmonthlydata']);

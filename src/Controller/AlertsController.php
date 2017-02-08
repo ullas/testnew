@@ -127,6 +127,7 @@ class AlertsController extends AppController
 	    return $this->response;
 	}
 
+	//asset daily reports- overspeed alert report
 	public function overSpeed2AjaxData()
 	{
 		$this->autoRender= false;
@@ -576,38 +577,35 @@ class AlertsController extends AppController
 	    return $this->response;
 	}	
 
-	public function zoneVisitCount2AjaxData()
+	public function alertDetailsforAssetDailyAjaxData()
 	{
 		$this->autoRender= false;
         
-        //$this->loadModel('Alerts');
-        // $dbout=$this->Alerts->find('all')->toArray();
-     	$fields = array();
-		 
-		$fields[0] = array("name" =>"Alerts.location"  , "type" => "num");
+        $fields = array();
 		
-		$fields[1] = array("name" =>"Alerts.alert_dtime"  , "type" => "dateof");
-		$fields[2] = array("name" =>"Trackingobjects.name"  , "type" => "char");
-		$fields[3] = array("name" =>"Count"  , "type" => "countall");
+		$fields[0] = array("name" =>"Alerts.alert_dtime"  , "type" => "date");
+		$fields[1] = array("name" =>"Alertcategories.name"  , "type" => "char");
+		$fields[2] = array("name" =>"Alerts.location"  , "type" => "char");
+		$fields[3] = array("name" =>"Alerts.velocity"  , "type" => "num");
 				
 		$usrfiter="";
         // msgdtime filter
         if(isset($this->request->query['date']) && ($this->request->query['date'])!=null ){
         	
-			$usrfiter.="date(alert_dtime) ='" .$this->toPostDBDate($this->request->query['date']). "'";
+			$usrfiter.="date(alert_dtime) ='" .$this->toPostDBDate($this->request->query['date']). "' and trackingobject_id =".$this->request->query['assetname'];
 		}
 		//Asset filter	
         if(isset($this->request->query['assetname'])){
         	
-        	$pre=(strlen($usrfiter)>0)?" and ":""; 
-			$usrfiter.=$pre. " alertcategories_id = 13 and  alert_message like  'Entering%' group by trackingobjects.name, date(alert_dtime),location";
+        	// $pre=(strlen($usrfiter)>0)?" and ":""; 
+			// $usrfiter.=$pre. " alertcategories_id = 13 and  alert_message like  'Entering%' ";
 			
 			
         	
         }
     	
 	
-		$output =$this->Datatabletest->getView($fields,['Customers','Trackingobjects'],$usrfiter);
+		$output =$this->Datatabletest->getView($fields,['Customers','Alertcategories'],$usrfiter);
 		$out =json_encode($output);  
 	   
 		$this->response->body($out);
