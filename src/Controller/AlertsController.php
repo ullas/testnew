@@ -296,7 +296,7 @@ class AlertsController extends AppController
 		$fields[0] = array("name" =>"Alerts.id"  , "type" => "num"); 
 		$fields[1] = array("name" =>"Trackingobjects.name"  , "type" => "char");
 		$fields[2] = array("name" =>"Alerts.alert_dtime"  , "type" => "date");
-		$fields[3] = array("name" =>"Alerts.velocity"  , "type" => "char");
+		$fields[3] = array("name" =>"Alerts.velocity"  , "type" => "num");
 		$fields[4] = array("name" =>"Alerts.location"  , "type" => "char");
 				
 		$usrfiter="";
@@ -314,7 +314,7 @@ class AlertsController extends AppController
 		//	$usrfiter.=$pre. "  trackingobject_id ='" .$this->request->query['assetname']. "'";
 			//$usrfiter.=$pre. "  trackingobject_id ='" .$this->request->query['assetname']. "' and Alerts.customer_id ='" .$this->loggedinuser['customer_id']. "'group by alertcategories.name, alerts.location";
 			
-			
+			$usrfiter.=$pre. " 1=1";
         	
         }
     	
@@ -340,8 +340,8 @@ class AlertsController extends AppController
 		$fields[0] = array("name" =>"Alerts.id"  , "type" => "num");
 		$fields[1] = array("name" =>"Alerts.alert_message"  , "type" => "char");
 		$fields[2] = array("name" =>"Alerts.alert_dtime"  , "type" => "date");
-		$fields[3] = array("name" =>"Alerts.location"  , "type" => "num");
-		$fields[4] = array("name" =>"Alerts.velocity"  , "type" => "char");
+		$fields[3] = array("name" =>"Alerts.location"  , "type" => "char");
+		$fields[4] = array("name" =>"Alerts.velocity"  , "type" => "num");
 				
 		$usrfiter="";
         // msgdtime filter
@@ -380,8 +380,8 @@ class AlertsController extends AppController
 		$fields[0] = array("name" =>"Alerts.id"  , "type" => "num");
 		$fields[1] = array("name" =>"Alerts.alert_message"  , "type" => "char");
 		$fields[2] = array("name" =>"Alerts.alert_dtime"  , "type" => "date");
-		$fields[3] = array("name" =>"Alerts.location"  , "type" => "num");
-		$fields[4] = array("name" =>"Alerts.velocity"  , "type" => "char");
+		$fields[3] = array("name" =>"Alerts.location"  , "type" => "char");
+		$fields[4] = array("name" =>"Alerts.velocity"  , "type" => "num");
 				
 		$usrfiter="";
         // msgdtime filter
