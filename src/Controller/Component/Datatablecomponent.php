@@ -70,7 +70,7 @@ use Cake\Utility\Inflector;
                                    <input type="hidden" name="_method" value="POST"></form>
                                    <a href="#" onclick="if (confirm(&quot;Are you sure you want to delete # '.$d.'?&quot;)) { document.getElementById(&quot;formdelete'.$d.'&quot;).submit(); }
                                     event.returnValue = false; return false;" class="fa fa-trash"></a>';
-                   		// return $buttons;
+                   		return $buttons;
                		}
               	);
 			  }
@@ -95,7 +95,7 @@ use Cake\Utility\Inflector;
                
                $wherestr.=$key. " '". $value. "'";
            }
-           $wherestr="(". $wherestr .")";
+           // $wherestr="(". $wherestr .")";
            if(strlen($wherestr)>3 && strlen($usrFlier)>3){
            	 $wherestr.= " and ".$usrFlier;
            }else{

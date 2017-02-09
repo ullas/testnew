@@ -21,7 +21,7 @@
 	<div class="col-md-3">
 			<div class="col-sm-12">
 				<?php 
-					echo $this->Form->input('reporttype', [ 'options' => $reporttypes,'class'=>'select2','label'=>['text'=>'Report','class'=>'mandatory']]);
+					echo $this->Form->input('reporttype', [ 'options' => $reporttypes,'class'=>'select2','label'=>['text'=>'Report']]);
 				?>
 			</div>		
 	</div>
@@ -50,7 +50,7 @@
 		<div class="form-group">
 			<label for="startdate">Start Date</label>
 			<div class="input-group"><div class="input-group-addon"><i class="fa fa-calendar"></i></div>
-			<input type="text" name="startdate" empty="1" required="required" class="datemask form-control" id="startdate">
+			<input type="text" name="startdate" empty="1" class="datemask form-control" id="startdate">
 				<!-- <?php 
 				echo $this->Form->input('startdate', [ 'type'=>'text','empty' => true,'class'=>'datemask','label'=>'Start Date','templateVars' => ['icon' => '<div class="input-group-addon"><i class="fa fa-calendar"></i></div>']]);
 				?> -->
@@ -67,7 +67,7 @@
 	<div class="col-md-3">
 			<div class="col-sm-12">
 				<?php 
-				echo $this->Form->input('starttime', [ 'options' => $times,'class'=>'select2','label'=>['text'=>'Start Time','class'=>'mandatory']]);
+				echo $this->Form->input('starttime', [ 'options' => $times,'class'=>'select2','label'=>['text'=>'Start Time']]);
 				?>
 			</div>		
 	</div>
@@ -76,7 +76,7 @@
 		<div class="form-group">
 			<label for="enddate">End Date</label>
 			<div class="input-group"><div class="input-group-addon"><i class="fa fa-calendar"></i></div>
-			<input type="text" name="enddate" empty="1" required="required" class="datemask form-control" id="enddate">
+			<input type="text" name="enddate" empty="1" class="datemask form-control" id="enddate">
 				<!-- <?php 
 				echo $this->Form->input('enddate', [ 'type'=>'text','empty' => true,'class'=>'datemask','label'=>'End Date']);
 				?> -->
@@ -88,7 +88,7 @@
 	<div class="col-md-3">
 			<div class="col-sm-12">
 				<?php 
-					echo $this->Form->input('endtime', [ 'options' => $times,'class'=>'select2','label'=>['text'=>'End Time','class'=>'mandatory']]);
+					echo $this->Form->input('endtime', [ 'options' => $times,'class'=>'select2','label'=>['text'=>'End Time']]);
 				?>
 			</div>		
 	</div>
@@ -110,7 +110,7 @@
 </div></div></div>
       
       
- <div class="box box-primary">   
+ <div id="traveldetailstblbox" class="box box-primary">   
  	<div class="box-body">  
 	           <table id="traveldetailstbl" class="table table-hover  table-bordered ">
         <thead>
@@ -158,6 +158,9 @@
    });
 
 $(function () {
+	
+	$("#traveldetailstblbox").hide();
+	
 	//datepicker
     	$('.datemask').datepicker({
     		format:"dd/mm/yyyy",
@@ -206,7 +209,48 @@ $(function () {
 	});
 	
 	$('#generatereport').click(function(){
-    	//get input value
+    	
+    	
+    	// alert("gropname--"+document.getElementById("groupname").options[document.getElementById("groupname").selectedIndex].value);
+    	// alert("assetnam--"+document.getElementById("asset-name").value);
+    	alert("startdate--"+document.getElementById("startdate").value);
+    	alert("enddate--"+document.getElementById("enddate").value);
+    	
+    	//validate all fields
+	if(
+		(document.getElementById("groupname").options[document.getElementById("groupname").selectedIndex].value != "")
+		&&	(document.getElementById("asset-name").value != "") 
+		&& 	(document.getElementById("startdate").value != "") 
+		&& 	(document.getElementById("enddate").value != "")
+		)
+		
+		{
+    	
+    	// var x = new Date("01/02/2017");
+		// var y = new Date("27/02/2017");
+		var x = document.getElementById("startdate").value;
+		var y = document.getElementById("enddate").value;
+		var newx = x.split("/").reverse().join("/");
+		var newy = y.split("/").reverse().join("/");
+		alert(newx+"---"+newy);
+		if(x>y)
+		{
+			alert(x+" greater than"+y);
+		}
+		else if(x<y)
+		{
+			alert("Start Date should be greater than End Date");
+		}
+		else if(x==y) {
+			// if()
+			alert(" dfg"+document.getElementById("starttime").options[starttimeelm.selectedIndex].value);
+		}
+    	
+    	// document.getElementById("starttime").options[starttimeelm.selectedIndex].value
+    	
+    	$("#traveldetailstblbox").show();
+    	
+    	//get input value			
 		var reporttypeelm = document.getElementById("reporttype");
 		var reporttype = reporttypeelm.options[reporttypeelm.selectedIndex].value;
 		// var groupnameelm = document.getElementById("group-name");
@@ -224,9 +268,11 @@ $(function () {
     	// table.ajax.url( '/Tracking/ajax_data' ).load();
     	// table.ajax.reload( null, false );table.ajax.data({starttime: starttime});
     	
-    	if(reporttype==0){//travel details report 
-    		$(".dataTables_scrollHead .th1").text("Id");$(".dataTables_scrollHead .th2").text("Date & Time");$(".dataTables_scrollHead .th3").text("Speed");$(".dataTables_scrollHead .th4").text("Location");$(".dataTables_scrollHead .th5").text("Status");
-    		table.ajax.url('/Tracking/ajax_data?reporttype='+reporttype+'&assetname='+assetname+'&starttime='+starttime+'&endtime='+endtime+'&startdate='+startdate+'&enddate='+enddate).load();
+    	if(reporttype==0){//travel details report
+    		 
+    		 
+    			$(".dataTables_scrollHead .th1").text("Id");$(".dataTables_scrollHead .th2").text("Date & Time");$(".dataTables_scrollHead .th3").text("Speed");$(".dataTables_scrollHead .th4").text("Location");$(".dataTables_scrollHead .th5").text("Status");
+    			table.ajax.url('/Tracking/ajax_data?reporttype='+reporttype+'&assetname='+assetname+'&starttime='+starttime+'&endtime='+endtime+'&startdate='+startdate+'&enddate='+enddate).load();
    		}
 		else if(reporttype==1){//fencing report
 			$(".spdlmt").type = "text";
@@ -342,7 +388,14 @@ $(function () {
    		
    		else{//clear table body content
    			$('#traveldetailstbl tbody').empty();
-   		}
+   		}    			
+    		}
+    	else
+    		{
+    			$("#traveldetailstblbox").hide();
+    			alert("Please select all fields")
+    		}	
+    	
    		
 	});
 });
