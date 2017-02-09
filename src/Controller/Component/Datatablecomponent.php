@@ -46,7 +46,7 @@ use Cake\Utility\Inflector;
 		   
 		   
 		   $reportcontrollers = array("Alerts", "Journey");
-		   
+		  
 		   // if (!(in_array($controller->name, $reportcontrollers))) {
 		   if($controller->loggedinuser['customer_id']=="0"){
            		$colmns[] =array(
@@ -64,12 +64,12 @@ use Cake\Utility\Inflector;
                		'db' => 'id',
                		'dt' => $length++,
                		'formatter' => function( $d, $row ,$modalname) {
-                   		$buttons='<a href="/'.   $modalname  . '/view/'.$d.'" class="fa fa-file-text-o p3"></a>
-                                   <a href="/'.   $modalname . '/edit/'.$d.'" class="fa fa-pencil p3"></a>
+                   		$buttons='<a href="/'.   $modalname  . '/view/'.$d.'" class="fa fa-file-text-o p3"style= "padding:3px" ></a>
+                                   <a href="/'.   $modalname . '/edit/'.$d.'" class="fa fa-pencil p3" style= "padding:3px" ></a>
                                    <form name="formdelete" id="formdelete' .$d. '" method="post" action="/'.   $modalname  . '/delete/'.$d.'" style="display:none;" >
                                    <input type="hidden" name="_method" value="POST"></form>
                                    <a href="#" onclick="if (confirm(&quot;Are you sure you want to delete # '.$d.'?&quot;)) { document.getElementById(&quot;formdelete'.$d.'&quot;).submit(); }
-                                    event.returnValue = false; return false;" class="fa fa-trash"></a>';
+                                    event.returnValue = false; return false;" class="fa fa-trash" style= "padding:3px"></a>';
                    		return $buttons;
                		}
               	);
