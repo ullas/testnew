@@ -13,11 +13,7 @@
 
 <!-- Main content --> 
 <section class="content">
-	<?php 
-	// $this->loadModel('Journeys');
-        // $assetmonthlydata=$this->Journeys->getMonthlySummary(1,$this->request->query['assetname'])
-	// echo assetmonthlydata[0]['maxspeed'];
-	?>
+	
     	 <div class="box box-primary">
      
       <div class="modal-body" style="padding-bottom:0">
@@ -38,7 +34,7 @@
 			<div class="col-sm-12" id="astname">
 				<?php 
 				// echo $this->Form->input('Asset Name', [ 'options' => $trackingobjects ,'class'=>'select2','label'=>['text'=>'Asset Name','class'=>'mandatory']])
-				echo $this->Form->input('Asset Name', ['options' => "", 'class'=>'select2','label'=>['text'=>'Asset Name']]);
+				echo $this->Form->input('Asset Name', ['options' => "", 'label'=>['text'=>'Asset Name']]);
 				// echo $this->Form->select('rooms', [    'multiple' => true,      'default' => [1, 3]]);
 				?>
 			</div>		
@@ -136,7 +132,7 @@
           </div>
  
       
- <div class="box box-primary">   
+ <div id="journeydetailstable" class="box box-primary">   
  	<div class="box-body">  
 	           <table id="traveldetailstbl" class="table table-hover  table-bordered ">
         <thead>
@@ -148,7 +144,7 @@
                 <th class="th4"></th>
                 <th class="th5"></th>
               
-                <th data-orderable="false">Actions</th>
+                <!-- <th data-orderable="false">Actions</th> -->
             </tr>
         </thead>
         <tbody></tbody>
@@ -191,6 +187,7 @@ $(function () {
     	});
 	
 	$("#summarybox").hide();
+	$("#journeydetailstable").hide();
 	
 	$('#groupname').change(function(){ 
 		$('#asset-name').empty();
@@ -205,8 +202,13 @@ $(function () {
 								if (array.hasOwnProperty(key)) 
 									{
 									$("<option value='" + array[key].id+ "'>" + array[key].name + "</option>").appendTo('#asset-name');
+									// $("#asset-name select option[value='" + array[key].id+ "']").prop('selected','selected');
+									// $('#asset-name').innerHTML (array);
+									  // $('#asset-name').append("<option value='" + array[key].id+ "'>" + array[key].name + "</option>");
 									}
 							}  // assign the output to asset names
+							
+							// $("<option[value='166']>").prop('selected','selected');
                     }
             })
             });
@@ -214,22 +216,30 @@ $(function () {
 	
 	$('#generatereport').click(function(){
 		
-		var assetnameelm = document.getElementById("asset-name");
-		var assetname = assetnameelm.options[assetnameelm.selectedIndex].value;
-		$.ajax({
+		
+		$("#summarybox").hide();
+		$("#journeydetailstable").hide();
+		
+		if(document.getElementById("groupname").value != "" && document.getElementById("asset-name").value != "" )
+		{
+			$("#summarybox").hide();
+			$("#journeydetailstable").show();
+			
+			var assetnameelm = document.getElementById("asset-name");
+			var assetname = assetnameelm.options[assetnameelm.selectedIndex].value;
+			;
+			
+			
+			$.ajax({
 			url: '/Reports/check_ajax3?assetname='+assetname,
 			success: function(result){
-        		// alert(result);
         		var array = JSON.parse(result);
-        		// alert(array);
         		for (var key in array) 
         			{
 						if (array.hasOwnProperty(key)) 
 							{
 								$("#summarybox").show();
-							  // alert(array[key].distance);
-							  // alert(array[key].msg);
-							    document.getElementById('totdis').innerHTML = array[key].distance;
+							  	document.getElementById('totdis').innerHTML = array[key].distance;
 							    document.getElementById('maxsp').innerHTML = array[key].maxspeed;
 							    document.getElementById('nojrns').innerHTML = array[key].journeyscount;
 							    document.getElementById('totrntime').innerHTML = array[key].duration;
@@ -244,34 +254,22 @@ $(function () {
     	
     
     	//get input value
-		//var reporttypeelm = document.getElementById("reporttype");
-		//var reporttype = reporttypeelm.options[reporttypeelm.selectedIndex].value;
 		var groupnameelm = document.getElementById("groupname");
 		var groupname = groupnameelm.options[groupnameelm.selectedIndex].value;
-		
-		// var assetnameelm = document.getElementById("asset-name");
-		// var assetname = assetnameelm.options[assetnameelm.selectedIndex].value;
-		//var startdate = document.getElementById('startdate').value;
-		//var enddate = document.getElementById('enddate').value;
-		//var starttimeelm = document.getElementById("starttime");
-		//var starttime = starttimeelm.options[starttimeelm.selectedIndex].value;
-		//var endtimeelm = document.getElementById("endtime");
-		//var endtime = endtimeelm.options[endtimeelm.selectedIndex].value;
-		//var speedlimit = document.getElementById('speedlimit').value;
-    	// table.ajax.url( '/Tracking/ajax_data' ).load();
-    	// table.ajax.reload( null, false );table.ajax.data({starttime: starttime});
-    	
-    	// if(isset(groupname)){//travel details report 
-    		$(".dataTables_scrollHead .th1").text("Date");$(".dataTables_scrollHead .th2").text("Distance");$(".dataTables_scrollHead .th3").text("Max Speed");
+			$(".dataTables_scrollHead .th1").text("Date");$(".dataTables_scrollHead .th2").text("Distance");$(".dataTables_scrollHead .th3").text("Max Speed");
     		$(".dataTables_scrollHead .th4").text("No Of Journeys");
     		$(".dataTables_scrollHead .th5").text("Running Time");
     		table.ajax.url('/Journeys/assetWeeklyReportAjaxData?gpname='+groupname+'&assetname='+assetname).load();
-    		
-    	// }
-		// else{//clear table body content
-   			// $('#traveldetailstbl tbody').empty();
-   		// }
+    	
    		
+		}
+		else
+		{
+			// alert("Please select all")
+			
+		}
+		
+		
 	});
 });
 

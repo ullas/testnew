@@ -30,7 +30,7 @@
 	<div class="col-md-3">
 			<div class="col-sm-12" id="gpname">
 				<?php 
-				echo $this->Form->input('groupname', [ 'options' => $groupsdatanames,'class'=>'select2','label'=>['text'=>'Group Name','class'=>'mandatory']]);
+				echo $this->Form->input('groupname',[ 'empty'=>true, 'options' => $groupsdatanames,'class'=>'select2','label'=>['text'=>'Group Name']]);
 				?>
 			</div>		
 	</div>
@@ -40,7 +40,7 @@
 			<div class="col-sm-12" id="astname">
 				<?php 
 				// echo $this->Form->input('Asset Name', [ 'options' => $trackingobjects ,'class'=>'select2','label'=>['text'=>'Asset Name','class'=>'mandatory']])
-				echo $this->Form->input('Asset Name', ['options' => "", 'class'=>'select2','label'=>['text'=>'Asset Name']]);
+				echo $this->Form->input('Asset Name', ['options' => "",'label'=>['text'=>'Asset Name']]);
 				// echo $this->Form->select('rooms', [    'multiple' => true,      'default' => [1, 3]]);
 				?>
 			</div>		
@@ -122,7 +122,7 @@
                 <th class="th4"></th>
                 <th class="th5"></th>
               
-                <th data-orderable="false">Actions</th>
+                <!-- <th data-orderable="false">Actions</th> -->
             </tr>
         </thead>
         <tbody></tbody>
@@ -258,7 +258,7 @@ $(function () {
     		table.ajax.url('/Journeys/travelSummaryAjaxData?reporttype='+reporttype+'&assetname='+assetname+'&starttime='+starttime+'&endtime='+endtime+'&startdate='+startdate+'&enddate='+enddate).load();
    		}
    		else if(reporttype==8){//Alerts Summary report
-   			$(".dataTables_scrollHead .th1").text("Id");$(".dataTables_scrollHead .th2").text("Date & Time");$(".dataTables_scrollHead .th3").text("Location");$(".dataTables_scrollHead .th4").text("Speed");$(".dataTables_scrollHead .th5").text("Alert Message");
+   			$(".dataTables_scrollHead .th1").text("Alert Type");$(".dataTables_scrollHead .th2").text("Total Count");$(".dataTables_scrollHead .th3").text("Location");$(".dataTables_scrollHead .th4").text("Speed");$(".dataTables_scrollHead .th5").text("Alert Message");
     		table.ajax.url('/Alerts/alertSummaryAjaxData?reporttype='+reporttype+'&assetname='+assetname+'&starttime='+starttime+'&endtime='+endtime+'&startdate='+startdate+'&enddate='+enddate).load();
    		}
    		else if(reporttype==9){//During Behavior report
@@ -331,7 +331,8 @@ $(function () {
    		
    		
    		else if(reporttype==24){//Running Time Summary report
-   			$(".dataTables_scrollHead .th1").text("Id");$(".dataTables_scrollHead .th2").text("Date & Time");$(".dataTables_scrollHead .th3").text("Vehicle");$(".dataTables_scrollHead .th4").text("Running Time");$(".dataTables_scrollHead .th5").text("Distance");
+   			$(".dataTables_scrollHead .th1").text("Date");$(".dataTables_scrollHead .th2").text("Vehicle");$(".dataTables_scrollHead .th3").text("Duration");
+   			// $(".dataTables_scrollHead .th4").text("Running Time");$(".dataTables_scrollHead .th5").text("Distance");
     		table.ajax.url('/Dailysummary/runningTimeSummaryAjaxData?reporttype='+reporttype+'&assetname='+assetname+'&starttime='+starttime+'&endtime='+endtime+'&startdate='+startdate+'&enddate='+enddate).load();
    		}
    		else if(reporttype==25){//Overspeed Summary report

@@ -57,6 +57,8 @@ use Cake\Utility\Inflector;
 					//$select['duration'] = 'to_char (sum(Journeys.end_time - Journeys.start_time), text)';
 					// $select['duration'] = "cast(TO_CHAR((sum(Journeys.end_time - Journeys.start_time) || 'second')::interval, 'DD:HH24:MI:SS') as varchar)";
 					// print_r($select['duration'] );
+				}else if($value['type']=='sum4' ){
+					$select['duration'] ="sum(Dailysummary.runningtime * interval '1 sec') ";
 				}else{
 					$select[] = $value['name'] ;
 				}
@@ -120,7 +122,7 @@ use Cake\Utility\Inflector;
                                    <input type="hidden" name="_method" value="POST"></form>
                                    <a href="#" onclick="if (confirm(&quot;Are you sure you want to delete # '.$d.'?&quot;)) { document.getElementById(&quot;formdelete'.$d.'&quot;).submit(); }
                                     event.returnValue = false; return false;" class="fa fa-trash"></a>';
-                   		return $buttons;
+                   		// return $buttons;
                		}
               	);
 			  }
@@ -130,7 +132,7 @@ use Cake\Utility\Inflector;
            //getting filter
            
            $where = $this->Filter( $colmns, $fields );
-           //getting limit
+		   //getting limit
            $limit = $this->Limit( );//echo 1/0;
            //set value to limit if it is null
            // if($limit!=""){
@@ -145,6 +147,7 @@ use Cake\Utility\Inflector;
                
                $wherestr.=$key. " '". $value. "'";
            }
+           $wherestr="(". $wherestr .")";
            if(strlen($wherestr)>3 && strlen($usrFlier)>3){
            	 $wherestr.= " and ".$usrFlier;
            }else{
@@ -204,10 +207,35 @@ use Cake\Utility\Inflector;
                                   $globalSearch[$column['db']. '='] = "" . $str. "";
 							   }
                            }
+						   else if( ($rowval['name']==$column['db']) && ($rowval['type']=="sum1") ){
+                               if(is_numeric($str))	{
+                                  $globalSearch[$column['db']. '='] = "" . $str. "";
+							   }
+                           }
+						   else if( ($rowval['name']==$column['db']) && ($rowval['type']=="sum2") ){
+                               if(is_numeric($str))	{
+                                  $globalSearch[$column['db']. '='] = "" . $str. "";
+							   }
+                           }
+						   // else if( ($rowval['name']==$column['db']) && ($rowval['type']=="sum3") ){
+                               // if(is_numeric($str))	{
+                                  // $globalSearch[$column['db']. '='] = "" . $str. "";
+							   // }
+                           // }
+                           // else if( ($rowval['name']==$column['db']) && ($rowval['type']=="countall") ){
+                               // if(is_numeric($str))	{
+                                  // $globalSearch[$column['db']. '='] = "" . $str. "";
+							   // }
+                           // }
+
                            else if( ($rowval['name']==$column['db']) && ($rowval['type']=="date") ){
 								if($this->validateDate($str,'m/d/y')){
 								$globalSearch[$column['db'].'::date ='] = $str;
                                }
+                           }
+						   else if( ($rowval['name']==$column['db']) && ($rowval['type']=="dateofjourney") ){
+								 $my_date = date('Y-m-d', strtotime($str));
+								 $globalSearch["to_char(".$column['db']." , 'YYYY-MM-DD') ILIKE"] = "%" . $my_date. "%";
                            }
                            else if( ($rowval['name']==$column['db']) && ($rowval['type']=="boolean") ){
                                if($this->isBoolean($str) === true){
@@ -218,7 +246,7 @@ use Cake\Utility\Inflector;
                    }
                }
            }
-          
+           // echo json_encode($globalSearch) ;
            return $globalSearch;
        }
        public function Order ( $columns )
