@@ -3,7 +3,7 @@ namespace App\Controller\Component;
 use Cake\Controller\Component;
 use Cake\Utility\Inflector;
    class DatatableTestComponent extends Component {
-       public function getView($fields,$contains,$usrFlier)
+       public function getView($fields,$contains,$usrFlier,$wherestr2,$flg)
        {
            $length = count($fields);
            $colmns = array();
@@ -50,7 +50,7 @@ use Cake\Utility\Inflector;
 				}else if($value['type']=='sum1' ){
 					$select['distance'] = 'sum(Journeys.distance)';
 				}else if($value['type']=='sum2' ){
-					$select['maxspeed'] = 'max(maxspeed)';
+					$select['maxspeed'] = 'max(Journeys.maxspeed)';
 				}else if($value['type']=='sum3' ){
 					$select['duration'] ="sum(Journeys.end_time - Journeys.start_time) ";
 					//TO_CHAR((sum(Journeys.end_time - Journeys.start_time) || ' second')::interval, 'DD:HH24:MI:SS')
@@ -63,39 +63,10 @@ use Cake\Utility\Inflector;
 					$select[] = $value['name'] ;
 				}
 				
-				// if($value['type']!='dateof'){
-					// $select[] = $value['name'] ;
-				// }else{
-					// $tempquerystr="";
-					// $tempquerystr=date("Y-m-d",strtotime($value['name']));
-					// // $select[$value['name']] = date($value["name"]);
-					// $select['alert_dtime'] = 'date(alert_dtime)';
-// 					
-					// // $select[$value['name']] = 'date('.$value["name"].')';
-					// //print_r($value['name']);
-					  // // $select[$value['name']] = $tempquerystr;
-					// //$select[] = "dateonly" ;
-				// }
 				
-				
-				
-				/*if($value['type']!='countall'){
-					$select[] = $value['name'] ;
-				}else{
-					$tempquerystr="";
-					$tempquerystr=date("Y-m-d",strtotime($value['name']));
-					
-					$select[$value['name']] = 'count(*)';
-					// print_r($value['name']);
-					 // $select[$value['name']] = $tempquerystr;
-					//$select[] = "dateonly" ;
-				}*/
-				
-				
-			// print_r($select[$value['name']] );	
             }
 		   
-		   // $select['alert_dtime'] = 'date(alert_dtime)';
+		   
 		   
 		   $reportcontrollers = array("Alerts", "Journeys");
 		   
@@ -128,7 +99,7 @@ use Cake\Utility\Inflector;
 			  }
 			  // }
            //getting orderby
-           $order = $this->Order( $colmns );
+           $order = $this->Order( $colmns,$select );
            //getting filter
            
            $where = $this->Filter( $colmns, $fields );
@@ -147,7 +118,7 @@ use Cake\Utility\Inflector;
                
                $wherestr.=$key. " '". $value. "'";
            }
-           // $wherestr="(". $wherestr .")";
+           $wherestr="(". $wherestr .")";
            if(strlen($wherestr)>3 && strlen($usrFlier)>3){
            	 $wherestr.= " and ".$usrFlier;
            }else{
@@ -162,10 +133,31 @@ use Cake\Utility\Inflector;
            //getting totalcount
            $totalCount = $model->find() ->contain($contains)->count();
            //getting filteredcount
-           $filteredCount = $model->find()->contain($contains)->where($wherestr)->count();
+           // $this->find('all',array('fields'=>array('id','name')));
+		  
+		   // $filteredCount = $model->find('all')->contain($contains)->where($wherestr2)->count();
+		   // $filteredCount = $model->find()->select(['*'])->contain($contains)->where($wherestr2)->count();
+
+			// for group queries
+			if($flg == 1)
+			{
+				$countQuery = $model->find()->contain($contains);
+				$mycount = $countQuery->select(['trackingobjects.name'])->group('trackingobjects.name')->count();
+				$filteredCount = $mycount;	
+			}
+			else
+			{
+				 $filteredCount = $model->find()->contain($contains)->where($wherestr2)->count();	
+			}		
+          
 		   // print_r($colmns);
+		   // $filteredCount = count($data);
            $output =$this->GetData($colmns,$data,$totalCount,$filteredCount);
-           return $output;
+		   // $output =$this->GetData($colmns,$data,$totalCount,count($data));
+           // return $mycount;
+		   // return $wherestr;
+		   // return $filteredCount;
+		   return $output;
        }
        public function Limit(){
            $limit = '';
@@ -249,10 +241,11 @@ use Cake\Utility\Inflector;
            // echo json_encode($globalSearch) ;
            return $globalSearch;
        }
-       public function Order ( $columns )
+       public function Order ( $columns,$select )
        {
            $order = array();
            if ( isset($this->request->query['order']) && count($this->request->query['order']) ) {
+           	
                $orderBy = array();
                $dtColumns = $this->pluck( $columns, 'dt' );
                for ( $i=0, $ien=count($this->request->query['order']) ; $i<$ien ; $i++ ) {
@@ -265,12 +258,26 @@ use Cake\Utility\Inflector;
                        $dir = $this->request->query['order'][$i]['dir'] === 'asc' ?
                            "ASC" :
                            "DESC";
+						   // echo $column['db'];
                        $dbname=$column['db'];
-                       $orderBy[$dbname] = $dir;
+					   // $dbname='max(Journeys.maxspeed)';
+                       // $orderBy[$dbname] = $dir;
                    }
                }
                $order = implode(', ', $orderBy);
            }
+		
+		$i =0;
+		foreach ($select  as $key=> $value)
+		{
+			// echo $select[$key];
+			// echo "Key: $key; Value: $value<br />\n";
+			$select[$i] = $value;
+			$i++;
+		}
+			// echo json_encode($select[$columnIdx]) ;
+			// echo json_encode($orderBy) ;
+			 $orderBy[$select[$columnIdx]] = $dir;
            return $orderBy;
        }
        public function pluck ( $a, $prop )

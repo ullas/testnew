@@ -34,7 +34,7 @@
 			<div class="col-sm-12" id="astname">
 				<?php 
 				// echo $this->Form->input('Asset Name', [ 'options' => $trackingobjects ,'class'=>'select2','label'=>['text'=>'Asset Name','class'=>'mandatory']])
-				echo $this->Form->input('Asset Name', ['options' => "", 'label'=>['text'=>'Asset Name']]);
+				echo $this->Form->input('Asset Name', ['options' => "",'class'=>'select2', 'label'=>['text'=>'Asset Name']]);
 				// echo $this->Form->select('rooms', [    'multiple' => true,      'default' => [1, 3]]);
 				?>
 			</div>		
@@ -197,18 +197,18 @@ $(function () {
                 success : function(array1)
                 	{
                 	 	var array = JSON.parse(array1);
+                	 	var firstoption = [];
         				for (var key in array) 
         					{
 								if (array.hasOwnProperty(key)) 
 									{
-									$("<option value='" + array[key].id+ "'>" + array[key].name + "</option>").appendTo('#asset-name');
-									// $("#asset-name select option[value='" + array[key].id+ "']").prop('selected','selected');
-									// $('#asset-name').innerHTML (array);
-									  // $('#asset-name').append("<option value='" + array[key].id+ "'>" + array[key].name + "</option>");
+										firstoption.push( array[key].id);
+										$("<option value='" + array[key].id+ "'>" + array[key].name + "</option>").appendTo('#asset-name');
 									}
 							}  // assign the output to asset names
 							
-							// $("<option[value='166']>").prop('selected','selected');
+							var $astname = $("#asset-name").select2();
+							$astname.val(firstoption[0]).trigger("change");
                     }
             })
             });

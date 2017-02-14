@@ -570,7 +570,7 @@ class AlertsController extends AppController
         }
     	
 	
-		$output =$this->Datatabletest->getView($fields,['Customers','Trackingobjects'],$usrfiter);
+		$output =$this->Datatabletest->getView($fields,['Customers','Trackingobjects'],$usrfiter,$usrfiter,0);
 		$out =json_encode($output);  
 	   
 		$this->response->body($out);
@@ -605,7 +605,7 @@ class AlertsController extends AppController
         }
     	
 	
-		$output =$this->Datatabletest->getView($fields,['Customers','Alertcategories'],$usrfiter);
+		$output =$this->Datatabletest->getView($fields,['Customers','Alertcategories'],$usrfiter,$usrfiter,0);
 		$out =json_encode($output);  
 	   
 		$this->response->body($out);
