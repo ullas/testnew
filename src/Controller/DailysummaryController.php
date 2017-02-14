@@ -54,7 +54,7 @@ class DailysummaryController extends AppController
         if(isset($this->request->query['assetname'])){
         	
         	$pre=(strlen($usrfiter)>0)?" and ":"";
-			$usrfiter.=$pre. " trackingobject_id1 ='" .$this->request->query['assetname']. "'";
+			$usrfiter.=$pre. " trackingobject_id ='" .$this->request->query['assetname']. "'";
 			
         	
         }
@@ -204,7 +204,7 @@ class DailysummaryController extends AppController
 	// $distancecount=$query->sumOf('distance') 
 	
 		//$output =$this->Datatable->getView($fields,['Customers'],$usrfiter);
-		$output =$this->Datatabletest->getView($fields,['Trackingobjects','Customers'],$usrfiter);
+		$output =$this->Datatabletest->getView($fields,['Trackingobjects','Customers'],$usrfiter,$usrfiter,0);
 		$out =json_encode($output);  
 	   
 		$this->response->body($out);

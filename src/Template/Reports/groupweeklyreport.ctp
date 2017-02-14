@@ -40,7 +40,7 @@
 </div></div></div>
       
       
- <div class="box box-primary">   
+ <div id="tablebox"  class="box box-primary">   
  	<div class="box-body">  
 	           <table id="traveldetailstbl" class="table table-hover  table-bordered ">
         <thead>
@@ -88,6 +88,7 @@
    });
 
 $(function () {
+	$("#tablebox").hide();
 	//datepicker
     	$('.datemask').datepicker({
     		format:"dd/mm/yyyy",
@@ -98,19 +99,22 @@ $(function () {
 				
 	
 	$('#generatereport').click(function(){
+		$("#tablebox").hide();
+		if(document.getElementById("gname").value  && document.getElementById("gname").value != "" )
+		{
+			$("#tablebox").show();
     	var groupnameelm = document.getElementById("gname");
 		var groupname = groupnameelm.options[groupnameelm.selectedIndex].value;
-	
-    	// if(isset(groupname)){//travel details report 
-    		$(".dataTables_scrollHead .th1").text("Vehicle");$(".dataTables_scrollHead .th2").text("Distance");$(".dataTables_scrollHead .th3").text("Max Speed");
+			$(".dataTables_scrollHead .th1").text("Vehicle");$(".dataTables_scrollHead .th2").text("Distance");$(".dataTables_scrollHead .th3").text("Max Speed");
     		$(".dataTables_scrollHead .th4").text("No Of Journeys");
     		$(".dataTables_scrollHead .th5").text("Running Time");
     		table.ajax.url('/Journeys/groupWeeklyReportAjaxData?gpname='+groupname).load();
-   		// }
-		// else{//clear table body content
-   			// $('#traveldetailstbl tbody').empty();
-   		// }
-   		
+   		}
+   		else
+		{
+			alert("Please select Group");
+			
+		}
 	});
 });
 
