@@ -25,8 +25,10 @@
           <div class="active tab-pane" id="details">
              <div class="form-horizontal">
         <?php
-        echo $this->Form->input('validfrom', ['type'=>'text','empty' => true,'label'=>'Valid From','required' => 'required','class'=>'datemask','templateVars' => ['icon' => '<div class="input-group-addon"><i class="fa fa-calendar"></i></div>']]);
-          echo $this->Form->input('validtill', ['type'=>'text','empty' => true,'label'=>'Valid Till','required' => 'required','class'=>'datemask','templateVars' => ['icon' => '<div class="input-group-addon"><i class="fa fa-calendar"></i></div>']]);
+        // echo $this->Form->input('start_date', ['type'=>'text','empty' => true,'class'=>'datemask','required' => 'required','templateVars' => ['icon' => '<div class="input-group-addon"><i class="fa fa-calendar"></i></div>']]);
+           
+        echo $this->Form->input('validfrom', ['type'=>'text','empty' => true,'class'=>'datemask','label'=>'Valid From','required' => 'required','templateVars' => ['icon' => '<div class="input-group-addon"><i class="fa fa-calendar"></i></div>']]);
+          echo $this->Form->input('validtill', ['type'=>'text','empty' => true,'class'=>'datemask','label'=>'Valid Till','required' => 'required','templateVars' => ['icon' => '<div class="input-group-addon"><i class="fa fa-calendar"></i></div>']]);
          
                    //	echo $this->Form->input('validfrom', ['empty' => true,'type'=>'text', 'class'=>'datemask','required'=>'required']);
                    	//echo $this->Form->input('validtill', ['empty' => true,'type'=>'text', 'class'=>'datemask','required'=>'required']);
@@ -45,7 +47,7 @@
 					echo $this->Form->input('nodays',['label'=>'No of Days']);
 					echo $this->Form->input('brktime_bfr_nxt_trip',['label'=>'Break time before next trip']);
 					echo $this->Form->input('default_paxgrpid', ['label'=>'Passenger Group','options' => $passengergroups,'class'=>'select2']);
-					echo $this->Form->input('locations._ids', ['options' => $locations,'class'=>'select2']);
+					echo $this->Form->input('locations._ids', ['required' => 'required','options' => $locations,'class'=>'select2']);
 					echo $this->Form->input('drivers._ids', ['options' => $drivers,'class'=>'select2']);
 		?>
     </div>
@@ -75,9 +77,8 @@
 <!-- /.content -->
 <?php
 $this->Html->css([
-    'AdminLTE./plugins/daterangepicker/daterangepicker-bs3',
-    'AdminLTE./plugins/iCheck/all',
-    'AdminLTE./plugins/colorpicker/bootstrap-colorpicker.min',
+'AdminLTE./plugins/datepicker/datepicker3',
+   
     'AdminLTE./plugins/timepicker/bootstrap-timepicker.min',
     'AdminLTE./plugins/select2/select2.min',
   ],
@@ -96,5 +97,19 @@ $this->Html->script([
 ],
 ['block' => 'script']);
 ?>
+<?php $this->start('scriptBotton'); ?>
+<script>
+  $(function () {
+
+   $(".select2").select2({ width: '100%' });
+   $('.datemask').datepicker({
+            format:"dd/mm/yy",
+              autoclose: true
+   });
+
+
+  });
+</script>
+<?php $this->end(); ?>
 
        

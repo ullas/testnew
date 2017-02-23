@@ -35,11 +35,11 @@ class JourneysController extends AppController
         $dbout=$this->Journeys->find('all')->toArray();
      	$fields = array();
 		 
-		$fields[0] = array("name" =>"Journeys.id"  , "type" => "num");
-		$fields[1] = array("name" =>"Journeys.start_time"  , "type" => "date");
-		$fields[2] = array("name" =>"Journeys.end_time"  , "type" => "date");
-		$fields[3] = array("name" =>"Journeys.maxspeed"  , "type" => "num");
-		$fields[4] = array("name" =>"Journeys.distance"  , "type" => "num");
+		// $fields[0] = array("name" =>"Journeys.id"  , "type" => "num");
+		$fields[0] = array("name" =>"Journeys.start_time"  , "type" => "date");
+		$fields[1] = array("name" =>"Journeys.end_time"  , "type" => "date");
+		$fields[2] = array("name" =>"Journeys.maxspeed"  , "type" => "num");
+		$fields[3] = array("name" =>"Journeys.distance"  , "type" => "num");
 				
 		$usrfiter="";
         // msgdtime filter
@@ -92,11 +92,11 @@ class JourneysController extends AppController
 		
      	$fields = array();
 		 
-		$fields[0] = array("name" =>"Journeys.id"  , "type" => "num");
-		$fields[1] = array("name" =>"Journeys.start_time"  , "type" => "date");
-		$fields[2] = array("name" =>"Journeys.start_loc"  , "type" => "char");
-		$fields[3] = array("name" =>"Journeys.idletime" , "type" => "num");
-		$fields[4] = array("name" =>"Journeys.distance"  , "type" => "num");
+		
+		$fields[0] = array("name" =>"Journeys.start_time"  , "type" => "date");
+		$fields[1] = array("name" =>"Journeys.start_loc"  , "type" => "char");
+		$fields[2] = array("name" =>"Journeys.idletime" , "type" => "num");
+		$fields[3] = array("name" =>"Journeys.distance"  , "type" => "num");
 				
 		$usrfiter="";
         // msgdtime filter
@@ -178,11 +178,10 @@ class JourneysController extends AppController
         $dbout=$this->Journeys->find('all')->toArray();
      	$fields = array();
 		 
-		$fields[0] = array("name" =>"Journeys.id"  , "type" => "num");
-		$fields[1] = array("name" =>"Journeys.start_time"  , "type" => "date");
-		$fields[2] = array("name" =>"Journeys.distance"  , "type" => "num");
-		$fields[3] = array("name" =>"Journeys.maxspeed"  , "type" => "num");
-		$fields[4] = array("name" =>"Journeys.averagespeed"  , "type" => "num");
+		$fields[0] = array("name" =>"Journeys.start_time"  , "type" => "date");
+		$fields[1] = array("name" =>"Journeys.distance"  , "type" => "num");
+		$fields[2] = array("name" =>"Journeys.maxspeed"  , "type" => "num");
+		$fields[3] = array("name" =>"Journeys.averagespeed"  , "type" => "num");
 				
 		$usrfiter="";
         // msgdtime filter
@@ -225,8 +224,8 @@ class JourneysController extends AppController
 		 $fields[0] = array("name" =>"Trackingobjects.name"  , "type" => "char");
 		 $fields[1] = array("name" =>"Journeys.distance"  , "type" => "sum1");
 		 $fields[2] = array("name" =>"Journeys.maxspeed"  , "type" => "sum2");
-		 $fields[3] = array("name" =>"Count"  , "type" => "countall");
-		 $fields[4] = array("name" =>"duration"  , "type" => "sum3");
+		 $fields[3] = array("name" =>"Journeys.Count"  , "type" => "countall");
+		 $fields[4] = array("name" =>"Journeys.duration"  , "type" => "sum3");
 		 
 		$usrfiter="";
 			if(isset($this->request->query['startdate']) && ($this->request->query['startdate'])!=null )

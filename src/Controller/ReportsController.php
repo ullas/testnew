@@ -31,7 +31,7 @@ class ReportsController extends AppController
 		
 			
          $this->set('_serialize', ['searchresults']);
-          // $this->log(json_encode($searchresults));
+         // $this->log(json_encode($searchresults));
 		 
 		//$reporttypes = array('0'=>'Travel Details Report','1'=>'Fencing Report','2'=>'Top Speed Report','3'=>'Over Speed Report','4'=>'Distance Travelled Report','5'=>'Stoppage Report','6'=>'Idle Time Report','7'=>'Travel Summary','8'=>'Alerts Summary','9'=>'Driving Behaviour','11'=>'Journey Summary','12'=>'Activity Summary Report','13'=>'Route Violation Report','55'=>'Zone Visit','56'=>'Milage Report','57'=>'Usage Details','60'=>'Debug','65'=>'Driver Error','68'=>'Zone Visit Count Report','71'=>'Trip Start Report','72'=>'Trip End Report','73'=>'Loading and Unloading Details','74'=>'Non Operative Vehicles','75'=>'Non Productive Vehicles','76'=>'Running Time Summary','77'=>'Over Speed Summary','88'=>'Zone Activity');
 		$reporttypes = array('0'=>'Travel Details Report','1'=>'Fencing Report','2'=>'Top Speed Report','3'=>'Over Speed Report','4'=>'Distance Travelled Report','5'=>'Stoppage Report','6'=>'Idle Time Report','7'=>'Travel Summary','8'=>'Alerts Summary','9'=>'Driving Behaviour','10'=>'Journey Summary','11'=>'Activity Summary Report','12'=>'Route Violation Report','13'=>'Zone Visit','14'=>'Milage Report','15'=>'Usage Details','16'=>'Debug','17'=>'Driver Error','18'=>'Zone Visit Count Report','19'=>'Trip Start Report','20'=>'Trip End Report','21'=>'Loading and Unloading Details','22'=>'Non Operative Vehicles','23'=>'Non Productive Vehicles','24'=>'Running Time Summary','25'=>'Over Speed Summary','26'=>'Zone Activity');
@@ -62,8 +62,8 @@ class ReportsController extends AppController
 				$fields[6] = array("title" =>"Status"  , "type" => "char");
 		$colheads =$fields;
 		 $this->set('gpsdata',$gpsdata);	
-	 
-		 $this->set(compact('reporttypes', 'gpsdata','times','groupsdatanames','colheads','trackingobjects'));
+	 $columnnos =6;
+		 $this->set(compact('reporttypes', 'gpsdata','times','groupsdatanames','colheads','trackingobjects','columnnos'));
 		
          //$this->set('_serialize', ['configs','actions']);
 		 //$this->set('_serialize', ['configs','usersettings','actions','additional']);
