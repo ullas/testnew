@@ -21,8 +21,8 @@ class JourneysController extends AppController
 		 $ret="";
 		 $parts=explode("/",$date);
 		 if(count($parts)==3){
-		 	$ret= $date= '20' .trim($parts[2]) . "-" . trim($parts[1]) . "-" . trim($parts[0]);
-			
+		 	// $ret= $date= '20' .trim($parts[2]) . "-" . trim($parts[1]) . "-" . trim($parts[0]);
+			$ret= $date= trim($parts[2]) . "-" . trim($parts[1]) . "-" . trim($parts[0]);
 		 }
 		
 	  return $ret;
@@ -35,11 +35,11 @@ class JourneysController extends AppController
         $dbout=$this->Journeys->find('all')->toArray();
      	$fields = array();
 		 
-		$fields[0] = array("name" =>"Journeys.id"  , "type" => "num");
-		$fields[1] = array("name" =>"Journeys.start_time"  , "type" => "date");
-		$fields[2] = array("name" =>"Journeys.end_time"  , "type" => "date");
-		$fields[3] = array("name" =>"Journeys.maxspeed"  , "type" => "num");
-		$fields[4] = array("name" =>"Journeys.distance"  , "type" => "num");
+		// $fields[0] = array("name" =>"Journeys.id"  , "type" => "num");
+		$fields[0] = array("name" =>"Journeys.start_time"  , "type" => "date");
+		$fields[1] = array("name" =>"Journeys.end_time"  , "type" => "date");
+		$fields[2] = array("name" =>"Journeys.maxspeed"  , "type" => "num");
+		$fields[3] = array("name" =>"Journeys.distance"  , "type" => "num");
 				
 		$usrfiter="";
         // msgdtime filter
@@ -92,11 +92,11 @@ class JourneysController extends AppController
 		
      	$fields = array();
 		 
-		$fields[0] = array("name" =>"Journeys.id"  , "type" => "num");
-		$fields[1] = array("name" =>"Journeys.start_time"  , "type" => "date");
-		$fields[2] = array("name" =>"Journeys.start_loc"  , "type" => "char");
-		$fields[3] = array("name" =>"Journeys.idletime" , "type" => "num");
-		$fields[4] = array("name" =>"Journeys.distance"  , "type" => "num");
+		
+		$fields[0] = array("name" =>"Journeys.start_time"  , "type" => "date");
+		$fields[1] = array("name" =>"Journeys.start_loc"  , "type" => "char");
+		$fields[2] = array("name" =>"Journeys.idletime" , "type" => "num");
+		$fields[3] = array("name" =>"Journeys.distance"  , "type" => "num");
 				
 		$usrfiter="";
         // msgdtime filter
@@ -178,11 +178,10 @@ class JourneysController extends AppController
         $dbout=$this->Journeys->find('all')->toArray();
      	$fields = array();
 		 
-		$fields[0] = array("name" =>"Journeys.id"  , "type" => "num");
-		$fields[1] = array("name" =>"Journeys.start_time"  , "type" => "date");
-		$fields[2] = array("name" =>"Journeys.distance"  , "type" => "num");
-		$fields[3] = array("name" =>"Journeys.maxspeed"  , "type" => "num");
-		$fields[4] = array("name" =>"Journeys.averagespeed"  , "type" => "num");
+		$fields[0] = array("name" =>"Journeys.start_time"  , "type" => "date");
+		$fields[1] = array("name" =>"Journeys.distance"  , "type" => "num");
+		$fields[2] = array("name" =>"Journeys.maxspeed"  , "type" => "num");
+		$fields[3] = array("name" =>"Journeys.averagespeed"  , "type" => "num");
 				
 		$usrfiter="";
         // msgdtime filter
@@ -225,8 +224,8 @@ class JourneysController extends AppController
 		 $fields[0] = array("name" =>"Trackingobjects.name"  , "type" => "char");
 		 $fields[1] = array("name" =>"Journeys.distance"  , "type" => "sum1");
 		 $fields[2] = array("name" =>"Journeys.maxspeed"  , "type" => "sum2");
-		 $fields[3] = array("name" =>"Count"  , "type" => "countall");
-		 $fields[4] = array("name" =>"duration"  , "type" => "sum3");
+		 $fields[3] = array("name" =>"Journeys.Count"  , "type" => "countall");
+		 $fields[4] = array("name" =>"Journeys.duration"  , "type" => "sum3");
 		 
 		$usrfiter="";
 			if(isset($this->request->query['startdate']) && ($this->request->query['startdate'])!=null )
@@ -243,14 +242,15 @@ class JourneysController extends AppController
 			//$usrfiter.=$pre. " trackingobject_id ='" .$this->request->query['assetname']. "'";
 			//$usrfiter.=$pre. " trackingobject_id in (165,169)";
 			$usrfiter.=$pre. " trackingobject_id in (select trackingobject_id from zorba.trackingobjects_groups where group_id =".$this->request->query['gpname'].")";
-				
+			$wherestr2 = $usrfiter;
         }
     	
     	//
     	$pre=(strlen($usrfiter)>0)?" and ":"";
 		$usrfiter.=$pre. " Journeys.customer_id ='" .$this->loggedinuser['customer_id']. "'group by trackingobjects.name";
-	
-		$output =$this->Datatabletest->getView($fields,['Trackingobjects','Customers'],$usrfiter);
+		$wherestr2.=$pre. " Journeys.customer_id ='" .$this->loggedinuser['customer_id']. "'";
+		
+		$output =$this->Datatabletest->getView($fields,['Trackingobjects','Customers'],$usrfiter,$wherestr2,1);
 		$out =json_encode($output);  
 	   
 		$this->response->body($out);
@@ -268,8 +268,8 @@ class JourneysController extends AppController
 		 $fields[0] = array("name" =>"Trackingobjects.name"  , "type" => "char");
 		 $fields[1] = array("name" =>"Journeys.distance"  , "type" => "sum1");
 		 $fields[2] = array("name" =>"Journeys.maxspeed"  , "type" => "sum2");
-		 $fields[3] = array("name" =>"Count"  , "type" => "countall");
-		 $fields[4] = array("name" =>"duration"  , "type" => "sum3");
+		 $fields[3] = array("name" =>"Journeys.Count"  , "type" => "countall");
+		 $fields[4] = array("name" =>"Journeys.duration"  , "type" => "sum3");
 		 
 		$usrfiter="";
 		// if(isset($this->request->query['startdate']) && ($this->request->query['startdate'])!=null )
@@ -291,7 +291,7 @@ class JourneysController extends AppController
     	$pre=(strlen($usrfiter)>0)?" and ":"";
 		$usrfiter.=$pre. " Journeys.customer_id ='" .$this->loggedinuser['customer_id']. "'group by trackingobjects.name";
 	
-		$output =$this->Datatabletest->getView($fields,['Trackingobjects','Customers'],$usrfiter);
+		$output =$this->Datatabletest->getView($fields,['Trackingobjects','Customers'],$usrfiter,$usrfiter,1);
 		$out =json_encode($output);  
 	   
 		$this->response->body($out);
@@ -308,8 +308,8 @@ class JourneysController extends AppController
 		 $fields[0] = array("name" =>"Trackingobjects.name"  , "type" => "char");
 		 $fields[1] = array("name" =>"Journeys.distance"  , "type" => "sum1");
 		 $fields[2] = array("name" =>"Journeys.maxspeed"  , "type" => "sum2");
-		 $fields[3] = array("name" =>"Count"  , "type" => "countall");
-		 $fields[4] = array("name" =>"duration"  , "type" => "sum3");
+		 $fields[3] = array("name" =>"Journeys.Count"  , "type" => "countall");
+		 $fields[4] = array("name" =>"Journeys.duration"  , "type" => "sum3");
 		 
 		$usrfiter="";
 			//if current month is January previous month is dec of last year
@@ -347,7 +347,7 @@ class JourneysController extends AppController
     	$pre=(strlen($usrfiter)>0)?" and ":"";
 		$usrfiter.=$pre. " Journeys.customer_id ='" .$this->loggedinuser['customer_id']. "'group by trackingobjects.name";
 	
-		$output =$this->Datatabletest->getView($fields,['Trackingobjects','Customers'],$usrfiter);
+		$output =$this->Datatabletest->getView($fields,['Trackingobjects','Customers'],$usrfiter,$usrfiter,1);
 		$out =json_encode($output);  
 	   
 		$this->response->body($out);
@@ -365,8 +365,8 @@ class JourneysController extends AppController
 		 $fields[0] = array("name" =>"Journeys.start_time"  , "type" => "dateofjourney");
 		 $fields[1] = array("name" =>"Journeys.distance"  , "type" => "sum1");
 		 $fields[2] = array("name" =>"Journeys.maxspeed"  , "type" => "sum2");
-		 $fields[3] = array("name" =>"Count"  , "type" => "countall");
-		 $fields[4] = array("name" =>"duration"  , "type" => "sum3");
+		 $fields[3] = array("name" =>"Journeys.Count"  , "type" => "countall");
+		 $fields[4] = array("name" =>"Journeys.duration"  , "type" => "sum3");
 		 
 		$usrfiter="";
 			//if current month is January previous month is dec of last year
@@ -397,13 +397,16 @@ class JourneysController extends AppController
         	
         	$pre=(strlen($usrfiter)>0)?" and ":"";
 			$usrfiter.=$pre. " trackingobject_id ='" .$this->request->query['assetname']. "'";	
+			$wherestr2 = 	$usrfiter;
         }
     	
     	//
     	$pre=(strlen($usrfiter)>0)?" and ":"";
 		$usrfiter.=$pre. " Journeys.customer_id ='" .$this->loggedinuser['customer_id']. "'group by trackingobjects.name,Journeys.start_time";
 		
-		$output =$this->Datatabletest->getView($fields,['Trackingobjects','Customers'],$usrfiter);
+		$wherestr2.=$pre. " Journeys.customer_id ='" .$this->loggedinuser['customer_id']. "'";
+		
+		$output =$this->Datatabletest->getView($fields,['Trackingobjects','Customers'],$usrfiter,$wherestr2,0);
 		$out =json_encode($output);  
 	   	$this->response->body($out);
 		return $this->response;
@@ -420,8 +423,8 @@ class JourneysController extends AppController
 		 $fields[0] = array("name" =>"Journeys.start_time"  , "type" => "dateofjourney");
 		 $fields[1] = array("name" =>"Journeys.distance"  , "type" => "sum1");
 		 $fields[2] = array("name" =>"Journeys.maxspeed"  , "type" => "sum2");
-		 $fields[3] = array("name" =>"Count"  , "type" => "countall");
-		 $fields[4] = array("name" =>"duration"  , "type" => "sum3");
+		 $fields[3] = array("name" =>"Journeys.Count"  , "type" => "countall");
+		 $fields[4] = array("name" =>"Journeys.duration"  , "type" => "sum3");
 		 
 		$usrfiter="";
 			//if current month is January previous month is dec of last year
@@ -434,14 +437,17 @@ class JourneysController extends AppController
         if(isset($this->request->query['gpname'])){
         	
         	$pre=(strlen($usrfiter)>0)?" and ":"";
-			$usrfiter.=$pre. " trackingobject_id ='" .$this->request->query['assetname']. "'";	
+			$usrfiter.=$pre. " trackingobject_id ='" .$this->request->query['assetname']. "'";
+			$wherestr2 = 	$usrfiter;
         }
     	
     	//
     	$pre=(strlen($usrfiter)>0)?" and ":"";
 		$usrfiter.=$pre. " Journeys.customer_id ='" .$this->loggedinuser['customer_id']. "'group by trackingobjects.name,Journeys.start_time";
 		
-		$output =$this->Datatabletest->getView($fields,['Trackingobjects','Customers'],$usrfiter);
+		$wherestr2.=$pre. " Journeys.customer_id ='" .$this->loggedinuser['customer_id']. "'";
+		
+		$output =$this->Datatabletest->getView($fields,['Trackingobjects','Customers'],$usrfiter,$wherestr2,0);
 		$out =json_encode($output);  
 	   	$this->response->body($out);
 		return $this->response;
@@ -479,7 +485,7 @@ public function assetDailyReportAjaxData()
     	$pre=(strlen($usrfiter)>0)?" and ":"";
 		$usrfiter.=$pre. " Journeys.customer_id ='" .$this->loggedinuser['customer_id']."'";
 		
-		$output =$this->Datatabletest->getView($fields,['Customers'],$usrfiter);
+		$output =$this->Datatabletest->getView($fields,['Customers'],$usrfiter,$usrfiter,0);
 		$out =json_encode($output);  
 	   	$this->response->body($out);
 		return $this->response;

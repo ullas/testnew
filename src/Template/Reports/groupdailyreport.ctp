@@ -50,7 +50,7 @@
 </div></div></div>
       
       
- <div class="box box-primary">   
+ <div id="tablebox" class="box box-primary">   
  	<div class="box-body">  
 	           <table id="traveldetailstbl" class="table table-hover  table-bordered ">
         <thead>
@@ -95,63 +95,43 @@
           "processing": true,
           "serverSide": true,
           "ajax": {url:""}, 
-   });
+   	});
 
-$(function () {
+	$(function () {
+	
+	$("#tablebox").hide();
+	
 	//datepicker
     	$('.datemask').datepicker({
     		format:"dd/mm/yyyy",
       		autoclose: true,clearBtn: true
     	});
-	//hide speed limit input
-	$("#spthr").hide(); 
-	$('#reporttype').change(function() {
-    	if(this.value==2){//top speed report
-    		$("#spthr").show(); 
-    	}else{
-    		$("#spthr").hide(); 
-    	}
-    	if(this.value==76 || this.value==77 ){//top speed report
-    		$("#gpname").hide(); $("#astname").hide();
-    	}else{
-    		$("#gpname").show();  $("#astname").show();
-    	}
-    	
-	});
 	
 				
 	
 	$('#generatereport').click(function(){
+		$("#tablebox").hide();
     	//get input value
-		//var reporttypeelm = document.getElementById("reporttype");
-		//var reporttype = reporttypeelm.options[reporttypeelm.selectedIndex].value;
-		var groupnameelm = document.getElementById("gname");
-		alert(groupnameelm);
-		var groupname = groupnameelm.options[groupnameelm.selectedIndex].value;
-		//var assetnameelm = document.getElementById("asset-name");
-		//var assetname = assetnameelm.options[assetnameelm.selectedIndex].value;
-		var startdate = document.getElementById('startdate').value;
-		//var enddate = document.getElementById('enddate').value;
-		//var starttimeelm = document.getElementById("starttime");
-		//var starttime = starttimeelm.options[starttimeelm.selectedIndex].value;
-		//var endtimeelm = document.getElementById("endtime");
-		//var endtime = endtimeelm.options[endtimeelm.selectedIndex].value;
-		//var speedlimit = document.getElementById('speedlimit').value;
-    	// table.ajax.url( '/Tracking/ajax_data' ).load();
-    	// table.ajax.reload( null, false );table.ajax.data({starttime: starttime});
-    	
-    	// if(isset(groupname)){//travel details report 
+		// if(document.getElementById("gname").value){}
+		if(document.getElementById("gname").value != ""  && document.getElementById("startdate").value != "")
+		{
+			$("#tablebox").show();
+			var groupnameelm = document.getElementById("gname");
+			var groupname = groupnameelm.options[groupnameelm.selectedIndex].value;
+			var startdate = document.getElementById('startdate').value;
     		$(".dataTables_scrollHead .th1").text("Vehicle");$(".dataTables_scrollHead .th2").text("Distance");$(".dataTables_scrollHead .th3").text("Max Speed");
     		$(".dataTables_scrollHead .th4").text("No Of Journeys");
     		$(".dataTables_scrollHead .th5").text("Running Time");
     		table.ajax.url('/Journeys/groupDailyReportAjaxData?startdate='+startdate+'&gpname='+groupname).load();
-   		// }
-		// else{//clear table body content
-   			// $('#traveldetailstbl tbody').empty();
-   		// }
+   		}
+   		else
+		{
+			alert("Please select all fields");
+			
+		}
    		
+		});
 	});
-});
 
 </script>
 <?php $this->end(); ?>

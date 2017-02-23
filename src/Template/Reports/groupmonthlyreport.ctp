@@ -49,7 +49,7 @@
 </div></div></div>
       
       
- <div class="box box-primary">   
+ <div id="tablebox"  class="box box-primary">   
  	<div class="box-body">  
 	           <table id="traveldetailstbl" class="table table-hover  table-bordered ">
         <thead>
@@ -97,6 +97,7 @@
    });
 
 $(function () {
+	$("#tablebox").hide();
 	//datepicker
     	$('.datemask').datepicker({
     		format:"dd/mm/yyyy",
@@ -107,37 +108,22 @@ $(function () {
 				
 	
 	$('#generatereport').click(function(){
+		$("#tablebox").hide();
 		
     	//get input value
-		//var reporttypeelm = document.getElementById("reporttype");
-		//var reporttype = reporttypeelm.options[reporttypeelm.selectedIndex].value;
-		var groupnameelm = document.getElementById("gname");
-		var groupname = groupnameelm.options[groupnameelm.selectedIndex].value;
-		var monthnameelm = document.getElementById("month");
-		var monthname = monthnameelm.options[monthnameelm.selectedIndex].value;
-		//var assetnameelm = document.getElementById("asset-name");
-		//var assetname = assetnameelm.options[assetnameelm.selectedIndex].value;
-		//var startdate = document.getElementById('startdate').value;
-		//var enddate = document.getElementById('enddate').value;
-		//var starttimeelm = document.getElementById("starttime");
-		//var starttime = starttimeelm.options[starttimeelm.selectedIndex].value;
-		//var endtimeelm = document.getElementById("endtime");
-		//var endtime = endtimeelm.options[endtimeelm.selectedIndex].value;
-		//var speedlimit = document.getElementById('speedlimit').value;
-    	// table.ajax.url( '/Tracking/ajax_data' ).load();
-    	// table.ajax.reload( null, false );table.ajax.data({starttime: starttime});
-    	
-    	// if(isset(groupname)){//travel details report 
-    		$(".dataTables_scrollHead .th1").text("Vehicle");$(".dataTables_scrollHead .th2").text("Distance");$(".dataTables_scrollHead .th3").text("Max Speed");
+		if(document.getElementById("gname").value  && document.getElementById("gname").value != "" )
+		{
+			$("#tablebox").show();
+			var groupnameelm = document.getElementById("gname");
+			var groupname = groupnameelm.options[groupnameelm.selectedIndex].value;
+			var monthnameelm = document.getElementById("month");
+			var monthname = monthnameelm.options[monthnameelm.selectedIndex].value;
+			$(".dataTables_scrollHead .th1").text("Vehicle");$(".dataTables_scrollHead .th2").text("Distance");$(".dataTables_scrollHead .th3").text("Max Speed");
     		$(".dataTables_scrollHead .th4").text("No Of Journeys");
     		$(".dataTables_scrollHead .th5").text("Running Time");
     		table.ajax.url('/Journeys/groupMonthlyReportAjaxData?gpname='+groupname+'&monthname='+monthname).load();
     		
-   		// }
-		// else{//clear table body content
-   			// $('#traveldetailstbl tbody').empty();
-   		// }
-   		
+   		}
 	});
 });
 

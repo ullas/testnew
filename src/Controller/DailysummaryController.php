@@ -35,12 +35,12 @@ class DailysummaryController extends AppController
        // $dbout=$this->Alerts->find('all')->toArray();
      	$fields = array();
 		 
-		$fields[0] = array("name" =>"Dailysummary.id"  , "type" => "num");
-		$fields[1] = array("name" =>"Dailysummary.mdate"  , "type" => "date");
-		$fields[2] = array("name" =>"Dailysummary.distance"  , "type" => "num");
+		// $fields[0] = array("name" =>"Dailysummary.id"  , "type" => "num");
+		$fields[0] = array("name" =>"Dailysummary.mdate"  , "type" => "date");
+		$fields[1] = array("name" =>"Dailysummary.distance"  , "type" => "num");
 		//$fields[3] = array("name" =>"location"  , "type" => "char");
-		$fields[3] = array("name" =>"Dailysummary.idletime"  , "type" => "num");
-		$fields[4] = array("name" =>"Dailysummary.businesstime"  , "type" => "num");
+		$fields[2] = array("name" =>"Dailysummary.idletime"  , "type" => "num");
+		$fields[3] = array("name" =>"Dailysummary.businesstime"  , "type" => "num");
 				
 		$usrfiter="";
         // msgdtime filter
@@ -54,7 +54,7 @@ class DailysummaryController extends AppController
         if(isset($this->request->query['assetname'])){
         	
         	$pre=(strlen($usrfiter)>0)?" and ":"";
-			$usrfiter.=$pre. " trackingobject_id1 ='" .$this->request->query['assetname']. "'";
+			$usrfiter.=$pre. " trackingobject_id ='" .$this->request->query['assetname']. "'";
 			
         	
         }
@@ -76,12 +76,11 @@ class DailysummaryController extends AppController
        // $dbout=$this->Alerts->find('all')->toArray();
      	$fields = array();
 		 
-		$fields[0] = array("name" =>"Dailysummary.id"  , "type" => "num");
-		$fields[1] = array("name" =>"Dailysummary.mdate"  , "type" => "date");
-		$fields[2] = array("name" =>"Dailysummary.idletime"  , "type" => "num");
+		$fields[0] = array("name" =>"Dailysummary.mdate"  , "type" => "date");
+		$fields[1] = array("name" =>"Dailysummary.idletime"  , "type" => "num");
 		//$fields[3] = array("name" =>"location"  , "type" => "char");
-		$fields[3] = array("name" =>"Dailysummary.runningtime"  , "type" => "num");
-		$fields[4] = array("name" =>"Dailysummary.stoppedtime"  , "type" => "num");
+		$fields[2] = array("name" =>"Dailysummary.runningtime"  , "type" => "num");
+		$fields[3] = array("name" =>"Dailysummary.stoppedtime"  , "type" => "num");
 				
 		$usrfiter="";
         // msgdtime filter
@@ -117,12 +116,11 @@ class DailysummaryController extends AppController
        // $dbout=$this->Alerts->find('all')->toArray();
      	$fields = array();
 		 
-		$fields[0] = array("name" =>"Dailysummary.id"  , "type" => "num");
-		$fields[1] = array("name" =>"Dailysummary.mdate"  , "type" => "date");
-		$fields[2] = array("name" =>"Dailysummary.idletime"  , "type" => "num");
+		$fields[0] = array("name" =>"Dailysummary.mdate"  , "type" => "date");
+		$fields[1] = array("name" =>"Dailysummary.idletime"  , "type" => "num");
 		//$fields[3] = array("name" =>"location"  , "type" => "char");
-		$fields[3] = array("name" =>"Dailysummary.distance / (Dailysummary.runningtime/3600)"  , "type" => "num");
-		$fields[4] = array("name" =>"Dailysummary.distance"  , "type" => "num");
+		$fields[2] = array("name" =>"Dailysummary.distance / (Dailysummary.runningtime/3600)"  , "type" => "num");
+		$fields[3] = array("name" =>"Dailysummary.distance"  , "type" => "num");
 				
 		$usrfiter="";
         // msgdtime filter
@@ -204,7 +202,7 @@ class DailysummaryController extends AppController
 	// $distancecount=$query->sumOf('distance') 
 	
 		//$output =$this->Datatable->getView($fields,['Customers'],$usrfiter);
-		$output =$this->Datatabletest->getView($fields,['Trackingobjects','Customers'],$usrfiter);
+		$output =$this->Datatabletest->getView($fields,['Trackingobjects','Customers'],$usrfiter,$usrfiter,0);
 		$out =json_encode($output);  
 	   
 		$this->response->body($out);
@@ -219,12 +217,11 @@ class DailysummaryController extends AppController
        // $dbout=$this->Alerts->find('all')->toArray();
      	$fields = array();
 		 
-		$fields[0] = array("name" =>"Dailysummary.id"  , "type" => "num");
-		$fields[1] = array("name" =>"Dailysummary.mdate"  , "type" => "date");
-		$fields[2] = array("name" =>"Dailysummary.distance"  , "type" => "num");
+		$fields[0] = array("name" =>"Dailysummary.mdate"  , "type" => "date");
+		$fields[1] = array("name" =>"Dailysummary.distance"  , "type" => "num");
 		//$fields[3] = array("name" =>"location"  , "type" => "char");
-		$fields[3] = array("name" =>"Dailysummary.runningtime"  , "type" => "num");
-		$fields[4] = array("name" =>"Dailysummary.businesstime"  , "type" => "num");
+		$fields[2] = array("name" =>"Dailysummary.runningtime"  , "type" => "num");
+		$fields[3] = array("name" =>"Dailysummary.businesstime"  , "type" => "num");
 				
 		$usrfiter="";
         // msgdtime filter

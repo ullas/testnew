@@ -2,8 +2,8 @@
 namespace App\Controller\Component;
 use Cake\Controller\Component;
 use Cake\Utility\Inflector;
-   class DatatableTestComponent extends Component {
-       public function getView($fields,$contains,$usrFlier,$wherestr2,$flg)
+   class DatatablereportsComponent extends Component {
+       public function getView($fields,$contains,$usrFlier)
        {
            $length = count($fields);
            $colmns = array();
@@ -26,52 +26,27 @@ use Cake\Utility\Inflector;
                     }
                        );
                     
-              }else{
+                }else{
                     if(is_array($value)) {
                           $colmns[] = array("db" => $value['name'] , "dt" => $i++);
-						//print_r($value['name']);
-						// if($value['name']=='alert_dtime'){$value['name']="";}
                     }else{
                         $colmns[] = array("db" => $value , "dt" => $i++);
                     }
                 }
                 
 				//select query
-				if($value['type']=='count' ){
+				if($value['type']!='count'){
+					$select[] = $value['name'] ;
+				}else{
 					$tempquerystr="";
 					$tempquerystr=$query->func()->count($value['name']);
 					$select[$value['name']] = $tempquerystr;
-				}else if($value['type']=='count2' ){
-					$select['alertcategories_id'] = 'count(alertcategories_id)';
-				}else if($value['type']=='dateof' ){
-					$select['alert_dtime'] = 'date(alert_dtime)';
-				}else if($value['type']=='dateofjourney' ){
-					$select['start_time'] = 'date(start_time)';
-				}else if($value['type']=='enddateofjourney' ){
-					$select['end_time'] = 'date(end_time)';
-				}else if($value['type']=='sum1' ){
-					$select['distance'] = 'sum(Journeys.distance)';
-				}else if($value['type']=='sum2' ){
-					$select['maxspeed'] = 'max(Journeys.maxspeed)';
-				}else if($value['type']=='sum3' ){
-					$select['duration'] ="sum(Journeys.end_time - Journeys.start_time) ";
-					//TO_CHAR((sum(Journeys.end_time - Journeys.start_time) || ' second')::interval, 'DD:HH24:MI:SS')
-					//$select['duration'] = 'to_char (sum(Journeys.end_time - Journeys.start_time), text)';
-					// $select['duration'] = "cast(TO_CHAR((sum(Journeys.end_time - Journeys.start_time) || 'second')::interval, 'DD:HH24:MI:SS') as varchar)";
-					// print_r($select['duration'] );
-				}else if($value['type']=='sum4' ){
-					$select['duration'] ="sum(Dailysummary.runningtime * interval '1 sec') ";
-				}else{
-					$select[] = $value['name'] ;
 				}
-				
-				
             }
 		   
 		   
-		   
-		   $reportcontrollers = array("Alerts", "Journeys");
-		   
+		   $reportcontrollers = array("Alerts", "Journey");
+		  
 		   // if (!(in_array($controller->name, $reportcontrollers))) {
 		   if($controller->loggedinuser['customer_id']=="0"){
            		$colmns[] =array(
@@ -81,7 +56,7 @@ use Cake\Utility\Inflector;
                    		$buttons='<a class="fa fa-file-text-o p3 mptldisabled"></a>
                                    		<a class="fa fa-pencil p3 mptldisabled"></a>
                                    		<a class="fa fa-trash mptldisabled"></a>';
-                   		return $buttons;
+                   		// return $buttons;
                		}
               	);
               }else{
@@ -89,23 +64,23 @@ use Cake\Utility\Inflector;
                		'db' => 'id',
                		'dt' => $length++,
                		'formatter' => function( $d, $row ,$modalname) {
-                   		$buttons='<a href="/'.   $modalname  . '/view/'.$d.'" class="fa fa-file-text-o p3"></a>
-                                   <a href="/'.   $modalname . '/edit/'.$d.'" class="fa fa-pencil p3"></a>
+                   		$buttons='<a href="/'.   $modalname  . '/view/'.$d.'" class="fa fa-file-text-o p3"style= "padding:3px" ></a>
+                                   <a href="/'.   $modalname . '/edit/'.$d.'" class="fa fa-pencil p3" style= "padding:3px" ></a>
                                    <form name="formdelete" id="formdelete' .$d. '" method="post" action="/'.   $modalname  . '/delete/'.$d.'" style="display:none;" >
                                    <input type="hidden" name="_method" value="POST"></form>
                                    <a href="#" onclick="if (confirm(&quot;Are you sure you want to delete # '.$d.'?&quot;)) { document.getElementById(&quot;formdelete'.$d.'&quot;).submit(); }
-                                    event.returnValue = false; return false;" class="fa fa-trash"></a>';
-                   		return $buttons;
+                                    event.returnValue = false; return false;" class="fa fa-trash" style= "padding:3px"></a>';
+                   		// return $buttons;
                		}
               	);
 			  }
 			  // }
            //getting orderby
-           $order = $this->Order( $colmns,$select );
+           $order = $this->Order( $colmns );
            //getting filter
            
            $where = $this->Filter( $colmns, $fields );
-		   //getting limit
+           //getting limit
            $limit = $this->Limit( );//echo 1/0;
            //set value to limit if it is null
            // if($limit!=""){
@@ -120,15 +95,12 @@ use Cake\Utility\Inflector;
                
                $wherestr.=$key. " '". $value. "'";
            }
-           $wherestr="(". $wherestr .")";
+           // $wherestr="(". $wherestr .")";
            if(strlen($wherestr)>3 && strlen($usrFlier)>3){
-           	 $wherestrforfilter = $wherestr;
            	 $wherestr.= " and ".$usrFlier;
-           	 $wherestrforfilter.= " and ".$wherestr2;
            }else{
            	  if(strlen($usrFlier)>3){
            	    $wherestr=$usrFlier;
-				 $wherestrforfilter = $wherestr2; 
            	  }
            }
           
@@ -138,46 +110,9 @@ use Cake\Utility\Inflector;
            //getting totalcount
            $totalCount = $model->find() ->contain($contains)->count();
            //getting filteredcount
-           // $this->find('all',array('fields'=>array('id','name')));
-		  
-		   // $filteredCount = $model->find('all')->contain($contains)->where($wherestr2)->count();
-		   // $filteredCount = $model->find()->select(['*'])->contain($contains)->where($wherestr2)->count();
-
-			// for group queries
-			if($flg == 1)
-			{
-				$countQuery = $model->find()->contain($contains);
-				$mycount = $countQuery->select(['trackingobjects.name'])->group('trackingobjects.name')->count();
-				$filteredCount = $mycount;	
-			}
-			else if($flg == 2) // for alerts summary report in adhoc
-			{
-				$countQuery = $model->find()->contain($contains);
-				// $mycount = $countQuery->select(['alertcategories.name'])->where($wherestr2)->group('alertcategories.name')->count();
-				$mycount = $countQuery->select(['alertcategories.name'])->where($wherestrforfilter)->group('alertcategories.name')->count();
-				$filteredCount = $mycount;	
-			}
-			else if($flg == 3) // for ZoneVisitcount report in adhoc 
-			{
-				$countQuery = $model->find()->contain($contains);
-				// $mycount = $countQuery->select(['date(alert_dtime)'])->where($wherestr2)->group('date(alert_dtime)')->count();
-				// $filteredCount = count($data);
-				// $filteredCount = $mycount;
-				$filteredCount = $model->find()->contain($contains)->where($wherestrforfilter)->count();		
-			}
-			else
-			{
-				 $filteredCount = $model->find()->contain($contains)->where($wherestr2)->count();	
-			}		
-          
-		   // print_r($colmns);
-		   // $filteredCount = count($data);
+           $filteredCount = $model->find()->contain($contains)->where($wherestr)->count();
            $output =$this->GetData($colmns,$data,$totalCount,$filteredCount);
-		   // $output =$this->GetData($colmns,$data,$totalCount,count($data));
-           // return $filteredCount;
-		   // return $wherestr2;
-		   // return $filteredCount;
-		   return $output;
+           return $output;
        }
        public function Limit(){
            $limit = '';
@@ -219,35 +154,10 @@ use Cake\Utility\Inflector;
                                   $globalSearch[$column['db']. '='] = "" . $str. "";
 							   }
                            }
-						   else if( ($rowval['name']==$column['db']) && ($rowval['type']=="sum1") ){
-                               if(is_numeric($str))	{
-                                  $globalSearch[$column['db']. '='] = "" . $str. "";
-							   }
-                           }
-						   else if( ($rowval['name']==$column['db']) && ($rowval['type']=="sum2") ){
-                               if(is_numeric($str))	{
-                                  $globalSearch[$column['db']. '='] = "" . $str. "";
-							   }
-                           }
-						   // else if( ($rowval['name']==$column['db']) && ($rowval['type']=="sum3") ){
-                               // if(is_numeric($str))	{
-                                  // $globalSearch[$column['db']. '='] = "" . $str. "";
-							   // }
-                           // }
-                           // else if( ($rowval['name']==$column['db']) && ($rowval['type']=="countall") ){
-                               // if(is_numeric($str))	{
-                                  // $globalSearch[$column['db']. '='] = "" . $str. "";
-							   // }
-                           // }
-
                            else if( ($rowval['name']==$column['db']) && ($rowval['type']=="date") ){
 								if($this->validateDate($str,'m/d/y')){
 								$globalSearch[$column['db'].'::date ='] = $str;
                                }
-                           }
-						   else if( ($rowval['name']==$column['db']) && ($rowval['type']=="dateofjourney") ){
-								 $my_date = date('Y-m-d', strtotime($str));
-								 $globalSearch["to_char(".$column['db']." , 'YYYY-MM-DD') ILIKE"] = "%" . $my_date. "%";
                            }
                            else if( ($rowval['name']==$column['db']) && ($rowval['type']=="boolean") ){
                                if($this->isBoolean($str) === true){
@@ -258,14 +168,13 @@ use Cake\Utility\Inflector;
                    }
                }
            }
-           // echo json_encode($globalSearch) ;
+          
            return $globalSearch;
        }
-       public function Order ( $columns,$select )
+       public function Order ( $columns )
        {
            $order = array();
            if ( isset($this->request->query['order']) && count($this->request->query['order']) ) {
-           	
                $orderBy = array();
                $dtColumns = $this->pluck( $columns, 'dt' );
                for ( $i=0, $ien=count($this->request->query['order']) ; $i<$ien ; $i++ ) {
@@ -278,27 +187,12 @@ use Cake\Utility\Inflector;
                        $dir = $this->request->query['order'][$i]['dir'] === 'asc' ?
                            "ASC" :
                            "DESC";
-						   // echo $column['db'];
                        $dbname=$column['db'];
-					   // $dbname='max(Journeys.maxspeed)';
-                       // $orderBy[$dbname] = $dir;
+                       $orderBy[$dbname] = $dir;
                    }
                }
                $order = implode(', ', $orderBy);
            }
-		
-		$i =0;
-		foreach ($select  as $key=> $value)
-		{
-			// echo $select[$key];
-			// echo "Key: $key; Value: $value<br />\n";
-			$select[$i] = $value;
-			$i++;
-		}
-			// echo json_encode($select[$columnIdx]) ;
-			
-			 $orderBy[$select[$columnIdx]] = $dir;
-			 // echo json_encode($orderBy) ;
            return $orderBy;
        }
        public function pluck ( $a, $prop )
@@ -310,7 +204,7 @@ use Cake\Utility\Inflector;
            return $out;
        }
        public function GetData($columns,$data,$totalCount,$filteredCount){
-       	   $controller = $this->_registry->getController();
+           $controller = $this->_registry->getController();
            $modalname=$controller->modelClass;
            $out = array();
            for ( $i=0, $ien=count($data) ; $i<$ien ; $i++ ) {
@@ -318,7 +212,7 @@ use Cake\Utility\Inflector;
                for ( $j=0, $jen=count($columns) ; $j<$jen ; $j++ ) {
                    $column = $columns[$j];
                    if (isset( $column['alias'] )){
-                   		 if ($column['alias']!= '' ){
+                       if ($column['alias']!= '' ){
                            $c = $column['alias'];
                        }else{
                            $c = $column['db'];
