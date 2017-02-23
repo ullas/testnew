@@ -13,7 +13,7 @@ use Cake\Datasource\ConnectionManager;
  */
 class AlertsController extends AppController
 {
-	 public $components = ['Datatable','Datatabletest'];
+	 public $components = ['Datatable','Datatabletest','Datatablereports'];
     /**
      * Index method
      *
@@ -54,11 +54,11 @@ class AlertsController extends AppController
         $dbout=$this->Alerts->find('all')->toArray();
      	$fields = array();
 		 
-		$fields[0] = array("name" =>"Alerts.id"  , "type" => "num");
-		$fields[1] = array("name" =>"alert_dtime"  , "type" => "timestamp");
-		$fields[2] = array("name" =>"velocity"  , "type" => "num");
-		$fields[3] = array("name" =>"location"  , "type" => "char");
-		$fields[4] = array("name" =>"Alerts.alert_message"  , "type" => "char");
+		// $fields[0] = array("name" =>"Alerts.id"  , "type" => "num");
+		$fields[0] = array("name" =>"Alerts.alert_dtime"  , "type" => "timestamp");
+		$fields[1] = array("name" =>"Alerts.velocity"  , "type" => "num");
+		$fields[2] = array("name" =>"Alerts.location"  , "type" => "char");
+		// $fields[3] = array("name" =>"Alerts.alert_message"  , "type" => "char");
 				
 		$usrfiter="";
         //msgdtime filter
@@ -81,7 +81,7 @@ class AlertsController extends AppController
     	$pre=(strlen($usrfiter)>0)?" and ":"";
 		$usrfiter.=$pre. " customer_id ='" .$this->loggedinuser['customer_id']. "'";
 	
-		$output =$this->Datatable->getView($fields,['Customers'],$usrfiter);
+		$output =$this->Datatablereports->getView($fields,['Customers'],$usrfiter);
 		$out =json_encode($output);  
 	   
 		$this->response->body($out);
@@ -95,11 +95,11 @@ class AlertsController extends AppController
         $dbout=$this->Alerts->find('all')->toArray();
      	$fields = array();
 		 
-		$fields[0] = array("name" =>"Alerts.id"  , "type" => "num");
-		$fields[1] = array("name" =>"Alerts.alert_dtime"  , "type" => "date");
-		$fields[2] = array("name" =>"Alerts.velocity"  , "type" => "num");
-		$fields[3] = array("name" =>"Alerts.location"  , "type" => "char");
-		$fields[4] = array("name" =>"Alerts.alert_message"  , "type" => "char");
+		
+		$fields[0] = array("name" =>"Alerts.alert_dtime"  , "type" => "date");
+		$fields[1] = array("name" =>"Alerts.velocity"  , "type" => "num");
+		$fields[2] = array("name" =>"Alerts.location"  , "type" => "char");
+		$fields[3] = array("name" =>"Alerts.alert_message"  , "type" => "char");
 				
 		$usrfiter="";
         // msgdtime filter
@@ -172,11 +172,11 @@ class AlertsController extends AppController
         $dbout=$this->Alerts->find('all')->toArray();
      	$fields = array();
 		 
-		$fields[0] = array("name" =>"Alerts.id"  , "type" => "num");
-		$fields[1] = array("name" =>"Alerts.alert_dtime"  , "type" => "date");
-		$fields[2] = array("name" =>"Alerts.location"  , "type" => "char");
-		$fields[3] = array("name" =>"Alerts.velocity"  , "type" => "num");
-		$fields[4] = array("name" =>"Alerts.alert_message"  , "type" => "char");
+	
+		$fields[0] = array("name" =>"Alerts.alert_dtime"  , "type" => "date");
+		$fields[1] = array("name" =>"Alerts.location"  , "type" => "char");
+		$fields[2] = array("name" =>"Alerts.velocity"  , "type" => "num");
+		$fields[3] = array("name" =>"Alerts.alert_message"  , "type" => "char");
 				
 		$usrfiter="";
         // msgdtime filter
@@ -213,7 +213,7 @@ class AlertsController extends AppController
      	$fields = array();
 		 
 		$fields[0] = array("name" =>"Alertcategories.name"  , "type" => "char");
-		$fields[1] = array("name" =>"alertcategories_id"  , "type" => "count");
+		$fields[1] = array("name" =>"alertcategories_id"  , "type" => "count2");
 		$fields[2] = array("name" =>"location"  , "type" => "char");
 				
 		$usrfiter="";
@@ -223,6 +223,7 @@ class AlertsController extends AppController
         	
 			$usrfiter.="alert_dtime BETWEEN '" .$this->toPostDBDate($this->request->query['startdate']). " ".$this->request->query['starttime']
 						   ."' AND '" .$this->toPostDBDate($this->request->query['enddate']). " " .$this->request->query['endtime']. "'";
+			$wherestr2 = $usrfiter;
 		}
 		//Asset filter	
         if(isset($this->request->query['assetname'])){
@@ -231,14 +232,16 @@ class AlertsController extends AppController
 		//	$usrfiter.=$pre. "  trackingobject_id ='" .$this->request->query['assetname']. "'";
 			$usrfiter.=$pre. "  trackingobject_id ='" .$this->request->query['assetname']. "' and Alerts.customer_id ='" .$this->loggedinuser['customer_id']. "'group by alertcategories.name, alerts.location";
 			
-			
+			$wherestr2.=$pre. "  trackingobject_id ='" .$this->request->query['assetname']. "' and Alerts.customer_id ='" .$this->loggedinuser['customer_id']. "'";
         	
         }
     	
     	//$pre=(strlen($usrfiter)>0)?" and ":"";
 	//	$usrfiter.=$pre. " Alerts.customer_id ='" .$this->loggedinuser['customer_id']. "' group by alertcategories.name, alerts.location";
 	
-		$output =$this->Datatable->getView($fields,['Alertcategories','Customers'],$usrfiter);
+		// $output =$this->Datatable->getView($fields,['Alertcategories','Customers'],$usrfiter);
+		// $output =$this->Datatabletest->getView($fields,['Alertcategories','Customers','Trackingobjects'],$usrfiter,$usrfiter,1);
+		$output =$this->Datatabletest->getView($fields,['Alertcategories','Customers','Trackingobjects'],$usrfiter,$wherestr2,2);
 		$out =json_encode($output);  
 	   
 		$this->response->body($out);
@@ -253,11 +256,10 @@ class AlertsController extends AppController
         $dbout=$this->Alerts->find('all')->toArray();
      	$fields = array();
 		 
-		$fields[0] = array("name" =>"Alerts.id"  , "type" => "num");
-		$fields[1] = array("name" =>"Alerts.alert_dtime"  , "type" => "date");
-		$fields[2] = array("name" =>"Alerts.location"  , "type" => "char");
-		$fields[3] = array("name" =>"Alerts.velocity"  , "type" => "num");
-		$fields[4] = array("name" =>"Alerts.alert_message"  , "type" => "char");
+		$fields[0] = array("name" =>"Alerts.alert_dtime"  , "type" => "date");
+		$fields[1] = array("name" =>"Alerts.location"  , "type" => "char");
+		$fields[2] = array("name" =>"Alerts.velocity"  , "type" => "num");
+		$fields[3] = array("name" =>"Alerts.alert_message"  , "type" => "char");
 				
 		$usrfiter="";
         // msgdtime filter
@@ -293,11 +295,10 @@ class AlertsController extends AppController
         $dbout=$this->Alerts->find('all')->toArray();
      	$fields = array();
 		
-		$fields[0] = array("name" =>"Alerts.id"  , "type" => "num"); 
-		$fields[1] = array("name" =>"Trackingobjects.name"  , "type" => "char");
-		$fields[2] = array("name" =>"Alerts.alert_dtime"  , "type" => "date");
-		$fields[3] = array("name" =>"Alerts.velocity"  , "type" => "num");
-		$fields[4] = array("name" =>"Alerts.location"  , "type" => "char");
+		$fields[0] = array("name" =>"Trackingobjects.name"  , "type" => "char");
+		$fields[1] = array("name" =>"Alerts.alert_dtime"  , "type" => "date");
+		$fields[2] = array("name" =>"Alerts.velocity"  , "type" => "num");
+		$fields[3] = array("name" =>"Alerts.location"  , "type" => "char");
 				
 		$usrfiter="";
         //msgdtime filter
@@ -337,11 +338,10 @@ class AlertsController extends AppController
         $dbout=$this->Alerts->find('all')->toArray();
      	$fields = array();
 		 
-		$fields[0] = array("name" =>"Alerts.id"  , "type" => "num");
-		$fields[1] = array("name" =>"Alerts.alert_message"  , "type" => "char");
-		$fields[2] = array("name" =>"Alerts.alert_dtime"  , "type" => "date");
-		$fields[3] = array("name" =>"Alerts.location"  , "type" => "char");
-		$fields[4] = array("name" =>"Alerts.velocity"  , "type" => "num");
+		$fields[0] = array("name" =>"Alerts.alert_message"  , "type" => "char");
+		$fields[1] = array("name" =>"Alerts.alert_dtime"  , "type" => "date");
+		$fields[2] = array("name" =>"Alerts.location"  , "type" => "char");
+		$fields[3] = array("name" =>"Alerts.velocity"  , "type" => "num");
 				
 		$usrfiter="";
         // msgdtime filter
@@ -377,11 +377,10 @@ class AlertsController extends AppController
         $dbout=$this->Alerts->find('all')->toArray();
      	$fields = array();
 		 
-		$fields[0] = array("name" =>"Alerts.id"  , "type" => "num");
-		$fields[1] = array("name" =>"Alerts.alert_message"  , "type" => "char");
-		$fields[2] = array("name" =>"Alerts.alert_dtime"  , "type" => "date");
-		$fields[3] = array("name" =>"Alerts.location"  , "type" => "char");
-		$fields[4] = array("name" =>"Alerts.velocity"  , "type" => "num");
+		$fields[0] = array("name" =>"Alerts.alert_message"  , "type" => "char");
+		$fields[1] = array("name" =>"Alerts.alert_dtime"  , "type" => "date");
+		$fields[2] = array("name" =>"Alerts.location"  , "type" => "char");
+		$fields[3] = array("name" =>"Alerts.velocity"  , "type" => "num");
 				
 		$usrfiter="";
         // msgdtime filter
@@ -418,11 +417,10 @@ class AlertsController extends AppController
         $dbout=$this->Alerts->find('all')->toArray();
      	$fields = array();
 		 
-		$fields[0] = array("name" =>"Alerts.id"  , "type" => "num");
-		$fields[1] = array("name" =>"Trackingobjects.name"  , "type" => "char");
-		$fields[2] = array("name" =>"Alerts.alert_dtime"  , "type" => "date");
-		$fields[3] = array("name" =>"Alerts.velocity"  , "type" => "num");
-		$fields[4] = array("name" =>"Alerts.location"  , "type" => "char");
+		$fields[0] = array("name" =>"Trackingobjects.name"  , "type" => "char");
+		$fields[1] = array("name" =>"Alerts.alert_dtime"  , "type" => "date");
+		$fields[2] = array("name" =>"Alerts.velocity"  , "type" => "num");
+		$fields[3] = array("name" =>"Alerts.location"  , "type" => "char");
 		
 				
 		$usrfiter="";
@@ -460,11 +458,10 @@ class AlertsController extends AppController
         $dbout=$this->Alerts->find('all')->toArray();
      	$fields = array();
 		 
-		$fields[0] = array("name" =>"Alerts.id"  , "type" => "num");
-		$fields[1] = array("name" =>"Trackingobjects.name"  , "type" => "char");
-		$fields[2] = array("name" =>"Alerts.alert_dtime"  , "type" => "date");
-		$fields[3] = array("name" =>"Alerts.velocity"  , "type" => "num");
-		$fields[4] = array("name" =>"Alerts.location"  , "type" => "char");
+		$fields[0] = array("name" =>"Trackingobjects.name"  , "type" => "char");
+		$fields[1] = array("name" =>"Alerts.alert_dtime"  , "type" => "date");
+		$fields[2] = array("name" =>"Alerts.velocity"  , "type" => "num");
+		$fields[3] = array("name" =>"Alerts.location"  , "type" => "char");
 		
 				
 		$usrfiter="";
@@ -502,12 +499,11 @@ class AlertsController extends AppController
         $dbout=$this->Alerts->find('all')->toArray();
      	$fields = array();
 		 
-		$fields[0] = array("name" =>"Alerts.id"  , "type" => "num");
-		$fields[1] = array("name" =>"Trackingobjects.name"  , "type" => "char");
-		$fields[2] = array("name" =>"Alerts.alert_dtime"  , "type" => "date");
+		$fields[0] = array("name" =>"Trackingobjects.name"  , "type" => "char");
+		$fields[1] = array("name" =>"Alerts.alert_dtime"  , "type" => "date");
 		
-		$fields[3] = array("name" =>"Alerts.location"  , "type" => "char");
-		$fields[4] = array("name" =>"Alerts.alert_message"  , "type" => "char");
+		$fields[2] = array("name" =>"Alerts.location"  , "type" => "char");
+		$fields[3] = array("name" =>"Alerts.alert_message"  , "type" => "char");
 		
 				
 		$usrfiter="";
@@ -545,11 +541,11 @@ class AlertsController extends AppController
         // $dbout=$this->Alerts->find('all')->toArray();
      	$fields = array();
 		 
-		$fields[0] = array("name" =>"Alerts.location"  , "type" => "num");
+		$fields[0] = array("name" =>"Alerts.location"  , "type" => "char");
 		
 		$fields[1] = array("name" =>"Alerts.alert_dtime"  , "type" => "dateof");
 		$fields[2] = array("name" =>"Trackingobjects.name"  , "type" => "char");
-		$fields[3] = array("name" =>"Count"  , "type" => "countall");
+		$fields[3] = array("name" =>"Alerts.Count"  , "type" => "countall");
 				
 		$usrfiter="";
         // msgdtime filter
@@ -558,19 +554,21 @@ class AlertsController extends AppController
         	
 			$usrfiter.="alert_dtime BETWEEN '" .$this->toPostDBDate($this->request->query['startdate']). " ".$this->request->query['starttime']
 						   ."' AND '" .$this->toPostDBDate($this->request->query['enddate']). " " .$this->request->query['endtime']. "'";
-		}
+		
+			$wherestr2 = $usrfiter;													
+			}
 		//Asset filter	
         if(isset($this->request->query['assetname'])){
         	
         	$pre=(strlen($usrfiter)>0)?" and ":""; 
 			$usrfiter.=$pre. " alertcategories_id = 13 and  alert_message like  'Entering%' group by trackingobjects.name, date(alert_dtime),location";
-			
+			$wherestr2.=$pre. " alertcategories_id = 13 and  alert_message like  'Entering%'";
 			
         	
         }
     	
 	
-		$output =$this->Datatabletest->getView($fields,['Customers','Trackingobjects'],$usrfiter,$usrfiter,0);
+		$output =$this->Datatabletest->getView($fields,['Customers','Trackingobjects'],$usrfiter,$wherestr2,3);
 		$out =json_encode($output);  
 	   
 		$this->response->body($out);

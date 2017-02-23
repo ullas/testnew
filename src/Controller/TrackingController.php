@@ -94,11 +94,11 @@ class TrackingController extends AppController
      
         $fields = array();
 		 
-		$fields[0] = array("name" =>"id"  , "type" => "num");
-		$fields[1] = array("name" =>"msgdtime"  , "type" => "timestamp");
-		$fields[2] = array("name" =>"speed"  , "type" => "num");
-		$fields[3] = array("name" =>"location"  , "type" => "char");
-		$fields[4] = array("name" =>"status"  , "type" => "char");
+		// $fields[0] = array("name" =>"id"  , "type" => "num");
+		$fields[0] = array("name" =>"msgdtime"  , "type" => "timestamp");
+		$fields[1] = array("name" =>"speed"  , "type" => "num");
+		$fields[2] = array("name" =>"location"  , "type" => "char");
+		$fields[3] = array("name" =>"status"  , "type" => "char");
 		
 		$usrfilter="";
         // msgdtime filter
@@ -133,11 +133,11 @@ class TrackingController extends AppController
      
         $fields = array();
 		 
-		$fields[0] = array("name" =>"id"  , "type" => "num");
-		$fields[1] = array("name" =>"msgdtime"  , "type" => "timestamp");
-		$fields[2] = array("name" =>"speed"  , "type" => "num");
-		$fields[3] = array("name" =>"location"  , "type" => "char");
-		$fields[4] = array("name" =>"status"  , "type" => "char");
+		// $fields[0] = array("name" =>"id"  , "type" => "num");
+		$fields[0] = array("name" =>"msgdtime"  , "type" => "timestamp");
+		$fields[1] = array("name" =>"speed"  , "type" => "num");
+		$fields[2] = array("name" =>"location"  , "type" => "char");
+		$fields[3] = array("name" =>"status"  , "type" => "char");
 		
 		$usrfilter="";
         // msgdtime filter
