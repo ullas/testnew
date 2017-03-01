@@ -188,7 +188,10 @@ class DailysummaryController extends AppController
         	
 			$usrfiter.="mdate BETWEEN '" .$this->toPostDBDate($this->request->query['startdate']). " ".$this->request->query['starttime']
 						   ."' AND '" .$this->toPostDBDate($this->request->query['enddate']). " " .$this->request->query['endtime']. "'";
-		}
+		
+																
+			}
+			$wherestr2 = $usrfiter;	
 		//Asset filter	
         // if(isset($this->request->query['assetname'])){
         	
@@ -202,7 +205,7 @@ class DailysummaryController extends AppController
 	// $distancecount=$query->sumOf('distance') 
 	
 		//$output =$this->Datatable->getView($fields,['Customers'],$usrfiter);
-		$output =$this->Datatabletest->getView($fields,['Trackingobjects','Customers'],$usrfiter,$usrfiter,0);
+		$output =$this->Datatabletest->getView($fields,['Trackingobjects','Customers'],$usrfiter,$wherestr2,4);
 		$out =json_encode($output);  
 	   
 		$this->response->body($out);

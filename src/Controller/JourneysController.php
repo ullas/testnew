@@ -14,7 +14,7 @@ use Cake\Datasource\ConnectionManager;
  */
 class JourneysController extends AppController
 {
-	 public $components = ['Datatable','Datatabletest'];
+	 public $components = ['Datatable','Datatabletest','DatatableGroup'];
 
     private function toPostDBDate($date){
 	
@@ -250,14 +250,14 @@ class JourneysController extends AppController
 		$usrfiter.=$pre. " Journeys.customer_id ='" .$this->loggedinuser['customer_id']. "'group by trackingobjects.name";
 		$wherestr2.=$pre. " Journeys.customer_id ='" .$this->loggedinuser['customer_id']. "'";
 		
-		$output =$this->Datatabletest->getView($fields,['Trackingobjects','Customers'],$usrfiter,$wherestr2,1);
+		$output =$this->DatatableGroup->getView($fields,['Trackingobjects','Customers'],$usrfiter,$wherestr2,1);
 		$out =json_encode($output);  
 	   
 		$this->response->body($out);
 	    return $this->response;
 	}
 
-		public function groupWeeklyReportAjaxData()
+	public function groupWeeklyReportAjaxData()
 	{
 		$this->autoRender= false;
         
@@ -276,6 +276,7 @@ class JourneysController extends AppController
 			// {
         	
 			$usrfiter.="NOW()::DATE BETWEEN    NOW()::DATE-EXTRACT(DOW FROM NOW()) ::INTEGER     AND NOW()::DATE"; 
+			
 			// }
 			
 			
@@ -284,14 +285,15 @@ class JourneysController extends AppController
         	
         	$pre=(strlen($usrfiter)>0)?" and ":"";
 			$usrfiter.=$pre. " trackingobject_id in (select trackingobject_id from zorba.trackingobjects_groups where group_id =".$this->request->query['gpname'].")";
-				
+			$wherestr2 = $usrfiter;	
         }
     	
     	//
     	$pre=(strlen($usrfiter)>0)?" and ":"";
 		$usrfiter.=$pre. " Journeys.customer_id ='" .$this->loggedinuser['customer_id']. "'group by trackingobjects.name";
-	
-		$output =$this->Datatabletest->getView($fields,['Trackingobjects','Customers'],$usrfiter,$usrfiter,1);
+		$wherestr2.=$pre. " Journeys.customer_id ='" .$this->loggedinuser['customer_id']. "'";
+		
+		$output =$this->DatatableGroup->getView($fields,['Trackingobjects','Customers'],$usrfiter,$wherestr2,1);
 		$out =json_encode($output);  
 	   
 		$this->response->body($out);
@@ -317,7 +319,7 @@ class JourneysController extends AppController
 			{
 				 
         	 		$usrfiter.="EXTRACT('month' FROM START_TIME)  = EXTRACT('month' FROM NOW()::DATE) and EXTRACT('YEAR' FROM START_TIME)  =  EXTRACT('YEAR' FROM NOW()::DATE)  "; 
-	        	 	
+	        	 	$wherestr2 = $usrfiter;	
 			}
 			
 			if (isset($this->request->query['monthname']) && $this->request->query['monthname'] == 1 )// last month
@@ -330,6 +332,7 @@ class JourneysController extends AppController
 	        	 	{
 	        	 	$usrfiter.="EXTRACT('month' FROM START_TIME)  = EXTRACT('month' FROM NOW()::DATE)-1 and EXTRACT('YEAR' FROM START_TIME)  =  EXTRACT('YEAR' FROM NOW()::DATE)   "; 
 	        	 	}
+					$wherestr2 = $usrfiter;	
 			}
         	
 			
@@ -340,14 +343,15 @@ class JourneysController extends AppController
         	
         	$pre=(strlen($usrfiter)>0)?" and ":"";
 			$usrfiter.=$pre. " trackingobject_id in (select trackingobject_id from zorba.trackingobjects_groups where group_id =".$this->request->query['gpname'].")";
-				
+			$wherestr2 = $usrfiter;		
         }
     	
     	//
     	$pre=(strlen($usrfiter)>0)?" and ":"";
 		$usrfiter.=$pre. " Journeys.customer_id ='" .$this->loggedinuser['customer_id']. "'group by trackingobjects.name";
-	
-		$output =$this->Datatabletest->getView($fields,['Trackingobjects','Customers'],$usrfiter,$usrfiter,1);
+	    $wherestr2.=$pre. " Journeys.customer_id ='" .$this->loggedinuser['customer_id']. "'";
+		
+		$output =$this->DatatableGroup->getView($fields,['Trackingobjects','Customers'],$usrfiter,$wherestr2,1);
 		$out =json_encode($output);  
 	   
 		$this->response->body($out);
@@ -402,11 +406,12 @@ class JourneysController extends AppController
     	
     	//
     	$pre=(strlen($usrfiter)>0)?" and ":"";
-		$usrfiter.=$pre. " Journeys.customer_id ='" .$this->loggedinuser['customer_id']. "'group by trackingobjects.name,Journeys.start_time";
+		// $usrfiter.=$pre. " Journeys.customer_id ='" .$this->loggedinuser['customer_id']. "'group by trackingobjects.name,Journeys.start_time,Journeys.distance,Journeys.maxspeed";
+		$usrfiter.=$pre. " Journeys.customer_id ='" .$this->loggedinuser['customer_id']. "'group by date(start_time)";
 		
 		$wherestr2.=$pre. " Journeys.customer_id ='" .$this->loggedinuser['customer_id']. "'";
 		
-		$output =$this->Datatabletest->getView($fields,['Trackingobjects','Customers'],$usrfiter,$wherestr2,0);
+		$output =$this->DatatableGroup->getView($fields,['Trackingobjects','Customers'],$usrfiter,$wherestr2,5);
 		$out =json_encode($output);  
 	   	$this->response->body($out);
 		return $this->response;
@@ -443,17 +448,17 @@ class JourneysController extends AppController
     	
     	//
     	$pre=(strlen($usrfiter)>0)?" and ":"";
-		$usrfiter.=$pre. " Journeys.customer_id ='" .$this->loggedinuser['customer_id']. "'group by trackingobjects.name,Journeys.start_time";
+		$usrfiter.=$pre. " Journeys.customer_id ='" .$this->loggedinuser['customer_id']. "'group by trackingobjects.name,Journeys.start_time,Journeys.distance,Journeys.maxspeed";
 		
 		$wherestr2.=$pre. " Journeys.customer_id ='" .$this->loggedinuser['customer_id']. "'";
 		
-		$output =$this->Datatabletest->getView($fields,['Trackingobjects','Customers'],$usrfiter,$wherestr2,0);
+		$output =$this->DatatableGroup->getView($fields,['Trackingobjects','Customers'],$usrfiter,$wherestr2,2);
 		$out =json_encode($output);  
 	   	$this->response->body($out);
 		return $this->response;
 	}
 
-public function assetDailyReportAjaxData()
+	public function assetDailyReportAjaxData()
 	{
 		$this->autoRender= false;
         
@@ -461,14 +466,17 @@ public function assetDailyReportAjaxData()
         $dbout=$this->Journeys->find('all')->toArray();
      	$fields = array();
 		
-		 $fields[0] = array("name" =>"Journeys.start_time"  , "type" => "dateofjourney");
-		 $fields[1] = array("name" =>"Journeys.end_time"  , "type" => "enddateofjourney");
+		 // $fields[0] = array("name" =>"Journeys.start_time"  , "type" => "dateofjourney");
+		 // $fields[1] = array("name" =>"Journeys.end_time"  , "type" => "enddateofjourney");
+		 $fields[0] = array("name" =>"Journeys.start_time"  , "type" => "time");
+		 $fields[1] = array("name" =>"Journeys.end_time"  , "type" => "time");
+		 
 		 $fields[2] = array("name" =>"Journeys.maxspeed"  , "type" => "num");
 		 $fields[3] = array("name" =>"Journeys.idletime"  , "type" => "num");
 		 $fields[4] = array("name" =>"Journeys.distance"  , "type" => "num");
 		 
 		$usrfiter="";
-			
+		$wherestr2 = 	$usrfiter;	
 			// $usrfiter.="date(start_time) BETWEEN    NOW()::DATE-EXTRACT(DOW FROM NOW()) ::INTEGER     AND NOW()::DATE"; 
         	
 			
@@ -479,13 +487,15 @@ public function assetDailyReportAjaxData()
         	
         	$pre=(strlen($usrfiter)>0)?" and ":"";
 			$usrfiter.=$pre. " trackingobject_id ='" .$this->request->query['assetname']. "' and date(start_time) = '".$this->request->query['date']."'";	
-        }
+        	$wherestr2 = 	$usrfiter;
+		}
     	
     	//
     	$pre=(strlen($usrfiter)>0)?" and ":"";
-		$usrfiter.=$pre. " Journeys.customer_id ='" .$this->loggedinuser['customer_id']."'";
+		$usrfiter.=$pre. " Journeys.customer_id ='" .$this->loggedinuser['customer_id']."'group by trackingobjects.name, Journeys.start_time,Journeys.end_time,Journeys.maxspeed,Journeys.idletime,Journeys.distance";
+		$wherestr2.=$pre. " Journeys.customer_id ='" .$this->loggedinuser['customer_id']. "'";
 		
-		$output =$this->Datatabletest->getView($fields,['Customers'],$usrfiter,$usrfiter,0);
+		$output =$this->DatatableGroup->getView($fields,['Trackingobjects','Customers'],$usrfiter,$wherestr2,3);
 		$out =json_encode($output);  
 	   	$this->response->body($out);
 		return $this->response;

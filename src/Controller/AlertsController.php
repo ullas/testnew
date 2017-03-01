@@ -13,7 +13,7 @@ use Cake\Datasource\ConnectionManager;
  */
 class AlertsController extends AppController
 {
-	 public $components = ['Datatable','Datatabletest','Datatablereports'];
+	 public $components = ['Datatable','Datatabletest','Datatablereports','DatatableGroup'];
     /**
      * Index method
      *
@@ -543,7 +543,7 @@ class AlertsController extends AppController
 		 
 		$fields[0] = array("name" =>"Alerts.location"  , "type" => "char");
 		
-		$fields[1] = array("name" =>"Alerts.alert_dtime"  , "type" => "dateof");
+		$fields[1] = array("name" =>"alert_dtime"  , "type" => "dateof");
 		$fields[2] = array("name" =>"Trackingobjects.name"  , "type" => "char");
 		$fields[3] = array("name" =>"Alerts.Count"  , "type" => "countall");
 				
@@ -603,7 +603,7 @@ class AlertsController extends AppController
         }
     	
 	
-		$output =$this->Datatabletest->getView($fields,['Customers','Alertcategories'],$usrfiter,$usrfiter,0);
+		$output =$this->DatatableGroup->getView($fields,['Customers','Alertcategories'],$usrfiter,$usrfiter,4);
 		$out =json_encode($output);  
 	   
 		$this->response->body($out);
