@@ -2,7 +2,7 @@
 namespace App\Controller\Component;
 use Cake\Controller\Component;
 use Cake\Utility\Inflector;
-   class DatatableTestComponent extends Component {
+   class DatatableGroupComponent extends Component {
        public function getView($fields,$contains,$usrFlier,$wherestr2,$flg)
        {
            $length = count($fields);
@@ -102,21 +102,22 @@ use Cake\Utility\Inflector;
 			  // }
            //getting orderby
            $order = $this->Order( $colmns,$select );
-           //getting filter
            
+           //getting filter
            $where = $this->Filter( $colmns, $fields );
+		  
 		   //getting limit
            $limit = $this->Limit( );//echo 1/0;
            //set value to limit if it is null
-           // if($limit!=""){
+           
            //getting page no
            	$page=ceil($this->request->query['start']/$limit)+1;
            // }
            
 		   
            $wherestr="";
-		    $havingstr="";
-		    // return $where;
+		   $havingstr="";
+		    
            foreach($where  as $key => $value){
                if($wherestr != ''){$wherestr.=" OR ";}
                if($havingstr != ''){$havingstr.=" OR ";}
@@ -137,162 +138,186 @@ use Cake\Utility\Inflector;
 				 $wherestrforfilter = $wherestr2; $havingstr = $usrFlier." having ".$havingstr;
            	  }
            }
-		   
-		   if ( isset($this->request->query['search']) && $this->request->query['search']['value'] != '' ) 
+		    if ( isset($this->request->query['search']) && $this->request->query['search']['value'] != "" && $this->request->query['search']['value'] != " " ) 
 		    {
+		    	// echo "kkk";
 				$havingstr=$havingstr;
 			}
 		   else
 		   	{
 		   		$havingstr=$wherestr;
 		   	}
-          
-		 // return $select;
-           $data = $query->select($select)->contain($contains)->where($havingstr)->order($order)->limit($limit)->page($page)->toArray();
-           // $data = $query->select($select)->contain($contains)->where($wherestr)->order($order)->limit($limit)->page($page)->toArray();
-           
-           // $data = $query->select($select)->contain($contains)->where($usrFlier)->having("Alertcategories.name ILIKE '%3%' OR count(alertcategories_id)= '3' OR location ILIKE '%3%'")->order($order)->limit($limit)->page($page)->toArray();
-           
-           // return $data;
-           
-           
-           
+			// return $this->request->query['search']['value'] ;
+		  // return $havingstr;
+		  if($flg == 4) //for alertDetailsforAssetDailyAjaxData
+			{
+		  		$data = $query->select($select)->contain($contains)->where($wherestr)->order($order)->limit($limit)->page($page)->toArray();
+			} 
+		  else
+			{
+		  		$data = $query->select($select)->contain($contains)->where($havingstr)->order($order)->limit($limit)->page($page)->toArray();
+			} 
            //getting totalcount
            $totalCount = $model->find() ->contain($contains)->count();
-           //getting filteredcount
-           // $this->find('all',array('fields'=>array('id','name')));
-		  
-		   // $filteredCount = $model->find('all')->contain($contains)->where($wherestr2)->count();
-		   // $filteredCount = $model->find()->select(['*'])->contain($contains)->where($wherestr2)->count();
+          
+		   //getting filteredcount
+           
+			if($flg == 1) // for groupDailyReport
+			{
+				if ( isset($this->request->query['search']) && $this->request->query['search']['value'] != '' ) 
+			    {
+					
+					$searchItem = $this->request->query['search']['value']; 
+					$countQuery = $model->find()->contain($contains);
+					if(is_numeric($searchItem))
+					{
+						$mycount = $countQuery->select(['trackingobjects.name'])->where($wherestr2)
+						->group('Trackingobjects.name')
+						->having("  sum(Journeys.distance)= '$searchItem' OR max(Journeys.maxspeed)= '$searchItem' OR Journeys.Count= '$searchItem'")
+						->count();
+					}
+					else
+					{
+						
+						$mycount = $countQuery->select(['trackingobjects.name'])->where($wherestr2)
+						->group('Trackingobjects.name')
+						->having(" Trackingobjects.name ILIKE '%$searchItem%'  ")
+						->count();
+						
+						
+					}
+					
+				}
+				else
+				{
+					
+							$searchItem = $this->request->query['search']['value']; 
+							$countQuery = $model->find()->contain($contains);
+							$mycount = $countQuery->select(['trackingobjects.name'])->where($wherestr2)
+							->group('Trackingobjects.name')
+							->count();
+						
+				}
+				$filteredCount = $mycount;	
+			}
+			else if($flg == 2)// for assetweekly reports to_char(Journeys.start_time , "YYYY-MM-DD") ILIKE '%$searchItem%' 
+			{
+				if ( isset($this->request->query['search']) && $this->request->query['search']['value'] != '' ) 
+			    {
+				$searchItem = $this->request->query['search']['value']; 
+				$countQuery = $model->find()->contain($contains);
+				$mycount = $countQuery->select(['trackingobjects.name'])->where($wherestr2)
+				->group('Trackingobjects.name')
+				->group('Journeys.start_time')
+				->group('Journeys.distance')
+				->group('Journeys.maxspeed')
+				->having("to_char(Journeys.start_time , 'YYYY-MM-DD') ILIKE '%$searchItem%'  OR sum(Journeys.distance)= '$searchItem' OR max(Journeys.maxspeed)= '$searchItem' OR Journeys.Count= '$searchItem'")
+				->count();
+				$filteredCount = $mycount;	
+				}
+				else 
+				{
+				$searchItem = $this->request->query['search']['value']; 
+				$countQuery = $model->find()->contain($contains);
+				$mycount = $countQuery->select(['trackingobjects.name'])->where($wherestr2)
+				->group('Trackingobjects.name')
+				->group('Journeys.start_time')
+				->group('Journeys.distance')
+				->group('Journeys.maxspeed')
+				->count();
+				$filteredCount = $mycount;		
+				}
+			}
+			else if($flg == 3)// for assetdaily reports to_char(Journeys.start_time , "YYYY-MM-DD") ILIKE '%$searchItem%' 
+			{
+				if ( isset($this->request->query['search']) && $this->request->query['search']['value'] != '' ) 
+			    {
+				$searchItem = $this->request->query['search']['value']; 
+				$countQuery = $model->find()->contain($contains);
+				if(is_numeric($searchItem))
+					{
+						$mycount = $countQuery->select(['trackingobjects.name'])->where($wherestr2)
+						->group('Trackingobjects.name')
+						->group('Journeys.start_time')->group('Journeys.end_time')
+						->group('Journeys.maxspeed')->group('Journeys.idletime')->group('Journeys.distance')
+						->having(" Journeys.maxspeed= '$searchItem' OR Journeys.idletime= '$searchItem' OR Journeys.distance= '$searchItem'")
+						->count();
+					}
+				else 
+					{
+						$mycount = $countQuery->select(['trackingobjects.name'])->where($wherestr2)
+						->group('Trackingobjects.name')
+						->group('Journeys.start_time')->group('Journeys.end_time')
+						->group('Journeys.maxspeed')->group('Journeys.idletime')->group('Journeys.distance')
+						// ->having(" Journeys.maxspeed= '$searchItem' OR Journeys.idletime= '$searchItem' OR Journeys.distance= '$searchItem'")
+						->count();
+					}
+				
+				$filteredCount = $mycount;	
+				}
+				else 
+				{
+				$searchItem = $this->request->query['search']['value']; 
+				$countQuery = $model->find()->contain($contains);
+				$mycount = $countQuery->select(['trackingobjects.name'])->where($wherestr2)
+				->group('Trackingobjects.name')
+				->group('Journeys.start_time')->group('Journeys.end_time')
+				->group('Journeys.maxspeed')->group('Journeys.idletime')->group('Journeys.distance')
+				->count();
+				$filteredCount = $mycount;		
+				}
+			}
 			
-			// for group queries
-			if($flg == 1)
+			else if($flg == 5)// for assetmonthlyreports  
 			{
-				$countQuery = $model->find()->contain($contains);
-				$mycount = $countQuery->select(['trackingobjects.name'])->group('trackingobjects.name')->count();
-				$filteredCount = $mycount;	
-			}
-			else if($flg == 2) // for alerts summary report in adhoc
-			{
-				$countQuery = $model->find()->contain($contains);
-				// $mycount = $countQuery->select(['alertcategories.name'])->where($havingstr)->group('alertcategories.name')->count();
-				// $mycount = $countQuery->select(['alertcategories.name'])->where($wherestrforfilter)->group('alertcategories.name')->count();
-				
 				if ( isset($this->request->query['search']) && $this->request->query['search']['value'] != '' ) 
 			    {
-			    	
-			    	$searchItem = $this->request->query['search']['value']; 
-					if(is_numeric($searchItem))
-					{
-						// $mycount = $countQuery->select(['alertcategories.name,'])->where($havingstr)->order($order)->limit($limit)->page($page)->count();
-					
-						$mycount = $countQuery->select(['alertcategories.name'])->where($wherestr2)->having("Alertcategories.name ILIKE '%$searchItem%' OR count(alertcategories_id)= '$searchItem' OR location ILIKE '%$searchItem%'")->order($order)->limit($limit)->page($page)->group('alertcategories.name')->group('location')->count();
-				
-					}
-					else
-					{
-						
-						// $mycount = $countQuery->select(['alertcategories.name',])->where($havingstr)->order($order)->limit($limit)->page($page)->count();
-				
-						
-						$mycount = $countQuery->select(['alertcategories.name'])->where($wherestr2)->having("Alertcategories.name ILIKE '%$searchItem%' OR  location ILIKE '%$searchItem%'")->order($order)->limit($limit)->page($page)->group('alertcategories.name')->group('location')->count();
-				
-					}	
-			    	
-			    }
-			    else
-			    {
-			    	$mycount = $countQuery->select(['alertcategories.name'])->where($wherestr2)->order($order)->limit($limit)->page($page)->group('alertcategories.name')->group('location')->count();
-				
-			    }
-				
-				// $mycount = $countQuery->select(['alertcategories.name'])->where($havingstr)->count();
-				$filteredCount = $mycount;	
-			}
-			else if($flg == 3) // for ZoneVisitcount report in adhoc 
-			{
-				// return 	$wherestr2;
-				$query2 = $model->find();
+				$searchItem = $this->request->query['search']['value']; 
 				$countQuery = $model->find()->contain($contains);
-				if ( isset($this->request->query['search']) && $this->request->query['search']['value'] != '' ) 
-			    {
-			    	
-			    	$searchItem = $this->request->query['search']['value']; 
-					if(is_numeric($searchItem))
+				if(is_numeric($searchItem))
 					{
-						$mycount = $countQuery->select(['Trackingobjects.name'])->where($wherestr2)->having("Trackingobjects.name ILIKE '%$searchItem%' OR Alerts.count= '$searchItem' OR Alerts.location ILIKE '%$searchItem%' ")->group('Trackingobjects.name')->group('date(alert_dtime)')->group('Alerts.location')->count();
-				
+						$mycount = $countQuery->select(['Trackingobjects.name'])->where($wherestr2)
+						
+						->group('date(Journeys.start_time)')->group('Trackingobjects.name')
+						
+						
+						->having(" max(Journeys.maxspeed)= '$searchItem' OR  Journeys.Count= '$searchItem' OR sum(Journeys.distance)= '$searchItem'")
+						->count();
 					}
-					else
+				else 
 					{
-						$mycount = $countQuery->select(['Trackingobjects.name'])->where($wherestr2)->having("Trackingobjects.name ILIKE '%$searchItem%'  OR Alerts.location ILIKE '%$searchItem%'  ")->group('Trackingobjects.name')->group('date(alert_dtime)')->group('Alerts.location')->count();
-				
+						$mycount = $countQuery->select(['Trackingobjects.name'])->where($wherestr2)
+						
+						->group('date(Journeys.start_time)')->group('Trackingobjects.name')
+						
+						
+						// ->having(" Journeys.maxspeed= '$searchItem' OR Journeys.idletime= '$searchItem' OR Journeys.distance= '$searchItem'")
+						->count();
 					}
-					
-					
-			    }
+				
+				$filteredCount = $mycount;	
+				}
 				else 
 				{
-					$mycount = $countQuery->select(['Trackingobjects.name'])->where($wherestr2)->group('Trackingobjects.name')->group('date(alert_dtime)')->group('Alerts.location')->count();
-				
-				}
-				
-				$filteredCount = $mycount;
-				
-				// return $filteredCount;
-			}
-			else if($flg == 4) // for RunningTime Summary report in adhoc 
-			{
-				// return 	$wherestr2;
-				$query2 = $model->find();
+				$searchItem = $this->request->query['search']['value']; 
 				$countQuery = $model->find()->contain($contains);
-				if ( isset($this->request->query['search']) && $this->request->query['search']['value'] != '' ) 
-			    {
-			    	
-			    	$searchItem = $this->request->query['search']['value']; 
-					if(is_numeric($searchItem))
-					{
-						
-						$mycount = $countQuery->select(['Trackingobjects.name'])->where($wherestr2)->having("Trackingobjects.name ILIKE '%$searchItem%'  ")->group('Dailysummary.mdate')->group('Trackingobjects.name')->count();
-				
-					}
-					else
-					{
-						if($this->validateDate($searchItem,'m/d/y')){
-							$mycount = $countQuery->select(['Trackingobjects.name'])->where($wherestr2)->having("Trackingobjects.name ILIKE '%$searchItem%' OR Dailysummary.mdate::date = '$searchItem'   ")->group('Dailysummary.mdate')->group('Trackingobjects.name')->count();
-				
-						}else
-						{
-							$mycount = $countQuery->select(['Trackingobjects.name'])->where($wherestr2)->having("Trackingobjects.name ILIKE '%$searchItem%'  ")->group('Dailysummary.mdate')->group('Trackingobjects.name')->count();
-				
-						}
-						
-					}
-					
-					
-			    }
-				else 
-				{
-					$mycount = $countQuery->select(['Trackingobjects.name'])->where($wherestr2)->group('Dailysummary.mdate')->group('Trackingobjects.name')->count();
-				
+				$mycount = $countQuery->select(['Trackingobjects.name'])->where($wherestr2)
+				->group('date(Journeys.start_time)')->group('Trackingobjects.name')
+				->count();
+				$filteredCount = $mycount;		
 				}
-				
-				$filteredCount = $mycount;
-				
-				// return $filteredCount;
 			}
+			
 			else
 			{
-				 $filteredCount = $model->find()->contain($contains)->where($wherestr2)->count();	
-			}		
-          
+				 $filteredCount = $model->find()->contain($contains)->where($wherestr)->count();
+			}
 		   // print_r($colmns);
 		   // $filteredCount = count($data);
            $output =$this->GetData($colmns,$data,$totalCount,$filteredCount);
-		   // $output =$this->GetData($colmns,$data,$totalCount,count($data));
-           // return $data;
-		   // return $wherestr2;
-		   // return $order;
+		   // return $data;
+		   // return $wherestr;
+		   // return $filteredCount;
 		   return $output;
        }
        public function Limit(){
@@ -337,27 +362,19 @@ use Cake\Utility\Inflector;
                            }
 						   else if( ($rowval['name']==$column['db']) && ($rowval['type']=="sum1") ){
                                if(is_numeric($str))	{
-                                  $globalSearch[$column['db']. '='] = "" . $str. "";
+                                  // $globalSearch[$column['db']. '='] = "" . $str. "";
+								  $countstr1 = 'sum('.$column['db'].')';
+								   $globalSearch[$countstr1. '='] = "" . $str. "";
 							   }
                            }
 						   else if( ($rowval['name']==$column['db']) && ($rowval['type']=="sum2") ){
                                if(is_numeric($str))	{
-                                  $globalSearch[$column['db']. '='] = "" . $str. "";
+                                  // $globalSearch[$column['db']. '='] = "" . $str. "";
+                                  $countstr2 = 'max('.$column['db'].')';
+                                  $globalSearch[$countstr2. '='] = "" . $str. "";
 							   }
                            }
 						   else if( ($rowval['name']==$column['db']) && ($rowval['type']=="count2") ){
-                               if(is_numeric($str))	{
-                                  $globalSearch[$column['db']. '='] = "" . $str. "";
-								  // $globalSearch[ 'count(alertcategories_id)='] = "" . $str. "";
-							   }
-                           }
-						    else if( ($rowval['name']==$column['db']) && ($rowval['type']=="sum4") ){
-                               if(is_numeric($str))	{
-                                  //$globalSearch[$column['db']. '='] = "" . $str. "";
-								  // $globalSearch[ 'count(alertcategories_id)='] = "" . $str. "";
-							   }
-                           }
-							else if( ($rowval['name']==$column['db']) && ($rowval['type']=="countall") ){
                                if(is_numeric($str))	{
                                   $globalSearch[$column['db']. '='] = "" . $str. "";
 								  // $globalSearch[ 'count(alertcategories_id)='] = "" . $str. "";
@@ -368,11 +385,11 @@ use Cake\Utility\Inflector;
                                   // $globalSearch[$column['db']. '='] = "" . $str. "";
 							   // }
                            // }
-                           // else if( ($rowval['name']==$column['db']) && ($rowval['type']=="countall") ){
-                               // if(is_numeric($str))	{
-                                  // $globalSearch[$column['db']. '='] = "" . $str. "";
-							   // }
-                           // }
+                           else if( ($rowval['name']==$column['db']) && ($rowval['type']=="countall") ){
+                               if(is_numeric($str))	{
+                                  $globalSearch[$column['db']. '='] = "" . $str. "";
+							   }
+                           }
 
                            else if( ($rowval['name']==$column['db']) && ($rowval['type']=="date") ){
 								if($this->validateDate($str,'m/d/y')){
@@ -381,7 +398,9 @@ use Cake\Utility\Inflector;
                            }
 						   else if( ($rowval['name']==$column['db']) && ($rowval['type']=="dateofjourney") ){
 								 $my_date = date('Y-m-d', strtotime($str));
-								 $globalSearch["to_char(".$column['db']." , 'YYYY-MM-DD') ILIKE"] = "%" . $my_date. "%";
+							     $datestr = 'date('.$column['db'].')';
+								 // $globalSearch["to_char(".$column['db']." , 'YYYY-MM-DD') ILIKE"] = "%" . $my_date. "%";
+								 $globalSearch["to_char(".$datestr." , 'YYYY-MM-DD') ILIKE"] = "%" . $my_date. "%";
                            }
                            else if( ($rowval['name']==$column['db']) && ($rowval['type']=="boolean") ){
                                if($this->isBoolean($str) === true){
@@ -397,8 +416,6 @@ use Cake\Utility\Inflector;
        }
        public function Order ( $columns,$select )
        {
-       		// echo json_encode($columns);
-			// echo json_encode($select);
            $order = array();
            if ( isset($this->request->query['order']) && count($this->request->query['order']) ) {
            	
@@ -434,9 +451,7 @@ use Cake\Utility\Inflector;
 			// echo json_encode($select[$columnIdx]) ;
 			
 			 $orderBy[$select[$columnIdx]] = $dir;
-			 // return  json_encode($orderBy) ;
-			 echo $order;
-			 // return $order;
+			 // echo json_encode($orderBy) ;
            return $orderBy;
        }
        public function pluck ( $a, $prop )
