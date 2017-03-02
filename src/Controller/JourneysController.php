@@ -57,7 +57,7 @@ class JourneysController extends AppController
         if(isset($this->request->query['assetname'])){
         	
         	$pre=(strlen($usrfiter)>0)?" and ":"";
-			$usrfiter.=$pre. " trackingobject_id ='" .$this->request->query['assetname']. "'";
+			$usrfiter.=$pre. " customer_id ='" .$this->loggedinuser['customer_id']. "' AND  trackingobject_id ='" .$this->request->query['assetname']. "'";
         }
     	
 		//speed limit filter	
@@ -113,7 +113,7 @@ class JourneysController extends AppController
         if(isset($this->request->query['assetname'])){
         	
         	$pre=(strlen($usrfiter)>0)?" and ":"";
-			$usrfiter.=$pre. " trackingobject_id ='" .$this->request->query['assetname']. "'";
+			$usrfiter.=$pre. " customer_id ='" .$this->loggedinuser['customer_id']. "' AND  trackingobject_id ='" .$this->request->query['assetname']. "'";
 			
 			
         	
@@ -154,7 +154,7 @@ class JourneysController extends AppController
         if(isset($this->request->query['assetname'])){
         	
         	$pre=(strlen($usrfiter)>0)?" and ":"";
-			$usrfiter.=$pre. " trackingobject_id ='" .$this->request->query['assetname']. "'";
+			$usrfiter.=$pre. " customer_id ='" .$this->loggedinuser['customer_id']. "' AND  trackingobject_id ='" .$this->request->query['assetname']. "'";
 				
         }
     	
@@ -197,7 +197,7 @@ class JourneysController extends AppController
         if(isset($this->request->query['assetname'])){
         	
         	$pre=(strlen($usrfiter)>0)?" and ":"";
-			$usrfiter.=$pre. " trackingobject_id ='" .$this->request->query['assetname']. "'";
+			$usrfiter.=$pre. " customer_id ='" .$this->loggedinuser['customer_id']. "' AND  trackingobject_id ='" .$this->request->query['assetname']. "'";
 				
         }
     	
@@ -275,7 +275,7 @@ class JourneysController extends AppController
 		// if(isset($this->request->query['startdate']) && ($this->request->query['startdate'])!=null )
 			// {
         	
-			$usrfiter.="NOW()::DATE BETWEEN    NOW()::DATE-EXTRACT(DOW FROM NOW()) ::INTEGER     AND NOW()::DATE"; 
+			$usrfiter.="date(Journeys.start_time) BETWEEN    NOW()::DATE-EXTRACT(DOW FROM NOW()) ::INTEGER     AND NOW()::DATE"; 
 			
 			// }
 			

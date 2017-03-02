@@ -112,7 +112,7 @@ class TrackingController extends AppController
         if(isset($this->request->query['assetname'])){
         	
         	$pre=(strlen($usrfilter)>0)?" and ":"";
-			$usrfilter.=$pre. " trackingobject_id ='" .$this->request->query['assetname']. "'";
+			$usrfilter.=$pre. " customer_id ='" .$this->loggedinuser['customer_id']. "' AND trackingobject_id ='" .$this->request->query['assetname']. "'";
         	
         }
     	
@@ -151,7 +151,7 @@ class TrackingController extends AppController
         if(isset($this->request->query['assetname'])){
         	
         	$pre=(strlen($usrfilter)>0)?" and ":"";
-			$usrfilter.=$pre. " trackingobject_id ='" .$this->request->query['assetname']. "'";
+			$usrfilter.=$pre. " customer_id ='" .$this->loggedinuser['customer_id']. "' AND  trackingobject_id ='" .$this->request->query['assetname']. "'";
         	
         }
     	
@@ -196,7 +196,7 @@ class TrackingController extends AppController
         if(isset($this->request->query['assetname'])){
         	
         	$pre=(strlen($usrfilter)>0)?" and ":"";
-			$usrfilter.=$pre. " trackingobject_id ='" .$this->request->query['assetname']. "'";
+			$usrfilter.=$pre. " customer_id ='" .$this->loggedinuser['customer_id']. "' AND  trackingobject_id ='" .$this->request->query['assetname']. "'";
         	
         }
     	
