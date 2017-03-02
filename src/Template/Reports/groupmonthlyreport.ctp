@@ -23,7 +23,7 @@
 	<div class="col-md-3">
 			<div class="col-sm-12" id="gpname">
 				<?php 
-				echo $this->Form->input('Groupname', [ 'options' => $groupsdatanames,'class'=>'select2','id'=>'gname','label'=>['text'=>'Group Name','class'=>'mandatory']]);
+				echo $this->Form->input('Groupname', [ 'options' => $groupsdatanames,'empty'=>true,'class'=>'select2','id'=>'gname','label'=>['text'=>'Group Name','class'=>'mandatory']]);
 				?>
 			</div>		
 	</div>
@@ -32,7 +32,7 @@
 	<div class="col-md-3">
 		<div class="col-sm-12" id="monthname">
 				<?php 
-				echo $this->Form->input('monthname', [ 'options' => array('This Month','Last Month'),'class'=>'select2','id'=>'month','label'=>['class'=>'mandatory']]);
+				echo $this->Form->input('monthname', ['options' => array('This Month','Last Month'),'empty'=>true,'class'=>'select2','id'=>'month','label'=>['text'=>'Month','class'=>'mandatory']]);
 				?>
 			</div>	
 		
@@ -124,6 +124,11 @@ $(function () {
     		table.ajax.url('/Journeys/groupMonthlyReportAjaxData?gpname='+groupname+'&monthname='+monthname).load();
     		
    		}
+   		else
+		{
+			alert("Please select all fields");
+			
+		}
 	});
 });
 

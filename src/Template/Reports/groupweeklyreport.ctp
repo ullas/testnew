@@ -23,7 +23,7 @@
 	<div class="col-md-3">
 			<div class="col-sm-12" id="gpname">
 				<?php 
-				echo $this->Form->input('Groupname', [ 'options' => $groupsdatanames,'class'=>'select2','id'=>'gname','label'=>['text'=>'Group Name','class'=>'mandatory']]);
+				echo $this->Form->input('Groupname', [ 'options' => $groupsdatanames,'empty'=>true,'class'=>'select2','id'=>'gname','label'=>['text'=>'Group Name','class'=>'mandatory']]);
 				?>
 			</div>		
 	</div>
@@ -100,7 +100,7 @@ $(function () {
 	
 	$('#generatereport').click(function(){
 		$("#tablebox").hide();
-		if(document.getElementById("gname").value  && document.getElementById("gname").value != "" )
+		if(document.getElementById("gname").value   )
 		{
 			$("#tablebox").show();
     	var groupnameelm = document.getElementById("gname");

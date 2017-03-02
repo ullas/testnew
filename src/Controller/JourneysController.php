@@ -134,11 +134,11 @@ class JourneysController extends AppController
         $dbout=$this->Journeys->find('all')->toArray();
      	$fields = array();
 		 
-		$fields[0] = array("name" =>"Journeys.id"  , "type" => "num");
-		$fields[1] = array("name" =>"Journeys.start_time"  , "type" => "date");
-		$fields[2] = array("name" =>"Journeys.distance"  , "type" => "num");
-		$fields[3] = array("name" =>"Journeys.maxspeed"  , "type" => "num");
-		$fields[4] = array("name" =>"Journeys.averagespeed"  , "type" => "num");
+		//$fields[0] = array("name" =>"Journeys.id"  , "type" => "num");
+		$fields[0] = array("name" =>"Journeys.start_time"  , "type" => "date");
+		$fields[1] = array("name" =>"Journeys.distance"  , "type" => "num");
+		$fields[2] = array("name" =>"Journeys.maxspeed"  , "type" => "num");
+		$fields[3] = array("name" =>"Journeys.averagespeed"  , "type" => "num");
 				
 		$usrfiter="";
         // msgdtime filter

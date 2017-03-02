@@ -13,18 +13,28 @@
 
 <!-- Main content -->
 <section class="content">
-    	 <div class="box box-primary">
+    <div class="box box-primary">
      
-      <div class="modal-body" style="padding-bottom:0">
+    <div class="modal-body" style="padding-bottom:0">
+	  
+	<!-- <div class="row">
+		<div class="col-md-3">
+				<div class="col-sm-12">
+					<?php 
+						echo $this->Form->input('reporttype', [ 'options' => $reporttypes,'class'=>'select2','label'=>['text'=>'Report']]);
+					?>
+				</div>		
+		</div> 
+	</div>   --> 
 	          
-<div class="row">
-	<div class="col-md-3">
-			<div class="col-sm-12">
-				<?php 
-					echo $this->Form->input('reporttype', [ 'options' => $reporttypes,'class'=>'select2','label'=>['text'=>'Report']]);
-				?>
-			</div>		
-	</div>
+	<div class="row">
+		<div class="col-md-3">
+				<div class="col-sm-12">
+					<?php 
+						echo $this->Form->input('reporttype', [ 'options' => $reporttypes,'class'=>'select2','label'=>['text'=>'Report']]);
+					?>
+				</div>		
+		</div>
 	
 	
 	<div class="col-md-3">
@@ -46,6 +56,20 @@
 			</div>		
 	</div>
 	
+	<div class="col-md-3">
+			<div class="col-sm-12" id="spthr" style="display: none;">
+				<?php 
+					echo $this->Form->input('speedlimit', ['label'=>['text'=>'Speed Limit','class'=>'mandatory']]);
+				?>
+			</div>		
+	</div>
+	
+	
+	
+</div>
+
+<div class="row">
+	
 	<div class="col-md-3"><div class="col-sm-12">
 		<div class="form-group">
 			<label for="startdate">Start Date</label>
@@ -58,12 +82,6 @@
 		</div>
 		
 	</div>
-	
-</div>
-
-<div class="row">
-	
-	
 	<div class="col-md-3">
 			<div class="col-sm-12">
 				<?php 
@@ -93,13 +111,13 @@
 			</div>		
 	</div>
 	
-	<div class="col-md-3">
+	<!-- <div class="col-md-3">
 			<div class="col-sm-12" id="spthr" style="display: none;">
 				<?php 
 					echo $this->Form->input('speedlimit', ['label'=>['text'=>'Speed Limit','class'=>'mandatory']]);
 				?>
 			</div>		
-	</div>
+	</div> -->
 	
 </div>
 
@@ -277,27 +295,45 @@ $(function () {
     	}else{
     		$("#spthr").hide(); 
     	}
-    	if(this.value==76 || this.value==77 ){//top speed report
+    	if(this.value==18 || this.value==19 || this.value==20 || this.value==21 || this.value==22 || this.value==23 || this.value==24 || this.value==25 ){//top speed report
     		$("#gpname").hide(); $("#astname").hide();
     	}else{
     		$("#gpname").show();  $("#astname").show();
     	}
+    	
 	});
 	
 	$('#generatereport').click(function(){
-    	
-    	
+    	var reporttypeelm = document.getElementById("reporttype");
+		var reporttype = reporttypeelm.options[reporttypeelm.selectedIndex].value;
+    	if(reporttype==8 || reporttype==24  )
+    	{
+    		$(".dataTables_scrollHead .th4").hide();
+			table.column(3).visible(false);
+		}
+		else
+		{
+			table.column(3).visible(true);
+			$('#traveldetailstbl tr td:nth-child(4),th:nth-child(4)').show();
+			$(".dataTables_scrollHead .th4").show();
+			
+		}
     	// alert("gropname--"+document.getElementById("groupname").options[document.getElementById("groupname").selectedIndex].value);
     	// alert("assetnam--"+document.getElementById("asset-name").value);
     	// alert("startdate--"+document.getElementById("startdate").value);
     	// alert("enddate--"+document.getElementById("enddate").value);
     	
     	//validate all fields
+    	var reporttypeelm = document.getElementById("reporttype");
+		var reporttype = reporttypeelm.options[reporttypeelm.selectedIndex].value;
+		
+    	
 	if(
 		(document.getElementById("groupname").options[document.getElementById("groupname").selectedIndex].value != "")
 		&&	(document.getElementById("asset-name").value != "") 
 		&& 	(document.getElementById("startdate").value != "") 
 		&& 	(document.getElementById("enddate").value != "")
+		&& reporttype!=18 && reporttype!=19 && reporttype!=20 && reporttype!=21 && reporttype!=22 && reporttype!=23 && reporttype!=24 && reporttype!=25
 		)
 		
 		{
@@ -390,9 +426,8 @@ $(function () {
 					   		}
 					   		else if(reporttype==8){//Alerts Summary report
 					   			// $('#traveldetailstbl tr td:nth-child(4),th:nth-child(4)').hide();
-					   			$(".dataTables_scrollHead .th1").text("Alert Category");$(".dataTables_scrollHead .th2").text("Total Count");$(".dataTables_scrollHead .th3").text("Location");$(".dataTables_scrollHead .th4").text("Speed");//$(".dataTables_scrollHead .th4").text("Alert Message");
+					   			$(".dataTables_scrollHead .th1").text("Alert Category");$(".dataTables_scrollHead .th2").text("Total Count");$(".dataTables_scrollHead .th3").text("Location");//$(".dataTables_scrollHead .th4").text("Speed");//$(".dataTables_scrollHead .th4").text("Alert Message");
 					   			// $(".dataTables_scrollHead .th4").hide();
-					   			// $('.dataTables_scrollHead .td:nth-child(4)').hide();
 					   			// table.column(3).visible(false);
 					   			
 					   			
@@ -443,48 +478,7 @@ $(function () {
 					    		table.ajax.url('/Alerts/driverErrorAjaxData?reporttype='+reporttype+'&assetname='+assetname+'&starttime='+starttime+'&endtime='+endtime+'&startdate='+startdate+'&enddate='+enddate).load();
 					   		}
 					   		
-					   		//todo
-					   		else if(reporttype==18){//Zone visit count report
-					   			$(".dataTables_scrollHead .th1").text("Location");$(".dataTables_scrollHead .th2").text("Date");$(".dataTables_scrollHead .th3").text("Vehicle");$(".dataTables_scrollHead .th4").text("Count");
-					    		table.ajax.url('/Alerts/zoneVisitCountAjaxData?reporttype='+reporttype+'&assetname='+assetname+'&starttime='+starttime+'&endtime='+endtime+'&startdate='+startdate+'&enddate='+enddate).load();
-					   		}
 					   		
-					   		else if(reporttype==19){//Trip Start report
-					   			$(".dataTables_scrollHead .th1").text("Vehicle");$(".dataTables_scrollHead .th2").text("Date & Time");$(".dataTables_scrollHead .th3").text("Speed");$(".dataTables_scrollHead .th4").text("Location");
-					    		table.ajax.url('/Alerts/tripStartAjaxData?reporttype='+reporttype+'&assetname='+assetname+'&starttime='+starttime+'&endtime='+endtime+'&startdate='+startdate+'&enddate='+enddate).load();
-					   		}
-					   		else if(reporttype==20){//Trip Endreport
-					   			$(".dataTables_scrollHead .th1").text("Vehicle");$(".dataTables_scrollHead .th2").text("Date & Time");$(".dataTables_scrollHead .th3").text("Speed");$(".dataTables_scrollHead .th4").text("Location");
-					    		table.ajax.url('/Alerts/tripEndAjaxData?reporttype='+reporttype+'&assetname='+assetname+'&starttime='+starttime+'&endtime='+endtime+'&startdate='+startdate+'&enddate='+enddate).load();
-					   		}
-					   		
-					   		else if(reporttype==21){//Loading&Unloading
-					   			$(".dataTables_scrollHead .th1").text("Vehicle");$(".dataTables_scrollHead .th2").text("Date & Time");$(".dataTables_scrollHead .th3").text("Location");$(".dataTables_scrollHead .th4").text("Activity");
-					    		table.ajax.url('/Alerts/loadingUnLoadingAjaxData?reporttype='+reporttype+'&assetname='+assetname+'&starttime='+starttime+'&endtime='+endtime+'&startdate='+startdate+'&enddate='+enddate).load();
-					   		}
-					   		
-					   		//********to do************
-					   		else if(reporttype==22){//Nonoperative vehicles
-					   			$(".dataTables_scrollHead .th1").text("Vehicle");$(".dataTables_scrollHead .th2").text("Date & Time");$(".dataTables_scrollHead .th3").text("Speed");$(".dataTables_scrollHead .th4").text("Location");
-					    		table.ajax.url('/Alerts/tripEndAjaxData?reporttype='+reporttype+'&assetname='+assetname+'&starttime='+starttime+'&endtime='+endtime+'&startdate='+startdate+'&enddate='+enddate).load();
-					   		}
-					   		//********to do************
-					   		else if(reporttype==23){//Nonproductive vehicles
-					   			$(".dataTables_scrollHead .th1").text("Vehicle");$(".dataTables_scrollHead .th2").text("Date & Time");$(".dataTables_scrollHead .th3").text("Speed");$(".dataTables_scrollHead .th4").text("Location");
-					    		table.ajax.url('/Alerts/tripEndAjaxData?reporttype='+reporttype+'&assetname='+assetname+'&starttime='+starttime+'&endtime='+endtime+'&startdate='+startdate+'&enddate='+enddate).load();
-					   		}
-					   		
-					   		
-					   		else if(reporttype==24){//Running Time Summary report
-					   			columnnos = 3;
-					   			$(".dataTables_scrollHead .th1").text("Date");$(".dataTables_scrollHead .th2").text("Vehicle");$(".dataTables_scrollHead .th3").text("Duration");
-					   			// $(".dataTables_scrollHead .th4").text("Running Time");$(".dataTables_scrollHead .th5").text("Distance");
-					    		table.ajax.url('/Dailysummary/runningTimeSummaryAjaxData?reporttype='+reporttype+'&assetname='+assetname+'&starttime='+starttime+'&endtime='+endtime+'&startdate='+startdate+'&enddate='+enddate).load();
-					   		}
-					   		else if(reporttype==25){//Overspeed Summary report
-					   			$(".dataTables_scrollHead .th1").text("Vehicle");$(".dataTables_scrollHead .th2").text("Date & Time");$(".dataTables_scrollHead .th3").text("Speed");$(".dataTables_scrollHead .th4").text("Location");
-					    		table.ajax.url('/Alerts/overSpeedSummaryAjaxData?reporttype='+reporttype+'&assetname='+assetname+'&starttime='+starttime+'&endtime='+endtime+'&startdate='+startdate+'&enddate='+enddate).load();
-					   		}
 					   		
 					   		//********to do************
 					   		else if(reporttype==26){//Zone Activity report
@@ -497,61 +491,118 @@ $(function () {
 					   		}    			
     		}//function showReport end
     		
-    		function datatableRecreate(columnnos)
-    		{
-    			alert('datatable recreate');
-    			table.destroy();
-    			$('#traveldetailstbl').empty();
-    			// var oTable = $('#traveldetailstbl').dataTable( );
-				// // console.log( oTable.fnSettings().aoColumns.length );
-				// for(i=0;i<oTable.fnSettings().aoColumns.length-2;i++)
-					// {
-						// alert("inside delete loop recretae");
-						// var tr = document.getElementById('traveldetailstbl').tHead.children[0];
-// 						
-				    	// tr.deleteCell(i);
-					// }
-    			 // for(i=columnnos;i>1;i--)
-					// {
-						// alert("inside for loop recretae");
-						// var tr = document.getElementById('traveldetailstbl').tHead.children[0];
-// 						
-				    	// tr.insertCell(1).outerHTML = "<th class=th"+i+"></th>"
-					// }
-	 			table= $('#traveldetailstbl').DataTable({
-		          "paging": true,
-		          //disable 0th column checkbox default sort order
-		          // "order": [[ 1, 'asc' ]],
-		          "lengthChange": true,
-		          "searching": true,
-		          "ordering": true,
-		          "info": true,
-		          "autoWidth": false,
-		          "scrollX":true,
-		          colReorder: false,
-		          stateSave:false,
-		          responsive: true,
-		          "deferLoading": 0, // here
-		        //server side processing
-		          "processing": true,
-		          "serverSide": true,
-		          "ajax": {url:""}, 
-					});	
-	
-	    			 for(i=columnnos;i>1;i--)
-					{
-						alert("inside for loop recretae");
-						var tr = document.getElementById('traveldetailstbl').tHead.children[0];
-						
-				    	tr.insertCell(1).outerHTML = "<th class=th"+i+"></th>"
-					}
-    		}
+    		
     		
     	}//if end
     	else
 		{
+			if(( document.getElementById("startdate").value != "" && document.getElementById("enddate").value != "" ) && (reporttype == 18 || reporttype == 19 || reporttype == 20 || reporttype == 21 || reporttype == 22 || reporttype == 23 || reporttype == 24 || reporttype == 25 ))
+			{
+				
+				    	var x = document.getElementById("startdate").value;
+						var y = document.getElementById("enddate").value;
+						var newx = x.split("/").reverse().join("/");
+						var newy = y.split("/").reverse().join("/");
+						if(newx>newy)
+						{
+							alert("Start Date should be less than End Date");
+							
+						}
+						else if(newx<newy)
+						{
+							showReport()
+						}
+						else if(newx==newy) 
+						{
+							if(document.getElementById("starttime").value >= document.getElementById("endtime").value)
+							{
+								alert("Start Time should be less than End Time"  );
+							}
+							if(document.getElementById("starttime").value < document.getElementById("endtime").value)
+							{
+								showReport();
+							}
+				
+							
+						}
+				    	
+				    	function showReport()
+				    		{
+				    		
+							    	$("#traveldetailstblbox").show();
+							    	//get input value			
+									var startdate = document.getElementById('startdate').value;
+									var enddate = document.getElementById('enddate').value;
+									var starttimeelm = document.getElementById("starttime");
+									var starttime = starttimeelm.options[starttimeelm.selectedIndex].value;
+									var endtimeelm = document.getElementById("endtime");
+									var endtime = endtimeelm.options[endtimeelm.selectedIndex].value;
+											
+							    			
+									   		
+									   		//todo
+									   		if(reporttype==18){//Zone visit count report
+									   			$(".dataTables_scrollHead .th1").text("Location");$(".dataTables_scrollHead .th2").text("Date");$(".dataTables_scrollHead .th3").text("Vehicle");$(".dataTables_scrollHead .th4").text("Count");
+									    		table.ajax.url('/Alerts/zoneVisitCountAjaxData?reporttype='+reporttype+'&starttime='+starttime+'&endtime='+endtime+'&startdate='+startdate+'&enddate='+enddate).load();
+									   		}
+									   		
+									   		else if(reporttype==19){//Trip Start report
+									   			$(".dataTables_scrollHead .th1").text("Vehicle");$(".dataTables_scrollHead .th2").text("Date & Time");$(".dataTables_scrollHead .th3").text("Speed");$(".dataTables_scrollHead .th4").text("Location");
+									    		table.ajax.url('/Alerts/tripStartAjaxData?reporttype='+reporttype+'&starttime='+starttime+'&endtime='+endtime+'&startdate='+startdate+'&enddate='+enddate).load();
+									   		}
+									   		else if(reporttype==20){//Trip Endreport
+									   			$(".dataTables_scrollHead .th1").text("Vehicle");$(".dataTables_scrollHead .th2").text("Date & Time");$(".dataTables_scrollHead .th3").text("Speed");$(".dataTables_scrollHead .th4").text("Location");
+									    		table.ajax.url('/Alerts/tripEndAjaxData?reporttype='+reporttype+'&starttime='+starttime+'&endtime='+endtime+'&startdate='+startdate+'&enddate='+enddate).load();
+									   		}
+									   		
+									   		else if(reporttype==21){//Loading&Unloading
+									   			$(".dataTables_scrollHead .th1").text("Vehicle");$(".dataTables_scrollHead .th2").text("Date & Time");$(".dataTables_scrollHead .th3").text("Location");$(".dataTables_scrollHead .th4").text("Activity");
+									    		table.ajax.url('/Alerts/loadingUnLoadingAjaxData?reporttype='+reporttype+'&starttime='+starttime+'&endtime='+endtime+'&startdate='+startdate+'&enddate='+enddate).load();
+									   		}
+									   		
+									   		//********to do************
+									   		else if(reporttype==22){//Nonoperative vehicles
+									   			$(".dataTables_scrollHead .th1").text("Vehicle");$(".dataTables_scrollHead .th2").text("Date & Time");$(".dataTables_scrollHead .th3").text("Speed");$(".dataTables_scrollHead .th4").text("Location");
+									    		table.ajax.url('/Alerts/tripEndAjaxData?reporttype='+reporttype+'&starttime='+starttime+'&endtime='+endtime+'&startdate='+startdate+'&enddate='+enddate).load();
+									   		}
+									   		//********to do************
+									   		else if(reporttype==23){//Nonproductive vehicles
+									   			$(".dataTables_scrollHead .th1").text("Vehicle");$(".dataTables_scrollHead .th2").text("Date & Time");$(".dataTables_scrollHead .th3").text("Speed");$(".dataTables_scrollHead .th4").text("Location");
+									    		table.ajax.url('/Alerts/tripEndAjaxData?reporttype='+reporttype+'&starttime='+starttime+'&endtime='+endtime+'&startdate='+startdate+'&enddate='+enddate).load();
+									   		}
+									   		
+									   		
+									   		else if(reporttype==24){//Running Time Summary report
+									   			columnnos = 3;
+									   			$(".dataTables_scrollHead .th1").text("Date");$(".dataTables_scrollHead .th2").text("Vehicle");$(".dataTables_scrollHead .th3").text("Duration");
+									   			// $(".dataTables_scrollHead .th4").text("Running Time");$(".dataTables_scrollHead .th5").text("Distance");
+									    		table.ajax.url('/Dailysummary/runningTimeSummaryAjaxData?reporttype='+reporttype+'&starttime='+starttime+'&endtime='+endtime+'&startdate='+startdate+'&enddate='+enddate).load();
+									   		}
+									   		else if(reporttype==25){//Overspeed Summary report
+									   			$(".dataTables_scrollHead .th1").text("Vehicle");$(".dataTables_scrollHead .th2").text("Date & Time");$(".dataTables_scrollHead .th3").text("Speed");$(".dataTables_scrollHead .th4").text("Location");
+									    		table.ajax.url('/Alerts/overSpeedSummaryAjaxData?reporttype='+reporttype+'&starttime='+starttime+'&endtime='+endtime+'&startdate='+startdate+'&enddate='+enddate).load();
+									   		}
+									   		
+									   		//********to do************
+									   		else if(reporttype==26){//Zone Activity report
+									   			$(".dataTables_scrollHead .th1").text("Vehicle");$(".dataTables_scrollHead .th2").text("Date & Time");$(".dataTables_scrollHead .th3").text("Speed");$(".dataTables_scrollHead .th4").text("Location");
+									    		table.ajax.url('/Alerts/overSpeedSummaryAjaxData?reporttype='+reporttype+'&starttime='+starttime+'&endtime='+endtime+'&startdate='+startdate+'&enddate='+enddate).load();
+									   		}
+									   		
+									   		else{//clear table body content
+									   			$('#traveldetailstbl tbody').empty();
+									   		}    			
+				    		 }//function showReport end
+    		
+    		
+    		
+    		}//end if reportype ==18	
+			
+			else
+			{
 			$("#traveldetailstblbox").hide();
 			alert("Please select all fields")
+			}
 		}	
     	
    		

@@ -309,7 +309,7 @@ class AlertsController extends AppController
 						   ."' AND '" .$this->toPostDBDate($this->request->query['enddate']). " " .$this->request->query['endtime']. "'";
 		}
 		//Asset filter	
-        if(isset($this->request->query['assetname'])){
+        // if(isset($this->request->query['assetname'])){
         	
         	$pre=(strlen($usrfiter)>0)?" and ":"";
 		//	$usrfiter.=$pre. "  trackingobject_id ='" .$this->request->query['assetname']. "'";
@@ -317,7 +317,7 @@ class AlertsController extends AppController
 			
 			$usrfiter.=$pre. " Alerts.customer_id ='" .$this->loggedinuser['customer_id']. "'";
         	
-        }
+        // }
     	
     	//$pre=(strlen($usrfiter)>0)?" and ":"";
 	//	$usrfiter.=$pre. " Alerts.customer_id ='" .$this->loggedinuser['customer_id']. "' group by alertcategories.name, alerts.location";
@@ -432,7 +432,7 @@ class AlertsController extends AppController
 						   ."' AND '" .$this->toPostDBDate($this->request->query['enddate']). " " .$this->request->query['endtime']. "'";
 		}
 		//Asset filter	
-        if(isset($this->request->query['assetname'])){
+        //if(isset($this->request->query['assetname'])){
         	
         	$pre=(strlen($usrfiter)>0)?" and ":""; 
         	//22-trip start id
@@ -440,7 +440,7 @@ class AlertsController extends AppController
 			
 			
         	
-        }
+       // }
     	
 	
 		$output =$this->Datatable->getView($fields,['Customers','Trackingobjects'],$usrfiter);
@@ -473,7 +473,7 @@ class AlertsController extends AppController
 						   ."' AND '" .$this->toPostDBDate($this->request->query['enddate']). " " .$this->request->query['endtime']. "'";
 		}
 		//Asset filter	
-        if(isset($this->request->query['assetname'])){
+        // if(isset($this->request->query['assetname'])){
         	
         	$pre=(strlen($usrfiter)>0)?" and ":""; 
         	//5-trip start end
@@ -481,7 +481,7 @@ class AlertsController extends AppController
 			
 			
         	
-        }
+        // }
     	
 	
 		$output =$this->Datatable->getView($fields,['Customers','Trackingobjects'],$usrfiter);
@@ -515,7 +515,7 @@ class AlertsController extends AppController
 						   ."' AND '" .$this->toPostDBDate($this->request->query['enddate']). " " .$this->request->query['endtime']. "'";
 		}
 		//Asset filter	
-        if(isset($this->request->query['assetname'])){
+        // if(isset($this->request->query['assetname'])){
         	
         	$pre=(strlen($usrfiter)>0)?" and ":""; 
         	//5-trip start end
@@ -523,7 +523,7 @@ class AlertsController extends AppController
 			
 			
         	
-        }
+        // }
     	
 	
 		$output =$this->Datatable->getView($fields,['Customers','Trackingobjects'],$usrfiter);
@@ -558,14 +558,14 @@ class AlertsController extends AppController
 			$wherestr2 = $usrfiter;													
 			}
 		//Asset filter	
-        if(isset($this->request->query['assetname'])){
+        // if(isset($this->request->query['assetname'])){
         	
         	$pre=(strlen($usrfiter)>0)?" and ":""; 
 			$usrfiter.=$pre. " alertcategories_id = 13 and Alerts.customer_id ='" .$this->loggedinuser['customer_id']. "' AND   alert_message like  'Entering%' group by trackingobjects.name, date(alert_dtime),location";
 			$wherestr2.=$pre. " alertcategories_id = 13 and Alerts.customer_id ='" .$this->loggedinuser['customer_id']. "' AND  alert_message like  'Entering%'";
 			
         	
-        }
+        // }
     	
 	
 		$output =$this->Datatabletest->getView($fields,['Customers','Trackingobjects'],$usrfiter,$wherestr2,3);
@@ -590,7 +590,7 @@ class AlertsController extends AppController
         // msgdtime filter
         if(isset($this->request->query['date']) && ($this->request->query['date'])!=null ){
         	
-			$usrfiter.="date(alert_dtime) ='" .$this->toPostDBDate($this->request->query['date']). "' and trackingobject_id =".$this->request->query['assetname'];
+			$usrfiter.="date(alert_dtime) ='" .$this->toPostDBDate($this->request->query['date']). "' and Alerts.customer_id ='" .$this->loggedinuser['customer_id']. "' AND  trackingobject_id =".$this->request->query['assetname'];
 		}
 		//Asset filter	
         if(isset($this->request->query['assetname'])){
