@@ -181,7 +181,8 @@ use Cake\Utility\Inflector;
 						
 						$mycount = $countQuery->select(['trackingobjects.name'])->where($wherestr2)
 						->group('Trackingobjects.name')
-						->having(" Trackingobjects.name ILIKE '%$searchItem%'  ")
+						// ->having(" Trackingobjects.name ILIKE '%$searchItem%' OR  sum(Journeys.end_time - Journeys.start_time)= '$searchItem'   ")
+						->having(" Trackingobjects.name ILIKE '%$searchItem%'    ")
 						->count();
 						
 						
@@ -191,29 +192,44 @@ use Cake\Utility\Inflector;
 				else
 				{
 					
-							$searchItem = $this->request->query['search']['value']; 
-							$countQuery = $model->find()->contain($contains);
-							$mycount = $countQuery->select(['trackingobjects.name'])->where($wherestr2)
-							->group('Trackingobjects.name')
-							->count();
+					$searchItem = $this->request->query['search']['value']; 
+					$countQuery = $model->find()->contain($contains);
+					$mycount = $countQuery->select(['trackingobjects.name'])->where($wherestr2)
+					->group('Trackingobjects.name')
+					->count();
 						
 				}
 				$filteredCount = $mycount;	
 			}
-			else if($flg == 2)// for assetweekly reports to_char(Journeys.start_time , "YYYY-MM-DD") ILIKE '%$searchItem%' 
+			else if($flg == 2)// for assetweekly reports to_char(Journeys.start_time , "YYYY-MM-DD") ILIKE '%$searchItem%'   
 			{
 				if ( isset($this->request->query['search']) && $this->request->query['search']['value'] != '' ) 
 			    {
 				$searchItem = $this->request->query['search']['value']; 
 				$countQuery = $model->find()->contain($contains);
-				$mycount = $countQuery->select(['trackingobjects.name'])->where($wherestr2)
-				->group('Trackingobjects.name')
-				->group('Journeys.start_time')
-				->group('Journeys.distance')
-				->group('Journeys.maxspeed')
-				->having("to_char(Journeys.start_time , 'YYYY-MM-DD') ILIKE '%$searchItem%'  OR sum(Journeys.distance)= '$searchItem' OR max(Journeys.maxspeed)= '$searchItem' OR Journeys.Count= '$searchItem'")
-				->count();
-				$filteredCount = $mycount;	
+				if(is_numeric($searchItem))
+					{
+						$mycount = $countQuery->select(['trackingobjects.name'])->where($wherestr2)
+						->group('Trackingobjects.name')
+						->group('Journeys.start_time')
+						->group('Journeys.distance')
+						->group('Journeys.maxspeed')
+						->having(" sum(Journeys.distance)= '$searchItem' OR max(Journeys.maxspeed)= '$searchItem' OR Journeys.Count= '$searchItem'")
+						->count();
+						$filteredCount = $mycount;
+					}
+				else
+					{
+						$mycount = $countQuery->select(['trackingobjects.name'])->where($wherestr2)
+						->group('Trackingobjects.name')
+						->group('Journeys.start_time')
+						->group('Journeys.distance')
+						->group('Journeys.maxspeed')
+						->having("to_char(Journeys.start_time , 'YYYY-MM-DD') ILIKE '%$searchItem%'  ")
+						->count();
+						$filteredCount = $mycount;
+					}
+					
 				}
 				else 
 				{
@@ -374,6 +390,14 @@ use Cake\Utility\Inflector;
                                   $globalSearch[$countstr2. '='] = "" . $str. "";
 							   }
                            }
+                           // //sum(Journeys.end_time - Journeys.start_time)
+                           // else if( ($rowval['name']==$column['db']) && ($rowval['type']=="sum3") ){
+                               // // if(is_numeric($str))	{
+                                  // // $globalSearch[$column['db']. '='] = "" . $str. "";
+                                  // $countstr2 = 'sum(Journeys.end_time - Journeys.start_time)';
+                                  // $globalSearch[$countstr2. '='] = "" . $str. "";
+							   // // }
+                           // }
 						   else if( ($rowval['name']==$column['db']) && ($rowval['type']=="count2") ){
                                if(is_numeric($str))	{
                                   $globalSearch[$column['db']. '='] = "" . $str. "";

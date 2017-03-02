@@ -113,7 +113,7 @@ class AlertsController extends AppController
         if(isset($this->request->query['assetname'])){
         	
         	$pre=(strlen($usrfiter)>0)?" and ":"";
-			$usrfiter.=$pre. " alertcategories_id = 1 and trackingobject_id ='" .$this->request->query['assetname']. "'";
+			$usrfiter.=$pre. " alertcategories_id = 1 and customer_id ='" .$this->loggedinuser['customer_id']. "' AND  trackingobject_id ='" .$this->request->query['assetname']. "'";
 			
 			
         	
@@ -190,7 +190,7 @@ class AlertsController extends AppController
         if(isset($this->request->query['assetname'])){
         	
         	$pre=(strlen($usrfiter)>0)?" and ":"";
-			$usrfiter.=$pre. " alertcategories_id = 5 and trackingobject_id ='" .$this->request->query['assetname']. "'";
+			$usrfiter.=$pre. " alertcategories_id = 5 and customer_id ='" .$this->loggedinuser['customer_id']. "' AND  trackingobject_id ='" .$this->request->query['assetname']. "'";
 			
 			
         	
@@ -230,9 +230,9 @@ class AlertsController extends AppController
         	
         	$pre=(strlen($usrfiter)>0)?" and ":"";
 		//	$usrfiter.=$pre. "  trackingobject_id ='" .$this->request->query['assetname']. "'";
-			$usrfiter.=$pre. "  trackingobject_id ='" .$this->request->query['assetname']. "' and Alerts.customer_id ='" .$this->loggedinuser['customer_id']. "'group by alertcategories.name, alerts.location";
+			$usrfiter.=$pre. " Alerts.customer_id ='" .$this->loggedinuser['customer_id']. "' AND   trackingobject_id ='" .$this->request->query['assetname']. "' and Alerts.customer_id ='" .$this->loggedinuser['customer_id']. "'group by alertcategories.name, alerts.location";
 			
-			$wherestr2.=$pre. "  trackingobject_id ='" .$this->request->query['assetname']. "' and Alerts.customer_id ='" .$this->loggedinuser['customer_id']. "'";
+			$wherestr2.=$pre. " Alerts.customer_id ='" .$this->loggedinuser['customer_id']. "' AND   trackingobject_id ='" .$this->request->query['assetname']. "' and Alerts.customer_id ='" .$this->loggedinuser['customer_id']. "'";
         	
         }
     	
@@ -273,7 +273,7 @@ class AlertsController extends AppController
         if(isset($this->request->query['assetname'])){
         	
         	$pre=(strlen($usrfiter)>0)?" and ":""; 
-			$usrfiter.=$pre. " alertcategories_id = 12 and trackingobject_id ='" .$this->request->query['assetname']. "'";
+			$usrfiter.=$pre. " alertcategories_id = 12 and Alerts.customer_id ='" .$this->loggedinuser['customer_id']. "' AND  trackingobject_id ='" .$this->request->query['assetname']. "'";
 			
 			
         	
@@ -315,7 +315,7 @@ class AlertsController extends AppController
 		//	$usrfiter.=$pre. "  trackingobject_id ='" .$this->request->query['assetname']. "'";
 			//$usrfiter.=$pre. "  trackingobject_id ='" .$this->request->query['assetname']. "' and Alerts.customer_id ='" .$this->loggedinuser['customer_id']. "'group by alertcategories.name, alerts.location";
 			
-			$usrfiter.=$pre. " 1=1";
+			$usrfiter.=$pre. " Alerts.customer_id ='" .$this->loggedinuser['customer_id']. "'";
         	
         }
     	
@@ -355,7 +355,7 @@ class AlertsController extends AppController
         if(isset($this->request->query['assetname'])){
         	
         	$pre=(strlen($usrfiter)>0)?" and ":""; 
-			$usrfiter.=$pre. " alertcategories_id = 13 and trackingobject_id ='" .$this->request->query['assetname']. "'";
+			$usrfiter.=$pre. " alertcategories_id = 13 and Alerts.customer_id ='" .$this->loggedinuser['customer_id']. "' AND  trackingobject_id ='" .$this->request->query['assetname']. "'";
 			
 			
         	
@@ -395,7 +395,7 @@ class AlertsController extends AppController
         	
         	$pre=(strlen($usrfiter)>0)?" and ":""; 
         	//1-Overspeed 2-arshbreaking 4-acceleration
-			$usrfiter.=$pre. " (alertcategories_id = 1 or alertcategories_id = 2 or alertcategories_id = 4) and trackingobject_id ='" .$this->request->query['assetname']. "'";
+			$usrfiter.=$pre. " (alertcategories_id = 1 or alertcategories_id = 2 or alertcategories_id = 4) and customer_id ='" .$this->loggedinuser['customer_id']. "' AND  trackingobject_id ='" .$this->request->query['assetname']. "'";
 			
 			
         	
@@ -436,7 +436,7 @@ class AlertsController extends AppController
         	
         	$pre=(strlen($usrfiter)>0)?" and ":""; 
         	//22-trip start id
-			$usrfiter.=$pre. " alertcategories_id = 22 and alert_message like  'Entering%' ";
+			$usrfiter.=$pre. " alertcategories_id = 22 and Alerts.customer_id ='" .$this->loggedinuser['customer_id']. "' AND  alert_message like  'Entering%' ";
 			
 			
         	
@@ -477,7 +477,7 @@ class AlertsController extends AppController
         	
         	$pre=(strlen($usrfiter)>0)?" and ":""; 
         	//5-trip start end
-			$usrfiter.=$pre. " alertcategories_id = 5 and alert_message like  'Leaving%'  ";
+			$usrfiter.=$pre. " alertcategories_id = 5 and Alerts.customer_id ='" .$this->loggedinuser['customer_id']. "' AND alert_message like  'Leaving%'  ";
 			
 			
         	
@@ -561,8 +561,8 @@ class AlertsController extends AppController
         if(isset($this->request->query['assetname'])){
         	
         	$pre=(strlen($usrfiter)>0)?" and ":""; 
-			$usrfiter.=$pre. " alertcategories_id = 13 and  alert_message like  'Entering%' group by trackingobjects.name, date(alert_dtime),location";
-			$wherestr2.=$pre. " alertcategories_id = 13 and  alert_message like  'Entering%'";
+			$usrfiter.=$pre. " alertcategories_id = 13 and Alerts.customer_id ='" .$this->loggedinuser['customer_id']. "' AND   alert_message like  'Entering%' group by trackingobjects.name, date(alert_dtime),location";
+			$wherestr2.=$pre. " alertcategories_id = 13 and Alerts.customer_id ='" .$this->loggedinuser['customer_id']. "' AND  alert_message like  'Entering%'";
 			
         	
         }
