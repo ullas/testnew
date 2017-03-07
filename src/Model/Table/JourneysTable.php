@@ -5,7 +5,7 @@ use Cake\ORM\Query;
 use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
 use Cake\Validation\Validator;
-
+use Cake\Datasource\ConnectionManager;
 /**
  * Journeys Model
  *
@@ -101,4 +101,52 @@ class JourneysTable extends Table
 
         return $rules;
     }
+	
+	//for asset monthly reports
+	public function getMonthlySummary($cid,$tid,$month)
+	{
+		$con = ConnectionManager::get('default');
+		if($month == 0)
+		{
+			$stmt = $con->execute("SELECT sum(Journeys.distance) AS distance, max(maxspeed) AS maxspeed, Journeys.Count AS journeyscount, sum(Journeys.end_time - Journeys.start_time) AS duration FROM zorba.journeys Journeys LEFT JOIN zorba.trackingobjects Trackingobjects ON Trackingobjects.id = (Journeys.trackingobject_id) LEFT JOIN zorba.customers Customers ON Customers.id = (Journeys.customer_id) WHERE EXTRACT('month' FROM START_TIME)  = EXTRACT('month' FROM NOW()::DATE) and EXTRACT('YEAR' FROM START_TIME)  =  EXTRACT('YEAR' FROM NOW()::DATE)   and  trackingobject_id =$tid and  Journeys.customer_id =$cid group by Trackingobjects.name");
+		}
+		
+		if($month == 1)
+		{
+			if (date('m')==1)// for jan
+			{
+				$stmt = $con->execute("SELECT sum(Journeys.distance) AS distance, max(maxspeed) AS maxspeed, Journeys.Count AS journeyscount, sum(Journeys.end_time - Journeys.start_time) AS duration FROM zorba.journeys Journeys LEFT JOIN zorba.trackingobjects Trackingobjects ON Trackingobjects.id = (Journeys.trackingobject_id) LEFT JOIN zorba.customers Customers ON Customers.id = (Journeys.customer_id) WHERE EXTRACT('month' FROM START_TIME)  = 12 and EXTRACT('YEAR' FROM START_TIME)  =  EXTRACT('YEAR' FROM NOW()::DATE) - 1   and  trackingobject_id =$tid and  Journeys.customer_id =$cid group by Trackingobjects.name");
+		
+			}
+			else
+			{
+				$stmt = $con->execute("SELECT sum(Journeys.distance) AS distance, max(maxspeed) AS maxspeed, Journeys.Count AS journeyscount, sum(Journeys.end_time - Journeys.start_time) AS duration FROM zorba.journeys Journeys LEFT JOIN zorba.trackingobjects Trackingobjects ON Trackingobjects.id = (Journeys.trackingobject_id) LEFT JOIN zorba.customers Customers ON Customers.id = (Journeys.customer_id) WHERE EXTRACT('month' FROM START_TIME)  = EXTRACT('month' FROM NOW()::DATE) - 1 and EXTRACT('YEAR' FROM START_TIME)  =  EXTRACT('YEAR' FROM NOW()::DATE)   and  trackingobject_id =$tid and  Journeys.customer_id =$cid group by Trackingobjects.name");
+		
+			}
+				
+		}
+		
+		
+	    $results = $stmt->fetchAll('assoc');
+		return $results;
+	}
+	
+	//for asset weekly reports 
+	public function getWeeklySummary($cid,$tid)
+	{
+		$con = ConnectionManager::get('default');
+	    $stmt = $con->execute("SELECT sum(Journeys.distance) AS distance, max(maxspeed) AS maxspeed, Journeys.Count AS journeyscount, sum(Journeys.end_time - Journeys.start_time) AS duration FROM zorba.journeys Journeys LEFT JOIN zorba.trackingobjects Trackingobjects ON Trackingobjects.id = (Journeys.trackingobject_id) LEFT JOIN zorba.customers Customers ON Customers.id = (Journeys.customer_id) WHERE date(START_TIME) BETWEEN    NOW()::DATE-EXTRACT(DOW FROM NOW()) ::INTEGER AND NOW()::DATE   and  trackingobject_id =$tid and  Journeys.customer_id =$cid group by Trackingobjects.name");
+		$results = $stmt->fetchAll('assoc');
+		return $results;
+	}
+	
+	public function getAssetsDailySummary($cid,$tid,$date)
+	{
+		$con = ConnectionManager::get('default');
+		$date = "'".$date."'";
+	    // $stmt = $con->execute("SELECT sum(Journeys.distance) AS distance, max(maxspeed) AS maxspeed, Journeys.Count AS journeyscount, cast(TO_CHAR((sum(Journeys.end_time - Journeys.start_time) || 'second')::interval, 'DD:HH24:MI:SS') as varchar) AS duration FROM zorba.journeys Journeys LEFT JOIN zorba.trackingobjects Trackingobjects ON Trackingobjects.id = (Journeys.trackingobject_id) LEFT JOIN zorba.customers Customers ON Customers.id = (Journeys.customer_id) WHERE date(START_TIME) = $date  and  trackingobject_id =$tid and  Journeys.customer_id =$cid group by Trackingobjects.name");
+	    $stmt = $con->execute("SELECT sum(Journeys.distance) AS distance, max(maxspeed) AS maxspeed, Journeys.Count AS journeyscount, sum(Journeys.end_time - Journeys.start_time)  AS duration FROM zorba.journeys Journeys LEFT JOIN zorba.trackingobjects Trackingobjects ON Trackingobjects.id = (Journeys.trackingobject_id) LEFT JOIN zorba.customers Customers ON Customers.id = (Journeys.customer_id) WHERE date(START_TIME) = $date  and  trackingobject_id =$tid and  Journeys.customer_id =$cid group by Trackingobjects.name");
+		$results = $stmt->fetchAll('assoc');
+		return $results;
+	}
 }

@@ -423,7 +423,6 @@ $('.dataTables_filter input').unbind().on('keyup', function() {
 				 el.checked = false;
 		 }
 		 if (c==rows.length){
- 			  el.checked = true;
 				el.indeterminate = false;
  		 }
 		 prevselection = setSelection();
@@ -486,7 +485,9 @@ $('.dataTables_filter input').unbind().on('keyup', function() {
 
    });
 
-	 $('#datatabfilter').on('click',function(){$('#datatabfilterul').toggle()});
+	 $('#datatabfilter').on('click',function(){
+		 $('#datatabfilterul').toggle().css('border','1px solid #D2D6DE');
+	 });
 
 	 $(document).on('click', function (e) {
 	 if (!$('.daterangepicker').is(e.target) && $('.daterangepicker').has(e.target).length === 0 && !$('#datatabfilterul').is(e.target) && $('#datatabfilterul').has(e.target).length === 0) {

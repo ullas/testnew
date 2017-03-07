@@ -2,7 +2,7 @@
 namespace App\Controller\Component;
 use Cake\Controller\Component;
 use Cake\Utility\Inflector;
-   class DatatableComponent extends Component {
+   class DatatablereportsComponent extends Component {
        public function getView($fields,$contains,$usrFlier)
        {
            $length = count($fields);
@@ -56,7 +56,7 @@ use Cake\Utility\Inflector;
                    		$buttons='<a class="fa fa-file-text-o p3 mptldisabled"></a>
                                    		<a class="fa fa-pencil p3 mptldisabled"></a>
                                    		<a class="fa fa-trash mptldisabled"></a>';
-                   		return $buttons;
+                   		// return $buttons;
                		}
               	);
               }else{
@@ -70,7 +70,7 @@ use Cake\Utility\Inflector;
                                    <input type="hidden" name="_method" value="POST"></form>
                                    <a href="#" onclick="if (confirm(&quot;Are you sure you want to delete # '.$d.'?&quot;)) { document.getElementById(&quot;formdelete'.$d.'&quot;).submit(); }
                                     event.returnValue = false; return false;" class="fa fa-trash" style= "padding:3px"></a>';
-                   		return $buttons;
+                   		// return $buttons;
                		}
               	);
 			  }

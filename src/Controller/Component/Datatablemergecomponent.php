@@ -3,6 +3,14 @@ namespace App\Controller\Component;
 use Cake\Controller\Component;
 use Cake\Utility\Inflector;
 use Cake\ORM\TableRegistry;
+use Cake\ORM\Query;
+
+
+
+
+use Cake\ORM\Table;
+;
+use Cake\Datasource\ConnectionManager;
 
    class DatatablemergeComponent extends Component {
 
@@ -45,7 +53,7 @@ use Cake\ORM\TableRegistry;
                                    		<a class="fa fa-pencil p3 mptldisabled"></a>
                                    		<a class="fa fa-trash mptldisabled"></a>';
 
-                   		return $buttons;
+                   		// return $buttons;
                		}
               	);
               }else{
@@ -60,11 +68,15 @@ use Cake\ORM\TableRegistry;
                                    <a href="#" onclick="if (confirm(&quot;Are you sure you want to delete # '.$d.'?&quot;)) { document.getElementById(&quot;formdelete'.$d.'&quot;).submit(); }
                                     event.returnValue = false; return false;" class="fa fa-trash"></a>';
 
-                   		return $buttons;
+                   		// return $buttons;
                		}
               	);
 			  }
 			  // }
+           
+           
+           //getting orderby
+           $order = $this->Order( $colmns );
            
            //getting filter 
            $where = $this->Filter( $colmns, $fields );
@@ -96,7 +108,9 @@ use Cake\ORM\TableRegistry;
            }
            
            $data1 = $model->find('all')->contain($contains)->where($wherestr)->limit($limit)->page($page)->toArray();
-		   
+		   // $select1=$model->find('all')->where($wherestr)->limit($limit)->page($page);
+		   $select1=$model->find()->contain($contains)->where($wherestr)->limit($limit)->page($page);
+		   // $select1->select(["*"])->contain($contains)->where($wherestr)->limit($limit)->page($page);
 		   
 		   if(strlen($mergewherestr)>3 && strlen($usrFlier)>3){
            	 $mergewherestr.= " and ".$usrFlier;
@@ -107,12 +121,24 @@ use Cake\ORM\TableRegistry;
            }
 		   $table = TableRegistry::get($mergetbl);
 		   $data2 = $table->find('all')->contain($contains)->where($mergewherestr)->limit($limit)->page($page)->toArray();
-           
+           // $select2=$table->find('all')->where($mergewherestr)->limit($limit)->page($page);
+		   $select2=$table->find()->contain($contains)->where($mergewherestr)->limit($limit)->page($page);
+		   // $select2->select(["*"])->contain($contains)->where($mergewherestr)->limit($limit)->page($page);
+		   // $select2=$model->find()->where($wherestr);
 		   
-		   //getting orderby
+		   $select2->union($select1);
+		   // $select2 $select2->order(['speed' => 'DESC']);
+		   // $select2=$select2->toArray();
+		   // //getting orderby
            // $order = $this->Order( $colmns );
            
-		   $data = array_merge($data1,$data2);
+		   // $data = array_merge($data1,$data2);
+		    // $select2->select()->order($this->Order( $colmns ));
+		   $select2->epilog('ORDER BY Speed DESC ');
+		   // $data = $select2->toArray();
+		   $order =  explode(',', $order);
+		    $data = $this->getQueryResults($order,$wherestr,$mergewherestr,$limit,$this->request->query['start']);
+		   
 		   
            //getting totalcount
            $totalCount = $model->find() ->contain($contains)->count() + $table->find() ->contain($contains)->count();
@@ -121,8 +147,46 @@ use Cake\ORM\TableRegistry;
 
            $output =$this->GetData($colmns,$data,$totalCount,$filteredCount);
 		   // $output = $this->array_sort($output['data'], 'id', SORT_ASC);
+		   // foreach ($order as &key => &value)
+				// {
+					// $orderstring = &value;
+					// $dir = &key;
+				// }
+				// $order =  explode(',', $order);
+		   // return $wherestr;
+		   // return  $page;
 		   return  $output;
        }
+		public function getQueryResults($order,$wherestr,$mergewherestr,$limit,$start)
+			{
+				
+				$con = ConnectionManager::get('default');
+				// $stmt = $con->execute("(select * from zorba.tracking LEFT JOIN zorba.customers Customers ON Customers.id = (Tracking.customer_id) WHERE msgdtime BETWEEN '2017-01-01 00:00' AND '2017-02-20 00:00' and  trackingobject_id ='165' )
+										// union
+										// (select * from zorba.history LEFT JOIN zorba.customers Customers ON Customers.id = (History.customer_id) WHERE msgdtime BETWEEN '2017-01-01 00:00' AND '2017-02-20 00:00' and  trackingobject_id ='165' )
+										// ORDER BY $order[0] $order[1]");
+										
+										
+				$stmt = $con->execute("(select * from zorba.tracking LEFT JOIN zorba.customers Customers ON Customers.id = (Tracking.customer_id) WHERE $wherestr )
+										union
+										(select * from zorba.history LEFT JOIN zorba.customers Customers ON Customers.id = (History.customer_id) WHERE $mergewherestr )
+										ORDER BY $order[0] $order[1] LIMIT $limit  OFFSET $start ");
+				$results = $stmt->fetchAll('assoc');
+				return $results;
+			}
+			
+		public function getFilteredResults($wherestr,$mergewherestr)
+			{
+				
+				$con = ConnectionManager::get('default');
+				$stmt = $con->execute("(select * from zorba.tracking LEFT JOIN zorba.customers Customers ON Customers.id = (Tracking.customer_id) WHERE msgdtime BETWEEN '2017-01-01 00:00' AND '2017-02-20 00:00' and  trackingobject_id ='165' )
+										union
+										(select * from zorba.history LEFT JOIN zorba.customers Customers ON Customers.id = (History.customer_id) WHERE msgdtime BETWEEN '2017-01-01 00:00' AND '2017-02-20 00:00' and  trackingobject_id ='165' )
+										ORDER BY $order[0] $order[1]");
+				$results = $stmt->fetchAll('assoc');
+				return $results;
+			}
+
 		public function array_sort($array, $on, $order=SORT_ASC){
 
     		$new_array = array();
@@ -215,7 +279,7 @@ use Cake\ORM\TableRegistry;
            }
 
 
-          
+          // echo json_encode($globalSearch) ;
            return $globalSearch;
        }
        public function Order ( $columns )
@@ -240,9 +304,13 @@ use Cake\ORM\TableRegistry;
                }
                $order = implode(', ', $orderBy);
            }
-           return $orderBy;
+			// echo "sfsdfg";
+			// echo json_encode($orderBy) ;
+			// echo $orderBy;
+           // return $orderBy;
+           return $dbname .','. $order;
        }
-       public function pluck ( $a, $prop )
+		 public function pluck ( $a, $prop )
        {
            $out = array();
            for ( $i=0, $len=count($a) ; $i<$len ; $i++ ) {

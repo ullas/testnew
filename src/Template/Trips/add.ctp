@@ -116,7 +116,7 @@
         
         <?php
         	//echo $this->Form->input('completedstops');
-            echo $this->Form->input('locations._ids', ['options' => $locations,'class'=>'select2']);
+            echo $this->Form->input('locations._ids', ['required' => 'required','options' => $locations,'class'=>'select2']);
              ?>
   </div>
 
