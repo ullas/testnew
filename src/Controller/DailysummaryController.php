@@ -54,7 +54,7 @@ class DailysummaryController extends AppController
         if(isset($this->request->query['assetname'])){
         	
         	$pre=(strlen($usrfiter)>0)?" and ":"";
-			$usrfiter.=$pre. " trackingobject_id ='" .$this->request->query['assetname']. "'";
+			$usrfiter.=$pre. " customer_id ='" .$this->loggedinuser['customer_id']. "' AND customer_id ='" .$this->loggedinuser['customer_id']. "' AND  trackingobject_id ='" .$this->request->query['assetname']. "'";
 			
         	
         }
@@ -94,7 +94,7 @@ class DailysummaryController extends AppController
         if(isset($this->request->query['assetname'])){
         	
         	$pre=(strlen($usrfiter)>0)?" and ":"";
-			$usrfiter.=$pre. " trackingobject_id ='" .$this->request->query['assetname']. "'";
+			$usrfiter.=$pre. " Dailysummary.customer_id ='" .$this->loggedinuser['customer_id']. "' AND  trackingobject_id ='" .$this->request->query['assetname']. "'";
 			
         	
         }
@@ -134,7 +134,7 @@ class DailysummaryController extends AppController
         if(isset($this->request->query['assetname'])){
         	
         	$pre=(strlen($usrfiter)>0)?" and ":"";
-			$usrfiter.=$pre. " trackingobject_id ='" .$this->request->query['assetname']. "'";
+			$usrfiter.=$pre. " Dailysummary.customer_id ='" .$this->loggedinuser['customer_id']. "' AND  trackingobject_id ='" .$this->request->query['assetname']. "'";
 			
         	
         }
@@ -197,7 +197,7 @@ class DailysummaryController extends AppController
         	
         	$pre=(strlen($usrfiter)>0)?" and ":"";
 			// $usrfiter.=$pre. " trackingobject_id1 ='" .$this->request->query['assetname']. "'";
-			$usrfiter.=$pre. "1=1   group by  Dailysummary.mdate,Trackingobjects.name";
+			$usrfiter.=$pre. "Dailysummary.customer_id ='" .$this->loggedinuser['customer_id']. "'  group by  Dailysummary.mdate,Trackingobjects.name";
 			
         	
         // }
@@ -238,7 +238,7 @@ class DailysummaryController extends AppController
         if(isset($this->request->query['assetname'])){
         	
         	$pre=(strlen($usrfiter)>0)?" and ":"";
-			$usrfiter.=$pre. " trackingobject_id ='" .$this->request->query['assetname']. "'";
+			$usrfiter.=$pre. " Dailysummary.customer_id ='" .$this->loggedinuser['customer_id']. "' AND  trackingobject_id ='" .$this->request->query['assetname']. "'";
 			
         	
         }
