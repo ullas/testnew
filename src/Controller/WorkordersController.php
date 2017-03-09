@@ -241,8 +241,9 @@ public function ajaxdata() {
 			
 			
             if ($this->Workorders->save($workorder)) {
-            	
+            	$this->log($this->request->data);
 			   if(isset($this->request->data['workorderlineitem'])){
+			   	// $this->log("sssooo");
 				$lineitems=$this->request->data['workorderlineitem'];
 				for($i=0;$i<count($lineitems);$i++)
 				{
@@ -266,9 +267,9 @@ public function ajaxdata() {
 				  
 			    }	
 				
-                $this->Flash->success(__('The workorder has been saved.'));
+                // $this->Flash->success(__('The workorder has been saved.'));
 
-                 return $this->redirect(['action' => 'index']);
+                 // return $this->redirect(['action' => 'index']);
             } else {
                 $this->Flash->error(__('The workorder could not be saved. Please, try again.'));
             }
