@@ -28,25 +28,34 @@
                <?php
             echo $this->Form->input('issuedate', ['empty' => true,'type'=>'text','class'=>'datemask','label'=>'Issue Date ','templateVars' => ['icon' => '<div class="input-group-addon"><i class="fa fa-calendar"></i></div>'],'required' => 'required']);
             echo $this->Form->input('workorderstatus_id',['empty' => true,'label'=>'Work Order Status ','class'=>'select2','required' => 'required']);
-            echo $this->Form->input('vehicle_id', ['options' => $vehicles, 'empty' => true,'class'=>'select2','required' => 'required']);
-            echo $this->Form->input('startdate', ['empty' => true,'type'=>'text','class'=>'datemask','label'=>'Start Date ','templateVars' => ['icon' => '<div class="input-group-addon"><i class="fa fa-calendar"></i></div>'],'required' => 'required']);
+           ?>
+		   
+		   
+				    <a href="/Vehicles/add/" id="addfltr" class="btn btn-sm btn-success" style="float: right"  title="Add New"><i class="fa fa-plus" aria-hidden="true"></i></a>
+		   	
+			
+		   
+		   <?php
+		    echo $this->Form->input('vehicle_id', ['options' => $vehicles,array('div' => false), 'empty' => true,'class'=>'select2','required' => 'required']);
+           	echo $this->Form->input('startdate', ['empty' => true,'type'=>'text','class'=>'datemask','label'=>'Start Date ','templateVars' => ['icon' => '<div class="input-group-addon"><i class="fa fa-calendar"></i></div>'],'required' => 'required']);
             echo $this->Form->input('lables',['label'=>'Labels']);
             echo $this->Form->input('odometer');
              ?>
-         
+		        
          <div class="form-group">
                   	<label for="void" class="col-sm-3 control-label" style="padding-top:0" >Mark as Void</label>
 				  	<div class="col-sm-6">
 				    	<input name="void" value="1" id="void" class="" type="checkbox">
+				    	<!-- <input type="text" name="labour" class="form-control" id="part1"> -->
                    	</div>
 				  	<div class="col-sm-offset-3 col-sm-6" style="margin-top:18px" >
 				  	</div>
 			</div>
             
 		 <?php	
-             echo $this->Form->input('vendor_id', ['options' => $vendors, 'empty' => true,'class'=>'select2']);
+            echo $this->Form->input('vendor_id', ['options' => $vendors, 'empty' => true,'class'=>'select2']);
             echo $this->Form->input('completiondate', ['empty' => true,'type'=>'text','class'=>'datemask','label'=>'Completion Date','templateVars' => ['icon' => '<div class="input-group-addon"><i class="fa fa-calendar"></i></div>']]);
-            echo $this->Form->input('labour');
+            // echo $this->Form->input('labour');
             echo $this->Form->input('parts');
             echo $this->Form->input('dicount',['label'=>'Discount']);
             echo $this->Form->input('tax');
@@ -57,6 +66,39 @@
             echo $this->Form->input('phonenumber',['label'=>'Phone Number']);
             echo $this->Form->input('description');
         ?>
+        <hr/>
+		 
+				        <div class="">
+								<div class="box box-solid box-success">
+								
+								  <div class="box-header">
+								       <div class=" bg-green"> Labor/Parts </div>
+								  </div>
+								
+								  <div class="box-body maindiv">
+								      <div class="classname" id="contentDiv1">
+								          <div class="clearfix">
+								              <div class="col-sm-3 form-group">
+								              	<label>Part:</label>
+								              	<input type="text" class="form-control" id="part1"/></div>
+								              <div class="col-sm-3 form-group">
+								              	<label>Type:</label>
+								              	<input type="text" class="form-control" id="type1"/></div>
+								          </div><hr/>
+								      </div>
+								  </div>
+								
+								  <div class="box-footer">
+								      <input type="button" class="btn btn-flat btn-primary" 
+								id="btnAddControl" value="Add Control"/>
+								      <input type="button" class="btn btn-flat btn-success pull-right" 
+								id="btnSave" value="Save"/>
+								  </div>
+								
+								</div>
+						</div>
+        
+        
     </div>
  
           </div>
@@ -110,6 +152,20 @@ $this->Html->script([
             format:"dd/mm/yy",
               autoclose: true
    });
+   
+		   		 		//add control button onclick
+		          		$("#btnAddControl").click(function () {
+			              	var numItems = $('.classname').length+1;
+			              	$(".maindiv").append("<div class='classname' 	id='contentDiv"+numItems+"'><div class='clearfix'>	<div 	class='col-sm-3 form-group'><label>PART:</label><input type='text' name='labour"+numItems+"' class='form-control' id='part"+numItems+"'/></div><div class='col-sm-3'><label>Type:</label><input type='text' 	class='form-control' id='type"+numItems+"'/></div></div><hr/></div>");
+		          		});
+		         		 //save btn onclick
+	          			$("#btnSave").click(function () {
+		             	    // var numItems = $('.classname').length;
+			                // for(count = 1; count <= numItems; count++){
+			                // alert($('#part'+count).val());
+		                //}
+		                });
+   
   });
 </script>
 <?php $this->end(); ?>      	 
