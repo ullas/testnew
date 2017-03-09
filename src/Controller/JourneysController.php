@@ -407,7 +407,7 @@ class JourneysController extends AppController
     	//
     	$pre=(strlen($usrfiter)>0)?" and ":"";
 		// $usrfiter.=$pre. " Journeys.customer_id ='" .$this->loggedinuser['customer_id']. "'group by trackingobjects.name,Journeys.start_time,Journeys.distance,Journeys.maxspeed";
-		$usrfiter.=$pre. " Journeys.customer_id ='" .$this->loggedinuser['customer_id']. "'group by date(start_time)";
+		$usrfiter.=$pre. " Journeys.customer_id ='" .$this->loggedinuser['customer_id']. "'group by date(start_time),trackingobjects.name";
 		
 		$wherestr2.=$pre. " Journeys.customer_id ='" .$this->loggedinuser['customer_id']. "'";
 		
