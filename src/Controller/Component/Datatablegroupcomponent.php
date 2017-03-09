@@ -149,6 +149,20 @@ use Cake\Utility\Inflector;
 		   	}
 			// return $this->request->query['search']['value'] ;
 		  // return $havingstr;
+		  
+		  if($flg ==3 || $flg ==5 || $flg == 2)
+		  {
+		  	if(!is_numeric($this->request->query['search']['value']))	
+			{
+				// return $havingstr;
+				$searchItem=$this->request->query['search']['value'];
+				if($havingstr == $wherestr )
+				{$havingstr.=" having Trackingobjects.name ILIKE '%$searchItem%'" ;}
+				else{$havingstr.="  Trackingobjects.name ILIKE '%$searchItem%'" ;}
+			}
+		  }
+		  // return $havingstr;
+		  
 		  if($flg == 4) //for alertDetailsforAssetDailyAjaxData
 			{
 		  		$data = $query->select($select)->contain($contains)->where($wherestr)->order($order)->limit($limit)->page($page)->toArray();
@@ -173,7 +187,7 @@ use Cake\Utility\Inflector;
 					{
 						$mycount = $countQuery->select(['trackingobjects.name'])->where($wherestr2)
 						->group('Trackingobjects.name')
-						->having("  sum(Journeys.distance)= '$searchItem' OR max(Journeys.maxspeed)= '$searchItem' OR Journeys.Count= '$searchItem'")
+						->having(" Trackingobjects.name ILIKE '%$searchItem%'  OR sum(Journeys.distance)= '$searchItem' OR max(Journeys.maxspeed)= '$searchItem' OR Journeys.Count= '$searchItem'")
 						->count();
 					}
 					else
@@ -225,7 +239,7 @@ use Cake\Utility\Inflector;
 						->group('Journeys.start_time')
 						->group('Journeys.distance')
 						->group('Journeys.maxspeed')
-						->having("to_char(Journeys.start_time , 'YYYY-MM-DD') ILIKE '%$searchItem%'  ")
+						->having("to_char(Journeys.start_time , 'YYYY-MM-DD') = '$searchItem' ")
 						->count();
 						$filteredCount = $mycount;
 					}
@@ -265,7 +279,7 @@ use Cake\Utility\Inflector;
 						->group('Trackingobjects.name')
 						->group('Journeys.start_time')->group('Journeys.end_time')
 						->group('Journeys.maxspeed')->group('Journeys.idletime')->group('Journeys.distance')
-						// ->having(" Journeys.maxspeed= '$searchItem' OR Journeys.idletime= '$searchItem' OR Journeys.distance= '$searchItem'")
+						 ->having(" Trackingobjects.name ILIKE '%$searchItem%'  ")
 						->count();
 					}
 				
@@ -306,7 +320,7 @@ use Cake\Utility\Inflector;
 						
 						->group('date(Journeys.start_time)')->group('Trackingobjects.name')
 						
-						
+						->having(" Trackingobjects.name ILIKE '%$searchItem%'  ")
 						// ->having(" Journeys.maxspeed= '$searchItem' OR Journeys.idletime= '$searchItem' OR Journeys.distance= '$searchItem'")
 						->count();
 					}
@@ -348,6 +362,13 @@ use Cake\Utility\Inflector;
            $d = \DateTime::createFromFormat($format, $date);
            return $d && $d->format($format) == $date;
        }
+	   function validateDuration($duration,$format)
+	   {
+		   	$dur = \DateTime::createFromFormat ( $format ,$duration);
+			// echo "klhlh";
+			return $dur;
+			//return $d && $d->format($format) == $date;
+	   }
        function isBoolean($value) {
               if ($value && (strtolower($value) == "false" || strtolower($value) == "true")) {
                  return true;
@@ -404,11 +425,13 @@ use Cake\Utility\Inflector;
 								  // $globalSearch[ 'count(alertcategories_id)='] = "" . $str. "";
 							   }
                            }
-						   // else if( ($rowval['name']==$column['db']) && ($rowval['type']=="sum3") ){
-                               // if(is_numeric($str))	{
+						   else if( ($rowval['name']==$column['db']) && ($rowval['type']=="sum3") ){
+                             	if($this->validateDuration($str,'H/I/S')){
+                             		$countstr2 = 'sum(Journeys.end_time - Journeys.start_time)';
                                   // $globalSearch[$column['db']. '='] = "" . $str. "";
-							   // }
-                           // }
+                                  $globalSearch[$countstr2. '='] = "" . $str. "";
+								}
+                           }
                            else if( ($rowval['name']==$column['db']) && ($rowval['type']=="countall") ){
                                if(is_numeric($str))	{
                                   $globalSearch[$column['db']. '='] = "" . $str. "";
@@ -420,12 +443,12 @@ use Cake\Utility\Inflector;
 								$globalSearch[$column['db'].'::date ='] = $str;
                                }
                            }
-						   else if( ($rowval['name']==$column['db']) && ($rowval['type']=="dateofjourney") ){
-								 $my_date = date('Y-m-d', strtotime($str));
-							     $datestr = 'date('.$column['db'].')';
-								 // $globalSearch["to_char(".$column['db']." , 'YYYY-MM-DD') ILIKE"] = "%" . $my_date. "%";
-								 $globalSearch["to_char(".$datestr." , 'YYYY-MM-DD') ILIKE"] = "%" . $my_date. "%";
-                           }
+						   // else if( ($rowval['name']==$column['db']) && ($rowval['type']=="dateofjourney") ){
+								 // $my_date = date('Y-m-d', strtotime($str));
+							     // $datestr = 'date('.$column['db'].')';
+								 // // $globalSearch["to_char(".$column['db']." , 'YYYY-MM-DD') ILIKE"] = "%" . $my_date. "%";
+								 // $globalSearch["to_char(".$datestr." , 'YYYY-MM-DD') ILIKE"] = "%" . $my_date. "%";
+                           // }
                            else if( ($rowval['name']==$column['db']) && ($rowval['type']=="boolean") ){
                                if($this->isBoolean($str) === true){
                                    $globalSearch[$column['db'].' ='] =  $str;
