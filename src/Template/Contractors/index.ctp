@@ -14,6 +14,6 @@
 				$fields[2] = array("title" =>"Description"  , "type" => "char");
 				
 
-echo $this->element('indexbasicmaster', array('colheadsformasters' => $fields)); ?>
+echo $this->element('indexbasicmasternew', array('colheadsformasters' => $fields)); ?>
 
 
