@@ -14,6 +14,6 @@
 </section>
 <!-- Main content -->
 
-<?php echo $this->element('indexbasicnofilter'); ?>
+<?php echo $this->element('indexbasicnofilternew'); ?>
 
 
