@@ -31,12 +31,14 @@
            ?>
 		   
 		   
-				    <a href="/Vehicles/add/" id="addfltr" class="btn btn-sm btn-success" style="float: right"  title="Add New"><i class="fa fa-plus" aria-hidden="true"></i></a>
+				    
 		   	
 			
 		   
 		   <?php
-		    echo $this->Form->input('vehicle_id', ['options' => $vehicles,array('div' => false), 'empty' => true,'class'=>'select2','required' => 'required']);
+		   
+		   	echo $this->Form->input('vehicle_id', ['options' => $vehicles, 'empty' => true,'class'=>'select2','required' => 'required','templateVars' => ['buttontag' => '<a href="/Vehicles/add/" id="addfltr" class="btn btn-sm btn-success" title="Add New Vehicle"><i class="fa fa-plus" aria-hidden="true"></i></a>']]);
+		    // echo $this->Form->input('vehicle_id', ['options' => $vehicles,array('div' => false), 'empty' => true,'class'=>'select2','required' => 'required']);
            	echo $this->Form->input('startdate', ['empty' => true,'type'=>'text','class'=>'datemask','label'=>'Start Date ','templateVars' => ['icon' => '<div class="input-group-addon"><i class="fa fa-calendar"></i></div>'],'required' => 'required']);
             echo $this->Form->input('lables',['label'=>'Labels']);
             echo $this->Form->input('odometer');
@@ -67,35 +69,36 @@
             echo $this->Form->input('description');
         ?>
         <hr/>
-		 
-				        <div class="">
+	<style>
+		a.delete{
+			margin-top:20px;
+		}
+	</style>	 <br/><br/><br/>
+				        <div>
 								<div class="box box-solid box-success">
 								
 								  <div class="box-header">
-								       <div class=" bg-green"> Labor/Parts </div>
+								       <div class=" bg-green"> <h4 class="box-title">Parts</h4> </div>
 								  </div>
 								
 								  <div class="box-body maindiv">
 								      <div class="classname" id="contentDiv1">
 								          <div class="clearfix">
-								              <div class="col-sm-3 form-group">
-								              	<label>Part:</label>
+								              <div class="col-sm-3 "><label>Part:</label>
 								              	<input type="text" class="form-control" id="part1"/></div>
-								              <div class="col-sm-3 form-group">
-								              	<label>Type:</label>
+								              <div class="col-sm-3"><label>Type:</label>
 								              	<input type="text" class="form-control" id="type1"/></div>
-								          </div><hr/>
+								          <div class="col-sm-3 text-center"><!-- <a class="delete btn btn-danger btn-flat" id="delete1"><i class="fa fa-trash"></i></a> --></div>
+ 										</div>
+ 										<hr/>
 								      </div>
 								  </div>
 								
 								  <div class="box-footer">
-								      <input type="button" class="btn btn-flat btn-primary" 
-								id="btnAddControl" value="Add Control"/>
-								      <input type="button" class="btn btn-flat btn-success pull-right" 
-								id="btnSave" value="Save"/>
+								      <input type="button" class="btn btn-flat btn-primary" id="btnAddControl" value="Add Control" />
+								      
 								  </div>
-								
-								</div>
+							</div>
 						</div>
         
         
@@ -116,6 +119,7 @@
   <div class="row">
    <div class="form-group">
                 <div class="col-sm-offset-6 col-sm-10">
+                	<input type="button" class="btn btn-flat btn-success" id="btnSave" value="Ajax Save"/>
                   <button type="submit" class="btn btn-success">Save</button>
                 </div>
    </div>
@@ -145,7 +149,11 @@ $this->Html->script([
 ?>
 <?php $this->start('scriptBotton'); ?>
 <script>
+
   $(function () {
+
+  	// $("#vehicle-id").append('<option value="addvehicle"><button>Add New Vehicle</button></option>');
+
     //Initialize Select2 Elements
     $(".select2").select2();
     $('.datemask').datepicker({
@@ -153,18 +161,27 @@ $this->Html->script([
               autoclose: true
    });
    
-		   		 		//add control button onclick
-		          		$("#btnAddControl").click(function () {
-			              	var numItems = $('.classname').length+1;
-			              	$(".maindiv").append("<div class='classname' 	id='contentDiv"+numItems+"'><div class='clearfix'>	<div 	class='col-sm-3 form-group'><label>PART:</label><input type='text' name='labour"+numItems+"' class='form-control' id='part"+numItems+"'/></div><div class='col-sm-3'><label>Type:</label><input type='text' 	class='form-control' id='type"+numItems+"'/></div></div><hr/></div>");
-		          		});
-		         		 //save btn onclick
-	          			$("#btnSave").click(function () {
-		             	    // var numItems = $('.classname').length;
-			                // for(count = 1; count <= numItems; count++){
-			                // alert($('#part'+count).val());
-		                //}
-		                });
+	//add control button onclick
+	$("#btnAddControl").click(function () {
+		var numItems = $('.classname').length+1;
+		$(".maindiv").append("<div class='classname' 	id='contentDiv"+numItems+"'><div class='clearfix'>	<div 	class='col-sm-3'><label>Part:</label><input type='text' name='labour"+numItems+"' class='form-control' id='part"+numItems+"'/></div><div class='col-sm-3'><label>Type:</label><input type='text' 	class='form-control' id='type"+numItems+"'/></div><div class='col-sm-3 text-center'></div></div><hr/></div>");
+	});
+		          		
+
+	//delete btn onclick
+	$('.maindiv').on('click', 'a.delete', function() {
+		$(this).parent().closest('div .classname').remove();
+	});
+
+	var postdata = [];
+	//save btn onclick
+	$("#btnSave").click(function () {
+		var numItems = $('.classname').length;
+		for(count = 1; count <= numItems; count++){
+			postdata.push($('#part'+count).val() + "^" + $('#type'+count).val());
+		}
+		alert(postdata);
+	});
    
   });
 </script>
