@@ -247,7 +247,7 @@ $this->Html->script([
    		 		}
     		});
     	}else{
-    		sweet_alert("Please enter the mandatory fields.");
+    		alert("Please enter the mandatory fields.");
     		return false;
     	}
     	
