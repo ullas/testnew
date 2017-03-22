@@ -235,7 +235,7 @@ public function ajaxdata() {
 			
             $workorder = $this->Workorders->patchEntity($workorder, $this->request->data);
 			
-				//print_r($this->request->data);
+				// print_r($workorder['id']);
 			
             $workorder['customer_id']=$this->loggedinuser['customer_id'];
 			
