@@ -80,7 +80,7 @@
 								      <div class="classname" id="contentDiv1">
 								          <div class="clearfix">
 								              <div class="col-sm-3 "><label>Part:</label>
-								              	<input type="text" class="form-control" id="part1"/></div>
+								              	<input type="text" class="form-control inputpart" id="part1"/></div>
 								              <div class="col-sm-3"><label>Type:</label>
 								              	<input type="text" class="form-control" id="type1"/></div>
 								              	<?php
@@ -160,6 +160,22 @@ $this->Html->script([
 
   $(function () {
 
+
+	$('.maindiv').on('change', 'input.inputpart', function() {
+    	var numItems = $('.inputpart').length;
+    	var partcount=0;
+		for(count = 1; count <= numItems; count++){
+			var tempval=$('#part'+count).val();
+			if(tempval!="" && tempval!=null){
+				partcount+=parseInt(tempval);
+			}
+		}
+		//set text
+		$('#parts').val(partcount);
+	});
+	
+	
+	
 	// $('.form-control').keyup(function () {
 //  
     // // initialize the sum (total price) to zero
@@ -190,7 +206,7 @@ $this->Html->script([
 	$("#btnAddControl").click(function (event) {
 		event.preventDefault();
 		var numItems = $('.classname').length+1;
-		$(".maindiv").append("<div class='classname' 	id='contentDiv"+numItems+"'><div class='clearfix'>	<div 	class='col-sm-3'><label>Part:</label><input type='text' name='labour"+numItems+"' class='form-control' id='part"+numItems+"'/></div><div class='col-sm-3'><label>Type:</label><input type='text' 	class='form-control' id='type"+numItems+"'/></div><div class='col-sm-3 text-center'></div></div><hr/></div>");
+		$(".maindiv").append("<div class='classname' 	id='contentDiv"+numItems+"'><div class='clearfix'>	<div 	class='col-sm-3'><label>Part:</label><input type='text' name='labour"+numItems+"' class='form-control inputpart' id='part"+numItems+"'/></div><div class='col-sm-3'><label>Type:</label><input type='text' 	class='form-control' id='type"+numItems+"'/></div><div class='col-sm-3 text-center'></div></div><hr/></div>");
 		// $(".maindiv").append("<div class='classname' 	id='contentDiv"+numItems+"'><div class='clearfix'>	<div 	class='col-sm-3'><label>Part:</label><input type='text' name='labour"+numItems+"' class='form-control' id='part"+numItems+"'/></div><div class='col-sm-3'><label>Type:</label><input type='text' 	class='form-control' id='type"+numItems+"'/></div><div class='col-sm-3 text-center'></div></div><hr/></div>");
 		// $('<div>' + $('#servicetasks_selector option:selected').text() + '</div>').appendTo(".maindiv");	
 	
@@ -210,11 +226,32 @@ $this->Html->script([
 	var postdata = [];
 	//save btn onclick
 	$("#btnSave").click(function () {
-		var numItems = $('.classname').length;
-		for(count = 1; count <= numItems; count++){
-			postdata.push($('#part'+count).val() + "^" + $('#type'+count).val());
-		}
-		alert(postdata);
+		
+		//get input value
+		var issuedate = document.getElementById("issuedate").value;
+		var workorderstatus = document.getElementById("workorderstatus-id").value;
+
+    	if (issuedate != "" && workorderstatus!=null) {
+
+    		$.get('/Workorders/createajax_data?issuedate='+issuedate+'&workorderstatus='+workorderstatus, function(d) {
+   		 		if(d!="error"){
+   		 			
+   		 			//labor & parts
+					var numItems = $('.classname').length;
+					for(count = 1; count <= numItems; count++){
+						postdata.push($('#part'+count).val() + "^" + $('#type'+count).val()+ "^" + d);
+					}
+					$.get('/Workorders/addLaborParts?content='+postdata, function(d) {
+    					// alert(d);
+    				});
+   		 		}
+    		});
+    	}else{
+    		sweet_alert("Please enter the mandatory fields.");
+    		return false;
+    	}
+    	
+		
 	});
    
   });
