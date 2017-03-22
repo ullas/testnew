@@ -57,18 +57,13 @@
 		 <?php	
             echo $this->Form->input('vendor_id', ['options' => $vendors, 'empty' => true,'class'=>'select2']);
             echo $this->Form->input('completiondate', ['empty' => true,'type'=>'text','class'=>'datemask','label'=>'Completion Date','templateVars' => ['icon' => '<div class="input-group-addon"><i class="fa fa-calendar"></i></div>']]);
-            // echo $this->Form->input('labour');
+            echo $this->Form->input('labour');
             echo $this->Form->input('parts');
             echo $this->Form->input('dicount',['label'=>'Discount']);
             echo $this->Form->input('tax');
-            echo $this->Form->input('issuedby_id',['options' => $issuedbies,'empty' => true,'label'=>'Issued By','class'=>'select2']);
-            echo $this->Form->input('assignedby_id',['options' => $assignedbies,'empty' => true,'label'=>'Assigned By','class'=>'select2']);
-            echo $this->Form->input('assignto_id',['options' => $assigntos,'empty' => true,'label'=>'Assigned To','class'=>'select2']);
-            echo $this->Form->input('invoicenumber',['label'=>'Invoice Number']);
-            echo $this->Form->input('phonenumber',['label'=>'Phone Number']);
-            echo $this->Form->input('description');
-        ?>
-        <hr/>
+			?>
+			
+			 <hr/>
 	<style>
 		a.delete{
 			margin-top:20px;
@@ -78,16 +73,19 @@
 								<div class="box box-solid box-success">
 								
 								  <div class="box-header">
-								       <div class=" bg-green"> <h4 class="box-title">Parts</h4> </div>
+								       <div class=" bg-green"> <h4 class="box-title">Labor & Parts</h4> </div>
 								  </div>
 								
 								  <div class="box-body maindiv">
 								      <div class="classname" id="contentDiv1">
 								          <div class="clearfix">
 								              <div class="col-sm-3 "><label>Part:</label>
-								              	<input type="text" class="form-control" id="part1"/></div>
+								              	<input type="text" class="form-control inputpart" id="part1"/></div>
 								              <div class="col-sm-3"><label>Type:</label>
 								              	<input type="text" class="form-control" id="type1"/></div>
+								              	<?php
+		   											echo $this->Form->input('servicetask_id', ['label'=>'Service Task','options' => $servicetasks, 'empty' => true,'class'=>'select2','required' => 'required']);
+											   	?>
 								          <div class="col-sm-3 text-center"><!-- <a class="delete btn btn-danger btn-flat" id="delete1"><i class="fa fa-trash"></i></a> --></div>
  										</div>
  										<hr/>
@@ -100,6 +98,16 @@
 								  </div>
 							</div>
 						</div>
+			
+			<?php
+            echo $this->Form->input('issuedby_id',['options' => $issuedbies,'empty' => true,'label'=>'Issued By','class'=>'select2']);
+            echo $this->Form->input('assignedby_id',['options' => $assignedbies,'empty' => true,'label'=>'Assigned By','class'=>'select2']);
+            echo $this->Form->input('assignto_id',['options' => $assigntos,'empty' => true,'label'=>'Assigned To','class'=>'select2']);
+            echo $this->Form->input('invoicenumber',['label'=>'Invoice Number']);
+            echo $this->Form->input('phonenumber',['label'=>'Phone Number']);
+            echo $this->Form->input('description');
+        ?>
+       
         
         
     </div>
@@ -152,6 +160,38 @@ $this->Html->script([
 
   $(function () {
 
+
+	$('.maindiv').on('change', 'input.inputpart', function() {
+    	var numItems = $('.inputpart').length;
+    	var partcount=0;
+		for(count = 1; count <= numItems; count++){
+			var tempval=$('#part'+count).val();
+			if(tempval!="" && tempval!=null){
+				partcount+=parseInt(tempval);
+			}
+		}
+		//set text
+		$('#parts').val(partcount);
+	});
+	
+	
+	
+	// $('.form-control').keyup(function () {
+//  
+    // // initialize the sum (total price) to zero
+    // var sum = 0;
+//      
+    // // we use jQuery each() to loop through all the textbox with 'price' class
+    // // and compute the sum for each loop
+    // $('.form-control').each(function() {
+        // sum += Number($(this).val());
+    // });
+//      
+    // // set the computed value to 'totalPrice' textbox
+    // $('#labour').val(sum);
+//      
+// });
+	
   	// $("#vehicle-id").append('<option value="addvehicle"><button>Add New Vehicle</button></option>');
 
     //Initialize Select2 Elements
@@ -162,9 +202,19 @@ $this->Html->script([
    });
    
 	//add control button onclick
-	$("#btnAddControl").click(function () {
+	// var band_count = 0;
+	$("#btnAddControl").click(function (event) {
+		event.preventDefault();
 		var numItems = $('.classname').length+1;
-		$(".maindiv").append("<div class='classname' 	id='contentDiv"+numItems+"'><div class='clearfix'>	<div 	class='col-sm-3'><label>Part:</label><input type='text' name='labour"+numItems+"' class='form-control' id='part"+numItems+"'/></div><div class='col-sm-3'><label>Type:</label><input type='text' 	class='form-control' id='type"+numItems+"'/></div><div class='col-sm-3 text-center'></div></div><hr/></div>");
+		$(".maindiv").append("<div class='classname' 	id='contentDiv"+numItems+"'><div class='clearfix'>	<div 	class='col-sm-3'><label>Part:</label><input type='text' name='labour"+numItems+"' class='form-control inputpart' id='part"+numItems+"'/></div><div class='col-sm-3'><label>Type:</label><input type='text' 	class='form-control' id='type"+numItems+"'/></div><div class='col-sm-3 text-center'></div></div><hr/></div>");
+		// $(".maindiv").append("<div class='classname' 	id='contentDiv"+numItems+"'><div class='clearfix'>	<div 	class='col-sm-3'><label>Part:</label><input type='text' name='labour"+numItems+"' class='form-control' id='part"+numItems+"'/></div><div class='col-sm-3'><label>Type:</label><input type='text' 	class='form-control' id='type"+numItems+"'/></div><div class='col-sm-3 text-center'></div></div><hr/></div>");
+		// $('<div>' + $('#servicetasks_selector option:selected').text() + '</div>').appendTo(".maindiv");	
+	
+	
+		// $(".maindiv").append("<div class='classname' 	id='contentDiv"+numItems+"'><div class='clearfix'>	<div 	class='col-sm-3'>" $('#bands_selector')"</div></div><hr/></div>");
+        // $('<input type="hidden" name="data[Band][Band]['+band_count.toString()+']" value="'+$("#bands_selector option:selected").val()+'">').appendTo('#event_form');
+        // band_count++;
+	
 	});
 		          		
 
@@ -176,11 +226,32 @@ $this->Html->script([
 	var postdata = [];
 	//save btn onclick
 	$("#btnSave").click(function () {
-		var numItems = $('.classname').length;
-		for(count = 1; count <= numItems; count++){
-			postdata.push($('#part'+count).val() + "^" + $('#type'+count).val());
-		}
-		alert(postdata);
+		
+		//get input value
+		var issuedate = document.getElementById("issuedate").value;
+		var workorderstatus = document.getElementById("workorderstatus-id").value;
+
+    	if (issuedate != "" && workorderstatus!=null) {
+
+    		$.get('/Workorders/createajax_data?issuedate='+issuedate+'&workorderstatus='+workorderstatus, function(d) {
+   		 		if(d!="error"){
+   		 			
+   		 			//labor & parts
+					var numItems = $('.classname').length;
+					for(count = 1; count <= numItems; count++){
+						postdata.push($('#part'+count).val() + "^" + $('#type'+count).val()+ "^" + d);
+					}
+					$.get('/Workorders/addLaborParts?content='+postdata, function(d) {
+    					// alert(d);
+    				});
+   		 		}
+    		});
+    	}else{
+    		sweet_alert("Please enter the mandatory fields.");
+    		return false;
+    	}
+    	
+		
 	});
    
   });

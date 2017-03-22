@@ -66,8 +66,61 @@ class WorkordersController extends AppController
        
        
     }
+	public function createajaxData()
+	{
+    	
+		if($this->request->is('ajax')) {
+				
+			$this->autoRender=false;
+			
+			$workorder = $this->Workorders->newEntity();
+			$this->request->data['issuedate']=$this->request->query['issuedate'];
+            $this->request->data['workorderstatus-id']=$this->request->query['workorderstatus'];
+            $workorder=$this->Workorders->patchEntity($workorder,$this->request->data);
+			$workorder['customer_id']=$this->loggedinuser['customer_id'];
+			if ($this->Workorders->save($workorder)) {
 
+                $this->response->body($workorder['id']);
+	    		return $this->response;
+            } else {
+                $this->response->body("error");
+	    		return $this->response;
+            }
+		}  
+    }
+	public function addLaborParts()
+	{
+    	
+      	
+		if($this->request->is('ajax')) {
+				
+			$this->autoRender=false;
+			$this->loadModel('Holidays');
+			foreach(json_decode($this->request->query['content'])  as $d){
+    		
+				$items="";
+    			$items=explode("^",$d);
+				
+				$holiday = $this->Holidays->newEntity();
+            	$this->request->data['part']=$items[0];
+           	 	$this->request->data['labor']=$items[1];
+            	$this->request->data['workorder_id']=$items[2];
+            	$holiday=$this->Holidays->patchEntity($holiday,$this->request->data);
+				$holiday['customer_id']=$this->loggedinuser['customer_id'];
+				if ($this->Holidays->save($holiday)) {
 
+               	 	// $this->response->body("success");
+	    			// return $this->response;
+            	} else {
+                	// $this->response->body("error");
+	    			// return $this->response;
+            	}
+				
+			}
+			
+		}
+        
+    }
 
 public function updateSettings()
 {
@@ -235,7 +288,7 @@ public function ajaxdata() {
 			
             $workorder = $this->Workorders->patchEntity($workorder, $this->request->data);
 			
-				//print_r($this->request->data);
+				// print_r($workorder['id']);
 			
             $workorder['customer_id']=$this->loggedinuser['customer_id'];
 			
