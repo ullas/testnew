@@ -57,47 +57,11 @@
 		 <?php	
             echo $this->Form->input('vendor_id', ['options' => $vendors, 'empty' => true,'class'=>'select2']);
             echo $this->Form->input('completiondate', ['empty' => true,'type'=>'text','class'=>'datemask','label'=>'Completion Date','templateVars' => ['icon' => '<div class="input-group-addon"><i class="fa fa-calendar"></i></div>']]);
-            echo $this->Form->input('labour');
-            echo $this->Form->input('parts');
             echo $this->Form->input('dicount',['label'=>'Discount']);
             echo $this->Form->input('tax');
 			?>
 			
-			 <hr/>
-	<style>
-		a.delete{
-			margin-top:20px;
-		}
-	</style>	 <br/><br/><br/>
-				        <div>
-								<div class="box box-solid box-success">
-								
-								  <div class="box-header">
-								       <div class=" bg-green"> <h4 class="box-title">Labor & Parts</h4> </div>
-								  </div>
-								
-								  <div class="box-body maindiv">
-								      <div class="classname" id="contentDiv1">
-								          <div class="clearfix">
-								              <div class="col-sm-3 "><label>Part:</label>
-								              	<input type="text" class="form-control inputpart" id="part1"/></div>
-								              <div class="col-sm-3"><label>Type:</label>
-								              	<input type="text" class="form-control" id="type1"/></div>
-								              	<?php
-		   											echo $this->Form->input('servicetask_id', ['label'=>'Service Task','options' => $servicetasks, 'empty' => true,'class'=>'select2','required' => 'required']);
-											   	?>
-								          <div class="col-sm-3 text-center"><!-- <a class="delete btn btn-danger btn-flat" id="delete1"><i class="fa fa-trash"></i></a> --></div>
- 										</div>
- 										<hr/>
-								      </div>
-								  </div>
-								
-								  <div class="box-footer">
-								      <input type="button" class="btn btn-flat btn-primary" id="btnAddControl" value="Add Control" />
-								      
-								  </div>
-							</div>
-						</div>
+			 
 			
 			<?php
             echo $this->Form->input('issuedby_id',['options' => $issuedbies,'empty' => true,'label'=>'Issued By','class'=>'select2']);
@@ -122,6 +86,64 @@
       <!-- /.nav-tabs-custom -->
     </div>
     <!-- /.col -->
+    
+    <hr/>
+	<style>
+		a.delete{
+			margin-top:20px;
+		}
+	</style>	 <br/><br/><br/>
+	
+	<div class="col-md-2"></div>
+	
+				        <div class="col-md-6">
+								<div class="box">
+								
+								  <div class="box-header">
+								       <h4 class="box-title">Labor & Parts</h4>
+								  </div>
+								
+								  <div class="box-body maindiv">
+								      <div class="classname" id="contentDiv1">
+								          <div class="clearfix">
+								              <div class="col-sm-3 "><label>Part:</label>
+								              	<input id="test" class="form-control type" name="type"/></div>
+								              <div class="col-sm-3"><label>Type:</label>
+								              	<input type="text" class="form-control" id="type1"/></div>
+								              	<div class="col-sm-3"><label>Select:</label>
+								              	<input id="test" class="form-control test" name="test"/></div>
+								              	<!-- <?php
+		   											echo $this->Form->input('servicetask_id1', ['label'=>'Service Task','options' => $servicetasks, 'empty' => true,'class'=>'select2','required' => 'required']);
+											   	?> -->
+								          <div class="col-sm-3 text-center"><!-- <a class="delete btn btn-danger btn-flat" id="delete1"><i class="fa fa-trash"></i></a> --></div>
+ 										</div>
+ 										<hr/>
+								      </div>
+								  </div>
+								
+								  <div class="box-footer">
+								      <input type="button" class="btn btn-flat btn-primary" id="btnAddControl" value="Add Control" />
+								      
+								  </div>
+							</div>
+						</div>
+						
+						
+						<div class="col-md-3">
+							<div class="box">
+								
+								  <div class="box-header">
+								        <h4 class="box-title">Labor & Parts</h4> 
+								  </div>
+								
+								  <div class="box-body"><div class="form-horizontal">
+							<?php
+								echo $this->Form->input('labour');
+            					echo $this->Form->input('parts');
+							?></div>
+							</div></div>
+						</div>
+						
   </div>
   <!-- /.row -->
   <div class="row">
@@ -158,6 +180,22 @@ $this->Html->script([
 <?php $this->start('scriptBotton'); ?>
 <script>
 
+	var servicetaskdata=[];
+	var servicetaskarr=<?php echo $servicetaskarr ?>;
+	$.each(servicetaskarr, function(key, value) {
+    	servicetaskdata.push({'id':key, "text":value});
+	});
+
+	window.onload = function () { 
+        $('.test').select2({
+    		width: '100%',allowClear: true,placeholder: "Select",data: servicetaskdata
+		});
+		
+		$('.type').select2({
+    		width: '100%',allowClear: true,placeholder: "Select",data: [{'id':1, "text":"Part"},{'id':2, "text":"Labour"}]
+		});
+    }
+    
   $(function () {
 
 
@@ -174,28 +212,12 @@ $this->Html->script([
 		$('#parts').val(partcount);
 	});
 	
-	
-	
-	// $('.form-control').keyup(function () {
-//  
-    // // initialize the sum (total price) to zero
-    // var sum = 0;
-//      
-    // // we use jQuery each() to loop through all the textbox with 'price' class
-    // // and compute the sum for each loop
-    // $('.form-control').each(function() {
-        // sum += Number($(this).val());
-    // });
-//      
-    // // set the computed value to 'totalPrice' textbox
-    // $('#labour').val(sum);
-//      
-// });
-	
-  	// $("#vehicle-id").append('<option value="addvehicle"><button>Add New Vehicle</button></option>');
+
+
+
 
     //Initialize Select2 Elements
-    $(".select2").select2();
+    // $(".select2").select2();
     $('.datemask').datepicker({
             format:"dd/mm/yy",
               autoclose: true
@@ -204,9 +226,11 @@ $this->Html->script([
 	//add control button onclick
 	// var band_count = 0;
 	$("#btnAddControl").click(function (event) {
+		
+		
 		event.preventDefault();
 		var numItems = $('.classname').length+1;
-		$(".maindiv").append("<div class='classname' 	id='contentDiv"+numItems+"'><div class='clearfix'>	<div 	class='col-sm-3'><label>Part:</label><input type='text' name='labour"+numItems+"' class='form-control inputpart' id='part"+numItems+"'/></div><div class='col-sm-3'><label>Type:</label><input type='text' 	class='form-control' id='type"+numItems+"'/></div><div class='col-sm-3 text-center'></div></div><hr/></div>");
+		$(".maindiv").append("<div class='classname' 	id='contentDiv"+numItems+"'><div class='clearfix'>	<div 	class='col-sm-3'><label>Part:</label><input type='text' name='labour"+numItems+"' class='form-control inputpart' id='part"+numItems+"'/></div><div class='col-sm-3'><label>Type:</label><input type='text' 	class='form-control' id='type"+numItems+"'/></div><div class='col-sm-3'><label>Select:</label><input id='test' class='form-control test' name='test'/></div></div><hr/></div>");
 		// $(".maindiv").append("<div class='classname' 	id='contentDiv"+numItems+"'><div class='clearfix'>	<div 	class='col-sm-3'><label>Part:</label><input type='text' name='labour"+numItems+"' class='form-control' id='part"+numItems+"'/></div><div class='col-sm-3'><label>Type:</label><input type='text' 	class='form-control' id='type"+numItems+"'/></div><div class='col-sm-3 text-center'></div></div><hr/></div>");
 		// $('<div>' + $('#servicetasks_selector option:selected').text() + '</div>').appendTo(".maindiv");	
 	
@@ -214,7 +238,12 @@ $this->Html->script([
 		// $(".maindiv").append("<div class='classname' 	id='contentDiv"+numItems+"'><div class='clearfix'>	<div 	class='col-sm-3'>" $('#bands_selector')"</div></div><hr/></div>");
         // $('<input type="hidden" name="data[Band][Band]['+band_count.toString()+']" value="'+$("#bands_selector option:selected").val()+'">').appendTo('#event_form');
         // band_count++;
-	
+        
+        
+		$('.test').select2({
+    		width: '100%',allowClear: true,placeholder: "Select",data: servicetaskdata
+		});
+		
 	});
 		          		
 
