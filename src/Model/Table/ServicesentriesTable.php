@@ -55,6 +55,16 @@ class ServicesentriesTable extends Table
         $this->hasMany('Servicedocuments', [
             'foreignKey' => 'servicesentry_id'
         ]);
+		$this->belongsToMany('Servicetasks', [
+            'foreignKey' => 'servicesentry_id',
+            'targetForeignKey' => 'servicetask_id',
+            'joinTable' => 'servicetasks_servicesentries'
+        ]);
+		$this->belongsToMany('Issues', [
+            'foreignKey' => 'servicesentry_id',
+            'targetForeignKey' => 'issue_id',
+            'joinTable' => 'issues_servicesentries'
+        ]);
     }
 
     /**

@@ -75,48 +75,314 @@ class WorkordersController extends AppController
 			
 			$workorder = $this->Workorders->newEntity();
 			$this->request->data['issuedate']=$this->request->query['issuedate'];
-            $this->request->data['workorderstatus-id']=$this->request->query['workorderstatus'];
+            $this->request->data['workorderstatus_id']=$this->request->query['workorderstatus'];
+			$this->request->data['vehicle_id']=$this->request->query['vehicleid'];
+			$this->request->data['startdate']=$this->request->query['startdate'];
+			$this->request->data['lables']=$this->request->query['lables'];
+			$this->request->data['odometer']=$this->request->query['odometer'];
+			$this->request->data['void']=$this->request->query['voidvalue'];
+			$this->request->data['vendor_id']=$this->request->query['vendorid'];
+			$this->request->data['completiondate']=$this->request->query['completiondate'];
+			$this->request->data['issuedby_id']=$this->request->query['issuedbyid'];
+			$this->request->data['assignedby_id']=$this->request->query['assignedbyid'];
+			$this->request->data['assignto_id']=$this->request->query['assigntoid'];
+			$this->request->data['invoicenumber']=$this->request->query['invoicenumber'];
+			$this->request->data['phonenumber']=$this->request->query['phonenumber'];
+			$this->request->data['description']=$this->request->query['description'];
+			$this->request->data['labour']=$this->request->query['labor'];
+			$this->request->data['parts']=$this->request->query['parts'];
+			$this->request->data['dicount']=$this->request->query['discount'];
+			$this->request->data['tax']=$this->request->query['tax'];
+			
+			
+			
+			
             $workorder=$this->Workorders->patchEntity($workorder,$this->request->data);
 			$workorder['customer_id']=$this->loggedinuser['customer_id'];
 			if ($this->Workorders->save($workorder)) {
 
-                $this->response->body($workorder['id']);
+                $this->response->body(json_encode($workorder['id']));			
 	    		return $this->response;
+	    		
             } else {
                 $this->response->body("error");
 	    		return $this->response;
             }
 		}  
     }
+
+	public function editajaxData()
+	{
+    	
+		if($this->request->is('ajax')) {
+				
+			$this->autoRender=false;
+			
+			$workorder = $this->Workorders->newEntity();
+			$workorder = $this->Workorders->get($this->request->query['currentworkorderid'], [
+            'contain' => []
+        	]);
+			
+			$this->request->data['issuedate']=$this->request->query['issuedate'];
+            $this->request->data['workorderstatus_id']=$this->request->query['workorderstatus'];
+			$this->request->data['vehicle_id']=$this->request->query['vehicleid'];
+			$this->request->data['startdate']=$this->request->query['startdate'];
+			$this->request->data['lables']=$this->request->query['lables'];
+			$this->request->data['odometer']=$this->request->query['odometer'];
+			$this->request->data['void']=$this->request->query['voidvalue'];
+			$this->request->data['vendor_id']=$this->request->query['vendorid'];
+			$this->request->data['completiondate']=$this->request->query['completiondate'];
+			$this->request->data['issuedby_id']=$this->request->query['issuedbyid'];
+			$this->request->data['assignedby_id']=$this->request->query['assignedbyid'];
+			$this->request->data['assignto_id']=$this->request->query['assigntoid'];
+			$this->request->data['invoicenumber']=$this->request->query['invoicenumber'];
+			$this->request->data['phonenumber']=$this->request->query['phonenumber'];
+			$this->request->data['description']=$this->request->query['description'];
+			$this->request->data['labour']=$this->request->query['labor'];
+			$this->request->data['parts']=$this->request->query['parts'];
+			$this->request->data['dicount']=$this->request->query['discount'];
+			$this->request->data['tax']=$this->request->query['tax'];
+			
+			
+			
+			
+            $workorder=$this->Workorders->patchEntity($workorder,$this->request->data);
+			$workorder['customer_id']=$this->loggedinuser['customer_id'];
+			if ($this->Workorders->save($workorder)) {
+
+                $this->response->body(json_encode($workorder['id']));			
+	    		return $this->response;
+	    		
+            } else {
+                $this->response->body("error");
+	    		return $this->response;
+            }
+		}  
+    }
+	
 	public function addLaborParts()
 	{
     	
       	
 		if($this->request->is('ajax')) {
-				
+			
+			
 			$this->autoRender=false;
-			$this->loadModel('Holidays');
-			foreach(json_decode($this->request->query['content'])  as $d){
-    		
+			$this->loadModel('Workorderlineitems');
+			$this->loadModel('Workorderlabourlineitems');
+			$this->loadModel('Workorderpartslineitems');
+			
+				$it="";
+    			$it=explode(",",($this->request->query['content']));
+	    		$stst = json_encode($this->request->query['content']);
+				$contentarray = array();
+				 for ($i=0; $i <substr_count($stst, ',')+1 ; $i++) { 
+					 array_push($contentarray, $it[$i]);
+				 }
+				 
+				   // $this->response->body(json_encode($contentarray));			
+	    		   // return $this->response;
+				 
+			// foreach(json_encode($this->request->query['content'])  as $d){
+    		foreach($contentarray as $d){
+			
+				
+				
 				$items="";
     			$items=explode("^",$d);
 				
-				$holiday = $this->Holidays->newEntity();
-            	$this->request->data['part']=$items[0];
-           	 	$this->request->data['labor']=$items[1];
-            	$this->request->data['workorder_id']=$items[2];
-            	$holiday=$this->Holidays->patchEntity($holiday,$this->request->data);
-				$holiday['customer_id']=$this->loggedinuser['customer_id'];
-				if ($this->Holidays->save($holiday)) {
-
-               	 	// $this->response->body("success");
+				$workorderlineitem = $this->Workorderlineitems->newEntity();
+				$workorderlabourlineitem = $this->Workorderlabourlineitems->newEntity();
+				$workorderpartslineitem = $this->Workorderpartslineitems->newEntity();
+							
+				$this->request->data['name']="";
+            	$this->request->data['workorder_id']=$items[6];
+				
+				if($items[0] == 'servicetask')
+				{
+					$this->request->data['issue_id']=null;
+					$this->request->data['servicetask_id']=$items[2];
+					$this->request->data['workordertype_id']=1;
+				}
+				else if($items[0] == 'issue')
+				{
+					$this->request->data['servicetask_id']=null;	
+					$this->request->data['issue_id']=$items[2];
+					$this->request->data['workordertype_id']=2;
+				}
+				
+				if($items[1] == 'labor')
+				{
+					$this->request->data['parts']=null;
+					$this->request->data['labour']=$items[4] * $items[5];
+				}
+				else if($items[1] == 'part')
+				{
+					$this->request->data['labour']=null;
+					$this->request->data['parts']=$items[4] * $items[5];
+				}
+           	 	
+            	$workorderlineitem=$this->Workorderlineitems->patchEntity($workorderlineitem,$this->request->data);
+				$workorderlineitem['customer_id']=$this->loggedinuser['customer_id'];
+				if ($this->Workorderlineitems->save($workorderlineitem)) {
+					
+					 
+				if($items[1] == 'labor')
+				{
+					$this->request->data["labour"] = $items[4] ;
+					$this->request->data["hours"] = $items[5] ;
+					$this->request->data["address_id"] = $items[3] ;
+					$this->request->data["workorderlineitem_id"] = $workorderlineitem['id'] ;
+					
+					$workorderlabourlineitem=$this->Workorderlabourlineitems->patchEntity($workorderlabourlineitem,$this->request->data);
+					$workorderlabourlineitem['customer_id']=$this->loggedinuser['customer_id'];
+					if ($this->Workorderlabourlineitems->save($workorderlabourlineitem)) 
+					{
+						$this->Flash->success(__('labourlineitre'));
+					}
+				}
+					 
+  				if($items[1] == 'part')
+				{
+  					$this->request->data["unitcost"] = $items[4] ;
+					$this->request->data["quantity"] = $items[5] ;
+					$this->request->data["part_id"] = $items[3] ;
+					$this->request->data["workorderlineitems"] = $workorderlineitem['id'] ;
+					$workorderpartslineitem=$this->Workorderpartslineitems->patchEntity($workorderpartslineitem,$this->request->data);
+					$workorderpartslineitem['customer_id']=$this->loggedinuser['customer_id'];
+					if ($this->Workorderpartslineitems->save($workorderpartslineitem)) 
+					{
+						$this->Flash->success(__('partslineitre'));
+					}
+					// $workorderpartslineitem=$this->Workorderpartslineitems->patchEntity($workorderpartslineitem,$this->request->data);
+					// $this->response->body(json_encode($workorderlineitem['id']));
+					
+				}
+					
 	    			// return $this->response;
             	} else {
-                	// $this->response->body("error");
-	    			// return $this->response;
+            		$this->response->body("error");
+	    			return $this->response;
             	}
 				
-			}
+			} return $this->response;
+			
+		}
+        
+    }
+
+	public function editLaborParts()
+	{
+    	
+      	
+		if($this->request->is('ajax')) {
+			
+			
+			$this->autoRender=false;
+			$this->loadModel('Workorderlineitems');
+			$this->loadModel('Workorderlabourlineitems');
+			$this->loadModel('Workorderpartslineitems');
+			
+				$it="";
+    			$it=explode(",",($this->request->query['content']));
+	    		$stst = json_encode($this->request->query['content']);
+				$contentarray = array();
+				 for ($i=0; $i <substr_count($stst, ',')+1 ; $i++) { 
+					 array_push($contentarray, $it[$i]);
+				 }
+				 
+				   // $this->response->body(json_encode($contentarray));			
+	    		   // return $this->response;
+				 
+			// foreach(json_encode($this->request->query['content'])  as $d){
+    		foreach($contentarray as $d){
+			
+				
+				
+				$items="";
+    			$items=explode("^",$d);
+				
+				$workorderlineitem = $this->Workorderlineitems->newEntity();
+				$workorderlabourlineitem = $this->Workorderlabourlineitems->newEntity();
+				$workorderpartslineitem = $this->Workorderpartslineitems->newEntity();
+							
+				$this->request->data['name']="";
+            	$this->request->data['workorder_id']=$items[6];
+				
+				if($items[0] == 'servicetask')
+				{
+					$this->request->data['issue_id']=null;
+					$this->request->data['servicetask_id']=$items[2];
+					$this->request->data['workordertype_id']=1;
+				}
+				else if($items[0] == 'issue')
+				{
+					$this->request->data['servicetask_id']=null;	
+					$this->request->data['issue_id']=$items[2];
+					$this->request->data['workordertype_id']=2;
+				}
+				
+				if($items[1] == 'labor')
+				{
+					$this->request->data['parts']=null;
+					$this->request->data['labour']=$items[4] * $items[5];
+				}
+				else if($items[1] == 'part')
+				{
+					$this->request->data['labour']=null;
+					$this->request->data['parts']=$items[4] * $items[5];
+				}
+           	 	
+				$workorderlineitem = $this->Workorderlineitems->get($items[7], [ 'contain' => [] 	]);
+				
+            	$workorderlineitem=$this->Workorderlineitems->patchEntity($workorderlineitem,$this->request->data);
+				$workorderlineitem['customer_id']=$this->loggedinuser['customer_id'];
+				if ($this->Workorderlineitems->save($workorderlineitem)) {
+					
+					 
+				if($items[1] == 'labor')
+				{
+					$this->request->data["labour"] = $items[4] ;
+					$this->request->data["hours"] = $items[5] ;
+					$this->request->data["address_id"] = $items[3] ;
+					$this->request->data["workorderlineitem_id"] = $workorderlineitem['id'] ;
+					
+					$workorderlabourlineitem = $this->Workorderlabourlineitems->get($items[8], [ 'contain' => [] 	]);
+				
+					$workorderlabourlineitem=$this->Workorderlabourlineitems->patchEntity($workorderlabourlineitem,$this->request->data);
+					$workorderlabourlineitem['customer_id']=$this->loggedinuser['customer_id'];
+					if ($this->Workorderlabourlineitems->save($workorderlabourlineitem)) 
+					{
+						$this->Flash->success(__('labourlineitre'));
+					}
+				}
+					 
+  				if($items[1] == 'part')
+				{
+  					$this->request->data["unitcost"] = $items[4] ;
+					$this->request->data["quantity"] = $items[5] ;
+					$this->request->data["part_id"] = $items[3] ;
+					$this->request->data["workorderlineitems"] = $workorderlineitem['id'] ;
+					
+					$workorderpartslineitem = $this->Workorderpartslineitems->get($items[8], [ 'contain' => [] 	]);
+					$workorderpartslineitem=$this->Workorderpartslineitems->patchEntity($workorderpartslineitem,$this->request->data);
+					$workorderpartslineitem['customer_id']=$this->loggedinuser['customer_id'];
+					if ($this->Workorderpartslineitems->save($workorderpartslineitem)) 
+					{
+						$this->Flash->success(__('partslineitre'));
+					}
+					// $workorderpartslineitem=$this->Workorderpartslineitems->patchEntity($workorderpartslineitem,$this->request->data);
+					// $this->response->body(json_encode($workorderlineitem['id']));
+					
+				}
+					
+	    			// return $this->response;
+            	} else {
+            		$this->response->body("error");
+	    			return $this->response;
+            	}
+				
+			} return $this->response;
 			
 		}
         
@@ -277,10 +543,25 @@ public function ajaxdata() {
      */
     public function add()
     {
+    	$resissuesArray = $this->request->url;
+		$this->log($resissuesArray);
+		$resissues1 = explode('/', $resissuesArray);
+		$str = implode(" ",$resissues1);
+		$resissues2 = explode('/', $str);
+		$resissues2 = implode(" ",$resissues2);
+		$str = explode(",",$resissues1[2]);
+		$stack = array();
+		for ($i=0; $i < count($str) ; $i++) { 
+			array_push($stack, $str[$i]);
+		}
+		$resissues = $stack;
+		
         $workorder = $this->Workorders->newEntity();
 		$liteitemTable = TableRegistry::get('Workorderlineitems');
 		$servicetasksTable = TableRegistry::get('Servicetasks');
 		$issuesTable = TableRegistry::get('Issues');
+		$addressesTable = TableRegistry::get('Addresses');
+		$partsTable = TableRegistry::get('Parts');
 			
         if ($this->request->is('post')) {
         	
@@ -350,12 +631,21 @@ public function ajaxdata() {
 		 $this->set('servicetaskarr', json_encode($servicetasks));
 		 
 		 $issues=$issuesTable->find('list', ['limit' => 200])->where("customer_id=".$this->loggedinuser['customer_id'])->all()->toArray();
-		 
+		 $this->set('issuearr', json_encode($issues));
 		
+		 $addresses=$addressesTable->find('list', ['limit' => 200])->where("customer_id=".$this->loggedinuser['customer_id'])->all()->toArray();
+		 $this->set('addressesarr', json_encode($addresses));
+		 
+		 $parts=$partsTable->find('list', ['limit' => 200])->where("customer_id=".$this->loggedinuser['customer_id'])->all()->toArray();
+		 $this->set('partssarr', json_encode($parts));
         
-        $this->set(compact('workorder', 'workorderstatuses', 'vehicles', 'vendors', 'issuedbies', 'assignedbies', 'assigntos', 'customers','servicetasks','issues'));
-        $this->set('_serialize', ['workorder','workorderstatuses', 'vehicles', 'vendors', 'issuedbies', 'assignedbies', 'assigntos', 'customers','servicetasks','issues']);
-    }
+        $this->set(compact('workorder', 'workorderstatuses', 'vehicles', 'vendors', 'issuedbies', 'assignedbies', 'assigntos', 'customers','servicetasks','issues','$addresses','$parts'));
+        $this->set('_serialize', ['workorder','workorderstatuses', 'vehicles', 'vendors', 'issuedbies', 'assignedbies', 'assigntos', 'customers','servicetasks','issues','$addresses','$parts']);
+    
+		// $this->set(compact('workorder', 'workorderstatuses', 'vehicles', 'vendors', 'issuedbies', 'assignedbies', 'assigntos', 'customers','servicetasks','issues'));
+        // $this->set('_serialize', ['workorder','workorderstatuses', 'vehicles', 'vendors', 'issuedbies', 'assignedbies', 'assigntos', 'customers','servicetasks','issues']);
+    
+	}
 
     /**
      * Edit method
@@ -366,6 +656,15 @@ public function ajaxdata() {
      */
     public function edit($id = null)
     {
+    	$liteitemTable = TableRegistry::get('Workorderlineitems');
+		$servicetasksTable = TableRegistry::get('Servicetasks');
+		$issuesTable = TableRegistry::get('Issues');
+		$addressesTable = TableRegistry::get('Addresses');
+		$partsTable = TableRegistry::get('Parts');
+		$workorderlineitemTable = TableRegistry::get('Workorderlineitems');
+		$workorderlaborlineitemTable = TableRegistry::get('Workorderlabourlineitems');
+		$workorderpartslineitemTable = TableRegistry::get('Workorderpartslineitems');
+		
         $workorder = $this->Workorders->get($id, [
             'contain' => []
         ]);
@@ -402,9 +701,52 @@ public function ajaxdata() {
                 
         $assigntos = $this->Workorders->Assigntos->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
         
+		 $servicetasks=$servicetasksTable->find('list', ['limit' => 200])->where("customer_id=".$this->loggedinuser['customer_id'])->orwhere("customer_id=0");
+		 $this->set('servicetaskarr', json_encode($servicetasks));
+		 
+		 $issues=$issuesTable->find('list', ['limit' => 200])->where("customer_id=".$this->loggedinuser['customer_id'])->all()->toArray();
+		 $this->set('issuearr', json_encode($issues));
+		
+		 $addresses=$addressesTable->find('list', ['limit' => 200])->where("customer_id=".$this->loggedinuser['customer_id'])->all()->toArray();
+		 $this->set('addressesarr', json_encode($addresses));
+		 
+		 $parts=$partsTable->find('list', ['limit' => 200])->where("customer_id=".$this->loggedinuser['customer_id'])->all()->toArray();
+		 $this->set('partssarr', json_encode($parts));
+     	 
+		 $workorderlaborlineitems=$workorderlaborlineitemTable->find('all', ['limit' => 200])->where("customer_id=".$this->loggedinuser['customer_id'])->andwhere("workorder_id=".$workorder['id']);
+		 // $workorderlaborlineitems=$workorderlaborlineitemTable->find('all', ['limit' => 200])->where("customer_id=".$this->loggedinuser['customer_id']);
+		 $this->set('workorderlaborlineitemsarr', json_encode($workorderlaborlineitems));
+		 
+		 $workorderpartslineitems=$workorderpartslineitemTable->find('all', ['limit' => 200])->where("customer_id=".$this->loggedinuser['customer_id'])->andwhere("workorder_id=".$workorder['id']);
+		 // $workorderlaborlineitems=$workorderlaborlineitemTable->find('all', ['limit' => 200])->where("customer_id=".$this->loggedinuser['customer_id']);
+		 $this->set('workorderpartslineitemsarr', json_encode($workorderpartslineitems));
+		 
+		  $this->set('workorderid',$workorder['id'] );
+		 
+		 // $workorderlineitemTable
+     	 $workorderlineitemsst=$workorderlineitemTable->find('all', ['limit' => 200])->where("customer_id=".$this->loggedinuser['customer_id'])->andwhere("workorder_id=".$workorder['id'])->andwhere("labour  IS NOT null");
+		 // $workorderlineitemsst=$workorderlineitemTable->find('all', ['limit' => 200])->where("customer_id=".$this->loggedinuser['customer_id'])->andwhere("workorder_id=".$workorder['id']);
+		 $this->set('workorderlineitemsstarr', json_encode($workorderlineitemsst));
+		 
+		 $workorderlineitemslbr=$workorderlineitemTable->find('all', ['limit' => 200])->where("customer_id=".$this->loggedinuser['customer_id'])->andwhere("workorder_id=".$workorder['id'])->andwhere("labour  IS NOT null");
+		 // $workorderlineitemsst=$workorderlineitemTable->find('all', ['limit' => 200])->where("customer_id=".$this->loggedinuser['customer_id'])->andwhere("workorder_id=".$workorder['id']);
+		 $this->set('workorderlineitemslbrarr', json_encode($workorderlineitemslbr));
+		 
+		   $workorderlineitemspt=$workorderlineitemTable->find('all', ['limit' => 200])->where("customer_id=".$this->loggedinuser['customer_id'])->andwhere("workorder_id=".$workorder['id'])->andwhere("parts  IS NOT null");
+		  $this->set('workorderlineitemsptarr', json_encode($workorderlineitemspt));
+		 
+		 
+		  $workorderlineitems=$workorderlineitemTable->find('all', ['limit' => 200])->where("customer_id=".$this->loggedinuser['customer_id'])->andwhere("workorder_id=".$workorder['id']);
+		 // $workorderlineitemsst=$workorderlineitemTable->find('all', ['limit' => 200])->where("customer_id=".$this->loggedinuser['customer_id'])->andwhere("workorder_id=".$workorder['id']);
+		 $this->set('workorderlineitemsarr', json_encode($workorderlineitems));
+		 
+		 
+		 
                
-        $this->set(compact('workorder', 'workorderstatuses', 'vehicles', 'vendors', 'issuedbies', 'assignedbies', 'assigntos', 'customers'));
-        $this->set('_serialize', ['workorder']);
+        $this->set(compact('workorder', 'workorderstatuses', 'vehicles', 'vendors', 'issuedbies', 'assignedbies', 'assigntos', 'customers','servicetasks','issues','$addresses','$parts','workorderlaborlineitems'));
+        // $this->set('_serialize', ['workorder']);
+		$this->set('_serialize', ['workorder','workorderstatuses', 'vehicles', 'vendors', 'issuedbies', 'assignedbies', 'assigntos', 'customers','servicetasks','issues','$addresses','$parts','workorderlaborlineitems']);
+    
     }
 
     /**

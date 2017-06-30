@@ -1,6 +1,6 @@
 <section class="content">
 	<?php echo $this->Form->create($this->request->params['controller'],array('url' => array('controller' => $this->request->params['controller'], 'action' => 'deleteAll')));?>
-   <input type="hidden" value="1"  id="basicfilter"/>
+    <input type="hidden" value="1"  id="basicfilter"/>
 	 			<div class="fmactionbtn"></div>
 				<div>
       <?php
@@ -10,7 +10,7 @@
      </div>
       <div>
       	<?php echo  $this->element('filters',$additional) ?>
-      
+      	<?php echo  $this->element('issuesfilters',$additional) ?>
      </div> <!-- COL-7-->
 
   <div class="row">
@@ -276,6 +276,8 @@ $this->Html->script([
 		    }
 			}
   	});
+  	
+  	
 
     $('#settings').on('shown.bs.modal', function() {
        setOrder();
@@ -518,6 +520,18 @@ $('.dataTables_filter input').unbind().on('keyup', function() {
         zIndex: 999999
     });
      setTurben();
+     
+$(".mptl-close-base3").click(function(e)
+   {
+      e.preventDefault();
+      var valuearray = [];
+  	  valuearray = setSelection();
+      $.get('/Issues/setClose?content='+valuearray, function(d) {});
+       // $.get('/Issues/setClose, function(d) {});
+    					
+ });
+     
+     
   });
 
 function setSelection(){
@@ -596,16 +610,6 @@ $('.mptl-filter-base').on('ifUnchecked', function(event){
       table.draw();
   }
   
-  // $('.mptl-resolver-base1').on('Clicked', function(event){
-// 
-	// setBasicResolver();
-// 
-// });
-// $('.mptl-resolver-base1').on('ifUnchecked', function(event){
-// 
-	// setBasicResolver();
-// 
-// });
 
 $('.mptl-resolver-base1').click(function(){
     setBasicResolver();
@@ -613,18 +617,35 @@ $('.mptl-resolver-base1').click(function(){
 
  function setBasicResolver()
   {
-  	alert("inside setBasicResolver");
   	var valuearray = [];
   	valuearray = setSelection();
-  	// $('#mptl_resolver_add').on('click', '.item', function () {
-  		// alert("ddd");
-            // var NestId = $(this).data('id');
-            var url = "/Servicesentries/add/"+valuearray; 
-            window.location.href = url; 
-            // table.ajax.reload(null,true);
-      		// table.draw();
+  	var url = "/Servicesentries/add/"+valuearray; 
+    window.location.href = url; 
   }
   
+  $('.mptl-resolver-base2').click(function(){
+    setBasicWOResolver();
+});
+
+ function setBasicWOResolver()
+  {
+  	var valuearray = [];
+  	valuearray = setSelection();
+  	var url = "/Workorders/add/"+valuearray; 
+    window.location.href = url; 
+  }
+  
+   $('.mptl-resolver-base3').click(function(){
+    setBasicClose();
+});
+
+ function setBasicClose()
+  {
+  	var valuearray = [];
+  	valuearray = setSelection();
+  	var url = "/Workorders/add/"+valuearray; 
+    window.location.href = url; 
+  }
   function setOrder(){}
 
 $(document).ajaxComplete(function () {

@@ -27,7 +27,7 @@
              <div class="form-horizontal">
                <?php
             echo $this->Form->input('issuedate', ['empty' => true,'type'=>'text','class'=>'datemask','label'=>'Issue Date ','templateVars' => ['icon' => '<div class="input-group-addon"><i class="fa fa-calendar"></i></div>'],'required' => 'required']);
-            echo $this->Form->input('workorderstatus_id',['empty' => true,'label'=>'Work Order Status ','class'=>'select2','required' => 'required']);
+            echo $this->Form->input('workorderstatus_id',['options' => $workorderstatuses,'empty' => true,'label'=>'Work Order Status ','class'=>'select2','required' => 'required']);
            ?>
 		   
 		   
@@ -57,9 +57,7 @@
 		 <?php	
             echo $this->Form->input('vendor_id', ['options' => $vendors, 'empty' => true,'class'=>'select2']);
             echo $this->Form->input('completiondate', ['empty' => true,'type'=>'text','class'=>'datemask','label'=>'Completion Date','templateVars' => ['icon' => '<div class="input-group-addon"><i class="fa fa-calendar"></i></div>']]);
-            echo $this->Form->input('dicount',['label'=>'Discount']);
-            echo $this->Form->input('tax');
-			?>
+            ?>
 			
 			 
 			
@@ -104,27 +102,58 @@
 								  </div>
 								
 								  <div class="box-body maindiv">
-								      <div class="classname" id="contentDiv1">
+								      <div class="classnameheader" id="contentDiv1">
 								          <div class="clearfix">
-								              <div class="col-sm-3 "><label>Part:</label>
-								              	<input id="test" class="form-control type" name="type"/></div>
-								              <div class="col-sm-3"><label>Type:</label>
+								          	<!-- <div class="col-sm-4"><label>Service Task:</label>
+								              	<input id="test" class="form-control test" name="test"/></div> -->
+								              <!-- <div class="col-sm-4 "><label>Type:</label>
+								              	<input id="test" class="form-control type" name="type"/></div> -->
+								              	<div class="col-sm-4 ">
+								              
+											   	<input  name='typeselect"' class='form-control typeselect' id='typeselect'/>
+											   	
+											   	</div>
+								              	<div class="col-sm-4 ">
+								              	<input type="button" class="btn btn-flat btn-primary" id="btnAddLaborControl" value="Add Labor Expenses" /></div>
+								              	
+								              	<div class="col-sm-4 ">
+								              	<input type="button" class="btn btn-flat btn-primary" id="btnAddPartControl" value="Add Parts Expenses" /></div>
+								              	
+								              	 
+								              	
+								              	
+								              	
+								              	
+								              	<!-- <div class="col-sm-3"><label>Contact:</label>
 								              	<input type="text" class="form-control" id="type1"/></div>
-								              	<div class="col-sm-3"><label>Select:</label>
-								              	<input id="test" class="form-control test" name="test"/></div>
+								              	 <div class="col-sm-3"><label>Hourly Rate:</label>
+								              	<input type="text" class="form-control" id="type1"/></div>
+								              	
+								              	<div class="col-sm-3"><label>Hours:</label>
+								              	<input type="text" class="form-control" id="type1"/></div>
+								              	<div class="col-sm-3"><label>Tax:</label>
+								              	<input type="text" class="form-control" id="type1"/></div>
+								              	<div class="col-sm-3"><label>Part:</label>
+								              	<input type="text" class="form-control" id="type1"/></div>
+								              	<div class="col-sm-3"><label>Unit Cost:</label>
+								              	<input type="text" class="form-control" id="type1"/></div>
+								              	<div class="col-sm-3"><label>Quantity:</label>
+								              	<input type="text" class="form-control" id="type1"/></div>
+								              	<div class="col-sm-3"><label>Tax:</label>
+								              	<input type="text" class="form-control" id="type1"/></div> -->
 								              	<!-- <?php
 		   											echo $this->Form->input('servicetask_id1', ['label'=>'Service Task','options' => $servicetasks, 'empty' => true,'class'=>'select2','required' => 'required']);
 											   	?> -->
-								          <div class="col-sm-3 text-center"><!-- <a class="delete btn btn-danger btn-flat" id="delete1"><i class="fa fa-trash"></i></a> --></div>
+								          <!-- <div class="col-sm-3 text-center"><a class="delete btn btn-danger btn-flat" id="delete1"><i class="fa fa-trash"></i></a></div> -->
  										</div>
  										<hr/>
 								      </div>
 								  </div>
 								
-								  <div class="box-footer">
+								  <!-- <div class="box-footer">
 								      <input type="button" class="btn btn-flat btn-primary" id="btnAddControl" value="Add Control" />
 								      
-								  </div>
+								  </div> -->
 							</div>
 						</div>
 						
@@ -138,8 +167,11 @@
 								
 								  <div class="box-body"><div class="form-horizontal">
 							<?php
-								echo $this->Form->input('labour');
+								echo $this->Form->input('labors');
             					echo $this->Form->input('parts');
+								echo $this->Form->input('dicount',['label'=>'Discount']);
+            					echo $this->Form->input('tax');
+			
 							?></div>
 							</div></div>
 						</div>
@@ -186,31 +218,105 @@ $this->Html->script([
     	servicetaskdata.push({'id':key, "text":value});
 	});
 
+	var issuedata=[];
+	var issuearr=<?php echo $issuearr ?>;
+	$.each(issuearr, function(key, value) {
+    	issuedata.push({'id':key, "text":value});
+	});
+	
+	var contactdata=[];
+	var contactarr=<?php echo $addressesarr ?>;
+	$.each(contactarr, function(key, value) {
+    	contactdata.push({'id':key, "text":value});
+	});
+	
+	var partdata=[];
+	var partarr=<?php echo $partssarr ?>;
+	$.each(partarr, function(key, value) {
+    	partdata.push({'id':key, "text":value});
+	});
+	
 	window.onload = function () { 
         $('.test').select2({
     		width: '100%',allowClear: true,placeholder: "Select",data: servicetaskdata
 		});
 		
-		$('.type').select2({
-    		width: '100%',allowClear: true,placeholder: "Select",data: [{'id':1, "text":"Part"},{'id':2, "text":"Labour"}]
+		 $('.typeselect').select2({
+    		width: '100%',allowClear: true,placeholder: "Select",data: [{'id':1, "text":"Service Task"},{'id':2, "text":"Issue"}]
 		});
+		
+		// $('.type').select2({
+    		// width: '100%',allowClear: true,placeholder: "Select",data: [{'id':1, "text":"Part"},{'id':2, "text":"Labour"}]
+		// });
     }
     
   $(function () {
 
-
-	$('.maindiv').on('change', 'input.inputpart', function() {
-    	var numItems = $('.inputpart').length;
-    	var partcount=0;
-		for(count = 1; count <= numItems; count++){
-			var tempval=$('#part'+count).val();
-			if(tempval!="" && tempval!=null){
-				partcount+=parseInt(tempval);
-			}
-		}
-		//set text
-		$('#parts').val(partcount);
-	});
+				
+			
+			//delete btn onclick
+				$('.maindiv').on('click', 'a.delete', function() {
+					 // alert("clicked---"+ JSON.stringify($(this).parent().closest('div .classname')));
+					$(this).parent().closest('div .classname').hide();
+				});
+			
+			// $('.maindiv .classname').each(function(i){
+		    			// alert("ff";)
+						         // // do stuff
+						// });
+			
+			$('.maindiv').on('change keyup', 'input.laborhrs', function() {
+		    	var numItems = $('.laborhrs').length;
+		    	var laborcount=0;
+		    	for(count = 1; count <= numItems; count++){
+		    		// if($('#laborqty'+count).not(':visible'))
+		    		// {
+		    		// // $('#laborqty'+count).value = 10;
+		    		// // $('#laborrate'+count).value = 10;
+		    		// alert("numItems  ---"+numItems);
+		    		// alert("hidden  ---"+$('#laborqty'+count).val());
+// 		    			
+		    		// }
+		    		var tempval=$('#laborqty'+count).val()*$('#laborrate'+count).val();
+					// alert ('tempval--'+ tempval +"---numitems="+numItems);
+					if(tempval!="" && tempval!=null)
+					{
+						laborcount+=parseInt(tempval);
+					}
+				}
+				//set text
+				$('#labors').val(laborcount);
+			});
+// 
+// 			
+// 				
+			$('.maindiv').on('change keyup', 'input.partqty', function() {
+		    	var numItems = $('.partqty').length;
+		    	var partcount=0;
+		    	// alert ('numItems--'+ numItems);
+		    	for(count = 1; count <= numItems; count++){
+					var tempval=$('#partqty'+count).val()*$('#partrate'+count).val();
+					if(tempval!="" && tempval!=null){
+						partcount+=parseInt(tempval);
+					}
+				}
+				//set text
+				$('#parts').val(partcount);
+			});
+			
+			$('.maindiv').on('change keyup', 'input.inputrate', function() {
+		    	var numItems = $('.inputrate').length;
+		    	var partcount=0;
+		    	// alert ('numItems--'+$('.inputpart').length);
+				for(count = 1; count <= numItems; count++){
+					var tempval=$('#qty'+count).val()*$('#rate'+count).val();
+					if(tempval!="" && tempval!=null){
+						partcount+=parseInt(tempval);
+					}
+				}
+				//set text
+				$('#parts').val(partcount);
+			});
 	
 
 
@@ -224,57 +330,208 @@ $this->Html->script([
    });
    
 	//add control button onclick
-	// var band_count = 0;
+	// var band_count = 0; 
 	$("#btnAddControl").click(function (event) {
 		
 		
 		event.preventDefault();
 		var numItems = $('.classname').length+1;
-		$(".maindiv").append("<div class='classname' 	id='contentDiv"+numItems+"'><div class='clearfix'>	<div 	class='col-sm-3'><label>Part:</label><input type='text' name='labour"+numItems+"' class='form-control inputpart' id='part"+numItems+"'/></div><div class='col-sm-3'><label>Type:</label><input type='text' 	class='form-control' id='type"+numItems+"'/></div><div class='col-sm-3'><label>Select:</label><input id='test' class='form-control test' name='test'/></div></div><hr/></div>");
-		// $(".maindiv").append("<div class='classname' 	id='contentDiv"+numItems+"'><div class='clearfix'>	<div 	class='col-sm-3'><label>Part:</label><input type='text' name='labour"+numItems+"' class='form-control' id='part"+numItems+"'/></div><div class='col-sm-3'><label>Type:</label><input type='text' 	class='form-control' id='type"+numItems+"'/></div><div class='col-sm-3 text-center'></div></div><hr/></div>");
-		// $('<div>' + $('#servicetasks_selector option:selected').text() + '</div>').appendTo(".maindiv");	
+		
+		  <!-- <div class="col-sm-3 text-center"><a class="delete btn btn-danger btn-flat" id="delete1"><i class="fa fa-trash"></i></a></div> -->
+ 										
+		// $(".maindiv").append("<div class='classname' 	id='contentDiv"+numItems+"'><div class='clearfix'>	<div 	class='col-sm-3'><label>Part:</label><input type='text' name='labour"+numItems+"' class='form-control inputpart' id='part"+numItems+"'/></div><div class='col-sm-3'><label>Type:</label><input type='text' 	class='form-control' id='type"+numItems+"'/></div><div class='col-sm-3'><label>Select:</label><input id='test' class='form-control test' name='test'/></div></div><hr/></div>");
+		
+		
+		
+		
+		// <input id="test" class="form-control test" name="test"/></div>
+		// <input type="button" class="btn btn-flat btn-primary" id="btnAddPartControl" value="Add Part" />
+		
+		// $(".maindiv").append("<div class='classname' 	id='contentDiv"+numItems+"'><div class='clearfix'>	<div class='col-sm-3'><label>Service Task:</label><input  name='servicetask"+numItems+"' class='form-control test' id='servicetask"+numItems+"'/></div> <div class='col-sm-3'><input type="button" class="btn btn-flat btn-primary" id='btnAddLaborControl1' value="Add Labor" /></div>  </div><hr/></div>");
+							              	
+		// $(".maindiv").append("<div class='classname' 	id='contentDiv"+numItems+"'><div class='clearfix'>	<div class='col-sm-3'><label>Service Task:</label><input  name='servicetask"+numItems+"' class='form-control test' id='servicetask"+numItems+"'/></div> <div class='col-sm-3'><input type="button" class="btn btn-flat btn-primary" id='btnAddLaborControl"+numItems+"' value="Add Labor" /></div> <div class='col-sm-3'><input type="button" class="btn btn-flat btn-primary" id='btnAddPartControl"+numItems+"' value="Add Part" /></div>  </div><hr/></div>");
 	
 	
-		// $(".maindiv").append("<div class='classname' 	id='contentDiv"+numItems+"'><div class='clearfix'>	<div 	class='col-sm-3'>" $('#bands_selector')"</div></div><hr/></div>");
-        // $('<input type="hidden" name="data[Band][Band]['+band_count.toString()+']" value="'+$("#bands_selector option:selected").val()+'">').appendTo('#event_form');
-        // band_count++;
-        
-        
 		$('.test').select2({
     		width: '100%',allowClear: true,placeholder: "Select",data: servicetaskdata
 		});
 		
 	});
+	$("#btnAddLaborControl").click(function (event) {
+		
+		
+		
+		event.preventDefault();
+		var numItems = $('.laborhrs').length+1;
+		// alert("numItems"+numItems);
+		// var numItems = $('.classname').length;
+		if(document.getElementById("typeselect").value == 1)// for Service Task
+		{
+			// $(".maindiv").append("<div class='classname' 	id='contentDiv"+numItems+"'><div class='clearfix'>	<div 	class='col-sm-3'><label>Part:</label><input type='text' name='labour"+numItems+"' class='form-control inputpart' id='part"+numItems+"'/></div><div class='col-sm-3'><label>Type:</label><input type='text' 	class='form-control' id='type"+numItems+"'/></div><div class='col-sm-3'><label>Select:</label><input id='test' class='form-control test' name='test'/></div>  <div class='col-sm-3 text-center'><a class='delete btn btn-danger btn-flat' id='delete1'><i class='fa fa-trash'></i></a></div>  </div><hr/></div>");
+		
+			$(".maindiv").append("<div class='classname' 	id='contentDiv"+numItems+"'><div class='clearfix'> <div 	class='col-sm-3'><input type='hidden' value='servicetask'   class='form-control' id='typeof1"+numItems+"'/><input type='hidden' value='labor'   class='form-control' id='ident1"+numItems+"'/><label>ServiceTask:</label><input  name='servicetask"+numItems+"' class='form-control test' id='wotype1"+numItems+"'/></div>	<div 	class='col-sm-3'><label>Contact:</label><input  name='contact"+numItems+"' class='form-control contact' id='contactpart1"+numItems+"'/></div><div class='col-sm-3'><label>Hourly Rate:</label><input type='text' 	class='form-control laborrate' id='laborrate"+numItems+"'/></div><div class='col-sm-3'><label>Hours:</label><input type='text' id='laborqty"+numItems+"' class='form-control laborhrs' name='hrs'/></div><div class='col-sm-3'><label>Tax:</label><input type='text' id='labortax' class='form-control inputpart' name='tax'/></div>    <div class='col-sm-3 text-center'><a class='delete btn btn-danger btn-flat' id='delete1'><i class='fa fa-trash'></i></a></div>   </div><hr/></div>");
+	
+		}
+		else if(document.getElementById("typeselect").value == 2)// for Issues
+		{
+			
+			$(".maindiv").append("<div class='classname' 	id='contentDiv"+numItems+"'><div class='clearfix'> <div 	class='col-sm-3'><input type='hidden' value='issue'   class='form-control' id='typeof1"+numItems+"'/><input type='hidden' value='labor'   class='form-control' id='ident1"+numItems+"'/><label>Issue:</label><input  name='issue"+numItems+"' class='form-control testissue' id='wotype1"+numItems+"'/></div>	<div 	class='col-sm-3'><label>Contact:</label><input  name='contact"+numItems+"' class='form-control contact' id='contactpart1"+numItems+"'/></div><div class='col-sm-3'><label>Hourly Rate:</label><input type='text' 	class='form-control laborrate' id='laborrate"+numItems+"'/></div><div class='col-sm-3'><label>Hours:</label><input type='text' id='laborqty"+numItems+"' class='form-control laborhrs' name='hrs'/></div><div class='col-sm-3'><label>Tax:</label><input type='text' id='labortax' class='form-control inputpart' name='tax'/></div>   <div class='col-sm-3 text-center'><a class='delete btn btn-danger btn-flat' id='delete1'><i class='fa fa-trash'></i></a></div>   </div><hr/></div>");  
+	
+		}
+		
+		
+		// $(".maindiv").append("<div class='classname' 	id='contentDiv"+numItems+"'><div class='clearfix'> <div 	class='col-sm-3'><label>ServiceTask:</label><input  name='servicetask"+numItems+"' class='form-control test' id='servicetask"+numItems+"'/></div>	<div 	class='col-sm-3'><label>Contact:</label><input  name='contact"+numItems+"' class='form-control test' id='contact"+numItems+"'/></div><div class='col-sm-3'><label>Hourly Rate:</label><input type='text' 	class='form-control' id='hrrate"+numItems+"'/></div><div class='col-sm-3'><label>Hours:</label><input type='text' id='hrs' class='form-control inputpart' name='hrs'/></div><div class='col-sm-3'><label>Tax:</label><input type='text' id='labortax' class='form-control inputpart' name='tax'/></div></div><hr/></div>");
+	
+		$('.testissue').select2({
+    		width: '100%',allowClear: true,placeholder: "Select",data: issuedata
+		});
+		$('.test').select2({
+    		width: '100%',allowClear: true,placeholder: "Select",data: servicetaskdata
+		});
+		$('.contact').select2({
+    		width: '100%',allowClear: true,placeholder: "Select",data: contactdata
+		});
+		
+	});
+	$("#btnAddPartControl").click(function (event) {
+		
+		
+		event.preventDefault();
+		var numItems = $('.partqty').length+1;
+		if(document.getElementById("typeselect").value == 1)// for Service Task
+		{
+			$(".maindiv").append("<div class='classname' 	id='contentDiv"+numItems+"'><div class='clearfix'> <div 	class='col-sm-3'><input type='hidden' value='servicetask'   class='form-control' id='typeof2"+numItems+"'/><input type='hidden' value='part'   class='form-control' id='ident2"+numItems+"'/><label>ServiceTask:</label><input  name='servicetask"+numItems+"' class='form-control test' id='wotype2"+numItems+"'/></div>	<div 	class='col-sm-3'><label>Part:</label><input  name='part"+numItems+"' class='form-control part' id='contactpart2"+numItems+"'/></div><div class='col-sm-3'><label>Unit Cost:</label><input type='text' 	class='form-control inputrate' id='partrate"+numItems+"'/></div><div class='col-sm-3'><label>Quantity:</label><input type='text' id='partqty"+numItems+"' class='form-control partqty' name='quantity'/></div><div class='col-sm-3'><label>Tax:</label><input type='text' id='parttax' class='form-control parttax' name='tax'/></div><div class='col-sm-3 text-center'><a class='delete btn btn-danger btn-flat' id='delete1'><i class='fa fa-trash'></i></a></div>   </div><hr/></div>");
+	
+		}
+		else if(document.getElementById("typeselect").value == 2)// for Issues
+		{
+			
+			$(".maindiv").append("<div class='classname' 	id='contentDiv"+numItems+"'><div class='clearfix'> <div 	class='col-sm-3'><input type='hidden' value='issue'   class='form-control' id='typeof2"+numItems+"'/><input type='hidden' value='part'   class='form-control' id='ident2"+numItems+"'/><label>Issue:</label><input  name='issue"+numItems+"' class='form-control testissue' id='wotype2"+numItems+"'/></div>	<div 	class='col-sm-3'><label>Part:</label><input  name='part"+numItems+"' class='form-control part' id='contactpart2"+numItems+"'/></div><div class='col-sm-3'><label>Unit Cost:</label><input type='text' 	class='form-control inputrate' id='partrate"+numItems+"'/></div><div class='col-sm-3'><label>Quantity:</label><input type='text' id='partqty"+numItems+"' class='form-control partqty' name='quantity'/></div><div class='col-sm-3'><label>Tax:</label><input type='text' id='parttax' class='form-control parttax' name='tax'/></div><div class='col-sm-3 text-center'><a class='delete btn btn-danger btn-flat' id='delete1'><i class='fa fa-trash'></i></a></div>   </div><hr/></div>");
+	
+		}
+		// $(".maindiv").append("<div class='classname' 	id='contentDiv"+numItems+"'><div class='clearfix'> <div 	class='col-sm-3'><label>ServiceTask:</label><input  name='servicetask"+numItems+"' class='form-control test' id='servicetask"+numItems+"'/></div>	<div 	class='col-sm-3'><label>Part:</label><input  name='part"+numItems+"' class='form-control test' id='part"+numItems+"'/></div><div class='col-sm-3'><label>Unit Cost:</label><input type='text' 	class='form-control' id='unitcost"+numItems+"'/></div><div class='col-sm-3'><label>Quantity:</label><input type='text' id='quantity' class='form-control inputpart' name='quantity'/></div><div class='col-sm-3'><label>Tax:</label><input type='text' id='parttax' class='form-control inputpart' name='tax'/></div></div><hr/></div>");
+	
+		$('.testissue').select2({
+    		width: '100%',allowClear: true,placeholder: "Select",data: issuedata
+		});
+		$('.test').select2({
+    		width: '100%',allowClear: true,placeholder: "Select",data: servicetaskdata
+		});
+		$('.part').select2({
+    		width: '100%',allowClear: true,placeholder: "Select",data: partdata
+		});
+		
+	});
 		          		
 
-	//delete btn onclick
-	$('.maindiv').on('click', 'a.delete', function() {
-		$(this).parent().closest('div .classname').remove();
-	});
 
-	var postdata = [];
+
+
+	
+
+	// var postdata = [];
 	//save btn onclick
 	$("#btnSave").click(function () {
+		
+		var numItems = $('.laborhrs').length;
+					
+					for(count = 1; count <= numItems; count++){ 
+						//postdata.push($(' #typeof1'+count ).val() + "^" +$('#ident1'+count ).val() + "^" +  $('#wotype1'+count ).val() + "^" + $('#contactpart1'+count ).val() + "^" + $('#laborrate'+count).val() + "^" + $('#laborqty'+count).val()+ "^" + d );
+						 if( $('#wotype1'+count ).val()==""  ||  $('#contactpart1'+count ).val()=="") 
+						 {
+						 	alert("Please select Service Task and Contact Details");
+						 }
+					}
+		
+		var numItems = $('.partqty').length;
+					
+					for(count = 1; count <= numItems; count++){ 
+						//postdata.push($(' #typeof2'+count ).val() + "^" + $('#ident2'+count ).val() + "^" +  $('#wotype2'+count ).val() + "^" + $('#contactpart2'+count ).val() + "^" + $('#partrate'+count).val() + "^" + $('#partqty'+count).val()+ "^" + d);
+						if( $('#wotype2'+count ).val()==""  ||  $('#contactpart2'+count ).val()=="") 
+						 {
+						 	alert("Please select Service Task and Parts  Details");
+						 }
+					}
+		
 		
 		//get input value
 		var issuedate = document.getElementById("issuedate").value;
 		var workorderstatus = document.getElementById("workorderstatus-id").value;
-
+		var vehicleid = document.getElementById("vehicle-id").value;
+		var startdate = document.getElementById("startdate").value;
+		var lables = document.getElementById("lables").value;
+		var odometer = document.getElementById("odometer").value;
+		var voidvalue = document.getElementById("void").value;
+		var vendorid = document.getElementById("vendor-id").value;
+		var completiondate = document.getElementById("completiondate").value;
+		var issuedbyid = document.getElementById("issuedby-id").value;
+		var assignedbyid = document.getElementById("assignedby-id").value;
+		var assigntoid = document.getElementById("assignto-id").value;
+		var invoicenumber = document.getElementById("invoicenumber").value;
+		var phonenumber = document.getElementById("phonenumber").value;
+		var description = document.getElementById("description").value;
+		var labor = document.getElementById("labors").value;
+		var parts = document.getElementById("parts").value;
+		var discount = document.getElementById("dicount").value;
+		var tax = document.getElementById("tax").value;
+		
     	if (issuedate != "" && workorderstatus!=null) {
 
-    		$.get('/Workorders/createajax_data?issuedate='+issuedate+'&workorderstatus='+workorderstatus, function(d) {
+    		$.get('/Workorders/createajax_data?issuedate='+issuedate+'&workorderstatus='+workorderstatus
+    		+'&vehicleid='+vehicleid+'&startdate='+startdate+'&lables='+lables
+    		+'&odometer='+odometer+'&voidvalue='+voidvalue+'&vendorid='+vendorid
+    		+'&completiondate='+completiondate+'&issuedbyid='+issuedbyid+'&assignedbyid='+assignedbyid
+    		+'&assigntoid='+assigntoid+'&invoicenumber='+invoicenumber+'&phonenumber='+phonenumber
+    		+'&description='+description+'&labor='+labor+'&parts='+parts
+    		+'&discount='+discount+'&tax='+tax
+    		, function(d) {
    		 		if(d!="error"){
-   		 			
+					var postdata = [];console.log(d);
+					// alert('d--'+d);
    		 			//labor & parts
-					var numItems = $('.classname').length;
-					for(count = 1; count <= numItems; count++){
-						postdata.push($('#part'+count).val() + "^" + $('#type'+count).val()+ "^" + d);
+					// var numItems = $('.classname').length;
+					// alert('numItems'+numItems);
+					// for(count = 1; count <= numItems; count++){ 
+						// // postdata.push($('#part'+count).val() + "^" + $('#type'+count).val()+ "^" + d);
+						// postdata.push($('#ident'+count ).val() + "^" +  $('#wotype'+count ).val() + "^" + $('#contactpart'+count ).val() + "^" + $('#rate'+count).val() + "^" + $('#qty'+count).val()+ "^" + d);
+						// // postdata.push(($('#rate'+count).val() * $('#qty'+count).val()) + "^" +  d);
+					// }
+					// $.get('/Workorders/addLaborParts?content='+postdata, function(d) {
+    					// // alert(d);
+    				// });
+    				
+    				//for labor
+    				var numItems = $('.laborhrs').length;
+					
+					for(count = 1; count <= numItems; count++){ 
+						// postdata.push($('#part'+count).val() + "^" + $('#type'+count).val()+ "^" + d);
+						postdata.push($(' #typeof1'+count ).val() + "^" +$('#ident1'+count ).val() + "^" +  $('#wotype1'+count ).val() + "^" + $('#contactpart1'+count ).val() + "^" + $('#laborrate'+count).val() + "^" + $('#laborqty'+count).val()+ "^" + d );
+						// postdata.push(($('#rate'+count).val() * $('#qty'+count).val()) + "^" +  d);
 					}
-					$.get('/Workorders/addLaborParts?content='+postdata, function(d) {
+					// $.get('/Workorders/addLaborParts?content='+postdata, function(d) {
     					// alert(d);
+    				// });
+    				
+    				//for part
+    				var numItems = $('.partqty').length;
+					
+					for(count = 1; count <= numItems; count++){ 
+						// postdata.push($('#part'+count).val() + "^" + $('#type'+count).val()+ "^" + d);
+						postdata.push($(' #typeof2'+count ).val() + "^" + $('#ident2'+count ).val() + "^" +  $('#wotype2'+count ).val() + "^" + $('#contactpart2'+count ).val() + "^" + $('#partrate'+count).val() + "^" + $('#partqty'+count).val()+ "^" + d);
+						// postdata.push(($('#rate'+count).val() * $('#qty'+count).val()) + "^" +  d);
+					}
+					// postdata = "["+ postdata +"]";
+					console.log('pdataaa---'+postdata);
+					$.get('/Workorders/addLaborParts?content='+postdata, function(d) {
+    					console.log('new ddd--'+d);
     				});
+    				
+    				console.log(postdata);
+    				// alert(postdata);
    		 		}
     		});
+    		
+    		
     	}else{
     		alert("Please enter the mandatory fields.");
     		return false;
