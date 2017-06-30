@@ -32,8 +32,8 @@
          
                    //	echo $this->Form->input('validfrom', ['empty' => true,'type'=>'text', 'class'=>'datemask','required'=>'required']);
                    	//echo $this->Form->input('validtill', ['empty' => true,'type'=>'text', 'class'=>'datemask','required'=>'required']);
-                  	echo $this->Form->input('startloc_id');
-					echo $this->Form->input('endloc_id');
+                  	echo $this->Form->input('startloc_id', [ 'empty' => true,'class'=>'select2']);
+					echo $this->Form->input('endloc_id',[ 'empty' => true,'class'=>'select2']);
 					echo $this->Form->input('route_id', ['options' => $routes, 'empty' => true,'class'=>'select2']);
 					echo $this->Form->input('start_time',['class' => 'timepicker','type' => 'text','templateVars' => ['opentag' => '<div class="bootstrap-timepicker">','closetag' => '</div>','icon' => '<div class="input-group-addon"><i class="fa fa-clock-o"></i></div>']]);
             		echo $this->Form->input('end_time',['class' => 'timepicker','type' => 'text','templateVars' => ['opentag' => '<div class="bootstrap-timepicker">','closetag' => '</div>','icon' => '<div class="input-group-addon"><i class="fa fa-clock-o"></i></div>']]);
@@ -79,13 +79,13 @@
 $this->Html->css([
 'AdminLTE./plugins/datepicker/datepicker3',
    
-    'AdminLTE./plugins/timepicker/bootstrap-timepicker.min',
-    'AdminLTE./plugins/select2/select2.min',
+    'AdminLTE./plugins/timepicker/bootstrap-timepicker.min'
+    // 'AdminLTE./plugins/select2/select2.min',
   ],
   ['block' => 'css']);
 
 $this->Html->script([
-  'AdminLTE./plugins/select2/select2.full.min',
+  // 'AdminLTE./plugins/select2/select2.full.min',
   'AdminLTE./plugins/input-mask/jquery.inputmask',
   'AdminLTE./plugins/input-mask/jquery.inputmask.date.extensions',
   'AdminLTE./plugins/input-mask/jquery.inputmask.extensions',
@@ -101,7 +101,7 @@ $this->Html->script([
 <script>
   $(function () {
 
-   $(".select2").select2({ width: '100%' });
+   // $(".select2").select2({ width: '100%' });
    $('.datemask').datepicker({
             format:"dd/mm/yy",
               autoclose: true
