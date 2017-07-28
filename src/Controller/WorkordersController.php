@@ -113,7 +113,7 @@ class WorkordersController extends AppController
 
 	public function editajaxData()
 	{
-    	
+    	$this->autoRender=false;
 		if($this->request->is('ajax')) {
 				
 			$this->autoRender=false;
@@ -238,7 +238,7 @@ class WorkordersController extends AppController
 					$workorderlabourlineitem['customer_id']=$this->loggedinuser['customer_id'];
 					if ($this->Workorderlabourlineitems->save($workorderlabourlineitem)) 
 					{
-						$this->Flash->success(__('labourlineitre'));
+						// $this->Flash->success(__('labourlineitre'));
 					}
 				}
 					 
@@ -252,7 +252,7 @@ class WorkordersController extends AppController
 					$workorderpartslineitem['customer_id']=$this->loggedinuser['customer_id'];
 					if ($this->Workorderpartslineitems->save($workorderpartslineitem)) 
 					{
-						$this->Flash->success(__('partslineitre'));
+						// $this->Flash->success(__('partslineitre'));
 					}
 					// $workorderpartslineitem=$this->Workorderpartslineitems->patchEntity($workorderpartslineitem,$this->request->data);
 					// $this->response->body(json_encode($workorderlineitem['id']));
@@ -265,7 +265,10 @@ class WorkordersController extends AppController
 	    			return $this->response;
             	}
 				
-			} return $this->response;
+			 } 
+			 
+			 return $this->response;
+			 // return  $this->redirect(['action' => 'index']);
 			
 		}
         
@@ -287,9 +290,10 @@ class WorkordersController extends AppController
     			$it=explode(",",($this->request->query['content']));
 	    		$stst = json_encode($this->request->query['content']);
 				$contentarray = array();
-				 for ($i=0; $i <substr_count($stst, ',')+1 ; $i++) { 
-					 array_push($contentarray, $it[$i]);
-				 }
+				 for ($i=0; $i <substr_count($stst, ',')+1 ; $i++) 
+					 { 
+						 array_push($contentarray, $it[$i]);
+					 }
 				 
 				   // $this->response->body(json_encode($contentarray));			
 	    		   // return $this->response;
@@ -353,7 +357,7 @@ class WorkordersController extends AppController
 					$workorderlabourlineitem['customer_id']=$this->loggedinuser['customer_id'];
 					if ($this->Workorderlabourlineitems->save($workorderlabourlineitem)) 
 					{
-						$this->Flash->success(__('labourlineitre'));
+						// $this->Flash->success(__('labourlineitre'));
 					}
 				}
 					 
@@ -369,7 +373,7 @@ class WorkordersController extends AppController
 					$workorderpartslineitem['customer_id']=$this->loggedinuser['customer_id'];
 					if ($this->Workorderpartslineitems->save($workorderpartslineitem)) 
 					{
-						$this->Flash->success(__('partslineitre'));
+						// $this->Flash->success(__('partslineitre'));
 					}
 					// $workorderpartslineitem=$this->Workorderpartslineitems->patchEntity($workorderpartslineitem,$this->request->data);
 					// $this->response->body(json_encode($workorderlineitem['id']));
@@ -792,8 +796,32 @@ public function ajaxdata() {
 					$workorder = $this->Workorders->get($value);
 					
 					 if($workorder['customer_id']== $this->loggedinuser['customer_id']) {
-					 	
+					 	$this->Flash->success(__('kjbhkjb'.$workorder['id']));
+					 	$this->log($workorder['id']);
+						$currentwid = $workorder['id'];
 						   if ($this->Workorders->delete($workorder)) {
+						   	
+							$this->loadModel('Workorderlineitems');
+							$result2 = $this->Workorderlineitems->deleteLineItems($this->loggedinuser['customer_id'],$currentwid);
+			    
+				
+								$query=$this->Workorderlineitems->find('All')->where(['workorder_id'=>$workorder['id']])->toArray();
+								$query2=$this->Workorderlineitems->find('All')->where(['workorder_id'=>$workorder['id']]);
+								for ($i=0; $i < $query2->count(); $i++) { 
+									$this->log("workorder");
+								}
+						  		// (isset($query)) ? $result=$query : $result="";
+								
+								// $this->log($servicesentry['id']);
+								$this->log($query2->count());
+				
+				
+				
+				
+				
+				
+				
+				
 					           $sucess= $sucess | true;
 					        } else {
 					           $failure= $failure | true;
@@ -817,4 +845,81 @@ public function ajaxdata() {
 
              return $this->redirect(['action' => 'index']);	
      }
+	
+	public function deleteLabourLineItems($id=null)
+	{
+		if($this->request->is('ajax')) 
+		   {
+				$this->autoRender= false;
+				$data=$this->request->data;
+				$lineitemid = $data["lineitemid"];
+				$workorderitemid = explode(',', $lineitemid);
+				//$workorderitemid[0] is the id used for deleting the record from workorderlineitems table
+				//$workorderitemid[1] is the id used for deleting the record from workorderlabourlineitems table
+				// $this->Flash->success(__('The workorder has been deleted.'.$workorderitemid[0]));
+				
+
+			    $this->loadModel('Workorderlineitems');
+			    $result2 = $this->Workorderlineitems->deleteLineItems($this->loggedinuser['customer_id'],$workorderitemid[1]);
+			    
+				$this->loadModel('Workorderlabourlineitems');
+				$result1 = $this->Workorderlabourlineitems->deleteLabourLineItems($this->loggedinuser['customer_id'],$workorderitemid[0]);
+				
+				$this->response->body("success");
+			    return $this->response; 
+		   } 				
+	}
+	
+	public function deletePartsLineItems($id=null)
+	{
+	   if($this->request->is('ajax')) 
+		   {
+				$this->autoRender= false;
+				$data=$this->request->data;
+				$lineitemid = $data["lineitemid"];
+				$workorderitemid = explode(',', $lineitemid);
+				//$workorderitemid[0] is the id used for deleting the record from workorderlineitems table
+				//$workorderitemid[1] is the id used for deleting the record from workorderpartslineitems table
+				//$this->Flash->success(__('The workorder has been deleted.'.$lineitemid."-----".$workorderitemid[0]));
+
+			    $this->loadModel("Workorderlineitems");
+				$result2 = $this->Workorderlineitems->deleteLineItems($this->loggedinuser['customer_id'],$workorderitemid[1]);
+			    
+				$this->loadModel("Workorderpartslineitems");
+				$result1 = $this->Workorderpartslineitems->deletePartsLineItems($this->loggedinuser['customer_id'],$workorderitemid[0]);  
+				$this->response->body("success");
+			    return $this->response;    
+		   } 				
+	}
+	
+	public function updateWorkordersAfterItemsDeletion($id=null)
+	{
+	   if($this->request->is('ajax')) 
+		   {
+				$this->autoRender= false;
+				$data=$this->request->data;
+				$values = $data["items"];
+				$values = explode(',', $values);
+				$wid = $values[0];
+				$labour = $values[1];
+				$parts = $values[2];
+				//$workorderitemid[0] is the id used for deleting the record from workorderlineitems table
+				//$workorderitemid[1] is the id used for deleting the record from workorderpartslineitems table
+				//$this->Flash->success(__('The workorder has been deleted.'.$lineitemid."-----".$workorderitemid[0]));
+				
+				
+				$result = $this->Workorders->updateWorkordersAfterItemsDeletion($this->loggedinuser['customer_id'],$wid,$labour,$parts);
+				
+			    // $this->loadModel("Workorderlineitems");
+				// $result2 = $this->Workorderlineitems->deleteLineItems($this->loggedinuser['customer_id'],$workorderitemid[1]);
+// 			    
+				// $this->loadModel("Workorderpartslineitems");
+				// $result1 = $this->Workorderpartslineitems->deletePartsLineItems($this->loggedinuser['customer_id'],$workorderitemid[0]);  
+				
+				$this->response->body("success");
+			    return $this->response;    
+		   } 				
+	}
+
+
 }

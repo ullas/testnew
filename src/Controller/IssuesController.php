@@ -355,8 +355,6 @@ private function getDateRangeFilters($dates,$basic)  {
     	{
     		$this->loadModel('Issues');
 			$this->autoRender=false;
-			
-			// print_r($this->request->query['content']);
 			$issueidsAr = array();
 			$issueidsAr = $this->request->query['content'];
 			$issueids=explode(",",$issueidsAr);
@@ -365,15 +363,12 @@ private function getDateRangeFilters($dates,$basic)  {
 				$issues[$i] = $issueids[$i];
 				$ttt = $this->Issues->changeStatusClose($this->loggedinuser['customer_id'],$issueids[$i]);
 			}
-		 	if(isset($ttt))
-			{
+		 	// if(isset($ttt))
+			// {
 				// return $this->redirect(array('controller' => 'Issues', 'action' => 'index'));
-				return $this->redirect(['action' => 'index']);		
 				$this->Flash->success(__('Selected Issues are closed.'));
-				
-				
-		 	
-			}
+				// return $this->redirect(['action' => 'index']);
+			// }
 		 	$this->response->body("testop");
 	    	return $this->response;
 			

@@ -5,6 +5,7 @@ use Cake\ORM\Query;
 use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
 use Cake\Validation\Validator;
+use Cake\Datasource\ConnectionManager;
 
 /**
  * Workorderpartslineitems Model
@@ -89,4 +90,14 @@ class WorkorderpartslineitemsTable extends Table
 
         return $rules;
     }
+	
+	public function deletePartsLineItems($cid,$lineitemid)
+	{
+		print_r($lineitemid);
+		
+		$con = ConnectionManager::get('default');
+		$stmt = $con->execute("delete from zorba.workorderpartslineitems where id = $lineitemid  and customer_id = $cid  ");
+		$results = $stmt->fetchAll('assoc');
+		return $results;
+	}
 }
