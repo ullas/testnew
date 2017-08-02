@@ -5,6 +5,7 @@ use Cake\ORM\Query;
 use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
 use Cake\Validation\Validator;
+use Cake\Datasource\ConnectionManager;
 
 /**
  * Workorders Model
@@ -165,4 +166,13 @@ class WorkordersTable extends Table
 
         return $rules;
     }
+	
+	
+	public function updateWorkordersAfterItemsDeletion($cid,$wid,$labour,$parts)
+	{
+		$con = ConnectionManager::get('default');
+		$stmt = $con->execute("update zorba.workorders set labour = $labour, parts = $parts  where id = $wid and customer_id = $cid ");
+		$results = $stmt->fetchAll('assoc');
+		return $results;
+	}
 }

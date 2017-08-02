@@ -526,13 +526,27 @@ $(".mptl-close-base3").click(function(e)
       e.preventDefault();
       var valuearray = [];
   	  valuearray = setSelection();
-      $.get('/Issues/setClose?content='+valuearray, function(d) {});
-       // $.get('/Issues/setClose, function(d) {});
+      // $.get('/Issues/setClose?content='+valuearray, function(d) {});
+       var result = confirm("Are you sure you want to close the selected issues?");
+	   if (result) 
+	   {
+   			 $.ajax({
+        	 type : "POST",
+                url  : '/Issues/setClose?content='+valuearray,
+                success : function(array1){
+            			window.location.reload();
+                	 	
+                    }
+            })
+       }
+       else{}
+       
+        
     					
  });
      
      
-  });
+ });
 
 function setSelection(){
 		var valuearray = [];
