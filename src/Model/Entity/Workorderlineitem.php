@@ -15,10 +15,15 @@ use Cake\ORM\Entity;
  * @property int $servicetask_id
  * @property int $workordertype_id
  * @property int $issue_id
+ * @property int $customer_id
+ * @property int $taxtype
+ * @property float $tax
  *
  * @property \App\Model\Entity\Workorder $workorder
+ * @property \App\Model\Entity\Servicetask $servicetask
  * @property \App\Model\Entity\Workordertype $workordertype
- * @property \App\Model\Entity\Customer $customer
+ * @property \App\Model\Entity\Issue $issue
+ * @property \App\Model\Entity\Workorderlabourlineitem[] $workorderlabourlineitems
  */
 class Workorderlineitem extends Entity
 {

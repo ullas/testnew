@@ -100,14 +100,16 @@ class WorkordersController extends AppController
             $workorder=$this->Workorders->patchEntity($workorder,$this->request->data);
 			$workorder['customer_id']=$this->loggedinuser['customer_id'];
 			if ($this->Workorders->save($workorder)) {
-
+				
                 $this->response->body(json_encode($workorder['id']));			
 	    		return $this->response;
 	    		
             } else {
+            	
                 $this->response->body("error");
 	    		return $this->response;
             }
+			
 		}  
     }
 
@@ -611,6 +613,7 @@ public function ajaxdata() {
             } else {
                 $this->Flash->error(__('The workorder could not be saved. Please, try again.'));
             }
+			// return $this->redirect(['action' => 'index']);
         }
         
         $workorderstatuses = $this->Workorders->Workorderstatuses->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
@@ -648,7 +651,7 @@ public function ajaxdata() {
     
 		// $this->set(compact('workorder', 'workorderstatuses', 'vehicles', 'vendors', 'issuedbies', 'assignedbies', 'assigntos', 'customers','servicetasks','issues'));
         // $this->set('_serialize', ['workorder','workorderstatuses', 'vehicles', 'vendors', 'issuedbies', 'assignedbies', 'assigntos', 'customers','servicetasks','issues']);
-    
+    	
 	}
 
     /**
@@ -766,17 +769,29 @@ public function ajaxdata() {
         $workorder = $this->Workorders->get($id);
 		if($workorder['customer_id'] = $this->loggedinuser['customer_id'])
 		{
-	        if ($this->Workorders->delete($workorder)) {
-	            $this->Flash->success(__('The workorder has been deleted.'));
-	        } else {
-	            $this->Flash->error(__('The workorder could not be deleted. Please, try again.'));
-	        }
+	        if ($this->Workorders->delete($workorder)) 
+		        {
+		            $this->Flash->success(__('The workorder has been deleted.'));
+					$this->loadModel('Workorderlineitems');
+					$result = $this->Workorderlineitems->deleteLineItemsFromIndex($this->loggedinuser['customer_id'],$workorder['id']);
+				    
+				    $this->loadModel('Workorderlabourlineitems');
+					$result1 = $this->Workorderlabourlineitems->deleteLabourLineItemsFromIndex($this->loggedinuser['customer_id'],$workorder['id']);
+				    
+					$this->loadModel('Workorderpartslineitems');
+					$result2 = $this->Workorderpartslineitems->deletePartsLineItemsFromIndex($this->loggedinuser['customer_id'],$workorder['id']);
+				} 
+	        
+	        else 
+		        {
+		            $this->Flash->error(__('The workorder could not be deleted. Please, try again.'));
+		        }
 		 }
-	    else
-	    {
-	   	    $this->Flash->error(__('You are not authorized'));
-		
-	    }
+	     else
+		    {
+		   	    $this->Flash->error(__('You are not authorized'));
+			
+		    }
         return $this->redirect(['action' => 'index']);
     }
 
@@ -787,61 +802,54 @@ public function ajaxdata() {
         
         $data=$this->request->data;
 			
-		if(isset($data)){
-		   foreach($data as $key =>$value){
-		   	   
-			     $itemna=explode("-",$key);
-			    if(count($itemna)== 2 && $itemna[0]=='chk'){
-			    	
-					$workorder = $this->Workorders->get($value);
-					
-					 if($workorder['customer_id']== $this->loggedinuser['customer_id']) {
-					 	$this->Flash->success(__('kjbhkjb'.$workorder['id']));
-					 	$this->log($workorder['id']);
-						$currentwid = $workorder['id'];
-						   if ($this->Workorders->delete($workorder)) {
-						   	
-							$this->loadModel('Workorderlineitems');
-							$result2 = $this->Workorderlineitems->deleteLineItems($this->loggedinuser['customer_id'],$currentwid);
-			    
-				
-								$query=$this->Workorderlineitems->find('All')->where(['workorder_id'=>$workorder['id']])->toArray();
-								$query2=$this->Workorderlineitems->find('All')->where(['workorder_id'=>$workorder['id']]);
-								for ($i=0; $i < $query2->count(); $i++) { 
-									$this->log("workorder");
-								}
-						  		// (isset($query)) ? $result=$query : $result="";
+		if(isset($data))
+			{
+			   foreach($data as $key =>$value)
+				   {
+				   	   
+					    $itemna=explode("-",$key);
+					    if(count($itemna)== 2 && $itemna[0]=='chk')
+						    {
+						    	$workorder = $this->Workorders->get($value);
+								if($workorder['customer_id']== $this->loggedinuser['customer_id']) 
+								 {
+								 	   if ($this->Workorders->delete($workorder)) 
+										   {
+										   		
+												$this->loadModel('Workorderlineitems');
+												$result = $this->Workorderlineitems->deleteLineItemsFromIndex($this->loggedinuser['customer_id'],$workorder['id']);
+											    
+											    $this->loadModel('Workorderlabourlineitems');
+												$result1 = $this->Workorderlabourlineitems->deleteLabourLineItemsFromIndex($this->loggedinuser['customer_id'],$workorder['id']);
+											    
+												$this->loadModel('Workorderpartslineitems');
+												$result2 = $this->Workorderpartslineitems->deletePartsLineItemsFromIndex($this->loggedinuser['customer_id'],$workorder['id']);
+											   
+															
+									            $sucess= $sucess | true;
+									         } 
+								         else 
+									         {
+									            $failure= $failure | true;
+									         }
+									
+								 }
 								
-								// $this->log($servicesentry['id']);
-								$this->log($query2->count());
-				
-				
-				
-				
-				
-				
-				
-				
-					           $sucess= $sucess | true;
-					        } else {
-					           $failure= $failure | true;
-					        }
-						
-					 }
-					
-			    }  	  
-			   
-		   }
-		   		        
-		
-			if($sucess){
-				$this->Flash->success(__('Selected workorders has been deleted.'));
-			}
-	        if($failure){
-				$this->Flash->error(__('The workorder could not be deleted. Please, try again.'));
-			}
-		
-		   }
+						    }  	  
+					   
+				   }
+			   		        
+			
+				if($sucess)
+					{
+						$this->Flash->success(__('Selected workorders has been deleted.'));
+					}
+		        if($failure)
+			        {
+						$this->Flash->error(__('The workorder could not be deleted. Please, try again.'));
+					}
+			
+			   }
 
              return $this->redirect(['action' => 'index']);	
      }
@@ -854,11 +862,7 @@ public function ajaxdata() {
 				$data=$this->request->data;
 				$lineitemid = $data["lineitemid"];
 				$workorderitemid = explode(',', $lineitemid);
-				//$workorderitemid[0] is the id used for deleting the record from workorderlineitems table
-				//$workorderitemid[1] is the id used for deleting the record from workorderlabourlineitems table
-				// $this->Flash->success(__('The workorder has been deleted.'.$workorderitemid[0]));
 				
-
 			    $this->loadModel('Workorderlineitems');
 			    $result2 = $this->Workorderlineitems->deleteLineItems($this->loggedinuser['customer_id'],$workorderitemid[1]);
 			    
@@ -878,10 +882,7 @@ public function ajaxdata() {
 				$data=$this->request->data;
 				$lineitemid = $data["lineitemid"];
 				$workorderitemid = explode(',', $lineitemid);
-				//$workorderitemid[0] is the id used for deleting the record from workorderlineitems table
-				//$workorderitemid[1] is the id used for deleting the record from workorderpartslineitems table
-				//$this->Flash->success(__('The workorder has been deleted.'.$lineitemid."-----".$workorderitemid[0]));
-
+				
 			    $this->loadModel("Workorderlineitems");
 				$result2 = $this->Workorderlineitems->deleteLineItems($this->loggedinuser['customer_id'],$workorderitemid[1]);
 			    
@@ -903,19 +904,9 @@ public function ajaxdata() {
 				$wid = $values[0];
 				$labour = $values[1];
 				$parts = $values[2];
-				//$workorderitemid[0] is the id used for deleting the record from workorderlineitems table
-				//$workorderitemid[1] is the id used for deleting the record from workorderpartslineitems table
-				//$this->Flash->success(__('The workorder has been deleted.'.$lineitemid."-----".$workorderitemid[0]));
-				
 				
 				$result = $this->Workorders->updateWorkordersAfterItemsDeletion($this->loggedinuser['customer_id'],$wid,$labour,$parts);
-				
-			    // $this->loadModel("Workorderlineitems");
-				// $result2 = $this->Workorderlineitems->deleteLineItems($this->loggedinuser['customer_id'],$workorderitemid[1]);
-// 			    
-				// $this->loadModel("Workorderpartslineitems");
-				// $result1 = $this->Workorderpartslineitems->deletePartsLineItems($this->loggedinuser['customer_id'],$workorderitemid[0]);  
-				
+							   
 				$this->response->body("success");
 			    return $this->response;    
 		   } 				

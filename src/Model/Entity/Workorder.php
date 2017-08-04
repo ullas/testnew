@@ -27,6 +27,7 @@ use Cake\ORM\Entity;
  * @property string $description
  * @property string $phonenumber
  * @property int $customer_id
+ * @property int $taxtype
  *
  * @property \App\Model\Entity\Workorderstatus $workorderstatus
  * @property \App\Model\Entity\Vehicle $vehicle
@@ -37,7 +38,8 @@ use Cake\ORM\Entity;
  * @property \App\Model\Entity\Customer $customer
  * @property \App\Model\Entity\Issue[] $issues
  * @property \App\Model\Entity\Workorderdocument[] $workorderdocuments
- * @property \App\Model\Entity\Workorderlineitem[] $workorderlineitems
+ * @property \App\Model\Entity\Workorderlabourlineitem[] $workorderlabourlineitems
+ * @property \App\Model\Entity\Workorderpartslineitem[] $workorderpartslineitems
  */
 class Workorder extends Entity
 {

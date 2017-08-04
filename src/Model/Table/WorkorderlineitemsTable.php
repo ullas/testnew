@@ -14,6 +14,7 @@ use Cake\Datasource\ConnectionManager;
  * @property \Cake\ORM\Association\BelongsTo $Servicetasks
  * @property \Cake\ORM\Association\BelongsTo $Workordertypes
  * @property \Cake\ORM\Association\BelongsTo $Issues
+ * @property \Cake\ORM\Association\BelongsTo $Customers
  * @property \Cake\ORM\Association\HasMany $Workorderlabourlineitems
  *
  * @method \App\Model\Entity\Workorderlineitem get($primaryKey, $options = [])
@@ -53,6 +54,9 @@ class WorkorderlineitemsTable extends Table
         $this->belongsTo('Issues', [
             'foreignKey' => 'issue_id'
         ]);
+        $this->belongsTo('Customers', [
+            'foreignKey' => 'customer_id'
+        ]);
         $this->hasMany('Workorderlabourlineitems', [
             'foreignKey' => 'workorderlineitem_id'
         ]);
@@ -84,6 +88,14 @@ class WorkorderlineitemsTable extends Table
             ->integer('numitems')
             ->allowEmpty('numitems');
 
+        $validator
+            ->integer('taxtype')
+            ->allowEmpty('taxtype');
+
+        $validator
+            ->numeric('tax')
+            ->allowEmpty('tax');
+
         return $validator;
     }
 
@@ -100,11 +112,20 @@ class WorkorderlineitemsTable extends Table
         $rules->add($rules->existsIn(['servicetask_id'], 'Servicetasks'));
         $rules->add($rules->existsIn(['workordertype_id'], 'Workordertypes'));
         $rules->add($rules->existsIn(['issue_id'], 'Issues'));
+        $rules->add($rules->existsIn(['customer_id'], 'Customers'));
 
         return $rules;
     }
 	
 	public function deleteLineItems($cid,$lineitemid)
+	{
+		$con = ConnectionManager::get('default');
+		$stmt = $con->execute("delete from zorba.workorderlineitems where id = $lineitemid    ");
+		$results = $stmt->fetchAll('assoc');
+		return $results;
+	}
+	
+	public function deleteLineItemsFromIndex($cid,$lineitemid)
 	{
 		$con = ConnectionManager::get('default');
 		$stmt = $con->execute("delete from zorba.workorderlineitems where workorder_id = $lineitemid    ");

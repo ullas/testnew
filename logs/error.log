@@ -919,3 +919,236 @@ Stack Trace:
 
 2017-07-28 10:20:03 Error: Workorders/add/
 2017-07-28 10:23:19 Error: Workorders/add/
+2017-08-01 05:13:09 Error: Workorders/add/
+2017-08-01 05:21:55 Error: Workorders/add/
+2017-08-01 06:27:57 Error: Workorders/add/
+2017-08-01 06:38:40 Error: Workorders/add/
+2017-08-01 06:49:23 Error: Workorders/add/
+2017-08-01 06:54:18 Error: Workorders/add/
+2017-08-01 07:08:09 Error: Workorders/add/
+2017-08-01 07:18:31 Error: Workorders/add/
+2017-08-01 07:21:58 Error: {
+    "id": 405,
+    "issuedate": "2017-08-13T00:00:00+00:00",
+    "workorderstatus_id": 1,
+    "vehicle_id": 118,
+    "startdate": "2017-08-08T00:00:00+00:00",
+    "lables": "",
+    "odometer": null,
+    "void": true,
+    "vendor_id": null,
+    "completiondate": null,
+    "labour": 26,
+    "parts": 114,
+    "dicount": null,
+    "tax": null,
+    "issuedby_id": null,
+    "assignedby_id": null,
+    "assignto_id": null,
+    "invoicenumber": "inv1",
+    "description": "",
+    "phonenumber": "",
+    "customer_id": 1
+}
+2017-08-01 07:21:58 Error: {
+    "id": 406,
+    "issuedate": "2017-08-14T00:00:00+00:00",
+    "workorderstatus_id": 1,
+    "vehicle_id": 116,
+    "startdate": "2017-08-08T00:00:00+00:00",
+    "lables": "",
+    "odometer": null,
+    "void": true,
+    "vendor_id": null,
+    "completiondate": null,
+    "labour": 260,
+    "parts": 1140,
+    "dicount": null,
+    "tax": null,
+    "issuedby_id": null,
+    "assignedby_id": null,
+    "assignto_id": null,
+    "invoicenumber": "inv2",
+    "description": "",
+    "phonenumber": "",
+    "customer_id": 1
+}
+2017-08-01 08:27:06 Error: Workorders/add/
+2017-08-01 08:28:08 Error: Workorders/add/
+2017-08-01 08:28:34 Error: Workorders/add/
+2017-08-01 08:29:25 Error: Workorders/add/
+2017-08-01 08:29:40 Error: Workorders/add/
+2017-08-01 08:31:55 Error: Workorders/add/
+2017-08-01 08:32:37 Error: Workorders/add/
+2017-08-01 08:46:22 Error: Workorders/add/
+2017-08-01 08:53:49 Error: Workorders/add/
+2017-08-01 08:55:06 Error: Workorders/add/
+2017-08-01 09:06:50 Error: Workorders/add/
+2017-08-01 09:07:58 Error: Workorders/add/
+2017-08-01 09:08:20 Error: Workorders/add/
+2017-08-01 09:08:49 Error: Workorders/add/
+2017-08-01 09:24:23 Error: Workorders/add/
+2017-08-01 09:28:17 Error: Workorders/add/
+2017-08-01 09:31:20 Error: Workorders/add/
+2017-08-01 09:40:41 Error: Workorders/add/
+2017-08-01 11:31:04 Error: Workorders/add/
+2017-08-01 12:57:39 Error: Workorders/add/
+2017-08-02 03:56:18 Warning: Headers already sent in C:\Users\Hp\Desktop\testnew\vendor\cakephp\cakephp\src\Error\Debugger.php:753
+2017-08-02 03:56:18 Error: [RuntimeException] Unable to emit response; headers already sent
+Request URL: /Workorders/editLaborParts?content=
+Referer URL: http://localhost:8765/Workorders/edit/419
+Stack Trace:
+#0 C:\Users\Hp\Desktop\testnew\vendor\cakephp\cakephp\src\Http\Server.php(107): Zend\Diactoros\Response\SapiStreamEmitter->emit(Object(Zend\Diactoros\Response))
+#1 C:\Users\Hp\Desktop\testnew\webroot\index.php(37): Cake\Http\Server->emit(Object(Zend\Diactoros\Response))
+#2 {main}
+
+
+2017-08-02 05:46:56 Error: Workorders/add/
+2017-08-02 06:46:28 Error: Workorders/add/
+2017-08-02 06:46:54 Error: Workorders/add/
+2017-08-02 06:47:38 Error: Workorders/add/
+2017-08-02 06:47:53 Error: Workorders/add/
+2017-08-02 06:48:44 Error: Workorders/add/
+2017-08-02 07:06:53 Error: Workorders/add/
+2017-08-02 07:11:12 Error: Workorders/add/
+2017-08-02 07:16:57 Error: Workorders/add/
+2017-08-02 07:25:40 Error: Workorders/add/
+2017-08-02 07:27:36 Error: Workorders/add/
+2017-08-02 07:27:47 Error: Workorders/add/
+2017-08-02 07:28:45 Error: Workorders/add/
+2017-08-02 07:30:51 Error: Workorders/add/
+2017-08-02 07:32:52 Error: Workorders/add/
+2017-08-02 07:35:24 Error: Workorders/add/
+2017-08-02 09:18:49 Error: Workorders/add/
+2017-08-02 09:21:13 Error: Workorders/add/
+2017-08-02 10:36:12 Error: Workorders/add/
+2017-08-02 10:36:59 Error: Workorders/add/
+2017-08-03 03:14:23 Error: Servicesentries/add/13
+2017-08-03 03:14:36 Error: Workorders/add/
+2017-08-03 03:25:58 Error: Workorders/add/
+2017-08-03 03:26:46 Error: Workorders/add/
+2017-08-03 03:44:20 Error: Workorders/add/
+2017-08-03 03:46:03 Error: Workorders/add/
+2017-08-03 03:51:21 Error: Workorders/add/
+2017-08-03 03:51:41 Error: Workorders/add/
+2017-08-03 03:53:49 Error: Workorders/add/
+2017-08-03 03:55:07 Error: Workorders/add/
+2017-08-03 03:55:58 Error: Workorders/add/
+2017-08-03 04:14:08 Error: Workorders/add/
+2017-08-03 04:51:21 Error: Workorders/add/
+2017-08-03 05:02:55 Error: Workorders/add/
+2017-08-03 05:04:07 Error: Workorders/add/
+2017-08-03 05:12:24 Error: Workorders/add/
+2017-08-03 05:15:47 Error: Workorders/add/
+2017-08-03 05:19:49 Error: Workorders/add/
+2017-08-03 05:26:06 Error: Workorders/add/
+2017-08-03 05:28:51 Error: Workorders/add/
+2017-08-03 05:33:00 Error: Workorders/add/
+2017-08-03 06:33:54 Error: Workorders/add/
+2017-08-03 06:44:49 Error: Workorders/add/
+2017-08-03 06:49:41 Error: Workorders/add/
+2017-08-03 06:58:10 Error: Workorders/add/
+2017-08-03 06:59:19 Error: Workorders/add/
+2017-08-03 07:18:50 Error: Workorders/add/
+2017-08-03 07:23:45 Error: Workorders/add/
+2017-08-03 07:25:24 Error: Workorders/add/
+2017-08-03 07:28:12 Error: Workorders/add/
+2017-08-03 07:29:47 Error: Workorders/add/
+2017-08-03 07:32:06 Error: Workorders/add/
+2017-08-03 07:33:37 Error: Workorders/add/
+2017-08-03 07:34:01 Error: Workorders/add/
+2017-08-03 07:34:50 Error: Workorders/add/
+2017-08-03 07:35:29 Error: Workorders/add/
+2017-08-03 07:35:51 Error: Workorders/add/
+2017-08-03 07:37:00 Error: Workorders/add/
+2017-08-03 07:37:44 Error: Workorders/add/
+2017-08-03 07:38:49 Error: Workorders/add/
+2017-08-03 07:39:09 Error: Workorders/add/
+2017-08-03 07:40:16 Error: Workorders/add/
+2017-08-03 07:41:41 Error: Workorders/add/
+2017-08-03 07:42:01 Error: Workorders/add/
+2017-08-03 08:44:20 Error: Workorders/add/
+2017-08-03 08:47:23 Error: Workorders/add/
+2017-08-03 09:19:30 Error: Workorders/add/
+2017-08-03 09:22:42 Error: Workorders/add/
+2017-08-03 09:24:36 Error: Workorders/add/
+2017-08-03 09:30:51 Error: Workorders/add/
+2017-08-03 09:32:11 Error: Workorders/add/
+2017-08-03 09:32:41 Error: Workorders/add/
+2017-08-03 09:35:04 Error: Workorders/add/
+2017-08-03 09:35:55 Error: Workorders/add/
+2017-08-03 09:36:21 Error: Workorders/add/
+2017-08-03 09:37:54 Error: Workorders/add/
+2017-08-03 09:38:48 Error: Workorders/add/
+2017-08-03 09:41:05 Error: Workorders/add/
+2017-08-03 09:41:42 Error: Workorders/add/
+2017-08-03 09:43:45 Error: Workorders/add/
+2017-08-03 09:44:46 Error: Workorders/add/
+2017-08-03 09:46:28 Error: Workorders/add/
+2017-08-03 09:47:03 Error: Workorders/add/
+2017-08-03 09:48:44 Error: Workorders/add/
+2017-08-03 09:49:20 Error: Workorders/add/
+2017-08-03 09:52:24 Error: Workorders/add/
+2017-08-03 09:59:44 Error: Workorders/add/
+2017-08-03 10:09:54 Error: Workorders/add/
+2017-08-03 10:17:59 Error: Workorders/add/
+2017-08-03 11:31:24 Error: Workorders/add/
+2017-08-03 11:51:34 Error: Workorders/add/
+2017-08-03 11:53:53 Error: Workorders/add/
+2017-08-03 11:54:59 Error: Workorders/add/
+2017-08-03 11:57:54 Error: Workorders/add/
+2017-08-03 12:00:07 Error: Workorders/add/
+2017-08-03 12:02:48 Error: Workorders/add/
+2017-08-04 03:13:09 Error: Servicesentries/add/13
+2017-08-04 03:17:04 Error: Workorders/add/
+2017-08-04 03:18:42 Error: Workorders/add/
+2017-08-04 03:19:15 Error: Workorders/add/
+2017-08-04 03:22:16 Error: Workorders/add/
+2017-08-04 03:25:53 Error: Workorders/add/
+2017-08-04 03:27:37 Error: Workorders/add/
+2017-08-04 03:28:59 Error: Workorders/add/
+2017-08-04 03:29:30 Error: Workorders/add/
+2017-08-04 03:30:05 Error: Workorders/add/
+2017-08-04 03:34:43 Error: Workorders/add/
+2017-08-04 03:36:40 Error: Workorders/add/
+2017-08-04 03:36:49 Error: Workorders/add/
+2017-08-04 03:42:07 Error: Workorders/add/
+2017-08-04 03:43:13 Error: Workorders/add/
+2017-08-04 03:44:14 Error: Workorders/add/
+2017-08-04 03:45:39 Error: Workorders/add/
+2017-08-04 03:46:24 Error: Workorders/add/
+2017-08-04 03:48:12 Error: Workorders/add/
+2017-08-04 03:48:17 Error: Workorders/add/
+2017-08-04 03:49:25 Error: Workorders/add/
+2017-08-04 03:50:50 Error: Workorders/add/
+2017-08-04 03:52:10 Error: Workorders/add/
+2017-08-04 03:53:35 Error: Workorders/add/
+2017-08-04 03:54:44 Error: Workorders/add/
+2017-08-04 03:59:43 Error: Workorders/add/
+2017-08-04 05:21:26 Error: Workorders/add/
+2017-08-04 05:25:48 Error: Workorders/add/
+2017-08-04 05:29:43 Error: Workorders/add/
+2017-08-04 05:31:57 Error: Workorders/add/
+2017-08-04 05:32:52 Error: Workorders/add/
+2017-08-04 05:34:26 Error: Workorders/add/
+2017-08-04 07:34:43 Error: Workorders/add/
+2017-08-04 07:36:14 Error: Workorders/add/
+2017-08-04 08:11:23 Error: Workorders/add/
+2017-08-04 08:12:08 Error: Workorders/add/
+2017-08-04 08:14:21 Error: Workorders/add/
+2017-08-04 08:14:53 Error: Workorders/add/
+2017-08-04 08:15:26 Error: Workorders/add/
+2017-08-04 08:16:12 Error: Workorders/add/
+2017-08-04 08:17:06 Error: Workorders/add/
+2017-08-04 08:18:12 Error: Workorders/add/
+2017-08-04 09:09:34 Error: Workorders/add/
+2017-08-04 09:15:27 Error: Workorders/add/
+2017-08-04 09:26:22 Error: Workorders/add/
+2017-08-04 09:26:52 Error: Workorders/add/
+2017-08-04 09:27:39 Error: Workorders/add/
+2017-08-04 09:28:42 Error: Workorders/add/
+2017-08-04 09:29:01 Error: Workorders/add/
+2017-08-04 09:29:52 Error: Workorders/add/
+2017-08-04 09:33:11 Error: Workorders/add/
+2017-08-04 10:18:43 Error: Workorders/add/
+2017-08-04 10:20:45 Error: Workorders/add/
