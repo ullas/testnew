@@ -13,6 +13,9 @@ use Cake\Datasource\ConnectionManager;
  * @property \Cake\ORM\Association\BelongsTo $Workorders
  * @property \Cake\ORM\Association\BelongsTo $Customers
  * @property \Cake\ORM\Association\BelongsTo $Parts
+ * @property \Cake\ORM\Association\BelongsTo $Servicetasks
+ * @property \Cake\ORM\Association\BelongsTo $Workordertypes
+ * @property \Cake\ORM\Association\BelongsTo $Issues
  *
  * @method \App\Model\Entity\Workorderpartslineitem get($primaryKey, $options = [])
  * @method \App\Model\Entity\Workorderpartslineitem newEntity($data = null, array $options = [])
@@ -48,6 +51,15 @@ class WorkorderpartslineitemsTable extends Table
         $this->belongsTo('Parts', [
             'foreignKey' => 'part_id'
         ]);
+        $this->belongsTo('Servicetasks', [
+            'foreignKey' => 'servicetask_id'
+        ]);
+        $this->belongsTo('Workordertypes', [
+            'foreignKey' => 'workordertype_id'
+        ]);
+        $this->belongsTo('Issues', [
+            'foreignKey' => 'issue_id'
+        ]);
     }
 
     /**
@@ -72,6 +84,18 @@ class WorkorderpartslineitemsTable extends Table
             ->integer('quantity')
             ->allowEmpty('quantity');
 
+        $validator
+            ->integer('workorderlineitems')
+            ->allowEmpty('workorderlineitems');
+
+        $validator
+            ->integer('taxtype')
+            ->allowEmpty('taxtype');
+
+        $validator
+            ->numeric('tax')
+            ->allowEmpty('tax');
+
         return $validator;
     }
 
@@ -87,16 +111,25 @@ class WorkorderpartslineitemsTable extends Table
         $rules->add($rules->existsIn(['workorder_id'], 'Workorders'));
         $rules->add($rules->existsIn(['customer_id'], 'Customers'));
         $rules->add($rules->existsIn(['part_id'], 'Parts'));
+        $rules->add($rules->existsIn(['servicetask_id'], 'Servicetasks'));
+        $rules->add($rules->existsIn(['workordertype_id'], 'Workordertypes'));
+        $rules->add($rules->existsIn(['issue_id'], 'Issues'));
 
         return $rules;
     }
 	
 	public function deletePartsLineItems($cid,$lineitemid)
 	{
-		print_r($lineitemid);
-		
 		$con = ConnectionManager::get('default');
 		$stmt = $con->execute("delete from zorba.workorderpartslineitems where id = $lineitemid  and customer_id = $cid  ");
+		$results = $stmt->fetchAll('assoc');
+		return $results;
+	}
+	
+	public function deletePartsLineItemsFromIndex($cid,$lineitemid)
+	{
+		$con = ConnectionManager::get('default');
+		$stmt = $con->execute("delete from zorba.workorderpartslineitems where workorder_id = $lineitemid  and customer_id = $cid  ");
 		$results = $stmt->fetchAll('assoc');
 		return $results;
 	}

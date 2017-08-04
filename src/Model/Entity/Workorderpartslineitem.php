@@ -13,9 +13,16 @@ use Cake\ORM\Entity;
  * @property int $customer_id
  * @property int $quantity
  * @property int $part_id
+ * @property int $workorderlineitems
+ * @property int $servicetask_id
+ * @property int $workordertype_id
+ * @property int $issue_id
+ * @property int $taxtype
+ * @property float $tax
  *
  * @property \App\Model\Entity\Workorder $workorder
  * @property \App\Model\Entity\Customer $customer
+ * @property \App\Model\Entity\Part $part
  */
 class Workorderpartslineitem extends Entity
 {
