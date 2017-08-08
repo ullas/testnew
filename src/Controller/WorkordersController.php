@@ -217,11 +217,15 @@ class WorkordersController extends AppController
 				{
 					$this->request->data['parts']=null;
 					$this->request->data['labour']=$items[4] * $items[5];
+					$this->request->data['tax']=$items[7] ;
+					$this->request->data['taxtype']=$items[8] ;
 				}
 				else if($items[1] == 'part')
 				{
 					$this->request->data['labour']=null;
 					$this->request->data['parts']=$items[4] * $items[5];
+					$this->request->data['tax']= $items[7];
+					$this->request->data['taxtype']= $items[8];
 				}
            	 	
             	$workorderlineitem=$this->Workorderlineitems->patchEntity($workorderlineitem,$this->request->data);

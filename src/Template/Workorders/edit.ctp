@@ -85,11 +85,12 @@
 		a.delete{
 			margin-top:20px;
 		}
+		.w100{ width:100%; }
 	</style>	 <br/><br/><br/>
 	
-	<div class="col-md-2"></div>
 	
-				        <div class="col-md-6">
+	
+				        <div class="col-md-9">
 								<div class="box">
 								
 								  <div class="box-header">
@@ -155,7 +156,7 @@
 							<div class="box">
 								
 								  <div class="box-header">
-								        <h4 class="box-title">Labor & Parts</h4> 
+								        <h4 class="box-title">Totals</h4> 
 								  </div>
 								
 								  <div class="box-body"><div class="form-horizontal">
@@ -685,6 +686,8 @@ var currentworkorderid = <?php echo $workorderid ?>
 		
 		//Show saved laborlineitems
 		numItems = workorderlaborlineitemsarr.length;
+		$('.labortaxtype').select2({
+			width: '100%',data: [{'id':1, "text":"%"},{'id':2, "text":"$"}]	});
 		for (count = 1; count <= numItems; count++)
 			{
 				labourvalue = workorderlaborlineitemsarr[count-1]["labour"];
@@ -695,17 +698,28 @@ var currentworkorderid = <?php echo $workorderid ?>
 				workorderlaborlineitemid = workorderlaborlineitemsarr[count-1]["id"];
 				console.log("workorderlaborlineitemid--"+workorderlaborlineitemid);
 				workorderlineitemid = workorderlaborlineitemsarr[count-1]["workorderlineitem_id"];
-				if(servicetaskidvalue ==  null)  //for isues
+				taxvalue = workorderlaborlineitemsarr[count-1]["tax"];
+				taxtypevalue = workorderlaborlineitemsarr[count-1]["taxtype"];
+				if(servicetaskidvalue ==  null)  //for issues
 					{
+						$(".maindiv").append("<div class='classname' 	id='contentDiv"+count+"'><div class='clearfix'><div 	class='col-sm-3'><input type='hidden' value='issue'   class='form-control' id='typeof1"+count+"'/><input type='hidden' value='labor'   class='form-control' id='ident1"+count+"'/><div class='form-group'><label>Issue:</label><div class='input-group'><div class='input-group-btn'><a id='L,"+workorderlaborlineitemid+","+workorderlineitemid+"' class='compdelete btn btn-danger btn-flat'><i class='fa fa-trash'></i></a></div><input  name='issue"+count+"' value="+issueidvalue+" class='form-control testissue' id='wotype1"+count+"'/></div>	</div></div><div 	class='col-sm-3'><label>Contact:</label><input  name='contact"+count+"' value="+contactvalue+" class='form-control contact' id='contactpart1"+count+"'/></div><div class='col-sm-2'><label>Hourly Rate:</label><input type='text' value= "+labourvalue+" 	class='form-control laborrate' id='laborrate"+count+"'/></div><div class='col-sm-2'><label>Hours:</label><input type='text' value="+hrsvalue+" id='laborqty"+count+"' class='form-control laborhrs' name='hrs'/></div>   <div class='col-sm-2'> <div class='form-group'><label>Tax:</label><div class='input-group'><span class='input-group-addon no-padding'><input  id='labortaxtype"+count+"' value="+taxtypevalue+" class='labortaxtype' name='taxtype'/></span><input type='text' value="+taxvalue+"  id='labortax"+count+"' class='form-control labortax' name='tax'/></div></div></div></div><hr/></div>");
+				    	
 					
-						$(".maindiv").append("<div class='classname' 	id='contentDiv"+count+"'><div class='clearfix'> <div 	class='col-sm-3'><input type='hidden' value='issue'   class='form-control' id='typeof1"+count+"'/><input type='hidden' value='labor'   class='form-control' id='ident1"+count+"'/><label>Issue:</label><input  name='issue"+count+"' value="+issueidvalue+" class='form-control testissue' id='wotype1"+count+"'/></div>	<div 	class='col-sm-3'><label>Contact:</label><input  name='contact"+count+"' value="+contactvalue+" class='form-control contact' id='contactpart1"+count+"'/></div><div class='col-sm-3'><label>Hourly Rate:</label><input type='text' value= "+labourvalue+"	class='form-control laborrate' id='laborrate"+count+"'/></div><div class='col-sm-3'><label>Hours:</label><input type='text' value="+hrsvalue+" id='laborqty"+count+"' class='form-control laborhrs' name='hrs'/></div><div class='col-sm-3'><label>Tax:</label><input type='text' id='labortax' class='form-control inputpart' name='tax'/></div>  <div class='col-sm-3 text-center'><a class='delete btn btn-danger btn-flat' id='L,"+workorderlaborlineitemid+","+workorderlineitemid+"'><i class='fa fa-trash'></i></a></div>   </div><hr/></div>");
+						// $(".maindiv").append("<div class='classname' 	id='contentDiv"+count+"'><div class='clearfix'> <div 	class='col-sm-3'><input type='hidden' value='issue'   class='form-control' id='typeof1"+count+"'/><input type='hidden' value='labor'   class='form-control' id='ident1"+count+"'/><label>Issue:</label><input  name='issue"+count+"' value="+issueidvalue+" class='form-control testissue' id='wotype1"+count+"'/></div>	<div 	class='col-sm-3'><label>Contact:</label><input  name='contact"+count+"' value="+contactvalue+" class='form-control contact' id='contactpart1"+count+"'/></div><div class='col-sm-3'><label>Hourly Rate:</label><input type='text' value= "+labourvalue+"	class='form-control laborrate' id='laborrate"+count+"'/></div><div class='col-sm-3'><label>Hours:</label><input type='text' value="+hrsvalue+" id='laborqty"+count+"' class='form-control laborhrs' name='hrs'/></div><div class='col-sm-3'><label>Tax:</label><input type='text' id='labortax' class='form-control inputpart' name='tax'/></div>  <div class='col-sm-3 text-center'><a class='delete btn btn-danger btn-flat' id='L,"+workorderlaborlineitemid+","+workorderlineitemid+"'><i class='fa fa-trash'></i></a></div>   </div><hr/></div>");
 					}
 				else
 					{
-						$(".maindiv").append("<div class='classname' 	id='contentDiv"+count+"'><div class='clearfix'> <div 	class='col-sm-3'><input type='hidden' value='servicetask'   class='form-control' id='typeof1"+count+"'/><input type='hidden' value='labor'   class='form-control' id='ident1"+count+"'/><label>ServiceTask:</label><input  name='servicetask"+count+"' value="+servicetaskidvalue+" class='form-control test' id='wotype1"+count+"'/></div>	<div 	class='col-sm-3'><label>Contact:</label><input  name='contact"+count+"' value="+contactvalue+" class='form-control contact' id='contactpart1"+count+"'/></div><div class='col-sm-3'><label>Hourly Rate:</label><input type='text' value= "+labourvalue+"	class='form-control laborrate' id='laborrate"+count+"'/></div><div class='col-sm-3'><label>Hours:</label><input type='text' value="+hrsvalue+" id='laborqty"+count+"' class='form-control laborhrs' name='hrs'/></div><div class='col-sm-3'><label>Tax:</label><input type='text' id='labortax' class='form-control inputpart' name='tax'/></div><div class='col-sm-3 text-center'><a class='delete btn btn-danger btn-flat' id='L,"+workorderlaborlineitemid+","+workorderlineitemid+"'><i class='fa fa-trash'></i></a></div>   </div><hr/></div>");
+					  $(".maindiv").append("<div class='classname' 	id='contentDiv"+count+"'><div class='clearfix'><div 	class='col-sm-3'><input type='hidden' value='servicetask'   class='form-control' id='typeof1"+count+"'/>	<input type='hidden' value='labor'   class='form-control' id='ident1"+count+"'/>	<div class='form-group'><label>ServiceTask:</label>	<div class='input-group'><div class='input-group-btn'><a id='L,"+workorderlaborlineitemid+","+workorderlineitemid+"' class='compdelete btn btn-danger btn-flat'><i class='fa fa-trash'></i></a></div><input  name='servicetask"+count+"' value="+servicetaskidvalue+"  class='form-control test' id='wotype1"+count+"'/></div></div></div><div 	class='col-sm-3'><label>Contact:</label><input  name='contact"+count+"' value="+contactvalue+" class='form-control contact' id='contactpart1"+count+"'/></div><div class='col-sm-2'><label>Hourly Rate:</label><input type='text'  value= "+labourvalue+"	class='form-control laborrate' id='laborrate"+count+"'/></div><div class='col-sm-2'><label>Hours:</label><input type='text' value="+hrsvalue+" id='laborqty"+count+"' class='form-control laborhrs' name='hrs'/></div><div class='col-sm-2'>	<div class='form-group'><label>Tax:</label><div class='input-group'><span class='input-group-addon no-padding'><input  id='labortaxtype"+count+"' value="+taxtypevalue+" class='labortaxtype' name='taxtype'/></span><input type='text' value="+taxvalue+" id='labortax"+count+"' class='form-control labortax' name='tax'/></div></div></div></div><hr/></div>");
+						
+					
+						// $(".maindiv").append("<div class='classname' 	id='contentDiv"+count+"'><div class='clearfix'> <div 	class='col-sm-3'><input type='hidden' value='servicetask'   class='form-control' id='typeof1"+count+"'/><input type='hidden' value='labor'   class='form-control' id='ident1"+count+"'/><label>ServiceTask:</label><input  name='servicetask"+count+"' value="+servicetaskidvalue+" class='form-control test' id='wotype1"+count+"'/></div>	<div 	class='col-sm-3'><label>Contact:</label><input  name='contact"+count+"' value="+contactvalue+" class='form-control contact' id='contactpart1"+count+"'/></div><div class='col-sm-3'><label>Hourly Rate:</label><input type='text' value= "+labourvalue+"	class='form-control laborrate' id='laborrate"+count+"'/></div><div class='col-sm-3'><label>Hours:</label><input type='text' value="+hrsvalue+" id='laborqty"+count+"' class='form-control laborhrs' name='hrs'/></div><div class='col-sm-3'><label>Tax:</label><input type='text' id='labortax' class='form-control inputpart' name='tax'/></div><div class='col-sm-3 text-center'><a class='delete btn btn-danger btn-flat' id='L,"+workorderlaborlineitemid+","+workorderlineitemid+"'><i class='fa fa-trash'></i></a></div>   </div><hr/></div>");
 					}
+					
 			}
-		
+			$('.labortaxtype').select2({
+			width: '100%',data: [{'id':1, "text":"%"},{'id':2, "text":"$"}]	});
+			// $('#labortaxtype'+numItems).val(1).trigger('change');
+				
 		//Show saved partslineitems
 		numItems2 = workorderpartslineitemsarr.length;
 		for (count2 = 1; count2 <= numItems2; count2++)
@@ -718,15 +732,24 @@ var currentworkorderid = <?php echo $workorderid ?>
 				workorderpartslineitemid = workorderpartslineitemsarr[count2-1]["id"];
 				console.log("workorderpartslineitemsarr--"+JSON.stringify(workorderpartslineitemsarr));
 				workorderlineitemid = workorderpartslineitemsarr[count2-1]["workorderlineitems"];
+				taxvalue = workorderlaborlineitemsarr[count2-1]["tax"];
+				taxtypevalue = workorderlaborlineitemsarr[count2-1]["taxtype"];
 				if(servicetaskidvalue ==  null)  //for isues
 					{
-						$(".maindiv").append("<div class='classname' 	id='contentDiv"+count2+"'><div class='clearfix'> <div 	class='col-sm-3'><input type='hidden' value='issue'   class='form-control' id='typeof2"+count2+"'/><input type='hidden' value='part'   class='form-control' id='ident2"+count2+"'/><label>Issues:</label><input  name='issueidvalue"+count+"' value="+issueidvalue+" class='form-control testissue' id='wotype2"+count2+"'/></div>	<div 	class='col-sm-3'><label>Part:</label><input  name='part"+count2+"' value="+partidvalue+" class='form-control part' id='contactpart2"+count2+"'/></div><div class='col-sm-3'><label>Unit Cost:</label><input type='text' value= "+unitcostvalue+"	class='form-control inputrate' id='partrate"+count2+"'/></div><div class='col-sm-3'><label>Quantity:</label><input type='text' value="+qtyvalue+" id='partqty"+count2+"' class='form-control partqty' name='quantity'/></div><div class='col-sm-3'><label>Tax:</label><input type='text' id='parttax' class='form-control parttax' name='tax'/></div><div class='col-sm-3 text-center'><a class='delete btn btn-danger btn-flat' id='P,"+workorderpartslineitemid+","+workorderlineitemid+"'><i class='fa fa-trash'></i></a></div>   </div><hr/></div>");
+						// $(".maindiv").append("<div class='classname' 	id='contentDiv"+count2+"'><div class='clearfix'> <div 	class='col-sm-3'><input type='hidden' value='issue'   class='form-control' id='typeof2"+count2+"'/><input type='hidden' value='part'   class='form-control' id='ident2"+count2+"'/><label>Issues:</label><input  name='issueidvalue"+count+"' value="+issueidvalue+" class='form-control testissue' id='wotype2"+count2+"'/></div>	<div 	class='col-sm-3'><label>Part:</label><input  name='part"+count2+"' value="+partidvalue+" class='form-control part' id='contactpart2"+count2+"'/></div><div class='col-sm-3'><label>Unit Cost:</label><input type='text' value= "+unitcostvalue+"	class='form-control inputrate' id='partrate"+count2+"'/></div><div class='col-sm-3'><label>Quantity:</label><input type='text' value="+qtyvalue+" id='partqty"+count2+"' class='form-control partqty' name='quantity'/></div><div class='col-sm-3'><label>Tax:</label><input type='text' id='parttax' class='form-control parttax' name='tax'/></div><div class='col-sm-3 text-center'><a class='delete btn btn-danger btn-flat' id='P,"+workorderpartslineitemid+","+workorderlineitemid+"'><i class='fa fa-trash'></i></a></div>   </div><hr/></div>");
+						$(".maindiv").append("<div class='classname' 	id='contentDiv"+count2+"'><div class='clearfix'><div 	class='col-sm-3'><input type='hidden' value='issue'   class='form-control' id='typeof2"+count2+"'/><input type='hidden' value='part'   class='form-control' id='ident2"+count2+"'/><div class='form-group'><label>Issue:</label><div class='input-group'><div class='input-group-btn'><a id='P,"+workorderpartslineitemid+","+workorderlineitemid+"' class='compdelete btn btn-danger btn-flat'><i class='fa fa-trash'></i></a></div><input  name='issue"+count2+"' value="+issueidvalue+" value="+issueidvalue+"  class='form-control testissue' id='wotype2"+count2+"'/></div></div></div><div 	class='col-sm-3'><label>Part:</label><input  name='part"+count2+"' value="+partidvalue+" value="+partidvalue+" class='form-control part' id='contactpart2"+count2+"'/></div><div class='col-sm-2'><label>Unit Cost:</label><input type='text' value= "+unitcostvalue+" class='form-control inputrate' id='partrate"+count2+"'/></div><div class='col-sm-2'><label>Quantity:</label><input type='text' value="+qtyvalue+" id='partqty"+count2+"' class='form-control partqty' name='quantity'/></div><div class='col-sm-2'> <div class='form-group'><label>Tax:</label><div class='input-group'><span class='input-group-addon no-padding'><input  id='parttaxtype"+count2+"' value="+taxtypevalue+" class='parttaxtype' name='taxtype'/></span><input type='text' value="+taxvalue+" id='parttax"+count2+"' class='form-control parttax' name='tax'/></div></div></div></div><hr/></div>");
+				
 					}
 				else
 					{
-						$(".maindiv").append("<div class='classname' 	id='contentDiv"+count2+"'><div class='clearfix'> <div 	class='col-sm-3'><input type='hidden' value='servicetask'   class='form-control' id='typeof2"+count2+"'/><input type='hidden' value='part'   class='form-control' id='ident2"+count2+"'/><label>ServiceTask:</label><input  name='servicetaskidvalue"+count+"' value="+servicetaskidvalue+"  class='form-control test' id='wotype2"+count2+"'/></div>	<div 	class='col-sm-3'><label>Part:</label><input  name='part"+count2+"' value="+partidvalue+" class='form-control part' id='contactpart2"+count2+"'/></div><div class='col-sm-3'><label>Unit Cost:</label><input type='text' value= "+unitcostvalue+"	class='form-control inputrate' id='partrate"+count2+"'/></div><div class='col-sm-3'><label>Quantity:</label><input type='text' value="+qtyvalue+" id='partqty"+count2+"' class='form-control partqty' name='quantity'/></div><div class='col-sm-3'><label>Tax:</label><input type='text' id='parttax' class='form-control parttax' name='tax'/></div><div class='col-sm-3 text-center'><a class='delete btn btn-danger btn-flat' id='P,"+workorderpartslineitemid+","+workorderlineitemid+"'><i class='fa fa-trash'></i></a></div>   </div><hr/></div>");
+						// $(".maindiv").append("<div class='classname' 	id='contentDiv"+count2+"'><div class='clearfix'> <div 	class='col-sm-3'><input type='hidden' value='servicetask'   class='form-control' id='typeof2"+count2+"'/><input type='hidden' value='part'   class='form-control' id='ident2"+count2+"'/><label>ServiceTask:</label><input  name='servicetaskidvalue"+count+"' value="+servicetaskidvalue+"  class='form-control test' id='wotype2"+count2+"'/></div>	<div 	class='col-sm-3'><label>Part:</label><input  name='part"+count2+"' value="+partidvalue+" class='form-control part' id='contactpart2"+count2+"'/></div><div class='col-sm-3'><label>Unit Cost:</label><input type='text' value= "+unitcostvalue+"	class='form-control inputrate' id='partrate"+count2+"'/></div><div class='col-sm-3'><label>Quantity:</label><input type='text' value="+qtyvalue+" id='partqty"+count2+"' class='form-control partqty' name='quantity'/></div><div class='col-sm-3'><label>Tax:</label><input type='text' id='parttax' class='form-control parttax' name='tax'/></div><div class='col-sm-3 text-center'><a class='delete btn btn-danger btn-flat' id='P,"+workorderpartslineitemid+","+workorderlineitemid+"'><i class='fa fa-trash'></i></a></div>   </div><hr/></div>");
+						$(".maindiv").append("<div class='classname' 	id='contentDiv"+count2+"'><div class='clearfix'><div class='col-sm-3'><input type='hidden' value='servicetask'   class='form-control' id='typeof2"+count2+"'/><input type='hidden' value='part'   class='form-control' id='ident2"+count2+"'/><div class='form-group'><label>ServiceTask:</label>	<div class='input-group'><div class='input-group-btn'><a id='P,"+workorderpartslineitemid+","+workorderlineitemid+"' class='compdelete btn btn-danger btn-flat'>	<i class='fa fa-trash'>	</i></a></div>	<input  name='servicetask"+count2+"' value="+servicetaskidvalue+"  class='form-control test' id='wotype2"+count2+"'/>	</div></div></div><div 	class='col-sm-3'><label>Part:</label><input  name='part"+count2+"' value="+partidvalue+" class='form-control part' id='contactpart2"+count2+"'/></div><div class='col-sm-2'><label>Unit Cost:</label><input type='text' value= "+unitcostvalue+" value= "+unitcostvalue+"	 class='form-control inputrate' id='partrate"+count2+"'/></div><div class='col-sm-2'><label>Quantity:</label><input type='text' value="+qtyvalue+" value="+qtyvalue+"  id='partqty"+count2+"' class='form-control partqty' name='quantity'/></div><div class='col-sm-2'> <div class='form-group'><label>Tax:</label><div class='input-group'><span class='input-group-addon no-padding'><input  id='parttaxtype"+count2+"' value="+taxtypevalue+"   class='parttaxtype' name='taxtype'/></span><input type='text'  value="+taxvalue+"  id='parttax"+count2+"' class='form-control parttax' name='tax'/></div></div></div></div><hr/></div>");					
 					}
 			}
+			$('.parttaxtype').select2({
+    		width: '100%',data: [{'id':1, "text":"%"},{'id':2, "text":"$"}]
+			});
+			// $('#parttaxtype'+numItems2).val(1).trigger('change');
 			
 	$('.datemask').datepicker({
             format:"dd/mm/yy",
@@ -767,6 +790,11 @@ var currentworkorderid = <?php echo $workorderid ?>
 			$('.contact').select2({
 	    		width: '100%',allowClear: true,placeholder: "Select",data: contactdata
 			});
+			// $('.labortaxtype').select2({
+    		// width: '100%',data: [{'id':1, "text":"%"},{'id':2, "text":"$"}]
+			// });
+		
+		// $('#labortaxtype').val(1).trigger('change');
 			
 		});
 	
@@ -795,6 +823,10 @@ var currentworkorderid = <?php echo $workorderid ?>
 			$('.part').select2({
 	    		width: '100%',allowClear: true,placeholder: "Select",data: partdata
 			});
+			// $('.parttaxtype').select2({
+    		// width: '100%',data: [{'id':1, "text":"%"},{'id':2, "text":"$"}]
+			// });
+			// $('#parttaxtype').val(1).trigger('change');
 			
 		});
 		          		
