@@ -891,11 +891,11 @@ $this->Html->script([
 
 	//save btn onclick
 	$("#btnSave").click(function () {
-		console.log("inside save");
+		
 		var labourpresent = true;
 		var partspresent = true;
 		var numItems = $('.laborhrs').length;
-		for(count = 1; count <= numItems; count++)
+		for(count = 1; count <= numItems; count++)// prevent an item with null data to be saved
 			{ 
 				 if( $('#wotype1'+count ).val()==""  ||  $('#contactpart1'+count ).val()=="") 
 				 {
@@ -907,7 +907,7 @@ $this->Html->script([
 			}
 		
 		var numItems = $('.partqty').length;
-		for(count = 1; count <= numItems; count++)
+		for(count = 1; count <= numItems; count++)// prevent an item with null data to be saved
 			{ 
 				if( $('#wotype2'+count ).val()==""  ||  $('#contactpart2'+count ).val()=="") 
 				 {
