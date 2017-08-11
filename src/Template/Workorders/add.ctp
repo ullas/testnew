@@ -154,12 +154,50 @@
 								
 								  <div class="box-body"><div class="form-horizontal">
 							<?php
-								echo $this->Form->input('labors');
-            					echo $this->Form->input('parts');
+								echo $this->Form->input('labors',['readonly' => 'readonly']);
+            					echo $this->Form->input('parts',['readonly' => 'readonly']);
 								echo $this->Form->input('dicount',['label'=>'Discount']);
-            					echo $this->Form->input('tax');
+            					echo $this->Form->input('tax',['label'=>'']);
 			
-							?></div>
+							?>
+														
+<div class='form-group'>
+<label class="col-sm-3 control-label" >Tax:</label>
+<div class="col-sm-6"><div class='input-group'>
+<span class='input-group-addon no-padding'>
+<input  id='totaltaxtype' class='totaltaxtype' name='taxtype'/>
+</span>
+<input type='text' id='totaltax' class='form-control totaltax' name='tax'/>
+</div></div>
+</div>
+
+
+
+
+							
+							
+							
+							</div>
+							
+							<div class="form-group">
+								<div class="box-header">
+									<div class="col-md-6">
+									        <h4 class="box-title">Total:</h4> 
+									</div>
+									     
+									 <div  class="col-md-6">
+									 	 <label id="total" text="0.00" ></label>
+										  <!-- <?php
+										       
+										        // echo $this->Form->control('total');
+										        // echo $this->Form->label('total', ['label' => "0.00"]);
+										        // echo $this->Form->input('total',['label'=>'0.00']);
+										 ?> -->
+									 </div>
+								</div>
+							</div>	 
+								 
+								 
 							</div></div>
 						</div>
 						
@@ -232,14 +270,20 @@ $this->Html->script([
     		width: '100%',allowClear: true,placeholder: "Select",data: [{'id':1, "text":"Service Task"},{'id':2, "text":"Issue"}]
 		});
 		
+		$('#labors').val(0);
+		$('#parts').val(0);
+		$('#dicount').val(0);
+		$('#tax').val(0);
 		
-		
+		$('.totaltaxtype').select2({
+    		width: '100%',data: [{'id':1, "text":"%"},{'id':2, "text":"$"}]
+			});
 		
     }
     
   $(function () 
   	{
-
+ 
 			function laborHrsCalculate()
 				{
 					var numItems = $('.laborhrs').length;
@@ -268,6 +312,8 @@ $this->Html->script([
 			    				{labrate = 0;}
 			    				
 					    		var tempval;
+					    		if($('#dicount').val() == ""){$('#dicount').val(0);}
+								if($('#tax').val() == ""){$('#tax').val(0);}
 					    		if($('#laborqty'+count).val().match(/^[+-]?((\.\d+)|(\d+(\.\d+)?))$/)) 
 				    			{ 
 				    				if($('#laborrate'+count).val() == "" )  
@@ -313,7 +359,10 @@ $this->Html->script([
 							}
 			    	}
 					//set text
+					laborcount = laborcount.toFixed(2);
 					$('#labors').val(laborcount);
+					var totalsum= parseFloat($('#labors').val()) + parseFloat($('#parts').val()) - parseFloat($('#dicount').val()) + parseFloat($('#tax').val());
+					document.getElementById('total').innerHTML  = totalsum.toFixed(2);
 				}
 				
 			function laborRateCalculate()
@@ -342,6 +391,10 @@ $this->Html->script([
 			    				else
 			    				{labrate = 0;}
 								var tempval;
+								
+								if($('#dicount').val() == ""){$('#dicount').val(0);}
+								if($('#tax').val() == ""){$('#tax').val(0);}
+								
 					    		if($('#laborrate'+count).val().match(/^[+-]?((\.\d+)|(\d+(\.\d+)?))$/))  //if hourly rate is number
 				    			{ 
 					    			if($('#laborqty'+count).val() == "") //if hours is empty
@@ -388,7 +441,10 @@ $this->Html->script([
 							}
 				    	}
 					//set text
+					laborcount = laborcount.toFixed(2);
 					$('#labors').val(laborcount);	
+					var totalsum= parseFloat($('#labors').val()) + parseFloat($('#parts').val()) - parseFloat($('#dicount').val()) + parseFloat($('#tax').val());
+					document.getElementById('total').innerHTML  = totalsum.toFixed(2);	
 				}
 			function partQtyCalculate()
 				{
@@ -417,6 +473,9 @@ $this->Html->script([
 			    				{partrate = 0;}
 								var tempval;
 								
+								if($('#dicount').val() == ""){$('#dicount').val(0);}
+								if($('#tax').val() == ""){$('#tax').val(0);}
+									
 								if($('#partqty'+count).val().match(/^[+-]?((\.\d+)|(\d+(\.\d+)?))$/))
 				    			{
 					    			if($('#partrate'+count).val() =="")
@@ -464,7 +523,10 @@ $this->Html->script([
 							}
 				    	}
 					//set text
+					partcount = partcount.toFixed(2);
 					$('#parts').val(partcount);
+					var totalsum= parseFloat($('#labors').val()) + parseFloat($('#parts').val()) - parseFloat($('#dicount').val()) + parseFloat($('#tax').val());
+					document.getElementById('total').innerHTML  = totalsum.toFixed(2);
 				}
 			function partRateCalculate()
 				{
@@ -492,6 +554,10 @@ $this->Html->script([
 			    				else
 			    				{partrate = 0;}
 								var tempval;
+								
+								if($('#dicount').val() == ""){$('#dicount').val(0);}
+								if($('#tax').val() == ""){$('#tax').val(0);}
+								
 								if($('#partrate'+count).val().match(/^[+-]?((\.\d+)|(\d+(\.\d+)?))$/))
 					    			{
 						    			if($('#partqty'+count).val() == "")
@@ -538,7 +604,10 @@ $this->Html->script([
 							}
 				    	}
 					//set text
+					partcount = partcount.toFixed(2);
 					$('#parts').val(partcount);	
+					var totalsum= parseFloat($('#labors').val()) + parseFloat($('#parts').val()) - parseFloat($('#dicount').val()) + parseFloat($('#tax').val());
+					document.getElementById('total').innerHTML  = totalsum.toFixed(2);
 				}
 				
 			function laborTaxCalculate()
@@ -555,6 +624,9 @@ $this->Html->script([
 				    				var labrate = $('#laborrate'+count).val();
 				    				var labtax = parseFloat($('#labortax'+count).val());
 				    				var tempval;
+				    				
+				    				if($('#dicount').val() == ""){$('#dicount').val(0);}
+									if($('#tax').val() == ""){$('#tax').val(0);}
 				    				
 									if($('#labortax'+count).val().match(/^[+-]?((\.\d+)|(\d+(\.\d+)?))$/)
 										&& $('#laborrate'+count).val().match(/^[+-]?((\.\d+)|(\d+(\.\d+)?))$/)
@@ -582,7 +654,10 @@ $this->Html->script([
 					    		}
 				    	}
 					//set text
-					$('#labors').val(laborcount);	
+					laborcount = laborcount.toFixed(2);
+					$('#labors').val(laborcount);
+					var totalsum= parseFloat($('#labors').val()) + parseFloat($('#parts').val()) - parseFloat($('#dicount').val()) + parseFloat($('#tax').val());
+					document.getElementById('total').innerHTML  = totalsum.toFixed(2);	
 				}
 				
 			function partTaxCalculate()
@@ -598,6 +673,10 @@ $this->Html->script([
 				    				var partrate = $('#partrate'+count).val();
 				    				var parttax = parseFloat($('#parttax'+count).val());
 				    				var tempval;
+				    				
+				    				if($('#dicount').val() == ""){$('#dicount').val(0);}
+									if($('#tax').val() == ""){$('#tax').val(0);}
+				    				
 									if($('#parttax'+count).val().match(/^[+-]?((\.\d+)|(\d+(\.\d+)?))$/)
 									&& $('#partrate'+count).val().match(/^[+-]?((\.\d+)|(\d+(\.\d+)?))$/)
 									&& $('#partqty'+count).val().match(/^[+-]?((\.\d+)|(\d+(\.\d+)?))$/)
@@ -626,7 +705,10 @@ $this->Html->script([
 								}
 				    	}
 					//set text
+					partcount = partcount.toFixed(2);
 					$('#parts').val(partcount);
+					var totalsum= parseFloat($('#labors').val()) + parseFloat($('#parts').val()) - parseFloat($('#dicount').val()) + parseFloat($('#tax').val());
+					document.getElementById('total').innerHTML  = totalsum.toFixed(2);
 				}
 				
 			function laborTaxTypeCalculate()
@@ -655,6 +737,9 @@ $this->Html->script([
 				    				else
 				    				{labrate = 0;}
 									var tempval;
+						    		
+						    		if($('#dicount').val() == ""){$('#dicount').val(0);}
+									if($('#tax').val() == ""){$('#tax').val(0);}
 						    			
 									if($('#labortax'+count).val().match(/^[+-]?((\.\d+)|(\d+(\.\d+)?))$/)
 									&& $('#laborrate'+count).val().match(/^[+-]?((\.\d+)|(\d+(\.\d+)?))$/)
@@ -684,7 +769,10 @@ $this->Html->script([
 								}
 				    	}
 					//set text
+					laborcount = laborcount.toFixed(2);
 					$('#labors').val(laborcount);
+					var totalsum= parseFloat($('#labors').val()) + parseFloat($('#parts').val()) - parseFloat($('#dicount').val()) + parseFloat($('#tax').val());
+					document.getElementById('total').innerHTML  = totalsum.toFixed(2);
 				}
 			
 			function partTaxTypeCalculate()
@@ -713,6 +801,9 @@ $this->Html->script([
 				    				else
 				    				{partrate = 0;}
 									var tempval;
+						    		
+						    		if($('#dicount').val() == ""){$('#dicount').val(0);}
+									if($('#tax').val() == ""){$('#tax').val(0);}
 						    			
 									if($('#parttax'+count).val().match(/^[+-]?((\.\d+)|(\d+(\.\d+)?))$/)
 									&& $('#partrate'+count).val().match(/^[+-]?((\.\d+)|(\d+(\.\d+)?))$/)
@@ -741,7 +832,42 @@ $this->Html->script([
 								}
 				    	}
 					//set text
+					partcount = partcount.toFixed(2);
 					$('#parts').val(partcount);
+					var totalsum= parseFloat($('#labors').val()) + parseFloat($('#parts').val()) - parseFloat($('#dicount').val()) + parseFloat($('#tax').val());
+					document.getElementById('total').innerHTML  = totalsum.toFixed(2);
+				}
+			
+			function discountCalculate()
+				{
+					if($('#dicount').val() == ""){$('#dicount').val(0);}
+					//set text
+					if($('#labors').val() != "" || $('#parts').val() != "" )
+						{
+							if($('#dicount').val() != "")
+								{
+									if($('#tax').val() == ""){$('#tax').val(0);}
+									var totalsum= parseFloat($('#labors').val()) + parseFloat($('#parts').val()) - parseFloat($('#dicount').val()) + parseFloat($('#tax').val());
+									document.getElementById('total').innerHTML  = totalsum.toFixed(2);
+								}
+								
+						}
+				}
+			
+			function taxCalculate()
+				{
+					if($('#tax').val() == ""){$('#tax').val(0);}
+					//set text
+					if($('#labors').val() != "" || $('#parts').val() != "" )
+						{
+							if($('#tax').val() != "")
+								{
+									if($('#dicount').val() == ""){$('#dicount').val(0);}
+									
+									var totalsum= parseFloat($('#labors').val()) + parseFloat($('#parts').val()) - parseFloat($('#dicount').val()) + parseFloat($('#tax').val());
+									document.getElementById('total').innerHTML  = totalsum.toFixed(2);
+								}	
+						}
 				}
 			
 			function calculateAll()
@@ -754,6 +880,8 @@ $this->Html->script([
 					partTaxCalculate();
 					laborTaxTypeCalculate();
 					partTaxTypeCalculate();
+					discountCalculate();
+					taxCalculate()
 				} 
 			
 			$('.maindiv').on('click', 'a.compdelete', function() 
@@ -819,6 +947,16 @@ $this->Html->script([
 				partTaxTypeCalculate();
 			});
 			
+			
+			$("#tax").keyup(function(){
+			   taxCalculate();
+			});
+			
+			$("#dicount").keyup(function(){
+			    discountCalculate();
+			});
+				
+						
 	    //Initialize Select2 Elements
 	    // $(".select2").select2();
 	    $('.datemask').datepicker({
