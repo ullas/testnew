@@ -813,14 +813,15 @@ var currentworkorderid = <?php echo $workorderid ?>
 	  	$('.maindiv').on('click', 'a.compdelete', function() 
 					{
 						var selectedctrl=$(this);
-						var id = $(this).attr('value');
+						var value = $(this).attr('value');
+						var id = $(this).attr('id');
 						var result = confirm("Are you sure you want to delete the particular Item ?");
 		        		if(result)
 		        				{
 		        					$(this).parent().closest('div .classname').hide();
-		        					if(id!="newid")
+		        					if(value!="newid")
 					        					{
-					        						alert("id is not newid");
+					        						alert("value is not newid");
 					        						var lptype = id.split(",");
 					        						if(lptype[0] == "L")
 						        						{
@@ -832,10 +833,12 @@ var currentworkorderid = <?php echo $workorderid ?>
 												        			{
 												        				if(data=="success")
 													        				{
+													        					alert("succ L");
 													        					return true;
 													    					}
 												    					else
 												    						{
+												    							alert("err L");
 												    							return false;
 												    						}
 												        			},
@@ -857,10 +860,12 @@ var currentworkorderid = <?php echo $workorderid ?>
 												        			{
 												        				if(data=="success")
 													        				{
+													        					alert("succ P");
 													        					return true;
 													    					}
 												    					else
 												    						{
+												    							alert("err L");
 												    							return false;
 												    						}
 												        			},
@@ -876,7 +881,7 @@ var currentworkorderid = <?php echo $workorderid ?>
 					        					}
 			        				else
 			        					{
-			        						alert("id is newid");
+			        						alert("value is newid");
 			        						// new items added
 			        						// $(this).parent().closest('div .classname').hide();	
 			        					}
@@ -905,7 +910,7 @@ var currentworkorderid = <?php echo $workorderid ?>
 								        			}
 							      
 							        		});
-									
+									window.location.reload();
 									return true;
 		           		   		} 
 		           		  else 
