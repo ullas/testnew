@@ -633,7 +633,8 @@ $('.mptl-resolver-base1').click(function(){
   {
   	var valuearray = [];
   	valuearray = setSelection();
-  	var url = "/Servicesentries/add/"+valuearray; 
+  	// var url = "/Servicesentries/add/"+valuearray;
+  	var url = "/Workorders/add/"+valuearray;  
     window.location.href = url; 
   }
   
@@ -645,7 +646,8 @@ $('.mptl-resolver-base1').click(function(){
   {
   	var valuearray = [];
   	valuearray = setSelection();
-  	var url = "/Workorders/add/"+valuearray; 
+  	// var url = "/Workorders/add/"+valuearray; 
+  	var url = "/Workorders/edit/"+valuearray; 
     window.location.href = url; 
   }
   

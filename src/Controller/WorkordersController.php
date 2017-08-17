@@ -144,6 +144,7 @@ class WorkordersController extends AppController
 			$this->request->data['parts']=$this->request->query['parts'];
 			$this->request->data['dicount']=$this->request->query['discount'];
 			$this->request->data['tax']=$this->request->query['tax'];
+			$this->request->data['taxtype']=$this->request->query['taxtype'];
 			
 			
 			
@@ -654,7 +655,7 @@ public function ajaxdata() {
 		 $parts=$partsTable->find('list', ['limit' => 200])->where("customer_id=".$this->loggedinuser['customer_id'])->all()->toArray();
 		 $this->set('partssarr', json_encode($parts));
         
-        $this->set(compact('workorder', 'workorderstatuses', 'vehicles', 'vendors', 'issuedbies', 'assignedbies', 'assigntos', 'customers','servicetasks','issues','$addresses','$parts'));
+        $this->set(compact('workorder', 'workorderstatuses', 'vehicles', 'vendors', 'issuedbies', 'assignedbies', 'assigntos', 'customers','servicetasks','issues','$addresses','$parts','resissues','$str'));
         $this->set('_serialize', ['workorder','workorderstatuses', 'vehicles', 'vendors', 'issuedbies', 'assignedbies', 'assigntos', 'customers','servicetasks','issues','$addresses','$parts']);
     
 		// $this->set(compact('workorder', 'workorderstatuses', 'vehicles', 'vendors', 'issuedbies', 'assignedbies', 'assigntos', 'customers','servicetasks','issues'));
@@ -719,7 +720,7 @@ public function ajaxdata() {
 		 $servicetasks=$servicetasksTable->find('list', ['limit' => 200])->where("customer_id=".$this->loggedinuser['customer_id'])->orwhere("customer_id=0");
 		 $this->set('servicetaskarr', json_encode($servicetasks));
 		 
-		 $issues=$issuesTable->find('list', ['limit' => 200])->where("customer_id=".$this->loggedinuser['customer_id'])->all()->toArray();
+		 $issues=$issuesTable->find('list', ['limit' => 200])->where("customer_id=".$this->loggedinuser['customer_id'])->andwhere("issuestatus_id=1")->all()->toArray();
 		 $this->set('issuearr', json_encode($issues));
 		
 		 $addresses=$addressesTable->find('list', ['limit' => 200])->where("customer_id=".$this->loggedinuser['customer_id'])->all()->toArray();
@@ -737,6 +738,10 @@ public function ajaxdata() {
 		 $this->set('workorderpartslineitemsarr', json_encode($workorderpartslineitems));
 		 
 		  $this->set('workorderid',$workorder['id'] );
+		  $this->set('totaltax',$workorder['tax'] );
+		  $this->set('totaltaxtype',$workorder['taxtype'] );
+		  $this->set('labor',$workorder['labour'] );
+		  $this->set('parts',$workorder['parts'] );
 		 
 		 // $workorderlineitemTable
      	 $workorderlineitemsst=$workorderlineitemTable->find('all', ['limit' => 200])->where("customer_id=".$this->loggedinuser['customer_id'])->andwhere("workorder_id=".$workorder['id'])->andwhere("labour  IS NOT null");
