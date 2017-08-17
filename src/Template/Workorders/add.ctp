@@ -152,12 +152,31 @@
 								        <h4 class="box-title">Totals</h4> 
 								  </div>
 								
-								  <div class="box-body"><div class="form-horizontal">
+								  <div class="box-body">
+								  	<div class="form-horizontal">
+										<div class="form-group">
+											 <div class="col-sm-3">
+											 <label >Labor</label>
+											 </div>
+											 <div class="col-sm-3">
+											 <label id='labors' text="0.00" class='labors' ></label>
+								        	 </div>
+										</div>
+										
+										<div class="form-group">
+											 <div class="col-sm-3">
+											 <label >Parts</label>
+											 </div>
+											 <div class="col-sm-3">
+											 <label id='parts' text="0.00" class='parts' ></label>
+								        	 </div>
+										</div>
+								  	
 							<?php
-								echo $this->Form->input('labors',['readonly' => 'readonly']);
-            					echo $this->Form->input('parts',['readonly' => 'readonly']);
+								// echo $this->Form->input('labors',['readonly' => 'readonly']);
+            					// echo $this->Form->input('parts',['readonly' => 'readonly']);
 								echo $this->Form->input('dicount',['label'=>'Discount']);
-            					echo $this->Form->input('tax',['label'=>'']);
+            					// echo $this->Form->input('tax',['label'=>'']);
 			
 							?>
 														
@@ -181,11 +200,11 @@
 							
 							<div class="form-group">
 								<div class="box-header">
-									<div class="col-md-6">
+									<div class="col-md-3">
 									        <h4 class="box-title">Total:</h4> 
 									</div>
 									     
-									 <div  class="col-md-6">
+									 <div  class="col-md-3">
 									 	 <label id="total" text="0.00" ></label>
 										  <!-- <?php
 										       
@@ -262,6 +281,25 @@ $this->Html->script([
 	});
 	
 	window.onload = function () { 
+		
+		var resissues=[];
+		
+		var resissues_length = <?php echo count($resissues); ?>;
+		
+		<?php
+		for ($i=0; $i < 2 ; $i++) { 
+			?>
+			resissues[<?php echo $i ?>] = <?php echo $resissues[$i];?>;
+		<?php
+		}?>
+		
+		
+		
+		if (resissues_length>0)
+			{
+				
+				resolveIssues(resissues);
+			}
         $('.test').select2({
     		width: '100%',allowClear: true,placeholder: "Select",data: servicetaskdata
 		});
@@ -270,16 +308,41 @@ $this->Html->script([
     		width: '100%',allowClear: true,placeholder: "Select",data: [{'id':1, "text":"Service Task"},{'id':2, "text":"Issue"}]
 		});
 		
-		$('#labors').val(0);
-		$('#parts').val(0);
+		// $('#labors').val(0);
+		// $('#parts').val(0);
 		$('#dicount').val(0);
-		$('#tax').val(0);
-		
+		$('#totaltax').val(0);
 		$('.totaltaxtype').select2({
     		width: '100%',data: [{'id':1, "text":"%"},{'id':2, "text":"$"}]
 			});
+		$('.totaltaxtype').val(1).trigger('change');
+		document.getElementById('total').innerHTML  = "0.00";
+		document.getElementById('labors').innerHTML  = "0.00";
+		document.getElementById('parts').innerHTML  = "0.00";
 		
-    }
+		function resolveIssues(resissues)
+    	{
+    		alert("inside resolveIssues"+resissues.length);
+    		//Show saved laborlineitems
+			
+				
+					
+					
+					 	//labour
+					 	var numItems = $('.laborhrs').length+1;
+						$(".maindiv").append("<div class='classname' 	id='contentDiv"+numItems+"'><div class='clearfix'><div 	class='col-sm-3'><input type='hidden' value='issue'   class='form-control' id='typeof1"+numItems+"'/><input type='hidden' value='labor'   class='form-control' id='ident1"+numItems+"'/><div class='form-group'><label>Issue:</label><div class='input-group'><div class='input-group-btn'><a id='delete1' class='compdelete btn btn-danger btn-flat'><i class='fa fa-trash'></i></a></div><input  name='issue"+numItems+"' class='form-control testissue' id='wotype1"+numItems+"'/></div>	</div></div><div 	class='col-sm-3'><label>Contact:</label><input  name='contact"+numItems+"' class='form-control contact' id='contactpart1"+numItems+"'/></div><div class='col-sm-2'><label>Hourly Rate:</label><input type='text' 	class='form-control laborrate' id='laborrate"+numItems+"'/></div><div class='col-sm-2'><label>Hours:</label><input type='text' id='laborqty"+numItems+"' class='form-control laborhrs' name='hrs'/></div>   <div class='col-sm-2'> <div class='form-group'><label>Tax:</label><div class='input-group'><span class='input-group-addon no-padding'><input  id='labortaxtype"+numItems+"' class='labortaxtype' name='taxtype'/></span><input type='text' id='labortax"+numItems+"' class='form-control labortax' name='tax'/></div></div></div></div><hr/></div>");
+				
+						//parts
+						var numItems = $('.partqty').length+1;
+						$(".maindiv").append("<div class='classname' 	id='contentDiv"+numItems+"'><div class='clearfix'><div 	class='col-sm-3'><input type='hidden' value='issue'   class='form-control' id='typeof2"+numItems+"'/><input type='hidden' value='part'   class='form-control' id='ident2"+numItems+"'/><div class='form-group'><label>Issue:</label><div class='input-group'><div class='input-group-btn'><a id='delete1' class='compdelete btn btn-danger btn-flat'><i class='fa fa-trash'></i></a></div><input  name='issue"+numItems+"' class='form-control testissue' id='wotype2"+numItems+"'/></div></div></div><div 	class='col-sm-3'><label>Part:</label><input  name='part"+numItems+"' class='form-control part' id='contactpart2"+numItems+"'/></div><div class='col-sm-2'><label>Unit Cost:</label><input type='text' 	class='form-control inputrate' id='partrate"+numItems+"'/></div><div class='col-sm-2'><label>Quantity:</label><input type='text' id='partqty"+numItems+"' class='form-control partqty' name='quantity'/></div><div class='col-sm-2'> <div class='form-group'><label>Tax:</label><div class='input-group'><span class='input-group-addon no-padding'><input  id='parttaxtype"+numItems+"' class='parttaxtype' name='taxtype'/></span><input type='text' id='parttax"+numItems+"' class='form-control parttax' name='tax'/></div></div></div></div><hr/></div>");
+				
+					
+				
+    		
+    	}
+		
+		
+	}
     
   $(function () 
   	{
@@ -313,7 +376,7 @@ $this->Html->script([
 			    				
 					    		var tempval;
 					    		if($('#dicount').val() == ""){$('#dicount').val(0);}
-								if($('#tax').val() == ""){$('#tax').val(0);}
+								if($('#totaltax').val() == ""){$('#totaltax').val(0);}
 					    		if($('#laborqty'+count).val().match(/^[+-]?((\.\d+)|(\d+(\.\d+)?))$/)) 
 				    			{ 
 				    				if($('#laborrate'+count).val() == "" )  
@@ -360,9 +423,19 @@ $this->Html->script([
 			    	}
 					//set text
 					laborcount = laborcount.toFixed(2);
-					$('#labors').val(laborcount);
-					var totalsum= parseFloat($('#labors').val()) + parseFloat($('#parts').val()) - parseFloat($('#dicount').val()) + parseFloat($('#tax').val());
-					document.getElementById('total').innerHTML  = totalsum.toFixed(2);
+					
+					document.getElementById('labors').innerHTML =laborcount;
+					var totalsum= parseFloat(document.getElementById('labors').innerHTML) + parseFloat(document.getElementById('parts').innerHTML) - parseFloat($('#dicount').val());
+					if($('#totaltaxtype').val() == 1)
+						{
+							totalsum = totalsum + totalsum* parseFloat($('#totaltax').val())/100;
+							document.getElementById('total').innerHTML  = totalsum.toFixed(2);
+						}
+					if($('#totaltaxtype').val() == 2)
+						{
+							totalsum = totalsum +  parseFloat($('#totaltax').val());
+							document.getElementById('total').innerHTML  = totalsum.toFixed(2);
+						}
 				}
 				
 			function laborRateCalculate()
@@ -393,7 +466,7 @@ $this->Html->script([
 								var tempval;
 								
 								if($('#dicount').val() == ""){$('#dicount').val(0);}
-								if($('#tax').val() == ""){$('#tax').val(0);}
+								if($('#totaltax').val() == ""){$('#totaltax').val(0);}
 								
 					    		if($('#laborrate'+count).val().match(/^[+-]?((\.\d+)|(\d+(\.\d+)?))$/))  //if hourly rate is number
 				    			{ 
@@ -442,9 +515,18 @@ $this->Html->script([
 				    	}
 					//set text
 					laborcount = laborcount.toFixed(2);
-					$('#labors').val(laborcount);	
-					var totalsum= parseFloat($('#labors').val()) + parseFloat($('#parts').val()) - parseFloat($('#dicount').val()) + parseFloat($('#tax').val());
-					document.getElementById('total').innerHTML  = totalsum.toFixed(2);	
+					document.getElementById('labors').innerHTML = laborcount;	
+					var totalsum= parseFloat(document.getElementById('labors').innerHTML) + parseFloat(document.getElementById('parts').innerHTML) - parseFloat($('#dicount').val());
+					if($('#totaltaxtype').val() == 1)
+						{
+							totalsum = totalsum + totalsum* parseFloat($('#totaltax').val())/100;
+							document.getElementById('total').innerHTML  = totalsum.toFixed(2);
+						}
+					if($('#totaltaxtype').val() == 2)
+						{
+							totalsum = totalsum +  parseFloat($('#totaltax').val());
+							document.getElementById('total').innerHTML  = totalsum.toFixed(2);
+						}
 				}
 			function partQtyCalculate()
 				{
@@ -474,7 +556,7 @@ $this->Html->script([
 								var tempval;
 								
 								if($('#dicount').val() == ""){$('#dicount').val(0);}
-								if($('#tax').val() == ""){$('#tax').val(0);}
+								if($('#totaltax').val() == ""){$('#totaltax').val(0);}
 									
 								if($('#partqty'+count).val().match(/^[+-]?((\.\d+)|(\d+(\.\d+)?))$/))
 				    			{
@@ -524,9 +606,18 @@ $this->Html->script([
 				    	}
 					//set text
 					partcount = partcount.toFixed(2);
-					$('#parts').val(partcount);
-					var totalsum= parseFloat($('#labors').val()) + parseFloat($('#parts').val()) - parseFloat($('#dicount').val()) + parseFloat($('#tax').val());
-					document.getElementById('total').innerHTML  = totalsum.toFixed(2);
+					document.getElementById('parts').innerHTML = partcount;
+					var totalsum= parseFloat(document.getElementById('labors').innerHTML) + parseFloat(document.getElementById('parts').innerHTML) - parseFloat($('#dicount').val());
+					if($('#totaltaxtype').val() == 1)
+						{
+							totalsum = totalsum + totalsum* parseFloat($('#totaltax').val())/100;
+							document.getElementById('total').innerHTML  = totalsum.toFixed(2);
+						}
+					if($('#totaltaxtype').val() == 2)
+						{
+							totalsum = totalsum +  parseFloat($('#totaltax').val());
+							document.getElementById('total').innerHTML  = totalsum.toFixed(2);
+						}
 				}
 			function partRateCalculate()
 				{
@@ -556,7 +647,7 @@ $this->Html->script([
 								var tempval;
 								
 								if($('#dicount').val() == ""){$('#dicount').val(0);}
-								if($('#tax').val() == ""){$('#tax').val(0);}
+								if($('#totaltax').val() == ""){$('#totaltax').val(0);}
 								
 								if($('#partrate'+count).val().match(/^[+-]?((\.\d+)|(\d+(\.\d+)?))$/))
 					    			{
@@ -605,9 +696,18 @@ $this->Html->script([
 				    	}
 					//set text
 					partcount = partcount.toFixed(2);
-					$('#parts').val(partcount);	
-					var totalsum= parseFloat($('#labors').val()) + parseFloat($('#parts').val()) - parseFloat($('#dicount').val()) + parseFloat($('#tax').val());
-					document.getElementById('total').innerHTML  = totalsum.toFixed(2);
+					document.getElementById('parts').innerHTML = partcount;	
+					var totalsum= parseFloat(document.getElementById('labors').innerHTML) + parseFloat(document.getElementById('parts').innerHTML) - parseFloat($('#dicount').val());
+					if($('#totaltaxtype').val() == 1)
+						{
+							totalsum = totalsum + totalsum* parseFloat($('#totaltax').val())/100;
+							document.getElementById('total').innerHTML  = totalsum.toFixed(2);
+						}
+					if($('#totaltaxtype').val() == 2)
+						{
+							totalsum = totalsum +  parseFloat($('#totaltax').val());
+							document.getElementById('total').innerHTML  = totalsum.toFixed(2);
+						}
 				}
 				
 			function laborTaxCalculate()
@@ -626,7 +726,7 @@ $this->Html->script([
 				    				var tempval;
 				    				
 				    				if($('#dicount').val() == ""){$('#dicount').val(0);}
-									if($('#tax').val() == ""){$('#tax').val(0);}
+									if($('#totaltax').val() == ""){$('#totaltax').val(0);}
 				    				
 									if($('#labortax'+count).val().match(/^[+-]?((\.\d+)|(\d+(\.\d+)?))$/)
 										&& $('#laborrate'+count).val().match(/^[+-]?((\.\d+)|(\d+(\.\d+)?))$/)
@@ -655,9 +755,18 @@ $this->Html->script([
 				    	}
 					//set text
 					laborcount = laborcount.toFixed(2);
-					$('#labors').val(laborcount);
-					var totalsum= parseFloat($('#labors').val()) + parseFloat($('#parts').val()) - parseFloat($('#dicount').val()) + parseFloat($('#tax').val());
-					document.getElementById('total').innerHTML  = totalsum.toFixed(2);	
+					document.getElementById('labors').innerHTML = laborcount;
+					var totalsum= parseFloat(document.getElementById('labors').innerHTML) + parseFloat(document.getElementById('parts').innerHTML) - parseFloat($('#dicount').val());
+					if($('#totaltaxtype').val() == 1)
+						{
+							totalsum = totalsum + totalsum* parseFloat($('#totaltax').val())/100;
+							document.getElementById('total').innerHTML  = totalsum.toFixed(2);
+						}
+					if($('#totaltaxtype').val() == 2)
+						{
+							totalsum = totalsum +  parseFloat($('#totaltax').val());
+							document.getElementById('total').innerHTML  = totalsum.toFixed(2);
+						}
 				}
 				
 			function partTaxCalculate()
@@ -675,7 +784,7 @@ $this->Html->script([
 				    				var tempval;
 				    				
 				    				if($('#dicount').val() == ""){$('#dicount').val(0);}
-									if($('#tax').val() == ""){$('#tax').val(0);}
+									if($('#totaltax').val() == ""){$('#totaltax').val(0);}
 				    				
 									if($('#parttax'+count).val().match(/^[+-]?((\.\d+)|(\d+(\.\d+)?))$/)
 									&& $('#partrate'+count).val().match(/^[+-]?((\.\d+)|(\d+(\.\d+)?))$/)
@@ -706,9 +815,18 @@ $this->Html->script([
 				    	}
 					//set text
 					partcount = partcount.toFixed(2);
-					$('#parts').val(partcount);
-					var totalsum= parseFloat($('#labors').val()) + parseFloat($('#parts').val()) - parseFloat($('#dicount').val()) + parseFloat($('#tax').val());
-					document.getElementById('total').innerHTML  = totalsum.toFixed(2);
+					document.getElementById('parts').innerHTML = partcount;
+					var totalsum= parseFloat(document.getElementById('labors').innerHTML) + parseFloat(document.getElementById('parts').innerHTML) - parseFloat($('#dicount').val());
+					if($('#totaltaxtype').val() == 1)
+						{
+							totalsum = totalsum + totalsum* parseFloat($('#totaltax').val())/100;
+							document.getElementById('total').innerHTML  = totalsum.toFixed(2);
+						}
+					if($('#totaltaxtype').val() == 2)
+						{
+							totalsum = totalsum +  parseFloat($('#totaltax').val());
+							document.getElementById('total').innerHTML  = totalsum.toFixed(2);
+						}
 				}
 				
 			function laborTaxTypeCalculate()
@@ -739,7 +857,7 @@ $this->Html->script([
 									var tempval;
 						    		
 						    		if($('#dicount').val() == ""){$('#dicount').val(0);}
-									if($('#tax').val() == ""){$('#tax').val(0);}
+									if($('#totaltax').val() == ""){$('#totaltax').val(0);}
 						    			
 									if($('#labortax'+count).val().match(/^[+-]?((\.\d+)|(\d+(\.\d+)?))$/)
 									&& $('#laborrate'+count).val().match(/^[+-]?((\.\d+)|(\d+(\.\d+)?))$/)
@@ -770,9 +888,18 @@ $this->Html->script([
 				    	}
 					//set text
 					laborcount = laborcount.toFixed(2);
-					$('#labors').val(laborcount);
-					var totalsum= parseFloat($('#labors').val()) + parseFloat($('#parts').val()) - parseFloat($('#dicount').val()) + parseFloat($('#tax').val());
-					document.getElementById('total').innerHTML  = totalsum.toFixed(2);
+					document.getElementById('labors').innerHTML = laborcount;
+					var totalsum= parseFloat(document.getElementById('labors').innerHTML) + parseFloat(document.getElementById('parts').innerHTML) - parseFloat($('#dicount').val());
+					if($('#totaltaxtype').val() == 1)
+						{
+							totalsum = totalsum + totalsum* parseFloat($('#totaltax').val())/100;
+							document.getElementById('total').innerHTML  = totalsum.toFixed(2);
+						}
+					if($('#totaltaxtype').val() == 2)
+						{
+							totalsum = totalsum +  parseFloat($('#totaltax').val());
+							document.getElementById('total').innerHTML  = totalsum.toFixed(2);
+						}
 				}
 			
 			function partTaxTypeCalculate()
@@ -803,7 +930,7 @@ $this->Html->script([
 									var tempval;
 						    		
 						    		if($('#dicount').val() == ""){$('#dicount').val(0);}
-									if($('#tax').val() == ""){$('#tax').val(0);}
+									if($('#totaltax').val() == ""){$('#totaltax').val(0);}
 						    			
 									if($('#parttax'+count).val().match(/^[+-]?((\.\d+)|(\d+(\.\d+)?))$/)
 									&& $('#partrate'+count).val().match(/^[+-]?((\.\d+)|(\d+(\.\d+)?))$/)
@@ -833,22 +960,40 @@ $this->Html->script([
 				    	}
 					//set text
 					partcount = partcount.toFixed(2);
-					$('#parts').val(partcount);
-					var totalsum= parseFloat($('#labors').val()) + parseFloat($('#parts').val()) - parseFloat($('#dicount').val()) + parseFloat($('#tax').val());
-					document.getElementById('total').innerHTML  = totalsum.toFixed(2);
+					document.getElementById('parts').innerHTML = partcount;
+					var totalsum= parseFloat(document.getElementById('labors').innerHTML) + parseFloat(document.getElementById('parts').innerHTML) - parseFloat($('#dicount').val());
+					if($('#totaltaxtype').val() == 1)
+						{
+							totalsum = totalsum + totalsum* parseFloat($('#totaltax').val())/100;
+							document.getElementById('total').innerHTML  = totalsum.toFixed(2);
+						}
+					if($('#totaltaxtype').val() == 2)
+						{
+							totalsum = totalsum +  parseFloat($('#totaltax').val());
+							document.getElementById('total').innerHTML  = totalsum.toFixed(2);
+						}
 				}
 			
 			function discountCalculate()
 				{
 					if($('#dicount').val() == ""){$('#dicount').val(0);}
 					//set text
-					if($('#labors').val() != "" || $('#parts').val() != "" )
+					if(document.getElementById('labors').innerHTML != "" || document.getElementById('parts').innerHTML != "" )
 						{
 							if($('#dicount').val() != "")
 								{
-									if($('#tax').val() == ""){$('#tax').val(0);}
-									var totalsum= parseFloat($('#labors').val()) + parseFloat($('#parts').val()) - parseFloat($('#dicount').val()) + parseFloat($('#tax').val());
-									document.getElementById('total').innerHTML  = totalsum.toFixed(2);
+									if($('#totaltax').val() == ""){$('#totaltax').val(0);}
+									var totalsum= parseFloat(document.getElementById('labors').innerHTML) + parseFloat(document.getElementById('parts').innerHTML) - parseFloat($('#dicount').val());
+									if($('#totaltaxtype').val() == 1)
+										{
+											totalsum = totalsum + totalsum* parseFloat($('#totaltax').val())/100;
+											document.getElementById('total').innerHTML  = totalsum.toFixed(2);
+										}
+									if($('#totaltaxtype').val() == 2)
+										{
+											totalsum = totalsum +  parseFloat($('#totaltax').val());
+											document.getElementById('total').innerHTML  = totalsum.toFixed(2);
+										}
 								}
 								
 						}
@@ -856,16 +1001,57 @@ $this->Html->script([
 			
 			function taxCalculate()
 				{
-					if($('#tax').val() == ""){$('#tax').val(0);}
+					if($('#totaltax').val() == ""){$('#totaltax').val(0);}
 					//set text
-					if($('#labors').val() != "" || $('#parts').val() != "" )
+					if(document.getElementById('labors').innerHTML != "" || document.getElementById('parts').innerHTML != "" )
 						{
-							if($('#tax').val() != "")
+							if($('#totaltax').val() != "")
 								{
 									if($('#dicount').val() == ""){$('#dicount').val(0);}
 									
-									var totalsum= parseFloat($('#labors').val()) + parseFloat($('#parts').val()) - parseFloat($('#dicount').val()) + parseFloat($('#tax').val());
-									document.getElementById('total').innerHTML  = totalsum.toFixed(2);
+									var totalsum= parseFloat(document.getElementById('labors').innerHTML) + parseFloat(document.getElementById('parts').innerHTML) - parseFloat($('#dicount').val());
+									
+									if($('#totaltaxtype').val() == 1)
+										{
+											totalsum = totalsum + totalsum* parseFloat($('#totaltax').val())/100;
+											document.getElementById('total').innerHTML  = totalsum.toFixed(2);
+										}
+									if($('#totaltaxtype').val() == 2)
+										{
+											totalsum = totalsum +  parseFloat($('#totaltax').val());
+											document.getElementById('total').innerHTML  = totalsum.toFixed(2);
+										}
+								}	
+						}
+				}
+			
+			
+			function taxTypeCalculate()
+				{
+					
+					// if($('#totaltaxtype').val() == ""){$('#totaltaxtype').val(0);}
+					//set text
+					if(document.getElementById('labors').innerHTML != "" || document.getElementById('parts').innerHTML != "" )
+						{
+							if($('#totaltax').val() != "")
+								{ 
+									if($('#dicount').val() == ""){$('#dicount').val(0);}
+									var totalsum = parseFloat(document.getElementById('labors').innerHTML) + parseFloat(document.getElementById('parts').innerHTML) - parseFloat($('#dicount').val());
+									
+									var taxamount;
+									if($('#totaltaxtype').val() == 1)
+										{
+											totalsum = totalsum + totalsum* parseFloat($('#totaltax').val())/100;
+											document.getElementById('total').innerHTML  = totalsum;
+										}
+									if($('#totaltaxtype').val() == 2)
+										{
+											totalsum = totalsum +  parseFloat($('#totaltax').val());
+											document.getElementById('total').innerHTML  = totalsum;
+										}
+									
+									var totalsum = taxamount;
+									// document.getElementById('total').innerHTML  = parseFloat(totalsum);
 								}	
 						}
 				}
@@ -881,7 +1067,8 @@ $this->Html->script([
 					laborTaxTypeCalculate();
 					partTaxTypeCalculate();
 					discountCalculate();
-					taxCalculate()
+					taxCalculate();
+					taxTypeCalculate();
 				} 
 			
 			$('.maindiv').on('click', 'a.compdelete', function() 
@@ -947,8 +1134,13 @@ $this->Html->script([
 				partTaxTypeCalculate();
 			});
 			
+			$("#totaltaxtype").change(function()
+			{
+				taxTypeCalculate();
+			});
 			
-			$("#tax").keyup(function(){
+			
+			$("#totaltax").keyup(function(){
 			   taxCalculate();
 			});
 			
@@ -1070,10 +1262,10 @@ $this->Html->script([
 		var invoicenumber = document.getElementById("invoicenumber").value;
 		var phonenumber = document.getElementById("phonenumber").value;
 		var description = document.getElementById("description").value;
-		var labor = document.getElementById("labors").value;
-		var parts = document.getElementById("parts").value;
+		var labor = document.getElementById("labors").innerHTML; 
+		var parts = document.getElementById("parts").innerHTML;
 		var discount = document.getElementById("dicount").value;
-		var tax = document.getElementById("tax").value;
+		var tax = document.getElementById("totaltax").value;
 		
     	if (issuedate != "" && workorderstatus!=null) 
     		{
@@ -1137,6 +1329,8 @@ $this->Html->script([
 	    		alert("Please enter the mandatory fields.");
 	    		return false;
 	    	}
+    	
+    
     	
 	});
    
