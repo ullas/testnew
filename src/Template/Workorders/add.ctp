@@ -284,20 +284,22 @@ $this->Html->script([
 		
 		var resissues=[];
 		
+		
 		var resissues_length = <?php echo count($resissues); ?>;
 		
-		<?php
-		for ($i=0; $i < 2 ; $i++) { 
-			?>
-			resissues[<?php echo $i ?>] = <?php echo $resissues[$i];?>;
-		<?php
-		}?>
-		
-		
-		
+		console.log(resissues_length);
 		if (resissues_length>0)
 			{
+				<?php
+				for ($i=0; $i < count($resissues) && $resissues[$i] ; $i++) { 
+				?>
 				
+					resissues[<?php echo $i ?>] = <?php echo $resissues[$i];?>;
+				
+				<?php
+				}
+				?>
+		
 				resolveIssues(resissues);
 			}
         $('.test').select2({
@@ -322,30 +324,79 @@ $this->Html->script([
 		
 		function resolveIssues(resissues)
     	{
-    		alert("inside resolveIssues"+resissues.length);
-    		//Show saved laborlineitems
+	    		
+	    		//Show issues to be resolved
+					for (var i=0;i<resissues.length;i++)
+						{
+							//labour
+						 	var numItems = $('.laborhrs').length+1;
+							$(".maindiv").append("<div class='classname' 	id='contentDiv"+numItems+"'><div class='clearfix'><div 	class='col-sm-3'><input type='hidden' value='issue'   class='form-control' id='typeof1"+numItems+"'/><input type='hidden' value='labor'   class='form-control' id='ident1"+numItems+"'/><div class='form-group'><label>Issue:</label><div class='input-group'><div class='input-group-btn'><a id='delete1' class='compdelete btn btn-danger btn-flat'><i class='fa fa-trash'></i></a></div><input  name='issue"+numItems+"' class='form-control testissue' id='wotype1"+numItems+"'/></div>	</div></div><div 	class='col-sm-3'><label>Contact:</label><input  name='contact"+numItems+"' class='form-control contact' id='contactpart1"+numItems+"'/></div><div class='col-sm-2'><label>Hourly Rate:</label><input type='text' 	class='form-control laborrate' id='laborrate"+numItems+"'/></div><div class='col-sm-2'><label>Hours:</label><input type='text' id='laborqty"+numItems+"' class='form-control laborhrs' name='hrs'/></div>   <div class='col-sm-2'> <div class='form-group'><label>Tax:</label><div class='input-group'><span class='input-group-addon no-padding'><input  id='labortaxtype"+numItems+"' class='labortaxtype' name='taxtype'/></span><input type='text' id='labortax"+numItems+"' class='form-control labortax' name='tax'/></div></div></div></div><hr/></div>");
+							
+							$('.labortaxtype').select2({
+							width: '100%',data: [{'id':1, "text":"%"},{'id':2, "text":"$"}]
+							});
+							$('#labortaxtype'+numItems).val(1).trigger('change');
+							$('.testissue').select2({
+					    	width: '100%',allowClear: true,placeholder: "Select",data: issuedata
+							});
+							$('#wotype1'+numItems).val(resissues[i]).trigger('change');
+							
+							//parts
+							var numItems = $('.partqty').length+1;
+							$(".maindiv").append("<div class='classname' 	id='contentDiv"+numItems+"'><div class='clearfix'><div 	class='col-sm-3'><input type='hidden' value='issue'   class='form-control' id='typeof2"+numItems+"'/><input type='hidden' value='part'   class='form-control' id='ident2"+numItems+"'/><div class='form-group'><label>Issue:</label><div class='input-group'><div class='input-group-btn'><a id='delete1' class='compdelete btn btn-danger btn-flat'><i class='fa fa-trash'></i></a></div><input  name='issue"+numItems+"' class='form-control testissue' id='wotype2"+numItems+"'/></div></div></div><div 	class='col-sm-3'><label>Part:</label><input  name='part"+numItems+"' class='form-control part' id='contactpart2"+numItems+"'/></div><div class='col-sm-2'><label>Unit Cost:</label><input type='text' 	class='form-control inputrate' id='partrate"+numItems+"'/></div><div class='col-sm-2'><label>Quantity:</label><input type='text' id='partqty"+numItems+"' class='form-control partqty' name='quantity'/></div><div class='col-sm-2'> <div class='form-group'><label>Tax:</label><div class='input-group'><span class='input-group-addon no-padding'><input  id='parttaxtype"+numItems+"' class='parttaxtype' name='taxtype'/></span><input type='text' id='parttax"+numItems+"' class='form-control parttax' name='tax'/></div></div></div></div><hr/></div>");
+							
+							$('.parttaxtype').select2({
+							width: '100%',data: [{'id':1, "text":"%"},{'id':2, "text":"$"}]
+							});
+							$('#parttaxtype'+numItems).val(1).trigger('change');
+							$('.testissue').select2({
+					    	width: '100%',allowClear: true,placeholder: "Select",data: issuedata
+							});
+							$('#wotype2'+numItems).val(resissues[i]).trigger('change');
+							
+						}
+						 	
 			
-				
-					
-					
-					 	//labour
-					 	var numItems = $('.laborhrs').length+1;
-						$(".maindiv").append("<div class='classname' 	id='contentDiv"+numItems+"'><div class='clearfix'><div 	class='col-sm-3'><input type='hidden' value='issue'   class='form-control' id='typeof1"+numItems+"'/><input type='hidden' value='labor'   class='form-control' id='ident1"+numItems+"'/><div class='form-group'><label>Issue:</label><div class='input-group'><div class='input-group-btn'><a id='delete1' class='compdelete btn btn-danger btn-flat'><i class='fa fa-trash'></i></a></div><input  name='issue"+numItems+"' class='form-control testissue' id='wotype1"+numItems+"'/></div>	</div></div><div 	class='col-sm-3'><label>Contact:</label><input  name='contact"+numItems+"' class='form-control contact' id='contactpart1"+numItems+"'/></div><div class='col-sm-2'><label>Hourly Rate:</label><input type='text' 	class='form-control laborrate' id='laborrate"+numItems+"'/></div><div class='col-sm-2'><label>Hours:</label><input type='text' id='laborqty"+numItems+"' class='form-control laborhrs' name='hrs'/></div>   <div class='col-sm-2'> <div class='form-group'><label>Tax:</label><div class='input-group'><span class='input-group-addon no-padding'><input  id='labortaxtype"+numItems+"' class='labortaxtype' name='taxtype'/></span><input type='text' id='labortax"+numItems+"' class='form-control labortax' name='tax'/></div></div></div></div><hr/></div>");
-				
-						//parts
-						var numItems = $('.partqty').length+1;
-						$(".maindiv").append("<div class='classname' 	id='contentDiv"+numItems+"'><div class='clearfix'><div 	class='col-sm-3'><input type='hidden' value='issue'   class='form-control' id='typeof2"+numItems+"'/><input type='hidden' value='part'   class='form-control' id='ident2"+numItems+"'/><div class='form-group'><label>Issue:</label><div class='input-group'><div class='input-group-btn'><a id='delete1' class='compdelete btn btn-danger btn-flat'><i class='fa fa-trash'></i></a></div><input  name='issue"+numItems+"' class='form-control testissue' id='wotype2"+numItems+"'/></div></div></div><div 	class='col-sm-3'><label>Part:</label><input  name='part"+numItems+"' class='form-control part' id='contactpart2"+numItems+"'/></div><div class='col-sm-2'><label>Unit Cost:</label><input type='text' 	class='form-control inputrate' id='partrate"+numItems+"'/></div><div class='col-sm-2'><label>Quantity:</label><input type='text' id='partqty"+numItems+"' class='form-control partqty' name='quantity'/></div><div class='col-sm-2'> <div class='form-group'><label>Tax:</label><div class='input-group'><span class='input-group-addon no-padding'><input  id='parttaxtype"+numItems+"' class='parttaxtype' name='taxtype'/></span><input type='text' id='parttax"+numItems+"' class='form-control parttax' name='tax'/></div></div></div></div><hr/></div>");
-				
-					
-				
-    		
-    	}
+			$('.test').select2({
+	    		width: '100%',allowClear: true,placeholder: "Select",data: servicetaskdata
+				});
+			
+			$('.testissue').select2({
+		    	width: '100%',allowClear: true,placeholder: "Select",data: issuedata
+				});
+			$('.test').select2({
+	    		width: '100%',allowClear: true,placeholder: "Select",data: servicetaskdata
+				});
+			$('.contact').select2({
+	    		width: '100%',allowClear: true,placeholder: "Select",data: contactdata
+				});
+			$('.part').select2({
+	    		width: '100%',allowClear: true,placeholder: "Select",data: partdata
+				});
+			
+		}
 		
 		
 	}
     
   $(function () 
   	{
+  		var resissues=[];
+		var resissues_length = <?php echo count($resissues); ?>;
+		console.log(resissues_length);
+		if (resissues_length>0)
+			{
+				<?php
+				for ($i=0; $i < count($resissues) && $resissues[$i] ; $i++) { 
+				?>
+				
+					resissues[<?php echo $i ?>] = <?php echo $resissues[$i];?>;
+				
+				<?php
+				}
+				?>
+		
+			}
  
 			function laborHrsCalculate()
 				{
@@ -1028,7 +1079,6 @@ $this->Html->script([
 			
 			function taxTypeCalculate()
 				{
-					
 					// if($('#totaltaxtype').val() == ""){$('#totaltaxtype').val(0);}
 					//set text
 					if(document.getElementById('labors').innerHTML != "" || document.getElementById('parts').innerHTML != "" )
@@ -1221,7 +1271,7 @@ $this->Html->script([
 
 	//save btn onclick
 	$("#btnSave").click(function () {
-		
+		alert("resissues--"+resissues);
 		var labourpresent = true;
 		var partspresent = true;
 		var numItems = $('.laborhrs').length;
@@ -1241,7 +1291,11 @@ $this->Html->script([
 			{ 
 				if( $('#wotype2'+count ).val()==""  ||  $('#contactpart2'+count ).val()=="") 
 				 {
-				 	partspresent = false;
+				 	if($("#partrate"+count).parent().closest('div .classname').is(":visible"))
+					 	{
+							partspresent = false; 		
+					 	}
+				 	
 				 }
 			}
 		
@@ -1266,8 +1320,8 @@ $this->Html->script([
 		var parts = document.getElementById("parts").innerHTML;
 		var discount = document.getElementById("dicount").value;
 		var tax = document.getElementById("totaltax").value;
-		
-    	if (issuedate != "" && workorderstatus!=null) 
+		var taxtype = document.getElementById("totaltaxtype").value;
+		if (issuedate != "" && workorderstatus!=null) 
     		{
 				if( labourpresent == true && partspresent== true)
 					{
@@ -1277,7 +1331,7 @@ $this->Html->script([
 				    		+'&completiondate='+completiondate+'&issuedbyid='+issuedbyid+'&assignedbyid='+assignedbyid
 				    		+'&assigntoid='+assigntoid+'&invoicenumber='+invoicenumber+'&phonenumber='+phonenumber
 				    		+'&description='+description+'&labor='+labor+'&parts='+parts
-				    		+'&discount='+discount+'&tax='+tax
+				    		+'&discount='+discount+'&tax='+tax+'&taxtype='+taxtype
 				    		, function(d) {
 				   		 		if(d!="error")
 					   		 		{console.log("inside save2");
@@ -1316,6 +1370,16 @@ $this->Html->script([
 					   		 		{
 					   		 			console.log("inside error");
 					   		 		}
+					   		 		
+					   		 		//for setting the resolved issues' status as Resolved (issuestatus=status3)
+					   		 		 $.ajax({
+								        	 type : "POST",
+								             url  : '/Issues/setResolve?content='+resissues,
+								             success : function(array1)
+								             	{
+								             	  // window.location.reload();
+								                }
+								            })
 				    		});
 	    			}
 				else

@@ -93,6 +93,7 @@ class WorkordersController extends AppController
 			$this->request->data['parts']=$this->request->query['parts'];
 			$this->request->data['dicount']=$this->request->query['discount'];
 			$this->request->data['tax']=$this->request->query['tax'];
+			$this->request->data['taxtype']=$this->request->query['taxtype'];
 			
 			
 			
@@ -100,6 +101,9 @@ class WorkordersController extends AppController
             $workorder=$this->Workorders->patchEntity($workorder,$this->request->data);
 			$workorder['customer_id']=$this->loggedinuser['customer_id'];
 			if ($this->Workorders->save($workorder)) {
+				
+				
+				
 				
                 $this->response->body(json_encode($workorder['id']));			
 	    		return $this->response;
@@ -564,11 +568,17 @@ public function ajaxdata() {
 		$str = implode(" ",$resissues1);
 		$resissues2 = explode('/', $str);
 		$resissues2 = implode(" ",$resissues2);
-		$str = explode(",",$resissues1[2]);
 		$stack = array();
-		for ($i=0; $i < count($str) ; $i++) { 
-			array_push($stack, $str[$i]);
-		}
+		if( !empty($resissues1[2]))
+			{
+				$str = explode(",",$resissues1[2]);
+				
+				for ($i=0; $i < count($str) ; $i++) 
+					{ 
+						array_push($stack, $str[$i]);
+					}	
+			}
+		
 		$resissues = $stack;
 		
         $workorder = $this->Workorders->newEntity();
@@ -578,52 +588,50 @@ public function ajaxdata() {
 		$addressesTable = TableRegistry::get('Addresses');
 		$partsTable = TableRegistry::get('Parts');
 			
-        if ($this->request->is('post')) {
-        	
-			
-			
-            $workorder = $this->Workorders->patchEntity($workorder, $this->request->data);
-			
-				// print_r($workorder['id']);
-			
-            $workorder['customer_id']=$this->loggedinuser['customer_id'];
-			
-			
-            if ($this->Workorders->save($workorder)) {
-            	$this->log($this->request->data);
-			   if(isset($this->request->data['workorderlineitem'])){
-			   	// $this->log("sssooo");
-				$lineitems=$this->request->data['workorderlineitem'];
-				for($i=0;$i<count($lineitems);$i++)
-				{
-					$lineitem= $liteitemTable->newEntity();
-					$lineitem['labour']=$lineitems[$i]['labour'];
-					$lineitem['parts']=$lineitems[$i]['parts'];
-					$lineitem['numitems']=isset($lineitems[$i]['numitems'])?$lineitems[$i]['numitems']:0;
-					$lineitem['customer_id']=$this->loggedinuser['customer_id'];
-					$lineitem['servicetask_id']=isset($lineitems[$i]['servicetask_id'])?$lineitems[$i]['servicetask_id']:null;
-					$lineitem['issue_id']=isset($lineitems[$i]['issue_id'])?$lineitems[$i]['issue_id']:null;
-					if($lineitem['servicetask_id']!=null){
-						$lineitem['workordertype_id']=1;
-					}else{
-						$lineitem['workordertype_id']=2;
-					}
-					$lineitem['workorder_id']=$workorder->id;
-					
-					$liteitemTable->save($lineitem);
-					
-				 }
-				  
-			    }	
+        if ($this->request->is('post')) 
+	        {
+	        	$workorder = $this->Workorders->patchEntity($workorder, $this->request->data);
+				$workorder['customer_id']=$this->loggedinuser['customer_id'];
 				
-                // $this->Flash->success(__('The workorder has been saved.'));
-
-                 // return $this->redirect(['action' => 'index']);
-            } else {
-                $this->Flash->error(__('The workorder could not be saved. Please, try again.'));
-            }
-			// return $this->redirect(['action' => 'index']);
-        }
+				if ($this->Workorders->save($workorder)) 
+		            {
+		            	$this->log($this->request->data);
+					    if(isset($this->request->data['workorderlineitem'])){
+					   	$lineitems=$this->request->data['workorderlineitem'];
+						for($i=0;$i<count($lineitems);$i++)
+						{
+							$lineitem= $liteitemTable->newEntity();
+							$lineitem['labour']=$lineitems[$i]['labour'];
+							$lineitem['parts']=$lineitems[$i]['parts'];
+							$lineitem['numitems']=isset($lineitems[$i]['numitems'])?$lineitems[$i]['numitems']:0;
+							$lineitem['customer_id']=$this->loggedinuser['customer_id'];
+							$lineitem['servicetask_id']=isset($lineitems[$i]['servicetask_id'])?$lineitems[$i]['servicetask_id']:null;
+							$lineitem['issue_id']=isset($lineitems[$i]['issue_id'])?$lineitems[$i]['issue_id']:null;
+							if($lineitem['servicetask_id']!=null)
+								{
+									$lineitem['workordertype_id']=1;
+								}
+							else
+								{
+									$lineitem['workordertype_id']=2;
+								}
+							$lineitem['workorder_id']=$workorder->id;
+							$liteitemTable->save($lineitem);
+							
+						 }
+						  
+					    }	
+						
+		                // $this->Flash->success(__('The workorder has been saved.'));
+		
+		                 // return $this->redirect(['action' => 'index']);
+		            } 
+	            else
+					{
+	                	$this->Flash->error(__('The workorder could not be saved. Please, try again.'));
+	            	}
+				// return $this->redirect(['action' => 'index']);
+	        }
         
         $workorderstatuses = $this->Workorders->Workorderstatuses->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
         

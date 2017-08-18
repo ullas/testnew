@@ -175,4 +175,14 @@ class IssuesTable extends Table
 		$results = $stmt->fetchAll('assoc');
 		return $results;
 	}
+	
+	//Change status of  issues as 'Resolved' in Issues table when clcking Resolve Via button in Issues Index table
+	public function changeStatusResolve($cid,$issueid)
+	{
+		$con = ConnectionManager::get('default');
+		// $stmt = $con->execute("update zorba.issues SET issuestatus_id = 3 WHERE id  = ? ",[$issueid],['integer']);
+	    $stmt = $con->execute("update zorba.issues SET issuestatus_id = 3 WHERE id  = $issueid ");
+		$results = $stmt->fetchAll('assoc');
+		return $results;
+	}
 }

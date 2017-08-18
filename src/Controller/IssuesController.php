@@ -375,4 +375,32 @@ private function getDateRangeFilters($dates,$basic)  {
 		}
 		
     }
+	
+	public function setResolve()
+    {
+    	
+    	if($this->request->is('ajax')) 
+    	{
+    		$this->loadModel('Issues');
+			$this->autoRender=false;
+			$issueidsAr = array();
+			$issueidsAr = $this->request->query['content'];
+			$issueids=explode(",",$issueidsAr);
+			$issues = array();
+			for ($i=0; $i <count($issueids) ; $i++) { 
+				$issues[$i] = $issueids[$i];
+				$ttt = $this->Issues->changeStatusResolve($this->loggedinuser['customer_id'],$issueids[$i]);
+			}
+		 	// if(isset($ttt))
+			// {
+				// return $this->redirect(array('controller' => 'Issues', 'action' => 'index'));
+				$this->Flash->success(__('Selected Issues are closed.'));
+				// return $this->redirect(['action' => 'index']);
+			// }
+		 	$this->response->body("testop");
+	    	return $this->response;
+			
+		}
+		
+    }
 }
