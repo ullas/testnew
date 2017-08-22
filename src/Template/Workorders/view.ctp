@@ -54,31 +54,31 @@
         </tr>
         <tr>
             <th><?= __('Labour') ?></th>
-            <td><?= $this->Number->format($workorder->labour) ?></td>
+            <td><?= $workorder->labour ?></td>
         </tr>
         <tr>
             <th><?= __('Parts') ?></th>
-            <td><?= $this->Number->format($workorder->parts) ?></td>
+            <td><?= $workorder->parts ?></td>
         </tr>
         <tr>
             <th><?= __('Discount') ?></th>
-            <td><?= $this->Number->format($workorder->dicount) ?></td>
+            <td><?= $workorder->dicount ?></td>
         </tr>
         <tr>
             <th><?= __('Tax') ?></th>
-            <td><?= $this->Number->format($workorder->tax) ?></td>
+            <td><?= $workorder->tax ?></td>
         </tr>
         <tr>
             <th><?= __('Issued By') ?></th>
-            <td><?= $this->Number->format($workorder->issuedby_id) ?></td>
+            <td><?= $workorder->issuedby_id ?></td>
         </tr>
         <tr>
             <th><?= __('Assigned By') ?>/th>
-            <td><?= $this->Number->format($workorder->assignedby_id) ?></td>
+            <td><?= $workorder->assignedby_id ?></td>
         </tr>
         <tr>
             <th><?= __('Assign To') ?></th>
-            <td><?= $this->Number->format($workorder->assignto_id) ?></td>
+            <td><?= $workorder->assignto_id ?></td>
         </tr>
         <tr>
             <th><?= __('Issue Date') ?></th>

@@ -276,6 +276,54 @@ $this->Html->script([
 		    }
 			}
   	});
+  	 $("#closeWO").click(function(e)
+  	 {
+  	 	e.preventDefault();
+      	var valuearray = [];
+  	  	valuearray = setSelection();
+
+  	   if($(".mptl-lst-chkbox:checked").length==0)
+	  	   {
+		      	alert("No item selected. Please select at least one item ");
+		      	return;
+	       }
+
+			if($(".mptl-lst-chkbox:checked").length==1)
+				{
+					if (confirm("Do you want to close the record?")) 
+						{
+				   			{
+					   			 $.ajax({
+					        	 type : "POST",
+					                url  : '/Workorders/setClose2?content='+valuearray,
+					                success : function(array1){
+					                	console.log("results3--"+array1);
+					            			// window.location.reload();
+					            			
+					            			//Add this workorder as a new entry to Servisentries
+					            			
+					                	 	
+					                    }
+					            })
+					       }
+				    	}
+				}
+			else if($(".mptl-lst-chkbox:checked").length>1){
+				if (confirm("Do you want to close " + $(".mptl-lst-chkbox:checked").length + " records?")) 
+				{
+		   			{
+					   			 $.ajax({
+					        	 type : "POST",
+					                url  : '/Workorders/setClose2?content='+valuearray,
+					                success : function(array1){
+					            			window.location.reload();
+					                	 	
+					                    }
+					            })
+					 }
+		    	}
+			}
+  	});
 
     $('#settings').on('shown.bs.modal', function() {
        setOrder();

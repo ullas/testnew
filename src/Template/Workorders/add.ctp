@@ -27,7 +27,7 @@
              <div class="form-horizontal">
                	<?php
 	            echo $this->Form->input('issuedate', ['empty' => true,'type'=>'text','class'=>'datemask','label'=>'Issue Date ','templateVars' => ['icon' => '<div class="input-group-addon"><i class="fa fa-calendar"></i></div>'],'required' => 'required']);
-	            echo $this->Form->input('workorderstatus_id',['options' => $workorderstatuses,'empty' => true,'label'=>'Work Order Status ','class'=>'select2','required' => 'required']);
+	            echo $this->Form->input('workorderstatus_id',['options' => $workorderstatuses,'label'=>'Work Order Status ','class'=>'select2','required' => 'required']);
 	            echo $this->Form->input('vehicle_id', ['options' => $vehicles, 'empty' => true,'class'=>'select2','required' => 'required','templateVars' => ['buttontag' => '<a href="/Vehicles/add/" id="addfltr" class="btn btn-sm btn-success" title="Add New Vehicle"><i class="fa fa-plus" aria-hidden="true"></i></a>']]);
 			    // echo $this->Form->input('vehicle_id', ['options' => $vehicles,array('div' => false), 'empty' => true,'class'=>'select2','required' => 'required']);
 	           	echo $this->Form->input('startdate', ['empty' => true,'type'=>'text','class'=>'datemask','label'=>'Start Date ','templateVars' => ['icon' => '<div class="input-group-addon"><i class="fa fa-calendar"></i></div>'],'required' => 'required']);
@@ -1368,18 +1368,19 @@ $this->Html->script([
 										window.location.href = '/Workorders';
 					   		 		}else
 					   		 		{
-					   		 			console.log("inside error");
+					   		 			// console.log("inside error");
 					   		 		}
 					   		 		
 					   		 		//for setting the resolved issues' status as Resolved (issuestatus=status3)
 					   		 		 $.ajax({
 								        	 type : "POST",
-								             url  : '/Issues/setResolve?content='+resissues,
+								             url  : '/Issues/assignToWorkorder?content='+resissues+'&wid='+d,
 								             success : function(array1)
 								             	{
-								             	  // window.location.reload();
-								                }
+								             	  window.location.reload();
+								             	}
 								            })
+						             
 				    		});
 	    			}
 				else

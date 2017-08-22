@@ -185,4 +185,14 @@ class IssuesTable extends Table
 		$results = $stmt->fetchAll('assoc');
 		return $results;
 	}
+	
+	//Assign Issues to Workorders clcking Add To WorkOrder in Issues Index 
+	public function assignToWorkorder($cid,$issueid,$wid)
+	{
+		$con = ConnectionManager::get('default');
+		// $stmt = $con->execute("update zorba.issues SET issuestatus_id = 3 WHERE id  = ? ",[$issueid],['integer']);
+	    $stmt = $con->execute("update zorba.issues SET workorder_id = $wid WHERE id  = $issueid ");
+		$results = $stmt->fetchAll('assoc');
+		return $results;
+	}
 }
