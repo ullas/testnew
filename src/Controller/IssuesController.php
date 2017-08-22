@@ -44,9 +44,9 @@ class IssuesController extends AppController
 			
          }
 		 $actions =[
-               
-                ['name'=>'delete','title'=>'Delete','class'=>' label-danger ']
-                ];
+					['name'=>'close','title'=>'Close','class'=>' label-danger '],
+	                ['name'=>'delete','title'=>'Delete','class'=>' label-danger ']
+	               ];
          $additional= [
       	                          'basic'=>['Open','OverDue','Resolved','Closed'],
       	                          'additional'=>[
@@ -399,6 +399,38 @@ private function getDateRangeFilters($dates,$basic)  {
 			// }
 		 	$this->response->body("testop");
 	    	return $this->response;
+			
+		}
+		
+    }
+
+
+	public function assignToWorkorder()
+    {
+    	
+    	if($this->request->is('ajax')) 
+    	{
+    		$this->log("sdfsdf");
+    		$this->loadModel('Issues');
+			$this->autoRender=false;
+			$issueidsAr = array();
+			$issueidsAr = $this->request->query['content'];
+			$wid = $this->request->query['wid'];
+			$this->log($wid);
+			$issueids=explode(",",$issueidsAr);
+			$issues = array();
+			for ($i=0; $i <count($issueids) ; $i++) { 
+				$issues[$i] = $issueids[$i];
+				$ttt = $this->Issues->assignToWorkorder($this->loggedinuser['customer_id'],$issueids[$i],$wid);
+			}
+		 	// if(isset($ttt))
+			// {
+				// return $this->redirect(array('controller' => 'Issues', 'action' => 'index'));
+				// $this->Flash->success(__('Selected Issues are closed.'));
+				// return $this->redirect(['action' => 'index']);
+			// }
+		 	// $this->response->body("testop");
+	    	// return $this->response;
 			
 		}
 		

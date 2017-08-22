@@ -261,7 +261,7 @@ class ServicesentriesController extends AppController
 		  
 				
 
-                return $this->redirect(['action' => 'index']);
+                // return $this->redirect(['action' => 'index']);
             } else {
                 $this->Flash->error(__('The service entry could not be saved. Please, try again.'));
             }

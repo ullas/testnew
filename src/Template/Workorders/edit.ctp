@@ -317,9 +317,6 @@ var currentworkorderid = <?php echo $workorderid ?>
 		$('.testissue').select2({
     		width: '100%',allowClear: true,placeholder: "Select",data: issuedata
 		});
-		$('.test').select2({
-    		width: '100%',allowClear: true,placeholder: "Select",data: servicetaskdata
-		});
 		$('.contact').select2({
     		width: '100%',allowClear: true,placeholder: "Select",data: contactdata
 		});
@@ -1241,6 +1238,8 @@ var currentworkorderid = <?php echo $workorderid ?>
 				taxvalue = workorderlaborlineitemsarr[count-1]["tax"];
 				taxtypevalue = workorderlaborlineitemsarr[count-1]["taxtype"];
 				
+				console.log("servicetaskidvalue--"+servicetaskidvalue);
+				console.log("issueidvalue--"+issueidvalue);
 				if(labourvalue == null){labourvalue = 0;}
 				if(hrsvalue == null){hrsvalue = 0;}
 				if(taxvalue == null){taxvalue = 0;}

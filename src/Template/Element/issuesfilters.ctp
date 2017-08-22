@@ -16,10 +16,10 @@
                     <div class="form-group">
                     	 <input type="button" class="mptl-resolver-base1 flat flat-blue" value="Resolve via ServiceEntry"    id="mptl_resolver_add1">
                          <span style="padding-right:10px;"></span></br>
-                         <input type="button" class="mptl-resolver-base2 flat flat-blue" value="Resolve via WorkOrder" id="mptl_resolver_add2">
+                         <input type="button" class="mptl-resolver-base2 flat flat-blue" value="Add to WorkOrder" id="mptl_resolver_add2">
                          <span style="padding-right:10px;"></span></br>
-                         <input type="button" class="mptl-close-base3 flat flat-blue" value="Close Issue" id="mptl_close_add3">
-                         <span style="padding-right:10px;"></span></br>
+                         <!-- <input type="button" class="mptl-close-base3 flat flat-blue" value="Close Issue" id="mptl_close_add3">
+                         <span style="padding-right:10px;"></span></br> -->
                     </div>
                     
                     </ul>

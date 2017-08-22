@@ -47,9 +47,9 @@ class WorkordersController extends AppController
 			
          }
 		 $actions =[
-                ['name'=>'assign','title'=>'Assign','class'=>'label-success'],
-                ['name'=>'unassign','title'=>'Unassign','class'=>'label-warning'],
-                ['name'=>'close','title'=>'Close','class'=>' label-danger '],
+                // ['name'=>'assign','title'=>'Assign','class'=>'label-success'],
+                // ['name'=>'unassign','title'=>'Unassign','class'=>'label-warning'],
+                ['name'=>'closeWO','title'=>'Close','class'=>' label-danger '],
                 ['name'=>'delete','title'=>'Delete','class'=>' label-danger ']
                 ];
          $additional= [
@@ -728,7 +728,7 @@ public function ajaxdata() {
 		 $servicetasks=$servicetasksTable->find('list', ['limit' => 200])->where("customer_id=".$this->loggedinuser['customer_id'])->orwhere("customer_id=0");
 		 $this->set('servicetaskarr', json_encode($servicetasks));
 		 
-		 $issues=$issuesTable->find('list', ['limit' => 200])->where("customer_id=".$this->loggedinuser['customer_id'])->andwhere("issuestatus_id=1")->all()->toArray();
+		 $issues=$issuesTable->find('list', ['limit' => 200])->where("customer_id=".$this->loggedinuser['customer_id'])->all()->toArray();
 		 $this->set('issuearr', json_encode($issues));
 		
 		 $addresses=$addressesTable->find('list', ['limit' => 200])->where("customer_id=".$this->loggedinuser['customer_id'])->all()->toArray();
@@ -932,6 +932,77 @@ public function ajaxdata() {
 			    return $this->response;    
 		   } 				
 	}
-
-
-}
+	 
+	 public function setClose()
+	     {
+	    	if($this->request->is('ajax')) 
+		    	{
+		    		$this->autoRender=false;	
+		    		$this->loadModel('Workorders');
+					$woidsAr = array();
+					$woidsAr = $this->request->query['content'];
+					$woids=explode(",",$woidsAr);
+					$wos = array();
+					$ttt = array();
+					for ($i=0; $i <count($woids) ; $i++) 
+						{ 
+							$wos[$i] = $woids[$i];
+							$results = $this->Workorders->setClose($this->loggedinuser['customer_id'],$woids[$i]);
+						}
+					$this->log($results);
+				 	// if(isset($ttt))
+					// {
+						// return $this->redirect(array('controller' => 'Issues', 'action' => 'index'));
+						$this->Flash->success(__('Selected Issues are closed.'.$results));
+						// return $this->redirect(['action' => 'index']);
+					// }
+				 	$this->response->body("success");
+			    	return $this->response;
+					
+				}
+		}
+	 public function setClose2()
+	     {
+	    	if($this->request->is('ajax')) 
+		    	{
+		    		$this->autoRender=false;	
+		    		$this->loadModel('Workorders');
+					$woidsAr = array();
+					$woidsAr = $this->request->query['content'];
+					$woids=explode(",",$woidsAr);
+					$wos = array();
+					$ttt = array();
+					$this->loadModel('Servicesentries');
+					$servicesentry = $this->Servicesentries->newEntity();
+					
+					for ($i=0; $i <count($woids) ; $i++) 
+						{
+							$query=$this->Workorders->find('all', array('conditions' => array('id'  => $woids[$i]) ))->toArray();
+							
+							foreach($query as $worecord)
+								{
+									$data = $query[0]["id"];
+		 							$servicesentry = $this->Servicesentries->patchEntity($servicesentry, $query[0],['associated'=>['Servicetasks','Issues']]);
+            						$servicesentry['customer_id']=1;
+									$servicesentry['customer_id']=1;
+									
+										//set markasvoid false if not true
+										if($servicesentry['markasvoid'] != TRUE)
+											{
+												$servicesentry['markasvoid'] = FALSE;
+											}
+										
+							            if ($this->Servicesentries->save($servicesentry)) 
+								            {
+								                // $this->Flash->success(__('The service entry has been saved.'));
+											}
+								}
+					
+							$this->Flash->success(__('Selected WorkOrders are closed.'.$query[0]["id"]));
+							$this->response->body("success");
+					    	return $this->$query;
+					
+						}
+				}
+		}
+ }

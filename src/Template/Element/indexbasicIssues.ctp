@@ -9,7 +9,7 @@
 	  ?>
      </div>
       <div>
-      	<?php echo  $this->element('filters',$additional) ?>
+      	 <?php echo  $this->element('filters',$additional) ?>
       	<?php echo  $this->element('issuesfilters',$additional) ?>
      </div> <!-- COL-7-->
 
@@ -522,6 +522,30 @@ $('.dataTables_filter input').unbind().on('keyup', function() {
      setTurben();
      
 $(".mptl-close-base3").click(function(e)
+   {
+      e.preventDefault();
+      var valuearray = [];
+  	  valuearray = setSelection();
+      // $.get('/Issues/setClose?content='+valuearray, function(d) {});
+       var result = confirm("Are you sure you want to close the selected issues?");
+	   if (result) 
+	   {
+   			 $.ajax({
+        	 type : "POST",
+                url  : '/Issues/setClose?content='+valuearray,
+                success : function(array1){
+            			window.location.reload();
+                	 	
+                    }
+            })
+       }
+       else{}
+       
+        
+    					
+ });
+ 
+ $("#close").click(function(e)
    {
       e.preventDefault();
       var valuearray = [];

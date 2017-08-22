@@ -182,4 +182,26 @@ class WorkordersTable extends Table
 		$results = $stmt->fetchAll('assoc');
 		return $results;
 	}
+	
+	//set the status as close for selected workorders in datatable
+	public function setClose($cid,$wid)
+	{
+		$con = ConnectionManager::get('default');
+		$stmt = $con->execute("update zorba.workorders SET workorderstatus_id = 4 WHERE id  = $wid and customer_id = $cid");
+		$results = $stmt->fetchAll('assoc');
+		return $results;
+		
+	}
+	
+	public function setClose2($cid,$wid)
+	{
+		$con = ConnectionManager::get('default');
+		$stmt = $con->execute('select * from zorba.workorders WHERE id  = $wid ');
+		$results = $stmt ->fetchAll('assoc');
+		
+		
+		
+		return $results;
+		
+	}
 }
