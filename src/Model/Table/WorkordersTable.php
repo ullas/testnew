@@ -193,15 +193,5 @@ class WorkordersTable extends Table
 		
 	}
 	
-	public function setClose2($cid,$wid)
-	{
-		$con = ConnectionManager::get('default');
-		$stmt = $con->execute('select * from zorba.workorders WHERE id  = $wid ');
-		$results = $stmt ->fetchAll('assoc');
-		
-		
-		
-		return $results;
-		
-	}
+	
 }

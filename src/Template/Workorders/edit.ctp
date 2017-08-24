@@ -1472,6 +1472,19 @@ var currentworkorderid = <?php echo $workorderid ?>
 				    			{
 					   		 		if(d!="error")
 						   		 		{
+						   		 			//if workorder status is Closed(4), it is added as a service entry. 
+						   		 		 	if (workorderstatus == 4)
+						   		 		 		{
+						   		 		 			 $.ajax({
+												        	 	type : "POST",
+												                url  : '/Workorders/saveAsServiceentry?content='+d,
+												                success : function(array1){
+												                	
+												            			// window.location.reload();
+												            			}
+												            })
+						   		 		 		}
+					   		 		 		
 											var postdata = [];
 											var postdatasave = [];
 											var numItems2 = $('.partqty').length;
