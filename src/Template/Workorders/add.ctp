@@ -1213,7 +1213,7 @@ $this->Html->script([
 			var numItems = $('.laborhrs').length+1;
 			if(document.getElementById("typeselect").value == 1)// for Service Task
 				{
-					$(".maindiv").append("<div class='classname' 	id='contentDiv"+numItems+"'><div class='clearfix'><div 	class='col-sm-3'><input type='hidden' value='servicetask'   class='form-control' id='typeof1"+numItems+"'/>	<input type='hidden' value='labor'   class='form-control' id='ident1"+numItems+"'/>	<div class='form-group'><label>ServiceTask:</label>	<div class='input-group'><div class='input-group-btn'><a id='delete1' class='compdelete btn btn-danger btn-flat'><i class='fa fa-trash'></i></a></div><input  name='servicetask"+numItems+"' class='form-control test' id='wotype1"+numItems+"'/></div></div></div><div 	class='col-sm-3'><label>Contact:</label><input  name='contact"+numItems+"' class='form-control contact' id='contactpart1"+numItems+"'/></div><div class='col-sm-2'><label>Hourly Rate:</label><input type='text' 	class='form-control laborrate' id='laborrate"+numItems+"'/></div><div class='col-sm-2'><label>Hours:</label><input type='text' id='laborqty"+numItems+"' class='form-control laborhrs' name='hrs'/></div><div class='col-sm-2'>	<div class='form-group'><label>Tax:</label><div class='input-group'><span class='input-group-addon no-padding'><input  id='labortaxtype"+numItems+"' class='labortaxtype' name='taxtype'/></span><input type='text' id='labortax"+numItems+"' class='form-control labortax' name='tax'/></div></div></div></div><hr/></div>");
+					$(".maindiv").append("<div class='classname' 	id='contentDiv"+numItems+"'><div class='clearfix'><div 	class='col-sm-3'><input type='hidden' value='servicetask'   class='form-control' id='typeof1"+numItems+"'/>	<input type='hidden' value='labor'   class='form-control' id='ident1"+numItems+"'/>	<div class='form-group'><label>ServiceTask:</label>	<div class='input-group'><div class='input-group-btn'><a id='delete1' class='compdelete btn btn-danger btn-flat'><i class='fa fa-trash'></i></a></div><input  name='servicetask"+numItems+"' class='form-control test' id='wotype1"+numItems+"'/></div></div></div><div 	class='col-sm-3'><label>Contact:</label><input  name='contact"+numItems+"' class='form-control contact' id='contactpart1"+numItems+"'/></div><div class='col-sm-2'><label>Hourly Rate:</label><input type='text' 	class='form-control laborrate' id='laborrate"+numItems+"'/></div><div class='col-sm-2'><label>Hours:</label><input type='text' id='laborqty"+numItems+"' class='form-control laborhrs' name='hrs'/></div><div class='col-sm-2'>	<div class='form-group'><label>Tax:</label><div class='input-group'><span class='input-group-addon no-padding'><input  id='labortaxtype"+numItems+"' class='labortaxtype' name='taxtype'/></span><input type='text' id='labortax"+numItems+"' class='form-control labortax' name='tax'/></div></div></div></div><div class='col-sm-2 pull-right' ><label >Subtotal</label><label class='pull-right'>0.00</label></div><div ><div 	class='col-sm-12' align='right'><div class='col-sm-6'></div><div class='col-sm-6' ><div class='col-sm-3' ><label >SubTotal  </label></div><div class='col-sm-3' ><label >  0.00</label></div> </div></div></div><hr/></div>");
 			
 				}
 			else if(document.getElementById("typeselect").value == 2)// for Issues
@@ -1335,6 +1335,19 @@ $this->Html->script([
 				    		, function(d) {
 				   		 		if(d!="error")
 					   		 		{console.log("inside save2");
+					   		 		    
+					   		 		    //if workorder status is Closed(4), it is added as a service entry. 
+					   		 		 	if (workorderstatus == 4)
+					   		 		 		{
+					   		 		 			 $.ajax({
+											        	 	type : "POST",
+											                url  : '/Workorders/saveAsServiceentry?content='+d,
+											                success : function(array1){
+											                	
+											            			// window.location.reload();
+											            			}
+											            })
+					   		 		 		}
 										var postdata = [];
 										//for labor
 					    				var numItems = $('.laborhrs').length;
@@ -1372,14 +1385,20 @@ $this->Html->script([
 					   		 		}
 					   		 		
 					   		 		//for setting the resolved issues' status as Resolved (issuestatus=status3)
-					   		 		 $.ajax({
+					   		 		 if(resissues_length>0)
+						   		 		 {
+						   		 		 	 $.ajax({
 								        	 type : "POST",
 								             url  : '/Issues/assignToWorkorder?content='+resissues+'&wid='+d,
 								             success : function(array1)
-								             	{
-								             	  window.location.reload();
+								             	{alert("notesds");
+								             	  // window.location.reload();
 								             	}
-								            })
+								            })	
+						   		 		 }
+					   		 		
+								            
+						            
 						             
 				    		});
 	    			}

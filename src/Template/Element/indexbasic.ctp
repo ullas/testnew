@@ -295,7 +295,7 @@ $this->Html->script([
 				   			{
 					   			 $.ajax({
 					        	 type : "POST",
-					                url  : '/Workorders/setClose2?content='+valuearray,
+					                url  : '/Workorders/setClose?content='+valuearray,
 					                success : function(array1){
 					                	console.log("results3--"+array1);
 					            			// window.location.reload();
@@ -314,7 +314,7 @@ $this->Html->script([
 		   			{
 					   			 $.ajax({
 					        	 type : "POST",
-					                url  : '/Workorders/setClose2?content='+valuearray,
+					                url  : '/Workorders/setClose?content='+valuearray,
 					                success : function(array1){
 					            			window.location.reload();
 					                	 	
@@ -352,17 +352,20 @@ $this->Html->script([
           "scrollX":true,
           colReorder: true,
           stateSave:false,
+          "drawCallback": function( settings ) {
+        		aftertableloaded();
+   		  },
           responsive: true,
-          "initComplete": function(settings, json) {
-            //set bool value
-            $("#mptlindextbl tbody").find('tr').each(function () {
-         	$(this).find('td').each (function() {
-         	var innerHtml=$(this).find('div.mptldtbool').html();
-         	(innerHtml=="1") ? $(this).find('div.mptldtbool').html("True")
-			: $(this).find('div.mptldtbool').html("False");
-         	});
-     	});
-          },
+          // "initComplete": function(settings, json) {
+            // //set bool value
+            // $("#mptlindextbl tbody").find('tr').each(function () {
+         	// $(this).find('td').each (function() {
+         	// var innerHtml=$(this).find('div.mptldtbool').html();
+         	// (innerHtml=="1") ? $(this).find('div.mptldtbool').html("True")
+			// : $(this).find('div.mptldtbool').html("False");
+         	// });
+     	// });
+          // },
           "fnServerParams": function ( aoData ) {
 
             aoData.additional =<?php
@@ -566,8 +569,19 @@ $('.dataTables_filter input').unbind().on('keyup', function() {
         zIndex: 999999
     });
      setTurben();
+     
+    
   });
-
+function aftertableloaded(){
+	//set bool value
+	$("#mptlindextbl tbody").find('tr').each(function () {
+         	$(this).find('td').each (function() {
+         	var innerHtml=$(this).find('div.mptldtbool').html();
+         	(innerHtml=="1") ? $(this).find('div.mptldtbool').html("True")
+			: $(this).find('div.mptldtbool').html("False");
+         	});
+         	});
+}
 function setSelection(){
 		var valuearray = [];
 		$(".mptl-lst-chkbox:checked").each(function(){

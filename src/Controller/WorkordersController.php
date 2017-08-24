@@ -944,24 +944,53 @@ public function ajaxdata() {
 					$woids=explode(",",$woidsAr);
 					$wos = array();
 					$ttt = array();
+					$this->loadModel('Servicesentries');
+					$servicesentry = $this->Servicesentries->newEntity();
+					
 					for ($i=0; $i <count($woids) ; $i++) 
 						{ 
 							$wos[$i] = $woids[$i];
 							$results = $this->Workorders->setClose($this->loggedinuser['customer_id'],$woids[$i]);
+							
+							//for adding as a new service entry after closing the workorder
+							$query=$this->Workorders->find('all', array('conditions' => array('id'  => $woids[$i]) ))->toArray();
+							foreach($query as $worecord)
+								{
+									$data = $query[0]["id"];
+		 							$servicesentry = $this->Servicesentries->patchEntity($servicesentry, $query[0],['associated'=>['Servicetasks','Issues']]);
+            						$servicesentry['vehicle_id'] = $query[0]["vehicle_id"];
+									$servicesentry['odo'] = $query[0]["odometer"];
+									$servicesentry['refer'] = $query[0]["invoicenumber"];
+									$servicesentry['labour'] = $query[0]["labour"];
+									$servicesentry['parts'] = $query[0]["parts"];
+									$servicesentry['tax'] = $query[0]["tax"];
+									$servicesentry['markasvoid'] = $query[0]["void"];
+									$servicesentry['vendor_id'] = $query[0]["vendor_id"];
+									$servicesentry['comments'] = $query[0]["description"];
+									$servicesentry['customer_id'] = $query[0]["customer_id"];
+									$servicesentry['dateofservice'] = $query[0]["completiondate"];
+									$servicesentry['name'] ='WO'.$query[0]["id"];
+									//set markasvoid false if not true
+									if($servicesentry['markasvoid'] != TRUE)
+										{
+											$servicesentry['markasvoid'] = FALSE;
+										}
+									if ($this->Servicesentries->save($servicesentry)) 
+							            {
+							                // $this->Flash->success(__('The service entry has been saved.'));
+										}
+								}
 						}
-					$this->log($results);
-				 	// if(isset($ttt))
-					// {
-						// return $this->redirect(array('controller' => 'Issues', 'action' => 'index'));
-						$this->Flash->success(__('Selected Issues are closed.'.$results));
-						// return $this->redirect(['action' => 'index']);
-					// }
-				 	$this->response->body("success");
+					if(isset($results))
+						{
+							$this->Flash->success(__('Selected Workorders are closed and added to Serviceentry.'));
+						}
+					$this->response->body("success");
 			    	return $this->response;
-					
 				}
 		}
-	 public function setClose2()
+	 
+	 public function saveAsServiceentry()
 	     {
 	    	if($this->request->is('ajax')) 
 		    	{
@@ -983,8 +1012,20 @@ public function ajaxdata() {
 								{
 									$data = $query[0]["id"];
 		 							$servicesentry = $this->Servicesentries->patchEntity($servicesentry, $query[0],['associated'=>['Servicetasks','Issues']]);
-            						$servicesentry['customer_id']=1;
-									$servicesentry['customer_id']=1;
+            						
+									$servicesentry['vehicle_id'] = $query[0]["vehicle_id"];
+									$servicesentry['odo'] = $query[0]["odometer"];
+									$servicesentry['refer'] = $query[0]["invoicenumber"];
+									$servicesentry['labour'] = $query[0]["labour"];
+									$servicesentry['parts'] = $query[0]["parts"];
+									$servicesentry['tax'] = $query[0]["tax"];
+									$servicesentry['markasvoid'] = $query[0]["void"];
+									$servicesentry['vendor_id'] = $query[0]["vendor_id"];
+									$servicesentry['comments'] = $query[0]["description"];
+									$servicesentry['customer_id'] = $query[0]["customer_id"];
+									$servicesentry['dateofservice'] = $query[0]["completiondate"];
+									$servicesentry['name'] ='WO'.$query[0]["id"];
+									
 									
 										//set markasvoid false if not true
 										if($servicesentry['markasvoid'] != TRUE)
@@ -998,7 +1039,7 @@ public function ajaxdata() {
 											}
 								}
 					
-							$this->Flash->success(__('Selected WorkOrders are closed.'.$query[0]["id"]));
+							$this->Flash->success(__('Selected WorkOrders are closed and added to Serviceentry'.$query[0]["id"]));
 							$this->response->body("success");
 					    	return $this->$query;
 					
