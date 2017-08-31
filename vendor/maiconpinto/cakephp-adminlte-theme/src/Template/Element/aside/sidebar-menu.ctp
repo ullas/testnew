@@ -68,8 +68,8 @@ if (file_exists($file)) {
             <li><a href="<?php echo $this->Url->build('/servicesentries'); ?>"><i class="fa fa-wrench"></i>Service Entries </a></li>
             <li><a href="<?php echo $this->Url->build('/fuelentries'); ?>"><i class="fa fa-tint"></i>Fuel Entries </a></li>
             <li><a href="<?php echo $this->Url->build('/inspections'); ?>"><i class="glyphicon glyphicon-ok-circle"></i>Inspections <span class="label label-primary pull-right">13</span></a></li>
-            <li><a href="<?php echo $this->Url->build('/issues'); ?>"><i class="glyphicon glyphicon-warning-sign"></i>Issues <span class="label label-primary pull-right">13</span></a></li>
-            <li><a href="<?php echo $this->Url->build('/workorders'); ?>"><i class="glyphicon glyphicon-list-alt"></i>Work Orders <span class="label label-primary pull-right">13</span></a></li>
+            <li><a href="<?php echo $this->Url->build('/issues'); ?>"><i class="glyphicon glyphicon-warning-sign"></i>Issues <span title="There are <?php echo $openissuescount ?> open issues" class="label label-primary pull-right"><?php echo $openissuescount ?></span></a></li>
+            <li><a href="<?php echo $this->Url->build('/workorders'); ?>"><i class="glyphicon glyphicon-list-alt"></i>Work Orders <span title="There are <?php echo $openwoscount ?> open workorders" class="label label-primary pull-right"><?php echo $openwoscount ?></span></a></li>
             <li><a href="<?php echo $this->Url->build('/parts'); ?>"><i class="glyphicon glyphicon-equalizer"></i>Parts</a></li>
         </ul>
     </li>

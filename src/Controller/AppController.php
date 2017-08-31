@@ -96,7 +96,15 @@ class AppController extends Controller
 		  $this->set('totalmessagescount',$query->count());
 		  $query =$messagesTable->find('All')->where(['customer_id'=>$this->loggedinuser['customer_id']])->andwhere(['ack = false'])->andwhere(['date(msg_dtime) = date(now())'])->toArray();
 		  (isset($query)) ? $this->set('messagescontent',$query): $this->set('messagescontent',"");
-		
+		  
+		  $issuesTable = TableRegistry::get('Issues');
+		  $query =$issuesTable->find('All')->where(['customer_id'=>$this->loggedinuser['customer_id']])->andwhere(['issuestatus_id = 1']);
+		  (isset($query)) ? $this->set('openissuescount',$query->count()): $this->set('openissuescount',"");
+		  
+		  $workordersTable = TableRegistry::get('Workorders');
+		  $query =$workordersTable->find('All')->where(['customer_id'=>$this->loggedinuser['customer_id']])->andwhere(['workorderstatus_id = 1']);
+		  (isset($query)) ? $this->set('openwoscount',$query->count()): $this->set('openwoscount',"");
+		  		
     }
 	
 	public function isAuthorized($user)
