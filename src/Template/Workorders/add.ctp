@@ -402,8 +402,10 @@ $this->Html->script([
 				{
 					var numItems = $('.laborhrs').length;
 			    	var laborcount=0;
+			    	
 			    	for(count = 1; count <= numItems; count++)
 			    	{
+			    		var tempval=0;
 			    		var taxType = document.getElementById('labortaxtype'+count).value;
 			    		if($("#laborrate"+count).parent().closest('div .classname').is(":visible"))
 							{
@@ -425,7 +427,7 @@ $this->Html->script([
 			    				else
 			    				{labrate = 0;}
 			    				
-					    		var tempval;
+					    		
 					    		if($('#dicount').val() == ""){$('#dicount').val(0);}
 								if($('#totaltax').val() == ""){$('#totaltax').val(0);}
 					    		if($('#laborqty'+count).val().match(/^[+-]?((\.\d+)|(\d+(\.\d+)?))$/)) 
@@ -471,10 +473,20 @@ $this->Html->script([
 					    			}
 				    			}
 							}
+							tempval = tempval.toFixed(2);
+							if(document.getElementById('subtotallaborST'+count))
+								{
+									document.getElementById('subtotallaborST'+count).innerHTML =parseFloat(tempval);
+								}
+							if(document.getElementById('subtotallaborIS'+count))
+								{	
+									document.getElementById('subtotallaborIS'+count).innerHTML =parseFloat(tempval);
+								}
 			    	}
 					//set text
 					laborcount = laborcount.toFixed(2);
-					
+					// alert("tempval"+tempval);
+					// document.getElementById('subtotallabor1').innerHTML =tempval;
 					document.getElementById('labors').innerHTML =laborcount;
 					var totalsum= parseFloat(document.getElementById('labors').innerHTML) + parseFloat(document.getElementById('parts').innerHTML) - parseFloat($('#dicount').val());
 					if($('#totaltaxtype').val() == 1)
@@ -489,12 +501,14 @@ $this->Html->script([
 						}
 				}
 				
+				
 			function laborRateCalculate()
 				{
 					var numItems = $('.laborhrs').length;
 			    	var laborcount=0;
 			    	for(count = 1; count <= numItems; count++)
 				    	{
+				    		var tempval=0;
 				    		var taxType = document.getElementById('labortaxtype'+count).value;
 				    		if($("#laborrate"+count).parent().closest('div .classname').is(":visible"))
 							{
@@ -563,9 +577,19 @@ $this->Html->script([
 					    			}
 					    		}
 							}
+							tempval = tempval.toFixed(2);
+							if(document.getElementById('subtotallaborST'+count))
+								{
+									document.getElementById('subtotallaborST'+count).innerHTML =parseFloat(tempval);
+								}
+							if(document.getElementById('subtotallaborIS'+count))
+								{	
+									document.getElementById('subtotallaborIS'+count).innerHTML =parseFloat(tempval);
+								}
 				    	}
 					//set text
 					laborcount = laborcount.toFixed(2);
+					$('.subtotallabor').innerHTML =tempval;
 					document.getElementById('labors').innerHTML = laborcount;	
 					var totalsum= parseFloat(document.getElementById('labors').innerHTML) + parseFloat(document.getElementById('parts').innerHTML) - parseFloat($('#dicount').val());
 					if($('#totaltaxtype').val() == 1)
@@ -585,6 +609,7 @@ $this->Html->script([
 			    	var partcount=0;
 			    	for(count = 1; count <= numItems; count++)
 				    	{
+				    		var tempval=0;
 				    		var taxType = document.getElementById('parttaxtype'+count).value;
 				    		if($("#partqty"+count).parent().closest('div .classname').is(":visible"))
 							{
@@ -654,6 +679,15 @@ $this->Html->script([
 					    			}
 								}
 							}
+							tempval = tempval.toFixed(2);
+							if(document.getElementById('subtotalpartsST'+count))
+								{
+									document.getElementById('subtotalpartsST'+count).innerHTML =parseFloat(tempval);
+								}
+							if(document.getElementById('subtotallaborIS'+count))
+								{	
+									document.getElementById('subtotalpartsIS'+count).innerHTML =parseFloat(tempval);
+								}
 				    	}
 					//set text
 					partcount = partcount.toFixed(2);
@@ -676,6 +710,7 @@ $this->Html->script([
 			    	var partcount=0;
 			    	for(count = 1; count <= numItems; count++)
 				    	{
+				    		var tempval=0;
 				    		var taxType = document.getElementById('parttaxtype'+count).value;
 				    		if($("#partqty"+count).parent().closest('div .classname').is(":visible"))
 							{
@@ -744,6 +779,15 @@ $this->Html->script([
 						    			}
 									}
 							}
+							tempval = tempval.toFixed(2);
+							if(document.getElementById('subtotalpartsST'+count))
+								{
+									document.getElementById('subtotalpartsST'+count).innerHTML =parseFloat(tempval);
+								}
+							if(document.getElementById('subtotallaborIS'+count))
+								{	
+									document.getElementById('subtotalpartsIS'+count).innerHTML =parseFloat(tempval);
+								}
 				    	}
 					//set text
 					partcount = partcount.toFixed(2);
@@ -763,6 +807,7 @@ $this->Html->script([
 				
 			function laborTaxCalculate()
 				{
+					var tempval=0;
 					var numItems = $('.laborhrs').length;
 			    	var laborcount=0;
 			    	
@@ -803,6 +848,15 @@ $this->Html->script([
 								    			}
 						    			}
 					    		}
+					    		tempval = tempval.toFixed(2);
+					    		if(document.getElementById('subtotallaborST'+count))
+								{
+									document.getElementById('subtotallaborST'+count).innerHTML =parseFloat(tempval);
+								}
+								if(document.getElementById('subtotallaborIS'+count))
+								{	
+									document.getElementById('subtotallaborIS'+count).innerHTML =parseFloat(tempval);
+								}
 				    	}
 					//set text
 					laborcount = laborcount.toFixed(2);
@@ -822,6 +876,7 @@ $this->Html->script([
 				
 			function partTaxCalculate()
 				{
+					var tempval=0;
 					var numItems = $('.inputrate').length;
 			    	var partcount=0;
 			    	for(count = 1; count <= numItems; count++)
@@ -863,6 +918,15 @@ $this->Html->script([
 								    			}
 							    		}
 								}
+								tempval = tempval.toFixed(2);
+								if(document.getElementById('subtotalpartsST'+count))
+								{
+									document.getElementById('subtotalpartsST'+count).innerHTML =parseFloat(tempval);
+								}
+								if(document.getElementById('subtotallaborIS'+count))
+								{	
+									document.getElementById('subtotalpartsIS'+count).innerHTML =parseFloat(tempval);
+								}
 				    	}
 					//set text
 					partcount = partcount.toFixed(2);
@@ -882,6 +946,7 @@ $this->Html->script([
 				
 			function laborTaxTypeCalculate()
 				{
+					var tempval=0;
 					var numItems = $('.laborhrs').length;
 			    	var laborcount=0;
 			    	for(count = 1; count <= numItems; count++)
@@ -936,6 +1001,15 @@ $this->Html->script([
 								    			}
 							    		}
 								}
+								tempval = tempval.toFixed(2);
+								if(document.getElementById('subtotallaborST'+count))
+								{
+									document.getElementById('subtotallaborST'+count).innerHTML =parseFloat(tempval);
+								}
+								if(document.getElementById('subtotallaborIS'+count))
+								{	
+									document.getElementById('subtotallaborIS'+count).innerHTML =parseFloat(tempval);
+								}
 				    	}
 					//set text
 					laborcount = laborcount.toFixed(2);
@@ -955,6 +1029,7 @@ $this->Html->script([
 			
 			function partTaxTypeCalculate()
 				{
+					var tempval=0;
 					var numItems = $('.inputrate').length;
 			    	var partcount=0;
 			    	for(count = 1; count <= numItems; count++)
@@ -1007,6 +1082,15 @@ $this->Html->script([
 														}
 								    			}
 							    		}
+								}
+								tempval = tempval.toFixed(2);
+								if(document.getElementById('subtotalpartsST'+count))
+								{
+									document.getElementById('subtotalpartsST'+count).innerHTML =parseFloat(tempval);
+								}
+								if(document.getElementById('subtotallaborIS'+count))
+								{	
+									document.getElementById('subtotalpartsIS'+count).innerHTML =parseFloat(tempval);
 								}
 				    	}
 					//set text
@@ -1142,6 +1226,7 @@ $this->Html->script([
 			//calculate total labor cost on keyup of Hours
 			$('.maindiv').on('change keyup', 'input.laborhrs', function() {
 				laborHrsCalculate();
+					
 			});
 			
 			//calculate total labor cost on keyup of HoursRate
@@ -1213,12 +1298,11 @@ $this->Html->script([
 			var numItems = $('.laborhrs').length+1;
 			if(document.getElementById("typeselect").value == 1)// for Service Task
 				{
-					$(".maindiv").append("<div class='classname' 	id='contentDiv"+numItems+"'><div class='clearfix'><div 	class='col-sm-3'><input type='hidden' value='servicetask'   class='form-control' id='typeof1"+numItems+"'/>	<input type='hidden' value='labor'   class='form-control' id='ident1"+numItems+"'/>	<div class='form-group'><label>ServiceTask:</label>	<div class='input-group'><div class='input-group-btn'><a id='delete1' class='compdelete btn btn-danger btn-flat'><i class='fa fa-trash'></i></a></div><input  name='servicetask"+numItems+"' class='form-control test' id='wotype1"+numItems+"'/></div></div></div><div 	class='col-sm-3'><label>Contact:</label><input  name='contact"+numItems+"' class='form-control contact' id='contactpart1"+numItems+"'/></div><div class='col-sm-2'><label>Hourly Rate:</label><input type='text' 	class='form-control laborrate' id='laborrate"+numItems+"'/></div><div class='col-sm-2'><label>Hours:</label><input type='text' id='laborqty"+numItems+"' class='form-control laborhrs' name='hrs'/></div><div class='col-sm-2'>	<div class='form-group'><label>Tax:</label><div class='input-group'><span class='input-group-addon no-padding'><input  id='labortaxtype"+numItems+"' class='labortaxtype' name='taxtype'/></span><input type='text' id='labortax"+numItems+"' class='form-control labortax' name='tax'/></div></div></div></div><div class='col-sm-2 pull-right' ><label >Subtotal</label><label class='pull-right'>0.00</label></div><div ><div 	class='col-sm-12' align='right'><div class='col-sm-6'></div><div class='col-sm-6' ><div class='col-sm-3' ><label >SubTotal  </label></div><div class='col-sm-3' ><label >  0.00</label></div> </div></div></div><hr/></div>");
-			
+					$(".maindiv").append("<div class='classname' 	id='contentDiv"+numItems+"'><div class='clearfix'><div 	class='col-sm-3'><input type='hidden' value='servicetask'   class='form-control' id='typeof1"+numItems+"'/>	<input type='hidden' value='labor'   class='form-control' id='ident1"+numItems+"'/>	<div class='form-group'><label>ServiceTask:</label>	<div class='input-group'><div class='input-group-btn'><a id='delete1' class='compdelete btn btn-danger btn-flat'><i class='fa fa-trash'></i></a></div><input  name='servicetask"+numItems+"' class='form-control test' id='wotype1"+numItems+"'/></div></div></div><div 	class='col-sm-3'><label>Contact:</label><input  name='contact"+numItems+"' class='form-control contact' id='contactpart1"+numItems+"'/></div><div class='col-sm-2'><label>Hourly Rate:</label><input type='text' 	class='form-control laborrate' id='laborrate"+numItems+"'/></div><div class='col-sm-2'><label>Hours:</label><input type='text' id='laborqty"+numItems+"' class='form-control laborhrs' name='hrs'/></div><div class='col-sm-2'>	<div class='form-group'><label>Tax:</label><div class='input-group'><span class='input-group-addon no-padding'><input  id='labortaxtype"+numItems+"' class='labortaxtype' name='taxtype'/></span><input type='text' id='labortax"+numItems+"' class='form-control labortax' name='tax'/></div></div></div><div class='col-sm-2 pull-right' ><label >SubTotal</label><label class='subtotallabor pull-right' id='subtotallaborST"+numItems+"'>0.00</label></div></div><hr/></div>");
 				}
 			else if(document.getElementById("typeselect").value == 2)// for Issues
 				{
-					$(".maindiv").append("<div class='classname' 	id='contentDiv"+numItems+"'><div class='clearfix'><div 	class='col-sm-3'><input type='hidden' value='issue'   class='form-control' id='typeof1"+numItems+"'/><input type='hidden' value='labor'   class='form-control' id='ident1"+numItems+"'/><div class='form-group'><label>Issue:</label><div class='input-group'><div class='input-group-btn'><a id='delete1' class='compdelete btn btn-danger btn-flat'><i class='fa fa-trash'></i></a></div><input  name='issue"+numItems+"' class='form-control testissue' id='wotype1"+numItems+"'/></div>	</div></div><div 	class='col-sm-3'><label>Contact:</label><input  name='contact"+numItems+"' class='form-control contact' id='contactpart1"+numItems+"'/></div><div class='col-sm-2'><label>Hourly Rate:</label><input type='text' 	class='form-control laborrate' id='laborrate"+numItems+"'/></div><div class='col-sm-2'><label>Hours:</label><input type='text' id='laborqty"+numItems+"' class='form-control laborhrs' name='hrs'/></div>   <div class='col-sm-2'> <div class='form-group'><label>Tax:</label><div class='input-group'><span class='input-group-addon no-padding'><input  id='labortaxtype"+numItems+"' class='labortaxtype' name='taxtype'/></span><input type='text' id='labortax"+numItems+"' class='form-control labortax' name='tax'/></div></div></div></div><hr/></div>");
+					$(".maindiv").append("<div class='classname' 	id='contentDiv"+numItems+"'><div class='clearfix'><div 	class='col-sm-3'><input type='hidden' value='issue'   class='form-control' id='typeof1"+numItems+"'/><input type='hidden' value='labor'   class='form-control' id='ident1"+numItems+"'/><div class='form-group'><label>Issue:</label><div class='input-group'><div class='input-group-btn'><a id='delete1' class='compdelete btn btn-danger btn-flat'><i class='fa fa-trash'></i></a></div><input  name='issue"+numItems+"' class='form-control testissue' id='wotype1"+numItems+"'/></div>	</div></div><div 	class='col-sm-3'><label>Contact:</label><input  name='contact"+numItems+"' class='form-control contact' id='contactpart1"+numItems+"'/></div><div class='col-sm-2'><label>Hourly Rate:</label><input type='text' 	class='form-control laborrate' id='laborrate"+numItems+"'/></div><div class='col-sm-2'><label>Hours:</label><input type='text' id='laborqty"+numItems+"' class='form-control laborhrs' name='hrs'/></div>   <div class='col-sm-2'> <div class='form-group'><label>Tax:</label><div class='input-group'><span class='input-group-addon no-padding'><input  id='labortaxtype"+numItems+"' class='labortaxtype' name='taxtype'/></span><input type='text' id='labortax"+numItems+"' class='form-control labortax' name='tax'/></div></div></div><div class='col-sm-2 pull-right' ><label >SubTotal</label><label class='subtotallabor pull-right' id='subtotallaborIS"+numItems+"' >0.00</label></div></div><hr/></div>");
 				}
 			
 			$('.testissue').select2({
@@ -1235,7 +1319,10 @@ $this->Html->script([
 			});
 		
 		$('#labortaxtype'+numItems).val(1).trigger('change');
-		
+		if(document.getElementById('subtotallaborST'+numItems))
+		{document.getElementById('subtotallaborST'+numItems).innerHTML = "0.00";}
+		if(document.getElementById('subtotallaborIS'+numItems))
+		{document.getElementById('subtotallaborIS'+numItems).innerHTML = "0.00";}
 	});
 	
 	$("#btnAddPartControl").click(function (event) 
@@ -1244,12 +1331,12 @@ $this->Html->script([
 			var numItems = $('.partqty').length+1;
 			if(document.getElementById("typeselect").value == 1)// for Service Task
 				{
-					$(".maindiv").append("<div class='classname' 	id='contentDiv"+numItems+"'><div class='clearfix'><div class='col-sm-3'><input type='hidden' value='servicetask'   class='form-control' id='typeof2"+numItems+"'/><input type='hidden' value='part'   class='form-control' id='ident2"+numItems+"'/><div class='form-group'><label>ServiceTask:</label>	<div class='input-group'><div class='input-group-btn'><a id='delete1' class='compdelete btn btn-danger btn-flat'>	<i class='fa fa-trash'>	</i></a></div>	<input  name='servicetask"+numItems+"' class='form-control test' id='wotype2"+numItems+"'/>	</div></div></div><div 	class='col-sm-3'><label>Part:</label><input  name='part"+numItems+"' class='form-control part' id='contactpart2"+numItems+"'/></div><div class='col-sm-2'><label>Unit Cost:</label><input type='text'	class='form-control inputrate' id='partrate"+numItems+"'/></div><div class='col-sm-2'><label>Quantity:</label><input type='text' id='partqty"+numItems+"' class='form-control partqty' name='quantity'/></div><div class='col-sm-2'> <div class='form-group'><label>Tax:</label><div class='input-group'><span class='input-group-addon no-padding'><input  id='parttaxtype"+numItems+"' class='parttaxtype' name='taxtype'/></span><input type='text' id='parttax"+numItems+"' class='form-control parttax' name='tax'/></div></div></div></div><hr/></div>");
+					$(".maindiv").append("<div class='classname' 	id='contentDiv"+numItems+"'><div class='clearfix'><div class='col-sm-3'><input type='hidden' value='servicetask'   class='form-control' id='typeof2"+numItems+"'/><input type='hidden' value='part'   class='form-control' id='ident2"+numItems+"'/><div class='form-group'><label>ServiceTask:</label>	<div class='input-group'><div class='input-group-btn'><a id='delete1' class='compdelete btn btn-danger btn-flat'>	<i class='fa fa-trash'>	</i></a></div>	<input  name='servicetask"+numItems+"' class='form-control test' id='wotype2"+numItems+"'/>	</div></div></div><div 	class='col-sm-3'><label>Part:</label><input  name='part"+numItems+"' class='form-control part' id='contactpart2"+numItems+"'/></div><div class='col-sm-2'><label>Unit Cost:</label><input type='text'	class='form-control inputrate' id='partrate"+numItems+"'/></div><div class='col-sm-2'><label>Quantity:</label><input type='text' id='partqty"+numItems+"' class='form-control partqty' name='quantity'/></div><div class='col-sm-2'> <div class='form-group'><label>Tax:</label><div class='input-group'><span class='input-group-addon no-padding'><input  id='parttaxtype"+numItems+"' class='parttaxtype' name='taxtype'/></span><input type='text' id='parttax"+numItems+"' class='form-control parttax' name='tax'/></div></div></div><div class='col-sm-2 pull-right' ><label >SubTotal</label><label class='subtotalparts pull-right' id='subtotalpartsST"+numItems+"' >0.00</label></div></div><hr/></div>");
 
 				}
 			else if(document.getElementById("typeselect").value == 2)// for Issues
 				{
-					$(".maindiv").append("<div class='classname' 	id='contentDiv"+numItems+"'><div class='clearfix'><div 	class='col-sm-3'><input type='hidden' value='issue'   class='form-control' id='typeof2"+numItems+"'/><input type='hidden' value='part'   class='form-control' id='ident2"+numItems+"'/><div class='form-group'><label>Issue:</label><div class='input-group'><div class='input-group-btn'><a id='delete1' class='compdelete btn btn-danger btn-flat'><i class='fa fa-trash'></i></a></div><input  name='issue"+numItems+"' class='form-control testissue' id='wotype2"+numItems+"'/></div></div></div><div 	class='col-sm-3'><label>Part:</label><input  name='part"+numItems+"' class='form-control part' id='contactpart2"+numItems+"'/></div><div class='col-sm-2'><label>Unit Cost:</label><input type='text' 	class='form-control inputrate' id='partrate"+numItems+"'/></div><div class='col-sm-2'><label>Quantity:</label><input type='text' id='partqty"+numItems+"' class='form-control partqty' name='quantity'/></div><div class='col-sm-2'> <div class='form-group'><label>Tax:</label><div class='input-group'><span class='input-group-addon no-padding'><input  id='parttaxtype"+numItems+"' class='parttaxtype' name='taxtype'/></span><input type='text' id='parttax"+numItems+"' class='form-control parttax' name='tax'/></div></div></div></div><hr/></div>");
+					$(".maindiv").append("<div class='classname' 	id='contentDiv"+numItems+"'><div class='clearfix'><div 	class='col-sm-3'><input type='hidden' value='issue'   class='form-control' id='typeof2"+numItems+"'/><input type='hidden' value='part'   class='form-control' id='ident2"+numItems+"'/><div class='form-group'><label>Issue:</label><div class='input-group'><div class='input-group-btn'><a id='delete1' class='compdelete btn btn-danger btn-flat'><i class='fa fa-trash'></i></a></div><input  name='issue"+numItems+"' class='form-control testissue' id='wotype2"+numItems+"'/></div></div></div><div 	class='col-sm-3'><label>Part:</label><input  name='part"+numItems+"' class='form-control part' id='contactpart2"+numItems+"'/></div><div class='col-sm-2'><label>Unit Cost:</label><input type='text' 	class='form-control inputrate' id='partrate"+numItems+"'/></div><div class='col-sm-2'><label>Quantity:</label><input type='text' id='partqty"+numItems+"' class='form-control partqty' name='quantity'/></div><div class='col-sm-2'> <div class='form-group'><label>Tax:</label><div class='input-group'><span class='input-group-addon no-padding'><input  id='parttaxtype"+numItems+"' class='parttaxtype' name='taxtype'/></span><input type='text' id='parttax"+numItems+"' class='form-control parttax' name='tax'/></div></div></div><div class='col-sm-2 pull-right' ><label >SubTotal</label><label class='subtotalparts pull-right' id='subtotalpartsIS"+numItems+"' >0.00</label></div></div><hr/></div>");
 				}
 			
 			$('.testissue').select2({
@@ -1265,13 +1352,19 @@ $this->Html->script([
     		width: '100%',data: [{'id':1, "text":"%"},{'id':2, "text":"$"}]
 			});
 			$('#parttaxtype'+numItems).val(1).trigger('change');
+			
+			if(document.getElementById('subtotalpartsST'+numItems)){
+			document.getElementById('subtotalpartsST'+numItems).innerHTML = "0.00";	
+			}
+			if(document.getElementById('subtotalpartsIS'+numItems))
+			{document.getElementById('subtotalpartsIS'+numItems).innerHTML = "0.00";}
 		});
 		          		
 
 
 	//save btn onclick
 	$("#btnSave").click(function () {
-		alert("resissues--"+resissues);
+		// alert("resissues--"+resissues);
 		var labourpresent = true;
 		var partspresent = true;
 		var numItems = $('.laborhrs').length;
@@ -1391,7 +1484,7 @@ $this->Html->script([
 								        	 type : "POST",
 								             url  : '/Issues/assignToWorkorder?content='+resissues+'&wid='+d,
 								             success : function(array1)
-								             	{alert("notesds");
+								             	{
 								             	  // window.location.reload();
 								             	}
 								            })	

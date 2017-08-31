@@ -652,33 +652,47 @@ $('.mptl-filter-base').on('ifUnchecked', function(event){
 $('.mptl-resolver-base1').click(function(){
     setBasicResolver();
 });
-$('.mptl-resolver-base2').click(function(){
-    setBasicWOResolver();
-});
+
 
  function setBasicResolver()
-  {
-  	var valuearray = [];
-  	valuearray = setSelection();
-  	var url = "/Servicesentries/add/"+valuearray;
-  	window.location.href = url; 
-  }
+	  {
+	  	var valuearray = [];
+	  	valuearray = setSelection();
+	  	if(valuearray = [])
+	  		{
+	  			alert("No issues selected");
+			}
+	  	else
+	  		{
+	  			var url = "/Servicesentries/add/"+valuearray;
+	  			window.location.href = url; 
+	  		}
+	  	 
+	  }
   
   $('.mptl-resolver-base2').click(function(){
     setBasicWOResolver();
-});
+	});
 
  function setBasicWOResolver()
-  {
-  	var valuearray = [];
-  	valuearray = setSelection();
-  	var url = "/Workorders/add/"+valuearray; 
-    window.location.href = url; 
-  }
-  
+	  {
+	  	var valuearray = [];
+	  	valuearray = setSelection();
+	  	
+	    if(valuearray = [])
+	  		{
+	  			alert("No issues selected");
+			}
+	  	else
+	  		{
+	  			var url = "/Workorders/add/"+valuearray; 
+	  			window.location.href = url; 
+	  		}
+	  }
+	  
    $('.mptl-resolver-base3').click(function(){
     setBasicClose();
-});
+	});
 
  function setBasicClose()
   {

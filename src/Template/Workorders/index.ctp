@@ -13,7 +13,8 @@
 </section>
      <style>
      	a.disabled {
-  					opacity:0.4;pointer-events: none;
+  					opacity:0.4;
+  					pointer-events: none;
   					}
      </style>          
 
@@ -37,7 +38,11 @@ function aftertableloaded(){
 			: $(this).find('div.mptldtbool').html("False");
          	});
          	});
-    
+    $(".deletelink").hover(function() {
+        $(this).css('cursor','pointer').attr('title', 'This is a hover text.');
+    }, function() {
+        $(this).css('cursor','auto');
+    });
 }
 
 
