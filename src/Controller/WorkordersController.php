@@ -47,9 +47,9 @@ class WorkordersController extends AppController
 			
          }
 		 $actions =[
-                ['name'=>'assign','title'=>'Assign','class'=>'label-success'],
-                ['name'=>'unassign','title'=>'Unassign','class'=>'label-warning'],
-                ['name'=>'close','title'=>'Close','class'=>' label-danger '],
+                // ['name'=>'assign','title'=>'Assign','class'=>'label-success'],
+                // ['name'=>'unassign','title'=>'Unassign','class'=>'label-warning'],
+                ['name'=>'closeWO','title'=>'Close','class'=>' label-danger '],
                 ['name'=>'delete','title'=>'Delete','class'=>' label-danger ']
                 ];
          $additional= [
@@ -75,48 +75,333 @@ class WorkordersController extends AppController
 			
 			$workorder = $this->Workorders->newEntity();
 			$this->request->data['issuedate']=$this->request->query['issuedate'];
-            $this->request->data['workorderstatus-id']=$this->request->query['workorderstatus'];
+            $this->request->data['workorderstatus_id']=$this->request->query['workorderstatus'];
+			$this->request->data['vehicle_id']=$this->request->query['vehicleid'];
+			$this->request->data['startdate']=$this->request->query['startdate'];
+			$this->request->data['lables']=$this->request->query['lables'];
+			$this->request->data['odometer']=$this->request->query['odometer'];
+			$this->request->data['void']=$this->request->query['voidvalue'];
+			$this->request->data['vendor_id']=$this->request->query['vendorid'];
+			$this->request->data['completiondate']=$this->request->query['completiondate'];
+			$this->request->data['issuedby_id']=$this->request->query['issuedbyid'];
+			$this->request->data['assignedby_id']=$this->request->query['assignedbyid'];
+			$this->request->data['assignto_id']=$this->request->query['assigntoid'];
+			$this->request->data['invoicenumber']=$this->request->query['invoicenumber'];
+			$this->request->data['phonenumber']=$this->request->query['phonenumber'];
+			$this->request->data['description']=$this->request->query['description'];
+			$this->request->data['labour']=$this->request->query['labor'];
+			$this->request->data['parts']=$this->request->query['parts'];
+			$this->request->data['dicount']=$this->request->query['discount'];
+			$this->request->data['tax']=$this->request->query['tax'];
+			$this->request->data['taxtype']=$this->request->query['taxtype'];
+			
+			
+			
+			
+            $workorder=$this->Workorders->patchEntity($workorder,$this->request->data);
+			$workorder['customer_id']=$this->loggedinuser['customer_id'];
+			if ($this->Workorders->save($workorder)) {
+				
+				
+				
+				
+                $this->response->body(json_encode($workorder['id']));			
+	    		return $this->response;
+	    		
+            } else {
+            	
+                $this->response->body("error");
+	    		return $this->response;
+            }
+			
+		}  
+    }
+
+	public function editajaxData()
+	{
+    	$this->autoRender=false;
+		if($this->request->is('ajax')) {
+				
+			$this->autoRender=false;
+			
+			$workorder = $this->Workorders->newEntity();
+			$workorder = $this->Workorders->get($this->request->query['currentworkorderid'], [
+            'contain' => []
+        	]);
+			
+			$this->request->data['issuedate']=$this->request->query['issuedate'];
+            $this->request->data['workorderstatus_id']=$this->request->query['workorderstatus'];
+			$this->request->data['vehicle_id']=$this->request->query['vehicleid'];
+			$this->request->data['startdate']=$this->request->query['startdate'];
+			$this->request->data['lables']=$this->request->query['lables'];
+			$this->request->data['odometer']=$this->request->query['odometer'];
+			$this->request->data['void']=$this->request->query['voidvalue'];
+			$this->request->data['vendor_id']=$this->request->query['vendorid'];
+			$this->request->data['completiondate']=$this->request->query['completiondate'];
+			$this->request->data['issuedby_id']=$this->request->query['issuedbyid'];
+			$this->request->data['assignedby_id']=$this->request->query['assignedbyid'];
+			$this->request->data['assignto_id']=$this->request->query['assigntoid'];
+			$this->request->data['invoicenumber']=$this->request->query['invoicenumber'];
+			$this->request->data['phonenumber']=$this->request->query['phonenumber'];
+			$this->request->data['description']=$this->request->query['description'];
+			$this->request->data['labour']=$this->request->query['labor'];
+			$this->request->data['parts']=$this->request->query['parts'];
+			$this->request->data['dicount']=$this->request->query['discount'];
+			$this->request->data['tax']=$this->request->query['tax'];
+			$this->request->data['taxtype']=$this->request->query['taxtype'];
+			
+			
+			
+			
             $workorder=$this->Workorders->patchEntity($workorder,$this->request->data);
 			$workorder['customer_id']=$this->loggedinuser['customer_id'];
 			if ($this->Workorders->save($workorder)) {
 
-                $this->response->body($workorder['id']);
+                $this->response->body(json_encode($workorder['id']));			
 	    		return $this->response;
+	    		
             } else {
                 $this->response->body("error");
 	    		return $this->response;
             }
 		}  
     }
+	
 	public function addLaborParts()
 	{
     	
       	
 		if($this->request->is('ajax')) {
-				
+			
+			
 			$this->autoRender=false;
-			$this->loadModel('Holidays');
-			foreach(json_decode($this->request->query['content'])  as $d){
-    		
+			$this->loadModel('Workorderlineitems');
+			$this->loadModel('Workorderlabourlineitems');
+			$this->loadModel('Workorderpartslineitems');
+			
+				$it="";
+    			$it=explode(",",($this->request->query['content']));
+	    		$stst = json_encode($this->request->query['content']);
+				$contentarray = array();
+				 for ($i=0; $i <substr_count($stst, ',')+1 ; $i++) { 
+					 array_push($contentarray, $it[$i]);
+				 }
+				 
+				   // $this->response->body(json_encode($contentarray));			
+	    		   // return $this->response;
+				 
+			// foreach(json_encode($this->request->query['content'])  as $d){
+    		foreach($contentarray as $d){
+			
+				
+				
 				$items="";
     			$items=explode("^",$d);
 				
-				$holiday = $this->Holidays->newEntity();
-            	$this->request->data['part']=$items[0];
-           	 	$this->request->data['labor']=$items[1];
-            	$this->request->data['workorder_id']=$items[2];
-            	$holiday=$this->Holidays->patchEntity($holiday,$this->request->data);
-				$holiday['customer_id']=$this->loggedinuser['customer_id'];
-				if ($this->Holidays->save($holiday)) {
-
-               	 	// $this->response->body("success");
+				$workorderlineitem = $this->Workorderlineitems->newEntity();
+				$workorderlabourlineitem = $this->Workorderlabourlineitems->newEntity();
+				$workorderpartslineitem = $this->Workorderpartslineitems->newEntity();
+							
+				$this->request->data['name']="";
+            	$this->request->data['workorder_id']=$items[6];
+				
+				if($items[0] == 'servicetask')
+				{
+					$this->request->data['issue_id']=null;
+					$this->request->data['servicetask_id']=$items[2];
+					$this->request->data['workordertype_id']=1;
+				}
+				else if($items[0] == 'issue')
+				{
+					$this->request->data['servicetask_id']=null;	
+					$this->request->data['issue_id']=$items[2];
+					$this->request->data['workordertype_id']=2;
+				}
+				
+				if($items[1] == 'labor')
+				{
+					$this->request->data['parts']=null;
+					$this->request->data['labour']=$items[4] * $items[5];
+					$this->request->data['tax']=$items[7] ;
+					$this->request->data['taxtype']=$items[8] ;
+				}
+				else if($items[1] == 'part')
+				{
+					$this->request->data['labour']=null;
+					$this->request->data['parts']=$items[4] * $items[5];
+					$this->request->data['tax']= $items[7];
+					$this->request->data['taxtype']= $items[8];
+				}
+           	 	
+            	$workorderlineitem=$this->Workorderlineitems->patchEntity($workorderlineitem,$this->request->data);
+				$workorderlineitem['customer_id']=$this->loggedinuser['customer_id'];
+				if ($this->Workorderlineitems->save($workorderlineitem)) {
+					
+					 
+				if($items[1] == 'labor')
+				{
+					$this->request->data["labour"] = $items[4] ;
+					$this->request->data["hours"] = $items[5] ;
+					$this->request->data["address_id"] = $items[3] ;
+					$this->request->data["workorderlineitem_id"] = $workorderlineitem['id'] ;
+					
+					$workorderlabourlineitem=$this->Workorderlabourlineitems->patchEntity($workorderlabourlineitem,$this->request->data);
+					$workorderlabourlineitem['customer_id']=$this->loggedinuser['customer_id'];
+					if ($this->Workorderlabourlineitems->save($workorderlabourlineitem)) 
+					{
+						// $this->Flash->success(__('labourlineitre'));
+					}
+				}
+					 
+  				if($items[1] == 'part')
+				{
+  					$this->request->data["unitcost"] = $items[4] ;
+					$this->request->data["quantity"] = $items[5] ;
+					$this->request->data["part_id"] = $items[3] ;
+					$this->request->data["workorderlineitems"] = $workorderlineitem['id'] ;
+					$workorderpartslineitem=$this->Workorderpartslineitems->patchEntity($workorderpartslineitem,$this->request->data);
+					$workorderpartslineitem['customer_id']=$this->loggedinuser['customer_id'];
+					if ($this->Workorderpartslineitems->save($workorderpartslineitem)) 
+					{
+						// $this->Flash->success(__('partslineitre'));
+					}
+					// $workorderpartslineitem=$this->Workorderpartslineitems->patchEntity($workorderpartslineitem,$this->request->data);
+					// $this->response->body(json_encode($workorderlineitem['id']));
+					
+				}
+					
 	    			// return $this->response;
             	} else {
-                	// $this->response->body("error");
-	    			// return $this->response;
+            		$this->response->body("error");
+	    			return $this->response;
             	}
 				
-			}
+			 } 
+			 
+			 return $this->response;
+			 // return  $this->redirect(['action' => 'index']);
+			
+		}
+        
+    }
+
+	public function editLaborParts()
+	{
+    	
+      	
+		if($this->request->is('ajax')) {
+			
+			
+			$this->autoRender=false;
+			$this->loadModel('Workorderlineitems');
+			$this->loadModel('Workorderlabourlineitems');
+			$this->loadModel('Workorderpartslineitems');
+			
+				$it="";
+    			$it=explode(",",($this->request->query['content']));
+	    		$stst = json_encode($this->request->query['content']);
+				$contentarray = array();
+				 for ($i=0; $i <substr_count($stst, ',')+1 ; $i++) 
+					 { 
+						 array_push($contentarray, $it[$i]);
+					 }
+				 
+				   // $this->response->body(json_encode($contentarray));			
+	    		   // return $this->response;
+				 
+			// foreach(json_encode($this->request->query['content'])  as $d){
+    		foreach($contentarray as $d){
+			
+				
+				
+				$items="";
+    			$items=explode("^",$d);
+				
+				$workorderlineitem = $this->Workorderlineitems->newEntity();
+				$workorderlabourlineitem = $this->Workorderlabourlineitems->newEntity();
+				$workorderpartslineitem = $this->Workorderpartslineitems->newEntity();
+							
+				$this->request->data['name']="";
+            	$this->request->data['workorder_id']=$items[6];
+				
+				if($items[0] == 'servicetask')
+				{
+					$this->request->data['issue_id']=null;
+					$this->request->data['servicetask_id']=$items[2];
+					$this->request->data['workordertype_id']=1;
+				}
+				else if($items[0] == 'issue')
+				{
+					$this->request->data['servicetask_id']=null;	
+					$this->request->data['issue_id']=$items[2];
+					$this->request->data['workordertype_id']=2;
+				}
+				
+				if($items[1] == 'labor')
+				{
+					$this->request->data['parts']=null;
+					$this->request->data['labour']=$items[4] * $items[5];
+					$this->request->data['tax']=$items[9] ;
+					$this->request->data['taxtype']=$items[10] ;
+				}
+				else if($items[1] == 'part')
+				{
+					$this->request->data['labour']=null;
+					$this->request->data['parts']=$items[4] * $items[5];
+					$this->request->data['tax']=$items[9] ;
+					$this->request->data['taxtype']=$items[10] ;
+				}
+           	 	
+				$workorderlineitem = $this->Workorderlineitems->get($items[7], [ 'contain' => [] 	]);
+				
+            	$workorderlineitem=$this->Workorderlineitems->patchEntity($workorderlineitem,$this->request->data);
+				$workorderlineitem['customer_id']=$this->loggedinuser['customer_id'];
+				if ($this->Workorderlineitems->save($workorderlineitem)) {
+					
+					 
+				if($items[1] == 'labor')
+				{
+					$this->request->data["labour"] = $items[4] ;
+					$this->request->data["hours"] = $items[5] ;
+					$this->request->data["address_id"] = $items[3] ;
+					$this->request->data["workorderlineitem_id"] = $workorderlineitem['id'] ;
+					
+					$workorderlabourlineitem = $this->Workorderlabourlineitems->get($items[8], [ 'contain' => [] 	]);
+				
+					$workorderlabourlineitem=$this->Workorderlabourlineitems->patchEntity($workorderlabourlineitem,$this->request->data);
+					$workorderlabourlineitem['customer_id']=$this->loggedinuser['customer_id'];
+					if ($this->Workorderlabourlineitems->save($workorderlabourlineitem)) 
+					{
+						// $this->Flash->success(__('labourlineitre'));
+					}
+				}
+					 
+  				if($items[1] == 'part')
+				{
+  					$this->request->data["unitcost"] = $items[4] ;
+					$this->request->data["quantity"] = $items[5] ;
+					$this->request->data["part_id"] = $items[3] ;
+					$this->request->data["workorderlineitems"] = $workorderlineitem['id'] ;
+					
+					$workorderpartslineitem = $this->Workorderpartslineitems->get($items[8], [ 'contain' => [] 	]);
+					$workorderpartslineitem=$this->Workorderpartslineitems->patchEntity($workorderpartslineitem,$this->request->data);
+					$workorderpartslineitem['customer_id']=$this->loggedinuser['customer_id'];
+					if ($this->Workorderpartslineitems->save($workorderpartslineitem)) 
+					{
+						// $this->Flash->success(__('partslineitre'));
+					}
+					// $workorderpartslineitem=$this->Workorderpartslineitems->patchEntity($workorderpartslineitem,$this->request->data);
+					// $this->response->body(json_encode($workorderlineitem['id']));
+					
+				}
+					
+	    			// return $this->response;
+            	} else {
+            		$this->response->body("error");
+	    			return $this->response;
+            	}
+				
+			} return $this->response;
 			
 		}
         
@@ -277,56 +562,76 @@ public function ajaxdata() {
      */
     public function add()
     {
+    	$resissuesArray = $this->request->url;
+		$this->log($resissuesArray);
+		$resissues1 = explode('/', $resissuesArray);
+		$str = implode(" ",$resissues1);
+		$resissues2 = explode('/', $str);
+		$resissues2 = implode(" ",$resissues2);
+		$stack = array();
+		if( !empty($resissues1[2]))
+			{
+				$str = explode(",",$resissues1[2]);
+				
+				for ($i=0; $i < count($str) ; $i++) 
+					{ 
+						array_push($stack, $str[$i]);
+					}	
+			}
+		
+		$resissues = $stack;
+		
         $workorder = $this->Workorders->newEntity();
 		$liteitemTable = TableRegistry::get('Workorderlineitems');
 		$servicetasksTable = TableRegistry::get('Servicetasks');
 		$issuesTable = TableRegistry::get('Issues');
+		$addressesTable = TableRegistry::get('Addresses');
+		$partsTable = TableRegistry::get('Parts');
 			
-        if ($this->request->is('post')) {
-        	
-			
-			
-            $workorder = $this->Workorders->patchEntity($workorder, $this->request->data);
-			
-				// print_r($workorder['id']);
-			
-            $workorder['customer_id']=$this->loggedinuser['customer_id'];
-			
-			
-            if ($this->Workorders->save($workorder)) {
-            	$this->log($this->request->data);
-			   if(isset($this->request->data['workorderlineitem'])){
-			   	// $this->log("sssooo");
-				$lineitems=$this->request->data['workorderlineitem'];
-				for($i=0;$i<count($lineitems);$i++)
-				{
-					$lineitem= $liteitemTable->newEntity();
-					$lineitem['labour']=$lineitems[$i]['labour'];
-					$lineitem['parts']=$lineitems[$i]['parts'];
-					$lineitem['numitems']=isset($lineitems[$i]['numitems'])?$lineitems[$i]['numitems']:0;
-					$lineitem['customer_id']=$this->loggedinuser['customer_id'];
-					$lineitem['servicetask_id']=isset($lineitems[$i]['servicetask_id'])?$lineitems[$i]['servicetask_id']:null;
-					$lineitem['issue_id']=isset($lineitems[$i]['issue_id'])?$lineitems[$i]['issue_id']:null;
-					if($lineitem['servicetask_id']!=null){
-						$lineitem['workordertype_id']=1;
-					}else{
-						$lineitem['workordertype_id']=2;
-					}
-					$lineitem['workorder_id']=$workorder->id;
-					
-					$liteitemTable->save($lineitem);
-					
-				 }
-				  
-			    }	
+        if ($this->request->is('post')) 
+	        {
+	        	$workorder = $this->Workorders->patchEntity($workorder, $this->request->data);
+				$workorder['customer_id']=$this->loggedinuser['customer_id'];
 				
-                // $this->Flash->success(__('The workorder has been saved.'));
-
-                 // return $this->redirect(['action' => 'index']);
-            } else {
-                $this->Flash->error(__('The workorder could not be saved. Please, try again.'));
-            }
-        }
+				if ($this->Workorders->save($workorder)) 
+		            {
+		            	$this->log($this->request->data);
+					    if(isset($this->request->data['workorderlineitem'])){
+					   	$lineitems=$this->request->data['workorderlineitem'];
+						for($i=0;$i<count($lineitems);$i++)
+						{
+							$lineitem= $liteitemTable->newEntity();
+							$lineitem['labour']=$lineitems[$i]['labour'];
+							$lineitem['parts']=$lineitems[$i]['parts'];
+							$lineitem['numitems']=isset($lineitems[$i]['numitems'])?$lineitems[$i]['numitems']:0;
+							$lineitem['customer_id']=$this->loggedinuser['customer_id'];
+							$lineitem['servicetask_id']=isset($lineitems[$i]['servicetask_id'])?$lineitems[$i]['servicetask_id']:null;
+							$lineitem['issue_id']=isset($lineitems[$i]['issue_id'])?$lineitems[$i]['issue_id']:null;
+							if($lineitem['servicetask_id']!=null)
+								{
+									$lineitem['workordertype_id']=1;
+								}
+							else
+								{
+									$lineitem['workordertype_id']=2;
+								}
+							$lineitem['workorder_id']=$workorder->id;
+							$liteitemTable->save($lineitem);
+							
+						 }
+						  
+					    }	
+						
+		                // $this->Flash->success(__('The workorder has been saved.'));
+		
+		                 // return $this->redirect(['action' => 'index']);
+		            } 
+	            else
+					{
+	                	$this->Flash->error(__('The workorder could not be saved. Please, try again.'));
+	            	}
+				// return $this->redirect(['action' => 'index']);
+	        }
         
         $workorderstatuses = $this->Workorders->Workorderstatuses->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
         
@@ -350,12 +655,21 @@ public function ajaxdata() {
 		 $this->set('servicetaskarr', json_encode($servicetasks));
 		 
 		 $issues=$issuesTable->find('list', ['limit' => 200])->where("customer_id=".$this->loggedinuser['customer_id'])->all()->toArray();
-		 
+		 $this->set('issuearr', json_encode($issues));
 		
+		 $addresses=$addressesTable->find('list', ['limit' => 200])->where("customer_id=".$this->loggedinuser['customer_id'])->all()->toArray();
+		 $this->set('addressesarr', json_encode($addresses));
+		 
+		 $parts=$partsTable->find('list', ['limit' => 200])->where("customer_id=".$this->loggedinuser['customer_id'])->all()->toArray();
+		 $this->set('partssarr', json_encode($parts));
         
-        $this->set(compact('workorder', 'workorderstatuses', 'vehicles', 'vendors', 'issuedbies', 'assignedbies', 'assigntos', 'customers','servicetasks','issues'));
-        $this->set('_serialize', ['workorder','workorderstatuses', 'vehicles', 'vendors', 'issuedbies', 'assignedbies', 'assigntos', 'customers','servicetasks','issues']);
-    }
+        $this->set(compact('workorder', 'workorderstatuses', 'vehicles', 'vendors', 'issuedbies', 'assignedbies', 'assigntos', 'customers','servicetasks','issues','$addresses','$parts','resissues','$str'));
+        $this->set('_serialize', ['workorder','workorderstatuses', 'vehicles', 'vendors', 'issuedbies', 'assignedbies', 'assigntos', 'customers','servicetasks','issues','$addresses','$parts']);
+    
+		// $this->set(compact('workorder', 'workorderstatuses', 'vehicles', 'vendors', 'issuedbies', 'assignedbies', 'assigntos', 'customers','servicetasks','issues'));
+        // $this->set('_serialize', ['workorder','workorderstatuses', 'vehicles', 'vendors', 'issuedbies', 'assignedbies', 'assigntos', 'customers','servicetasks','issues']);
+    	
+	}
 
     /**
      * Edit method
@@ -366,6 +680,15 @@ public function ajaxdata() {
      */
     public function edit($id = null)
     {
+    	$liteitemTable = TableRegistry::get('Workorderlineitems');
+		$servicetasksTable = TableRegistry::get('Servicetasks');
+		$issuesTable = TableRegistry::get('Issues');
+		$addressesTable = TableRegistry::get('Addresses');
+		$partsTable = TableRegistry::get('Parts');
+		$workorderlineitemTable = TableRegistry::get('Workorderlineitems');
+		$workorderlaborlineitemTable = TableRegistry::get('Workorderlabourlineitems');
+		$workorderpartslineitemTable = TableRegistry::get('Workorderpartslineitems');
+		
         $workorder = $this->Workorders->get($id, [
             'contain' => []
         ]);
@@ -402,9 +725,56 @@ public function ajaxdata() {
                 
         $assigntos = $this->Workorders->Assigntos->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
         
+		 $servicetasks=$servicetasksTable->find('list', ['limit' => 200])->where("customer_id=".$this->loggedinuser['customer_id'])->orwhere("customer_id=0");
+		 $this->set('servicetaskarr', json_encode($servicetasks));
+		 
+		 $issues=$issuesTable->find('list', ['limit' => 200])->where("customer_id=".$this->loggedinuser['customer_id'])->all()->toArray();
+		 $this->set('issuearr', json_encode($issues));
+		
+		 $addresses=$addressesTable->find('list', ['limit' => 200])->where("customer_id=".$this->loggedinuser['customer_id'])->all()->toArray();
+		 $this->set('addressesarr', json_encode($addresses));
+		 
+		 $parts=$partsTable->find('list', ['limit' => 200])->where("customer_id=".$this->loggedinuser['customer_id'])->all()->toArray();
+		 $this->set('partssarr', json_encode($parts));
+     	 
+		 $workorderlaborlineitems=$workorderlaborlineitemTable->find('all', ['limit' => 200])->where("customer_id=".$this->loggedinuser['customer_id'])->andwhere("workorder_id=".$workorder['id']);
+		 // $workorderlaborlineitems=$workorderlaborlineitemTable->find('all', ['limit' => 200])->where("customer_id=".$this->loggedinuser['customer_id']);
+		 $this->set('workorderlaborlineitemsarr', json_encode($workorderlaborlineitems));
+		 
+		 $workorderpartslineitems=$workorderpartslineitemTable->find('all', ['limit' => 200])->where("customer_id=".$this->loggedinuser['customer_id'])->andwhere("workorder_id=".$workorder['id']);
+		 // $workorderlaborlineitems=$workorderlaborlineitemTable->find('all', ['limit' => 200])->where("customer_id=".$this->loggedinuser['customer_id']);
+		 $this->set('workorderpartslineitemsarr', json_encode($workorderpartslineitems));
+		 
+		  $this->set('workorderid',$workorder['id'] );
+		  $this->set('totaltax',$workorder['tax'] );
+		  $this->set('totaltaxtype',$workorder['taxtype'] );
+		  $this->set('labor',$workorder['labour'] );
+		  $this->set('parts',$workorder['parts'] );
+		 
+		 // $workorderlineitemTable
+     	 $workorderlineitemsst=$workorderlineitemTable->find('all', ['limit' => 200])->where("customer_id=".$this->loggedinuser['customer_id'])->andwhere("workorder_id=".$workorder['id'])->andwhere("labour  IS NOT null");
+		 // $workorderlineitemsst=$workorderlineitemTable->find('all', ['limit' => 200])->where("customer_id=".$this->loggedinuser['customer_id'])->andwhere("workorder_id=".$workorder['id']);
+		 $this->set('workorderlineitemsstarr', json_encode($workorderlineitemsst));
+		 
+		 $workorderlineitemslbr=$workorderlineitemTable->find('all', ['limit' => 200])->where("customer_id=".$this->loggedinuser['customer_id'])->andwhere("workorder_id=".$workorder['id'])->andwhere("labour  IS NOT null");
+		 // $workorderlineitemsst=$workorderlineitemTable->find('all', ['limit' => 200])->where("customer_id=".$this->loggedinuser['customer_id'])->andwhere("workorder_id=".$workorder['id']);
+		 $this->set('workorderlineitemslbrarr', json_encode($workorderlineitemslbr));
+		 
+		   $workorderlineitemspt=$workorderlineitemTable->find('all', ['limit' => 200])->where("customer_id=".$this->loggedinuser['customer_id'])->andwhere("workorder_id=".$workorder['id'])->andwhere("parts  IS NOT null");
+		  $this->set('workorderlineitemsptarr', json_encode($workorderlineitemspt));
+		 
+		 
+		  $workorderlineitems=$workorderlineitemTable->find('all', ['limit' => 200])->where("customer_id=".$this->loggedinuser['customer_id'])->andwhere("workorder_id=".$workorder['id']);
+		 // $workorderlineitemsst=$workorderlineitemTable->find('all', ['limit' => 200])->where("customer_id=".$this->loggedinuser['customer_id'])->andwhere("workorder_id=".$workorder['id']);
+		 $this->set('workorderlineitemsarr', json_encode($workorderlineitems));
+		 
+		 
+		 
                
-        $this->set(compact('workorder', 'workorderstatuses', 'vehicles', 'vendors', 'issuedbies', 'assignedbies', 'assigntos', 'customers'));
-        $this->set('_serialize', ['workorder']);
+        $this->set(compact('workorder', 'workorderstatuses', 'vehicles', 'vendors', 'issuedbies', 'assignedbies', 'assigntos', 'customers','servicetasks','issues','$addresses','$parts','workorderlaborlineitems'));
+        // $this->set('_serialize', ['workorder']);
+		$this->set('_serialize', ['workorder','workorderstatuses', 'vehicles', 'vendors', 'issuedbies', 'assignedbies', 'assigntos', 'customers','servicetasks','issues','$addresses','$parts','workorderlaborlineitems']);
+    
     }
 
     /**
@@ -420,17 +790,29 @@ public function ajaxdata() {
         $workorder = $this->Workorders->get($id);
 		if($workorder['customer_id'] = $this->loggedinuser['customer_id'])
 		{
-	        if ($this->Workorders->delete($workorder)) {
-	            $this->Flash->success(__('The workorder has been deleted.'));
-	        } else {
-	            $this->Flash->error(__('The workorder could not be deleted. Please, try again.'));
-	        }
+	        if ($this->Workorders->delete($workorder)) 
+		        {
+		            $this->Flash->success(__('The workorder has been deleted.'));
+					$this->loadModel('Workorderlineitems');
+					$result = $this->Workorderlineitems->deleteLineItemsFromIndex($this->loggedinuser['customer_id'],$workorder['id']);
+				    
+				    $this->loadModel('Workorderlabourlineitems');
+					$result1 = $this->Workorderlabourlineitems->deleteLabourLineItemsFromIndex($this->loggedinuser['customer_id'],$workorder['id']);
+				    
+					$this->loadModel('Workorderpartslineitems');
+					$result2 = $this->Workorderpartslineitems->deletePartsLineItemsFromIndex($this->loggedinuser['customer_id'],$workorder['id']);
+				} 
+	        
+	        else 
+		        {
+		            $this->Flash->error(__('The workorder could not be deleted. Please, try again.'));
+		        }
 		 }
-	    else
-	    {
-	   	    $this->Flash->error(__('You are not authorized'));
-		
-	    }
+	     else
+		    {
+		   	    $this->Flash->error(__('You are not authorized'));
+			
+		    }
         return $this->redirect(['action' => 'index']);
     }
 
@@ -441,38 +823,227 @@ public function ajaxdata() {
         
         $data=$this->request->data;
 			
-		if(isset($data)){
-		   foreach($data as $key =>$value){
-		   	   
-			     $itemna=explode("-",$key);
-			    if(count($itemna)== 2 && $itemna[0]=='chk'){
-			    	
-					$workorder = $this->Workorders->get($value);
-					
-					 if($workorder['customer_id']== $this->loggedinuser['customer_id']) {
-					 	
-						   if ($this->Workorders->delete($workorder)) {
-					           $sucess= $sucess | true;
-					        } else {
-					           $failure= $failure | true;
-					        }
-						
-					 }
-					
-			    }  	  
-			   
-		   }
-		   		        
-		
-			if($sucess){
-				$this->Flash->success(__('Selected workorders has been deleted.'));
-			}
-	        if($failure){
-				$this->Flash->error(__('The workorder could not be deleted. Please, try again.'));
-			}
-		
-		   }
+		if(isset($data))
+			{
+			   foreach($data as $key =>$value)
+				   {
+				   	   
+					    $itemna=explode("-",$key);
+					    if(count($itemna)== 2 && $itemna[0]=='chk')
+						    {
+						    	$workorder = $this->Workorders->get($value);
+								if($workorder['customer_id']== $this->loggedinuser['customer_id']) 
+								 {
+								 	   if ($this->Workorders->delete($workorder)) 
+										   {
+										   		
+												$this->loadModel('Workorderlineitems');
+												$result = $this->Workorderlineitems->deleteLineItemsFromIndex($this->loggedinuser['customer_id'],$workorder['id']);
+											    
+											    $this->loadModel('Workorderlabourlineitems');
+												$result1 = $this->Workorderlabourlineitems->deleteLabourLineItemsFromIndex($this->loggedinuser['customer_id'],$workorder['id']);
+											    
+												$this->loadModel('Workorderpartslineitems');
+												$result2 = $this->Workorderpartslineitems->deletePartsLineItemsFromIndex($this->loggedinuser['customer_id'],$workorder['id']);
+											   
+															
+									            $sucess= $sucess | true;
+									         } 
+								         else 
+									         {
+									            $failure= $failure | true;
+									         }
+									
+								 }
+								
+						    }  	  
+					   
+				   }
+			   		        
+			
+				if($sucess)
+					{
+						$this->Flash->success(__('Selected workorders has been deleted.'));
+					}
+		        if($failure)
+			        {
+						$this->Flash->error(__('The workorder could not be deleted. Please, try again.'));
+					}
+			
+			   }
 
              return $this->redirect(['action' => 'index']);	
      }
-}
+	
+	public function deleteLabourLineItems($id=null)
+	{
+		if($this->request->is('ajax')) 
+		   {
+				$this->autoRender= false;
+				$data=$this->request->data;
+				$lineitemid = $data["lineitemid"];
+				$workorderitemid = explode(',', $lineitemid);
+				
+			    $this->loadModel('Workorderlineitems');
+			    $result2 = $this->Workorderlineitems->deleteLineItems($this->loggedinuser['customer_id'],$workorderitemid[1]);
+			    
+				$this->loadModel('Workorderlabourlineitems');
+				$result1 = $this->Workorderlabourlineitems->deleteLabourLineItems($this->loggedinuser['customer_id'],$workorderitemid[0]);
+				
+				$this->response->body("success");
+			    return $this->response; 
+		   } 				
+	}
+	
+	public function deletePartsLineItems($id=null)
+	{
+	   if($this->request->is('ajax')) 
+		   {
+				$this->autoRender= false;
+				$data=$this->request->data;
+				$lineitemid = $data["lineitemid"];
+				$workorderitemid = explode(',', $lineitemid);
+				
+			    $this->loadModel("Workorderlineitems");
+				$result2 = $this->Workorderlineitems->deleteLineItems($this->loggedinuser['customer_id'],$workorderitemid[1]);
+			    
+				$this->loadModel("Workorderpartslineitems");
+				$result1 = $this->Workorderpartslineitems->deletePartsLineItems($this->loggedinuser['customer_id'],$workorderitemid[0]);  
+				$this->response->body("success");
+			    return $this->response;    
+		   } 				
+	}
+	
+	public function updateWorkordersAfterItemsDeletion($id=null)
+	{
+	   if($this->request->is('ajax')) 
+		   {
+				$this->autoRender= false;
+				$data=$this->request->data;
+				$values = $data["items"];
+				$values = explode(',', $values);
+				$wid = $values[0];
+				$labour = $values[1];
+				$parts = $values[2];
+				
+				$result = $this->Workorders->updateWorkordersAfterItemsDeletion($this->loggedinuser['customer_id'],$wid,$labour,$parts);
+							   
+				$this->response->body("success");
+			    return $this->response;    
+		   } 				
+	}
+	 
+	 public function setClose()
+	     {
+	    	if($this->request->is('ajax')) 
+		    	{
+		    		$this->autoRender=false;	
+		    		$this->loadModel('Workorders');
+					$woidsAr = array();
+					$woidsAr = $this->request->query['content'];
+					$woids=explode(",",$woidsAr);
+					$wos = array();
+					$ttt = array();
+					$this->loadModel('Servicesentries');
+					$servicesentry = $this->Servicesentries->newEntity();
+					
+					for ($i=0; $i <count($woids) ; $i++) 
+						{ 
+							$wos[$i] = $woids[$i];
+							$results = $this->Workorders->setClose($this->loggedinuser['customer_id'],$woids[$i]);
+							
+							//for adding as a new service entry after closing the workorder
+							$query=$this->Workorders->find('all', array('conditions' => array('id'  => $woids[$i]) ))->toArray();
+							foreach($query as $worecord)
+								{
+									$data = $query[0]["id"];
+		 							$servicesentry = $this->Servicesentries->patchEntity($servicesentry, $query[0],['associated'=>['Servicetasks','Issues']]);
+            						$servicesentry['vehicle_id'] = $query[0]["vehicle_id"];
+									$servicesentry['odo'] = $query[0]["odometer"];
+									$servicesentry['refer'] = $query[0]["invoicenumber"];
+									$servicesentry['labour'] = $query[0]["labour"];
+									$servicesentry['parts'] = $query[0]["parts"];
+									$servicesentry['tax'] = $query[0]["tax"];
+									$servicesentry['markasvoid'] = $query[0]["void"];
+									$servicesentry['vendor_id'] = $query[0]["vendor_id"];
+									$servicesentry['comments'] = $query[0]["description"];
+									$servicesentry['customer_id'] = $query[0]["customer_id"];
+									$servicesentry['dateofservice'] = $query[0]["completiondate"];
+									$servicesentry['name'] ='WO'.$query[0]["id"];
+									//set markasvoid false if not true
+									if($servicesentry['markasvoid'] != TRUE)
+										{
+											$servicesentry['markasvoid'] = FALSE;
+										}
+									if ($this->Servicesentries->save($servicesentry)) 
+							            {
+							                // $this->Flash->success(__('The service entry has been saved.'));
+										}
+								}
+						}
+					if(isset($results))
+						{
+							$this->Flash->success(__('Selected Workorders are closed and added to Serviceentry.'));
+						}
+					$this->response->body("success");
+			    	return $this->response;
+				}
+		}
+	 
+	 public function saveAsServiceentry()
+	     {
+	    	if($this->request->is('ajax')) 
+		    	{
+		    		$this->autoRender=false;	
+		    		$this->loadModel('Workorders');
+					$woidsAr = array();
+					$woidsAr = $this->request->query['content'];
+					$woids=explode(",",$woidsAr);
+					$wos = array();
+					$ttt = array();
+					$this->loadModel('Servicesentries');
+					$servicesentry = $this->Servicesentries->newEntity();
+					
+					for ($i=0; $i <count($woids) ; $i++) 
+						{
+							$query=$this->Workorders->find('all', array('conditions' => array('id'  => $woids[$i]) ))->toArray();
+							
+							foreach($query as $worecord)
+								{
+									$data = $query[0]["id"];
+		 							$servicesentry = $this->Servicesentries->patchEntity($servicesentry, $query[0],['associated'=>['Servicetasks','Issues']]);
+            						
+									$servicesentry['vehicle_id'] = $query[0]["vehicle_id"];
+									$servicesentry['odo'] = $query[0]["odometer"];
+									$servicesentry['refer'] = $query[0]["invoicenumber"];
+									$servicesentry['labour'] = $query[0]["labour"];
+									$servicesentry['parts'] = $query[0]["parts"];
+									$servicesentry['tax'] = $query[0]["tax"];
+									$servicesentry['markasvoid'] = $query[0]["void"];
+									$servicesentry['vendor_id'] = $query[0]["vendor_id"];
+									$servicesentry['comments'] = $query[0]["description"];
+									$servicesentry['customer_id'] = $query[0]["customer_id"];
+									$servicesentry['dateofservice'] = $query[0]["completiondate"];
+									$servicesentry['name'] ='WO'.$query[0]["id"];
+									
+									
+										//set markasvoid false if not true
+										if($servicesentry['markasvoid'] != TRUE)
+											{
+												$servicesentry['markasvoid'] = FALSE;
+											}
+										
+							            if ($this->Servicesentries->save($servicesentry)) 
+								            {
+								                // $this->Flash->success(__('The service entry has been saved.'));
+											}
+								}
+					
+							$this->Flash->success(__('Selected WorkOrders are closed and added to Serviceentry'.$query[0]["id"]));
+							$this->response->body("success");
+					    	return $this->$query;
+					
+						}
+				}
+		}
+ }

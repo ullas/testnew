@@ -1,0 +1,1921 @@
+2017-07-06 03:40:29 Error: Servicesentries/add/1,13
+2017-07-06 03:49:26 Error: Fatal Error (1): Call to undefined method App\Controller\IssuesController::flash() in [C:\Users\Hp\Desktop\testnew\src\Controller\IssuesController.php, line 374]
+Request URL: /Issues/setClose?content=13
+Referer URL: http://localhost:8765/issues
+Trace:
+Cake\Error\BaseErrorHandler::handleFatalError() - CORE\src\Error\BaseErrorHandler.php, line 216
+Cake\Error\BaseErrorHandler::Cake\Error\{closure}() - CORE\src\Error\BaseErrorHandler.php, line 98
+[main] - [internal], line ??
+
+
+
+2017-07-06 03:49:26 Error: [Cake\Error\FatalErrorException] Call to undefined method App\Controller\IssuesController::flash()
+Request URL: /Issues/setClose?content=13
+Referer URL: http://localhost:8765/issues
+Stack Trace:
+#0 C:\Users\Hp\Desktop\testnew\vendor\cakephp\cakephp\src\Error\BaseErrorHandler.php(98): Cake\Error\BaseErrorHandler->handleFatalError(1, 'Call to undefin...', 'C:\\Users\\Hp\\Des...', 374)
+#1 [internal function]: Cake\Error\BaseErrorHandler->Cake\Error\{closure}()
+#2 {main}
+
+
+2017-07-06 03:53:34 Error: Fatal Error (1): Call to undefined method App\Controller\IssuesController::flash() in [C:\Users\Hp\Desktop\testnew\src\Controller\IssuesController.php, line 374]
+Request URL: /Issues/setClose?content=1
+Referer URL: http://localhost:8765/issues
+Trace:
+Cake\Error\BaseErrorHandler::handleFatalError() - CORE\src\Error\BaseErrorHandler.php, line 216
+Cake\Error\BaseErrorHandler::Cake\Error\{closure}() - CORE\src\Error\BaseErrorHandler.php, line 98
+[main] - [internal], line ??
+
+
+
+2017-07-06 03:53:35 Error: [Cake\Error\FatalErrorException] Call to undefined method App\Controller\IssuesController::flash()
+Request URL: /Issues/setClose?content=1
+Referer URL: http://localhost:8765/issues
+Stack Trace:
+#0 C:\Users\Hp\Desktop\testnew\vendor\cakephp\cakephp\src\Error\BaseErrorHandler.php(98): Cake\Error\BaseErrorHandler->handleFatalError(1, 'Call to undefin...', 'C:\\Users\\Hp\\Des...', 374)
+#1 [internal function]: Cake\Error\BaseErrorHandler->Cake\Error\{closure}()
+#2 {main}
+
+
+2017-07-06 04:19:03 Error: Servicesentries/add/1
+2017-07-06 04:46:31 Error: Workorders/add/
+2017-07-06 06:20:40 Error: Workorders/add/
+2017-07-06 06:37:40 Error: Workorders/add/
+2017-07-06 06:41:13 Error: Workorders/add/
+2017-07-06 06:43:33 Error: Workorders/add/
+2017-07-06 06:44:31 Error: Workorders/add/
+2017-07-06 06:44:39 Error: Workorders/add/
+2017-07-06 06:44:55 Error: Workorders/add/
+2017-07-06 06:46:42 Error: Workorders/add/
+2017-07-06 06:47:21 Error: Workorders/add/
+2017-07-06 06:50:13 Error: Workorders/add/
+2017-07-06 06:53:48 Error: Workorders/add/
+2017-07-06 06:53:49 Error: Workorders/add/
+2017-07-06 06:55:08 Error: Workorders/add/
+2017-07-06 06:55:46 Error: Workorders/add/
+2017-07-06 06:56:36 Error: Workorders/add/
+2017-07-06 07:00:52 Error: Workorders/add/
+2017-07-06 07:13:37 Error: Workorders/add/
+2017-07-06 07:14:48 Error: Workorders/add/
+2017-07-06 07:15:46 Error: Workorders/add/
+2017-07-06 07:19:13 Error: Workorders/add/
+2017-07-06 07:24:59 Error: Workorders/add/
+2017-07-06 07:27:39 Error: Workorders/add/
+2017-07-06 07:35:27 Error: Workorders/add/
+2017-07-06 07:36:36 Error: Workorders/add/
+2017-07-06 07:37:51 Error: Workorders/add/
+2017-07-06 07:38:40 Error: Workorders/add/
+2017-07-06 08:21:59 Error: Workorders/add/
+2017-07-06 08:44:40 Error: Workorders/add/
+2017-07-06 09:23:51 Error: Workorders/add/
+2017-07-06 09:33:42 Error: Workorders/add/
+2017-07-06 09:57:32 Error: Workorders/add/
+2017-07-06 10:09:49 Error: Workorders/add/
+2017-07-06 12:03:56 Error: Workorders/add/
+2017-07-06 12:07:15 Error: Workorders/add/
+2017-07-06 12:35:07 Error: Workorders/add/
+2017-07-06 12:38:26 Error: Workorders/add/
+2017-07-06 12:40:41 Error: Workorders/add/
+2017-07-06 12:41:58 Error: Workorders/add/
+2017-07-06 12:46:17 Error: Workorders/add/
+2017-07-06 12:46:59 Error: Workorders/add/
+2017-07-06 12:48:34 Error: Workorders/add/
+2017-07-06 13:06:57 Error: Workorders/add/
+2017-07-06 13:22:17 Error: Workorders/add/
+2017-07-06 13:27:33 Error: Workorders/add/
+2017-07-07 03:47:46 Error: Workorders/add/
+2017-07-07 05:18:43 Error: Workorders/add/
+2017-07-07 06:23:30 Error: Workorders/add/
+2017-07-10 04:17:03 Error: Workorders/add/
+2017-07-11 08:36:37 Error: Array
+(
+    [lineitemid] => 30
+)
+
+2017-07-11 08:38:54 Error: Array
+(
+    [lineitemid] => 30
+)
+
+2017-07-11 08:42:50 Error: Array
+(
+    [lineitemid] => 30
+)
+
+2017-07-11 08:43:40 Error: Array
+(
+    [lineitemid] => 30
+)
+
+2017-07-11 08:45:19 Error: Array
+(
+    [lineitemid] => 30
+)
+
+2017-07-11 08:48:28 Error: Array
+(
+    [lineitemid] => 30
+)
+
+2017-07-11 09:15:22 Error: Fatal Error (1): Class 'App\Model\Table\ConnectionManager' not found in [C:\Users\Hp\Desktop\testnew\src\Model\Table\WorkorderpartslineitemsTable.php, line 95]
+Request URL: /Workorders/deleteLineItems
+Referer URL: http://localhost:8765/Workorders/edit/360
+Trace:
+Cake\Error\BaseErrorHandler::handleFatalError() - CORE\src\Error\BaseErrorHandler.php, line 216
+Cake\Error\BaseErrorHandler::Cake\Error\{closure}() - CORE\src\Error\BaseErrorHandler.php, line 98
+[main] - [internal], line ??
+
+
+
+2017-07-11 09:15:22 Error: [Cake\Error\FatalErrorException] Class 'App\Model\Table\ConnectionManager' not found
+Request URL: /Workorders/deleteLineItems
+Referer URL: http://localhost:8765/Workorders/edit/360
+Stack Trace:
+#0 C:\Users\Hp\Desktop\testnew\vendor\cakephp\cakephp\src\Error\BaseErrorHandler.php(98): Cake\Error\BaseErrorHandler->handleFatalError(1, 'Class 'App\\Mode...', 'C:\\Users\\Hp\\Des...', 95)
+#1 [internal function]: Cake\Error\BaseErrorHandler->Cake\Error\{closure}()
+#2 {main}
+
+
+2017-07-11 09:15:46 Error: Fatal Error (1): Class 'App\Model\Table\ConnectionManager' not found in [C:\Users\Hp\Desktop\testnew\src\Model\Table\WorkorderpartslineitemsTable.php, line 95]
+Request URL: /Workorders/deleteLineItems
+Trace:
+Cake\Error\BaseErrorHandler::handleFatalError() - CORE\src\Error\BaseErrorHandler.php, line 216
+Cake\Error\BaseErrorHandler::Cake\Error\{closure}() - CORE\src\Error\BaseErrorHandler.php, line 98
+[main] - [internal], line ??
+
+
+
+2017-07-11 09:15:46 Error: [Cake\Error\FatalErrorException] Class 'App\Model\Table\ConnectionManager' not found
+Request URL: /Workorders/deleteLineItems
+Stack Trace:
+#0 C:\Users\Hp\Desktop\testnew\vendor\cakephp\cakephp\src\Error\BaseErrorHandler.php(98): Cake\Error\BaseErrorHandler->handleFatalError(1, 'Class 'App\\Mode...', 'C:\\Users\\Hp\\Des...', 95)
+#1 [internal function]: Cake\Error\BaseErrorHandler->Cake\Error\{closure}()
+#2 {main}
+
+
+2017-07-11 10:08:26 Error: Workorders/add/
+2017-07-14 06:55:12 Warning: Headers already sent in C:\Users\Hp\Desktop\testnew\vendor\cakephp\cakephp\src\Error\Debugger.php:753
+2017-07-14 06:55:12 Error: [RuntimeException] Unable to emit response; headers already sent
+Request URL: /Workorders/editLaborParts?content=
+Referer URL: http://localhost:8765/Workorders/edit/361
+Stack Trace:
+#0 C:\Users\Hp\Desktop\testnew\vendor\cakephp\cakephp\src\Http\Server.php(107): Zend\Diactoros\Response\SapiStreamEmitter->emit(Object(Zend\Diactoros\Response))
+#1 C:\Users\Hp\Desktop\testnew\webroot\index.php(37): Cake\Http\Server->emit(Object(Zend\Diactoros\Response))
+#2 {main}
+
+
+2017-07-14 06:57:01 Warning: Headers already sent in C:\Users\Hp\Desktop\testnew\vendor\cakephp\cakephp\src\Error\Debugger.php:753
+2017-07-14 06:57:01 Error: [RuntimeException] Unable to emit response; headers already sent
+Request URL: /Workorders/editLaborParts?content=
+Referer URL: http://localhost:8765/Workorders/edit/361
+Stack Trace:
+#0 C:\Users\Hp\Desktop\testnew\vendor\cakephp\cakephp\src\Http\Server.php(107): Zend\Diactoros\Response\SapiStreamEmitter->emit(Object(Zend\Diactoros\Response))
+#1 C:\Users\Hp\Desktop\testnew\webroot\index.php(37): Cake\Http\Server->emit(Object(Zend\Diactoros\Response))
+#2 {main}
+
+
+2017-07-14 07:07:46 Error: Workorders/add/
+2017-07-14 07:09:00 Error: Workorders/add/
+2017-07-14 09:06:59 Error: Workorders/add/
+2017-07-14 09:09:01 Error: Workorders/add/
+2017-07-19 05:06:22 Warning: Headers already sent in C:\Users\Hp\Desktop\testnew\vendor\cakephp\cakephp\src\Error\Debugger.php:753
+2017-07-19 05:06:22 Error: [RuntimeException] Unable to emit response; headers already sent
+Request URL: /Workorders/addLaborParts?content=
+Referer URL: http://localhost:8765/Workorders/edit/361
+Stack Trace:
+#0 C:\Users\Hp\Desktop\testnew\vendor\cakephp\cakephp\src\Http\Server.php(107): Zend\Diactoros\Response\SapiStreamEmitter->emit(Object(Zend\Diactoros\Response))
+#1 C:\Users\Hp\Desktop\testnew\webroot\index.php(37): Cake\Http\Server->emit(Object(Zend\Diactoros\Response))
+#2 {main}
+
+
+2017-07-19 05:26:51 Warning: Headers already sent in C:\Users\Hp\Desktop\testnew\vendor\cakephp\cakephp\src\Error\Debugger.php:753
+2017-07-19 05:26:51 Error: [RuntimeException] Unable to emit response; headers already sent
+Request URL: /Workorders/addLaborParts?content=
+Referer URL: http://localhost:8765/Workorders/edit/361
+Stack Trace:
+#0 C:\Users\Hp\Desktop\testnew\vendor\cakephp\cakephp\src\Http\Server.php(107): Zend\Diactoros\Response\SapiStreamEmitter->emit(Object(Zend\Diactoros\Response))
+#1 C:\Users\Hp\Desktop\testnew\webroot\index.php(37): Cake\Http\Server->emit(Object(Zend\Diactoros\Response))
+#2 {main}
+
+
+2017-07-19 05:27:19 Warning: Headers already sent in C:\Users\Hp\Desktop\testnew\vendor\cakephp\cakephp\src\Error\Debugger.php:753
+2017-07-19 05:27:19 Error: [RuntimeException] Unable to emit response; headers already sent
+Request URL: /Workorders/addLaborParts?content=
+Referer URL: http://localhost:8765/Workorders/edit/361
+Stack Trace:
+#0 C:\Users\Hp\Desktop\testnew\vendor\cakephp\cakephp\src\Http\Server.php(107): Zend\Diactoros\Response\SapiStreamEmitter->emit(Object(Zend\Diactoros\Response))
+#1 C:\Users\Hp\Desktop\testnew\webroot\index.php(37): Cake\Http\Server->emit(Object(Zend\Diactoros\Response))
+#2 {main}
+
+
+2017-07-19 05:27:40 Warning: Headers already sent in C:\Users\Hp\Desktop\testnew\vendor\cakephp\cakephp\src\Error\Debugger.php:753
+2017-07-19 05:27:40 Error: [RuntimeException] Unable to emit response; headers already sent
+Request URL: /Workorders/addLaborParts?content=
+Referer URL: http://localhost:8765/Workorders/edit/361
+Stack Trace:
+#0 C:\Users\Hp\Desktop\testnew\vendor\cakephp\cakephp\src\Http\Server.php(107): Zend\Diactoros\Response\SapiStreamEmitter->emit(Object(Zend\Diactoros\Response))
+#1 C:\Users\Hp\Desktop\testnew\webroot\index.php(37): Cake\Http\Server->emit(Object(Zend\Diactoros\Response))
+#2 {main}
+
+
+2017-07-19 05:28:49 Warning: Headers already sent in C:\Users\Hp\Desktop\testnew\vendor\cakephp\cakephp\src\Error\Debugger.php:753
+2017-07-19 05:28:49 Error: [RuntimeException] Unable to emit response; headers already sent
+Request URL: /Workorders/addLaborParts?content=
+Referer URL: http://localhost:8765/Workorders/edit/361
+Stack Trace:
+#0 C:\Users\Hp\Desktop\testnew\vendor\cakephp\cakephp\src\Http\Server.php(107): Zend\Diactoros\Response\SapiStreamEmitter->emit(Object(Zend\Diactoros\Response))
+#1 C:\Users\Hp\Desktop\testnew\webroot\index.php(37): Cake\Http\Server->emit(Object(Zend\Diactoros\Response))
+#2 {main}
+
+
+2017-07-19 06:17:30 Warning: Headers already sent in C:\Users\Hp\Desktop\testnew\vendor\cakephp\cakephp\src\Error\Debugger.php:753
+2017-07-19 06:17:30 Error: [RuntimeException] Unable to emit response; headers already sent
+Request URL: /Workorders/addLaborParts?content=
+Referer URL: http://localhost:8765/Workorders/edit/361
+Stack Trace:
+#0 C:\Users\Hp\Desktop\testnew\vendor\cakephp\cakephp\src\Http\Server.php(107): Zend\Diactoros\Response\SapiStreamEmitter->emit(Object(Zend\Diactoros\Response))
+#1 C:\Users\Hp\Desktop\testnew\webroot\index.php(37): Cake\Http\Server->emit(Object(Zend\Diactoros\Response))
+#2 {main}
+
+
+2017-07-19 06:36:52 Error: Workorders/add/
+2017-07-19 06:38:13 Error: Workorders/add/
+2017-07-19 06:58:20 Error: Workorders/add/
+2017-07-19 07:17:47 Error: Workorders/add/
+2017-07-19 07:33:32 Error: Workorders/add/
+2017-07-19 08:37:35 Error: Workorders/add/
+2017-07-19 10:06:35 Error: Workorders/add/
+2017-07-19 11:18:56 Error: Workorders/add
+2017-07-19 11:19:53 Error: Workorders/add/
+2017-07-20 03:31:25 Error: Workorders/add/
+2017-07-20 03:55:47 Error: Workorders/add/
+2017-07-20 06:16:11 Warning: Headers already sent in C:\Users\Hp\Desktop\testnew\vendor\cakephp\cakephp\src\Error\Debugger.php:753
+2017-07-20 06:16:11 Error: [RuntimeException] Unable to emit response; headers already sent
+Request URL: /Workorders/editLaborParts?content=
+Referer URL: http://localhost:8765/Workorders/edit/386
+Stack Trace:
+#0 C:\Users\Hp\Desktop\testnew\vendor\cakephp\cakephp\src\Http\Server.php(107): Zend\Diactoros\Response\SapiStreamEmitter->emit(Object(Zend\Diactoros\Response))
+#1 C:\Users\Hp\Desktop\testnew\webroot\index.php(37): Cake\Http\Server->emit(Object(Zend\Diactoros\Response))
+#2 {main}
+
+
+2017-07-20 06:16:45 Error: Workorders/add/
+2017-07-20 06:25:00 Error: Workorders/add/
+2017-07-21 03:28:47 Warning: Headers already sent in C:\Users\Hp\Desktop\testnew\vendor\cakephp\cakephp\src\Error\Debugger.php:753
+2017-07-21 03:28:47 Error: [RuntimeException] Unable to emit response; headers already sent
+Request URL: /Workorders/editLaborParts?content=
+Referer URL: http://localhost:8765/Workorders/edit/387
+Stack Trace:
+#0 C:\Users\Hp\Desktop\testnew\vendor\cakephp\cakephp\src\Http\Server.php(107): Zend\Diactoros\Response\SapiStreamEmitter->emit(Object(Zend\Diactoros\Response))
+#1 C:\Users\Hp\Desktop\testnew\webroot\index.php(37): Cake\Http\Server->emit(Object(Zend\Diactoros\Response))
+#2 {main}
+
+
+2017-07-21 03:37:55 Warning: Headers already sent in C:\Users\Hp\Desktop\testnew\vendor\cakephp\cakephp\src\Error\Debugger.php:753
+2017-07-21 03:37:55 Error: [RuntimeException] Unable to emit response; headers already sent
+Request URL: /Workorders/editLaborParts?content=
+Referer URL: http://localhost:8765/Workorders/edit/387
+Stack Trace:
+#0 C:\Users\Hp\Desktop\testnew\vendor\cakephp\cakephp\src\Http\Server.php(107): Zend\Diactoros\Response\SapiStreamEmitter->emit(Object(Zend\Diactoros\Response))
+#1 C:\Users\Hp\Desktop\testnew\webroot\index.php(37): Cake\Http\Server->emit(Object(Zend\Diactoros\Response))
+#2 {main}
+
+
+2017-07-21 03:40:48 Warning: Headers already sent in C:\Users\Hp\Desktop\testnew\vendor\cakephp\cakephp\src\Error\Debugger.php:753
+2017-07-21 03:40:48 Error: [RuntimeException] Unable to emit response; headers already sent
+Request URL: /Workorders/editLaborParts?content=
+Referer URL: http://localhost:8765/Workorders/edit/387
+Stack Trace:
+#0 C:\Users\Hp\Desktop\testnew\vendor\cakephp\cakephp\src\Http\Server.php(107): Zend\Diactoros\Response\SapiStreamEmitter->emit(Object(Zend\Diactoros\Response))
+#1 C:\Users\Hp\Desktop\testnew\webroot\index.php(37): Cake\Http\Server->emit(Object(Zend\Diactoros\Response))
+#2 {main}
+
+
+2017-07-21 03:56:48 Warning: Headers already sent in C:\Users\Hp\Desktop\testnew\vendor\cakephp\cakephp\src\Error\Debugger.php:753
+2017-07-21 03:56:48 Error: [RuntimeException] Unable to emit response; headers already sent
+Request URL: /Workorders/editLaborParts?content=
+Referer URL: http://localhost:8765/Workorders/edit/387
+Stack Trace:
+#0 C:\Users\Hp\Desktop\testnew\vendor\cakephp\cakephp\src\Http\Server.php(107): Zend\Diactoros\Response\SapiStreamEmitter->emit(Object(Zend\Diactoros\Response))
+#1 C:\Users\Hp\Desktop\testnew\webroot\index.php(37): Cake\Http\Server->emit(Object(Zend\Diactoros\Response))
+#2 {main}
+
+
+2017-07-21 04:02:05 Warning: Headers already sent in C:\Users\Hp\Desktop\testnew\vendor\cakephp\cakephp\src\Error\Debugger.php:753
+2017-07-21 04:02:05 Error: [RuntimeException] Unable to emit response; headers already sent
+Request URL: /Workorders/editLaborParts?content=
+Referer URL: http://localhost:8765/Workorders/edit/387
+Stack Trace:
+#0 C:\Users\Hp\Desktop\testnew\vendor\cakephp\cakephp\src\Http\Server.php(107): Zend\Diactoros\Response\SapiStreamEmitter->emit(Object(Zend\Diactoros\Response))
+#1 C:\Users\Hp\Desktop\testnew\webroot\index.php(37): Cake\Http\Server->emit(Object(Zend\Diactoros\Response))
+#2 {main}
+
+
+2017-07-21 04:08:01 Warning: Headers already sent in C:\Users\Hp\Desktop\testnew\vendor\cakephp\cakephp\src\Error\Debugger.php:753
+2017-07-21 04:08:01 Error: [RuntimeException] Unable to emit response; headers already sent
+Request URL: /Workorders/editLaborParts?content=
+Referer URL: http://localhost:8765/Workorders/edit/387
+Stack Trace:
+#0 C:\Users\Hp\Desktop\testnew\vendor\cakephp\cakephp\src\Http\Server.php(107): Zend\Diactoros\Response\SapiStreamEmitter->emit(Object(Zend\Diactoros\Response))
+#1 C:\Users\Hp\Desktop\testnew\webroot\index.php(37): Cake\Http\Server->emit(Object(Zend\Diactoros\Response))
+#2 {main}
+
+
+2017-07-21 04:18:57 Warning: Headers already sent in C:\Users\Hp\Desktop\testnew\vendor\cakephp\cakephp\src\Error\Debugger.php:753
+2017-07-21 04:18:57 Error: [RuntimeException] Unable to emit response; headers already sent
+Request URL: /Workorders/editLaborParts?content=
+Referer URL: http://localhost:8765/Workorders/edit/387
+Stack Trace:
+#0 C:\Users\Hp\Desktop\testnew\vendor\cakephp\cakephp\src\Http\Server.php(107): Zend\Diactoros\Response\SapiStreamEmitter->emit(Object(Zend\Diactoros\Response))
+#1 C:\Users\Hp\Desktop\testnew\webroot\index.php(37): Cake\Http\Server->emit(Object(Zend\Diactoros\Response))
+#2 {main}
+
+
+2017-07-21 04:45:34 Warning: Headers already sent in C:\Users\Hp\Desktop\testnew\vendor\cakephp\cakephp\src\Error\Debugger.php:753
+2017-07-21 04:45:34 Error: [RuntimeException] Unable to emit response; headers already sent
+Request URL: /Workorders/editLaborParts?content=
+Referer URL: http://localhost:8765/Workorders/edit/387
+Stack Trace:
+#0 C:\Users\Hp\Desktop\testnew\vendor\cakephp\cakephp\src\Http\Server.php(107): Zend\Diactoros\Response\SapiStreamEmitter->emit(Object(Zend\Diactoros\Response))
+#1 C:\Users\Hp\Desktop\testnew\webroot\index.php(37): Cake\Http\Server->emit(Object(Zend\Diactoros\Response))
+#2 {main}
+
+
+2017-07-21 04:47:04 Error: Fatal Error (1): Call to a member function deleteLabourLineItems() on boolean in [C:\Users\Hp\Desktop\testnew\src\Controller\WorkordersController.php, line 837]
+Request URL: /Workorders/deleteLabourLineItems
+Referer URL: http://localhost:8765/Workorders/edit/387
+Trace:
+Cake\Error\BaseErrorHandler::handleFatalError() - CORE\src\Error\BaseErrorHandler.php, line 216
+Cake\Error\BaseErrorHandler::Cake\Error\{closure}() - CORE\src\Error\BaseErrorHandler.php, line 98
+[main] - [internal], line ??
+
+
+
+2017-07-21 04:47:04 Error: [Cake\Error\FatalErrorException] Call to a member function deleteLabourLineItems() on boolean
+Request URL: /Workorders/deleteLabourLineItems
+Referer URL: http://localhost:8765/Workorders/edit/387
+Stack Trace:
+#0 C:\Users\Hp\Desktop\testnew\vendor\cakephp\cakephp\src\Error\BaseErrorHandler.php(98): Cake\Error\BaseErrorHandler->handleFatalError(1, 'Call to a membe...', 'C:\\Users\\Hp\\Des...', 837)
+#1 [internal function]: Cake\Error\BaseErrorHandler->Cake\Error\{closure}()
+#2 {main}
+
+
+2017-07-21 04:50:53 Warning: Headers already sent in C:\Users\Hp\Desktop\testnew\vendor\cakephp\cakephp\src\Error\Debugger.php:753
+2017-07-21 04:50:53 Error: [RuntimeException] Unable to emit response; headers already sent
+Request URL: /Workorders/editLaborParts?content=
+Referer URL: http://localhost:8765/Workorders/edit/387
+Stack Trace:
+#0 C:\Users\Hp\Desktop\testnew\vendor\cakephp\cakephp\src\Http\Server.php(107): Zend\Diactoros\Response\SapiStreamEmitter->emit(Object(Zend\Diactoros\Response))
+#1 C:\Users\Hp\Desktop\testnew\webroot\index.php(37): Cake\Http\Server->emit(Object(Zend\Diactoros\Response))
+#2 {main}
+
+
+2017-07-21 04:53:56 Warning: Headers already sent in C:\Users\Hp\Desktop\testnew\vendor\cakephp\cakephp\src\Error\Debugger.php:753
+2017-07-21 04:53:56 Error: [RuntimeException] Unable to emit response; headers already sent
+Request URL: /Workorders/editLaborParts?content=
+Referer URL: http://localhost:8765/Workorders/edit/387
+Stack Trace:
+#0 C:\Users\Hp\Desktop\testnew\vendor\cakephp\cakephp\src\Http\Server.php(107): Zend\Diactoros\Response\SapiStreamEmitter->emit(Object(Zend\Diactoros\Response))
+#1 C:\Users\Hp\Desktop\testnew\webroot\index.php(37): Cake\Http\Server->emit(Object(Zend\Diactoros\Response))
+#2 {main}
+
+
+2017-07-21 05:09:37 Warning: Headers already sent in C:\Users\Hp\Desktop\testnew\vendor\cakephp\cakephp\src\Error\Debugger.php:753
+2017-07-21 05:09:37 Error: [RuntimeException] Unable to emit response; headers already sent
+Request URL: /Workorders/editLaborParts?content=
+Referer URL: http://localhost:8765/Workorders/edit/387
+Stack Trace:
+#0 C:\Users\Hp\Desktop\testnew\vendor\cakephp\cakephp\src\Http\Server.php(107): Zend\Diactoros\Response\SapiStreamEmitter->emit(Object(Zend\Diactoros\Response))
+#1 C:\Users\Hp\Desktop\testnew\webroot\index.php(37): Cake\Http\Server->emit(Object(Zend\Diactoros\Response))
+#2 {main}
+
+
+2017-07-21 05:17:02 Warning: Headers already sent in C:\Users\Hp\Desktop\testnew\vendor\cakephp\cakephp\src\Error\Debugger.php:753
+2017-07-21 05:17:02 Error: [RuntimeException] Unable to emit response; headers already sent
+Request URL: /Workorders/editLaborParts?content=
+Referer URL: http://localhost:8765/Workorders/edit/387
+Stack Trace:
+#0 C:\Users\Hp\Desktop\testnew\vendor\cakephp\cakephp\src\Http\Server.php(107): Zend\Diactoros\Response\SapiStreamEmitter->emit(Object(Zend\Diactoros\Response))
+#1 C:\Users\Hp\Desktop\testnew\webroot\index.php(37): Cake\Http\Server->emit(Object(Zend\Diactoros\Response))
+#2 {main}
+
+
+2017-07-21 05:24:33 Warning: Headers already sent in C:\Users\Hp\Desktop\testnew\vendor\cakephp\cakephp\src\Error\Debugger.php:753
+2017-07-21 05:24:33 Error: [RuntimeException] Unable to emit response; headers already sent
+Request URL: /Workorders/editLaborParts?content=
+Referer URL: http://localhost:8765/Workorders/edit/387
+Stack Trace:
+#0 C:\Users\Hp\Desktop\testnew\vendor\cakephp\cakephp\src\Http\Server.php(107): Zend\Diactoros\Response\SapiStreamEmitter->emit(Object(Zend\Diactoros\Response))
+#1 C:\Users\Hp\Desktop\testnew\webroot\index.php(37): Cake\Http\Server->emit(Object(Zend\Diactoros\Response))
+#2 {main}
+
+
+2017-07-21 06:13:02 Warning: Headers already sent in C:\Users\Hp\Desktop\testnew\vendor\cakephp\cakephp\src\Error\Debugger.php:753
+2017-07-21 06:13:02 Error: [RuntimeException] Unable to emit response; headers already sent
+Request URL: /Workorders/editLaborParts?content=
+Referer URL: http://localhost:8765/Workorders/edit/387
+Stack Trace:
+#0 C:\Users\Hp\Desktop\testnew\vendor\cakephp\cakephp\src\Http\Server.php(107): Zend\Diactoros\Response\SapiStreamEmitter->emit(Object(Zend\Diactoros\Response))
+#1 C:\Users\Hp\Desktop\testnew\webroot\index.php(37): Cake\Http\Server->emit(Object(Zend\Diactoros\Response))
+#2 {main}
+
+
+2017-07-21 06:16:00 Warning: Headers already sent in C:\Users\Hp\Desktop\testnew\vendor\cakephp\cakephp\src\Error\Debugger.php:753
+2017-07-21 06:16:00 Error: [RuntimeException] Unable to emit response; headers already sent
+Request URL: /Workorders/editLaborParts?content=
+Referer URL: http://localhost:8765/Workorders/edit/387
+Stack Trace:
+#0 C:\Users\Hp\Desktop\testnew\vendor\cakephp\cakephp\src\Http\Server.php(107): Zend\Diactoros\Response\SapiStreamEmitter->emit(Object(Zend\Diactoros\Response))
+#1 C:\Users\Hp\Desktop\testnew\webroot\index.php(37): Cake\Http\Server->emit(Object(Zend\Diactoros\Response))
+#2 {main}
+
+
+2017-07-21 06:26:00 Warning: Headers already sent in C:\Users\Hp\Desktop\testnew\vendor\cakephp\cakephp\src\Error\Debugger.php:753
+2017-07-21 06:26:00 Error: [RuntimeException] Unable to emit response; headers already sent
+Request URL: /Workorders/editLaborParts?content=
+Referer URL: http://localhost:8765/Workorders/edit/387
+Stack Trace:
+#0 C:\Users\Hp\Desktop\testnew\vendor\cakephp\cakephp\src\Http\Server.php(107): Zend\Diactoros\Response\SapiStreamEmitter->emit(Object(Zend\Diactoros\Response))
+#1 C:\Users\Hp\Desktop\testnew\webroot\index.php(37): Cake\Http\Server->emit(Object(Zend\Diactoros\Response))
+#2 {main}
+
+
+2017-07-21 06:27:34 Warning: Headers already sent in C:\Users\Hp\Desktop\testnew\vendor\cakephp\cakephp\src\Error\Debugger.php:753
+2017-07-21 06:27:34 Error: [RuntimeException] Unable to emit response; headers already sent
+Request URL: /Workorders/editLaborParts?content=
+Referer URL: http://localhost:8765/Workorders/edit/387
+Stack Trace:
+#0 C:\Users\Hp\Desktop\testnew\vendor\cakephp\cakephp\src\Http\Server.php(107): Zend\Diactoros\Response\SapiStreamEmitter->emit(Object(Zend\Diactoros\Response))
+#1 C:\Users\Hp\Desktop\testnew\webroot\index.php(37): Cake\Http\Server->emit(Object(Zend\Diactoros\Response))
+#2 {main}
+
+
+2017-07-21 06:42:15 Warning: Headers already sent in C:\Users\Hp\Desktop\testnew\vendor\cakephp\cakephp\src\Error\Debugger.php:753
+2017-07-21 06:42:15 Error: [RuntimeException] Unable to emit response; headers already sent
+Request URL: /Workorders/editLaborParts?content=
+Referer URL: http://localhost:8765/Workorders/edit/387
+Stack Trace:
+#0 C:\Users\Hp\Desktop\testnew\vendor\cakephp\cakephp\src\Http\Server.php(107): Zend\Diactoros\Response\SapiStreamEmitter->emit(Object(Zend\Diactoros\Response))
+#1 C:\Users\Hp\Desktop\testnew\webroot\index.php(37): Cake\Http\Server->emit(Object(Zend\Diactoros\Response))
+#2 {main}
+
+
+2017-07-21 07:00:01 Warning: Headers already sent in C:\Users\Hp\Desktop\testnew\vendor\cakephp\cakephp\src\Error\Debugger.php:753
+2017-07-21 07:00:01 Error: [RuntimeException] Unable to emit response; headers already sent
+Request URL: /Workorders/editLaborParts?content=
+Referer URL: http://localhost:8765/Workorders/edit/387
+Stack Trace:
+#0 C:\Users\Hp\Desktop\testnew\vendor\cakephp\cakephp\src\Http\Server.php(107): Zend\Diactoros\Response\SapiStreamEmitter->emit(Object(Zend\Diactoros\Response))
+#1 C:\Users\Hp\Desktop\testnew\webroot\index.php(37): Cake\Http\Server->emit(Object(Zend\Diactoros\Response))
+#2 {main}
+
+
+2017-07-21 07:06:00 Warning: Headers already sent in C:\Users\Hp\Desktop\testnew\vendor\cakephp\cakephp\src\Error\Debugger.php:753
+2017-07-21 07:06:00 Error: [RuntimeException] Unable to emit response; headers already sent
+Request URL: /Workorders/editLaborParts?content=
+Referer URL: http://localhost:8765/Workorders/edit/387
+Stack Trace:
+#0 C:\Users\Hp\Desktop\testnew\vendor\cakephp\cakephp\src\Http\Server.php(107): Zend\Diactoros\Response\SapiStreamEmitter->emit(Object(Zend\Diactoros\Response))
+#1 C:\Users\Hp\Desktop\testnew\webroot\index.php(37): Cake\Http\Server->emit(Object(Zend\Diactoros\Response))
+#2 {main}
+
+
+2017-07-21 07:07:50 Warning: Headers already sent in C:\Users\Hp\Desktop\testnew\vendor\cakephp\cakephp\src\Error\Debugger.php:753
+2017-07-21 07:07:50 Error: [RuntimeException] Unable to emit response; headers already sent
+Request URL: /Workorders/editLaborParts?content=
+Referer URL: http://localhost:8765/Workorders/edit/387
+Stack Trace:
+#0 C:\Users\Hp\Desktop\testnew\vendor\cakephp\cakephp\src\Http\Server.php(107): Zend\Diactoros\Response\SapiStreamEmitter->emit(Object(Zend\Diactoros\Response))
+#1 C:\Users\Hp\Desktop\testnew\webroot\index.php(37): Cake\Http\Server->emit(Object(Zend\Diactoros\Response))
+#2 {main}
+
+
+2017-07-21 09:06:17 Warning: Headers already sent in C:\Users\Hp\Desktop\testnew\vendor\cakephp\cakephp\src\Error\Debugger.php:753
+2017-07-21 09:06:17 Error: [RuntimeException] Unable to emit response; headers already sent
+Request URL: /Workorders/editLaborParts?content=
+Referer URL: http://localhost:8765/Workorders/edit/387
+Stack Trace:
+#0 C:\Users\Hp\Desktop\testnew\vendor\cakephp\cakephp\src\Http\Server.php(107): Zend\Diactoros\Response\SapiStreamEmitter->emit(Object(Zend\Diactoros\Response))
+#1 C:\Users\Hp\Desktop\testnew\webroot\index.php(37): Cake\Http\Server->emit(Object(Zend\Diactoros\Response))
+#2 {main}
+
+
+2017-07-21 09:29:30 Warning: Headers already sent in C:\Users\Hp\Desktop\testnew\vendor\cakephp\cakephp\src\Error\Debugger.php:753
+2017-07-21 09:29:30 Error: [RuntimeException] Unable to emit response; headers already sent
+Request URL: /Workorders/editLaborParts?content=
+Referer URL: http://localhost:8765/Workorders/edit/387
+Stack Trace:
+#0 C:\Users\Hp\Desktop\testnew\vendor\cakephp\cakephp\src\Http\Server.php(107): Zend\Diactoros\Response\SapiStreamEmitter->emit(Object(Zend\Diactoros\Response))
+#1 C:\Users\Hp\Desktop\testnew\webroot\index.php(37): Cake\Http\Server->emit(Object(Zend\Diactoros\Response))
+#2 {main}
+
+
+2017-07-24 04:49:48 Warning: Headers already sent in C:\Users\Hp\Desktop\testnew\vendor\cakephp\cakephp\src\Error\Debugger.php:753
+2017-07-24 04:49:48 Error: [RuntimeException] Unable to emit response; headers already sent
+Request URL: /Workorders/editLaborParts?content=
+Referer URL: http://localhost:8765/Workorders/edit/387
+Stack Trace:
+#0 C:\Users\Hp\Desktop\testnew\vendor\cakephp\cakephp\src\Http\Server.php(107): Zend\Diactoros\Response\SapiStreamEmitter->emit(Object(Zend\Diactoros\Response))
+#1 C:\Users\Hp\Desktop\testnew\webroot\index.php(37): Cake\Http\Server->emit(Object(Zend\Diactoros\Response))
+#2 {main}
+
+
+2017-07-24 04:54:27 Warning: Headers already sent in C:\Users\Hp\Desktop\testnew\vendor\cakephp\cakephp\src\Error\Debugger.php:753
+2017-07-24 04:54:27 Error: [RuntimeException] Unable to emit response; headers already sent
+Request URL: /Workorders/editLaborParts?content=
+Referer URL: http://localhost:8765/Workorders/edit/387
+Stack Trace:
+#0 C:\Users\Hp\Desktop\testnew\vendor\cakephp\cakephp\src\Http\Server.php(107): Zend\Diactoros\Response\SapiStreamEmitter->emit(Object(Zend\Diactoros\Response))
+#1 C:\Users\Hp\Desktop\testnew\webroot\index.php(37): Cake\Http\Server->emit(Object(Zend\Diactoros\Response))
+#2 {main}
+
+
+2017-07-24 06:59:33 Error: Fatal Error (4): syntax error, unexpected '$this' (T_VARIABLE) in [C:\Users\Hp\Desktop\testnew\src\Controller\WorkordersController.php, line 895]
+Request URL: /Workorders
+Trace:
+Cake\Error\BaseErrorHandler::handleFatalError() - CORE\src\Error\BaseErrorHandler.php, line 216
+Cake\Error\BaseErrorHandler::Cake\Error\{closure}() - CORE\src\Error\BaseErrorHandler.php, line 98
+[main] - [internal], line ??
+
+
+
+2017-07-24 06:59:33 Error: [Cake\Error\FatalErrorException] syntax error, unexpected '$this' (T_VARIABLE)
+Request URL: /Workorders
+Stack Trace:
+#0 C:\Users\Hp\Desktop\testnew\vendor\cakephp\cakephp\src\Error\BaseErrorHandler.php(98): Cake\Error\BaseErrorHandler->handleFatalError(4, 'syntax error, u...', 'C:\\Users\\Hp\\Des...', 895)
+#1 [internal function]: Cake\Error\BaseErrorHandler->Cake\Error\{closure}()
+#2 {main}
+
+
+2017-07-24 07:02:28 Warning: Headers already sent in C:\Users\Hp\Desktop\testnew\vendor\cakephp\cakephp\src\Error\Debugger.php:753
+2017-07-24 07:02:28 Error: [RuntimeException] Unable to emit response; headers already sent
+Request URL: /Workorders/editLaborParts?content=
+Referer URL: http://localhost:8765/Workorders/edit/387
+Stack Trace:
+#0 C:\Users\Hp\Desktop\testnew\vendor\cakephp\cakephp\src\Http\Server.php(107): Zend\Diactoros\Response\SapiStreamEmitter->emit(Object(Zend\Diactoros\Response))
+#1 C:\Users\Hp\Desktop\testnew\webroot\index.php(37): Cake\Http\Server->emit(Object(Zend\Diactoros\Response))
+#2 {main}
+
+
+2017-07-24 07:03:33 Warning: Warning (2): explode() expects parameter 2 to be string, array given in [C:\Users\Hp\Desktop\testnew\src\Controller\WorkordersController.php, line 878]
+Request URL: /Workorders/updateWorkordersAfterItemsDeletion
+Referer URL: http://localhost:8765/Workorders/edit/387
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE\src\Error\BaseErrorHandler.php, line 146
+explode - [internal], line ??
+App\Controller\WorkordersController::updateWorkordersAfterItemsDeletion() - APP/Controller\WorkordersController.php, line 878
+Cake\Controller\Controller::invokeAction() - CORE\src\Controller\Controller.php, line 435
+Cake\Http\ActionDispatcher::_invoke() - CORE\src\Http\ActionDispatcher.php, line 124
+Cake\Http\ActionDispatcher::dispatch() - CORE\src\Http\ActionDispatcher.php, line 98
+Cake\Http\BaseApplication::__invoke() - CORE\src\Http\BaseApplication.php, line 83
+Cake\Http\Runner::__invoke() - CORE\src\Http\Runner.php, line 65
+Cake\Routing\Middleware\RoutingMiddleware::__invoke() - CORE\src\Routing\Middleware\RoutingMiddleware.php, line 52
+Cake\Http\Runner::__invoke() - CORE\src\Http\Runner.php, line 65
+Cake\Routing\Middleware\AssetMiddleware::__invoke() - CORE\src\Routing\Middleware\AssetMiddleware.php, line 88
+Cake\Http\Runner::__invoke() - CORE\src\Http\Runner.php, line 65
+Cake\Error\Middleware\ErrorHandlerMiddleware::__invoke() - CORE\src\Error\Middleware\ErrorHandlerMiddleware.php, line 51
+Cake\Http\Runner::__invoke() - CORE\src\Http\Runner.php, line 65
+Cake\Http\Runner::run() - CORE\src\Http\Runner.php, line 51
+Cake\Http\Server::run() - CORE\src\Http\Server.php, line 82
+[main] - ROOT\webroot\index.php, line 37
+
+
+
+2017-07-24 07:03:33 Warning: Headers already sent in C:\Users\Hp\Desktop\testnew\vendor\cakephp\cakephp\src\Error\Debugger.php:753
+2017-07-24 07:03:33 Error: [RuntimeException] Unable to emit response; headers already sent
+Request URL: /Workorders/updateWorkordersAfterItemsDeletion
+Referer URL: http://localhost:8765/Workorders/edit/387
+Stack Trace:
+#0 C:\Users\Hp\Desktop\testnew\vendor\cakephp\cakephp\src\Http\Server.php(107): Zend\Diactoros\Response\SapiStreamEmitter->emit(Object(Zend\Diactoros\Response))
+#1 C:\Users\Hp\Desktop\testnew\webroot\index.php(37): Cake\Http\Server->emit(Object(Zend\Diactoros\Response))
+#2 {main}
+
+
+2017-07-24 07:07:25 Warning: Warning (2): explode() expects parameter 2 to be string, array given in [C:\Users\Hp\Desktop\testnew\src\Controller\WorkordersController.php, line 878]
+Request URL: /Workorders/updateWorkordersAfterItemsDeletion
+Referer URL: http://localhost:8765/Workorders/edit/387
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE\src\Error\BaseErrorHandler.php, line 146
+explode - [internal], line ??
+App\Controller\WorkordersController::updateWorkordersAfterItemsDeletion() - APP/Controller\WorkordersController.php, line 878
+Cake\Controller\Controller::invokeAction() - CORE\src\Controller\Controller.php, line 435
+Cake\Http\ActionDispatcher::_invoke() - CORE\src\Http\ActionDispatcher.php, line 124
+Cake\Http\ActionDispatcher::dispatch() - CORE\src\Http\ActionDispatcher.php, line 98
+Cake\Http\BaseApplication::__invoke() - CORE\src\Http\BaseApplication.php, line 83
+Cake\Http\Runner::__invoke() - CORE\src\Http\Runner.php, line 65
+Cake\Routing\Middleware\RoutingMiddleware::__invoke() - CORE\src\Routing\Middleware\RoutingMiddleware.php, line 52
+Cake\Http\Runner::__invoke() - CORE\src\Http\Runner.php, line 65
+Cake\Routing\Middleware\AssetMiddleware::__invoke() - CORE\src\Routing\Middleware\AssetMiddleware.php, line 88
+Cake\Http\Runner::__invoke() - CORE\src\Http\Runner.php, line 65
+Cake\Error\Middleware\ErrorHandlerMiddleware::__invoke() - CORE\src\Error\Middleware\ErrorHandlerMiddleware.php, line 51
+Cake\Http\Runner::__invoke() - CORE\src\Http\Runner.php, line 65
+Cake\Http\Runner::run() - CORE\src\Http\Runner.php, line 51
+Cake\Http\Server::run() - CORE\src\Http\Server.php, line 82
+[main] - ROOT\webroot\index.php, line 37
+
+
+
+2017-07-24 07:07:25 Warning: Headers already sent in C:\Users\Hp\Desktop\testnew\vendor\cakephp\cakephp\src\Error\Debugger.php:753
+2017-07-24 07:07:25 Error: [RuntimeException] Unable to emit response; headers already sent
+Request URL: /Workorders/updateWorkordersAfterItemsDeletion
+Referer URL: http://localhost:8765/Workorders/edit/387
+Stack Trace:
+#0 C:\Users\Hp\Desktop\testnew\vendor\cakephp\cakephp\src\Http\Server.php(107): Zend\Diactoros\Response\SapiStreamEmitter->emit(Object(Zend\Diactoros\Response))
+#1 C:\Users\Hp\Desktop\testnew\webroot\index.php(37): Cake\Http\Server->emit(Object(Zend\Diactoros\Response))
+#2 {main}
+
+
+2017-07-24 07:13:12 Warning: Warning (2): explode() expects parameter 2 to be string, array given in [C:\Users\Hp\Desktop\testnew\src\Controller\WorkordersController.php, line 878]
+Request URL: /Workorders/updateWorkordersAfterItemsDeletion
+Referer URL: http://localhost:8765/Workorders/edit/387
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE\src\Error\BaseErrorHandler.php, line 146
+explode - [internal], line ??
+App\Controller\WorkordersController::updateWorkordersAfterItemsDeletion() - APP/Controller\WorkordersController.php, line 878
+Cake\Controller\Controller::invokeAction() - CORE\src\Controller\Controller.php, line 435
+Cake\Http\ActionDispatcher::_invoke() - CORE\src\Http\ActionDispatcher.php, line 124
+Cake\Http\ActionDispatcher::dispatch() - CORE\src\Http\ActionDispatcher.php, line 98
+Cake\Http\BaseApplication::__invoke() - CORE\src\Http\BaseApplication.php, line 83
+Cake\Http\Runner::__invoke() - CORE\src\Http\Runner.php, line 65
+Cake\Routing\Middleware\RoutingMiddleware::__invoke() - CORE\src\Routing\Middleware\RoutingMiddleware.php, line 52
+Cake\Http\Runner::__invoke() - CORE\src\Http\Runner.php, line 65
+Cake\Routing\Middleware\AssetMiddleware::__invoke() - CORE\src\Routing\Middleware\AssetMiddleware.php, line 88
+Cake\Http\Runner::__invoke() - CORE\src\Http\Runner.php, line 65
+Cake\Error\Middleware\ErrorHandlerMiddleware::__invoke() - CORE\src\Error\Middleware\ErrorHandlerMiddleware.php, line 51
+Cake\Http\Runner::__invoke() - CORE\src\Http\Runner.php, line 65
+Cake\Http\Runner::run() - CORE\src\Http\Runner.php, line 51
+Cake\Http\Server::run() - CORE\src\Http\Server.php, line 82
+[main] - ROOT\webroot\index.php, line 37
+
+
+
+2017-07-24 07:13:12 Warning: Headers already sent in C:\Users\Hp\Desktop\testnew\vendor\cakephp\cakephp\src\Error\Debugger.php:753
+2017-07-24 07:13:12 Error: [RuntimeException] Unable to emit response; headers already sent
+Request URL: /Workorders/updateWorkordersAfterItemsDeletion
+Referer URL: http://localhost:8765/Workorders/edit/387
+Stack Trace:
+#0 C:\Users\Hp\Desktop\testnew\vendor\cakephp\cakephp\src\Http\Server.php(107): Zend\Diactoros\Response\SapiStreamEmitter->emit(Object(Zend\Diactoros\Response))
+#1 C:\Users\Hp\Desktop\testnew\webroot\index.php(37): Cake\Http\Server->emit(Object(Zend\Diactoros\Response))
+#2 {main}
+
+
+2017-07-24 07:17:15 Warning: Warning (2): explode() expects parameter 2 to be string, array given in [C:\Users\Hp\Desktop\testnew\src\Controller\WorkordersController.php, line 878]
+Request URL: /Workorders/updateWorkordersAfterItemsDeletion
+Referer URL: http://localhost:8765/Workorders/edit/387
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE\src\Error\BaseErrorHandler.php, line 146
+explode - [internal], line ??
+App\Controller\WorkordersController::updateWorkordersAfterItemsDeletion() - APP/Controller\WorkordersController.php, line 878
+Cake\Controller\Controller::invokeAction() - CORE\src\Controller\Controller.php, line 435
+Cake\Http\ActionDispatcher::_invoke() - CORE\src\Http\ActionDispatcher.php, line 124
+Cake\Http\ActionDispatcher::dispatch() - CORE\src\Http\ActionDispatcher.php, line 98
+Cake\Http\BaseApplication::__invoke() - CORE\src\Http\BaseApplication.php, line 83
+Cake\Http\Runner::__invoke() - CORE\src\Http\Runner.php, line 65
+Cake\Routing\Middleware\RoutingMiddleware::__invoke() - CORE\src\Routing\Middleware\RoutingMiddleware.php, line 52
+Cake\Http\Runner::__invoke() - CORE\src\Http\Runner.php, line 65
+Cake\Routing\Middleware\AssetMiddleware::__invoke() - CORE\src\Routing\Middleware\AssetMiddleware.php, line 88
+Cake\Http\Runner::__invoke() - CORE\src\Http\Runner.php, line 65
+Cake\Error\Middleware\ErrorHandlerMiddleware::__invoke() - CORE\src\Error\Middleware\ErrorHandlerMiddleware.php, line 51
+Cake\Http\Runner::__invoke() - CORE\src\Http\Runner.php, line 65
+Cake\Http\Runner::run() - CORE\src\Http\Runner.php, line 51
+Cake\Http\Server::run() - CORE\src\Http\Server.php, line 82
+[main] - ROOT\webroot\index.php, line 37
+
+
+
+2017-07-24 07:17:15 Warning: Headers already sent in C:\Users\Hp\Desktop\testnew\vendor\cakephp\cakephp\src\Error\Debugger.php:753
+2017-07-24 07:17:15 Error: [RuntimeException] Unable to emit response; headers already sent
+Request URL: /Workorders/updateWorkordersAfterItemsDeletion
+Referer URL: http://localhost:8765/Workorders/edit/387
+Stack Trace:
+#0 C:\Users\Hp\Desktop\testnew\vendor\cakephp\cakephp\src\Http\Server.php(107): Zend\Diactoros\Response\SapiStreamEmitter->emit(Object(Zend\Diactoros\Response))
+#1 C:\Users\Hp\Desktop\testnew\webroot\index.php(37): Cake\Http\Server->emit(Object(Zend\Diactoros\Response))
+#2 {main}
+
+
+2017-07-24 07:21:11 Warning: Warning (2): explode() expects parameter 2 to be string, array given in [C:\Users\Hp\Desktop\testnew\src\Controller\WorkordersController.php, line 878]
+Request URL: /Workorders/updateWorkordersAfterItemsDeletion
+Referer URL: http://localhost:8765/Workorders/edit/387
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE\src\Error\BaseErrorHandler.php, line 146
+explode - [internal], line ??
+App\Controller\WorkordersController::updateWorkordersAfterItemsDeletion() - APP/Controller\WorkordersController.php, line 878
+Cake\Controller\Controller::invokeAction() - CORE\src\Controller\Controller.php, line 435
+Cake\Http\ActionDispatcher::_invoke() - CORE\src\Http\ActionDispatcher.php, line 124
+Cake\Http\ActionDispatcher::dispatch() - CORE\src\Http\ActionDispatcher.php, line 98
+Cake\Http\BaseApplication::__invoke() - CORE\src\Http\BaseApplication.php, line 83
+Cake\Http\Runner::__invoke() - CORE\src\Http\Runner.php, line 65
+Cake\Routing\Middleware\RoutingMiddleware::__invoke() - CORE\src\Routing\Middleware\RoutingMiddleware.php, line 52
+Cake\Http\Runner::__invoke() - CORE\src\Http\Runner.php, line 65
+Cake\Routing\Middleware\AssetMiddleware::__invoke() - CORE\src\Routing\Middleware\AssetMiddleware.php, line 88
+Cake\Http\Runner::__invoke() - CORE\src\Http\Runner.php, line 65
+Cake\Error\Middleware\ErrorHandlerMiddleware::__invoke() - CORE\src\Error\Middleware\ErrorHandlerMiddleware.php, line 51
+Cake\Http\Runner::__invoke() - CORE\src\Http\Runner.php, line 65
+Cake\Http\Runner::run() - CORE\src\Http\Runner.php, line 51
+Cake\Http\Server::run() - CORE\src\Http\Server.php, line 82
+[main] - ROOT\webroot\index.php, line 37
+
+
+
+2017-07-24 07:21:11 Warning: Headers already sent in C:\Users\Hp\Desktop\testnew\vendor\cakephp\cakephp\src\Error\Debugger.php:753
+2017-07-24 07:21:11 Error: [RuntimeException] Unable to emit response; headers already sent
+Request URL: /Workorders/updateWorkordersAfterItemsDeletion
+Referer URL: http://localhost:8765/Workorders/edit/387
+Stack Trace:
+#0 C:\Users\Hp\Desktop\testnew\vendor\cakephp\cakephp\src\Http\Server.php(107): Zend\Diactoros\Response\SapiStreamEmitter->emit(Object(Zend\Diactoros\Response))
+#1 C:\Users\Hp\Desktop\testnew\webroot\index.php(37): Cake\Http\Server->emit(Object(Zend\Diactoros\Response))
+#2 {main}
+
+
+2017-07-24 07:23:49 Warning: Headers already sent in C:\Users\Hp\Desktop\testnew\vendor\cakephp\cakephp\src\Error\Debugger.php:753
+2017-07-24 07:23:49 Error: [RuntimeException] Unable to emit response; headers already sent
+Request URL: /Workorders/updateWorkordersAfterItemsDeletion
+Referer URL: http://localhost:8765/Workorders/edit/387
+Stack Trace:
+#0 C:\Users\Hp\Desktop\testnew\vendor\cakephp\cakephp\src\Http\Server.php(107): Zend\Diactoros\Response\SapiStreamEmitter->emit(Object(Zend\Diactoros\Response))
+#1 C:\Users\Hp\Desktop\testnew\webroot\index.php(37): Cake\Http\Server->emit(Object(Zend\Diactoros\Response))
+#2 {main}
+
+
+2017-07-24 07:26:36 Warning: Headers already sent in C:\Users\Hp\Desktop\testnew\vendor\cakephp\cakephp\src\Error\Debugger.php:753
+2017-07-24 07:26:36 Error: [RuntimeException] Unable to emit response; headers already sent
+Request URL: /Workorders/updateWorkordersAfterItemsDeletion
+Referer URL: http://localhost:8765/Workorders/edit/387
+Stack Trace:
+#0 C:\Users\Hp\Desktop\testnew\vendor\cakephp\cakephp\src\Http\Server.php(107): Zend\Diactoros\Response\SapiStreamEmitter->emit(Object(Zend\Diactoros\Response))
+#1 C:\Users\Hp\Desktop\testnew\webroot\index.php(37): Cake\Http\Server->emit(Object(Zend\Diactoros\Response))
+#2 {main}
+
+
+2017-07-24 07:32:14 Warning: Warning (2): explode() expects parameter 2 to be string, array given in [C:\Users\Hp\Desktop\testnew\src\Controller\WorkordersController.php, line 878]
+Request URL: /Workorders/updateWorkordersAfterItemsDeletion
+Referer URL: http://localhost:8765/Workorders/edit/387
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE\src\Error\BaseErrorHandler.php, line 146
+explode - [internal], line ??
+App\Controller\WorkordersController::updateWorkordersAfterItemsDeletion() - APP/Controller\WorkordersController.php, line 878
+Cake\Controller\Controller::invokeAction() - CORE\src\Controller\Controller.php, line 435
+Cake\Http\ActionDispatcher::_invoke() - CORE\src\Http\ActionDispatcher.php, line 124
+Cake\Http\ActionDispatcher::dispatch() - CORE\src\Http\ActionDispatcher.php, line 98
+Cake\Http\BaseApplication::__invoke() - CORE\src\Http\BaseApplication.php, line 83
+Cake\Http\Runner::__invoke() - CORE\src\Http\Runner.php, line 65
+Cake\Routing\Middleware\RoutingMiddleware::__invoke() - CORE\src\Routing\Middleware\RoutingMiddleware.php, line 52
+Cake\Http\Runner::__invoke() - CORE\src\Http\Runner.php, line 65
+Cake\Routing\Middleware\AssetMiddleware::__invoke() - CORE\src\Routing\Middleware\AssetMiddleware.php, line 88
+Cake\Http\Runner::__invoke() - CORE\src\Http\Runner.php, line 65
+Cake\Error\Middleware\ErrorHandlerMiddleware::__invoke() - CORE\src\Error\Middleware\ErrorHandlerMiddleware.php, line 51
+Cake\Http\Runner::__invoke() - CORE\src\Http\Runner.php, line 65
+Cake\Http\Runner::run() - CORE\src\Http\Runner.php, line 51
+Cake\Http\Server::run() - CORE\src\Http\Server.php, line 82
+[main] - ROOT\webroot\index.php, line 37
+
+
+
+2017-07-24 07:39:12 Warning: Warning (2): explode() expects parameter 2 to be string, array given in [C:\Users\Hp\Desktop\testnew\src\Controller\WorkordersController.php, line 878]
+Request URL: /Workorders/updateWorkordersAfterItemsDeletion
+Referer URL: http://localhost:8765/Workorders/edit/387
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE\src\Error\BaseErrorHandler.php, line 146
+explode - [internal], line ??
+App\Controller\WorkordersController::updateWorkordersAfterItemsDeletion() - APP/Controller\WorkordersController.php, line 878
+Cake\Controller\Controller::invokeAction() - CORE\src\Controller\Controller.php, line 435
+Cake\Http\ActionDispatcher::_invoke() - CORE\src\Http\ActionDispatcher.php, line 124
+Cake\Http\ActionDispatcher::dispatch() - CORE\src\Http\ActionDispatcher.php, line 98
+Cake\Http\BaseApplication::__invoke() - CORE\src\Http\BaseApplication.php, line 83
+Cake\Http\Runner::__invoke() - CORE\src\Http\Runner.php, line 65
+Cake\Routing\Middleware\RoutingMiddleware::__invoke() - CORE\src\Routing\Middleware\RoutingMiddleware.php, line 52
+Cake\Http\Runner::__invoke() - CORE\src\Http\Runner.php, line 65
+Cake\Routing\Middleware\AssetMiddleware::__invoke() - CORE\src\Routing\Middleware\AssetMiddleware.php, line 88
+Cake\Http\Runner::__invoke() - CORE\src\Http\Runner.php, line 65
+Cake\Error\Middleware\ErrorHandlerMiddleware::__invoke() - CORE\src\Error\Middleware\ErrorHandlerMiddleware.php, line 51
+Cake\Http\Runner::__invoke() - CORE\src\Http\Runner.php, line 65
+Cake\Http\Runner::run() - CORE\src\Http\Runner.php, line 51
+Cake\Http\Server::run() - CORE\src\Http\Server.php, line 82
+[main] - ROOT\webroot\index.php, line 37
+
+
+
+2017-07-24 09:23:57 Warning: Headers already sent in C:\Users\Hp\Desktop\testnew\vendor\cakephp\cakephp\src\Error\Debugger.php:753
+2017-07-24 09:23:58 Error: [RuntimeException] Unable to emit response; headers already sent
+Request URL: /Workorders/editLaborParts?content=
+Referer URL: http://localhost:8765/Workorders/edit/387
+Stack Trace:
+#0 C:\Users\Hp\Desktop\testnew\vendor\cakephp\cakephp\src\Http\Server.php(107): Zend\Diactoros\Response\SapiStreamEmitter->emit(Object(Zend\Diactoros\Response))
+#1 C:\Users\Hp\Desktop\testnew\webroot\index.php(37): Cake\Http\Server->emit(Object(Zend\Diactoros\Response))
+#2 {main}
+
+
+2017-07-24 09:28:01 Warning: Headers already sent in C:\Users\Hp\Desktop\testnew\vendor\cakephp\cakephp\src\Error\Debugger.php:753
+2017-07-24 09:28:01 Error: [RuntimeException] Unable to emit response; headers already sent
+Request URL: /Workorders/editLaborParts?content=
+Referer URL: http://localhost:8765/Workorders/edit/387
+Stack Trace:
+#0 C:\Users\Hp\Desktop\testnew\vendor\cakephp\cakephp\src\Http\Server.php(107): Zend\Diactoros\Response\SapiStreamEmitter->emit(Object(Zend\Diactoros\Response))
+#1 C:\Users\Hp\Desktop\testnew\webroot\index.php(37): Cake\Http\Server->emit(Object(Zend\Diactoros\Response))
+#2 {main}
+
+
+2017-07-24 12:01:25 Error: Workorders/add/
+2017-07-24 12:29:12 Error: Workorders/add/
+2017-07-27 06:54:29 Error: Workorders/add/
+2017-07-27 06:54:52 Warning: Headers already sent in C:\Users\Hp\Desktop\testnew\vendor\cakephp\cakephp\src\Error\Debugger.php:753
+2017-07-27 06:54:52 Error: [RuntimeException] Unable to emit response; headers already sent
+Request URL: /Workorders/addLaborParts?content=
+Referer URL: http://localhost:8765/Workorders/add/
+Stack Trace:
+#0 C:\Users\Hp\Desktop\testnew\vendor\cakephp\cakephp\src\Http\Server.php(107): Zend\Diactoros\Response\SapiStreamEmitter->emit(Object(Zend\Diactoros\Response))
+#1 C:\Users\Hp\Desktop\testnew\webroot\index.php(37): Cake\Http\Server->emit(Object(Zend\Diactoros\Response))
+#2 {main}
+
+
+2017-07-27 06:56:34 Warning: Headers already sent in C:\Users\Hp\Desktop\testnew\vendor\cakephp\cakephp\src\Error\Debugger.php:753
+2017-07-27 06:56:34 Error: [RuntimeException] Unable to emit response; headers already sent
+Request URL: /Workorders/addLaborParts?content=
+Referer URL: http://localhost:8765/Workorders/add/
+Stack Trace:
+#0 C:\Users\Hp\Desktop\testnew\vendor\cakephp\cakephp\src\Http\Server.php(107): Zend\Diactoros\Response\SapiStreamEmitter->emit(Object(Zend\Diactoros\Response))
+#1 C:\Users\Hp\Desktop\testnew\webroot\index.php(37): Cake\Http\Server->emit(Object(Zend\Diactoros\Response))
+#2 {main}
+
+
+2017-07-27 07:08:25 Error: Workorders/add/
+2017-07-27 07:08:50 Error: Workorders/add/
+2017-07-27 07:09:24 Error: Workorders/add/
+2017-07-27 07:10:57 Warning: Headers already sent in C:\Users\Hp\Desktop\testnew\vendor\cakephp\cakephp\src\Error\Debugger.php:753
+2017-07-27 07:10:57 Error: [RuntimeException] Unable to emit response; headers already sent
+Request URL: /Workorders/editLaborParts?content=
+Referer URL: http://localhost:8765/Workorders/edit/393
+Stack Trace:
+#0 C:\Users\Hp\Desktop\testnew\vendor\cakephp\cakephp\src\Http\Server.php(107): Zend\Diactoros\Response\SapiStreamEmitter->emit(Object(Zend\Diactoros\Response))
+#1 C:\Users\Hp\Desktop\testnew\webroot\index.php(37): Cake\Http\Server->emit(Object(Zend\Diactoros\Response))
+#2 {main}
+
+
+2017-07-28 10:09:05 Error: Fatal Error (4): syntax error, unexpected '' (T_ENCAPSED_AND_WHITESPACE), expecting identifier (T_STRING) or variable (T_VARIABLE) or number (T_NUM_STRING) in [C:\Users\Hp\Desktop\testnew\src\Controller\WorkordersController.php, line 810]
+Request URL: /workorders
+Referer URL: http://localhost:8765/dashboard
+Trace:
+Cake\Error\BaseErrorHandler::handleFatalError() - CORE\src\Error\BaseErrorHandler.php, line 216
+Cake\Error\BaseErrorHandler::Cake\Error\{closure}() - CORE\src\Error\BaseErrorHandler.php, line 98
+[main] - [internal], line ??
+
+
+
+2017-07-28 10:09:05 Error: [Cake\Error\FatalErrorException] syntax error, unexpected '' (T_ENCAPSED_AND_WHITESPACE), expecting identifier (T_STRING) or variable (T_VARIABLE) or number (T_NUM_STRING)
+Request URL: /workorders
+Referer URL: http://localhost:8765/dashboard
+Stack Trace:
+#0 C:\Users\Hp\Desktop\testnew\vendor\cakephp\cakephp\src\Error\BaseErrorHandler.php(98): Cake\Error\BaseErrorHandler->handleFatalError(4, 'syntax error, u...', 'C:\\Users\\Hp\\Des...', 810)
+#1 [internal function]: Cake\Error\BaseErrorHandler->Cake\Error\{closure}()
+#2 {main}
+
+
+2017-07-28 10:09:36 Error: Fatal Error (4): syntax error, unexpected '"' in [C:\Users\Hp\Desktop\testnew\src\Controller\WorkordersController.php, line 810]
+Request URL: /workorders
+Referer URL: http://localhost:8765/dashboard
+Trace:
+Cake\Error\BaseErrorHandler::handleFatalError() - CORE\src\Error\BaseErrorHandler.php, line 216
+Cake\Error\BaseErrorHandler::Cake\Error\{closure}() - CORE\src\Error\BaseErrorHandler.php, line 98
+[main] - [internal], line ??
+
+
+
+2017-07-28 10:09:36 Error: [Cake\Error\FatalErrorException] syntax error, unexpected '"'
+Request URL: /workorders
+Referer URL: http://localhost:8765/dashboard
+Stack Trace:
+#0 C:\Users\Hp\Desktop\testnew\vendor\cakephp\cakephp\src\Error\BaseErrorHandler.php(98): Cake\Error\BaseErrorHandler->handleFatalError(4, 'syntax error, u...', 'C:\\Users\\Hp\\Des...', 810)
+#1 [internal function]: Cake\Error\BaseErrorHandler->Cake\Error\{closure}()
+#2 {main}
+
+
+2017-07-28 10:13:35 Error: Workorders/add/
+2017-07-28 10:14:35 Warning: Headers already sent in C:\Users\Hp\Desktop\testnew\vendor\cakephp\cakephp\src\Error\Debugger.php:753
+2017-07-28 10:14:35 Error: [RuntimeException] Unable to emit response; headers already sent
+Request URL: /Workorders/editLaborParts?content=
+Referer URL: http://localhost:8765/Workorders/edit/394
+Stack Trace:
+#0 C:\Users\Hp\Desktop\testnew\vendor\cakephp\cakephp\src\Http\Server.php(107): Zend\Diactoros\Response\SapiStreamEmitter->emit(Object(Zend\Diactoros\Response))
+#1 C:\Users\Hp\Desktop\testnew\webroot\index.php(37): Cake\Http\Server->emit(Object(Zend\Diactoros\Response))
+#2 {main}
+
+
+2017-07-28 10:19:38 Error: Fatal Error (4): syntax error, unexpected ')' in [C:\Users\Hp\Desktop\testnew\src\Controller\WorkordersController.php, line 801]
+Request URL: /Workorders
+Trace:
+Cake\Error\BaseErrorHandler::handleFatalError() - CORE\src\Error\BaseErrorHandler.php, line 216
+Cake\Error\BaseErrorHandler::Cake\Error\{closure}() - CORE\src\Error\BaseErrorHandler.php, line 98
+[main] - [internal], line ??
+
+
+
+2017-07-28 10:19:38 Error: [Cake\Error\FatalErrorException] syntax error, unexpected ')'
+Request URL: /Workorders
+Stack Trace:
+#0 C:\Users\Hp\Desktop\testnew\vendor\cakephp\cakephp\src\Error\BaseErrorHandler.php(98): Cake\Error\BaseErrorHandler->handleFatalError(4, 'syntax error, u...', 'C:\\Users\\Hp\\Des...', 801)
+#1 [internal function]: Cake\Error\BaseErrorHandler->Cake\Error\{closure}()
+#2 {main}
+
+
+2017-07-28 10:20:03 Error: Workorders/add/
+2017-07-28 10:23:19 Error: Workorders/add/
+2017-08-01 05:13:09 Error: Workorders/add/
+2017-08-01 05:21:55 Error: Workorders/add/
+2017-08-01 06:27:57 Error: Workorders/add/
+2017-08-01 06:38:40 Error: Workorders/add/
+2017-08-01 06:49:23 Error: Workorders/add/
+2017-08-01 06:54:18 Error: Workorders/add/
+2017-08-01 07:08:09 Error: Workorders/add/
+2017-08-01 07:18:31 Error: Workorders/add/
+2017-08-01 07:21:58 Error: {
+    "id": 405,
+    "issuedate": "2017-08-13T00:00:00+00:00",
+    "workorderstatus_id": 1,
+    "vehicle_id": 118,
+    "startdate": "2017-08-08T00:00:00+00:00",
+    "lables": "",
+    "odometer": null,
+    "void": true,
+    "vendor_id": null,
+    "completiondate": null,
+    "labour": 26,
+    "parts": 114,
+    "dicount": null,
+    "tax": null,
+    "issuedby_id": null,
+    "assignedby_id": null,
+    "assignto_id": null,
+    "invoicenumber": "inv1",
+    "description": "",
+    "phonenumber": "",
+    "customer_id": 1
+}
+2017-08-01 07:21:58 Error: {
+    "id": 406,
+    "issuedate": "2017-08-14T00:00:00+00:00",
+    "workorderstatus_id": 1,
+    "vehicle_id": 116,
+    "startdate": "2017-08-08T00:00:00+00:00",
+    "lables": "",
+    "odometer": null,
+    "void": true,
+    "vendor_id": null,
+    "completiondate": null,
+    "labour": 260,
+    "parts": 1140,
+    "dicount": null,
+    "tax": null,
+    "issuedby_id": null,
+    "assignedby_id": null,
+    "assignto_id": null,
+    "invoicenumber": "inv2",
+    "description": "",
+    "phonenumber": "",
+    "customer_id": 1
+}
+2017-08-01 08:27:06 Error: Workorders/add/
+2017-08-01 08:28:08 Error: Workorders/add/
+2017-08-01 08:28:34 Error: Workorders/add/
+2017-08-01 08:29:25 Error: Workorders/add/
+2017-08-01 08:29:40 Error: Workorders/add/
+2017-08-01 08:31:55 Error: Workorders/add/
+2017-08-01 08:32:37 Error: Workorders/add/
+2017-08-01 08:46:22 Error: Workorders/add/
+2017-08-01 08:53:49 Error: Workorders/add/
+2017-08-01 08:55:06 Error: Workorders/add/
+2017-08-01 09:06:50 Error: Workorders/add/
+2017-08-01 09:07:58 Error: Workorders/add/
+2017-08-01 09:08:20 Error: Workorders/add/
+2017-08-01 09:08:49 Error: Workorders/add/
+2017-08-01 09:24:23 Error: Workorders/add/
+2017-08-01 09:28:17 Error: Workorders/add/
+2017-08-01 09:31:20 Error: Workorders/add/
+2017-08-01 09:40:41 Error: Workorders/add/
+2017-08-01 11:31:04 Error: Workorders/add/
+2017-08-01 12:57:39 Error: Workorders/add/
+2017-08-02 03:56:18 Warning: Headers already sent in C:\Users\Hp\Desktop\testnew\vendor\cakephp\cakephp\src\Error\Debugger.php:753
+2017-08-02 03:56:18 Error: [RuntimeException] Unable to emit response; headers already sent
+Request URL: /Workorders/editLaborParts?content=
+Referer URL: http://localhost:8765/Workorders/edit/419
+Stack Trace:
+#0 C:\Users\Hp\Desktop\testnew\vendor\cakephp\cakephp\src\Http\Server.php(107): Zend\Diactoros\Response\SapiStreamEmitter->emit(Object(Zend\Diactoros\Response))
+#1 C:\Users\Hp\Desktop\testnew\webroot\index.php(37): Cake\Http\Server->emit(Object(Zend\Diactoros\Response))
+#2 {main}
+
+
+2017-08-02 05:46:56 Error: Workorders/add/
+2017-08-02 06:46:28 Error: Workorders/add/
+2017-08-02 06:46:54 Error: Workorders/add/
+2017-08-02 06:47:38 Error: Workorders/add/
+2017-08-02 06:47:53 Error: Workorders/add/
+2017-08-02 06:48:44 Error: Workorders/add/
+2017-08-02 07:06:53 Error: Workorders/add/
+2017-08-02 07:11:12 Error: Workorders/add/
+2017-08-02 07:16:57 Error: Workorders/add/
+2017-08-02 07:25:40 Error: Workorders/add/
+2017-08-02 07:27:36 Error: Workorders/add/
+2017-08-02 07:27:47 Error: Workorders/add/
+2017-08-02 07:28:45 Error: Workorders/add/
+2017-08-02 07:30:51 Error: Workorders/add/
+2017-08-02 07:32:52 Error: Workorders/add/
+2017-08-02 07:35:24 Error: Workorders/add/
+2017-08-02 09:18:49 Error: Workorders/add/
+2017-08-02 09:21:13 Error: Workorders/add/
+2017-08-02 10:36:12 Error: Workorders/add/
+2017-08-02 10:36:59 Error: Workorders/add/
+2017-08-03 03:14:23 Error: Servicesentries/add/13
+2017-08-03 03:14:36 Error: Workorders/add/
+2017-08-03 03:25:58 Error: Workorders/add/
+2017-08-03 03:26:46 Error: Workorders/add/
+2017-08-03 03:44:20 Error: Workorders/add/
+2017-08-03 03:46:03 Error: Workorders/add/
+2017-08-03 03:51:21 Error: Workorders/add/
+2017-08-03 03:51:41 Error: Workorders/add/
+2017-08-03 03:53:49 Error: Workorders/add/
+2017-08-03 03:55:07 Error: Workorders/add/
+2017-08-03 03:55:58 Error: Workorders/add/
+2017-08-03 04:14:08 Error: Workorders/add/
+2017-08-03 04:51:21 Error: Workorders/add/
+2017-08-03 05:02:55 Error: Workorders/add/
+2017-08-03 05:04:07 Error: Workorders/add/
+2017-08-03 05:12:24 Error: Workorders/add/
+2017-08-03 05:15:47 Error: Workorders/add/
+2017-08-03 05:19:49 Error: Workorders/add/
+2017-08-03 05:26:06 Error: Workorders/add/
+2017-08-03 05:28:51 Error: Workorders/add/
+2017-08-03 05:33:00 Error: Workorders/add/
+2017-08-03 06:33:54 Error: Workorders/add/
+2017-08-03 06:44:49 Error: Workorders/add/
+2017-08-03 06:49:41 Error: Workorders/add/
+2017-08-03 06:58:10 Error: Workorders/add/
+2017-08-03 06:59:19 Error: Workorders/add/
+2017-08-03 07:18:50 Error: Workorders/add/
+2017-08-03 07:23:45 Error: Workorders/add/
+2017-08-03 07:25:24 Error: Workorders/add/
+2017-08-03 07:28:12 Error: Workorders/add/
+2017-08-03 07:29:47 Error: Workorders/add/
+2017-08-03 07:32:06 Error: Workorders/add/
+2017-08-03 07:33:37 Error: Workorders/add/
+2017-08-03 07:34:01 Error: Workorders/add/
+2017-08-03 07:34:50 Error: Workorders/add/
+2017-08-03 07:35:29 Error: Workorders/add/
+2017-08-03 07:35:51 Error: Workorders/add/
+2017-08-03 07:37:00 Error: Workorders/add/
+2017-08-03 07:37:44 Error: Workorders/add/
+2017-08-03 07:38:49 Error: Workorders/add/
+2017-08-03 07:39:09 Error: Workorders/add/
+2017-08-03 07:40:16 Error: Workorders/add/
+2017-08-03 07:41:41 Error: Workorders/add/
+2017-08-03 07:42:01 Error: Workorders/add/
+2017-08-03 08:44:20 Error: Workorders/add/
+2017-08-03 08:47:23 Error: Workorders/add/
+2017-08-03 09:19:30 Error: Workorders/add/
+2017-08-03 09:22:42 Error: Workorders/add/
+2017-08-03 09:24:36 Error: Workorders/add/
+2017-08-03 09:30:51 Error: Workorders/add/
+2017-08-03 09:32:11 Error: Workorders/add/
+2017-08-03 09:32:41 Error: Workorders/add/
+2017-08-03 09:35:04 Error: Workorders/add/
+2017-08-03 09:35:55 Error: Workorders/add/
+2017-08-03 09:36:21 Error: Workorders/add/
+2017-08-03 09:37:54 Error: Workorders/add/
+2017-08-03 09:38:48 Error: Workorders/add/
+2017-08-03 09:41:05 Error: Workorders/add/
+2017-08-03 09:41:42 Error: Workorders/add/
+2017-08-03 09:43:45 Error: Workorders/add/
+2017-08-03 09:44:46 Error: Workorders/add/
+2017-08-03 09:46:28 Error: Workorders/add/
+2017-08-03 09:47:03 Error: Workorders/add/
+2017-08-03 09:48:44 Error: Workorders/add/
+2017-08-03 09:49:20 Error: Workorders/add/
+2017-08-03 09:52:24 Error: Workorders/add/
+2017-08-03 09:59:44 Error: Workorders/add/
+2017-08-03 10:09:54 Error: Workorders/add/
+2017-08-03 10:17:59 Error: Workorders/add/
+2017-08-03 11:31:24 Error: Workorders/add/
+2017-08-03 11:51:34 Error: Workorders/add/
+2017-08-03 11:53:53 Error: Workorders/add/
+2017-08-03 11:54:59 Error: Workorders/add/
+2017-08-03 11:57:54 Error: Workorders/add/
+2017-08-03 12:00:07 Error: Workorders/add/
+2017-08-03 12:02:48 Error: Workorders/add/
+2017-08-04 03:13:09 Error: Servicesentries/add/13
+2017-08-04 03:17:04 Error: Workorders/add/
+2017-08-04 03:18:42 Error: Workorders/add/
+2017-08-04 03:19:15 Error: Workorders/add/
+2017-08-04 03:22:16 Error: Workorders/add/
+2017-08-04 03:25:53 Error: Workorders/add/
+2017-08-04 03:27:37 Error: Workorders/add/
+2017-08-04 03:28:59 Error: Workorders/add/
+2017-08-04 03:29:30 Error: Workorders/add/
+2017-08-04 03:30:05 Error: Workorders/add/
+2017-08-04 03:34:43 Error: Workorders/add/
+2017-08-04 03:36:40 Error: Workorders/add/
+2017-08-04 03:36:49 Error: Workorders/add/
+2017-08-04 03:42:07 Error: Workorders/add/
+2017-08-04 03:43:13 Error: Workorders/add/
+2017-08-04 03:44:14 Error: Workorders/add/
+2017-08-04 03:45:39 Error: Workorders/add/
+2017-08-04 03:46:24 Error: Workorders/add/
+2017-08-04 03:48:12 Error: Workorders/add/
+2017-08-04 03:48:17 Error: Workorders/add/
+2017-08-04 03:49:25 Error: Workorders/add/
+2017-08-04 03:50:50 Error: Workorders/add/
+2017-08-04 03:52:10 Error: Workorders/add/
+2017-08-04 03:53:35 Error: Workorders/add/
+2017-08-04 03:54:44 Error: Workorders/add/
+2017-08-04 03:59:43 Error: Workorders/add/
+2017-08-04 05:21:26 Error: Workorders/add/
+2017-08-04 05:25:48 Error: Workorders/add/
+2017-08-04 05:29:43 Error: Workorders/add/
+2017-08-04 05:31:57 Error: Workorders/add/
+2017-08-04 05:32:52 Error: Workorders/add/
+2017-08-04 05:34:26 Error: Workorders/add/
+2017-08-04 07:34:43 Error: Workorders/add/
+2017-08-04 07:36:14 Error: Workorders/add/
+2017-08-04 08:11:23 Error: Workorders/add/
+2017-08-04 08:12:08 Error: Workorders/add/
+2017-08-04 08:14:21 Error: Workorders/add/
+2017-08-04 08:14:53 Error: Workorders/add/
+2017-08-04 08:15:26 Error: Workorders/add/
+2017-08-04 08:16:12 Error: Workorders/add/
+2017-08-04 08:17:06 Error: Workorders/add/
+2017-08-04 08:18:12 Error: Workorders/add/
+2017-08-04 09:09:34 Error: Workorders/add/
+2017-08-04 09:15:27 Error: Workorders/add/
+2017-08-04 09:26:22 Error: Workorders/add/
+2017-08-04 09:26:52 Error: Workorders/add/
+2017-08-04 09:27:39 Error: Workorders/add/
+2017-08-04 09:28:42 Error: Workorders/add/
+2017-08-04 09:29:01 Error: Workorders/add/
+2017-08-04 09:29:52 Error: Workorders/add/
+2017-08-04 09:33:11 Error: Workorders/add/
+2017-08-04 10:18:43 Error: Workorders/add/
+2017-08-04 10:20:45 Error: Workorders/add/
+2017-08-07 05:38:33 Error: Workorders/add/
+2017-08-07 05:40:44 Error: Workorders/add/
+2017-08-07 05:44:13 Error: Workorders/add/
+2017-08-07 05:51:08 Error: Workorders/add/
+2017-08-07 05:56:08 Error: Workorders/add/
+2017-08-07 06:00:10 Error: Workorders/add/
+2017-08-07 06:11:09 Error: Workorders/add/
+2017-08-07 06:13:05 Error: Workorders/add/
+2017-08-07 06:14:47 Error: Workorders/add/
+2017-08-07 06:16:31 Error: Workorders/add/
+2017-08-07 06:17:28 Error: Workorders/add/
+2017-08-07 06:25:02 Error: Workorders/add/
+2017-08-07 06:26:26 Error: Workorders/add/
+2017-08-07 06:29:20 Error: Workorders/add/
+2017-08-07 06:31:18 Error: Workorders/add/
+2017-08-07 06:48:31 Error: Workorders/add/
+2017-08-07 06:52:07 Error: Workorders/add/
+2017-08-07 06:54:05 Error: Workorders/add/
+2017-08-07 07:00:24 Error: Workorders/add/
+2017-08-07 07:01:20 Error: Workorders/add/
+2017-08-07 07:04:40 Error: Workorders/add/
+2017-08-07 07:05:10 Error: Workorders/add/
+2017-08-07 07:12:38 Error: Workorders/add/
+2017-08-07 07:17:02 Error: Workorders/add/
+2017-08-07 07:19:03 Error: Workorders/add/
+2017-08-07 07:35:00 Error: Workorders/add/
+2017-08-07 09:07:27 Error: Workorders/add/
+2017-08-07 09:17:37 Error: Workorders/add/
+2017-08-07 09:23:42 Error: Workorders/add/
+2017-08-07 09:23:57 Error: Workorders/add/
+2017-08-07 09:24:25 Error: Workorders/add/
+2017-08-07 09:39:37 Error: Workorders/add/
+2017-08-07 09:59:13 Error: Workorders/add/
+2017-08-07 10:00:11 Error: Workorders/add/
+2017-08-07 10:00:18 Error: Workorders/add/
+2017-08-07 10:02:31 Error: Workorders/add/
+2017-08-07 10:04:27 Error: Workorders/add/
+2017-08-07 10:06:44 Error: Workorders/add/
+2017-08-07 10:09:49 Error: Workorders/add/
+2017-08-07 10:10:01 Error: Workorders/add/
+2017-08-07 10:10:31 Error: Workorders/add/
+2017-08-07 10:10:34 Error: Workorders/add/
+2017-08-07 11:18:16 Error: Workorders/add/
+2017-08-07 11:27:48 Error: Workorders/add/
+2017-08-07 11:38:49 Error: Workorders/add/
+2017-08-07 11:50:05 Error: Workorders/add/
+2017-08-07 11:51:03 Error: Workorders/add/
+2017-08-07 11:54:52 Error: Workorders/add/
+2017-08-07 11:56:38 Error: Workorders/add/
+2017-08-07 12:04:47 Error: Workorders/add/
+2017-08-07 12:17:48 Error: Workorders/add/
+2017-08-07 12:23:35 Error: Workorders/add/
+2017-08-07 12:29:34 Error: Workorders/add/
+2017-08-07 12:31:49 Error: Workorders/add/
+2017-08-07 12:44:12 Error: Workorders/add/
+2017-08-08 03:31:45 Error: Workorders/add/
+2017-08-08 06:07:38 Error: Workorders/add/
+2017-08-08 06:24:53 Error: Workorders/add/
+2017-08-08 06:31:56 Error: Workorders/add/
+2017-08-08 06:32:31 Warning: Headers already sent in C:\Users\Hp\Desktop\testnew\vendor\cakephp\cakephp\src\Error\Debugger.php:753
+2017-08-08 06:32:31 Error: [RuntimeException] Unable to emit response; headers already sent
+Request URL: /Workorders/addLaborParts?content=
+Referer URL: http://localhost:8765/Workorders/add/
+Stack Trace:
+#0 C:\Users\Hp\Desktop\testnew\vendor\cakephp\cakephp\src\Http\Server.php(107): Zend\Diactoros\Response\SapiStreamEmitter->emit(Object(Zend\Diactoros\Response))
+#1 C:\Users\Hp\Desktop\testnew\webroot\index.php(37): Cake\Http\Server->emit(Object(Zend\Diactoros\Response))
+#2 {main}
+
+
+2017-08-08 06:46:50 Error: Workorders/add/
+2017-08-08 06:54:43 Error: Workorders/add/
+2017-08-08 06:55:47 Warning: Headers already sent in C:\Users\Hp\Desktop\testnew\vendor\cakephp\cakephp\src\Error\Debugger.php:753
+2017-08-08 06:55:47 Error: [RuntimeException] Unable to emit response; headers already sent
+Request URL: /Workorders/addLaborParts?content=servicetask%5Elabor%5E1%5E1%5E50%5E4%5E4235%5E1%2Cservicetask%5Epart%5E1%5E7%5E150%5E2%5E42325%5E2
+Referer URL: http://localhost:8765/Workorders/add/
+Stack Trace:
+#0 C:\Users\Hp\Desktop\testnew\vendor\cakephp\cakephp\src\Http\Server.php(107): Zend\Diactoros\Response\SapiStreamEmitter->emit(Object(Zend\Diactoros\Response))
+#1 C:\Users\Hp\Desktop\testnew\webroot\index.php(37): Cake\Http\Server->emit(Object(Zend\Diactoros\Response))
+#2 {main}
+
+
+2017-08-08 06:59:20 Error: Workorders/add/
+2017-08-08 07:00:47 Error: Workorders/add/
+2017-08-08 07:01:45 Warning: Headers already sent in C:\Users\Hp\Desktop\testnew\vendor\cakephp\cakephp\src\Error\Debugger.php:753
+2017-08-08 07:01:45 Error: [RuntimeException] Unable to emit response; headers already sent
+Request URL: /Workorders/addLaborParts?content=servicetask%5Elabor%5E1%5E1%5E2%5E3%5E4242%5E1%2Cservicetask%5Epart%5E2%5E7%5E3%5E4%5E4243%5E1
+Referer URL: http://localhost:8765/Workorders/add/
+Stack Trace:
+#0 C:\Users\Hp\Desktop\testnew\vendor\cakephp\cakephp\src\Http\Server.php(107): Zend\Diactoros\Response\SapiStreamEmitter->emit(Object(Zend\Diactoros\Response))
+#1 C:\Users\Hp\Desktop\testnew\webroot\index.php(37): Cake\Http\Server->emit(Object(Zend\Diactoros\Response))
+#2 {main}
+
+
+2017-08-08 07:04:25 Error: Workorders/add/
+2017-08-08 07:05:05 Warning: Headers already sent in C:\Users\Hp\Desktop\testnew\vendor\cakephp\cakephp\src\Error\Debugger.php:753
+2017-08-08 07:05:05 Error: [RuntimeException] Unable to emit response; headers already sent
+Request URL: /Workorders/addLaborParts?content=servicetask%5Elabor%5E2%5E3%5E4%5E5%5E4256%5E1
+Referer URL: http://localhost:8765/Workorders/add/
+Stack Trace:
+#0 C:\Users\Hp\Desktop\testnew\vendor\cakephp\cakephp\src\Http\Server.php(107): Zend\Diactoros\Response\SapiStreamEmitter->emit(Object(Zend\Diactoros\Response))
+#1 C:\Users\Hp\Desktop\testnew\webroot\index.php(37): Cake\Http\Server->emit(Object(Zend\Diactoros\Response))
+#2 {main}
+
+
+2017-08-08 07:09:21 Error: Workorders/add/
+2017-08-08 07:10:00 Warning: Headers already sent in C:\Users\Hp\Desktop\testnew\vendor\cakephp\cakephp\src\Error\Debugger.php:753
+2017-08-08 07:10:00 Error: [RuntimeException] Unable to emit response; headers already sent
+Request URL: /Workorders/addLaborParts?content=servicetask%5Elabor%5E1%5E1%5E3%5E4%5E426%2Cservicetask%5Epart%5E7%5E12%5E5%5E4%5E426
+Referer URL: http://localhost:8765/Workorders/add/
+Stack Trace:
+#0 C:\Users\Hp\Desktop\testnew\vendor\cakephp\cakephp\src\Http\Server.php(107): Zend\Diactoros\Response\SapiStreamEmitter->emit(Object(Zend\Diactoros\Response))
+#1 C:\Users\Hp\Desktop\testnew\webroot\index.php(37): Cake\Http\Server->emit(Object(Zend\Diactoros\Response))
+#2 {main}
+
+
+2017-08-08 07:13:47 Error: Workorders/add/
+2017-08-08 07:16:47 Warning: Headers already sent in C:\Users\Hp\Desktop\testnew\vendor\cakephp\cakephp\src\Error\Debugger.php:753
+2017-08-08 07:16:47 Error: [RuntimeException] Unable to emit response; headers already sent
+Request URL: /Workorders/addLaborParts?content=servicetask%5Elabor%5E1%5E1%5E5%5E5%5E4276%5E1%2Cservicetask%5Epart%5E1%5E12%5E4%5E4%5E4275%5E1
+Referer URL: http://localhost:8765/Workorders/add/
+Stack Trace:
+#0 C:\Users\Hp\Desktop\testnew\vendor\cakephp\cakephp\src\Http\Server.php(107): Zend\Diactoros\Response\SapiStreamEmitter->emit(Object(Zend\Diactoros\Response))
+#1 C:\Users\Hp\Desktop\testnew\webroot\index.php(37): Cake\Http\Server->emit(Object(Zend\Diactoros\Response))
+#2 {main}
+
+
+2017-08-08 07:18:40 Error: Workorders/add/
+2017-08-08 09:06:42 Error: Workorders/add/
+2017-08-09 04:50:20 Error: Workorders/add/
+2017-08-09 05:16:13 Error: Workorders/add/
+2017-08-09 07:22:19 Warning: Headers already sent in C:\Users\Hp\Desktop\testnew\vendor\cakephp\cakephp\src\Error\Debugger.php:753
+2017-08-09 07:22:19 Error: [RuntimeException] Unable to emit response; headers already sent
+Request URL: /Workorders/editLaborParts?content=servicetask%5Elabor%5E1%5E1%5E100%5E20%5E429%5E412%5E1089%5E5NaN1%2Cservicetask%5Epart%5E2%5E7%5E4%5E9%5E429%5E413%5E177%5E2NaN1
+Referer URL: http://localhost:8765/Workorders/edit/429
+Stack Trace:
+#0 C:\Users\Hp\Desktop\testnew\vendor\cakephp\cakephp\src\Http\Server.php(107): Zend\Diactoros\Response\SapiStreamEmitter->emit(Object(Zend\Diactoros\Response))
+#1 C:\Users\Hp\Desktop\testnew\webroot\index.php(37): Cake\Http\Server->emit(Object(Zend\Diactoros\Response))
+#2 {main}
+
+
+2017-08-09 07:27:13 Warning: Headers already sent in C:\Users\Hp\Desktop\testnew\vendor\cakephp\cakephp\src\Error\Debugger.php:753
+2017-08-09 07:27:13 Error: [RuntimeException] Unable to emit response; headers already sent
+Request URL: /Workorders/editLaborParts?content=servicetask%5Elabor%5E1%5E1%5E100%5E5%5E429%5E412%5E1089%5E25NaN2%2Cservicetask%5Epart%5E2%5E7%5E4%5E9%5E429%5E413%5E177%5E2NaN1
+Referer URL: http://localhost:8765/Workorders/edit/429
+Stack Trace:
+#0 C:\Users\Hp\Desktop\testnew\vendor\cakephp\cakephp\src\Http\Server.php(107): Zend\Diactoros\Response\SapiStreamEmitter->emit(Object(Zend\Diactoros\Response))
+#1 C:\Users\Hp\Desktop\testnew\webroot\index.php(37): Cake\Http\Server->emit(Object(Zend\Diactoros\Response))
+#2 {main}
+
+
+2017-08-09 07:29:05 Warning: Headers already sent in C:\Users\Hp\Desktop\testnew\vendor\cakephp\cakephp\src\Error\Debugger.php:753
+2017-08-09 07:29:05 Error: [RuntimeException] Unable to emit response; headers already sent
+Request URL: /Workorders/editLaborParts?content=servicetask%5Elabor%5E1%5E1%5E100%5E5%5E429%5E412%5E1089%5E25NaN2%2Cservicetask%5Epart%5E2%5E7%5E4%5E9%5E429%5E413%5E177%5E2NaN1
+Referer URL: http://localhost:8765/Workorders/edit/429
+Stack Trace:
+#0 C:\Users\Hp\Desktop\testnew\vendor\cakephp\cakephp\src\Http\Server.php(107): Zend\Diactoros\Response\SapiStreamEmitter->emit(Object(Zend\Diactoros\Response))
+#1 C:\Users\Hp\Desktop\testnew\webroot\index.php(37): Cake\Http\Server->emit(Object(Zend\Diactoros\Response))
+#2 {main}
+
+
+2017-08-09 07:34:35 Warning: Headers already sent in C:\Users\Hp\Desktop\testnew\vendor\cakephp\cakephp\src\Error\Debugger.php:753
+2017-08-09 07:34:35 Error: [RuntimeException] Unable to emit response; headers already sent
+Request URL: /Workorders/editLaborParts?content=servicetask%5Elabor%5E1%5E1%5E100%5E5%5E429%5E412%5E1089%5E25NaN2%2Cservicetask%5Epart%5E2%5E7%5E4%5E9%5E429%5E413%5E177%5E2NaN1
+Referer URL: http://localhost:8765/Workorders/edit/429
+Stack Trace:
+#0 C:\Users\Hp\Desktop\testnew\vendor\cakephp\cakephp\src\Http\Server.php(107): Zend\Diactoros\Response\SapiStreamEmitter->emit(Object(Zend\Diactoros\Response))
+#1 C:\Users\Hp\Desktop\testnew\webroot\index.php(37): Cake\Http\Server->emit(Object(Zend\Diactoros\Response))
+#2 {main}
+
+
+2017-08-09 07:37:01 Warning: Headers already sent in C:\Users\Hp\Desktop\testnew\vendor\cakephp\cakephp\src\Error\Debugger.php:753
+2017-08-09 07:37:01 Error: [RuntimeException] Unable to emit response; headers already sent
+Request URL: /Workorders/editLaborParts?content=servicetask%5Elabor%5E1%5E1%5E10%5E5%5E429%5E412%5E1089%5E3NaN1%2Cservicetask%5Epart%5E2%5E7%5E4%5E9%5E429%5E413%5E177%5E2NaN1
+Referer URL: http://localhost:8765/Workorders/edit/429
+Stack Trace:
+#0 C:\Users\Hp\Desktop\testnew\vendor\cakephp\cakephp\src\Http\Server.php(107): Zend\Diactoros\Response\SapiStreamEmitter->emit(Object(Zend\Diactoros\Response))
+#1 C:\Users\Hp\Desktop\testnew\webroot\index.php(37): Cake\Http\Server->emit(Object(Zend\Diactoros\Response))
+#2 {main}
+
+
+2017-08-09 07:38:27 Warning: Headers already sent in C:\Users\Hp\Desktop\testnew\vendor\cakephp\cakephp\src\Error\Debugger.php:753
+2017-08-09 07:38:27 Error: [RuntimeException] Unable to emit response; headers already sent
+Request URL: /Workorders/editLaborParts?content=servicetask%5Elabor%5E1%5E1%5E20%5E5%5E429%5E412%5E1089%5E5NaN2%2Cservicetask%5Epart%5E2%5E7%5E4%5E9%5E429%5E413%5E177%5E2NaN1
+Referer URL: http://localhost:8765/Workorders/edit/429
+Stack Trace:
+#0 C:\Users\Hp\Desktop\testnew\vendor\cakephp\cakephp\src\Http\Server.php(107): Zend\Diactoros\Response\SapiStreamEmitter->emit(Object(Zend\Diactoros\Response))
+#1 C:\Users\Hp\Desktop\testnew\webroot\index.php(37): Cake\Http\Server->emit(Object(Zend\Diactoros\Response))
+#2 {main}
+
+
+2017-08-09 07:38:56 Warning: Headers already sent in C:\Users\Hp\Desktop\testnew\vendor\cakephp\cakephp\src\Error\Debugger.php:753
+2017-08-09 07:38:56 Error: [RuntimeException] Unable to emit response; headers already sent
+Request URL: /Workorders/editLaborParts?content=servicetask%5Elabor%5E1%5E1%5E10%5E5%5E429%5E412%5E1089%5E5%5E2%2Cservicetask%5Epart%5E2%5E7%5E4%5E9%5E429%5E413%5E177%5E2NaN1
+Referer URL: http://localhost:8765/Workorders/edit/429
+Stack Trace:
+#0 C:\Users\Hp\Desktop\testnew\vendor\cakephp\cakephp\src\Http\Server.php(107): Zend\Diactoros\Response\SapiStreamEmitter->emit(Object(Zend\Diactoros\Response))
+#1 C:\Users\Hp\Desktop\testnew\webroot\index.php(37): Cake\Http\Server->emit(Object(Zend\Diactoros\Response))
+#2 {main}
+
+
+2017-08-09 08:54:55 Warning: Headers already sent in C:\Users\Hp\Desktop\testnew\vendor\cakephp\cakephp\src\Error\Debugger.php:753
+2017-08-09 08:54:55 Error: [RuntimeException] Unable to emit response; headers already sent
+Request URL: /Workorders/editLaborParts?content=servicetask%5Elabor%5E1%5E1%5E10%5E5%5E429%5E412%5E1089%5E5%5E1%2Cservicetask%5Epart%5E2%5E7%5E4%5E9%5E429%5E413%5E177%5E2NaN1
+Referer URL: http://localhost:8765/Workorders/edit/429
+Stack Trace:
+#0 C:\Users\Hp\Desktop\testnew\vendor\cakephp\cakephp\src\Http\Server.php(107): Zend\Diactoros\Response\SapiStreamEmitter->emit(Object(Zend\Diactoros\Response))
+#1 C:\Users\Hp\Desktop\testnew\webroot\index.php(37): Cake\Http\Server->emit(Object(Zend\Diactoros\Response))
+#2 {main}
+
+
+2017-08-09 08:55:33 Warning: Headers already sent in C:\Users\Hp\Desktop\testnew\vendor\cakephp\cakephp\src\Error\Debugger.php:753
+2017-08-09 08:55:33 Error: [RuntimeException] Unable to emit response; headers already sent
+Request URL: /Workorders/editLaborParts?content=servicetask%5Elabor%5E1%5E1%5E10%5E6%5E429%5E412%5E1089%5E7%5E1%2Cservicetask%5Epart%5E2%5E7%5E4%5E9%5E429%5E413%5E177%5E2NaN1
+Referer URL: http://localhost:8765/Workorders/edit/429
+Stack Trace:
+#0 C:\Users\Hp\Desktop\testnew\vendor\cakephp\cakephp\src\Http\Server.php(107): Zend\Diactoros\Response\SapiStreamEmitter->emit(Object(Zend\Diactoros\Response))
+#1 C:\Users\Hp\Desktop\testnew\webroot\index.php(37): Cake\Http\Server->emit(Object(Zend\Diactoros\Response))
+#2 {main}
+
+
+2017-08-09 08:59:39 Warning: Headers already sent in C:\Users\Hp\Desktop\testnew\vendor\cakephp\cakephp\src\Error\Debugger.php:753
+2017-08-09 08:59:39 Error: [RuntimeException] Unable to emit response; headers already sent
+Request URL: /Workorders/editLaborParts?content=servicetask%5Elabor%5E1%5E1%5E10%5E6%5E429%5E412%5E1089%5E7%5E1%2Cservicetask%5Epart%5E2%5E7%5E40%5E10%5E429%5E413%5E177%5E35NaN2
+Referer URL: http://localhost:8765/Workorders/edit/429
+Stack Trace:
+#0 C:\Users\Hp\Desktop\testnew\vendor\cakephp\cakephp\src\Http\Server.php(107): Zend\Diactoros\Response\SapiStreamEmitter->emit(Object(Zend\Diactoros\Response))
+#1 C:\Users\Hp\Desktop\testnew\webroot\index.php(37): Cake\Http\Server->emit(Object(Zend\Diactoros\Response))
+#2 {main}
+
+
+2017-08-09 09:23:18 Warning: Headers already sent in C:\Users\Hp\Desktop\testnew\vendor\cakephp\cakephp\src\Error\Debugger.php:753
+2017-08-09 09:23:18 Error: [RuntimeException] Unable to emit response; headers already sent
+Request URL: /Workorders/editLaborParts?content=servicetask%5Elabor%5E1%5E1%5E10%5E6%5E429%5E412%5E1089%5E7%5E1%2Cservicetask%5Epart%5E2%5E7%5E4%5E9%5E429%5E413%5E177%5E2NaN1
+Referer URL: http://localhost:8765/Workorders/edit/429
+Stack Trace:
+#0 C:\Users\Hp\Desktop\testnew\vendor\cakephp\cakephp\src\Http\Server.php(107): Zend\Diactoros\Response\SapiStreamEmitter->emit(Object(Zend\Diactoros\Response))
+#1 C:\Users\Hp\Desktop\testnew\webroot\index.php(37): Cake\Http\Server->emit(Object(Zend\Diactoros\Response))
+#2 {main}
+
+
+2017-08-09 09:32:59 Warning: Headers already sent in C:\Users\Hp\Desktop\testnew\vendor\cakephp\cakephp\src\Error\Debugger.php:753
+2017-08-09 09:32:59 Error: [RuntimeException] Unable to emit response; headers already sent
+Request URL: /Workorders/editLaborParts?content=servicetask%5Elabor%5E1%5E1%5E10%5E6%5E429%5E412%5E1089%5E7%5E1%2Cservicetask%5Elabor%5E7%5E3%5E20%5E30%5E429%5E414%5E1090%5E10.5%5E1%2Cservicetask%5Epart%5E2%5E7%5E4%5E9%5E429%5E413%5E177%5E2NaN1
+Referer URL: http://localhost:8765/Workorders/edit/429
+Stack Trace:
+#0 C:\Users\Hp\Desktop\testnew\vendor\cakephp\cakephp\src\Http\Server.php(107): Zend\Diactoros\Response\SapiStreamEmitter->emit(Object(Zend\Diactoros\Response))
+#1 C:\Users\Hp\Desktop\testnew\webroot\index.php(37): Cake\Http\Server->emit(Object(Zend\Diactoros\Response))
+#2 {main}
+
+
+2017-08-09 09:34:37 Warning: Headers already sent in C:\Users\Hp\Desktop\testnew\vendor\cakephp\cakephp\src\Error\Debugger.php:753
+2017-08-09 09:34:37 Error: [RuntimeException] Unable to emit response; headers already sent
+Request URL: /Workorders/editLaborParts?content=servicetask%5Elabor%5E1%5E1%5E10%5E6%5E429%5E412%5E1089%5E7%5E1%2Cservicetask%5Elabor%5E7%5E3%5E20%5E30%5E429%5E414%5E1090%5E10.5%5E1%2Cservicetask%5Epart%5E2%5E7%5E40%5E90%5E429%5E413%5E177%5E25NaN2
+Referer URL: http://localhost:8765/Workorders/edit/429
+Stack Trace:
+#0 C:\Users\Hp\Desktop\testnew\vendor\cakephp\cakephp\src\Http\Server.php(107): Zend\Diactoros\Response\SapiStreamEmitter->emit(Object(Zend\Diactoros\Response))
+#1 C:\Users\Hp\Desktop\testnew\webroot\index.php(37): Cake\Http\Server->emit(Object(Zend\Diactoros\Response))
+#2 {main}
+
+
+2017-08-09 09:37:18 Warning: Headers already sent in C:\Users\Hp\Desktop\testnew\vendor\cakephp\cakephp\src\Error\Debugger.php:753
+2017-08-09 09:37:18 Error: [RuntimeException] Unable to emit response; headers already sent
+Request URL: /Workorders/editLaborParts?content=servicetask%5Elabor%5E1%5E1%5E10%5E6%5E429%5E412%5E1089%5E7%5E1%2Cservicetask%5Elabor%5E7%5E3%5E20%5E30%5E429%5E414%5E1090%5E10.5%5E1%2Cservicetask%5Epart%5E2%5E7%5E40%5E90%5E429%5E413%5E177%5E25NaN2
+Referer URL: http://localhost:8765/Workorders/edit/429
+Stack Trace:
+#0 C:\Users\Hp\Desktop\testnew\vendor\cakephp\cakephp\src\Http\Server.php(107): Zend\Diactoros\Response\SapiStreamEmitter->emit(Object(Zend\Diactoros\Response))
+#1 C:\Users\Hp\Desktop\testnew\webroot\index.php(37): Cake\Http\Server->emit(Object(Zend\Diactoros\Response))
+#2 {main}
+
+
+2017-08-09 09:46:10 Warning: Headers already sent in C:\Users\Hp\Desktop\testnew\vendor\cakephp\cakephp\src\Error\Debugger.php:753
+2017-08-09 09:46:10 Error: [RuntimeException] Unable to emit response; headers already sent
+Request URL: /Workorders/editLaborParts?content=servicetask%5Elabor%5E1%5E1%5E10%5E6%5E429%5E412%5E1089%5E7%5E1%2Cservicetask%5Elabor%5E7%5E3%5E20%5E30%5E429%5E414%5E1090%5E10.5%5E1%2Cservicetask%5Epart%5E2%5E7%5E40%5E90%5E429%5E413%5E177%5E30NaN2
+Referer URL: http://localhost:8765/Workorders/edit/429
+Stack Trace:
+#0 C:\Users\Hp\Desktop\testnew\vendor\cakephp\cakephp\src\Http\Server.php(107): Zend\Diactoros\Response\SapiStreamEmitter->emit(Object(Zend\Diactoros\Response))
+#1 C:\Users\Hp\Desktop\testnew\webroot\index.php(37): Cake\Http\Server->emit(Object(Zend\Diactoros\Response))
+#2 {main}
+
+
+2017-08-09 11:34:09 Error: Workorders/add/
+2017-08-09 11:47:41 Error: Workorders/add/
+2017-08-09 12:42:21 Error: Workorders/add/
+2017-08-10 04:29:44 Error: Workorders/add/
+2017-08-10 04:55:01 Error: Workorders/add/
+2017-08-10 05:02:06 Error: Workorders/add/
+2017-08-10 05:05:11 Error: Workorders/add/
+2017-08-10 05:05:26 Error: Workorders/add/
+2017-08-10 05:06:53 Error: Workorders/add/
+2017-08-11 03:31:55 Error: Workorders/add/
+2017-08-11 03:38:26 Error: Workorders/add/
+2017-08-11 03:39:05 Error: Workorders/add/
+2017-08-11 03:40:33 Error: Workorders/add/
+2017-08-11 03:42:19 Error: Workorders/add/
+2017-08-11 03:42:53 Error: Workorders/add/
+2017-08-11 03:43:17 Error: Workorders/add/
+2017-08-11 03:43:30 Error: Workorders/add/
+2017-08-11 03:45:51 Error: Workorders/add/
+2017-08-11 03:46:47 Error: Workorders/add/
+2017-08-11 03:47:11 Error: Workorders/add/
+2017-08-11 03:47:33 Error: Workorders/add/
+2017-08-11 03:51:19 Error: Workorders/add/
+2017-08-11 03:51:57 Error: Workorders/add/
+2017-08-11 03:53:10 Error: Workorders/add/
+2017-08-11 03:53:29 Error: Workorders/add/
+2017-08-11 03:53:46 Error: Workorders/add/
+2017-08-11 03:56:14 Error: Workorders/add/
+2017-08-11 03:56:33 Error: Workorders/add/
+2017-08-11 03:57:11 Error: Workorders/add/
+2017-08-11 03:58:13 Error: Workorders/add/
+2017-08-11 03:59:30 Error: Workorders/add/
+2017-08-11 04:47:08 Error: Workorders/add/
+2017-08-11 04:48:03 Error: Workorders/add/
+2017-08-11 04:50:36 Error: Workorders/add/
+2017-08-11 04:51:08 Error: Workorders/add/
+2017-08-11 04:52:01 Error: Workorders/add/
+2017-08-11 04:52:31 Error: Workorders/add/
+2017-08-11 04:53:02 Error: Workorders/add/
+2017-08-11 04:54:57 Error: Workorders/add/
+2017-08-11 04:56:40 Error: Workorders/add/
+2017-08-11 04:58:10 Error: Workorders/add/
+2017-08-11 04:59:46 Error: Workorders/add/
+2017-08-11 04:59:57 Error: Workorders/add/
+2017-08-11 05:00:19 Error: Workorders/add/
+2017-08-11 05:03:02 Error: Workorders/add/
+2017-08-11 05:15:29 Error: Workorders/add/
+2017-08-11 05:17:58 Error: Workorders/add/
+2017-08-11 05:20:08 Error: Workorders/add/
+2017-08-11 05:21:13 Error: Workorders/add/
+2017-08-11 05:21:35 Error: Workorders/add/
+2017-08-11 05:26:11 Error: Workorders/add/
+2017-08-11 05:29:20 Error: Workorders/add/
+2017-08-11 05:31:06 Error: Workorders/add/
+2017-08-11 05:37:04 Error: Workorders/add/
+2017-08-11 05:42:06 Error: Workorders/add/
+2017-08-11 05:42:25 Error: Workorders/add/
+2017-08-11 05:44:48 Error: Workorders/add/
+2017-08-11 06:32:32 Error: Workorders/add/
+2017-08-11 06:39:39 Error: Workorders/add/
+2017-08-11 06:48:23 Error: Workorders/add/
+2017-08-11 06:51:52 Error: Workorders/add/
+2017-08-11 06:52:36 Error: Workorders/add/
+2017-08-11 06:52:55 Error: Workorders/add/
+2017-08-11 07:08:11 Error: Workorders/add/
+2017-08-11 07:12:26 Error: Workorders/add/
+2017-08-11 07:13:10 Error: Workorders/add/
+2017-08-11 07:14:26 Error: Workorders/add/
+2017-08-11 07:17:45 Error: Workorders/add/
+2017-08-11 07:24:28 Error: Workorders/add/
+2017-08-11 07:31:42 Error: Workorders/add/
+2017-08-11 07:34:23 Error: Workorders/add/
+2017-08-11 07:35:47 Error: Workorders/add/
+2017-08-11 07:36:09 Error: Workorders/add/
+2017-08-11 07:37:52 Error: Workorders/add/
+2017-08-11 08:17:49 Error: Workorders/add/
+2017-08-11 08:18:30 Error: Workorders/add/
+2017-08-11 08:20:50 Error: Workorders/add/
+2017-08-11 08:25:19 Error: Workorders/add/
+2017-08-11 08:27:18 Error: Workorders/add/
+2017-08-11 08:28:41 Error: Workorders/add/
+2017-08-11 08:37:07 Error: Workorders/add/
+2017-08-11 08:46:30 Error: Workorders/add/
+2017-08-11 08:48:39 Error: Workorders/add/
+2017-08-11 08:50:25 Error: Workorders/add/
+2017-08-11 09:47:14 Error: Workorders/add/
+2017-08-11 10:00:03 Error: Workorders/add/
+2017-08-11 10:02:05 Error: Workorders/add/
+2017-08-11 10:03:25 Error: Workorders/add/
+2017-08-11 10:09:44 Error: Workorders/add/
+2017-08-11 10:13:12 Error: Workorders/add/
+2017-08-11 10:14:01 Error: Workorders/add/
+2017-08-16 05:34:44 Error: Workorders/add/
+2017-08-16 06:29:19 Error: Workorders/add/
+2017-08-16 06:32:58 Error: Workorders/add/
+2017-08-16 08:33:33 Error: Workorders/add/
+2017-08-16 08:42:04 Error: Workorders/add/
+2017-08-16 08:45:23 Error: Workorders/add/
+2017-08-16 08:46:03 Error: Workorders/add/
+2017-08-16 08:46:33 Error: Workorders/add/
+2017-08-16 08:51:29 Error: Workorders/add/
+2017-08-16 08:52:49 Error: Workorders/add/
+2017-08-16 09:02:41 Error: Workorders/add/
+2017-08-16 09:05:40 Error: Workorders/add/
+2017-08-16 09:07:24 Error: Workorders/add/
+2017-08-16 09:07:38 Error: Workorders/add/
+2017-08-16 09:08:07 Error: Workorders/add/
+2017-08-16 09:09:26 Error: Workorders/add/
+2017-08-16 09:10:55 Error: Workorders/add/
+2017-08-16 09:11:51 Error: Workorders/add/
+2017-08-16 09:18:26 Error: Workorders/add/
+2017-08-16 09:21:11 Error: Workorders/add/
+2017-08-16 09:21:37 Error: Workorders/add/
+2017-08-16 09:22:11 Error: Workorders/add/
+2017-08-16 09:25:33 Error: Workorders/add/
+2017-08-16 09:29:06 Error: Workorders/add/
+2017-08-16 09:46:26 Error: Workorders/add/
+2017-08-16 09:58:51 Error: Workorders/add/
+2017-08-16 09:59:50 Error: Workorders/add/
+2017-08-16 10:01:51 Error: Workorders/add/
+2017-08-16 10:02:41 Error: Workorders/add/
+2017-08-16 10:03:55 Error: Workorders/add/
+2017-08-16 10:05:19 Error: Workorders/add/
+2017-08-16 10:05:31 Error: Workorders/add/
+2017-08-16 10:06:42 Error: Workorders/add/
+2017-08-16 10:08:01 Error: Workorders/add/
+2017-08-16 10:09:11 Error: Workorders/add/
+2017-08-16 11:03:44 Error: Workorders/add/
+2017-08-16 11:03:55 Error: Workorders/add/
+2017-08-16 11:04:36 Error: Workorders/add/
+2017-08-16 11:07:30 Error: Workorders/add/
+2017-08-16 11:08:26 Error: Workorders/add/
+2017-08-16 11:09:02 Error: Workorders/add/
+2017-08-16 11:09:22 Error: Workorders/add/
+2017-08-17 03:13:09 Error: Workorders/add/
+2017-08-17 05:28:32 Error: Workorders/add
+2017-08-17 05:28:59 Error: Workorders/add/
+2017-08-17 05:31:52 Error: Workorders/add/
+2017-08-17 06:32:26 Error: Workorders/add/
+2017-08-17 06:33:18 Error: Workorders/add/
+2017-08-17 06:35:16 Error: Workorders/add/
+2017-08-17 06:35:54 Error: Workorders/add/
+2017-08-17 06:37:42 Error: Workorders/add/
+2017-08-17 06:38:17 Error: Workorders/add/
+2017-08-17 06:39:15 Error: Workorders/add/
+2017-08-17 06:41:52 Error: Workorders/add/
+2017-08-17 06:42:10 Error: Workorders/add/
+2017-08-17 06:45:35 Error: Workorders/add/
+2017-08-17 06:48:31 Error: Workorders/add/
+2017-08-17 06:49:03 Error: Workorders/add/
+2017-08-17 06:50:27 Error: Workorders/add/
+2017-08-17 06:50:58 Error: Workorders/add/
+2017-08-17 06:51:27 Error: Workorders/add/
+2017-08-17 06:52:15 Error: Workorders/add/
+2017-08-17 06:54:28 Error: Workorders/add/
+2017-08-17 06:54:47 Error: Workorders/add/
+2017-08-17 06:55:53 Error: Workorders/add/
+2017-08-17 06:57:39 Error: Workorders/add/
+2017-08-17 07:00:39 Error: Workorders/add/
+2017-08-17 07:01:15 Error: Workorders/add/
+2017-08-17 07:03:43 Error: Workorders/add/
+2017-08-17 07:11:04 Error: Workorders/add/
+2017-08-17 07:11:27 Error: Workorders/add/
+2017-08-17 07:12:16 Error: Workorders/add/
+2017-08-17 07:13:24 Error: Workorders/add/
+2017-08-17 07:14:06 Error: Workorders/add/
+2017-08-17 07:14:23 Error: Workorders/add/
+2017-08-17 07:15:18 Error: Workorders/add/
+2017-08-17 07:16:05 Error: Workorders/add/
+2017-08-17 07:16:43 Error: Workorders/add/
+2017-08-17 07:17:27 Error: Workorders/add/
+2017-08-17 07:18:27 Error: Workorders/add/
+2017-08-17 07:19:14 Error: Workorders/add/
+2017-08-17 07:26:29 Error: Workorders/add/
+2017-08-17 07:27:00 Error: Workorders/add/
+2017-08-17 07:32:36 Error: Workorders/add/
+2017-08-17 07:32:58 Error: Workorders/add/
+2017-08-17 07:33:34 Error: Workorders/add/
+2017-08-17 08:34:52 Error: Workorders/add/
+2017-08-17 08:49:36 Error: Workorders/add/
+2017-08-17 08:51:58 Error: Workorders/add/
+2017-08-17 09:49:28 Error: Servicesentries/add/13,1
+2017-08-17 09:53:49 Error: Fatal Error (1): Call to a member function andwhere() on array in [C:\Users\Hp\Desktop\testnew\src\Controller\WorkordersController.php, line 723]
+Request URL: /Workorders/edit/435
+Referer URL: http://localhost:8765/Workorders
+Trace:
+Cake\Error\BaseErrorHandler::handleFatalError() - CORE\src\Error\BaseErrorHandler.php, line 216
+Cake\Error\BaseErrorHandler::Cake\Error\{closure}() - CORE\src\Error\BaseErrorHandler.php, line 98
+[main] - [internal], line ??
+
+
+
+2017-08-17 09:53:49 Error: [Cake\Error\FatalErrorException] Call to a member function andwhere() on array
+Request URL: /Workorders/edit/435
+Referer URL: http://localhost:8765/Workorders
+Stack Trace:
+#0 C:\Users\Hp\Desktop\testnew\vendor\cakephp\cakephp\src\Error\BaseErrorHandler.php(98): Cake\Error\BaseErrorHandler->handleFatalError(1, 'Call to a membe...', 'C:\\Users\\Hp\\Des...', 723)
+#1 [internal function]: Cake\Error\BaseErrorHandler->Cake\Error\{closure}()
+#2 {main}
+
+
+2017-08-17 10:16:49 Error: Servicesentries/add/13
+2017-08-17 10:18:11 Error: Workorders/add/13
+2017-08-17 10:20:11 Error: Workorders/add/13,1
+2017-08-17 11:48:50 Error: Workorders/add/13,1
+2017-08-17 11:49:18 Error: Workorders/add/13,1
+2017-08-17 11:49:59 Error: Workorders/add
+2017-08-17 11:51:16 Error: Workorders/add/13,1
+2017-08-17 11:51:54 Error: Workorders/add/13,1
+2017-08-17 11:52:48 Error: Workorders/add/13,1
+2017-08-17 11:53:16 Error: Workorders/add/13,1
+2017-08-17 11:53:57 Error: Workorders/add/13,1
+2017-08-17 11:53:58 Error: Fatal Error (1): Call to undefined function length() in [C:\Users\Hp\Desktop\testnew\src\Template\Workorders\add.ctp, line 284]
+Request URL: /Workorders/add/13,1
+Trace:
+Cake\Error\BaseErrorHandler::handleFatalError() - CORE\src\Error\BaseErrorHandler.php, line 216
+Cake\Error\BaseErrorHandler::Cake\Error\{closure}() - CORE\src\Error\BaseErrorHandler.php, line 98
+[main] - [internal], line ??
+
+
+
+2017-08-17 11:53:58 Error: [Cake\Error\FatalErrorException] Call to undefined function length()
+Request URL: /Workorders/add/13,1
+Stack Trace:
+#0 C:\Users\Hp\Desktop\testnew\vendor\cakephp\cakephp\src\Error\BaseErrorHandler.php(98): Cake\Error\BaseErrorHandler->handleFatalError(1, 'Call to undefin...', 'C:\\Users\\Hp\\Des...', 284)
+#1 [internal function]: Cake\Error\BaseErrorHandler->Cake\Error\{closure}()
+#2 {main}
+
+
+2017-08-17 11:54:14 Error: Workorders/add/13,1
+2017-08-17 11:54:14 Warning: Warning (2): count() expects at least 1 parameter, 0 given in [C:\Users\Hp\Desktop\testnew\src\Template\Workorders\add.ctp, line 284]
+Request URL: /Workorders/add/13,1
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE\src\Error\BaseErrorHandler.php, line 146
+count - [internal], line ??
+include - APP/Template\Workorders\add.ctp, line 284
+Cake\View\View::_evaluate() - CORE\src\View\View.php, line 1005
+Cake\View\View::_render() - CORE\src\View\View.php, line 964
+Cake\View\View::render() - CORE\src\View\View.php, line 588
+Cake\Controller\Controller::render() - CORE\src\Controller\Controller.php, line 617
+Cake\Http\ActionDispatcher::_invoke() - CORE\src\Http\ActionDispatcher.php, line 130
+Cake\Http\ActionDispatcher::dispatch() - CORE\src\Http\ActionDispatcher.php, line 98
+Cake\Http\BaseApplication::__invoke() - CORE\src\Http\BaseApplication.php, line 83
+Cake\Http\Runner::__invoke() - CORE\src\Http\Runner.php, line 65
+Cake\Routing\Middleware\RoutingMiddleware::__invoke() - CORE\src\Routing\Middleware\RoutingMiddleware.php, line 52
+Cake\Http\Runner::__invoke() - CORE\src\Http\Runner.php, line 65
+Cake\Routing\Middleware\AssetMiddleware::__invoke() - CORE\src\Routing\Middleware\AssetMiddleware.php, line 88
+Cake\Http\Runner::__invoke() - CORE\src\Http\Runner.php, line 65
+Cake\Error\Middleware\ErrorHandlerMiddleware::__invoke() - CORE\src\Error\Middleware\ErrorHandlerMiddleware.php, line 51
+Cake\Http\Runner::__invoke() - CORE\src\Http\Runner.php, line 65
+Cake\Http\Runner::run() - CORE\src\Http\Runner.php, line 51
+Cake\Http\Server::run() - CORE\src\Http\Server.php, line 82
+[main] - ROOT\webroot\index.php, line 37
+
+
+
+2017-08-17 11:54:36 Error: Workorders/add/13,1
+2017-08-17 11:58:07 Error: Workorders/add/13,1
+2017-08-17 11:58:26 Error: Workorders/add/13,1
+2017-08-17 11:59:18 Error: Workorders/add/13,1
+2017-08-17 12:00:20 Error: Workorders/add/13,1
+2017-08-17 12:01:18 Error: Workorders/add/13,1
+2017-08-17 12:01:25 Error: Workorders/add/13,1
+2017-08-17 12:01:54 Error: Workorders/add/13,1
+2017-08-17 12:02:09 Error: Workorders/add/13,1
+2017-08-17 12:05:17 Error: Workorders/add/13,1
+2017-08-17 12:05:54 Error: Workorders/add/13,1
+2017-08-17 12:06:40 Error: Workorders/add/13,1
+2017-08-17 12:07:57 Error: Workorders/add/13,1
+2017-08-17 12:08:22 Error: Workorders/add/13,1
+2017-08-17 12:09:39 Error: Workorders/add/13,1
+2017-08-17 12:10:01 Error: Workorders/add/13,1
+2017-08-17 12:14:21 Error: Workorders/add/13,1
+2017-08-17 12:14:22 Error: Fatal Error (4): syntax error, unexpected '?>', expecting ']' in [C:\Users\Hp\Desktop\testnew\src\Template\Workorders\add.ctp, line 290]
+Request URL: /Workorders/add/13,1
+Trace:
+Cake\Error\BaseErrorHandler::handleFatalError() - CORE\src\Error\BaseErrorHandler.php, line 216
+Cake\Error\BaseErrorHandler::Cake\Error\{closure}() - CORE\src\Error\BaseErrorHandler.php, line 98
+[main] - [internal], line ??
+
+
+
+2017-08-17 12:14:22 Error: [Cake\Error\FatalErrorException] syntax error, unexpected '?>', expecting ']'
+Request URL: /Workorders/add/13,1
+Stack Trace:
+#0 C:\Users\Hp\Desktop\testnew\vendor\cakephp\cakephp\src\Error\BaseErrorHandler.php(98): Cake\Error\BaseErrorHandler->handleFatalError(4, 'syntax error, u...', 'C:\\Users\\Hp\\Des...', 290)
+#1 [internal function]: Cake\Error\BaseErrorHandler->Cake\Error\{closure}()
+#2 {main}
+
+
+2017-08-17 12:15:16 Error: Workorders/add/13,1
+2017-08-17 12:15:17 Error: Fatal Error (4): syntax error, unexpected '.', expecting ']' in [C:\Users\Hp\Desktop\testnew\src\Template\Workorders\add.ctp, line 290]
+Request URL: /Workorders/add/13,1
+Trace:
+Cake\Error\BaseErrorHandler::handleFatalError() - CORE\src\Error\BaseErrorHandler.php, line 216
+Cake\Error\BaseErrorHandler::Cake\Error\{closure}() - CORE\src\Error\BaseErrorHandler.php, line 98
+[main] - [internal], line ??
+
+
+
+2017-08-17 12:15:17 Error: [Cake\Error\FatalErrorException] syntax error, unexpected '.', expecting ']'
+Request URL: /Workorders/add/13,1
+Stack Trace:
+#0 C:\Users\Hp\Desktop\testnew\vendor\cakephp\cakephp\src\Error\BaseErrorHandler.php(98): Cake\Error\BaseErrorHandler->handleFatalError(4, 'syntax error, u...', 'C:\\Users\\Hp\\Des...', 290)
+#1 [internal function]: Cake\Error\BaseErrorHandler->Cake\Error\{closure}()
+#2 {main}
+
+
+2017-08-17 12:16:01 Error: Workorders/add/13,1
+2017-08-17 12:16:36 Error: Workorders/add/13,1
+2017-08-17 12:17:12 Error: Workorders/add/13,1
+2017-08-17 12:18:24 Error: Workorders/add/13,1
+2017-08-17 12:18:37 Error: Workorders/add/13,1
+2017-08-17 12:22:59 Error: Workorders/add/13,1
+2017-08-17 12:23:45 Error: Workorders/add/13,1
+2017-08-17 12:24:05 Error: Workorders/add/13,1
+2017-08-17 12:25:52 Error: Workorders/add/13,1
+2017-08-17 12:26:16 Error: Workorders/add/13,1
+2017-08-17 12:26:46 Error: Workorders/add/13,1
+2017-08-17 12:28:09 Error: Workorders/add/13,1
+2017-08-17 12:28:35 Error: Workorders/add/13,1
+2017-08-17 12:29:41 Error: Workorders/add/13,1
+2017-08-17 12:30:16 Error: Workorders/add/13,1
+2017-08-17 12:31:00 Error: Workorders/add/13,1
+2017-08-17 12:31:47 Error: Workorders/add/13,1
+2017-08-17 12:35:06 Error: Workorders/add/13,1
+2017-08-17 12:36:07 Error: Workorders/add/13,1
+2017-08-17 12:41:48 Error: Workorders/add/13,1
+2017-08-17 12:48:40 Error: Workorders/add/13,1
+2017-08-17 12:50:15 Error: Workorders/add/13,1
+2017-08-17 12:50:38 Error: Workorders/add/13,1
+2017-08-18 03:31:31 Error: Workorders/add/13
+2017-08-18 03:32:53 Error: Workorders/add/13
+2017-08-18 03:33:40 Error: Workorders/add/13
+2017-08-18 03:34:42 Error: Workorders/add/13
+2017-08-18 03:35:51 Error: Workorders/add/13
+2017-08-18 03:35:51 Error: Fatal Error (4): syntax error, unexpected '?>' in [C:\Users\Hp\Desktop\testnew\src\Template\Workorders\add.ctp, line 290]
+Request URL: /Workorders/add/13
+Referer URL: http://localhost:8765/issues
+Trace:
+Cake\Error\BaseErrorHandler::handleFatalError() - CORE\src\Error\BaseErrorHandler.php, line 216
+Cake\Error\BaseErrorHandler::Cake\Error\{closure}() - CORE\src\Error\BaseErrorHandler.php, line 98
+[main] - [internal], line ??
+
+
+
+2017-08-18 03:35:51 Error: [Cake\Error\FatalErrorException] syntax error, unexpected '?>'
+Request URL: /Workorders/add/13
+Referer URL: http://localhost:8765/issues
+Stack Trace:
+#0 C:\Users\Hp\Desktop\testnew\vendor\cakephp\cakephp\src\Error\BaseErrorHandler.php(98): Cake\Error\BaseErrorHandler->handleFatalError(4, 'syntax error, u...', 'C:\\Users\\Hp\\Des...', 290)
+#1 [internal function]: Cake\Error\BaseErrorHandler->Cake\Error\{closure}()
+#2 {main}
+
+
+2017-08-18 03:40:35 Error: Workorders/add/13
+2017-08-18 03:41:05 Error: Workorders/add/13
+2017-08-18 03:42:50 Error: Workorders/add/13,1
+2017-08-18 03:47:20 Error: Workorders/add/13,1
+2017-08-18 03:51:05 Error: Workorders/add/
+2017-08-18 03:52:51 Error: Workorders/add/
+2017-08-18 03:53:12 Error: Workorders/add/
+2017-08-18 03:54:48 Error: Workorders/add/
+2017-08-18 03:57:35 Error: Workorders/add/
+2017-08-18 03:58:45 Error: Workorders/add/
+2017-08-18 03:59:22 Error: Workorders/add/
+2017-08-18 03:59:51 Error: Workorders/add/
+2017-08-18 04:01:13 Error: Servicesentries/add/
+2017-08-18 04:01:23 Error: Workorders/add/
+2017-08-18 04:03:52 Error: Workorders/add/
+2017-08-18 04:04:12 Error: Workorders/add/
+2017-08-18 04:05:29 Error: Workorders/add/13
+2017-08-18 04:06:14 Error: Workorders/add/13
+2017-08-18 04:07:32 Error: Workorders/add/13
+2017-08-18 04:08:07 Error: Workorders/add
+2017-08-18 04:09:56 Error: Workorders/add/
+2017-08-18 04:12:48 Error: Workorders/add/
+2017-08-18 04:13:10 Error: Workorders/add/13
+2017-08-18 04:14:49 Error: servicesentries/add
+2017-08-18 04:14:58 Error: servicesentries/add/
+2017-08-18 04:38:04 Error: Workorders/add/13
+2017-08-18 04:38:40 Error: Workorders/add/13
+2017-08-18 04:56:53 Error: Workorders/add/13
+2017-08-18 05:01:24 Error: Workorders/add/13
+2017-08-18 05:01:55 Error: Workorders/add/13
+2017-08-18 05:02:12 Error: Workorders/add/13
+2017-08-18 05:02:45 Error: Workorders/add/13
+2017-08-18 05:30:06 Error: Workorders/add/13
+2017-08-18 05:32:00 Error: Workorders/add/13
+2017-08-18 05:32:33 Error: Workorders/add/13
+2017-08-18 05:33:54 Error: Workorders/add/13
+2017-08-18 06:13:56 Error: Workorders/add/13
+2017-08-18 06:14:55 Error: Workorders/add/13,1
+2017-08-18 06:16:01 Error: Workorders/add/1
+2017-08-18 06:26:06 Error: Workorders/add/13
+2017-08-18 06:30:52 Error: Workorders/add/13
+2017-08-18 06:36:28 Warning: Headers already sent in C:\Users\Hp\Desktop\testnew\vendor\cakephp\cakephp\src\Error\Debugger.php:753
+2017-08-18 06:36:28 Error: [RuntimeException] Unable to emit response; headers already sent
+Request URL: /Workorders/createajax_data?issuedate=13%2F08%2F17&workorderstatus=1&vehicleid=118&startdate=14%2F08%2F17&lables=&odometer=&voidvalue=1&vendorid=&completiondate=&issuedbyid=&assignedbyid=&assigntoid=&invoicenumber=invbbb&phonenumber=&description=&labor=6.30&parts=20.60&discount=5&tax=4
+Referer URL: http://localhost:8765/Workorders/add/13
+Stack Trace:
+#0 C:\Users\Hp\Desktop\testnew\vendor\cakephp\cakephp\src\Http\Server.php(107): Zend\Diactoros\Response\SapiStreamEmitter->emit(Object(Zend\Diactoros\Response))
+#1 C:\Users\Hp\Desktop\testnew\webroot\index.php(37): Cake\Http\Server->emit(Object(Zend\Diactoros\Response))
+#2 {main}
+
+
+2017-08-18 06:36:29 Warning: Headers already sent in C:\Users\Hp\Desktop\testnew\vendor\cakephp\cakephp\src\Error\Debugger.php:753
+2017-08-18 06:36:29 Error: [RuntimeException] Unable to emit response; headers already sent
+Request URL: /Workorders/addLaborParts?content=issue%5Elabor%5E13%5E3%5E2%5E3%5E%3Cpre+class%3D%22cake-error%22%3E%3Ca+href%3D%22javascript%3Avoid%280%29%3B%22+onclick%3D%22document.getElementById%28%27cakeErr59968aeb7ea76-trace%27%29.style.display+%3D+%28document.getElementById%28%27cakeErr59968aeb7ea76-trace%27%29.style.display+%3D%3D+%27none%27+%3F+%27%27+%3A+%27none%27%29%3B%22%3E%3Cb%3ENotice%3C%2Fb%3E+%288%29%3C%2Fa%3E%3A+Undefined+index%3A+taxtype+%5B%3Cb%3EAPP%2FController%5CWorkordersController.php%3C%2Fb%3E%2C+line+%3Cb%3E96%3C%2Fb%3E%5D%3Cdiv+id%3D%22cakeErr59968aeb7ea76-trace%22+class%3D%22cake-stack-trace%22+style%3D%22display%3A+none%3B%22%3E%3Ca+href%3D%22javascript%3Avoid%280%29%3B%22+onclick%3D%22document.getElementById%28%27cakeErr59968aeb7ea76-code%27%29.style.display+%3D+%28document.getElementById%28%27cakeErr59968aeb7ea76-code%27%29.style.display+%3D%3D+%27none%27+%3F+%27%27+%3A+%27none%27%29%22%3ECode%3C%2Fa%3E+%3Ca+href%3D%22javascript%3Avoid%280%29%3B%22+onclick%3D%22document.getElementById%28%27cakeErr59968aeb7ea76-context%27%29.style.display+%3D+%28document.getElementById%28%27cakeErr59968aeb7ea76-context%27%29.style.display+%3D%3D+%27none%27+%3F+%27%27+%3A+%27none%27%29%22%3EContext%3C%2Fa%3E%3Cpre+id%3D%22cakeErr59968aeb7ea76-code%22+class%3D%22cake-code-dump%22+style%3D%22display%3A+none%3B%22%3E%3Ccode%3E%3Cspan+style%3D%22color%3A+
+Referer URL: http://localhost:8765/Workorders/add/13
+Stack Trace:
+#0 C:\Users\Hp\Desktop\testnew\vendor\cakephp\cakephp\src\Http\Server.php(107): Zend\Diactoros\Response\SapiStreamEmitter->emit(Object(Zend\Diactoros\Response))
+#1 C:\Users\Hp\Desktop\testnew\webroot\index.php(37): Cake\Http\Server->emit(Object(Zend\Diactoros\Response))
+#2 {main}
+
+
+2017-08-18 06:43:01 Error: Workorders/add/13
+2017-08-18 06:47:05 Error: Workorders/add/13
+2017-08-18 06:47:21 Error: Workorders/add/1
+2017-08-18 06:54:04 Error: Workorders/add/1
+2017-08-18 06:55:24 Error: Workorders/add/17
+2017-08-18 07:03:03 Error: Workorders/add/17
+2017-08-18 07:17:32 Error: Workorders/add/
+2017-08-18 07:23:45 Error: Workorders/add/17
+2017-08-18 08:50:47 Error: Workorders/add/
+2017-08-18 09:02:11 Error: Workorders/add
+2017-08-18 09:04:04 Error: Workorders/add
+2017-08-18 09:04:05 Warning: Headers already sent in C:\Users\Hp\Desktop\testnew\vendor\cakephp\cakephp\src\Error\Debugger.php:753
+2017-08-18 09:04:05 Error: [RuntimeException] Unable to emit response; headers already sent
+Request URL: /Workorders/add
+Stack Trace:
+#0 C:\Users\Hp\Desktop\testnew\vendor\cakephp\cakephp\src\Http\Server.php(107): Zend\Diactoros\Response\SapiStreamEmitter->emit(Object(Zend\Diactoros\Response))
+#1 C:\Users\Hp\Desktop\testnew\webroot\index.php(37): Cake\Http\Server->emit(Object(Zend\Diactoros\Response))
+#2 {main}
+
+
+2017-08-18 09:06:26 Error: Fatal Error (4): syntax error, unexpected 'isset' (T_ISSET) in [C:\Users\Hp\Desktop\testnew\src\Controller\WorkordersController.php, line 569]
+Request URL: /Workorders/add
+Trace:
+Cake\Error\BaseErrorHandler::handleFatalError() - CORE\src\Error\BaseErrorHandler.php, line 216
+Cake\Error\BaseErrorHandler::Cake\Error\{closure}() - CORE\src\Error\BaseErrorHandler.php, line 98
+[main] - [internal], line ??
+
+
+
+2017-08-18 09:06:26 Error: [Cake\Error\FatalErrorException] syntax error, unexpected 'isset' (T_ISSET)
+Request URL: /Workorders/add
+Stack Trace:
+#0 C:\Users\Hp\Desktop\testnew\vendor\cakephp\cakephp\src\Error\BaseErrorHandler.php(98): Cake\Error\BaseErrorHandler->handleFatalError(4, 'syntax error, u...', 'C:\\Users\\Hp\\Des...', 569)
+#1 [internal function]: Cake\Error\BaseErrorHandler->Cake\Error\{closure}()
+#2 {main}
+
+
+2017-08-18 09:06:46 Error: Workorders/add
+2017-08-18 09:06:47 Warning: Headers already sent in C:\Users\Hp\Desktop\testnew\vendor\cakephp\cakephp\src\Error\Debugger.php:753
+2017-08-18 09:06:47 Error: [RuntimeException] Unable to emit response; headers already sent
+Request URL: /Workorders/add
+Stack Trace:
+#0 C:\Users\Hp\Desktop\testnew\vendor\cakephp\cakephp\src\Http\Server.php(107): Zend\Diactoros\Response\SapiStreamEmitter->emit(Object(Zend\Diactoros\Response))
+#1 C:\Users\Hp\Desktop\testnew\webroot\index.php(37): Cake\Http\Server->emit(Object(Zend\Diactoros\Response))
+#2 {main}
+
+
+2017-08-18 09:07:50 Error: Fatal Error (4): syntax error, unexpected 'is_null' (T_STRING) in [C:\Users\Hp\Desktop\testnew\src\Controller\WorkordersController.php, line 569]
+Request URL: /Workorders/add
+Trace:
+Cake\Error\BaseErrorHandler::handleFatalError() - CORE\src\Error\BaseErrorHandler.php, line 216
+Cake\Error\BaseErrorHandler::Cake\Error\{closure}() - CORE\src\Error\BaseErrorHandler.php, line 98
+[main] - [internal], line ??
+
+
+
+2017-08-18 09:07:50 Error: [Cake\Error\FatalErrorException] syntax error, unexpected 'is_null' (T_STRING)
+Request URL: /Workorders/add
+Stack Trace:
+#0 C:\Users\Hp\Desktop\testnew\vendor\cakephp\cakephp\src\Error\BaseErrorHandler.php(98): Cake\Error\BaseErrorHandler->handleFatalError(4, 'syntax error, u...', 'C:\\Users\\Hp\\Des...', 569)
+#1 [internal function]: Cake\Error\BaseErrorHandler->Cake\Error\{closure}()
+#2 {main}
+
+
+2017-08-18 09:10:29 Error: Workorders/add
+2017-08-18 09:10:50 Error: Workorders/add/13
+2017-08-18 09:11:09 Error: Workorders/add/
+2017-08-18 09:11:17 Error: Workorders/add
+2017-08-18 10:05:05 Error: Workorders/add/17
+2017-08-18 10:09:04 Error: Workorders/add/17
+2017-08-18 10:10:38 Error: Workorders/add/17,15
+2017-08-18 10:15:30 Error: Workorders/add/17,15

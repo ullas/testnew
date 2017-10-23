@@ -12,4 +12,4 @@
   </ol>
 </section>
                 
-<?php echo $this->element('indexbasic'); ?>
+<?php echo $this->element('indexbasicIssues'); ?>

@@ -25,12 +25,15 @@
           <div class="active tab-pane" id="details">
              <div class="form-horizontal">
         <?php
+        $resissues1=[1,14,6];
             echo $this->Form->input('name',['label'=>'Name','templateVars' => ['help' => 'A short name for the service entry'],'required' => 'required']);
             echo $this->Form->input('dateofservice', ['type'=>'text','empty' => true,'label'=>'Date Of Service','required' => 'required','class'=>'datemask','templateVars' => ['icon' => '<div class="input-group-addon"><i class="fa fa-calendar"></i></div>']]);
             echo $this->Form->input('vehicle_id', ['options' => $vehicles, 'empty' => true,'class'=>'select2','required' => 'required']);
             echo $this->Form->input('odo',['label'=>'Odometer','templateVars' => ['help' => 'Odometer reading at the time of service'],'required' => 'required']);
             echo $this->Form->input('refer',['label'=>'Reference','templateVars' => ['help' => 'Optional (e.g. Bill Number, Invoice Number etc.)']]);
-            echo $this->Form->input('labour',['templateVars' => ['help' => 'Charges for labour']]);
+            echo $this->Form->input('servicetasks._ids', ['label'=>'Completed Service Tasks','options' => $servicetasks,'class'=>'select2']);
+            echo $this->Form->input('issues._ids', ['label'=>'Resolved Issues','options' => $issues,'class'=>'select2','default'=>$resissues]);
+			echo $this->Form->input('labour',['templateVars' => ['help' => 'Charges for labour']]);
             echo $this->Form->input('parts',['templateVars' => ['help' => 'Charges for parts']]);
             echo $this->Form->input('tax',['templateVars' => ['help' => 'Total tax on charges']]);
             echo $this->Form->input('vendor_id', ['options' => $vendors, 'empty' => true,'templateVars' => ['help' => 'Select an existing vendor'],'class'=>'select2']);
@@ -90,13 +93,13 @@ $this->Html->script([
 <script>
   $(function () {
 
-   $(".select2").select2({ width: '100%' });
+   // $(".select2").select2({ width: '100%' });
    $('.datemask').datepicker({
             format:"dd/mm/yy",
               autoclose: true
    });
-
-
+   	
+	
   });
 </script>
 <?php $this->end(); ?>

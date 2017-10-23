@@ -5,7 +5,7 @@ use Cake\ORM\Query;
 use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
 use Cake\Validation\Validator;
-
+use Cake\Datasource\ConnectionManager;
 /**
  * Workorderlabourlineitems Model
  *
@@ -13,6 +13,9 @@ use Cake\Validation\Validator;
  * @property \Cake\ORM\Association\BelongsTo $Customers
  * @property \Cake\ORM\Association\BelongsTo $Addresses
  * @property \Cake\ORM\Association\BelongsTo $Workorderlineitems
+ * @property \Cake\ORM\Association\BelongsTo $Servicetasks
+ * @property \Cake\ORM\Association\BelongsTo $Issues
+ * @property \Cake\ORM\Association\BelongsTo $Workordertypes
  *
  * @method \App\Model\Entity\Workorderlabourlineitem get($primaryKey, $options = [])
  * @method \App\Model\Entity\Workorderlabourlineitem newEntity($data = null, array $options = [])
@@ -51,6 +54,15 @@ class WorkorderlabourlineitemsTable extends Table
         $this->belongsTo('Workorderlineitems', [
             'foreignKey' => 'workorderlineitem_id'
         ]);
+        $this->belongsTo('Servicetasks', [
+            'foreignKey' => 'servicetask_id'
+        ]);
+        $this->belongsTo('Issues', [
+            'foreignKey' => 'issue_id'
+        ]);
+        $this->belongsTo('Workordertypes', [
+            'foreignKey' => 'workordertype_id'
+        ]);
     }
 
     /**
@@ -75,6 +87,14 @@ class WorkorderlabourlineitemsTable extends Table
             ->numeric('hours')
             ->allowEmpty('hours');
 
+        $validator
+            ->integer('taxtype')
+            ->allowEmpty('taxtype');
+
+        $validator
+            ->numeric('tax')
+            ->allowEmpty('tax');
+
         return $validator;
     }
 
@@ -91,7 +111,26 @@ class WorkorderlabourlineitemsTable extends Table
         $rules->add($rules->existsIn(['customer_id'], 'Customers'));
         $rules->add($rules->existsIn(['address_id'], 'Addresses'));
         $rules->add($rules->existsIn(['workorderlineitem_id'], 'Workorderlineitems'));
+        $rules->add($rules->existsIn(['servicetask_id'], 'Servicetasks'));
+        $rules->add($rules->existsIn(['issue_id'], 'Issues'));
+        $rules->add($rules->existsIn(['workordertype_id'], 'Workordertypes'));
 
         return $rules;
     }
+
+	public function deleteLabourLineItems($cid,$lineitemid)
+	{
+		$con = ConnectionManager::get('default');
+		$stmt = $con->execute("delete from zorba.workorderlabourlineitems where id = $lineitemid  and customer_id = $cid  ");
+		$results = $stmt->fetchAll('assoc');
+		return $results;
+	}
+	
+	public function deleteLabourLineItemsFromIndex($cid,$lineitemid)
+	{
+		$con = ConnectionManager::get('default');
+		$stmt = $con->execute("delete from zorba.workorderlabourlineitems where workorder_id = $lineitemid  and customer_id = $cid  ");
+		$results = $stmt->fetchAll('assoc');
+		return $results;
+	}
 }

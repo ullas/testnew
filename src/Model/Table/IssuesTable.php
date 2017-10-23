@@ -5,7 +5,7 @@ use Cake\ORM\Query;
 use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
 use Cake\Validation\Validator;
-
+use Cake\Datasource\ConnectionManager;
 /**
  * Issues Model
  *
@@ -145,4 +145,54 @@ class IssuesTable extends Table
 
         return $rules;
     }
+	
+	//Change status of resolved issues as 'Resolved' in Issues table when saving a serviceentry
+	public function updateIssuesFromServiceentries($cid,$issueid)
+	{
+		$con = ConnectionManager::get('default');
+		// $stmt = $con->execute("update zorba.issues SET issuestatus_id = 3 WHERE id  = ? ",[$issueid],['integer']);
+	    $stmt = $con->execute("update zorba.issues SET issuestatus_id = 3 WHERE id  = $issueid ");
+		$results = $stmt->fetchAll('assoc');
+		return $results;
+	}
+	
+	//Change status of resolved issues as 'Open' in Issues table when deleting a serviceentry
+	public function changeStatus($cid,$issueid)
+	{
+		$con = ConnectionManager::get('default');
+		// $stmt = $con->execute("update zorba.issues SET issuestatus_id = 3 WHERE id  = ? ",[$issueid],['integer']);
+	    $stmt = $con->execute("update zorba.issues SET issuestatus_id = 1 WHERE id  = $issueid ");
+		$results = $stmt->fetchAll('assoc');
+		return $results;
+	}
+
+	//Change status of  issues as 'Closed' in Issues table when clcking Close button in Issues Index table
+	public function changeStatusClose($cid,$issueid)
+	{
+		$con = ConnectionManager::get('default');
+		// $stmt = $con->execute("update zorba.issues SET issuestatus_id = 3 WHERE id  = ? ",[$issueid],['integer']);
+	    $stmt = $con->execute("update zorba.issues SET issuestatus_id = 4 WHERE id  = $issueid ");
+		$results = $stmt->fetchAll('assoc');
+		return $results;
+	}
+	
+	//Change status of  issues as 'Resolved' in Issues table when clcking Resolve Via button in Issues Index table
+	public function changeStatusResolve($cid,$issueid)
+	{
+		$con = ConnectionManager::get('default');
+		// $stmt = $con->execute("update zorba.issues SET issuestatus_id = 3 WHERE id  = ? ",[$issueid],['integer']);
+	    $stmt = $con->execute("update zorba.issues SET issuestatus_id = 3 WHERE id  = $issueid ");
+		$results = $stmt->fetchAll('assoc');
+		return $results;
+	}
+	
+	//Assign Issues to Workorders clcking Add To WorkOrder in Issues Index 
+	public function assignToWorkorder($cid,$issueid,$wid)
+	{
+		$con = ConnectionManager::get('default');
+		// $stmt = $con->execute("update zorba.issues SET issuestatus_id = 3 WHERE id  = ? ",[$issueid],['integer']);
+	    $stmt = $con->execute("update zorba.issues SET workorder_id = $wid WHERE id  = $issueid ");
+		$results = $stmt->fetchAll('assoc');
+		return $results;
+	}
 }

@@ -14,11 +14,16 @@ use Cake\ORM\Entity;
  * @property float $hours
  * @property int $address_id
  * @property int $workorderlineitem_id
+ * @property int $servicetask_id
+ * @property int $issue_id
+ * @property int $workordertype_id
+ * @property int $taxtype
+ * @property float $tax
  *
  * @property \App\Model\Entity\Workorder $workorder
  * @property \App\Model\Entity\Customer $customer
  * @property \App\Model\Entity\Address $address
- * @property \App\Model\Entity\Servicetask $servicetask
+ * @property \App\Model\Entity\Workorderlineitem $workorderlineitem
  */
 class Workorderlabourlineitem extends Entity
 {

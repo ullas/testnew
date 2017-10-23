@@ -10,6 +10,7 @@
      </div>
       <div>
       	<?php echo  $this->element('filters',$additional) ?>
+      
      </div> <!-- COL-7-->
 
   <div class="row">
@@ -275,6 +276,54 @@ $this->Html->script([
 		    }
 			}
   	});
+  	 $("#closeWO").click(function(e)
+  	 {
+  	 	e.preventDefault();
+      	var valuearray = [];
+  	  	valuearray = setSelection();
+
+  	   if($(".mptl-lst-chkbox:checked").length==0)
+	  	   {
+		      	alert("No item selected. Please select at least one item ");
+		      	return;
+	       }
+
+			if($(".mptl-lst-chkbox:checked").length==1)
+				{
+					if (confirm("Do you want to close the record?")) 
+						{
+				   			{
+					   			 $.ajax({
+					        	 type : "POST",
+					                url  : '/Workorders/setClose?content='+valuearray,
+					                success : function(array1){
+					                	console.log("results3--"+array1);
+					            			// window.location.reload();
+					            			
+					            			//Add this workorder as a new entry to Servisentries
+					            			
+					                	 	
+					                    }
+					            })
+					       }
+				    	}
+				}
+			else if($(".mptl-lst-chkbox:checked").length>1){
+				if (confirm("Do you want to close " + $(".mptl-lst-chkbox:checked").length + " records?")) 
+				{
+		   			{
+					   			 $.ajax({
+					        	 type : "POST",
+					                url  : '/Workorders/setClose?content='+valuearray,
+					                success : function(array1){
+					            			window.location.reload();
+					                	 	
+					                    }
+					            })
+					 }
+		    	}
+			}
+  	});
 
     $('#settings').on('shown.bs.modal', function() {
        setOrder();
@@ -303,17 +352,20 @@ $this->Html->script([
           "scrollX":true,
           colReorder: true,
           stateSave:false,
+          "drawCallback": function( settings ) {
+        		aftertableloaded();
+   		  },
           responsive: true,
-          "initComplete": function(settings, json) {
-            //set bool value
-            $("#mptlindextbl tbody").find('tr').each(function () {
-         	$(this).find('td').each (function() {
-         	var innerHtml=$(this).find('div.mptldtbool').html();
-         	(innerHtml=="1") ? $(this).find('div.mptldtbool').html("True")
-			: $(this).find('div.mptldtbool').html("False");
-         	});
-     	});
-          },
+          // "initComplete": function(settings, json) {
+            // //set bool value
+            // $("#mptlindextbl tbody").find('tr').each(function () {
+         	// $(this).find('td').each (function() {
+         	// var innerHtml=$(this).find('div.mptldtbool').html();
+         	// (innerHtml=="1") ? $(this).find('div.mptldtbool').html("True")
+			// : $(this).find('div.mptldtbool').html("False");
+         	// });
+     	// });
+          // },
           "fnServerParams": function ( aoData ) {
 
             aoData.additional =<?php
@@ -517,8 +569,19 @@ $('.dataTables_filter input').unbind().on('keyup', function() {
         zIndex: 999999
     });
      setTurben();
+     
+    
   });
-
+function aftertableloaded(){
+	//set bool value
+	$("#mptlindextbl tbody").find('tr').each(function () {
+         	$(this).find('td').each (function() {
+         	var innerHtml=$(this).find('div.mptldtbool').html();
+         	(innerHtml=="1") ? $(this).find('div.mptldtbool').html("True")
+			: $(this).find('div.mptldtbool').html("False");
+         	});
+         	});
+}
 function setSelection(){
 		var valuearray = [];
 		$(".mptl-lst-chkbox:checked").each(function(){
@@ -591,9 +654,39 @@ $('.mptl-filter-base').on('ifUnchecked', function(event){
 	   });
   	  $("#basicfilter").val(filter);
   	  updateFilterActiveFlag();
-    	 table.ajax.reload(null,true);
-    	 table.draw();
+      table.ajax.reload(null,true);
+      table.draw();
   }
+  
+  // $('.mptl-resolver-base1').on('Clicked', function(event){
+// 
+	// setBasicResolver();
+// 
+// });
+// $('.mptl-resolver-base1').on('ifUnchecked', function(event){
+// 
+	// setBasicResolver();
+// 
+// });
+
+$('.mptl-resolver-base1').click(function(){
+    setBasicResolver();
+});
+
+ function setBasicResolver()
+  {
+  	alert("inside setBasicResolver");
+  	var valuearray = [];
+  	valuearray = setSelection();
+  	// $('#mptl_resolver_add').on('click', '.item', function () {
+  		// alert("ddd");
+            // var NestId = $(this).data('id');
+            var url = "/Servicesentries/add/"+valuearray; 
+            window.location.href = url; 
+            // table.ajax.reload(null,true);
+      		// table.draw();
+  }
+  
   function setOrder(){}
 
 $(document).ajaxComplete(function () {

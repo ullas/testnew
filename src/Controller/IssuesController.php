@@ -44,9 +44,9 @@ class IssuesController extends AppController
 			
          }
 		 $actions =[
-               
-                ['name'=>'delete','title'=>'Delete','class'=>' label-danger ']
-                ];
+					['name'=>'close','title'=>'Close','class'=>' label-danger '],
+	                ['name'=>'delete','title'=>'Delete','class'=>' label-danger ']
+	               ];
          $additional= [
       	                          'basic'=>['Open','OverDue','Resolved','Closed'],
       	                          'additional'=>[
@@ -162,7 +162,7 @@ private function getDateRangeFilters($dates,$basic)  {
 			$usrfiter.=(") ");
         }
 		$usrfiter.=$this->getDateRangeFilters($additional,$basic);
-		//echo "ULLAS". $usrfiter;
+		// echo "ULLAS". $usrfiter;
           
        $this->loadModel('CreateConfigs');
        $dbout=$this->CreateConfigs->find('all')->where(['table_name' => 'Issues'])->order(['"order"' => 'ASC'])->toArray();
@@ -213,7 +213,10 @@ private function getDateRangeFilters($dates,$basic)  {
         if ($this->request->is('post')) {
             $issue = $this->Issues->patchEntity($issue, $this->request->data);
             $issue['customer_id']=$this->loggedinuser['customer_id'];
-            if ($this->Issues->save($issue)) {
+			
+			//set new issue status as Open
+			$issue['issuestatus_id'] =1;
+			if ($this->Issues->save($issue)) {
                 $this->Flash->success(__('The issue has been saved.'));
 
                 return $this->redirect(['action' => 'index']);
@@ -240,7 +243,7 @@ private function getDateRangeFilters($dates,$basic)  {
                 
         $addresses = $this->Issues->Addresses->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0']) ;
         
-                $this->set(compact('issue', 'vehicles', 'reportedbies', 'customers', 'workorders', 'servicesentries', 'addresses'));
+        $this->set(compact('issue', 'vehicles', 'reportedbies', 'customers', 'workorders', 'servicesentries', 'addresses'));
         $this->set('_serialize', ['issue']);
     }
 
@@ -263,7 +266,7 @@ private function getDateRangeFilters($dates,$basic)  {
 		}
         if ($this->request->is(['patch', 'post', 'put'])) {
             $issue = $this->Issues->patchEntity($issue, $this->request->data);
-             $issue['customer_id']=$this->currentuser['customer_id'];
+             $issue['customer_id']=$this->loggedinuser['customer_id'];
             if ($this->Issues->save($issue)) {
                 $this->Flash->success(__('The issue has been saved.'));
 
@@ -344,4 +347,92 @@ private function getDateRangeFilters($dates,$basic)  {
 		   }
 		return $this->redirect(['action' => 'index']);	
      }
+	
+  public function setClose()
+    {
+    	
+    	if($this->request->is('ajax')) 
+    	{
+    		$this->loadModel('Issues');
+			$this->autoRender=false;
+			$issueidsAr = array();
+			$issueidsAr = $this->request->query['content'];
+			$issueids=explode(",",$issueidsAr);
+			$issues = array();
+			for ($i=0; $i <count($issueids) ; $i++) { 
+				$issues[$i] = $issueids[$i];
+				$ttt = $this->Issues->changeStatusClose($this->loggedinuser['customer_id'],$issueids[$i]);
+			}
+		 	// if(isset($ttt))
+			// {
+				// return $this->redirect(array('controller' => 'Issues', 'action' => 'index'));
+				$this->Flash->success(__('Selected Issues are closed.'));
+				// return $this->redirect(['action' => 'index']);
+			// }
+		 	$this->response->body("testop");
+	    	return $this->response;
+			
+		}
+		
+    }
+	
+	public function setResolve()
+    {
+    	
+    	if($this->request->is('ajax')) 
+    	{
+    		$this->loadModel('Issues');
+			$this->autoRender=false;
+			$issueidsAr = array();
+			$issueidsAr = $this->request->query['content'];
+			$issueids=explode(",",$issueidsAr);
+			$issues = array();
+			for ($i=0; $i <count($issueids) ; $i++) { 
+				$issues[$i] = $issueids[$i];
+				$ttt = $this->Issues->changeStatusResolve($this->loggedinuser['customer_id'],$issueids[$i]);
+			}
+		 	// if(isset($ttt))
+			// {
+				// return $this->redirect(array('controller' => 'Issues', 'action' => 'index'));
+				$this->Flash->success(__('Selected Issues are closed.'));
+				// return $this->redirect(['action' => 'index']);
+			// }
+		 	$this->response->body("testop");
+	    	return $this->response;
+			
+		}
+		
+    }
+
+
+	public function assignToWorkorder()
+    {
+    	
+    	if($this->request->is('ajax')) 
+    	{
+    		$this->log("sdfsdf");
+    		$this->loadModel('Issues');
+			$this->autoRender=false;
+			$issueidsAr = array();
+			$issueidsAr = $this->request->query['content'];
+			$wid = $this->request->query['wid'];
+			$this->log($wid);
+			$issueids=explode(",",$issueidsAr);
+			$issues = array();
+			for ($i=0; $i <count($issueids) ; $i++) { 
+				$issues[$i] = $issueids[$i];
+				$ttt = $this->Issues->assignToWorkorder($this->loggedinuser['customer_id'],$issueids[$i],$wid);
+			}
+		 	// if(isset($ttt))
+			// {
+				// return $this->redirect(array('controller' => 'Issues', 'action' => 'index'));
+				// $this->Flash->success(__('Selected Issues are closed.'));
+				// return $this->redirect(['action' => 'index']);
+			// }
+		 	// $this->response->body("testop");
+	    	// return $this->response;
+			
+		}
+		
+    }
 }

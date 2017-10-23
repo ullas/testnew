@@ -65,7 +65,7 @@
            <?php    	
             echo $this->Form->input('workorder_id', ['label'=>'Work Order','options' => $workorders, 'empty' => true,'class'=>'select2']);
             echo $this->Form->input('serviceentry_id', ['label'=>'Service Entry','options' => $servicesentries, 'empty' => true,'class'=>'select2']);
-            echo $this->Form->input('addresses.ids', [ 'empty' => true,'options' => $addresses,'class'=>'select2','label'=>'Assigned To']);
+            echo $this->Form->input('addresses._ids', [ 'empty' => true,'options' => $addresses,'class'=>'select2','label'=>'Assigned To']);
 	
         ?>
     </div>

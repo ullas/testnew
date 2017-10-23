@@ -5,6 +5,7 @@ use Cake\ORM\Query;
 use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
 use Cake\Validation\Validator;
+use Cake\Datasource\ConnectionManager;
 
 /**
  * Workorders Model
@@ -19,6 +20,7 @@ use Cake\Validation\Validator;
  * @property \Cake\ORM\Association\HasMany $Issues
  * @property \Cake\ORM\Association\HasMany $Workorderdocuments
  * @property \Cake\ORM\Association\HasMany $Workorderlabourlineitems
+ * @property \Cake\ORM\Association\HasMany $Workorderlineitems
  * @property \Cake\ORM\Association\HasMany $Workorderpartslineitems
  *
  * @method \App\Model\Entity\Workorder get($primaryKey, $options = [])
@@ -56,15 +58,15 @@ class WorkordersTable extends Table
             'foreignKey' => 'vendor_id'
         ]);
         $this->belongsTo('Issuedbies', [
-            'className' =>'Addresses',
+        	'className' =>'Addresses',
             'foreignKey' => 'issuedby_id'
         ]);
         $this->belongsTo('Assignedbies', [
-            'className' =>'Addresses',
+        	'className' =>'Addresses',
             'foreignKey' => 'assignedby_id'
         ]);
         $this->belongsTo('Assigntos', [
-            'className' =>'Addresses',
+        	'className' =>'Addresses',
             'foreignKey' => 'assignto_id'
         ]);
         $this->belongsTo('Customers', [
@@ -77,6 +79,9 @@ class WorkordersTable extends Table
             'foreignKey' => 'workorder_id'
         ]);
         $this->hasMany('Workorderlabourlineitems', [
+            'foreignKey' => 'workorder_id'
+        ]);
+        $this->hasMany('Workorderlineitems', [
             'foreignKey' => 'workorder_id'
         ]);
         $this->hasMany('Workorderpartslineitems', [
@@ -143,6 +148,10 @@ class WorkordersTable extends Table
         $validator
             ->allowEmpty('phonenumber');
 
+        $validator
+            ->integer('taxtype')
+            ->allowEmpty('taxtype');
+
         return $validator;
     }
 
@@ -165,4 +174,24 @@ class WorkordersTable extends Table
 
         return $rules;
     }
+	
+	public function updateWorkordersAfterItemsDeletion($cid,$wid,$labour,$parts)
+	{
+		$con = ConnectionManager::get('default');
+		$stmt = $con->execute("update zorba.workorders set labour = $labour, parts = $parts  where id = $wid and customer_id = $cid ");
+		$results = $stmt->fetchAll('assoc');
+		return $results;
+	}
+	
+	//set the status as close for selected workorders in datatable
+	public function setClose($cid,$wid)
+	{
+		$con = ConnectionManager::get('default');
+		$stmt = $con->execute("update zorba.workorders SET workorderstatus_id = 4 WHERE id  = $wid and customer_id = $cid");
+		$results = $stmt->fetchAll('assoc');
+		return $results;
+		
+	}
+	
+	
 }

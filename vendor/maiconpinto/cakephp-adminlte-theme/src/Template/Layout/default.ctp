@@ -168,6 +168,7 @@ div.dataTables_wrapper { clear: both; }
 <!-- AdminLTE for demo purposes -->
 <?php echo $this->fetch('script'); ?>
 <?php echo $this->fetch('scriptBotton'); ?>
+<?php echo $this->fetch('scriptIndexBotton'); ?>
 <script type="text/javascript">
 
 
