@@ -11,6 +11,7 @@ use Cake\Validation\Validator;
  *
  * @property \Cake\ORM\Association\BelongsTo $Inspectionitemtypes
  * @property \Cake\ORM\Association\BelongsTo $Customers
+ * @property \Cake\ORM\Association\BelongsTo $Inspectionforms
  * @property \Cake\ORM\Association\BelongsToMany $Inspectionforms
  *
  * @method \App\Model\Entity\Inspectionitem get($primaryKey, $options = [])
@@ -44,6 +45,9 @@ class InspectionitemsTable extends Table
         $this->belongsTo('Customers', [
             'foreignKey' => 'customer_id'
         ]);
+        $this->belongsTo('Inspectionforms', [
+            'foreignKey' => 'inspectionform_id'
+        ]);
         $this->belongsToMany('Inspectionforms', [
             'foreignKey' => 'inspectionitem_id',
             'targetForeignKey' => 'inspectionform_id',
@@ -68,6 +72,10 @@ class InspectionitemsTable extends Table
         $validator
             ->allowEmpty('description');
 
+        $validator
+            ->boolean('required')
+            ->allowEmpty('required');
+
         return $validator;
     }
 
@@ -82,6 +90,7 @@ class InspectionitemsTable extends Table
     {
         $rules->add($rules->existsIn(['inspectionitemtype_id'], 'Inspectionitemtypes'));
         $rules->add($rules->existsIn(['customer_id'], 'Customers'));
+        $rules->add($rules->existsIn(['inspectionform_id'], 'Inspectionforms'));
 
         return $rules;
     }

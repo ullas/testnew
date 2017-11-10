@@ -5,7 +5,7 @@ use Cake\ORM\Query;
 use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
 use Cake\Validation\Validator;
-
+use Cake\Datasource\ConnectionManager;
 /**
  * Servicesentries Model
  *
@@ -128,4 +128,6 @@ class ServicesentriesTable extends Table
 
         return $rules;
     }
+	
+	
 }

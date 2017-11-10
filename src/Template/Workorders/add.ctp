@@ -22,7 +22,7 @@
     <div class="col-md-12">
       <div class="nav-tabs-custom">
         
-        <div class="tab-content">
+        <div class="tab-content ">
           <div class="active tab-pane" id="details">
              <div class="form-horizontal">
                	<?php
@@ -383,7 +383,7 @@ $this->Html->script([
   	{
   		var resissues=[];
 		var resissues_length = <?php echo count($resissues); ?>;
-		console.log(resissues_length);
+		// console.log(resissues_length);
 		if (resissues_length>0)
 			{
 				<?php
@@ -580,11 +580,11 @@ $this->Html->script([
 							tempval = tempval.toFixed(2);
 							if(document.getElementById('subtotallaborST'+count))
 								{
-									document.getElementById('subtotallaborST'+count).innerHTML =parseFloat(tempval);
+									document.getElementById('subtotallaborST'+count).innerHTML =parseFloat(tempval).toFixed(2);
 								}
 							if(document.getElementById('subtotallaborIS'+count))
 								{	
-									document.getElementById('subtotallaborIS'+count).innerHTML =parseFloat(tempval);
+									document.getElementById('subtotallaborIS'+count).innerHTML =parseFloat(tempval).toFixed(2);
 								}
 				    	}
 					//set text
@@ -682,11 +682,11 @@ $this->Html->script([
 							tempval = tempval.toFixed(2);
 							if(document.getElementById('subtotalpartsST'+count))
 								{
-									document.getElementById('subtotalpartsST'+count).innerHTML =parseFloat(tempval);
+									document.getElementById('subtotalpartsST'+count).innerHTML =parseFloat(tempval).toFixed(2);
 								}
-							if(document.getElementById('subtotallaborIS'+count))
+							if(document.getElementById('subtotalpartsIS'+count))
 								{	
-									document.getElementById('subtotalpartsIS'+count).innerHTML =parseFloat(tempval);
+									document.getElementById('subtotalpartsIS'+count).innerHTML =parseFloat(tempval).toFixed(2);
 								}
 				    	}
 					//set text
@@ -782,11 +782,11 @@ $this->Html->script([
 							tempval = tempval.toFixed(2);
 							if(document.getElementById('subtotalpartsST'+count))
 								{
-									document.getElementById('subtotalpartsST'+count).innerHTML =parseFloat(tempval);
+									document.getElementById('subtotalpartsST'+count).innerHTML =parseFloat(tempval).toFixed(2);
 								}
-							if(document.getElementById('subtotallaborIS'+count))
+							if(document.getElementById('subtotalpartsIS'+count))
 								{	
-									document.getElementById('subtotalpartsIS'+count).innerHTML =parseFloat(tempval);
+									document.getElementById('subtotalpartsIS'+count).innerHTML =parseFloat(tempval).toFixed(2);
 								}
 				    	}
 					//set text
@@ -848,14 +848,16 @@ $this->Html->script([
 								    			}
 						    			}
 					    		}
-					    		tempval = tempval.toFixed(2);
+					    		// tempval = tempval.toFixed(2);
 					    		if(document.getElementById('subtotallaborST'+count))
 								{
-									document.getElementById('subtotallaborST'+count).innerHTML =parseFloat(tempval);
+									// alert("parseFloat(tempval)=="+parseFloat(tempval));
+									// alert("parseFloat(tempval).toFixed(2)=="+parseFloat(tempval).toFixed(2));
+									document.getElementById('subtotallaborST'+count).innerHTML =parseFloat(tempval).toFixed(2);
 								}
 								if(document.getElementById('subtotallaborIS'+count))
 								{	
-									document.getElementById('subtotallaborIS'+count).innerHTML =parseFloat(tempval);
+									document.getElementById('subtotallaborIS'+count).innerHTML =parseFloat(tempval).toFixed(2);
 								}
 				    	}
 					//set text
@@ -887,6 +889,7 @@ $this->Html->script([
 									var partqty = $('#partqty'+count).val();
 				    				var partrate = $('#partrate'+count).val();
 				    				var parttax = parseFloat($('#parttax'+count).val());
+				    				
 				    				var tempval;
 				    				
 				    				if($('#dicount').val() == ""){$('#dicount').val(0);}
@@ -918,14 +921,14 @@ $this->Html->script([
 								    			}
 							    		}
 								}
-								tempval = tempval.toFixed(2);
+								// tempval = tempval.toFixed(2);
 								if(document.getElementById('subtotalpartsST'+count))
 								{
-									document.getElementById('subtotalpartsST'+count).innerHTML =parseFloat(tempval);
+									document.getElementById('subtotalpartsST'+count).innerHTML =parseFloat(tempval).toFixed(2);
 								}
-								if(document.getElementById('subtotallaborIS'+count))
+								if(document.getElementById('subtotalpartsIS'+count))
 								{	
-									document.getElementById('subtotalpartsIS'+count).innerHTML =parseFloat(tempval);
+									document.getElementById('subtotalpartsIS'+count).innerHTML =parseFloat(tempval).toFixed(2);
 								}
 				    	}
 					//set text
@@ -945,8 +948,8 @@ $this->Html->script([
 				}
 				
 			function laborTaxTypeCalculate()
-				{
-					var tempval=0;
+				{alert("isss");
+					var tempval=0.00;
 					var numItems = $('.laborhrs').length;
 			    	var laborcount=0;
 			    	for(count = 1; count <= numItems; count++)
@@ -1001,14 +1004,14 @@ $this->Html->script([
 								    			}
 							    		}
 								}
-								tempval = tempval.toFixed(2);
+								// tempval = tempval.toFixed(2);
 								if(document.getElementById('subtotallaborST'+count))
 								{
-									document.getElementById('subtotallaborST'+count).innerHTML =parseFloat(tempval);
+									document.getElementById('subtotallaborST'+count).innerHTML =parseFloat(tempval).toFixed(2);
 								}
 								if(document.getElementById('subtotallaborIS'+count))
 								{	
-									document.getElementById('subtotallaborIS'+count).innerHTML =parseFloat(tempval);
+									document.getElementById('subtotallaborIS'+count).innerHTML =parseFloat(tempval).toFixed(2);
 								}
 				    	}
 					//set text
@@ -1083,14 +1086,14 @@ $this->Html->script([
 								    			}
 							    		}
 								}
-								tempval = tempval.toFixed(2);
+								// tempval = tempval.toFixed(2);
 								if(document.getElementById('subtotalpartsST'+count))
 								{
-									document.getElementById('subtotalpartsST'+count).innerHTML =parseFloat(tempval);
+									document.getElementById('subtotalpartsST'+count).innerHTML =parseFloat(tempval).toFixed(2);
 								}
-								if(document.getElementById('subtotallaborIS'+count))
+								if(document.getElementById('subtotalpartsIS'+count))
 								{	
-									document.getElementById('subtotalpartsIS'+count).innerHTML =parseFloat(tempval);
+									document.getElementById('subtotalpartsIS'+count).innerHTML =parseFloat(tempval).toFixed(2);
 								}
 				    	}
 					//set text
@@ -1176,12 +1179,12 @@ $this->Html->script([
 									if($('#totaltaxtype').val() == 1)
 										{
 											totalsum = totalsum + totalsum* parseFloat($('#totaltax').val())/100;
-											document.getElementById('total').innerHTML  = totalsum;
+											document.getElementById('total').innerHTML  = totalsum.toFixed(2);
 										}
 									if($('#totaltaxtype').val() == 2)
 										{
 											totalsum = totalsum +  parseFloat($('#totaltax').val());
-											document.getElementById('total').innerHTML  = totalsum;
+											document.getElementById('total').innerHTML  = totalsum.toFixed(2);
 										}
 									
 									var totalsum = taxamount;
@@ -1209,7 +1212,7 @@ $this->Html->script([
 				{
 	        		if (confirm("Are you sure you want to delete the particular Item ?")) 
 	        				{
-								$(this).parent().closest('div .classname').hide();
+								$(this).parent().closest('div.classname').hide();
 								calculateAll();
 								return true;
 	           		   		} 
@@ -1427,7 +1430,7 @@ $this->Html->script([
 				    		+'&discount='+discount+'&tax='+tax+'&taxtype='+taxtype
 				    		, function(d) {
 				   		 		if(d!="error")
-					   		 		{console.log("inside save2");
+					   		 		{
 					   		 		    
 					   		 		    //if workorder status is Closed(4), it is added as a service entry. 
 					   		 		 	if (workorderstatus == 4)
@@ -1466,7 +1469,7 @@ $this->Html->script([
 											}
 										if($('.laborhrs').length>0 || $('.partqty').length>0)
 											{
-												console.log("postdatta--"+postdata);
+												// console.log("postdatta--"+postdata);
 												$.get('/Workorders/addLaborParts?content='+postdata, function(d) 
 													{
 													});
@@ -1487,7 +1490,7 @@ $this->Html->script([
 								             	{
 								             	  // window.location.reload();
 								             	}
-								            })	
+								              })	
 						   		 		 }
 					   		 		
 								            

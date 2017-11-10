@@ -9,16 +9,16 @@ use Cake\ORM\Entity;
  * @property int $id
  * @property string $name
  * @property string $descriptions
- * @property int $inspectionform_id
  * @property int $customer_id
  * @property \Cake\I18n\Time $date
  * @property int $inspectionstatus_id
  * @property int $vehicle_id
+ * @property int $inspectionform_id
  *
- * @property \App\Model\Entity\Inspectionfom $inspectionfom
  * @property \App\Model\Entity\Customer $customer
  * @property \App\Model\Entity\Inspectionstatus $inspectionstatus
  * @property \App\Model\Entity\Vehicle $vehicle
+ * @property \App\Model\Entity\Inspectionform[] $inspectionforms
  */
 class Inspection extends Entity
 {

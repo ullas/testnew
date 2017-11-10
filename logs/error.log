@@ -1919,3 +1919,3290 @@ Stack Trace:
 2017-08-18 10:09:04 Error: Workorders/add/17
 2017-08-18 10:10:38 Error: Workorders/add/17,15
 2017-08-18 10:15:30 Error: Workorders/add/17,15
+2017-08-21 06:12:41 Error: Workorders/add/14
+2017-08-21 06:51:55 Error: Workorders/add/1
+2017-08-21 06:57:48 Warning: Headers already sent in C:\Users\Hp\Desktop\testnew\vendor\cakephp\cakephp\src\Error\Debugger.php:753
+2017-08-21 06:57:48 Error: [RuntimeException] Unable to emit response; headers already sent
+Request URL: /Workorders/editLaborParts?content=
+Referer URL: http://localhost:8765/Workorders/edit/444
+Stack Trace:
+#0 C:\Users\Hp\Desktop\testnew\vendor\cakephp\cakephp\src\Http\Server.php(107): Zend\Diactoros\Response\SapiStreamEmitter->emit(Object(Zend\Diactoros\Response))
+#1 C:\Users\Hp\Desktop\testnew\webroot\index.php(37): Cake\Http\Server->emit(Object(Zend\Diactoros\Response))
+#2 {main}
+
+
+2017-08-21 07:00:24 Error: Workorders/add/1
+2017-08-21 07:01:01 Error: Workorders/add/17
+2017-08-21 07:10:59 Error: Workorders/add/13,1
+2017-08-21 08:53:39 Error: Fatal Error (4): syntax error, unexpected ')' in [C:\Users\Hp\Desktop\testnew\src\Controller\IssuesController.php, line 422]
+Request URL: /issues
+Referer URL: http://localhost:8765/dashboard
+Trace:
+Cake\Error\BaseErrorHandler::handleFatalError() - CORE\src\Error\BaseErrorHandler.php, line 216
+Cake\Error\BaseErrorHandler::Cake\Error\{closure}() - CORE\src\Error\BaseErrorHandler.php, line 98
+[main] - [internal], line ??
+
+
+
+2017-08-21 08:53:39 Error: [Cake\Error\FatalErrorException] syntax error, unexpected ')'
+Request URL: /issues
+Referer URL: http://localhost:8765/dashboard
+Stack Trace:
+#0 C:\Users\Hp\Desktop\testnew\vendor\cakephp\cakephp\src\Error\BaseErrorHandler.php(98): Cake\Error\BaseErrorHandler->handleFatalError(4, 'syntax error, u...', 'C:\\Users\\Hp\\Des...', 422)
+#1 [internal function]: Cake\Error\BaseErrorHandler->Cake\Error\{closure}()
+#2 {main}
+
+
+2017-08-21 08:54:16 Error: Workorders/add/18
+2017-08-21 08:58:25 Error: Workorders/add/19
+2017-08-21 09:04:26 Error: Workorders/add/19
+2017-08-21 09:11:39 Error: Workorders/add/18
+2017-08-21 09:13:29 Error: 0
+2017-08-21 09:18:04 Error: Workorders/add/19
+2017-08-21 09:19:41 Error: 0
+2017-08-21 09:23:23 Error: Workorders/add/20
+2017-08-21 09:24:25 Error: 0
+2017-08-21 09:29:19 Error: Workorders/add/21
+2017-08-21 09:30:07 Error: 0
+2017-08-21 09:35:49 Error: Workorders/add/22
+2017-08-21 09:37:17 Error: sdfsdf
+2017-08-21 09:37:17 Error: 
+2017-08-21 09:38:37 Error: Workorders/add/22
+2017-08-21 09:39:15 Error: sdfsdf
+2017-08-21 09:39:15 Error: 
+2017-08-21 09:43:02 Error: Workorders/add/22
+2017-08-21 09:44:16 Error: sdfsdf
+2017-08-21 09:44:16 Error: 456
+2017-08-21 09:46:39 Error: Workorders/add/22
+2017-08-21 09:47:16 Error: sdfsdf
+2017-08-21 09:47:16 Error: 457
+2017-08-21 10:02:28 Error: Array
+(
+    [0] => Array
+        (
+            [name] => Workorderstatuses.id
+            [type] => num
+        )
+
+    [1] => Array
+        (
+            [name] => Workorderstatuses.name
+            [type] => char
+        )
+
+    [2] => Array
+        (
+            [name] => Workorderstatuses.description
+            [type] => char
+        )
+
+)
+
+2017-08-21 11:51:53 Error: servicesentries/add
+2017-08-21 11:52:04 Error: Servicesentries/add/
+2017-08-22 07:38:30 Error: Workorders/add/
+2017-08-22 07:39:35 Error: Workorders/add/
+2017-08-22 08:40:18 Error: Servicesentries/add/
+2017-08-22 08:40:53 Error: Servicesentries/add/
+2017-08-22 08:40:54 Error: 0
+2017-08-22 08:41:24 Error: Servicesentries/add/
+2017-08-22 08:41:40 Error: Servicesentries/add/
+2017-08-22 08:41:40 Error: 0
+2017-08-22 08:41:55 Error: Servicesentries/add/
+2017-08-22 09:07:11 Warning: Warning (2): strrpos() expects parameter 1 to be string, array given in [C:\Users\Hp\Desktop\testnew\vendor\cakephp\debug_kit\src\Routing\Filter\DebugBarFilter.php, line 232]
+Request URL: /Workorders/setClose?content=439
+Referer URL: http://localhost:8765/Workorders
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE\src\Error\BaseErrorHandler.php, line 146
+strrpos - [internal], line ??
+DebugKit\Routing\Filter\DebugBarFilter::_injectScripts() - ROOT\vendor\cakephp\debug_kit\src\Routing\Filter\DebugBarFilter.php, line 232
+DebugKit\Routing\Filter\DebugBarFilter::afterDispatch() - ROOT\vendor\cakephp\debug_kit\src\Routing\Filter\DebugBarFilter.php, line 212
+Cake\Event\EventManager::_callListener() - CORE\src\Event\EventManager.php, line 425
+Cake\Event\EventManager::dispatch() - CORE\src\Event\EventManager.php, line 386
+Cake\Http\ActionDispatcher::dispatchEvent() - CORE\src\Event\EventDispatcherTrait.php, line 78
+Cake\Http\ActionDispatcher::dispatch() - CORE\src\Http\ActionDispatcher.php, line 103
+Cake\Http\BaseApplication::__invoke() - CORE\src\Http\BaseApplication.php, line 83
+Cake\Http\Runner::__invoke() - CORE\src\Http\Runner.php, line 65
+Cake\Routing\Middleware\RoutingMiddleware::__invoke() - CORE\src\Routing\Middleware\RoutingMiddleware.php, line 52
+Cake\Http\Runner::__invoke() - CORE\src\Http\Runner.php, line 65
+Cake\Routing\Middleware\AssetMiddleware::__invoke() - CORE\src\Routing\Middleware\AssetMiddleware.php, line 88
+Cake\Http\Runner::__invoke() - CORE\src\Http\Runner.php, line 65
+Cake\Error\Middleware\ErrorHandlerMiddleware::__invoke() - CORE\src\Error\Middleware\ErrorHandlerMiddleware.php, line 51
+Cake\Http\Runner::__invoke() - CORE\src\Http\Runner.php, line 65
+Cake\Http\Runner::run() - CORE\src\Http\Runner.php, line 51
+Cake\Http\Server::run() - CORE\src\Http\Server.php, line 82
+[main] - ROOT\webroot\index.php, line 37
+
+
+
+2017-08-22 09:07:11 Warning: Headers already sent in C:\Users\Hp\Desktop\testnew\vendor\cakephp\cakephp\src\Error\Debugger.php:753
+2017-08-22 09:07:11 Error: [RuntimeException] Unable to emit response; headers already sent
+Request URL: /Workorders/setClose?content=439
+Referer URL: http://localhost:8765/Workorders
+Stack Trace:
+#0 C:\Users\Hp\Desktop\testnew\vendor\cakephp\cakephp\src\Http\Server.php(107): Zend\Diactoros\Response\SapiStreamEmitter->emit(Object(Zend\Diactoros\Response))
+#1 C:\Users\Hp\Desktop\testnew\webroot\index.php(37): Cake\Http\Server->emit(Object(Zend\Diactoros\Response))
+#2 {main}
+
+
+2017-08-22 09:08:21 Warning: Headers already sent in C:\Users\Hp\Desktop\testnew\vendor\cakephp\cakephp\src\Error\Debugger.php:753
+2017-08-22 09:08:21 Error: [RuntimeException] Unable to emit response; headers already sent
+Request URL: /Workorders/setClose?content=450
+Referer URL: http://localhost:8765/Workorders
+Stack Trace:
+#0 C:\Users\Hp\Desktop\testnew\vendor\cakephp\cakephp\src\Http\Server.php(107): Zend\Diactoros\Response\SapiStreamEmitter->emit(Object(Zend\Diactoros\Response))
+#1 C:\Users\Hp\Desktop\testnew\webroot\index.php(37): Cake\Http\Server->emit(Object(Zend\Diactoros\Response))
+#2 {main}
+
+
+2017-08-22 09:09:14 Warning: Headers already sent in C:\Users\Hp\Desktop\testnew\vendor\cakephp\cakephp\src\Error\Debugger.php:753
+2017-08-22 09:09:14 Error: [RuntimeException] Unable to emit response; headers already sent
+Request URL: /Workorders/setClose?content=451
+Referer URL: http://localhost:8765/Workorders
+Stack Trace:
+#0 C:\Users\Hp\Desktop\testnew\vendor\cakephp\cakephp\src\Http\Server.php(107): Zend\Diactoros\Response\SapiStreamEmitter->emit(Object(Zend\Diactoros\Response))
+#1 C:\Users\Hp\Desktop\testnew\webroot\index.php(37): Cake\Http\Server->emit(Object(Zend\Diactoros\Response))
+#2 {main}
+
+
+2017-08-22 09:11:06 Error: Array
+(
+    [0] => Array
+        (
+            [id] => 455
+            [issuedate] => 2017-08-02
+            [workorderstatus_id] => 4
+            [vehicle_id] => 118
+            [startdate] => 2017-08-28
+            [lables] => 
+            [odometer] => 
+            [void] => 1
+            [vendor_id] => 
+            [completiondate] => 
+            [labour] => 6.06
+            [parts] => 8.08
+            [dicount] => 0
+            [tax] => 0
+            [issuedby_id] => 
+            [assignedby_id] => 
+            [assignto_id] => 
+            [invoicenumber] => 
+            [description] => 
+            [phonenumber] => 
+            [customer_id] => 1
+            [taxtype] => 1
+        )
+
+)
+
+2017-08-22 09:11:07 Warning: Headers already sent in C:\Users\Hp\Desktop\testnew\vendor\cakephp\cakephp\src\Error\Debugger.php:753
+2017-08-22 09:11:07 Error: [RuntimeException] Unable to emit response; headers already sent
+Request URL: /Workorders/setClose?content=455
+Referer URL: http://localhost:8765/Workorders
+Stack Trace:
+#0 C:\Users\Hp\Desktop\testnew\vendor\cakephp\cakephp\src\Http\Server.php(107): Zend\Diactoros\Response\SapiStreamEmitter->emit(Object(Zend\Diactoros\Response))
+#1 C:\Users\Hp\Desktop\testnew\webroot\index.php(37): Cake\Http\Server->emit(Object(Zend\Diactoros\Response))
+#2 {main}
+
+
+2017-08-22 09:15:27 Error: Array
+(
+    [0] => Array
+        (
+            [id] => 439
+            [issuedate] => 2017-07-31
+            [workorderstatus_id] => 4
+            [vehicle_id] => 118
+            [startdate] => 2017-09-05
+            [lables] => 
+            [odometer] => 
+            [void] => 1
+            [vendor_id] => 
+            [completiondate] => 
+            [labour] => 15.9
+            [parts] => 24.72
+            [dicount] => 5
+            [tax] => 12
+            [issuedby_id] => 
+            [assignedby_id] => 
+            [assignto_id] => 
+            [invoicenumber] => invccc
+            [description] => 
+            [phonenumber] => 
+            [customer_id] => 1
+            [taxtype] => 1
+        )
+
+)
+
+2017-08-22 09:15:27 Warning: Headers already sent in C:\Users\Hp\Desktop\testnew\vendor\cakephp\cakephp\src\Error\Debugger.php:753
+2017-08-22 09:15:27 Error: [RuntimeException] Unable to emit response; headers already sent
+Request URL: /Workorders/setClose?content=439
+Referer URL: http://localhost:8765/Workorders
+Stack Trace:
+#0 C:\Users\Hp\Desktop\testnew\vendor\cakephp\cakephp\src\Http\Server.php(107): Zend\Diactoros\Response\SapiStreamEmitter->emit(Object(Zend\Diactoros\Response))
+#1 C:\Users\Hp\Desktop\testnew\webroot\index.php(37): Cake\Http\Server->emit(Object(Zend\Diactoros\Response))
+#2 {main}
+
+
+2017-08-22 09:16:35 Error: Array
+(
+    [0] => Array
+        (
+        )
+
+)
+
+2017-08-22 09:21:30 Error: Cake\Database\Log\LoggingStatement Object
+(
+    [_logger:protected] => DebugKit\Database\Log\DebugLog Object
+        (
+            [_queries:protected] => Array
+                (
+                    [0] => Array
+                        (
+                            [query] => SELECT Customers.id AS "Customers__id", Customers.code AS "Customers__code", Customers.name AS "Customers__name", Customers.srv_exp_date AS "Customers__srv_exp_date", Customers.contact_first_name AS "Customers__contact_first_name", Customers.tech_cont_first_name AS "Customers__tech_cont_first_name", Customers.alert_email AS "Customers__alert_email", Customers.srv_str_date AS "Customers__srv_str_date", Customers.no_of_lic AS "Customers__no_of_lic", Customers.contact_phone AS "Customers__contact_phone", Customers.tech_cont_phone AS "Customers__tech_cont_phone", Customers.address AS "Customers__address", Customers.contact_last_name AS "Customers__contact_last_name", Customers.tech_cont_last_name AS "Customers__tech_cont_last_name", Customers.contact_email AS "Customers__contact_email", Customers.city AS "Customers__city", Customers.state AS "Customers__state", Customers.country AS "Customers__country", Customers.zip AS "Customers__zip", Customers.designation AS "Customers__designation", Customers.parent_customer AS "Customers__parent_customer", Customers.created AS "Customers__created", Customers.modified AS "Customers__modified", Customers.fax AS "Customers__fax", Customers.timezone AS "Customers__timezone", Customers.language AS "Customers__language", Customers.smsenabled AS "Customers__smsenabled", Customers.customertype_id AS "Customers__customertype_id", Customers.initlat AS "Customers__initlat", Customers.initlong AS "Customers__initlong", Customers.updategroup AS "Customers__updategroup", Customers.weekly_off1 AS "Customers__weekly_off1", Customers.weekly_off2 AS "Customers__weekly_off2" FROM customers Customers WHERE Customers.id = 1 LIMIT 1
+                            [took] => 3
+                            [rows] => 1
+                        )
+
+                    [1] => Array
+                        (
+                            [query] => update zorba.workorders SET workorderstatus_id = 4 WHERE id  = 451 and customer_id = 1
+                            [took] => 64
+                            [rows] => 1
+                        )
+
+                    [2] => Array
+                        (
+                            [query] => select * from zorba.workorders  WHERE id  = 451 and customer_id = 1
+                            [took] => 1
+                            [rows] => 1
+                        )
+
+                )
+
+            [_logger:protected] => 
+            [_connectionName:protected] => default
+            [_totalTime:protected] => 68
+            [_totalRows:protected] => 3
+        )
+
+    [_compiledParams:protected] => Array
+        (
+        )
+
+    [_statement:protected] => Cake\Database\Statement\PDOStatement Object
+        (
+            [_statement:protected] => PDOStatement Object
+                (
+                    [queryString] => select * from zorba.workorders  WHERE id  = 451 and customer_id = 1
+                )
+
+            [_driver:protected] => Cake\Database\Driver\Postgres Object
+                (
+                    [connected] => 1
+                )
+
+            [_hasExecuted:protected] => 1
+        )
+
+    [_driver:protected] => Cake\Database\Driver\Postgres Object
+        (
+            [connected] => 1
+        )
+
+    [_hasExecuted:protected] => 1
+)
+
+2017-08-22 09:21:30 Error: Fatal Error (1): Cannot use object of type Cake\Database\Log\LoggingStatement as array in [C:\Users\Hp\Desktop\testnew\src\Controller\WorkordersController.php, line 955]
+Request URL: /Workorders/setClose?content=451
+Referer URL: http://localhost:8765/Workorders
+Trace:
+Cake\Error\BaseErrorHandler::handleFatalError() - CORE\src\Error\BaseErrorHandler.php, line 216
+Cake\Error\BaseErrorHandler::Cake\Error\{closure}() - CORE\src\Error\BaseErrorHandler.php, line 98
+[main] - [internal], line ??
+
+
+
+2017-08-22 09:21:31 Error: [Cake\Error\FatalErrorException] Cannot use object of type Cake\Database\Log\LoggingStatement as array
+Request URL: /Workorders/setClose?content=451
+Referer URL: http://localhost:8765/Workorders
+Stack Trace:
+#0 C:\Users\Hp\Desktop\testnew\vendor\cakephp\cakephp\src\Error\BaseErrorHandler.php(98): Cake\Error\BaseErrorHandler->handleFatalError(1, 'Cannot use obje...', 'C:\\Users\\Hp\\Des...', 955)
+#1 [internal function]: Cake\Error\BaseErrorHandler->Cake\Error\{closure}()
+#2 {main}
+
+
+2017-08-22 09:24:10 Error: Fatal Error (4): syntax error, unexpected 'public' (T_PUBLIC) in [C:\Users\Hp\Desktop\testnew\src\Controller\WorkordersController.php, line 963]
+Request URL: /Workorders
+Referer URL: http://localhost:8765/Workorders
+Trace:
+Cake\Error\BaseErrorHandler::handleFatalError() - CORE\src\Error\BaseErrorHandler.php, line 216
+Cake\Error\BaseErrorHandler::Cake\Error\{closure}() - CORE\src\Error\BaseErrorHandler.php, line 98
+[main] - [internal], line ??
+
+
+
+2017-08-22 09:24:10 Error: [Cake\Error\FatalErrorException] syntax error, unexpected 'public' (T_PUBLIC)
+Request URL: /Workorders
+Referer URL: http://localhost:8765/Workorders
+Stack Trace:
+#0 C:\Users\Hp\Desktop\testnew\vendor\cakephp\cakephp\src\Error\BaseErrorHandler.php(98): Cake\Error\BaseErrorHandler->handleFatalError(4, 'syntax error, u...', 'C:\\Users\\Hp\\Des...', 963)
+#1 [internal function]: Cake\Error\BaseErrorHandler->Cake\Error\{closure}()
+#2 {main}
+
+
+2017-08-22 09:25:23 Error: Array
+(
+    [0] => Array
+        (
+        )
+
+)
+
+2017-08-22 09:32:23 Error: Array
+(
+    [0] => Array
+        (
+        )
+
+)
+
+2017-08-22 09:34:56 Error: Array
+(
+    [0] => Array
+        (
+        )
+
+)
+
+2017-08-22 09:36:06 Error: 
+2017-08-22 09:36:07 Warning: Headers already sent in C:\Users\Hp\Desktop\testnew\vendor\cakephp\cakephp\src\Error\Debugger.php:753
+2017-08-22 09:36:07 Error: [RuntimeException] Unable to emit response; headers already sent
+Request URL: /Workorders/setClose2?content=439
+Referer URL: http://localhost:8765/Workorders
+Stack Trace:
+#0 C:\Users\Hp\Desktop\testnew\vendor\cakephp\cakephp\src\Http\Server.php(107): Zend\Diactoros\Response\SapiStreamEmitter->emit(Object(Zend\Diactoros\Response))
+#1 C:\Users\Hp\Desktop\testnew\webroot\index.php(37): Cake\Http\Server->emit(Object(Zend\Diactoros\Response))
+#2 {main}
+
+
+2017-08-22 09:36:45 Error: Array
+(
+    [0] => Array
+        (
+            [id] => 439
+            [issuedate] => 2017-07-31
+            [workorderstatus_id] => 1
+            [vehicle_id] => 118
+            [startdate] => 2017-09-05
+            [lables] => 
+            [odometer] => 
+            [void] => 1
+            [vendor_id] => 
+            [completiondate] => 
+            [labour] => 15.9
+            [parts] => 24.72
+            [dicount] => 5
+            [tax] => 12
+            [issuedby_id] => 
+            [assignedby_id] => 
+            [assignto_id] => 
+            [invoicenumber] => invccc
+            [description] => 
+            [phonenumber] => 
+            [customer_id] => 1
+            [taxtype] => 1
+        )
+
+    [1] => Array
+        (
+            [id] => 450
+            [issuedate] => 2017-08-28
+            [workorderstatus_id] => 1
+            [vehicle_id] => 120
+            [startdate] => 2017-08-14
+            [lables] => 
+            [odometer] => 
+            [void] => 1
+            [vendor_id] => 
+            [completiondate] => 
+            [labour] => 6.24
+            [parts] => 12.6
+            [dicount] => 0
+            [tax] => 0
+            [issuedby_id] => 
+            [assignedby_id] => 
+            [assignto_id] => 
+            [invoicenumber] => inv191
+            [description] => 
+            [phonenumber] => 
+            [customer_id] => 1
+            [taxtype] => 1
+        )
+
+    [2] => Array
+        (
+            [id] => 451
+            [issuedate] => 2017-08-01
+            [workorderstatus_id] => 1
+            [vehicle_id] => 120
+            [startdate] => 2017-08-15
+            [lables] => 
+            [odometer] => 
+            [void] => 1
+            [vendor_id] => 
+            [completiondate] => 
+            [labour] => 2.02
+            [parts] => 2.06
+            [dicount] => 0
+            [tax] => 0
+            [issuedby_id] => 
+            [assignedby_id] => 
+            [assignto_id] => 
+            [invoicenumber] => inv111
+            [description] => 
+            [phonenumber] => 
+            [customer_id] => 1
+            [taxtype] => 1
+        )
+
+    [3] => Array
+        (
+            [id] => 455
+            [issuedate] => 2017-08-02
+            [workorderstatus_id] => 1
+            [vehicle_id] => 118
+            [startdate] => 2017-08-28
+            [lables] => 
+            [odometer] => 
+            [void] => 1
+            [vendor_id] => 
+            [completiondate] => 
+            [labour] => 6.06
+            [parts] => 8.08
+            [dicount] => 0
+            [tax] => 0
+            [issuedby_id] => 
+            [assignedby_id] => 
+            [assignto_id] => 
+            [invoicenumber] => 
+            [description] => 
+            [phonenumber] => 
+            [customer_id] => 1
+            [taxtype] => 1
+        )
+
+    [4] => Array
+        (
+            [id] => 456
+            [issuedate] => 2017-08-02
+            [workorderstatus_id] => 1
+            [vehicle_id] => 118
+            [startdate] => 2017-08-29
+            [lables] => 
+            [odometer] => 
+            [void] => 1
+            [vendor_id] => 
+            [completiondate] => 
+            [labour] => 6.12
+            [parts] => 6.18
+            [dicount] => 0
+            [tax] => 0
+            [issuedby_id] => 
+            [assignedby_id] => 
+            [assignto_id] => 
+            [invoicenumber] => 1947
+            [description] => 
+            [phonenumber] => 
+            [customer_id] => 1
+            [taxtype] => 1
+        )
+
+    [5] => Array
+        (
+            [id] => 457
+            [issuedate] => 2017-08-01
+            [workorderstatus_id] => 1
+            [vehicle_id] => 118
+            [startdate] => 2017-08-29
+            [lables] => 
+            [odometer] => 
+            [void] => 1
+            [vendor_id] => 
+            [completiondate] => 
+            [labour] => 44.52
+            [parts] => 45.36
+            [dicount] => 0
+            [tax] => 0
+            [issuedby_id] => 
+            [assignedby_id] => 
+            [assignto_id] => 
+            [invoicenumber] => 1948
+            [description] => 
+            [phonenumber] => 
+            [customer_id] => 1
+            [taxtype] => 1
+        )
+
+)
+
+2017-08-22 09:36:45 Warning: Headers already sent in C:\Users\Hp\Desktop\testnew\vendor\cakephp\cakephp\src\Error\Debugger.php:753
+2017-08-22 09:36:45 Error: [RuntimeException] Unable to emit response; headers already sent
+Request URL: /Workorders/setClose2?content=439
+Referer URL: http://localhost:8765/Workorders
+Stack Trace:
+#0 C:\Users\Hp\Desktop\testnew\vendor\cakephp\cakephp\src\Http\Server.php(107): Zend\Diactoros\Response\SapiStreamEmitter->emit(Object(Zend\Diactoros\Response))
+#1 C:\Users\Hp\Desktop\testnew\webroot\index.php(37): Cake\Http\Server->emit(Object(Zend\Diactoros\Response))
+#2 {main}
+
+
+2017-08-22 09:38:06 Error: Array
+(
+    [0] => Array
+        (
+            [id] => 439
+            [issuedate] => 2017-07-31
+            [workorderstatus_id] => 1
+            [vehicle_id] => 118
+            [startdate] => 2017-09-05
+            [lables] => 
+            [odometer] => 
+            [void] => 1
+            [vendor_id] => 
+            [completiondate] => 
+            [labour] => 15.9
+            [parts] => 24.72
+            [dicount] => 5
+            [tax] => 12
+            [issuedby_id] => 
+            [assignedby_id] => 
+            [assignto_id] => 
+            [invoicenumber] => invccc
+            [description] => 
+            [phonenumber] => 
+            [customer_id] => 1
+            [taxtype] => 1
+        )
+
+    [1] => Array
+        (
+            [id] => 450
+            [issuedate] => 2017-08-28
+            [workorderstatus_id] => 1
+            [vehicle_id] => 120
+            [startdate] => 2017-08-14
+            [lables] => 
+            [odometer] => 
+            [void] => 1
+            [vendor_id] => 
+            [completiondate] => 
+            [labour] => 6.24
+            [parts] => 12.6
+            [dicount] => 0
+            [tax] => 0
+            [issuedby_id] => 
+            [assignedby_id] => 
+            [assignto_id] => 
+            [invoicenumber] => inv191
+            [description] => 
+            [phonenumber] => 
+            [customer_id] => 1
+            [taxtype] => 1
+        )
+
+    [2] => Array
+        (
+            [id] => 451
+            [issuedate] => 2017-08-01
+            [workorderstatus_id] => 1
+            [vehicle_id] => 120
+            [startdate] => 2017-08-15
+            [lables] => 
+            [odometer] => 
+            [void] => 1
+            [vendor_id] => 
+            [completiondate] => 
+            [labour] => 2.02
+            [parts] => 2.06
+            [dicount] => 0
+            [tax] => 0
+            [issuedby_id] => 
+            [assignedby_id] => 
+            [assignto_id] => 
+            [invoicenumber] => inv111
+            [description] => 
+            [phonenumber] => 
+            [customer_id] => 1
+            [taxtype] => 1
+        )
+
+    [3] => Array
+        (
+            [id] => 455
+            [issuedate] => 2017-08-02
+            [workorderstatus_id] => 1
+            [vehicle_id] => 118
+            [startdate] => 2017-08-28
+            [lables] => 
+            [odometer] => 
+            [void] => 1
+            [vendor_id] => 
+            [completiondate] => 
+            [labour] => 6.06
+            [parts] => 8.08
+            [dicount] => 0
+            [tax] => 0
+            [issuedby_id] => 
+            [assignedby_id] => 
+            [assignto_id] => 
+            [invoicenumber] => 
+            [description] => 
+            [phonenumber] => 
+            [customer_id] => 1
+            [taxtype] => 1
+        )
+
+    [4] => Array
+        (
+            [id] => 456
+            [issuedate] => 2017-08-02
+            [workorderstatus_id] => 1
+            [vehicle_id] => 118
+            [startdate] => 2017-08-29
+            [lables] => 
+            [odometer] => 
+            [void] => 1
+            [vendor_id] => 
+            [completiondate] => 
+            [labour] => 6.12
+            [parts] => 6.18
+            [dicount] => 0
+            [tax] => 0
+            [issuedby_id] => 
+            [assignedby_id] => 
+            [assignto_id] => 
+            [invoicenumber] => 1947
+            [description] => 
+            [phonenumber] => 
+            [customer_id] => 1
+            [taxtype] => 1
+        )
+
+    [5] => Array
+        (
+            [id] => 457
+            [issuedate] => 2017-08-01
+            [workorderstatus_id] => 1
+            [vehicle_id] => 118
+            [startdate] => 2017-08-29
+            [lables] => 
+            [odometer] => 
+            [void] => 1
+            [vendor_id] => 
+            [completiondate] => 
+            [labour] => 44.52
+            [parts] => 45.36
+            [dicount] => 0
+            [tax] => 0
+            [issuedby_id] => 
+            [assignedby_id] => 
+            [assignto_id] => 
+            [invoicenumber] => 1948
+            [description] => 
+            [phonenumber] => 
+            [customer_id] => 1
+            [taxtype] => 1
+        )
+
+)
+
+2017-08-22 09:38:06 Warning: Headers already sent in C:\Users\Hp\Desktop\testnew\vendor\cakephp\cakephp\src\Error\Debugger.php:753
+2017-08-22 09:38:06 Error: [RuntimeException] Unable to emit response; headers already sent
+Request URL: /Workorders/setClose2?content=439
+Referer URL: http://localhost:8765/Workorders
+Stack Trace:
+#0 C:\Users\Hp\Desktop\testnew\vendor\cakephp\cakephp\src\Http\Server.php(107): Zend\Diactoros\Response\SapiStreamEmitter->emit(Object(Zend\Diactoros\Response))
+#1 C:\Users\Hp\Desktop\testnew\webroot\index.php(37): Cake\Http\Server->emit(Object(Zend\Diactoros\Response))
+#2 {main}
+
+
+2017-08-22 09:41:07 Error: Array
+(
+    [0] => Array
+        (
+            [id] => 439
+            [issuedate] => 2017-07-31
+            [workorderstatus_id] => 1
+            [vehicle_id] => 118
+            [startdate] => 2017-09-05
+            [lables] => 
+            [odometer] => 
+            [void] => 1
+            [vendor_id] => 
+            [completiondate] => 
+            [labour] => 15.9
+            [parts] => 24.72
+            [dicount] => 5
+            [tax] => 12
+            [issuedby_id] => 
+            [assignedby_id] => 
+            [assignto_id] => 
+            [invoicenumber] => invccc
+            [description] => 
+            [phonenumber] => 
+            [customer_id] => 1
+            [taxtype] => 1
+        )
+
+    [1] => Array
+        (
+            [id] => 450
+            [issuedate] => 2017-08-28
+            [workorderstatus_id] => 1
+            [vehicle_id] => 120
+            [startdate] => 2017-08-14
+            [lables] => 
+            [odometer] => 
+            [void] => 1
+            [vendor_id] => 
+            [completiondate] => 
+            [labour] => 6.24
+            [parts] => 12.6
+            [dicount] => 0
+            [tax] => 0
+            [issuedby_id] => 
+            [assignedby_id] => 
+            [assignto_id] => 
+            [invoicenumber] => inv191
+            [description] => 
+            [phonenumber] => 
+            [customer_id] => 1
+            [taxtype] => 1
+        )
+
+    [2] => Array
+        (
+            [id] => 451
+            [issuedate] => 2017-08-01
+            [workorderstatus_id] => 1
+            [vehicle_id] => 120
+            [startdate] => 2017-08-15
+            [lables] => 
+            [odometer] => 
+            [void] => 1
+            [vendor_id] => 
+            [completiondate] => 
+            [labour] => 2.02
+            [parts] => 2.06
+            [dicount] => 0
+            [tax] => 0
+            [issuedby_id] => 
+            [assignedby_id] => 
+            [assignto_id] => 
+            [invoicenumber] => inv111
+            [description] => 
+            [phonenumber] => 
+            [customer_id] => 1
+            [taxtype] => 1
+        )
+
+    [3] => Array
+        (
+            [id] => 455
+            [issuedate] => 2017-08-02
+            [workorderstatus_id] => 1
+            [vehicle_id] => 118
+            [startdate] => 2017-08-28
+            [lables] => 
+            [odometer] => 
+            [void] => 1
+            [vendor_id] => 
+            [completiondate] => 
+            [labour] => 6.06
+            [parts] => 8.08
+            [dicount] => 0
+            [tax] => 0
+            [issuedby_id] => 
+            [assignedby_id] => 
+            [assignto_id] => 
+            [invoicenumber] => 
+            [description] => 
+            [phonenumber] => 
+            [customer_id] => 1
+            [taxtype] => 1
+        )
+
+    [4] => Array
+        (
+            [id] => 456
+            [issuedate] => 2017-08-02
+            [workorderstatus_id] => 1
+            [vehicle_id] => 118
+            [startdate] => 2017-08-29
+            [lables] => 
+            [odometer] => 
+            [void] => 1
+            [vendor_id] => 
+            [completiondate] => 
+            [labour] => 6.12
+            [parts] => 6.18
+            [dicount] => 0
+            [tax] => 0
+            [issuedby_id] => 
+            [assignedby_id] => 
+            [assignto_id] => 
+            [invoicenumber] => 1947
+            [description] => 
+            [phonenumber] => 
+            [customer_id] => 1
+            [taxtype] => 1
+        )
+
+    [5] => Array
+        (
+            [id] => 457
+            [issuedate] => 2017-08-01
+            [workorderstatus_id] => 1
+            [vehicle_id] => 118
+            [startdate] => 2017-08-29
+            [lables] => 
+            [odometer] => 
+            [void] => 1
+            [vendor_id] => 
+            [completiondate] => 
+            [labour] => 44.52
+            [parts] => 45.36
+            [dicount] => 0
+            [tax] => 0
+            [issuedby_id] => 
+            [assignedby_id] => 
+            [assignto_id] => 
+            [invoicenumber] => 1948
+            [description] => 
+            [phonenumber] => 
+            [customer_id] => 1
+            [taxtype] => 1
+        )
+
+)
+
+2017-08-22 09:41:08 Warning: Headers already sent in C:\Users\Hp\Desktop\testnew\vendor\cakephp\cakephp\src\Error\Debugger.php:753
+2017-08-22 09:41:08 Error: [RuntimeException] Unable to emit response; headers already sent
+Request URL: /Workorders/setClose2?content=439
+Referer URL: http://localhost:8765/Workorders
+Stack Trace:
+#0 C:\Users\Hp\Desktop\testnew\vendor\cakephp\cakephp\src\Http\Server.php(107): Zend\Diactoros\Response\SapiStreamEmitter->emit(Object(Zend\Diactoros\Response))
+#1 C:\Users\Hp\Desktop\testnew\webroot\index.php(37): Cake\Http\Server->emit(Object(Zend\Diactoros\Response))
+#2 {main}
+
+
+2017-08-22 09:42:17 Error: Array
+(
+    [0] => Array
+        (
+            [id] => 439
+            [issuedate] => 2017-07-31
+            [workorderstatus_id] => 1
+            [vehicle_id] => 118
+            [startdate] => 2017-09-05
+            [lables] => 
+            [odometer] => 
+            [void] => 1
+            [vendor_id] => 
+            [completiondate] => 
+            [labour] => 15.9
+            [parts] => 24.72
+            [dicount] => 5
+            [tax] => 12
+            [issuedby_id] => 
+            [assignedby_id] => 
+            [assignto_id] => 
+            [invoicenumber] => invccc
+            [description] => 
+            [phonenumber] => 
+            [customer_id] => 1
+            [taxtype] => 1
+        )
+
+    [1] => Array
+        (
+            [id] => 450
+            [issuedate] => 2017-08-28
+            [workorderstatus_id] => 1
+            [vehicle_id] => 120
+            [startdate] => 2017-08-14
+            [lables] => 
+            [odometer] => 
+            [void] => 1
+            [vendor_id] => 
+            [completiondate] => 
+            [labour] => 6.24
+            [parts] => 12.6
+            [dicount] => 0
+            [tax] => 0
+            [issuedby_id] => 
+            [assignedby_id] => 
+            [assignto_id] => 
+            [invoicenumber] => inv191
+            [description] => 
+            [phonenumber] => 
+            [customer_id] => 1
+            [taxtype] => 1
+        )
+
+    [2] => Array
+        (
+            [id] => 451
+            [issuedate] => 2017-08-01
+            [workorderstatus_id] => 1
+            [vehicle_id] => 120
+            [startdate] => 2017-08-15
+            [lables] => 
+            [odometer] => 
+            [void] => 1
+            [vendor_id] => 
+            [completiondate] => 
+            [labour] => 2.02
+            [parts] => 2.06
+            [dicount] => 0
+            [tax] => 0
+            [issuedby_id] => 
+            [assignedby_id] => 
+            [assignto_id] => 
+            [invoicenumber] => inv111
+            [description] => 
+            [phonenumber] => 
+            [customer_id] => 1
+            [taxtype] => 1
+        )
+
+    [3] => Array
+        (
+            [id] => 455
+            [issuedate] => 2017-08-02
+            [workorderstatus_id] => 1
+            [vehicle_id] => 118
+            [startdate] => 2017-08-28
+            [lables] => 
+            [odometer] => 
+            [void] => 1
+            [vendor_id] => 
+            [completiondate] => 
+            [labour] => 6.06
+            [parts] => 8.08
+            [dicount] => 0
+            [tax] => 0
+            [issuedby_id] => 
+            [assignedby_id] => 
+            [assignto_id] => 
+            [invoicenumber] => 
+            [description] => 
+            [phonenumber] => 
+            [customer_id] => 1
+            [taxtype] => 1
+        )
+
+    [4] => Array
+        (
+            [id] => 456
+            [issuedate] => 2017-08-02
+            [workorderstatus_id] => 1
+            [vehicle_id] => 118
+            [startdate] => 2017-08-29
+            [lables] => 
+            [odometer] => 
+            [void] => 1
+            [vendor_id] => 
+            [completiondate] => 
+            [labour] => 6.12
+            [parts] => 6.18
+            [dicount] => 0
+            [tax] => 0
+            [issuedby_id] => 
+            [assignedby_id] => 
+            [assignto_id] => 
+            [invoicenumber] => 1947
+            [description] => 
+            [phonenumber] => 
+            [customer_id] => 1
+            [taxtype] => 1
+        )
+
+    [5] => Array
+        (
+            [id] => 457
+            [issuedate] => 2017-08-01
+            [workorderstatus_id] => 1
+            [vehicle_id] => 118
+            [startdate] => 2017-08-29
+            [lables] => 
+            [odometer] => 
+            [void] => 1
+            [vendor_id] => 
+            [completiondate] => 
+            [labour] => 44.52
+            [parts] => 45.36
+            [dicount] => 0
+            [tax] => 0
+            [issuedby_id] => 
+            [assignedby_id] => 
+            [assignto_id] => 
+            [invoicenumber] => 1948
+            [description] => 
+            [phonenumber] => 
+            [customer_id] => 1
+            [taxtype] => 1
+        )
+
+)
+
+2017-08-22 09:42:18 Warning: Warning (2): strrpos() expects parameter 1 to be string, array given in [C:\Users\Hp\Desktop\testnew\vendor\cakephp\debug_kit\src\Routing\Filter\DebugBarFilter.php, line 232]
+Request URL: /Workorders/setClose2?content=439
+Referer URL: http://localhost:8765/Workorders
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE\src\Error\BaseErrorHandler.php, line 146
+strrpos - [internal], line ??
+DebugKit\Routing\Filter\DebugBarFilter::_injectScripts() - ROOT\vendor\cakephp\debug_kit\src\Routing\Filter\DebugBarFilter.php, line 232
+DebugKit\Routing\Filter\DebugBarFilter::afterDispatch() - ROOT\vendor\cakephp\debug_kit\src\Routing\Filter\DebugBarFilter.php, line 212
+Cake\Event\EventManager::_callListener() - CORE\src\Event\EventManager.php, line 425
+Cake\Event\EventManager::dispatch() - CORE\src\Event\EventManager.php, line 386
+Cake\Http\ActionDispatcher::dispatchEvent() - CORE\src\Event\EventDispatcherTrait.php, line 78
+Cake\Http\ActionDispatcher::dispatch() - CORE\src\Http\ActionDispatcher.php, line 103
+Cake\Http\BaseApplication::__invoke() - CORE\src\Http\BaseApplication.php, line 83
+Cake\Http\Runner::__invoke() - CORE\src\Http\Runner.php, line 65
+Cake\Routing\Middleware\RoutingMiddleware::__invoke() - CORE\src\Routing\Middleware\RoutingMiddleware.php, line 52
+Cake\Http\Runner::__invoke() - CORE\src\Http\Runner.php, line 65
+Cake\Routing\Middleware\AssetMiddleware::__invoke() - CORE\src\Routing\Middleware\AssetMiddleware.php, line 88
+Cake\Http\Runner::__invoke() - CORE\src\Http\Runner.php, line 65
+Cake\Error\Middleware\ErrorHandlerMiddleware::__invoke() - CORE\src\Error\Middleware\ErrorHandlerMiddleware.php, line 51
+Cake\Http\Runner::__invoke() - CORE\src\Http\Runner.php, line 65
+Cake\Http\Runner::run() - CORE\src\Http\Runner.php, line 51
+Cake\Http\Server::run() - CORE\src\Http\Server.php, line 82
+[main] - ROOT\webroot\index.php, line 37
+
+
+
+2017-08-22 09:42:18 Warning: Headers already sent in C:\Users\Hp\Desktop\testnew\vendor\cakephp\cakephp\src\Error\Debugger.php:753
+2017-08-22 09:42:18 Error: [RuntimeException] Unable to emit response; headers already sent
+Request URL: /Workorders/setClose2?content=439
+Referer URL: http://localhost:8765/Workorders
+Stack Trace:
+#0 C:\Users\Hp\Desktop\testnew\vendor\cakephp\cakephp\src\Http\Server.php(107): Zend\Diactoros\Response\SapiStreamEmitter->emit(Object(Zend\Diactoros\Response))
+#1 C:\Users\Hp\Desktop\testnew\webroot\index.php(37): Cake\Http\Server->emit(Object(Zend\Diactoros\Response))
+#2 {main}
+
+
+2017-08-22 09:43:08 Error: Fatal Error (4): syntax error, unexpected '}' in [C:\Users\Hp\Desktop\testnew\src\Controller\WorkordersController.php, line 963]
+Request URL: /Workorders
+Referer URL: http://localhost:8765/Workorders
+Trace:
+Cake\Error\BaseErrorHandler::handleFatalError() - CORE\src\Error\BaseErrorHandler.php, line 216
+Cake\Error\BaseErrorHandler::Cake\Error\{closure}() - CORE\src\Error\BaseErrorHandler.php, line 98
+[main] - [internal], line ??
+
+
+
+2017-08-22 09:43:08 Error: [Cake\Error\FatalErrorException] syntax error, unexpected '}'
+Request URL: /Workorders
+Referer URL: http://localhost:8765/Workorders
+Stack Trace:
+#0 C:\Users\Hp\Desktop\testnew\vendor\cakephp\cakephp\src\Error\BaseErrorHandler.php(98): Cake\Error\BaseErrorHandler->handleFatalError(4, 'syntax error, u...', 'C:\\Users\\Hp\\Des...', 963)
+#1 [internal function]: Cake\Error\BaseErrorHandler->Cake\Error\{closure}()
+#2 {main}
+
+
+2017-08-22 09:43:39 Error: Array
+(
+    [0] => Array
+        (
+            [id] => 439
+            [issuedate] => 2017-07-31
+            [workorderstatus_id] => 1
+            [vehicle_id] => 118
+            [startdate] => 2017-09-05
+            [lables] => 
+            [odometer] => 
+            [void] => 1
+            [vendor_id] => 
+            [completiondate] => 
+            [labour] => 15.9
+            [parts] => 24.72
+            [dicount] => 5
+            [tax] => 12
+            [issuedby_id] => 
+            [assignedby_id] => 
+            [assignto_id] => 
+            [invoicenumber] => invccc
+            [description] => 
+            [phonenumber] => 
+            [customer_id] => 1
+            [taxtype] => 1
+        )
+
+    [1] => Array
+        (
+            [id] => 450
+            [issuedate] => 2017-08-28
+            [workorderstatus_id] => 1
+            [vehicle_id] => 120
+            [startdate] => 2017-08-14
+            [lables] => 
+            [odometer] => 
+            [void] => 1
+            [vendor_id] => 
+            [completiondate] => 
+            [labour] => 6.24
+            [parts] => 12.6
+            [dicount] => 0
+            [tax] => 0
+            [issuedby_id] => 
+            [assignedby_id] => 
+            [assignto_id] => 
+            [invoicenumber] => inv191
+            [description] => 
+            [phonenumber] => 
+            [customer_id] => 1
+            [taxtype] => 1
+        )
+
+    [2] => Array
+        (
+            [id] => 451
+            [issuedate] => 2017-08-01
+            [workorderstatus_id] => 1
+            [vehicle_id] => 120
+            [startdate] => 2017-08-15
+            [lables] => 
+            [odometer] => 
+            [void] => 1
+            [vendor_id] => 
+            [completiondate] => 
+            [labour] => 2.02
+            [parts] => 2.06
+            [dicount] => 0
+            [tax] => 0
+            [issuedby_id] => 
+            [assignedby_id] => 
+            [assignto_id] => 
+            [invoicenumber] => inv111
+            [description] => 
+            [phonenumber] => 
+            [customer_id] => 1
+            [taxtype] => 1
+        )
+
+    [3] => Array
+        (
+            [id] => 455
+            [issuedate] => 2017-08-02
+            [workorderstatus_id] => 1
+            [vehicle_id] => 118
+            [startdate] => 2017-08-28
+            [lables] => 
+            [odometer] => 
+            [void] => 1
+            [vendor_id] => 
+            [completiondate] => 
+            [labour] => 6.06
+            [parts] => 8.08
+            [dicount] => 0
+            [tax] => 0
+            [issuedby_id] => 
+            [assignedby_id] => 
+            [assignto_id] => 
+            [invoicenumber] => 
+            [description] => 
+            [phonenumber] => 
+            [customer_id] => 1
+            [taxtype] => 1
+        )
+
+    [4] => Array
+        (
+            [id] => 456
+            [issuedate] => 2017-08-02
+            [workorderstatus_id] => 1
+            [vehicle_id] => 118
+            [startdate] => 2017-08-29
+            [lables] => 
+            [odometer] => 
+            [void] => 1
+            [vendor_id] => 
+            [completiondate] => 
+            [labour] => 6.12
+            [parts] => 6.18
+            [dicount] => 0
+            [tax] => 0
+            [issuedby_id] => 
+            [assignedby_id] => 
+            [assignto_id] => 
+            [invoicenumber] => 1947
+            [description] => 
+            [phonenumber] => 
+            [customer_id] => 1
+            [taxtype] => 1
+        )
+
+    [5] => Array
+        (
+            [id] => 457
+            [issuedate] => 2017-08-01
+            [workorderstatus_id] => 1
+            [vehicle_id] => 118
+            [startdate] => 2017-08-29
+            [lables] => 
+            [odometer] => 
+            [void] => 1
+            [vendor_id] => 
+            [completiondate] => 
+            [labour] => 44.52
+            [parts] => 45.36
+            [dicount] => 0
+            [tax] => 0
+            [issuedby_id] => 
+            [assignedby_id] => 
+            [assignto_id] => 
+            [invoicenumber] => 1948
+            [description] => 
+            [phonenumber] => 
+            [customer_id] => 1
+            [taxtype] => 1
+        )
+
+)
+
+2017-08-22 09:43:39 Warning: Headers already sent in C:\Users\Hp\Desktop\testnew\vendor\cakephp\cakephp\src\Error\Debugger.php:753
+2017-08-22 09:43:39 Error: [RuntimeException] Unable to emit response; headers already sent
+Request URL: /Workorders/setClose2?content=439
+Referer URL: http://localhost:8765/Workorders
+Stack Trace:
+#0 C:\Users\Hp\Desktop\testnew\vendor\cakephp\cakephp\src\Http\Server.php(107): Zend\Diactoros\Response\SapiStreamEmitter->emit(Object(Zend\Diactoros\Response))
+#1 C:\Users\Hp\Desktop\testnew\webroot\index.php(37): Cake\Http\Server->emit(Object(Zend\Diactoros\Response))
+#2 {main}
+
+
+2017-08-22 09:51:42 Error: Array
+(
+    [0] => Array
+        (
+            [id] => 439
+            [issuedate] => 2017-07-31
+            [workorderstatus_id] => 1
+            [vehicle_id] => 118
+            [startdate] => 2017-09-05
+            [lables] => 
+            [odometer] => 
+            [void] => 1
+            [vendor_id] => 
+            [completiondate] => 
+            [labour] => 15.9
+            [parts] => 24.72
+            [dicount] => 5
+            [tax] => 12
+            [issuedby_id] => 
+            [assignedby_id] => 
+            [assignto_id] => 
+            [invoicenumber] => invccc
+            [description] => 
+            [phonenumber] => 
+            [customer_id] => 1
+            [taxtype] => 1
+        )
+
+    [1] => Array
+        (
+            [id] => 450
+            [issuedate] => 2017-08-28
+            [workorderstatus_id] => 1
+            [vehicle_id] => 120
+            [startdate] => 2017-08-14
+            [lables] => 
+            [odometer] => 
+            [void] => 1
+            [vendor_id] => 
+            [completiondate] => 
+            [labour] => 6.24
+            [parts] => 12.6
+            [dicount] => 0
+            [tax] => 0
+            [issuedby_id] => 
+            [assignedby_id] => 
+            [assignto_id] => 
+            [invoicenumber] => inv191
+            [description] => 
+            [phonenumber] => 
+            [customer_id] => 1
+            [taxtype] => 1
+        )
+
+    [2] => Array
+        (
+            [id] => 451
+            [issuedate] => 2017-08-01
+            [workorderstatus_id] => 1
+            [vehicle_id] => 120
+            [startdate] => 2017-08-15
+            [lables] => 
+            [odometer] => 
+            [void] => 1
+            [vendor_id] => 
+            [completiondate] => 
+            [labour] => 2.02
+            [parts] => 2.06
+            [dicount] => 0
+            [tax] => 0
+            [issuedby_id] => 
+            [assignedby_id] => 
+            [assignto_id] => 
+            [invoicenumber] => inv111
+            [description] => 
+            [phonenumber] => 
+            [customer_id] => 1
+            [taxtype] => 1
+        )
+
+    [3] => Array
+        (
+            [id] => 455
+            [issuedate] => 2017-08-02
+            [workorderstatus_id] => 1
+            [vehicle_id] => 118
+            [startdate] => 2017-08-28
+            [lables] => 
+            [odometer] => 
+            [void] => 1
+            [vendor_id] => 
+            [completiondate] => 
+            [labour] => 6.06
+            [parts] => 8.08
+            [dicount] => 0
+            [tax] => 0
+            [issuedby_id] => 
+            [assignedby_id] => 
+            [assignto_id] => 
+            [invoicenumber] => 
+            [description] => 
+            [phonenumber] => 
+            [customer_id] => 1
+            [taxtype] => 1
+        )
+
+    [4] => Array
+        (
+            [id] => 456
+            [issuedate] => 2017-08-02
+            [workorderstatus_id] => 1
+            [vehicle_id] => 118
+            [startdate] => 2017-08-29
+            [lables] => 
+            [odometer] => 
+            [void] => 1
+            [vendor_id] => 
+            [completiondate] => 
+            [labour] => 6.12
+            [parts] => 6.18
+            [dicount] => 0
+            [tax] => 0
+            [issuedby_id] => 
+            [assignedby_id] => 
+            [assignto_id] => 
+            [invoicenumber] => 1947
+            [description] => 
+            [phonenumber] => 
+            [customer_id] => 1
+            [taxtype] => 1
+        )
+
+    [5] => Array
+        (
+            [id] => 457
+            [issuedate] => 2017-08-01
+            [workorderstatus_id] => 1
+            [vehicle_id] => 118
+            [startdate] => 2017-08-29
+            [lables] => 
+            [odometer] => 
+            [void] => 1
+            [vendor_id] => 
+            [completiondate] => 
+            [labour] => 44.52
+            [parts] => 45.36
+            [dicount] => 0
+            [tax] => 0
+            [issuedby_id] => 
+            [assignedby_id] => 
+            [assignto_id] => 
+            [invoicenumber] => 1948
+            [description] => 
+            [phonenumber] => 
+            [customer_id] => 1
+            [taxtype] => 1
+        )
+
+)
+
+2017-08-22 09:51:42 Warning: Headers already sent in C:\Users\Hp\Desktop\testnew\vendor\cakephp\cakephp\src\Error\Debugger.php:753
+2017-08-22 09:51:42 Error: [RuntimeException] Unable to emit response; headers already sent
+Request URL: /Workorders/setClose2?content=439
+Referer URL: http://localhost:8765/Workorders
+Stack Trace:
+#0 C:\Users\Hp\Desktop\testnew\vendor\cakephp\cakephp\src\Http\Server.php(107): Zend\Diactoros\Response\SapiStreamEmitter->emit(Object(Zend\Diactoros\Response))
+#1 C:\Users\Hp\Desktop\testnew\webroot\index.php(37): Cake\Http\Server->emit(Object(Zend\Diactoros\Response))
+#2 {main}
+
+
+2017-08-22 09:53:10 Error: Array
+(
+    [0] => Array
+        (
+            [id] => 439
+            [issuedate] => 2017-07-31
+            [workorderstatus_id] => 1
+            [vehicle_id] => 118
+            [startdate] => 2017-09-05
+            [lables] => 
+            [odometer] => 
+            [void] => 1
+            [vendor_id] => 
+            [completiondate] => 
+            [labour] => 15.9
+            [parts] => 24.72
+            [dicount] => 5
+            [tax] => 12
+            [issuedby_id] => 
+            [assignedby_id] => 
+            [assignto_id] => 
+            [invoicenumber] => invccc
+            [description] => 
+            [phonenumber] => 
+            [customer_id] => 1
+            [taxtype] => 1
+        )
+
+    [1] => Array
+        (
+            [id] => 450
+            [issuedate] => 2017-08-28
+            [workorderstatus_id] => 1
+            [vehicle_id] => 120
+            [startdate] => 2017-08-14
+            [lables] => 
+            [odometer] => 
+            [void] => 1
+            [vendor_id] => 
+            [completiondate] => 
+            [labour] => 6.24
+            [parts] => 12.6
+            [dicount] => 0
+            [tax] => 0
+            [issuedby_id] => 
+            [assignedby_id] => 
+            [assignto_id] => 
+            [invoicenumber] => inv191
+            [description] => 
+            [phonenumber] => 
+            [customer_id] => 1
+            [taxtype] => 1
+        )
+
+    [2] => Array
+        (
+            [id] => 451
+            [issuedate] => 2017-08-01
+            [workorderstatus_id] => 1
+            [vehicle_id] => 120
+            [startdate] => 2017-08-15
+            [lables] => 
+            [odometer] => 
+            [void] => 1
+            [vendor_id] => 
+            [completiondate] => 
+            [labour] => 2.02
+            [parts] => 2.06
+            [dicount] => 0
+            [tax] => 0
+            [issuedby_id] => 
+            [assignedby_id] => 
+            [assignto_id] => 
+            [invoicenumber] => inv111
+            [description] => 
+            [phonenumber] => 
+            [customer_id] => 1
+            [taxtype] => 1
+        )
+
+    [3] => Array
+        (
+            [id] => 455
+            [issuedate] => 2017-08-02
+            [workorderstatus_id] => 1
+            [vehicle_id] => 118
+            [startdate] => 2017-08-28
+            [lables] => 
+            [odometer] => 
+            [void] => 1
+            [vendor_id] => 
+            [completiondate] => 
+            [labour] => 6.06
+            [parts] => 8.08
+            [dicount] => 0
+            [tax] => 0
+            [issuedby_id] => 
+            [assignedby_id] => 
+            [assignto_id] => 
+            [invoicenumber] => 
+            [description] => 
+            [phonenumber] => 
+            [customer_id] => 1
+            [taxtype] => 1
+        )
+
+    [4] => Array
+        (
+            [id] => 456
+            [issuedate] => 2017-08-02
+            [workorderstatus_id] => 1
+            [vehicle_id] => 118
+            [startdate] => 2017-08-29
+            [lables] => 
+            [odometer] => 
+            [void] => 1
+            [vendor_id] => 
+            [completiondate] => 
+            [labour] => 6.12
+            [parts] => 6.18
+            [dicount] => 0
+            [tax] => 0
+            [issuedby_id] => 
+            [assignedby_id] => 
+            [assignto_id] => 
+            [invoicenumber] => 1947
+            [description] => 
+            [phonenumber] => 
+            [customer_id] => 1
+            [taxtype] => 1
+        )
+
+    [5] => Array
+        (
+            [id] => 457
+            [issuedate] => 2017-08-01
+            [workorderstatus_id] => 1
+            [vehicle_id] => 118
+            [startdate] => 2017-08-29
+            [lables] => 
+            [odometer] => 
+            [void] => 1
+            [vendor_id] => 
+            [completiondate] => 
+            [labour] => 44.52
+            [parts] => 45.36
+            [dicount] => 0
+            [tax] => 0
+            [issuedby_id] => 
+            [assignedby_id] => 
+            [assignto_id] => 
+            [invoicenumber] => 1948
+            [description] => 
+            [phonenumber] => 
+            [customer_id] => 1
+            [taxtype] => 1
+        )
+
+)
+
+2017-08-22 09:53:11 Warning: Headers already sent in C:\Users\Hp\Desktop\testnew\vendor\cakephp\cakephp\src\Error\Debugger.php:753
+2017-08-22 09:53:11 Error: [RuntimeException] Unable to emit response; headers already sent
+Request URL: /Workorders/setClose2?content=439
+Referer URL: http://localhost:8765/Workorders
+Stack Trace:
+#0 C:\Users\Hp\Desktop\testnew\vendor\cakephp\cakephp\src\Http\Server.php(107): Zend\Diactoros\Response\SapiStreamEmitter->emit(Object(Zend\Diactoros\Response))
+#1 C:\Users\Hp\Desktop\testnew\webroot\index.php(37): Cake\Http\Server->emit(Object(Zend\Diactoros\Response))
+#2 {main}
+
+
+2017-08-22 10:02:55 Error: Array
+(
+    [0] => Array
+        (
+            [id] => 439
+            [issuedate] => 2017-07-31
+            [workorderstatus_id] => 1
+            [vehicle_id] => 118
+            [startdate] => 2017-09-05
+            [lables] => 
+            [odometer] => 
+            [void] => 1
+            [vendor_id] => 
+            [completiondate] => 
+            [labour] => 15.9
+            [parts] => 24.72
+            [dicount] => 5
+            [tax] => 12
+            [issuedby_id] => 
+            [assignedby_id] => 
+            [assignto_id] => 
+            [invoicenumber] => invccc
+            [description] => 
+            [phonenumber] => 
+            [customer_id] => 1
+            [taxtype] => 1
+        )
+
+    [1] => Array
+        (
+            [id] => 450
+            [issuedate] => 2017-08-28
+            [workorderstatus_id] => 1
+            [vehicle_id] => 120
+            [startdate] => 2017-08-14
+            [lables] => 
+            [odometer] => 
+            [void] => 1
+            [vendor_id] => 
+            [completiondate] => 
+            [labour] => 6.24
+            [parts] => 12.6
+            [dicount] => 0
+            [tax] => 0
+            [issuedby_id] => 
+            [assignedby_id] => 
+            [assignto_id] => 
+            [invoicenumber] => inv191
+            [description] => 
+            [phonenumber] => 
+            [customer_id] => 1
+            [taxtype] => 1
+        )
+
+    [2] => Array
+        (
+            [id] => 451
+            [issuedate] => 2017-08-01
+            [workorderstatus_id] => 1
+            [vehicle_id] => 120
+            [startdate] => 2017-08-15
+            [lables] => 
+            [odometer] => 
+            [void] => 1
+            [vendor_id] => 
+            [completiondate] => 
+            [labour] => 2.02
+            [parts] => 2.06
+            [dicount] => 0
+            [tax] => 0
+            [issuedby_id] => 
+            [assignedby_id] => 
+            [assignto_id] => 
+            [invoicenumber] => inv111
+            [description] => 
+            [phonenumber] => 
+            [customer_id] => 1
+            [taxtype] => 1
+        )
+
+    [3] => Array
+        (
+            [id] => 455
+            [issuedate] => 2017-08-02
+            [workorderstatus_id] => 1
+            [vehicle_id] => 118
+            [startdate] => 2017-08-28
+            [lables] => 
+            [odometer] => 
+            [void] => 1
+            [vendor_id] => 
+            [completiondate] => 
+            [labour] => 6.06
+            [parts] => 8.08
+            [dicount] => 0
+            [tax] => 0
+            [issuedby_id] => 
+            [assignedby_id] => 
+            [assignto_id] => 
+            [invoicenumber] => 
+            [description] => 
+            [phonenumber] => 
+            [customer_id] => 1
+            [taxtype] => 1
+        )
+
+    [4] => Array
+        (
+            [id] => 456
+            [issuedate] => 2017-08-02
+            [workorderstatus_id] => 1
+            [vehicle_id] => 118
+            [startdate] => 2017-08-29
+            [lables] => 
+            [odometer] => 
+            [void] => 1
+            [vendor_id] => 
+            [completiondate] => 
+            [labour] => 6.12
+            [parts] => 6.18
+            [dicount] => 0
+            [tax] => 0
+            [issuedby_id] => 
+            [assignedby_id] => 
+            [assignto_id] => 
+            [invoicenumber] => 1947
+            [description] => 
+            [phonenumber] => 
+            [customer_id] => 1
+            [taxtype] => 1
+        )
+
+    [5] => Array
+        (
+            [id] => 457
+            [issuedate] => 2017-08-01
+            [workorderstatus_id] => 1
+            [vehicle_id] => 118
+            [startdate] => 2017-08-29
+            [lables] => 
+            [odometer] => 
+            [void] => 1
+            [vendor_id] => 
+            [completiondate] => 
+            [labour] => 44.52
+            [parts] => 45.36
+            [dicount] => 0
+            [tax] => 0
+            [issuedby_id] => 
+            [assignedby_id] => 
+            [assignto_id] => 
+            [invoicenumber] => 1948
+            [description] => 
+            [phonenumber] => 
+            [customer_id] => 1
+            [taxtype] => 1
+        )
+
+)
+
+2017-08-22 10:02:56 Warning: Headers already sent in C:\Users\Hp\Desktop\testnew\vendor\cakephp\cakephp\src\Error\Debugger.php:753
+2017-08-22 10:02:56 Error: [RuntimeException] Unable to emit response; headers already sent
+Request URL: /Workorders/setClose2?content=439
+Referer URL: http://localhost:8765/Workorders
+Stack Trace:
+#0 C:\Users\Hp\Desktop\testnew\vendor\cakephp\cakephp\src\Http\Server.php(107): Zend\Diactoros\Response\SapiStreamEmitter->emit(Object(Zend\Diactoros\Response))
+#1 C:\Users\Hp\Desktop\testnew\webroot\index.php(37): Cake\Http\Server->emit(Object(Zend\Diactoros\Response))
+#2 {main}
+
+
+2017-08-22 11:34:24 Error: Fatal Error (4): syntax error, unexpected ';', expecting identifier (T_STRING) or variable (T_VARIABLE) or '{' or '$' in [C:\Users\Hp\Desktop\testnew\src\Model\Table\WorkordersTable.php, line 199]
+Request URL: /Workorders/ajaxData?draw=1&columns%5B0%5D%5Bdata%5D=0&columns%5B0%5D%5Bname%5D=&columns%5B0%5D%5Bsearchable%5D=true&columns%5B0%5D%5Borderable%5D=false&columns%5B0%5D%5Bsearch%5D%5Bvalue%5D=&columns%5B0%5D%5Bsearch%5D%5Bregex%5D=false&columns%5B1%5D%5Bdata%5D=1&columns%5B1%5D%5Bname%5D=&columns%5B1%5D%5Bsearchable%5D=true&columns%5B1%5D%5Borderable%5D=true&columns%5B1%5D%5Bsearch%5D%5Bvalue%5D=&columns%5B1%5D%5Bsearch%5D%5Bregex%5D=false&columns%5B2%5D%5Bdata%5D=2&columns%5B2%5D%5Bname%5D=&columns%5B2%5D%5Bsearchable%5D=true&columns%5B2%5D%5Borderable%5D=true&columns%5B2%5D%5Bsearch%5D%5Bvalue%5D=&columns%5B2%5D%5Bsearch%5D%5Bregex%5D=false&columns%5B3%5D%5Bdata%5D=3&columns%5B3%5D%5Bname%5D=&columns%5B3%5D%5Bsearchable%5D=true&columns%5B3%5D%5Borderable%5D=true&columns%5B3%5D%5Bsearch%5D%5Bvalue%5D=&columns%5B3%5D%5Bsearch%5D%5Bregex%5D=false&columns%5B4%5D%5Bdata%5D=4&columns%5B4%5D%5Bname%5D=&columns%5B4%5D%5Bsearchable%5D=true&columns%5B4%5D%5Borderable%5D=true&columns%5B4%5D%5Bsearch%5D%5Bvalue%5D=&columns%5B4%5D%5Bsearch%5D%5Bregex%5D=false&columns%5B5%5D%5Bdata%5D=5&columns%5B5%5D%5Bname%5D=&columns%5B5%5D%5Bsearchable%5D=true&columns%5B5%5D%5Borderable%5D=true&columns%5B5%5D%5Bsearch%5D%5Bvalue%5D=&columns%5B5%5D%5Bsearch%5D%5Bregex%5D=false&columns%5B6%5D%5Bdata%5D=6&columns%5B6%5D%5Bname%5D=&columns%5B6%5D%5Bsearchable%5D=true&columns%5B6%5D%5Borderable%5D=true&columns%5B6%5D%5Bsearch%5D%5Bvalue%5D=&columns%5B6%5D%5Bsearch%5D%5Bregex%5D=false&columns%5B7%5D%5Bdata%5D=7&columns%5B7%5D%5Bname%5D=&columns%5B7%5D%5Bsearchable%5D=true&columns%5B7%5D%5Borderable%5D=true&columns%5B7%5D%5Bsearch%5D%5Bvalue%5D=&columns%5B7%5D%5Bsearch%5D%5Bregex%5D=false&columns%5B8%5D%5Bdata%5D=8&columns%5B8%5D%5Bname%5D=&columns%5B8%5D%5Bsearchable%5D=true&columns%5B8%5D%5Borderable%5D=true&columns%5B8%5D%5Bsearch%5D%5Bvalue%5D=&columns%5B8%5D%5Bsearch%5D%5Bregex%5D=false&columns%5B9%5D%5Bdata%5D=9&columns%5B9%5D%5Bname%5D=&columns%5B9%5D%5Bsearchable%5D=true&columns%5B9%5D%5Borderable%5D=true&columns%5B9%5D%5Bsearch%5D%5Bvalue%5D=&columns%5B9%5D%5Bsearch%5D%5Bregex%5D=false&columns%5B10%5D%5Bdata%5D=10&columns%5B10%5D%5Bname%5D=&columns%5B10%5D%5Bsearchable%5D=true&columns%5B10%5D%5Borderable%5D=true&columns%5B10%5D%5Bsearch%5D%5Bvalue%5D=&columns%5B10%5D%5Bsearch%5D%5Bregex%5D=false&columns%5B11%5D%5Bdata%5D=11&columns%5B11%5D%5Bname%5D=&columns%5B11%5D%5Bsearchable%5D=true&columns%5B11%5D%5Borderable%5D=true&columns%5B11%5D%5Bsearch%5D%5Bvalue%5D=&columns%5B11%5D%5Bsearch%5D%5Bregex%5D=false&columns%5B12%5D%5Bdata%5D=12&columns%5B12%5D%5Bname%5D=&columns%5B12%5D%5Bsearchable%5D=true&columns%5B12%5D%5Borderable%5D=true&columns%5B12%5D%5Bsearch%5D%5Bvalue%5D=&columns%5B12%5D%5Bsearch%5D%5Bregex%5D=false&columns%5B13%5D%5Bdata%5D=13&columns%5B13%5D%5Bname%5D=&columns%5B13%5D%5Bsearchable%5D=true&columns%5B13%5D%5Borderable%5D=true&columns%5B13%5D%5Bsearch%5D%5Bvalue%5D=&columns%5B13%5D%5Bsearch%5D%5Bregex%5D=false&columns%5B14%5D%5Bdata%5D=14&columns%5B14%5D%5Bname%5D=&columns%5B14%5D%5Bsearchable%5D=true&columns%5B14%5D%5Borderable%5D=true&columns%5B14%5D%5Bsearch%5D%5Bvalue%5D=&columns%5B14%5D%5Bsearch%5D%5Bregex%5D=false&columns%5B15%5D%5Bdata%5D=15&columns%5B15%5D%5Bname%5D=&columns%5B15%5D%5Bsearchable%5D=true&columns%5B15%5D%5Borderable%5D=true&columns%5B15%5D%5Bsearch%5D%5Bvalue%5D=&columns%5B15%5D%5Bsearch%5D%5Bregex%5D=false&columns%5B16%5D%5Bdata%5D=16&columns%5B16%5D%5Bname%5D=&columns%5B16%5D%5Bsearchable%5D=true&columns%5B16%5D%5Borderable%5D=true&columns%5B16%5D%5Bsearch%5D%5Bvalue%5D=&columns%5B16%5D%5Bsearch%5D%5Bregex%5D=false&columns%5B17%5D%5Bdata%5D=17&columns%5B17%5D%5Bname%5D=&columns%5B17%5D%5Bsearchable%5D=true&columns%5B17%5D%5Borderable%5D=true&columns%5B17%5D%5Bsearch%5D%5Bvalue%5D=&columns%5B17%5D%5Bsearch%5D%5Bregex%5D=false&columns%5B18%5D%5Bdata%5D=18&columns%5B18%5D%5Bname%5D=&columns%5B18%5D%5Bsearchable%5D=true&columns%5B18%5D%5Borderable%5D=true&columns%5B18%5D%5Bsearch%5D%5Bvalue%5D=&columns%5B18%5D%5Bsearch%5D%5Bregex%5D=false&columns%5B19%5D%5Bdata%5D=19&columns%5B19%5D%5Bname%5D=&columns%5B19%5D%5Bsearchable%5D=true&columns%5B19%5D%5Borderable%5D=true&columns%5B19%5D%5Bsearch%5D%5Bvalue%5D=&columns%5B19%5D%5Bsearch%5D%5Bregex%5D=false&columns%5B20%5D%5Bdata%5D=20&columns%5B20%5D%5Bname%5D=&columns%5B20%5D%5Bsearchable%5D=true&columns%5B20%5D%5Borderable%5D=false&columns%5B20%5D%5Bsearch%5D%5Bvalue%5D=&columns%5B20%5D%5Bsearch%5D%5Bregex%5D=false&order%5B0%5D%5Bcolumn%5D=0&order%5B0%5D%5Bdir%5D=asc&start=0&length=10&search%5Bvalue%5D=&search%5Bregex%5D=false&additional=%2C%2C&basic=1&_=1503401662076
+Referer URL: http://localhost:8765/Workorders
+Trace:
+Cake\Error\BaseErrorHandler::handleFatalError() - CORE\src\Error\BaseErrorHandler.php, line 216
+Cake\Error\BaseErrorHandler::Cake\Error\{closure}() - CORE\src\Error\BaseErrorHandler.php, line 98
+[main] - [internal], line ??
+
+
+
+2017-08-22 11:34:24 Error: [Cake\Error\FatalErrorException] syntax error, unexpected ';', expecting identifier (T_STRING) or variable (T_VARIABLE) or '{' or '$'
+Request URL: /Workorders/ajaxData?draw=1&columns%5B0%5D%5Bdata%5D=0&columns%5B0%5D%5Bname%5D=&columns%5B0%5D%5Bsearchable%5D=true&columns%5B0%5D%5Borderable%5D=false&columns%5B0%5D%5Bsearch%5D%5Bvalue%5D=&columns%5B0%5D%5Bsearch%5D%5Bregex%5D=false&columns%5B1%5D%5Bdata%5D=1&columns%5B1%5D%5Bname%5D=&columns%5B1%5D%5Bsearchable%5D=true&columns%5B1%5D%5Borderable%5D=true&columns%5B1%5D%5Bsearch%5D%5Bvalue%5D=&columns%5B1%5D%5Bsearch%5D%5Bregex%5D=false&columns%5B2%5D%5Bdata%5D=2&columns%5B2%5D%5Bname%5D=&columns%5B2%5D%5Bsearchable%5D=true&columns%5B2%5D%5Borderable%5D=true&columns%5B2%5D%5Bsearch%5D%5Bvalue%5D=&columns%5B2%5D%5Bsearch%5D%5Bregex%5D=false&columns%5B3%5D%5Bdata%5D=3&columns%5B3%5D%5Bname%5D=&columns%5B3%5D%5Bsearchable%5D=true&columns%5B3%5D%5Borderable%5D=true&columns%5B3%5D%5Bsearch%5D%5Bvalue%5D=&columns%5B3%5D%5Bsearch%5D%5Bregex%5D=false&columns%5B4%5D%5Bdata%5D=4&columns%5B4%5D%5Bname%5D=&columns%5B4%5D%5Bsearchable%5D=true&columns%5B4%5D%5Borderable%5D=true&columns%5B4%5D%5Bsearch%5D%5Bvalue%5D=&columns%5B4%5D%5Bsearch%5D%5Bregex%5D=false&columns%5B5%5D%5Bdata%5D=5&columns%5B5%5D%5Bname%5D=&columns%5B5%5D%5Bsearchable%5D=true&columns%5B5%5D%5Borderable%5D=true&columns%5B5%5D%5Bsearch%5D%5Bvalue%5D=&columns%5B5%5D%5Bsearch%5D%5Bregex%5D=false&columns%5B6%5D%5Bdata%5D=6&columns%5B6%5D%5Bname%5D=&columns%5B6%5D%5Bsearchable%5D=true&columns%5B6%5D%5Borderable%5D=true&columns%5B6%5D%5Bsearch%5D%5Bvalue%5D=&columns%5B6%5D%5Bsearch%5D%5Bregex%5D=false&columns%5B7%5D%5Bdata%5D=7&columns%5B7%5D%5Bname%5D=&columns%5B7%5D%5Bsearchable%5D=true&columns%5B7%5D%5Borderable%5D=true&columns%5B7%5D%5Bsearch%5D%5Bvalue%5D=&columns%5B7%5D%5Bsearch%5D%5Bregex%5D=false&columns%5B8%5D%5Bdata%5D=8&columns%5B8%5D%5Bname%5D=&columns%5B8%5D%5Bsearchable%5D=true&columns%5B8%5D%5Borderable%5D=true&columns%5B8%5D%5Bsearch%5D%5Bvalue%5D=&columns%5B8%5D%5Bsearch%5D%5Bregex%5D=false&columns%5B9%5D%5Bdata%5D=9&columns%5B9%5D%5Bname%5D=&columns%5B9%5D%5Bsearchable%5D=true&columns%5B9%5D%5Borderable%5D=true&columns%5B9%5D%5Bsearch%5D%5Bvalue%5D=&columns%5B9%5D%5Bsearch%5D%5Bregex%5D=false&columns%5B10%5D%5Bdata%5D=10&columns%5B10%5D%5Bname%5D=&columns%5B10%5D%5Bsearchable%5D=true&columns%5B10%5D%5Borderable%5D=true&columns%5B10%5D%5Bsearch%5D%5Bvalue%5D=&columns%5B10%5D%5Bsearch%5D%5Bregex%5D=false&columns%5B11%5D%5Bdata%5D=11&columns%5B11%5D%5Bname%5D=&columns%5B11%5D%5Bsearchable%5D=true&columns%5B11%5D%5Borderable%5D=true&columns%5B11%5D%5Bsearch%5D%5Bvalue%5D=&columns%5B11%5D%5Bsearch%5D%5Bregex%5D=false&columns%5B12%5D%5Bdata%5D=12&columns%5B12%5D%5Bname%5D=&columns%5B12%5D%5Bsearchable%5D=true&columns%5B12%5D%5Borderable%5D=true&columns%5B12%5D%5Bsearch%5D%5Bvalue%5D=&columns%5B12%5D%5Bsearch%5D%5Bregex%5D=false&columns%5B13%5D%5Bdata%5D=13&columns%5B13%5D%5Bname%5D=&columns%5B13%5D%5Bsearchable%5D=true&columns%5B13%5D%5Borderable%5D=true&columns%5B13%5D%5Bsearch%5D%5Bvalue%5D=&columns%5B13%5D%5Bsearch%5D%5Bregex%5D=false&columns%5B14%5D%5Bdata%5D=14&columns%5B14%5D%5Bname%5D=&columns%5B14%5D%5Bsearchable%5D=true&columns%5B14%5D%5Borderable%5D=true&columns%5B14%5D%5Bsearch%5D%5Bvalue%5D=&columns%5B14%5D%5Bsearch%5D%5Bregex%5D=false&columns%5B15%5D%5Bdata%5D=15&columns%5B15%5D%5Bname%5D=&columns%5B15%5D%5Bsearchable%5D=true&columns%5B15%5D%5Borderable%5D=true&columns%5B15%5D%5Bsearch%5D%5Bvalue%5D=&columns%5B15%5D%5Bsearch%5D%5Bregex%5D=false&columns%5B16%5D%5Bdata%5D=16&columns%5B16%5D%5Bname%5D=&columns%5B16%5D%5Bsearchable%5D=true&columns%5B16%5D%5Borderable%5D=true&columns%5B16%5D%5Bsearch%5D%5Bvalue%5D=&columns%5B16%5D%5Bsearch%5D%5Bregex%5D=false&columns%5B17%5D%5Bdata%5D=17&columns%5B17%5D%5Bname%5D=&columns%5B17%5D%5Bsearchable%5D=true&columns%5B17%5D%5Borderable%5D=true&columns%5B17%5D%5Bsearch%5D%5Bvalue%5D=&columns%5B17%5D%5Bsearch%5D%5Bregex%5D=false&columns%5B18%5D%5Bdata%5D=18&columns%5B18%5D%5Bname%5D=&columns%5B18%5D%5Bsearchable%5D=true&columns%5B18%5D%5Borderable%5D=true&columns%5B18%5D%5Bsearch%5D%5Bvalue%5D=&columns%5B18%5D%5Bsearch%5D%5Bregex%5D=false&columns%5B19%5D%5Bdata%5D=19&columns%5B19%5D%5Bname%5D=&columns%5B19%5D%5Bsearchable%5D=true&columns%5B19%5D%5Borderable%5D=true&columns%5B19%5D%5Bsearch%5D%5Bvalue%5D=&columns%5B19%5D%5Bsearch%5D%5Bregex%5D=false&columns%5B20%5D%5Bdata%5D=20&columns%5B20%5D%5Bname%5D=&columns%5B20%5D%5Bsearchable%5D=true&columns%5B20%5D%5Borderable%5D=false&columns%5B20%5D%5Bsearch%5D%5Bvalue%5D=&columns%5B20%5D%5Bsearch%5D%5Bregex%5D=false&order%5B0%5D%5Bcolumn%5D=0&order%5B0%5D%5Bdir%5D=asc&start=0&length=10&search%5Bvalue%5D=&search%5Bregex%5D=false&additional=%2C%2C&basic=1&_=1503401662076
+Referer URL: http://localhost:8765/Workorders
+Stack Trace:
+#0 C:\Users\Hp\Desktop\testnew\vendor\cakephp\cakephp\src\Error\BaseErrorHandler.php(98): Cake\Error\BaseErrorHandler->handleFatalError(4, 'syntax error, u...', 'C:\\Users\\Hp\\Des...', 199)
+#1 [internal function]: Cake\Error\BaseErrorHandler->Cake\Error\{closure}()
+#2 {main}
+
+
+2017-08-22 11:34:32 Error: Fatal Error (4): syntax error, unexpected ';', expecting identifier (T_STRING) or variable (T_VARIABLE) or '{' or '$' in [C:\Users\Hp\Desktop\testnew\src\Model\Table\WorkordersTable.php, line 199]
+Request URL: /Workorders/ajaxData?draw=1&columns%5B0%5D%5Bdata%5D=0&columns%5B0%5D%5Bname%5D=&columns%5B0%5D%5Bsearchable%5D=true&columns%5B0%5D%5Borderable%5D=false&columns%5B0%5D%5Bsearch%5D%5Bvalue%5D=&columns%5B0%5D%5Bsearch%5D%5Bregex%5D=false&columns%5B1%5D%5Bdata%5D=1&columns%5B1%5D%5Bname%5D=&columns%5B1%5D%5Bsearchable%5D=true&columns%5B1%5D%5Borderable%5D=true&columns%5B1%5D%5Bsearch%5D%5Bvalue%5D=&columns%5B1%5D%5Bsearch%5D%5Bregex%5D=false&columns%5B2%5D%5Bdata%5D=2&columns%5B2%5D%5Bname%5D=&columns%5B2%5D%5Bsearchable%5D=true&columns%5B2%5D%5Borderable%5D=true&columns%5B2%5D%5Bsearch%5D%5Bvalue%5D=&columns%5B2%5D%5Bsearch%5D%5Bregex%5D=false&columns%5B3%5D%5Bdata%5D=3&columns%5B3%5D%5Bname%5D=&columns%5B3%5D%5Bsearchable%5D=true&columns%5B3%5D%5Borderable%5D=true&columns%5B3%5D%5Bsearch%5D%5Bvalue%5D=&columns%5B3%5D%5Bsearch%5D%5Bregex%5D=false&columns%5B4%5D%5Bdata%5D=4&columns%5B4%5D%5Bname%5D=&columns%5B4%5D%5Bsearchable%5D=true&columns%5B4%5D%5Borderable%5D=true&columns%5B4%5D%5Bsearch%5D%5Bvalue%5D=&columns%5B4%5D%5Bsearch%5D%5Bregex%5D=false&columns%5B5%5D%5Bdata%5D=5&columns%5B5%5D%5Bname%5D=&columns%5B5%5D%5Bsearchable%5D=true&columns%5B5%5D%5Borderable%5D=true&columns%5B5%5D%5Bsearch%5D%5Bvalue%5D=&columns%5B5%5D%5Bsearch%5D%5Bregex%5D=false&columns%5B6%5D%5Bdata%5D=6&columns%5B6%5D%5Bname%5D=&columns%5B6%5D%5Bsearchable%5D=true&columns%5B6%5D%5Borderable%5D=true&columns%5B6%5D%5Bsearch%5D%5Bvalue%5D=&columns%5B6%5D%5Bsearch%5D%5Bregex%5D=false&columns%5B7%5D%5Bdata%5D=7&columns%5B7%5D%5Bname%5D=&columns%5B7%5D%5Bsearchable%5D=true&columns%5B7%5D%5Borderable%5D=true&columns%5B7%5D%5Bsearch%5D%5Bvalue%5D=&columns%5B7%5D%5Bsearch%5D%5Bregex%5D=false&columns%5B8%5D%5Bdata%5D=8&columns%5B8%5D%5Bname%5D=&columns%5B8%5D%5Bsearchable%5D=true&columns%5B8%5D%5Borderable%5D=true&columns%5B8%5D%5Bsearch%5D%5Bvalue%5D=&columns%5B8%5D%5Bsearch%5D%5Bregex%5D=false&columns%5B9%5D%5Bdata%5D=9&columns%5B9%5D%5Bname%5D=&columns%5B9%5D%5Bsearchable%5D=true&columns%5B9%5D%5Borderable%5D=true&columns%5B9%5D%5Bsearch%5D%5Bvalue%5D=&columns%5B9%5D%5Bsearch%5D%5Bregex%5D=false&columns%5B10%5D%5Bdata%5D=10&columns%5B10%5D%5Bname%5D=&columns%5B10%5D%5Bsearchable%5D=true&columns%5B10%5D%5Borderable%5D=true&columns%5B10%5D%5Bsearch%5D%5Bvalue%5D=&columns%5B10%5D%5Bsearch%5D%5Bregex%5D=false&columns%5B11%5D%5Bdata%5D=11&columns%5B11%5D%5Bname%5D=&columns%5B11%5D%5Bsearchable%5D=true&columns%5B11%5D%5Borderable%5D=true&columns%5B11%5D%5Bsearch%5D%5Bvalue%5D=&columns%5B11%5D%5Bsearch%5D%5Bregex%5D=false&columns%5B12%5D%5Bdata%5D=12&columns%5B12%5D%5Bname%5D=&columns%5B12%5D%5Bsearchable%5D=true&columns%5B12%5D%5Borderable%5D=true&columns%5B12%5D%5Bsearch%5D%5Bvalue%5D=&columns%5B12%5D%5Bsearch%5D%5Bregex%5D=false&columns%5B13%5D%5Bdata%5D=13&columns%5B13%5D%5Bname%5D=&columns%5B13%5D%5Bsearchable%5D=true&columns%5B13%5D%5Borderable%5D=true&columns%5B13%5D%5Bsearch%5D%5Bvalue%5D=&columns%5B13%5D%5Bsearch%5D%5Bregex%5D=false&columns%5B14%5D%5Bdata%5D=14&columns%5B14%5D%5Bname%5D=&columns%5B14%5D%5Bsearchable%5D=true&columns%5B14%5D%5Borderable%5D=true&columns%5B14%5D%5Bsearch%5D%5Bvalue%5D=&columns%5B14%5D%5Bsearch%5D%5Bregex%5D=false&columns%5B15%5D%5Bdata%5D=15&columns%5B15%5D%5Bname%5D=&columns%5B15%5D%5Bsearchable%5D=true&columns%5B15%5D%5Borderable%5D=true&columns%5B15%5D%5Bsearch%5D%5Bvalue%5D=&columns%5B15%5D%5Bsearch%5D%5Bregex%5D=false&columns%5B16%5D%5Bdata%5D=16&columns%5B16%5D%5Bname%5D=&columns%5B16%5D%5Bsearchable%5D=true&columns%5B16%5D%5Borderable%5D=true&columns%5B16%5D%5Bsearch%5D%5Bvalue%5D=&columns%5B16%5D%5Bsearch%5D%5Bregex%5D=false&columns%5B17%5D%5Bdata%5D=17&columns%5B17%5D%5Bname%5D=&columns%5B17%5D%5Bsearchable%5D=true&columns%5B17%5D%5Borderable%5D=true&columns%5B17%5D%5Bsearch%5D%5Bvalue%5D=&columns%5B17%5D%5Bsearch%5D%5Bregex%5D=false&columns%5B18%5D%5Bdata%5D=18&columns%5B18%5D%5Bname%5D=&columns%5B18%5D%5Bsearchable%5D=true&columns%5B18%5D%5Borderable%5D=true&columns%5B18%5D%5Bsearch%5D%5Bvalue%5D=&columns%5B18%5D%5Bsearch%5D%5Bregex%5D=false&columns%5B19%5D%5Bdata%5D=19&columns%5B19%5D%5Bname%5D=&columns%5B19%5D%5Bsearchable%5D=true&columns%5B19%5D%5Borderable%5D=true&columns%5B19%5D%5Bsearch%5D%5Bvalue%5D=&columns%5B19%5D%5Bsearch%5D%5Bregex%5D=false&columns%5B20%5D%5Bdata%5D=20&columns%5B20%5D%5Bname%5D=&columns%5B20%5D%5Bsearchable%5D=true&columns%5B20%5D%5Borderable%5D=false&columns%5B20%5D%5Bsearch%5D%5Bvalue%5D=&columns%5B20%5D%5Bsearch%5D%5Bregex%5D=false&order%5B0%5D%5Bcolumn%5D=0&order%5B0%5D%5Bdir%5D=asc&start=0&length=10&search%5Bvalue%5D=&search%5Bregex%5D=false&additional=%2C%2C&basic=1&_=1503401670350
+Referer URL: http://localhost:8765/Workorders
+Trace:
+Cake\Error\BaseErrorHandler::handleFatalError() - CORE\src\Error\BaseErrorHandler.php, line 216
+Cake\Error\BaseErrorHandler::Cake\Error\{closure}() - CORE\src\Error\BaseErrorHandler.php, line 98
+[main] - [internal], line ??
+
+
+
+2017-08-22 11:34:32 Error: [Cake\Error\FatalErrorException] syntax error, unexpected ';', expecting identifier (T_STRING) or variable (T_VARIABLE) or '{' or '$'
+Request URL: /Workorders/ajaxData?draw=1&columns%5B0%5D%5Bdata%5D=0&columns%5B0%5D%5Bname%5D=&columns%5B0%5D%5Bsearchable%5D=true&columns%5B0%5D%5Borderable%5D=false&columns%5B0%5D%5Bsearch%5D%5Bvalue%5D=&columns%5B0%5D%5Bsearch%5D%5Bregex%5D=false&columns%5B1%5D%5Bdata%5D=1&columns%5B1%5D%5Bname%5D=&columns%5B1%5D%5Bsearchable%5D=true&columns%5B1%5D%5Borderable%5D=true&columns%5B1%5D%5Bsearch%5D%5Bvalue%5D=&columns%5B1%5D%5Bsearch%5D%5Bregex%5D=false&columns%5B2%5D%5Bdata%5D=2&columns%5B2%5D%5Bname%5D=&columns%5B2%5D%5Bsearchable%5D=true&columns%5B2%5D%5Borderable%5D=true&columns%5B2%5D%5Bsearch%5D%5Bvalue%5D=&columns%5B2%5D%5Bsearch%5D%5Bregex%5D=false&columns%5B3%5D%5Bdata%5D=3&columns%5B3%5D%5Bname%5D=&columns%5B3%5D%5Bsearchable%5D=true&columns%5B3%5D%5Borderable%5D=true&columns%5B3%5D%5Bsearch%5D%5Bvalue%5D=&columns%5B3%5D%5Bsearch%5D%5Bregex%5D=false&columns%5B4%5D%5Bdata%5D=4&columns%5B4%5D%5Bname%5D=&columns%5B4%5D%5Bsearchable%5D=true&columns%5B4%5D%5Borderable%5D=true&columns%5B4%5D%5Bsearch%5D%5Bvalue%5D=&columns%5B4%5D%5Bsearch%5D%5Bregex%5D=false&columns%5B5%5D%5Bdata%5D=5&columns%5B5%5D%5Bname%5D=&columns%5B5%5D%5Bsearchable%5D=true&columns%5B5%5D%5Borderable%5D=true&columns%5B5%5D%5Bsearch%5D%5Bvalue%5D=&columns%5B5%5D%5Bsearch%5D%5Bregex%5D=false&columns%5B6%5D%5Bdata%5D=6&columns%5B6%5D%5Bname%5D=&columns%5B6%5D%5Bsearchable%5D=true&columns%5B6%5D%5Borderable%5D=true&columns%5B6%5D%5Bsearch%5D%5Bvalue%5D=&columns%5B6%5D%5Bsearch%5D%5Bregex%5D=false&columns%5B7%5D%5Bdata%5D=7&columns%5B7%5D%5Bname%5D=&columns%5B7%5D%5Bsearchable%5D=true&columns%5B7%5D%5Borderable%5D=true&columns%5B7%5D%5Bsearch%5D%5Bvalue%5D=&columns%5B7%5D%5Bsearch%5D%5Bregex%5D=false&columns%5B8%5D%5Bdata%5D=8&columns%5B8%5D%5Bname%5D=&columns%5B8%5D%5Bsearchable%5D=true&columns%5B8%5D%5Borderable%5D=true&columns%5B8%5D%5Bsearch%5D%5Bvalue%5D=&columns%5B8%5D%5Bsearch%5D%5Bregex%5D=false&columns%5B9%5D%5Bdata%5D=9&columns%5B9%5D%5Bname%5D=&columns%5B9%5D%5Bsearchable%5D=true&columns%5B9%5D%5Borderable%5D=true&columns%5B9%5D%5Bsearch%5D%5Bvalue%5D=&columns%5B9%5D%5Bsearch%5D%5Bregex%5D=false&columns%5B10%5D%5Bdata%5D=10&columns%5B10%5D%5Bname%5D=&columns%5B10%5D%5Bsearchable%5D=true&columns%5B10%5D%5Borderable%5D=true&columns%5B10%5D%5Bsearch%5D%5Bvalue%5D=&columns%5B10%5D%5Bsearch%5D%5Bregex%5D=false&columns%5B11%5D%5Bdata%5D=11&columns%5B11%5D%5Bname%5D=&columns%5B11%5D%5Bsearchable%5D=true&columns%5B11%5D%5Borderable%5D=true&columns%5B11%5D%5Bsearch%5D%5Bvalue%5D=&columns%5B11%5D%5Bsearch%5D%5Bregex%5D=false&columns%5B12%5D%5Bdata%5D=12&columns%5B12%5D%5Bname%5D=&columns%5B12%5D%5Bsearchable%5D=true&columns%5B12%5D%5Borderable%5D=true&columns%5B12%5D%5Bsearch%5D%5Bvalue%5D=&columns%5B12%5D%5Bsearch%5D%5Bregex%5D=false&columns%5B13%5D%5Bdata%5D=13&columns%5B13%5D%5Bname%5D=&columns%5B13%5D%5Bsearchable%5D=true&columns%5B13%5D%5Borderable%5D=true&columns%5B13%5D%5Bsearch%5D%5Bvalue%5D=&columns%5B13%5D%5Bsearch%5D%5Bregex%5D=false&columns%5B14%5D%5Bdata%5D=14&columns%5B14%5D%5Bname%5D=&columns%5B14%5D%5Bsearchable%5D=true&columns%5B14%5D%5Borderable%5D=true&columns%5B14%5D%5Bsearch%5D%5Bvalue%5D=&columns%5B14%5D%5Bsearch%5D%5Bregex%5D=false&columns%5B15%5D%5Bdata%5D=15&columns%5B15%5D%5Bname%5D=&columns%5B15%5D%5Bsearchable%5D=true&columns%5B15%5D%5Borderable%5D=true&columns%5B15%5D%5Bsearch%5D%5Bvalue%5D=&columns%5B15%5D%5Bsearch%5D%5Bregex%5D=false&columns%5B16%5D%5Bdata%5D=16&columns%5B16%5D%5Bname%5D=&columns%5B16%5D%5Bsearchable%5D=true&columns%5B16%5D%5Borderable%5D=true&columns%5B16%5D%5Bsearch%5D%5Bvalue%5D=&columns%5B16%5D%5Bsearch%5D%5Bregex%5D=false&columns%5B17%5D%5Bdata%5D=17&columns%5B17%5D%5Bname%5D=&columns%5B17%5D%5Bsearchable%5D=true&columns%5B17%5D%5Borderable%5D=true&columns%5B17%5D%5Bsearch%5D%5Bvalue%5D=&columns%5B17%5D%5Bsearch%5D%5Bregex%5D=false&columns%5B18%5D%5Bdata%5D=18&columns%5B18%5D%5Bname%5D=&columns%5B18%5D%5Bsearchable%5D=true&columns%5B18%5D%5Borderable%5D=true&columns%5B18%5D%5Bsearch%5D%5Bvalue%5D=&columns%5B18%5D%5Bsearch%5D%5Bregex%5D=false&columns%5B19%5D%5Bdata%5D=19&columns%5B19%5D%5Bname%5D=&columns%5B19%5D%5Bsearchable%5D=true&columns%5B19%5D%5Borderable%5D=true&columns%5B19%5D%5Bsearch%5D%5Bvalue%5D=&columns%5B19%5D%5Bsearch%5D%5Bregex%5D=false&columns%5B20%5D%5Bdata%5D=20&columns%5B20%5D%5Bname%5D=&columns%5B20%5D%5Bsearchable%5D=true&columns%5B20%5D%5Borderable%5D=false&columns%5B20%5D%5Bsearch%5D%5Bvalue%5D=&columns%5B20%5D%5Bsearch%5D%5Bregex%5D=false&order%5B0%5D%5Bcolumn%5D=0&order%5B0%5D%5Bdir%5D=asc&start=0&length=10&search%5Bvalue%5D=&search%5Bregex%5D=false&additional=%2C%2C&basic=1&_=1503401670350
+Referer URL: http://localhost:8765/Workorders
+Stack Trace:
+#0 C:\Users\Hp\Desktop\testnew\vendor\cakephp\cakephp\src\Error\BaseErrorHandler.php(98): Cake\Error\BaseErrorHandler->handleFatalError(4, 'syntax error, u...', 'C:\\Users\\Hp\\Des...', 199)
+#1 [internal function]: Cake\Error\BaseErrorHandler->Cake\Error\{closure}()
+#2 {main}
+
+
+2017-08-22 11:34:40 Error: Fatal Error (4): syntax error, unexpected ';', expecting identifier (T_STRING) or variable (T_VARIABLE) or '{' or '$' in [C:\Users\Hp\Desktop\testnew\src\Model\Table\WorkordersTable.php, line 199]
+Request URL: /Workorders/ajaxData?draw=1&columns%5B0%5D%5Bdata%5D=0&columns%5B0%5D%5Bname%5D=&columns%5B0%5D%5Bsearchable%5D=true&columns%5B0%5D%5Borderable%5D=false&columns%5B0%5D%5Bsearch%5D%5Bvalue%5D=&columns%5B0%5D%5Bsearch%5D%5Bregex%5D=false&columns%5B1%5D%5Bdata%5D=1&columns%5B1%5D%5Bname%5D=&columns%5B1%5D%5Bsearchable%5D=true&columns%5B1%5D%5Borderable%5D=true&columns%5B1%5D%5Bsearch%5D%5Bvalue%5D=&columns%5B1%5D%5Bsearch%5D%5Bregex%5D=false&columns%5B2%5D%5Bdata%5D=2&columns%5B2%5D%5Bname%5D=&columns%5B2%5D%5Bsearchable%5D=true&columns%5B2%5D%5Borderable%5D=true&columns%5B2%5D%5Bsearch%5D%5Bvalue%5D=&columns%5B2%5D%5Bsearch%5D%5Bregex%5D=false&columns%5B3%5D%5Bdata%5D=3&columns%5B3%5D%5Bname%5D=&columns%5B3%5D%5Bsearchable%5D=true&columns%5B3%5D%5Borderable%5D=true&columns%5B3%5D%5Bsearch%5D%5Bvalue%5D=&columns%5B3%5D%5Bsearch%5D%5Bregex%5D=false&columns%5B4%5D%5Bdata%5D=4&columns%5B4%5D%5Bname%5D=&columns%5B4%5D%5Bsearchable%5D=true&columns%5B4%5D%5Borderable%5D=true&columns%5B4%5D%5Bsearch%5D%5Bvalue%5D=&columns%5B4%5D%5Bsearch%5D%5Bregex%5D=false&columns%5B5%5D%5Bdata%5D=5&columns%5B5%5D%5Bname%5D=&columns%5B5%5D%5Bsearchable%5D=true&columns%5B5%5D%5Borderable%5D=true&columns%5B5%5D%5Bsearch%5D%5Bvalue%5D=&columns%5B5%5D%5Bsearch%5D%5Bregex%5D=false&columns%5B6%5D%5Bdata%5D=6&columns%5B6%5D%5Bname%5D=&columns%5B6%5D%5Bsearchable%5D=true&columns%5B6%5D%5Borderable%5D=true&columns%5B6%5D%5Bsearch%5D%5Bvalue%5D=&columns%5B6%5D%5Bsearch%5D%5Bregex%5D=false&columns%5B7%5D%5Bdata%5D=7&columns%5B7%5D%5Bname%5D=&columns%5B7%5D%5Bsearchable%5D=true&columns%5B7%5D%5Borderable%5D=true&columns%5B7%5D%5Bsearch%5D%5Bvalue%5D=&columns%5B7%5D%5Bsearch%5D%5Bregex%5D=false&columns%5B8%5D%5Bdata%5D=8&columns%5B8%5D%5Bname%5D=&columns%5B8%5D%5Bsearchable%5D=true&columns%5B8%5D%5Borderable%5D=true&columns%5B8%5D%5Bsearch%5D%5Bvalue%5D=&columns%5B8%5D%5Bsearch%5D%5Bregex%5D=false&columns%5B9%5D%5Bdata%5D=9&columns%5B9%5D%5Bname%5D=&columns%5B9%5D%5Bsearchable%5D=true&columns%5B9%5D%5Borderable%5D=true&columns%5B9%5D%5Bsearch%5D%5Bvalue%5D=&columns%5B9%5D%5Bsearch%5D%5Bregex%5D=false&columns%5B10%5D%5Bdata%5D=10&columns%5B10%5D%5Bname%5D=&columns%5B10%5D%5Bsearchable%5D=true&columns%5B10%5D%5Borderable%5D=true&columns%5B10%5D%5Bsearch%5D%5Bvalue%5D=&columns%5B10%5D%5Bsearch%5D%5Bregex%5D=false&columns%5B11%5D%5Bdata%5D=11&columns%5B11%5D%5Bname%5D=&columns%5B11%5D%5Bsearchable%5D=true&columns%5B11%5D%5Borderable%5D=true&columns%5B11%5D%5Bsearch%5D%5Bvalue%5D=&columns%5B11%5D%5Bsearch%5D%5Bregex%5D=false&columns%5B12%5D%5Bdata%5D=12&columns%5B12%5D%5Bname%5D=&columns%5B12%5D%5Bsearchable%5D=true&columns%5B12%5D%5Borderable%5D=true&columns%5B12%5D%5Bsearch%5D%5Bvalue%5D=&columns%5B12%5D%5Bsearch%5D%5Bregex%5D=false&columns%5B13%5D%5Bdata%5D=13&columns%5B13%5D%5Bname%5D=&columns%5B13%5D%5Bsearchable%5D=true&columns%5B13%5D%5Borderable%5D=true&columns%5B13%5D%5Bsearch%5D%5Bvalue%5D=&columns%5B13%5D%5Bsearch%5D%5Bregex%5D=false&columns%5B14%5D%5Bdata%5D=14&columns%5B14%5D%5Bname%5D=&columns%5B14%5D%5Bsearchable%5D=true&columns%5B14%5D%5Borderable%5D=true&columns%5B14%5D%5Bsearch%5D%5Bvalue%5D=&columns%5B14%5D%5Bsearch%5D%5Bregex%5D=false&columns%5B15%5D%5Bdata%5D=15&columns%5B15%5D%5Bname%5D=&columns%5B15%5D%5Bsearchable%5D=true&columns%5B15%5D%5Borderable%5D=true&columns%5B15%5D%5Bsearch%5D%5Bvalue%5D=&columns%5B15%5D%5Bsearch%5D%5Bregex%5D=false&columns%5B16%5D%5Bdata%5D=16&columns%5B16%5D%5Bname%5D=&columns%5B16%5D%5Bsearchable%5D=true&columns%5B16%5D%5Borderable%5D=true&columns%5B16%5D%5Bsearch%5D%5Bvalue%5D=&columns%5B16%5D%5Bsearch%5D%5Bregex%5D=false&columns%5B17%5D%5Bdata%5D=17&columns%5B17%5D%5Bname%5D=&columns%5B17%5D%5Bsearchable%5D=true&columns%5B17%5D%5Borderable%5D=true&columns%5B17%5D%5Bsearch%5D%5Bvalue%5D=&columns%5B17%5D%5Bsearch%5D%5Bregex%5D=false&columns%5B18%5D%5Bdata%5D=18&columns%5B18%5D%5Bname%5D=&columns%5B18%5D%5Bsearchable%5D=true&columns%5B18%5D%5Borderable%5D=true&columns%5B18%5D%5Bsearch%5D%5Bvalue%5D=&columns%5B18%5D%5Bsearch%5D%5Bregex%5D=false&columns%5B19%5D%5Bdata%5D=19&columns%5B19%5D%5Bname%5D=&columns%5B19%5D%5Bsearchable%5D=true&columns%5B19%5D%5Borderable%5D=true&columns%5B19%5D%5Bsearch%5D%5Bvalue%5D=&columns%5B19%5D%5Bsearch%5D%5Bregex%5D=false&columns%5B20%5D%5Bdata%5D=20&columns%5B20%5D%5Bname%5D=&columns%5B20%5D%5Bsearchable%5D=true&columns%5B20%5D%5Borderable%5D=false&columns%5B20%5D%5Bsearch%5D%5Bvalue%5D=&columns%5B20%5D%5Bsearch%5D%5Bregex%5D=false&order%5B0%5D%5Bcolumn%5D=0&order%5B0%5D%5Bdir%5D=asc&start=0&length=10&search%5Bvalue%5D=&search%5Bregex%5D=false&additional=%2C%2C&basic=1&_=1503401670350
+Trace:
+Cake\Error\BaseErrorHandler::handleFatalError() - CORE\src\Error\BaseErrorHandler.php, line 216
+Cake\Error\BaseErrorHandler::Cake\Error\{closure}() - CORE\src\Error\BaseErrorHandler.php, line 98
+[main] - [internal], line ??
+
+
+
+2017-08-22 11:34:40 Error: [Cake\Error\FatalErrorException] syntax error, unexpected ';', expecting identifier (T_STRING) or variable (T_VARIABLE) or '{' or '$'
+Request URL: /Workorders/ajaxData?draw=1&columns%5B0%5D%5Bdata%5D=0&columns%5B0%5D%5Bname%5D=&columns%5B0%5D%5Bsearchable%5D=true&columns%5B0%5D%5Borderable%5D=false&columns%5B0%5D%5Bsearch%5D%5Bvalue%5D=&columns%5B0%5D%5Bsearch%5D%5Bregex%5D=false&columns%5B1%5D%5Bdata%5D=1&columns%5B1%5D%5Bname%5D=&columns%5B1%5D%5Bsearchable%5D=true&columns%5B1%5D%5Borderable%5D=true&columns%5B1%5D%5Bsearch%5D%5Bvalue%5D=&columns%5B1%5D%5Bsearch%5D%5Bregex%5D=false&columns%5B2%5D%5Bdata%5D=2&columns%5B2%5D%5Bname%5D=&columns%5B2%5D%5Bsearchable%5D=true&columns%5B2%5D%5Borderable%5D=true&columns%5B2%5D%5Bsearch%5D%5Bvalue%5D=&columns%5B2%5D%5Bsearch%5D%5Bregex%5D=false&columns%5B3%5D%5Bdata%5D=3&columns%5B3%5D%5Bname%5D=&columns%5B3%5D%5Bsearchable%5D=true&columns%5B3%5D%5Borderable%5D=true&columns%5B3%5D%5Bsearch%5D%5Bvalue%5D=&columns%5B3%5D%5Bsearch%5D%5Bregex%5D=false&columns%5B4%5D%5Bdata%5D=4&columns%5B4%5D%5Bname%5D=&columns%5B4%5D%5Bsearchable%5D=true&columns%5B4%5D%5Borderable%5D=true&columns%5B4%5D%5Bsearch%5D%5Bvalue%5D=&columns%5B4%5D%5Bsearch%5D%5Bregex%5D=false&columns%5B5%5D%5Bdata%5D=5&columns%5B5%5D%5Bname%5D=&columns%5B5%5D%5Bsearchable%5D=true&columns%5B5%5D%5Borderable%5D=true&columns%5B5%5D%5Bsearch%5D%5Bvalue%5D=&columns%5B5%5D%5Bsearch%5D%5Bregex%5D=false&columns%5B6%5D%5Bdata%5D=6&columns%5B6%5D%5Bname%5D=&columns%5B6%5D%5Bsearchable%5D=true&columns%5B6%5D%5Borderable%5D=true&columns%5B6%5D%5Bsearch%5D%5Bvalue%5D=&columns%5B6%5D%5Bsearch%5D%5Bregex%5D=false&columns%5B7%5D%5Bdata%5D=7&columns%5B7%5D%5Bname%5D=&columns%5B7%5D%5Bsearchable%5D=true&columns%5B7%5D%5Borderable%5D=true&columns%5B7%5D%5Bsearch%5D%5Bvalue%5D=&columns%5B7%5D%5Bsearch%5D%5Bregex%5D=false&columns%5B8%5D%5Bdata%5D=8&columns%5B8%5D%5Bname%5D=&columns%5B8%5D%5Bsearchable%5D=true&columns%5B8%5D%5Borderable%5D=true&columns%5B8%5D%5Bsearch%5D%5Bvalue%5D=&columns%5B8%5D%5Bsearch%5D%5Bregex%5D=false&columns%5B9%5D%5Bdata%5D=9&columns%5B9%5D%5Bname%5D=&columns%5B9%5D%5Bsearchable%5D=true&columns%5B9%5D%5Borderable%5D=true&columns%5B9%5D%5Bsearch%5D%5Bvalue%5D=&columns%5B9%5D%5Bsearch%5D%5Bregex%5D=false&columns%5B10%5D%5Bdata%5D=10&columns%5B10%5D%5Bname%5D=&columns%5B10%5D%5Bsearchable%5D=true&columns%5B10%5D%5Borderable%5D=true&columns%5B10%5D%5Bsearch%5D%5Bvalue%5D=&columns%5B10%5D%5Bsearch%5D%5Bregex%5D=false&columns%5B11%5D%5Bdata%5D=11&columns%5B11%5D%5Bname%5D=&columns%5B11%5D%5Bsearchable%5D=true&columns%5B11%5D%5Borderable%5D=true&columns%5B11%5D%5Bsearch%5D%5Bvalue%5D=&columns%5B11%5D%5Bsearch%5D%5Bregex%5D=false&columns%5B12%5D%5Bdata%5D=12&columns%5B12%5D%5Bname%5D=&columns%5B12%5D%5Bsearchable%5D=true&columns%5B12%5D%5Borderable%5D=true&columns%5B12%5D%5Bsearch%5D%5Bvalue%5D=&columns%5B12%5D%5Bsearch%5D%5Bregex%5D=false&columns%5B13%5D%5Bdata%5D=13&columns%5B13%5D%5Bname%5D=&columns%5B13%5D%5Bsearchable%5D=true&columns%5B13%5D%5Borderable%5D=true&columns%5B13%5D%5Bsearch%5D%5Bvalue%5D=&columns%5B13%5D%5Bsearch%5D%5Bregex%5D=false&columns%5B14%5D%5Bdata%5D=14&columns%5B14%5D%5Bname%5D=&columns%5B14%5D%5Bsearchable%5D=true&columns%5B14%5D%5Borderable%5D=true&columns%5B14%5D%5Bsearch%5D%5Bvalue%5D=&columns%5B14%5D%5Bsearch%5D%5Bregex%5D=false&columns%5B15%5D%5Bdata%5D=15&columns%5B15%5D%5Bname%5D=&columns%5B15%5D%5Bsearchable%5D=true&columns%5B15%5D%5Borderable%5D=true&columns%5B15%5D%5Bsearch%5D%5Bvalue%5D=&columns%5B15%5D%5Bsearch%5D%5Bregex%5D=false&columns%5B16%5D%5Bdata%5D=16&columns%5B16%5D%5Bname%5D=&columns%5B16%5D%5Bsearchable%5D=true&columns%5B16%5D%5Borderable%5D=true&columns%5B16%5D%5Bsearch%5D%5Bvalue%5D=&columns%5B16%5D%5Bsearch%5D%5Bregex%5D=false&columns%5B17%5D%5Bdata%5D=17&columns%5B17%5D%5Bname%5D=&columns%5B17%5D%5Bsearchable%5D=true&columns%5B17%5D%5Borderable%5D=true&columns%5B17%5D%5Bsearch%5D%5Bvalue%5D=&columns%5B17%5D%5Bsearch%5D%5Bregex%5D=false&columns%5B18%5D%5Bdata%5D=18&columns%5B18%5D%5Bname%5D=&columns%5B18%5D%5Bsearchable%5D=true&columns%5B18%5D%5Borderable%5D=true&columns%5B18%5D%5Bsearch%5D%5Bvalue%5D=&columns%5B18%5D%5Bsearch%5D%5Bregex%5D=false&columns%5B19%5D%5Bdata%5D=19&columns%5B19%5D%5Bname%5D=&columns%5B19%5D%5Bsearchable%5D=true&columns%5B19%5D%5Borderable%5D=true&columns%5B19%5D%5Bsearch%5D%5Bvalue%5D=&columns%5B19%5D%5Bsearch%5D%5Bregex%5D=false&columns%5B20%5D%5Bdata%5D=20&columns%5B20%5D%5Bname%5D=&columns%5B20%5D%5Bsearchable%5D=true&columns%5B20%5D%5Borderable%5D=false&columns%5B20%5D%5Bsearch%5D%5Bvalue%5D=&columns%5B20%5D%5Bsearch%5D%5Bregex%5D=false&order%5B0%5D%5Bcolumn%5D=0&order%5B0%5D%5Bdir%5D=asc&start=0&length=10&search%5Bvalue%5D=&search%5Bregex%5D=false&additional=%2C%2C&basic=1&_=1503401670350
+Stack Trace:
+#0 C:\Users\Hp\Desktop\testnew\vendor\cakephp\cakephp\src\Error\BaseErrorHandler.php(98): Cake\Error\BaseErrorHandler->handleFatalError(4, 'syntax error, u...', 'C:\\Users\\Hp\\Des...', 199)
+#1 [internal function]: Cake\Error\BaseErrorHandler->Cake\Error\{closure}()
+#2 {main}
+
+
+2017-08-22 11:35:52 Error: {
+    "id": 439,
+    "issuedate": "2017-07-31T00:00:00+00:00",
+    "workorderstatus_id": 1,
+    "vehicle_id": 118,
+    "startdate": "2017-09-05T00:00:00+00:00",
+    "lables": "",
+    "odometer": null,
+    "void": true,
+    "vendor_id": null,
+    "completiondate": null,
+    "labour": 15.9,
+    "parts": 24.72,
+    "dicount": 5,
+    "tax": 12,
+    "issuedby_id": null,
+    "assignedby_id": null,
+    "assignto_id": null,
+    "invoicenumber": "invccc",
+    "description": "",
+    "phonenumber": "",
+    "customer_id": 1,
+    "taxtype": 1
+}
+2017-08-22 11:35:53 Warning: Headers already sent in C:\Users\Hp\Desktop\testnew\vendor\cakephp\cakephp\src\Error\Debugger.php:753
+2017-08-22 11:35:53 Error: [RuntimeException] Unable to emit response; headers already sent
+Request URL: /Workorders/setClose2?content=439
+Referer URL: http://localhost:8765/Workorders
+Stack Trace:
+#0 C:\Users\Hp\Desktop\testnew\vendor\cakephp\cakephp\src\Http\Server.php(107): Zend\Diactoros\Response\SapiStreamEmitter->emit(Object(Zend\Diactoros\Response))
+#1 C:\Users\Hp\Desktop\testnew\webroot\index.php(37): Cake\Http\Server->emit(Object(Zend\Diactoros\Response))
+#2 {main}
+
+
+2017-08-22 11:37:40 Error: Fatal Error (1): Call to undefined method App\Controller\WorkordersController::print_r() in [C:\Users\Hp\Desktop\testnew\src\Controller\WorkordersController.php, line 988]
+Request URL: /Workorders/setClose2?content=439
+Referer URL: http://localhost:8765/Workorders
+Trace:
+Cake\Error\BaseErrorHandler::handleFatalError() - CORE\src\Error\BaseErrorHandler.php, line 216
+Cake\Error\BaseErrorHandler::Cake\Error\{closure}() - CORE\src\Error\BaseErrorHandler.php, line 98
+[main] - [internal], line ??
+
+
+
+2017-08-22 11:37:40 Error: [Cake\Error\FatalErrorException] Call to undefined method App\Controller\WorkordersController::print_r()
+Request URL: /Workorders/setClose2?content=439
+Referer URL: http://localhost:8765/Workorders
+Stack Trace:
+#0 C:\Users\Hp\Desktop\testnew\vendor\cakephp\cakephp\src\Error\BaseErrorHandler.php(98): Cake\Error\BaseErrorHandler->handleFatalError(1, 'Call to undefin...', 'C:\\Users\\Hp\\Des...', 988)
+#1 [internal function]: Cake\Error\BaseErrorHandler->Cake\Error\{closure}()
+#2 {main}
+
+
+2017-08-22 11:38:12 Error: {
+    "id": 439,
+    "issuedate": "2017-07-31T00:00:00+00:00",
+    "workorderstatus_id": 1,
+    "vehicle_id": 118,
+    "startdate": "2017-09-05T00:00:00+00:00",
+    "lables": "",
+    "odometer": null,
+    "void": true,
+    "vendor_id": null,
+    "completiondate": null,
+    "labour": 15.9,
+    "parts": 24.72,
+    "dicount": 5,
+    "tax": 12,
+    "issuedby_id": null,
+    "assignedby_id": null,
+    "assignto_id": null,
+    "invoicenumber": "invccc",
+    "description": "",
+    "phonenumber": "",
+    "customer_id": 1,
+    "taxtype": 1
+}
+2017-08-22 11:38:12 Warning: Headers already sent in C:\Users\Hp\Desktop\testnew\vendor\cakephp\cakephp\src\Error\Debugger.php:753
+2017-08-22 11:38:12 Error: [RuntimeException] Unable to emit response; headers already sent
+Request URL: /Workorders/setClose2?content=439
+Referer URL: http://localhost:8765/Workorders
+Stack Trace:
+#0 C:\Users\Hp\Desktop\testnew\vendor\cakephp\cakephp\src\Http\Server.php(107): Zend\Diactoros\Response\SapiStreamEmitter->emit(Object(Zend\Diactoros\Response))
+#1 C:\Users\Hp\Desktop\testnew\webroot\index.php(37): Cake\Http\Server->emit(Object(Zend\Diactoros\Response))
+#2 {main}
+
+
+2017-08-22 11:39:52 Error: {
+    "id": 439,
+    "issuedate": "2017-07-31T00:00:00+00:00",
+    "workorderstatus_id": 1,
+    "vehicle_id": 118,
+    "startdate": "2017-09-05T00:00:00+00:00",
+    "lables": "",
+    "odometer": null,
+    "void": true,
+    "vendor_id": null,
+    "completiondate": null,
+    "labour": 15.9,
+    "parts": 24.72,
+    "dicount": 5,
+    "tax": 12,
+    "issuedby_id": null,
+    "assignedby_id": null,
+    "assignto_id": null,
+    "invoicenumber": "invccc",
+    "description": "",
+    "phonenumber": "",
+    "customer_id": 1,
+    "taxtype": 1
+}
+2017-08-22 11:39:52 Warning: Headers already sent in C:\Users\Hp\Desktop\testnew\vendor\cakephp\cakephp\src\Error\Debugger.php:753
+2017-08-22 11:39:52 Error: [RuntimeException] Unable to emit response; headers already sent
+Request URL: /Workorders/setClose2?content=439
+Referer URL: http://localhost:8765/Workorders
+Stack Trace:
+#0 C:\Users\Hp\Desktop\testnew\vendor\cakephp\cakephp\src\Http\Server.php(107): Zend\Diactoros\Response\SapiStreamEmitter->emit(Object(Zend\Diactoros\Response))
+#1 C:\Users\Hp\Desktop\testnew\webroot\index.php(37): Cake\Http\Server->emit(Object(Zend\Diactoros\Response))
+#2 {main}
+
+
+2017-08-22 11:40:54 Error: {
+    "id": 439,
+    "issuedate": "2017-07-31T00:00:00+00:00",
+    "workorderstatus_id": 1,
+    "vehicle_id": 118,
+    "startdate": "2017-09-05T00:00:00+00:00",
+    "lables": "",
+    "odometer": null,
+    "void": true,
+    "vendor_id": null,
+    "completiondate": null,
+    "labour": 15.9,
+    "parts": 24.72,
+    "dicount": 5,
+    "tax": 12,
+    "issuedby_id": null,
+    "assignedby_id": null,
+    "assignto_id": null,
+    "invoicenumber": "invccc",
+    "description": "",
+    "phonenumber": "",
+    "customer_id": 1,
+    "taxtype": 1
+}
+2017-08-22 11:40:54 Warning: Headers already sent in C:\Users\Hp\Desktop\testnew\vendor\cakephp\cakephp\src\Error\Debugger.php:753
+2017-08-22 11:40:54 Error: [RuntimeException] Unable to emit response; headers already sent
+Request URL: /Workorders/setClose2?content=439
+Referer URL: http://localhost:8765/Workorders
+Stack Trace:
+#0 C:\Users\Hp\Desktop\testnew\vendor\cakephp\cakephp\src\Http\Server.php(107): Zend\Diactoros\Response\SapiStreamEmitter->emit(Object(Zend\Diactoros\Response))
+#1 C:\Users\Hp\Desktop\testnew\webroot\index.php(37): Cake\Http\Server->emit(Object(Zend\Diactoros\Response))
+#2 {main}
+
+
+2017-08-22 11:42:17 Error: {
+    "id": 439,
+    "issuedate": "2017-07-31T00:00:00+00:00",
+    "workorderstatus_id": 1,
+    "vehicle_id": 118,
+    "startdate": "2017-09-05T00:00:00+00:00",
+    "lables": "",
+    "odometer": null,
+    "void": true,
+    "vendor_id": null,
+    "completiondate": null,
+    "labour": 15.9,
+    "parts": 24.72,
+    "dicount": 5,
+    "tax": 12,
+    "issuedby_id": null,
+    "assignedby_id": null,
+    "assignto_id": null,
+    "invoicenumber": "invccc",
+    "description": "",
+    "phonenumber": "",
+    "customer_id": 1,
+    "taxtype": 1
+}
+2017-08-22 11:42:17 Warning: Headers already sent in C:\Users\Hp\Desktop\testnew\vendor\cakephp\cakephp\src\Error\Debugger.php:753
+2017-08-22 11:42:17 Error: [RuntimeException] Unable to emit response; headers already sent
+Request URL: /Workorders/setClose2?content=439
+Referer URL: http://localhost:8765/Workorders
+Stack Trace:
+#0 C:\Users\Hp\Desktop\testnew\vendor\cakephp\cakephp\src\Http\Server.php(107): Zend\Diactoros\Response\SapiStreamEmitter->emit(Object(Zend\Diactoros\Response))
+#1 C:\Users\Hp\Desktop\testnew\webroot\index.php(37): Cake\Http\Server->emit(Object(Zend\Diactoros\Response))
+#2 {main}
+
+
+2017-08-22 11:42:54 Error: {
+    "id": 439,
+    "issuedate": "2017-07-31T00:00:00+00:00",
+    "workorderstatus_id": 1,
+    "vehicle_id": 118,
+    "startdate": "2017-09-05T00:00:00+00:00",
+    "lables": "",
+    "odometer": null,
+    "void": true,
+    "vendor_id": null,
+    "completiondate": null,
+    "labour": 15.9,
+    "parts": 24.72,
+    "dicount": 5,
+    "tax": 12,
+    "issuedby_id": null,
+    "assignedby_id": null,
+    "assignto_id": null,
+    "invoicenumber": "invccc",
+    "description": "",
+    "phonenumber": "",
+    "customer_id": 1,
+    "taxtype": 1
+}
+2017-08-22 11:42:54 Warning: Headers already sent in C:\Users\Hp\Desktop\testnew\vendor\cakephp\cakephp\src\Error\Debugger.php:753
+2017-08-22 11:42:54 Error: [RuntimeException] Unable to emit response; headers already sent
+Request URL: /Workorders/setClose2?content=439
+Referer URL: http://localhost:8765/Workorders
+Stack Trace:
+#0 C:\Users\Hp\Desktop\testnew\vendor\cakephp\cakephp\src\Http\Server.php(107): Zend\Diactoros\Response\SapiStreamEmitter->emit(Object(Zend\Diactoros\Response))
+#1 C:\Users\Hp\Desktop\testnew\webroot\index.php(37): Cake\Http\Server->emit(Object(Zend\Diactoros\Response))
+#2 {main}
+
+
+2017-08-22 11:43:25 Error: {
+    "id": 439,
+    "issuedate": "2017-07-31T00:00:00+00:00",
+    "workorderstatus_id": 1,
+    "vehicle_id": 118,
+    "startdate": "2017-09-05T00:00:00+00:00",
+    "lables": "",
+    "odometer": null,
+    "void": true,
+    "vendor_id": null,
+    "completiondate": null,
+    "labour": 15.9,
+    "parts": 24.72,
+    "dicount": 5,
+    "tax": 12,
+    "issuedby_id": null,
+    "assignedby_id": null,
+    "assignto_id": null,
+    "invoicenumber": "invccc",
+    "description": "",
+    "phonenumber": "",
+    "customer_id": 1,
+    "taxtype": 1
+}
+2017-08-22 11:43:25 Warning: Headers already sent in C:\Users\Hp\Desktop\testnew\vendor\cakephp\cakephp\src\Error\Debugger.php:753
+2017-08-22 11:43:25 Error: [RuntimeException] Unable to emit response; headers already sent
+Request URL: /Workorders/setClose2?content=439
+Referer URL: http://localhost:8765/Workorders
+Stack Trace:
+#0 C:\Users\Hp\Desktop\testnew\vendor\cakephp\cakephp\src\Http\Server.php(107): Zend\Diactoros\Response\SapiStreamEmitter->emit(Object(Zend\Diactoros\Response))
+#1 C:\Users\Hp\Desktop\testnew\webroot\index.php(37): Cake\Http\Server->emit(Object(Zend\Diactoros\Response))
+#2 {main}
+
+
+2017-08-22 11:46:25 Error: {
+    "id": 439,
+    "issuedate": "2017-07-31T00:00:00+00:00",
+    "workorderstatus_id": 1,
+    "vehicle_id": 118,
+    "startdate": "2017-09-05T00:00:00+00:00",
+    "lables": "",
+    "odometer": null,
+    "void": true,
+    "vendor_id": null,
+    "completiondate": null,
+    "labour": 15.9,
+    "parts": 24.72,
+    "dicount": 5,
+    "tax": 12,
+    "issuedby_id": null,
+    "assignedby_id": null,
+    "assignto_id": null,
+    "invoicenumber": "invccc",
+    "description": "",
+    "phonenumber": "",
+    "customer_id": 1,
+    "taxtype": 1
+}
+2017-08-22 11:46:25 Warning: Headers already sent in C:\Users\Hp\Desktop\testnew\vendor\cakephp\cakephp\src\Error\Debugger.php:753
+2017-08-22 11:46:25 Error: [RuntimeException] Unable to emit response; headers already sent
+Request URL: /Workorders/setClose2?content=439
+Referer URL: http://localhost:8765/Workorders
+Stack Trace:
+#0 C:\Users\Hp\Desktop\testnew\vendor\cakephp\cakephp\src\Http\Server.php(107): Zend\Diactoros\Response\SapiStreamEmitter->emit(Object(Zend\Diactoros\Response))
+#1 C:\Users\Hp\Desktop\testnew\webroot\index.php(37): Cake\Http\Server->emit(Object(Zend\Diactoros\Response))
+#2 {main}
+
+
+2017-08-22 11:55:20 Error: Fatal Error (4): syntax error, unexpected end of file, expecting function (T_FUNCTION) in [C:\Users\Hp\Desktop\testnew\src\Controller\WorkordersController.php, line 1018]
+Request URL: /Workorders
+Referer URL: http://localhost:8765/
+Trace:
+Cake\Error\BaseErrorHandler::handleFatalError() - CORE\src\Error\BaseErrorHandler.php, line 216
+Cake\Error\BaseErrorHandler::Cake\Error\{closure}() - CORE\src\Error\BaseErrorHandler.php, line 98
+[main] - [internal], line ??
+
+
+
+2017-08-22 11:55:20 Error: [Cake\Error\FatalErrorException] syntax error, unexpected end of file, expecting function (T_FUNCTION)
+Request URL: /Workorders
+Referer URL: http://localhost:8765/
+Stack Trace:
+#0 C:\Users\Hp\Desktop\testnew\vendor\cakephp\cakephp\src\Error\BaseErrorHandler.php(98): Cake\Error\BaseErrorHandler->handleFatalError(4, 'syntax error, u...', 'C:\\Users\\Hp\\Des...', 1018)
+#1 [internal function]: Cake\Error\BaseErrorHandler->Cake\Error\{closure}()
+#2 {main}
+
+
+2017-08-22 11:57:29 Error: Fatal Error (4): syntax error, unexpected end of file, expecting function (T_FUNCTION) in [C:\Users\Hp\Desktop\testnew\src\Controller\WorkordersController.php, line 1023]
+Request URL: /Workorders
+Referer URL: http://localhost:8765/
+Trace:
+Cake\Error\BaseErrorHandler::handleFatalError() - CORE\src\Error\BaseErrorHandler.php, line 216
+Cake\Error\BaseErrorHandler::Cake\Error\{closure}() - CORE\src\Error\BaseErrorHandler.php, line 98
+[main] - [internal], line ??
+
+
+
+2017-08-22 11:57:29 Error: [Cake\Error\FatalErrorException] syntax error, unexpected end of file, expecting function (T_FUNCTION)
+Request URL: /Workorders
+Referer URL: http://localhost:8765/
+Stack Trace:
+#0 C:\Users\Hp\Desktop\testnew\vendor\cakephp\cakephp\src\Error\BaseErrorHandler.php(98): Cake\Error\BaseErrorHandler->handleFatalError(4, 'syntax error, u...', 'C:\\Users\\Hp\\Des...', 1023)
+#1 [internal function]: Cake\Error\BaseErrorHandler->Cake\Error\{closure}()
+#2 {main}
+
+
+2017-08-22 11:57:37 Error: Fatal Error (4): syntax error, unexpected end of file, expecting function (T_FUNCTION) in [C:\Users\Hp\Desktop\testnew\src\Controller\WorkordersController.php, line 1023]
+Request URL: /Workorders
+Trace:
+Cake\Error\BaseErrorHandler::handleFatalError() - CORE\src\Error\BaseErrorHandler.php, line 216
+Cake\Error\BaseErrorHandler::Cake\Error\{closure}() - CORE\src\Error\BaseErrorHandler.php, line 98
+[main] - [internal], line ??
+
+
+
+2017-08-22 11:57:37 Error: [Cake\Error\FatalErrorException] syntax error, unexpected end of file, expecting function (T_FUNCTION)
+Request URL: /Workorders
+Stack Trace:
+#0 C:\Users\Hp\Desktop\testnew\vendor\cakephp\cakephp\src\Error\BaseErrorHandler.php(98): Cake\Error\BaseErrorHandler->handleFatalError(4, 'syntax error, u...', 'C:\\Users\\Hp\\Des...', 1023)
+#1 [internal function]: Cake\Error\BaseErrorHandler->Cake\Error\{closure}()
+#2 {main}
+
+
+2017-08-22 11:58:46 Error: Fatal Error (4): syntax error, unexpected end of file, expecting function (T_FUNCTION) in [C:\Users\Hp\Desktop\testnew\src\Controller\WorkordersController.php, line 1023]
+Request URL: /Workorders
+Trace:
+Cake\Error\BaseErrorHandler::handleFatalError() - CORE\src\Error\BaseErrorHandler.php, line 216
+Cake\Error\BaseErrorHandler::Cake\Error\{closure}() - CORE\src\Error\BaseErrorHandler.php, line 98
+[main] - [internal], line ??
+
+
+
+2017-08-22 11:58:46 Error: [Cake\Error\FatalErrorException] syntax error, unexpected end of file, expecting function (T_FUNCTION)
+Request URL: /Workorders
+Stack Trace:
+#0 C:\Users\Hp\Desktop\testnew\vendor\cakephp\cakephp\src\Error\BaseErrorHandler.php(98): Cake\Error\BaseErrorHandler->handleFatalError(4, 'syntax error, u...', 'C:\\Users\\Hp\\Des...', 1023)
+#1 [internal function]: Cake\Error\BaseErrorHandler->Cake\Error\{closure}()
+#2 {main}
+
+
+2017-08-22 11:58:49 Error: Fatal Error (4): syntax error, unexpected end of file, expecting function (T_FUNCTION) in [C:\Users\Hp\Desktop\testnew\src\Controller\WorkordersController.php, line 1023]
+Request URL: /Workorders
+Trace:
+Cake\Error\BaseErrorHandler::handleFatalError() - CORE\src\Error\BaseErrorHandler.php, line 216
+Cake\Error\BaseErrorHandler::Cake\Error\{closure}() - CORE\src\Error\BaseErrorHandler.php, line 98
+[main] - [internal], line ??
+
+
+
+2017-08-22 11:58:49 Error: [Cake\Error\FatalErrorException] syntax error, unexpected end of file, expecting function (T_FUNCTION)
+Request URL: /Workorders
+Stack Trace:
+#0 C:\Users\Hp\Desktop\testnew\vendor\cakephp\cakephp\src\Error\BaseErrorHandler.php(98): Cake\Error\BaseErrorHandler->handleFatalError(4, 'syntax error, u...', 'C:\\Users\\Hp\\Des...', 1023)
+#1 [internal function]: Cake\Error\BaseErrorHandler->Cake\Error\{closure}()
+#2 {main}
+
+
+2017-08-22 11:59:03 Error: Fatal Error (4): syntax error, unexpected end of file, expecting function (T_FUNCTION) in [C:\Users\Hp\Desktop\testnew\src\Controller\WorkordersController.php, line 1020]
+Request URL: /Workorders
+Trace:
+Cake\Error\BaseErrorHandler::handleFatalError() - CORE\src\Error\BaseErrorHandler.php, line 216
+Cake\Error\BaseErrorHandler::Cake\Error\{closure}() - CORE\src\Error\BaseErrorHandler.php, line 98
+[main] - [internal], line ??
+
+
+
+2017-08-22 11:59:03 Error: [Cake\Error\FatalErrorException] syntax error, unexpected end of file, expecting function (T_FUNCTION)
+Request URL: /Workorders
+Stack Trace:
+#0 C:\Users\Hp\Desktop\testnew\vendor\cakephp\cakephp\src\Error\BaseErrorHandler.php(98): Cake\Error\BaseErrorHandler->handleFatalError(4, 'syntax error, u...', 'C:\\Users\\Hp\\Des...', 1020)
+#1 [internal function]: Cake\Error\BaseErrorHandler->Cake\Error\{closure}()
+#2 {main}
+
+
+2017-08-22 12:03:23 Error: Fatal Error (1): Call to a member function newEntity() on boolean in [C:\Users\Hp\Desktop\testnew\src\Controller\WorkordersController.php, line 976]
+Request URL: /Workorders/setClose2?content=439
+Referer URL: http://localhost:8765/Workorders
+Trace:
+Cake\Error\BaseErrorHandler::handleFatalError() - CORE\src\Error\BaseErrorHandler.php, line 216
+Cake\Error\BaseErrorHandler::Cake\Error\{closure}() - CORE\src\Error\BaseErrorHandler.php, line 98
+[main] - [internal], line ??
+
+
+
+2017-08-22 12:03:23 Error: [Cake\Error\FatalErrorException] Call to a member function newEntity() on boolean
+Request URL: /Workorders/setClose2?content=439
+Referer URL: http://localhost:8765/Workorders
+Stack Trace:
+#0 C:\Users\Hp\Desktop\testnew\vendor\cakephp\cakephp\src\Error\BaseErrorHandler.php(98): Cake\Error\BaseErrorHandler->handleFatalError(1, 'Call to a membe...', 'C:\\Users\\Hp\\Des...', 976)
+#1 [internal function]: Cake\Error\BaseErrorHandler->Cake\Error\{closure}()
+#2 {main}
+
+
+2017-08-22 12:20:37 Error: Fatal Error (1): Call to a member function newEntity() on boolean in [C:\Users\Hp\Desktop\testnew\src\Controller\WorkordersController.php, line 976]
+Request URL: /Workorders/setClose2?content=439
+Referer URL: http://localhost:8765/Workorders
+Trace:
+Cake\Error\BaseErrorHandler::handleFatalError() - CORE\src\Error\BaseErrorHandler.php, line 216
+Cake\Error\BaseErrorHandler::Cake\Error\{closure}() - CORE\src\Error\BaseErrorHandler.php, line 98
+[main] - [internal], line ??
+
+
+
+2017-08-22 12:20:37 Error: [Cake\Error\FatalErrorException] Call to a member function newEntity() on boolean
+Request URL: /Workorders/setClose2?content=439
+Referer URL: http://localhost:8765/Workorders
+Stack Trace:
+#0 C:\Users\Hp\Desktop\testnew\vendor\cakephp\cakephp\src\Error\BaseErrorHandler.php(98): Cake\Error\BaseErrorHandler->handleFatalError(1, 'Call to a membe...', 'C:\\Users\\Hp\\Des...', 976)
+#1 [internal function]: Cake\Error\BaseErrorHandler->Cake\Error\{closure}()
+#2 {main}
+
+
+2017-08-22 12:22:13 Error: Fatal Error (1): Call to a member function newEntity() on boolean in [C:\Users\Hp\Desktop\testnew\src\Controller\WorkordersController.php, line 976]
+Request URL: /Workorders/setClose2?content=439
+Referer URL: http://localhost:8765/Workorders
+Trace:
+Cake\Error\BaseErrorHandler::handleFatalError() - CORE\src\Error\BaseErrorHandler.php, line 216
+Cake\Error\BaseErrorHandler::Cake\Error\{closure}() - CORE\src\Error\BaseErrorHandler.php, line 98
+[main] - [internal], line ??
+
+
+
+2017-08-22 12:22:13 Error: [Cake\Error\FatalErrorException] Call to a member function newEntity() on boolean
+Request URL: /Workorders/setClose2?content=439
+Referer URL: http://localhost:8765/Workorders
+Stack Trace:
+#0 C:\Users\Hp\Desktop\testnew\vendor\cakephp\cakephp\src\Error\BaseErrorHandler.php(98): Cake\Error\BaseErrorHandler->handleFatalError(1, 'Call to a membe...', 'C:\\Users\\Hp\\Des...', 976)
+#1 [internal function]: Cake\Error\BaseErrorHandler->Cake\Error\{closure}()
+#2 {main}
+
+
+2017-08-22 12:22:51 Error: Fatal Error (1): Call to a member function newEntity() on boolean in [C:\Users\Hp\Desktop\testnew\src\Controller\WorkordersController.php, line 976]
+Request URL: /Workorders/setClose2?content=439
+Referer URL: http://localhost:8765/Workorders
+Trace:
+Cake\Error\BaseErrorHandler::handleFatalError() - CORE\src\Error\BaseErrorHandler.php, line 216
+Cake\Error\BaseErrorHandler::Cake\Error\{closure}() - CORE\src\Error\BaseErrorHandler.php, line 98
+[main] - [internal], line ??
+
+
+
+2017-08-22 12:22:51 Error: [Cake\Error\FatalErrorException] Call to a member function newEntity() on boolean
+Request URL: /Workorders/setClose2?content=439
+Referer URL: http://localhost:8765/Workorders
+Stack Trace:
+#0 C:\Users\Hp\Desktop\testnew\vendor\cakephp\cakephp\src\Error\BaseErrorHandler.php(98): Cake\Error\BaseErrorHandler->handleFatalError(1, 'Call to a membe...', 'C:\\Users\\Hp\\Des...', 976)
+#1 [internal function]: Cake\Error\BaseErrorHandler->Cake\Error\{closure}()
+#2 {main}
+
+
+2017-08-22 12:27:01 Error: Fatal Error (1): Call to a member function newEntity() on boolean in [C:\Users\Hp\Desktop\testnew\src\Controller\WorkordersController.php, line 976]
+Request URL: /Workorders/setClose2?content=439
+Referer URL: http://localhost:8765/Workorders
+Trace:
+Cake\Error\BaseErrorHandler::handleFatalError() - CORE\src\Error\BaseErrorHandler.php, line 216
+Cake\Error\BaseErrorHandler::Cake\Error\{closure}() - CORE\src\Error\BaseErrorHandler.php, line 98
+[main] - [internal], line ??
+
+
+
+2017-08-22 12:27:01 Error: [Cake\Error\FatalErrorException] Call to a member function newEntity() on boolean
+Request URL: /Workorders/setClose2?content=439
+Referer URL: http://localhost:8765/Workorders
+Stack Trace:
+#0 C:\Users\Hp\Desktop\testnew\vendor\cakephp\cakephp\src\Error\BaseErrorHandler.php(98): Cake\Error\BaseErrorHandler->handleFatalError(1, 'Call to a membe...', 'C:\\Users\\Hp\\Des...', 976)
+#1 [internal function]: Cake\Error\BaseErrorHandler->Cake\Error\{closure}()
+#2 {main}
+
+
+2017-08-22 12:27:46 Error: Fatal Error (1): Call to a member function newEntity() on boolean in [C:\Users\Hp\Desktop\testnew\src\Controller\WorkordersController.php, line 976]
+Request URL: /Workorders/setClose2?content=439
+Referer URL: http://localhost:8765/Workorders
+Trace:
+Cake\Error\BaseErrorHandler::handleFatalError() - CORE\src\Error\BaseErrorHandler.php, line 216
+Cake\Error\BaseErrorHandler::Cake\Error\{closure}() - CORE\src\Error\BaseErrorHandler.php, line 98
+[main] - [internal], line ??
+
+
+
+2017-08-22 12:27:46 Error: [Cake\Error\FatalErrorException] Call to a member function newEntity() on boolean
+Request URL: /Workorders/setClose2?content=439
+Referer URL: http://localhost:8765/Workorders
+Stack Trace:
+#0 C:\Users\Hp\Desktop\testnew\vendor\cakephp\cakephp\src\Error\BaseErrorHandler.php(98): Cake\Error\BaseErrorHandler->handleFatalError(1, 'Call to a membe...', 'C:\\Users\\Hp\\Des...', 976)
+#1 [internal function]: Cake\Error\BaseErrorHandler->Cake\Error\{closure}()
+#2 {main}
+
+
+2017-08-22 12:28:53 Warning: Headers already sent in C:\Users\Hp\Desktop\testnew\vendor\cakephp\cakephp\src\Error\Debugger.php:753
+2017-08-22 12:28:53 Error: [RuntimeException] Unable to emit response; headers already sent
+Request URL: /Workorders/setClose2?content=439
+Referer URL: http://localhost:8765/Workorders
+Stack Trace:
+#0 C:\Users\Hp\Desktop\testnew\vendor\cakephp\cakephp\src\Http\Server.php(107): Zend\Diactoros\Response\SapiStreamEmitter->emit(Object(Zend\Diactoros\Response))
+#1 C:\Users\Hp\Desktop\testnew\webroot\index.php(37): Cake\Http\Server->emit(Object(Zend\Diactoros\Response))
+#2 {main}
+
+
+2017-08-22 12:30:11 Warning: Headers already sent in C:\Users\Hp\Desktop\testnew\vendor\cakephp\cakephp\src\Error\Debugger.php:753
+2017-08-22 12:30:11 Error: [RuntimeException] Unable to emit response; headers already sent
+Request URL: /Workorders/setClose2?content=439
+Referer URL: http://localhost:8765/Workorders
+Stack Trace:
+#0 C:\Users\Hp\Desktop\testnew\vendor\cakephp\cakephp\src\Http\Server.php(107): Zend\Diactoros\Response\SapiStreamEmitter->emit(Object(Zend\Diactoros\Response))
+#1 C:\Users\Hp\Desktop\testnew\webroot\index.php(37): Cake\Http\Server->emit(Object(Zend\Diactoros\Response))
+#2 {main}
+
+
+2017-08-22 12:32:44 Warning: Headers already sent in C:\Users\Hp\Desktop\testnew\vendor\cakephp\cakephp\src\Error\Debugger.php:753
+2017-08-22 12:32:44 Error: [RuntimeException] Unable to emit response; headers already sent
+Request URL: /Workorders/setClose2?content=439
+Referer URL: http://localhost:8765/Workorders
+Stack Trace:
+#0 C:\Users\Hp\Desktop\testnew\vendor\cakephp\cakephp\src\Http\Server.php(107): Zend\Diactoros\Response\SapiStreamEmitter->emit(Object(Zend\Diactoros\Response))
+#1 C:\Users\Hp\Desktop\testnew\webroot\index.php(37): Cake\Http\Server->emit(Object(Zend\Diactoros\Response))
+#2 {main}
+
+
+2017-08-22 12:34:48 Warning: Warning (4096): Argument 2 passed to Cake\ORM\Table::patchEntity() must be of the type array, object given, called in C:\Users\Hp\Desktop\testnew\src\Controller\WorkordersController.php on line 985 and defined in [C:\Users\Hp\Desktop\testnew\vendor\cakephp\cakephp\src\ORM\Table.php, line 2227]
+Request URL: /Workorders/setClose2?content=439
+Referer URL: http://localhost:8765/Workorders
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE\src\Error\BaseErrorHandler.php, line 146
+Cake\ORM\Table::patchEntity() - CORE\src\ORM\Table.php, line 2227
+App\Controller\WorkordersController::setClose2() - APP/Controller\WorkordersController.php, line 985
+Cake\Controller\Controller::invokeAction() - CORE\src\Controller\Controller.php, line 435
+Cake\Http\ActionDispatcher::_invoke() - CORE\src\Http\ActionDispatcher.php, line 124
+Cake\Http\ActionDispatcher::dispatch() - CORE\src\Http\ActionDispatcher.php, line 98
+Cake\Http\BaseApplication::__invoke() - CORE\src\Http\BaseApplication.php, line 83
+Cake\Http\Runner::__invoke() - CORE\src\Http\Runner.php, line 65
+Cake\Routing\Middleware\RoutingMiddleware::__invoke() - CORE\src\Routing\Middleware\RoutingMiddleware.php, line 52
+Cake\Http\Runner::__invoke() - CORE\src\Http\Runner.php, line 65
+Cake\Routing\Middleware\AssetMiddleware::__invoke() - CORE\src\Routing\Middleware\AssetMiddleware.php, line 88
+Cake\Http\Runner::__invoke() - CORE\src\Http\Runner.php, line 65
+Cake\Error\Middleware\ErrorHandlerMiddleware::__invoke() - CORE\src\Error\Middleware\ErrorHandlerMiddleware.php, line 51
+Cake\Http\Runner::__invoke() - CORE\src\Http\Runner.php, line 65
+Cake\Http\Runner::run() - CORE\src\Http\Runner.php, line 51
+Cake\Http\Server::run() - CORE\src\Http\Server.php, line 82
+[main] - ROOT\webroot\index.php, line 37
+
+
+
+2017-08-22 12:34:48 Warning: Warning (4096): Argument 2 passed to Cake\ORM\Marshaller::merge() must be of the type array, object given, called in C:\Users\Hp\Desktop\testnew\vendor\cakephp\cakephp\src\ORM\Table.php on line 2234 and defined in [C:\Users\Hp\Desktop\testnew\vendor\cakephp\cakephp\src\ORM\Marshaller.php, line 514]
+Request URL: /Workorders/setClose2?content=439
+Referer URL: http://localhost:8765/Workorders
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE\src\Error\BaseErrorHandler.php, line 146
+Cake\ORM\Marshaller::merge() - CORE\src\ORM\Marshaller.php, line 514
+Cake\ORM\Table::patchEntity() - CORE\src\ORM\Table.php, line 2234
+App\Controller\WorkordersController::setClose2() - APP/Controller\WorkordersController.php, line 985
+Cake\Controller\Controller::invokeAction() - CORE\src\Controller\Controller.php, line 435
+Cake\Http\ActionDispatcher::_invoke() - CORE\src\Http\ActionDispatcher.php, line 124
+Cake\Http\ActionDispatcher::dispatch() - CORE\src\Http\ActionDispatcher.php, line 98
+Cake\Http\BaseApplication::__invoke() - CORE\src\Http\BaseApplication.php, line 83
+Cake\Http\Runner::__invoke() - CORE\src\Http\Runner.php, line 65
+Cake\Routing\Middleware\RoutingMiddleware::__invoke() - CORE\src\Routing\Middleware\RoutingMiddleware.php, line 52
+Cake\Http\Runner::__invoke() - CORE\src\Http\Runner.php, line 65
+Cake\Routing\Middleware\AssetMiddleware::__invoke() - CORE\src\Routing\Middleware\AssetMiddleware.php, line 88
+Cake\Http\Runner::__invoke() - CORE\src\Http\Runner.php, line 65
+Cake\Error\Middleware\ErrorHandlerMiddleware::__invoke() - CORE\src\Error\Middleware\ErrorHandlerMiddleware.php, line 51
+Cake\Http\Runner::__invoke() - CORE\src\Http\Runner.php, line 65
+Cake\Http\Runner::run() - CORE\src\Http\Runner.php, line 51
+Cake\Http\Server::run() - CORE\src\Http\Server.php, line 82
+[main] - ROOT\webroot\index.php, line 37
+
+
+
+2017-08-22 12:34:48 Warning: Headers already sent in C:\Users\Hp\Desktop\testnew\vendor\cakephp\cakephp\src\Error\Debugger.php:753
+2017-08-22 12:34:48 Error: [RuntimeException] Unable to emit response; headers already sent
+Request URL: /Workorders/setClose2?content=439
+Referer URL: http://localhost:8765/Workorders
+Stack Trace:
+#0 C:\Users\Hp\Desktop\testnew\vendor\cakephp\cakephp\src\Http\Server.php(107): Zend\Diactoros\Response\SapiStreamEmitter->emit(Object(Zend\Diactoros\Response))
+#1 C:\Users\Hp\Desktop\testnew\webroot\index.php(37): Cake\Http\Server->emit(Object(Zend\Diactoros\Response))
+#2 {main}
+
+
+2017-08-22 12:35:31 Warning: Warning (4096): Argument 2 passed to Cake\ORM\Table::patchEntity() must be of the type array, object given, called in C:\Users\Hp\Desktop\testnew\src\Controller\WorkordersController.php on line 985 and defined in [C:\Users\Hp\Desktop\testnew\vendor\cakephp\cakephp\src\ORM\Table.php, line 2227]
+Request URL: /Workorders/setClose2?content=450
+Referer URL: http://localhost:8765/Workorders
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE\src\Error\BaseErrorHandler.php, line 146
+Cake\ORM\Table::patchEntity() - CORE\src\ORM\Table.php, line 2227
+App\Controller\WorkordersController::setClose2() - APP/Controller\WorkordersController.php, line 985
+Cake\Controller\Controller::invokeAction() - CORE\src\Controller\Controller.php, line 435
+Cake\Http\ActionDispatcher::_invoke() - CORE\src\Http\ActionDispatcher.php, line 124
+Cake\Http\ActionDispatcher::dispatch() - CORE\src\Http\ActionDispatcher.php, line 98
+Cake\Http\BaseApplication::__invoke() - CORE\src\Http\BaseApplication.php, line 83
+Cake\Http\Runner::__invoke() - CORE\src\Http\Runner.php, line 65
+Cake\Routing\Middleware\RoutingMiddleware::__invoke() - CORE\src\Routing\Middleware\RoutingMiddleware.php, line 52
+Cake\Http\Runner::__invoke() - CORE\src\Http\Runner.php, line 65
+Cake\Routing\Middleware\AssetMiddleware::__invoke() - CORE\src\Routing\Middleware\AssetMiddleware.php, line 88
+Cake\Http\Runner::__invoke() - CORE\src\Http\Runner.php, line 65
+Cake\Error\Middleware\ErrorHandlerMiddleware::__invoke() - CORE\src\Error\Middleware\ErrorHandlerMiddleware.php, line 51
+Cake\Http\Runner::__invoke() - CORE\src\Http\Runner.php, line 65
+Cake\Http\Runner::run() - CORE\src\Http\Runner.php, line 51
+Cake\Http\Server::run() - CORE\src\Http\Server.php, line 82
+[main] - ROOT\webroot\index.php, line 37
+
+
+
+2017-08-22 12:35:31 Warning: Warning (4096): Argument 2 passed to Cake\ORM\Marshaller::merge() must be of the type array, object given, called in C:\Users\Hp\Desktop\testnew\vendor\cakephp\cakephp\src\ORM\Table.php on line 2234 and defined in [C:\Users\Hp\Desktop\testnew\vendor\cakephp\cakephp\src\ORM\Marshaller.php, line 514]
+Request URL: /Workorders/setClose2?content=450
+Referer URL: http://localhost:8765/Workorders
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE\src\Error\BaseErrorHandler.php, line 146
+Cake\ORM\Marshaller::merge() - CORE\src\ORM\Marshaller.php, line 514
+Cake\ORM\Table::patchEntity() - CORE\src\ORM\Table.php, line 2234
+App\Controller\WorkordersController::setClose2() - APP/Controller\WorkordersController.php, line 985
+Cake\Controller\Controller::invokeAction() - CORE\src\Controller\Controller.php, line 435
+Cake\Http\ActionDispatcher::_invoke() - CORE\src\Http\ActionDispatcher.php, line 124
+Cake\Http\ActionDispatcher::dispatch() - CORE\src\Http\ActionDispatcher.php, line 98
+Cake\Http\BaseApplication::__invoke() - CORE\src\Http\BaseApplication.php, line 83
+Cake\Http\Runner::__invoke() - CORE\src\Http\Runner.php, line 65
+Cake\Routing\Middleware\RoutingMiddleware::__invoke() - CORE\src\Routing\Middleware\RoutingMiddleware.php, line 52
+Cake\Http\Runner::__invoke() - CORE\src\Http\Runner.php, line 65
+Cake\Routing\Middleware\AssetMiddleware::__invoke() - CORE\src\Routing\Middleware\AssetMiddleware.php, line 88
+Cake\Http\Runner::__invoke() - CORE\src\Http\Runner.php, line 65
+Cake\Error\Middleware\ErrorHandlerMiddleware::__invoke() - CORE\src\Error\Middleware\ErrorHandlerMiddleware.php, line 51
+Cake\Http\Runner::__invoke() - CORE\src\Http\Runner.php, line 65
+Cake\Http\Runner::run() - CORE\src\Http\Runner.php, line 51
+Cake\Http\Server::run() - CORE\src\Http\Server.php, line 82
+[main] - ROOT\webroot\index.php, line 37
+
+
+
+2017-08-22 12:35:31 Warning: Headers already sent in C:\Users\Hp\Desktop\testnew\vendor\cakephp\cakephp\src\Error\Debugger.php:753
+2017-08-22 12:35:31 Error: [RuntimeException] Unable to emit response; headers already sent
+Request URL: /Workorders/setClose2?content=450
+Referer URL: http://localhost:8765/Workorders
+Stack Trace:
+#0 C:\Users\Hp\Desktop\testnew\vendor\cakephp\cakephp\src\Http\Server.php(107): Zend\Diactoros\Response\SapiStreamEmitter->emit(Object(Zend\Diactoros\Response))
+#1 C:\Users\Hp\Desktop\testnew\webroot\index.php(37): Cake\Http\Server->emit(Object(Zend\Diactoros\Response))
+#2 {main}
+
+
+2017-08-22 12:36:06 Error: Array
+(
+    [0] => Array
+        (
+        )
+
+)
+
+2017-08-22 12:38:08 Error: Array
+(
+    [0] => Array
+        (
+        )
+
+)
+
+2017-08-22 12:40:44 Warning: Warning (4096): Argument 2 passed to Cake\ORM\Table::patchEntity() must be of the type array, object given, called in C:\Users\Hp\Desktop\testnew\src\Controller\WorkordersController.php on line 985 and defined in [C:\Users\Hp\Desktop\testnew\vendor\cakephp\cakephp\src\ORM\Table.php, line 2227]
+Request URL: /Workorders/setClose2?content=439
+Referer URL: http://localhost:8765/Workorders
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE\src\Error\BaseErrorHandler.php, line 146
+Cake\ORM\Table::patchEntity() - CORE\src\ORM\Table.php, line 2227
+App\Controller\WorkordersController::setClose2() - APP/Controller\WorkordersController.php, line 985
+Cake\Controller\Controller::invokeAction() - CORE\src\Controller\Controller.php, line 435
+Cake\Http\ActionDispatcher::_invoke() - CORE\src\Http\ActionDispatcher.php, line 124
+Cake\Http\ActionDispatcher::dispatch() - CORE\src\Http\ActionDispatcher.php, line 98
+Cake\Http\BaseApplication::__invoke() - CORE\src\Http\BaseApplication.php, line 83
+Cake\Http\Runner::__invoke() - CORE\src\Http\Runner.php, line 65
+Cake\Routing\Middleware\RoutingMiddleware::__invoke() - CORE\src\Routing\Middleware\RoutingMiddleware.php, line 52
+Cake\Http\Runner::__invoke() - CORE\src\Http\Runner.php, line 65
+Cake\Routing\Middleware\AssetMiddleware::__invoke() - CORE\src\Routing\Middleware\AssetMiddleware.php, line 88
+Cake\Http\Runner::__invoke() - CORE\src\Http\Runner.php, line 65
+Cake\Error\Middleware\ErrorHandlerMiddleware::__invoke() - CORE\src\Error\Middleware\ErrorHandlerMiddleware.php, line 51
+Cake\Http\Runner::__invoke() - CORE\src\Http\Runner.php, line 65
+Cake\Http\Runner::run() - CORE\src\Http\Runner.php, line 51
+Cake\Http\Server::run() - CORE\src\Http\Server.php, line 82
+[main] - ROOT\webroot\index.php, line 37
+
+
+
+2017-08-22 12:40:44 Warning: Warning (4096): Argument 2 passed to Cake\ORM\Marshaller::merge() must be of the type array, object given, called in C:\Users\Hp\Desktop\testnew\vendor\cakephp\cakephp\src\ORM\Table.php on line 2234 and defined in [C:\Users\Hp\Desktop\testnew\vendor\cakephp\cakephp\src\ORM\Marshaller.php, line 514]
+Request URL: /Workorders/setClose2?content=439
+Referer URL: http://localhost:8765/Workorders
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE\src\Error\BaseErrorHandler.php, line 146
+Cake\ORM\Marshaller::merge() - CORE\src\ORM\Marshaller.php, line 514
+Cake\ORM\Table::patchEntity() - CORE\src\ORM\Table.php, line 2234
+App\Controller\WorkordersController::setClose2() - APP/Controller\WorkordersController.php, line 985
+Cake\Controller\Controller::invokeAction() - CORE\src\Controller\Controller.php, line 435
+Cake\Http\ActionDispatcher::_invoke() - CORE\src\Http\ActionDispatcher.php, line 124
+Cake\Http\ActionDispatcher::dispatch() - CORE\src\Http\ActionDispatcher.php, line 98
+Cake\Http\BaseApplication::__invoke() - CORE\src\Http\BaseApplication.php, line 83
+Cake\Http\Runner::__invoke() - CORE\src\Http\Runner.php, line 65
+Cake\Routing\Middleware\RoutingMiddleware::__invoke() - CORE\src\Routing\Middleware\RoutingMiddleware.php, line 52
+Cake\Http\Runner::__invoke() - CORE\src\Http\Runner.php, line 65
+Cake\Routing\Middleware\AssetMiddleware::__invoke() - CORE\src\Routing\Middleware\AssetMiddleware.php, line 88
+Cake\Http\Runner::__invoke() - CORE\src\Http\Runner.php, line 65
+Cake\Error\Middleware\ErrorHandlerMiddleware::__invoke() - CORE\src\Error\Middleware\ErrorHandlerMiddleware.php, line 51
+Cake\Http\Runner::__invoke() - CORE\src\Http\Runner.php, line 65
+Cake\Http\Runner::run() - CORE\src\Http\Runner.php, line 51
+Cake\Http\Server::run() - CORE\src\Http\Server.php, line 82
+[main] - ROOT\webroot\index.php, line 37
+
+
+
+2017-08-22 12:40:44 Warning: Headers already sent in C:\Users\Hp\Desktop\testnew\vendor\cakephp\cakephp\src\Error\Debugger.php:753
+2017-08-22 12:40:44 Error: [RuntimeException] Unable to emit response; headers already sent
+Request URL: /Workorders/setClose2?content=439
+Referer URL: http://localhost:8765/Workorders
+Stack Trace:
+#0 C:\Users\Hp\Desktop\testnew\vendor\cakephp\cakephp\src\Http\Server.php(107): Zend\Diactoros\Response\SapiStreamEmitter->emit(Object(Zend\Diactoros\Response))
+#1 C:\Users\Hp\Desktop\testnew\webroot\index.php(37): Cake\Http\Server->emit(Object(Zend\Diactoros\Response))
+#2 {main}
+
+
+2017-08-23 03:44:01 Warning: Warning (4096): Argument 2 passed to Cake\ORM\Table::patchEntity() must be of the type array, object given, called in C:\Users\Hp\Desktop\testnew\src\Controller\WorkordersController.php on line 985 and defined in [C:\Users\Hp\Desktop\testnew\vendor\cakephp\cakephp\src\ORM\Table.php, line 2227]
+Request URL: /Workorders/setClose2?content=439
+Referer URL: http://localhost:8765/Workorders
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE\src\Error\BaseErrorHandler.php, line 146
+Cake\ORM\Table::patchEntity() - CORE\src\ORM\Table.php, line 2227
+App\Controller\WorkordersController::setClose2() - APP/Controller\WorkordersController.php, line 985
+Cake\Controller\Controller::invokeAction() - CORE\src\Controller\Controller.php, line 435
+Cake\Http\ActionDispatcher::_invoke() - CORE\src\Http\ActionDispatcher.php, line 124
+Cake\Http\ActionDispatcher::dispatch() - CORE\src\Http\ActionDispatcher.php, line 98
+Cake\Http\BaseApplication::__invoke() - CORE\src\Http\BaseApplication.php, line 83
+Cake\Http\Runner::__invoke() - CORE\src\Http\Runner.php, line 65
+Cake\Routing\Middleware\RoutingMiddleware::__invoke() - CORE\src\Routing\Middleware\RoutingMiddleware.php, line 52
+Cake\Http\Runner::__invoke() - CORE\src\Http\Runner.php, line 65
+Cake\Routing\Middleware\AssetMiddleware::__invoke() - CORE\src\Routing\Middleware\AssetMiddleware.php, line 88
+Cake\Http\Runner::__invoke() - CORE\src\Http\Runner.php, line 65
+Cake\Error\Middleware\ErrorHandlerMiddleware::__invoke() - CORE\src\Error\Middleware\ErrorHandlerMiddleware.php, line 51
+Cake\Http\Runner::__invoke() - CORE\src\Http\Runner.php, line 65
+Cake\Http\Runner::run() - CORE\src\Http\Runner.php, line 51
+Cake\Http\Server::run() - CORE\src\Http\Server.php, line 82
+[main] - ROOT\webroot\index.php, line 37
+
+
+
+2017-08-23 03:44:01 Warning: Warning (4096): Argument 2 passed to Cake\ORM\Marshaller::merge() must be of the type array, object given, called in C:\Users\Hp\Desktop\testnew\vendor\cakephp\cakephp\src\ORM\Table.php on line 2234 and defined in [C:\Users\Hp\Desktop\testnew\vendor\cakephp\cakephp\src\ORM\Marshaller.php, line 514]
+Request URL: /Workorders/setClose2?content=439
+Referer URL: http://localhost:8765/Workorders
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE\src\Error\BaseErrorHandler.php, line 146
+Cake\ORM\Marshaller::merge() - CORE\src\ORM\Marshaller.php, line 514
+Cake\ORM\Table::patchEntity() - CORE\src\ORM\Table.php, line 2234
+App\Controller\WorkordersController::setClose2() - APP/Controller\WorkordersController.php, line 985
+Cake\Controller\Controller::invokeAction() - CORE\src\Controller\Controller.php, line 435
+Cake\Http\ActionDispatcher::_invoke() - CORE\src\Http\ActionDispatcher.php, line 124
+Cake\Http\ActionDispatcher::dispatch() - CORE\src\Http\ActionDispatcher.php, line 98
+Cake\Http\BaseApplication::__invoke() - CORE\src\Http\BaseApplication.php, line 83
+Cake\Http\Runner::__invoke() - CORE\src\Http\Runner.php, line 65
+Cake\Routing\Middleware\RoutingMiddleware::__invoke() - CORE\src\Routing\Middleware\RoutingMiddleware.php, line 52
+Cake\Http\Runner::__invoke() - CORE\src\Http\Runner.php, line 65
+Cake\Routing\Middleware\AssetMiddleware::__invoke() - CORE\src\Routing\Middleware\AssetMiddleware.php, line 88
+Cake\Http\Runner::__invoke() - CORE\src\Http\Runner.php, line 65
+Cake\Error\Middleware\ErrorHandlerMiddleware::__invoke() - CORE\src\Error\Middleware\ErrorHandlerMiddleware.php, line 51
+Cake\Http\Runner::__invoke() - CORE\src\Http\Runner.php, line 65
+Cake\Http\Runner::run() - CORE\src\Http\Runner.php, line 51
+Cake\Http\Server::run() - CORE\src\Http\Server.php, line 82
+[main] - ROOT\webroot\index.php, line 37
+
+
+
+2017-08-23 03:44:01 Warning: Headers already sent in C:\Users\Hp\Desktop\testnew\vendor\cakephp\cakephp\src\Error\Debugger.php:753
+2017-08-23 03:44:01 Error: [RuntimeException] Unable to emit response; headers already sent
+Request URL: /Workorders/setClose2?content=439
+Referer URL: http://localhost:8765/Workorders
+Stack Trace:
+#0 C:\Users\Hp\Desktop\testnew\vendor\cakephp\cakephp\src\Http\Server.php(107): Zend\Diactoros\Response\SapiStreamEmitter->emit(Object(Zend\Diactoros\Response))
+#1 C:\Users\Hp\Desktop\testnew\webroot\index.php(37): Cake\Http\Server->emit(Object(Zend\Diactoros\Response))
+#2 {main}
+
+
+2017-08-23 04:46:04 Warning: Warning (4096): Argument 2 passed to Cake\ORM\Table::patchEntity() must be of the type array, object given, called in C:\Users\Hp\Desktop\testnew\src\Controller\WorkordersController.php on line 960 and defined in [C:\Users\Hp\Desktop\testnew\vendor\cakephp\cakephp\src\ORM\Table.php, line 2227]
+Request URL: /Workorders/setClose?content=439
+Referer URL: http://localhost:8765/Workorders
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE\src\Error\BaseErrorHandler.php, line 146
+Cake\ORM\Table::patchEntity() - CORE\src\ORM\Table.php, line 2227
+App\Controller\WorkordersController::setClose() - APP/Controller\WorkordersController.php, line 960
+Cake\Controller\Controller::invokeAction() - CORE\src\Controller\Controller.php, line 435
+Cake\Http\ActionDispatcher::_invoke() - CORE\src\Http\ActionDispatcher.php, line 124
+Cake\Http\ActionDispatcher::dispatch() - CORE\src\Http\ActionDispatcher.php, line 98
+Cake\Http\BaseApplication::__invoke() - CORE\src\Http\BaseApplication.php, line 83
+Cake\Http\Runner::__invoke() - CORE\src\Http\Runner.php, line 65
+Cake\Routing\Middleware\RoutingMiddleware::__invoke() - CORE\src\Routing\Middleware\RoutingMiddleware.php, line 52
+Cake\Http\Runner::__invoke() - CORE\src\Http\Runner.php, line 65
+Cake\Routing\Middleware\AssetMiddleware::__invoke() - CORE\src\Routing\Middleware\AssetMiddleware.php, line 88
+Cake\Http\Runner::__invoke() - CORE\src\Http\Runner.php, line 65
+Cake\Error\Middleware\ErrorHandlerMiddleware::__invoke() - CORE\src\Error\Middleware\ErrorHandlerMiddleware.php, line 51
+Cake\Http\Runner::__invoke() - CORE\src\Http\Runner.php, line 65
+Cake\Http\Runner::run() - CORE\src\Http\Runner.php, line 51
+Cake\Http\Server::run() - CORE\src\Http\Server.php, line 82
+[main] - ROOT\webroot\index.php, line 37
+
+
+
+2017-08-23 04:46:04 Warning: Warning (4096): Argument 2 passed to Cake\ORM\Marshaller::merge() must be of the type array, object given, called in C:\Users\Hp\Desktop\testnew\vendor\cakephp\cakephp\src\ORM\Table.php on line 2234 and defined in [C:\Users\Hp\Desktop\testnew\vendor\cakephp\cakephp\src\ORM\Marshaller.php, line 514]
+Request URL: /Workorders/setClose?content=439
+Referer URL: http://localhost:8765/Workorders
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE\src\Error\BaseErrorHandler.php, line 146
+Cake\ORM\Marshaller::merge() - CORE\src\ORM\Marshaller.php, line 514
+Cake\ORM\Table::patchEntity() - CORE\src\ORM\Table.php, line 2234
+App\Controller\WorkordersController::setClose() - APP/Controller\WorkordersController.php, line 960
+Cake\Controller\Controller::invokeAction() - CORE\src\Controller\Controller.php, line 435
+Cake\Http\ActionDispatcher::_invoke() - CORE\src\Http\ActionDispatcher.php, line 124
+Cake\Http\ActionDispatcher::dispatch() - CORE\src\Http\ActionDispatcher.php, line 98
+Cake\Http\BaseApplication::__invoke() - CORE\src\Http\BaseApplication.php, line 83
+Cake\Http\Runner::__invoke() - CORE\src\Http\Runner.php, line 65
+Cake\Routing\Middleware\RoutingMiddleware::__invoke() - CORE\src\Routing\Middleware\RoutingMiddleware.php, line 52
+Cake\Http\Runner::__invoke() - CORE\src\Http\Runner.php, line 65
+Cake\Routing\Middleware\AssetMiddleware::__invoke() - CORE\src\Routing\Middleware\AssetMiddleware.php, line 88
+Cake\Http\Runner::__invoke() - CORE\src\Http\Runner.php, line 65
+Cake\Error\Middleware\ErrorHandlerMiddleware::__invoke() - CORE\src\Error\Middleware\ErrorHandlerMiddleware.php, line 51
+Cake\Http\Runner::__invoke() - CORE\src\Http\Runner.php, line 65
+Cake\Http\Runner::run() - CORE\src\Http\Runner.php, line 51
+Cake\Http\Server::run() - CORE\src\Http\Server.php, line 82
+[main] - ROOT\webroot\index.php, line 37
+
+
+
+2017-08-23 04:46:05 Warning: Headers already sent in C:\Users\Hp\Desktop\testnew\vendor\cakephp\cakephp\src\Error\Debugger.php:753
+2017-08-23 04:46:05 Error: [RuntimeException] Unable to emit response; headers already sent
+Request URL: /Workorders/setClose?content=439
+Referer URL: http://localhost:8765/Workorders
+Stack Trace:
+#0 C:\Users\Hp\Desktop\testnew\vendor\cakephp\cakephp\src\Http\Server.php(107): Zend\Diactoros\Response\SapiStreamEmitter->emit(Object(Zend\Diactoros\Response))
+#1 C:\Users\Hp\Desktop\testnew\webroot\index.php(37): Cake\Http\Server->emit(Object(Zend\Diactoros\Response))
+#2 {main}
+
+
+2017-08-23 06:09:26 Error: Workorders/add
+2017-08-23 06:19:13 Error: Workorders/add
+2017-08-23 06:19:55 Error: Workorders/add
+2017-08-23 06:20:24 Warning: Warning (4096): Argument 2 passed to Cake\ORM\Table::patchEntity() must be of the type array, object given, called in C:\Users\Hp\Desktop\testnew\src\Controller\WorkordersController.php on line 1014 and defined in [C:\Users\Hp\Desktop\testnew\vendor\cakephp\cakephp\src\ORM\Table.php, line 2227]
+Request URL: /Workorders/saveAsServiceentry?content=458
+Referer URL: http://localhost:8765/Workorders/add
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE\src\Error\BaseErrorHandler.php, line 146
+Cake\ORM\Table::patchEntity() - CORE\src\ORM\Table.php, line 2227
+App\Controller\WorkordersController::saveAsServiceentry() - APP/Controller\WorkordersController.php, line 1014
+Cake\Controller\Controller::invokeAction() - CORE\src\Controller\Controller.php, line 435
+Cake\Http\ActionDispatcher::_invoke() - CORE\src\Http\ActionDispatcher.php, line 124
+Cake\Http\ActionDispatcher::dispatch() - CORE\src\Http\ActionDispatcher.php, line 98
+Cake\Http\BaseApplication::__invoke() - CORE\src\Http\BaseApplication.php, line 83
+Cake\Http\Runner::__invoke() - CORE\src\Http\Runner.php, line 65
+Cake\Routing\Middleware\RoutingMiddleware::__invoke() - CORE\src\Routing\Middleware\RoutingMiddleware.php, line 52
+Cake\Http\Runner::__invoke() - CORE\src\Http\Runner.php, line 65
+Cake\Routing\Middleware\AssetMiddleware::__invoke() - CORE\src\Routing\Middleware\AssetMiddleware.php, line 88
+Cake\Http\Runner::__invoke() - CORE\src\Http\Runner.php, line 65
+Cake\Error\Middleware\ErrorHandlerMiddleware::__invoke() - CORE\src\Error\Middleware\ErrorHandlerMiddleware.php, line 51
+Cake\Http\Runner::__invoke() - CORE\src\Http\Runner.php, line 65
+Cake\Http\Runner::run() - CORE\src\Http\Runner.php, line 51
+Cake\Http\Server::run() - CORE\src\Http\Server.php, line 82
+[main] - ROOT\webroot\index.php, line 37
+
+
+
+2017-08-23 06:20:24 Warning: Warning (4096): Argument 2 passed to Cake\ORM\Marshaller::merge() must be of the type array, object given, called in C:\Users\Hp\Desktop\testnew\vendor\cakephp\cakephp\src\ORM\Table.php on line 2234 and defined in [C:\Users\Hp\Desktop\testnew\vendor\cakephp\cakephp\src\ORM\Marshaller.php, line 514]
+Request URL: /Workorders/saveAsServiceentry?content=458
+Referer URL: http://localhost:8765/Workorders/add
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE\src\Error\BaseErrorHandler.php, line 146
+Cake\ORM\Marshaller::merge() - CORE\src\ORM\Marshaller.php, line 514
+Cake\ORM\Table::patchEntity() - CORE\src\ORM\Table.php, line 2234
+App\Controller\WorkordersController::saveAsServiceentry() - APP/Controller\WorkordersController.php, line 1014
+Cake\Controller\Controller::invokeAction() - CORE\src\Controller\Controller.php, line 435
+Cake\Http\ActionDispatcher::_invoke() - CORE\src\Http\ActionDispatcher.php, line 124
+Cake\Http\ActionDispatcher::dispatch() - CORE\src\Http\ActionDispatcher.php, line 98
+Cake\Http\BaseApplication::__invoke() - CORE\src\Http\BaseApplication.php, line 83
+Cake\Http\Runner::__invoke() - CORE\src\Http\Runner.php, line 65
+Cake\Routing\Middleware\RoutingMiddleware::__invoke() - CORE\src\Routing\Middleware\RoutingMiddleware.php, line 52
+Cake\Http\Runner::__invoke() - CORE\src\Http\Runner.php, line 65
+Cake\Routing\Middleware\AssetMiddleware::__invoke() - CORE\src\Routing\Middleware\AssetMiddleware.php, line 88
+Cake\Http\Runner::__invoke() - CORE\src\Http\Runner.php, line 65
+Cake\Error\Middleware\ErrorHandlerMiddleware::__invoke() - CORE\src\Error\Middleware\ErrorHandlerMiddleware.php, line 51
+Cake\Http\Runner::__invoke() - CORE\src\Http\Runner.php, line 65
+Cake\Http\Runner::run() - CORE\src\Http\Runner.php, line 51
+Cake\Http\Server::run() - CORE\src\Http\Server.php, line 82
+[main] - ROOT\webroot\index.php, line 37
+
+
+
+2017-08-23 06:20:24 Warning: Headers already sent in C:\Users\Hp\Desktop\testnew\vendor\cakephp\cakephp\src\Error\Debugger.php:753
+2017-08-23 06:20:24 Error: [RuntimeException] Unable to emit response; headers already sent
+Request URL: /Workorders/saveAsServiceentry?content=458
+Referer URL: http://localhost:8765/Workorders/add
+Stack Trace:
+#0 C:\Users\Hp\Desktop\testnew\vendor\cakephp\cakephp\src\Http\Server.php(107): Zend\Diactoros\Response\SapiStreamEmitter->emit(Object(Zend\Diactoros\Response))
+#1 C:\Users\Hp\Desktop\testnew\webroot\index.php(37): Cake\Http\Server->emit(Object(Zend\Diactoros\Response))
+#2 {main}
+
+
+2017-08-23 06:20:24 Error: sdfsdf
+2017-08-23 06:20:24 Error: 458
+2017-08-23 06:25:33 Error: Workorders/add/
+2017-08-23 06:26:35 Error: Workorders/add/
+2017-08-23 06:27:03 Warning: Warning (4096): Argument 2 passed to Cake\ORM\Table::patchEntity() must be of the type array, object given, called in C:\Users\Hp\Desktop\testnew\src\Controller\WorkordersController.php on line 1014 and defined in [C:\Users\Hp\Desktop\testnew\vendor\cakephp\cakephp\src\ORM\Table.php, line 2227]
+Request URL: /Workorders/saveAsServiceentry?content=459
+Referer URL: http://localhost:8765/Workorders/add/
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE\src\Error\BaseErrorHandler.php, line 146
+Cake\ORM\Table::patchEntity() - CORE\src\ORM\Table.php, line 2227
+App\Controller\WorkordersController::saveAsServiceentry() - APP/Controller\WorkordersController.php, line 1014
+Cake\Controller\Controller::invokeAction() - CORE\src\Controller\Controller.php, line 435
+Cake\Http\ActionDispatcher::_invoke() - CORE\src\Http\ActionDispatcher.php, line 124
+Cake\Http\ActionDispatcher::dispatch() - CORE\src\Http\ActionDispatcher.php, line 98
+Cake\Http\BaseApplication::__invoke() - CORE\src\Http\BaseApplication.php, line 83
+Cake\Http\Runner::__invoke() - CORE\src\Http\Runner.php, line 65
+Cake\Routing\Middleware\RoutingMiddleware::__invoke() - CORE\src\Routing\Middleware\RoutingMiddleware.php, line 52
+Cake\Http\Runner::__invoke() - CORE\src\Http\Runner.php, line 65
+Cake\Routing\Middleware\AssetMiddleware::__invoke() - CORE\src\Routing\Middleware\AssetMiddleware.php, line 88
+Cake\Http\Runner::__invoke() - CORE\src\Http\Runner.php, line 65
+Cake\Error\Middleware\ErrorHandlerMiddleware::__invoke() - CORE\src\Error\Middleware\ErrorHandlerMiddleware.php, line 51
+Cake\Http\Runner::__invoke() - CORE\src\Http\Runner.php, line 65
+Cake\Http\Runner::run() - CORE\src\Http\Runner.php, line 51
+Cake\Http\Server::run() - CORE\src\Http\Server.php, line 82
+[main] - ROOT\webroot\index.php, line 37
+
+
+
+2017-08-23 06:27:03 Warning: Warning (4096): Argument 2 passed to Cake\ORM\Marshaller::merge() must be of the type array, object given, called in C:\Users\Hp\Desktop\testnew\vendor\cakephp\cakephp\src\ORM\Table.php on line 2234 and defined in [C:\Users\Hp\Desktop\testnew\vendor\cakephp\cakephp\src\ORM\Marshaller.php, line 514]
+Request URL: /Workorders/saveAsServiceentry?content=459
+Referer URL: http://localhost:8765/Workorders/add/
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE\src\Error\BaseErrorHandler.php, line 146
+Cake\ORM\Marshaller::merge() - CORE\src\ORM\Marshaller.php, line 514
+Cake\ORM\Table::patchEntity() - CORE\src\ORM\Table.php, line 2234
+App\Controller\WorkordersController::saveAsServiceentry() - APP/Controller\WorkordersController.php, line 1014
+Cake\Controller\Controller::invokeAction() - CORE\src\Controller\Controller.php, line 435
+Cake\Http\ActionDispatcher::_invoke() - CORE\src\Http\ActionDispatcher.php, line 124
+Cake\Http\ActionDispatcher::dispatch() - CORE\src\Http\ActionDispatcher.php, line 98
+Cake\Http\BaseApplication::__invoke() - CORE\src\Http\BaseApplication.php, line 83
+Cake\Http\Runner::__invoke() - CORE\src\Http\Runner.php, line 65
+Cake\Routing\Middleware\RoutingMiddleware::__invoke() - CORE\src\Routing\Middleware\RoutingMiddleware.php, line 52
+Cake\Http\Runner::__invoke() - CORE\src\Http\Runner.php, line 65
+Cake\Routing\Middleware\AssetMiddleware::__invoke() - CORE\src\Routing\Middleware\AssetMiddleware.php, line 88
+Cake\Http\Runner::__invoke() - CORE\src\Http\Runner.php, line 65
+Cake\Error\Middleware\ErrorHandlerMiddleware::__invoke() - CORE\src\Error\Middleware\ErrorHandlerMiddleware.php, line 51
+Cake\Http\Runner::__invoke() - CORE\src\Http\Runner.php, line 65
+Cake\Http\Runner::run() - CORE\src\Http\Runner.php, line 51
+Cake\Http\Server::run() - CORE\src\Http\Server.php, line 82
+[main] - ROOT\webroot\index.php, line 37
+
+
+
+2017-08-23 06:27:03 Warning: Headers already sent in C:\Users\Hp\Desktop\testnew\vendor\cakephp\cakephp\src\Error\Debugger.php:753
+2017-08-23 06:27:03 Error: [RuntimeException] Unable to emit response; headers already sent
+Request URL: /Workorders/saveAsServiceentry?content=459
+Referer URL: http://localhost:8765/Workorders/add/
+Stack Trace:
+#0 C:\Users\Hp\Desktop\testnew\vendor\cakephp\cakephp\src\Http\Server.php(107): Zend\Diactoros\Response\SapiStreamEmitter->emit(Object(Zend\Diactoros\Response))
+#1 C:\Users\Hp\Desktop\testnew\webroot\index.php(37): Cake\Http\Server->emit(Object(Zend\Diactoros\Response))
+#2 {main}
+
+
+2017-08-23 06:45:37 Error: Workorders/add/
+2017-08-23 06:46:01 Error: Servicesentries/add/
+2017-08-24 07:00:08 Error: Workorders/add/22
+2017-08-24 07:01:04 Error: sdfsdf
+2017-08-24 07:01:04 Error: 460
+2017-08-24 07:09:32 Error: Workorders/add
+2017-08-24 09:09:42 Error: Workorders/add/
+2017-08-24 09:28:35 Error: Workorders/add/
+2017-08-24 09:30:02 Error: Workorders/add/
+2017-08-24 09:30:23 Error: Workorders/add/
+2017-08-24 09:33:13 Error: Workorders/add/
+2017-08-24 09:33:40 Error: Workorders/add/
+2017-08-24 09:40:37 Error: Workorders/add/
+2017-08-24 09:41:39 Error: Workorders/add/
+2017-08-24 09:42:56 Error: Workorders/add/
+2017-08-24 09:43:18 Error: Workorders/add/
+2017-08-24 09:43:59 Error: Workorders/add/
+2017-08-24 09:44:40 Error: Workorders/add/
+2017-08-24 09:45:41 Error: Workorders/add/
+2017-08-24 09:46:53 Error: Workorders/add/
+2017-08-24 09:53:26 Error: Workorders/add/
+2017-08-24 09:54:25 Error: Workorders/add/
+2017-08-24 09:55:47 Error: Workorders/add/
+2017-08-24 09:58:15 Error: Workorders/add/
+2017-08-24 09:59:06 Error: Workorders/add/
+2017-08-24 10:00:04 Error: Workorders/add/
+2017-08-24 10:00:57 Error: Workorders/add/
+2017-08-24 10:01:56 Error: Workorders/add/
+2017-08-24 10:02:37 Error: Workorders/add/
+2017-08-24 10:02:57 Error: Workorders/add/
+2017-08-24 10:03:18 Error: Workorders/add/
+2017-08-24 10:03:43 Error: Workorders/add/
+2017-08-24 10:06:09 Error: Workorders/add/
+2017-08-24 10:07:21 Error: Workorders/add/
+2017-08-24 10:08:17 Error: Workorders/add/
+2017-08-24 10:09:05 Error: Workorders/add/
+2017-08-24 10:09:16 Error: Workorders/add/
+2017-08-24 10:11:44 Error: Workorders/add/
+2017-08-24 10:13:01 Error: Workorders/add/
+2017-08-24 10:14:02 Error: Workorders/add/
+2017-08-24 10:14:32 Error: Workorders/add/
+2017-08-24 10:20:13 Error: Workorders/add/
+2017-08-24 10:23:05 Error: Workorders/add/
+2017-08-24 10:24:03 Error: Workorders/add/
+2017-08-24 10:24:30 Error: Workorders/add/
+2017-08-24 10:25:32 Error: Workorders/add/
+2017-08-24 11:21:02 Error: Workorders/add/
+2017-08-24 11:22:06 Error: Workorders/add/
+2017-08-24 11:22:51 Error: Workorders/add/
+2017-08-24 11:29:09 Error: Workorders/add/
+2017-08-24 11:33:37 Error: Workorders/add/
+2017-08-24 11:34:39 Error: Workorders/add/
+2017-08-24 11:35:59 Error: Workorders/add/
+2017-08-25 03:26:41 Error: Workorders/add/
+2017-08-25 03:34:03 Error: Workorders/add/
+2017-08-25 03:40:23 Error: Workorders/add/
+2017-08-25 03:42:15 Error: Workorders/add/
+2017-08-25 03:42:52 Error: Workorders/add/
+2017-08-25 03:44:29 Error: Workorders/add/
+2017-08-25 03:45:35 Error: Workorders/add/
+2017-08-25 04:09:23 Error: Workorders/add/
+2017-08-25 05:15:36 Error: Workorders/add/
+2017-08-25 05:19:55 Error: Workorders/add/
+2017-08-25 05:25:36 Error: Workorders/add/
+2017-08-25 05:27:32 Error: Workorders/add/
+2017-08-25 05:28:48 Error: Workorders/add/
+2017-08-25 05:29:08 Error: Workorders/add/
+2017-08-25 05:32:06 Error: Workorders/add/
+2017-08-25 05:35:51 Error: Workorders/add/
+2017-08-25 05:36:38 Error: Workorders/add/
+2017-08-25 05:37:44 Error: Workorders/add/
+2017-08-25 05:38:42 Error: Workorders/add/
+2017-08-25 05:40:14 Error: Workorders/add/
+2017-08-25 05:42:20 Error: Workorders/add/
+2017-08-25 05:42:50 Error: Workorders/add/
+2017-08-25 05:48:48 Error: Workorders/add/
+2017-08-25 05:52:11 Error: Workorders/add/
+2017-08-25 05:53:14 Error: Workorders/add/
+2017-08-25 05:55:01 Error: Workorders/add/
+2017-08-25 05:55:38 Error: Workorders/add/
+2017-08-25 05:57:06 Error: Workorders/add/
+2017-08-25 05:58:06 Error: Workorders/add/
+2017-08-25 05:58:57 Error: Workorders/add/
+2017-08-25 06:00:09 Error: Workorders/add/
+2017-08-25 06:02:12 Error: Workorders/add/
+2017-08-25 06:08:55 Error: Workorders/add/
+2017-08-25 06:18:10 Error: Workorders/add/
+2017-08-25 06:21:39 Error: Workorders/add/
+2017-08-25 06:24:20 Error: Workorders/add/
+2017-08-25 06:26:06 Error: Workorders/add/
+2017-08-25 06:30:39 Error: Workorders/add/
+2017-08-25 06:41:17 Error: Workorders/add/
+2017-08-25 06:42:57 Error: Workorders/add/
+2017-08-25 06:44:55 Error: Workorders/add/
+2017-08-25 06:46:29 Error: Workorders/add/
+2017-08-25 06:48:02 Error: Workorders/add/
+2017-08-25 06:50:53 Error: Workorders/add/
+2017-08-25 06:51:47 Error: Workorders/add/
+2017-08-25 06:54:19 Error: Workorders/add/
+2017-08-25 06:55:34 Error: Workorders/add/
+2017-08-25 07:11:01 Error: Workorders/add/
+2017-08-25 07:16:48 Error: Workorders/add/
+2017-08-25 07:22:13 Error: Workorders/add/
+2017-08-25 07:26:53 Error: Workorders/add/
+2017-08-25 07:33:08 Error: Workorders/add/
+2017-08-25 07:34:45 Error: Workorders/add/
+2017-08-25 08:40:33 Error: Workorders/add/
+2017-08-25 08:48:50 Error: Workorders/add/
+2017-08-25 08:56:09 Error: Workorders/add/
+2017-08-25 08:57:16 Error: Workorders/add/
+2017-08-28 04:56:12 Error: Servicesentries/add/
+2017-08-28 04:56:25 Error: Workorders/add/
+2017-08-28 07:23:52 Error: Servicesentries/add/
+2017-08-28 07:26:24 Error: Servicesentries/add/
+2017-08-28 07:27:18 Error: Servicesentries/add/
+2017-08-28 07:27:29 Error: Servicesentries/add/
+2017-08-28 07:27:48 Error: Servicesentries/add/
+2017-08-28 09:31:44 Error: Servicesentries/add/
+2017-08-28 11:20:41 Warning: Warning (2): move_uploaded_file(C:\Users\Hp\Desktop\testnew\webroot\\img\uploadedpics\web.config): failed to open stream: No such file or directory in [C:\Users\Hp\Desktop\testnew\src\Controller\UploadsController.php, line 24]
+Request URL: /Uploads/upload
+Referer URL: http://localhost:8765/Vehicles/add/
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE\src\Error\BaseErrorHandler.php, line 146
+move_uploaded_file - [internal], line ??
+App\Controller\UploadsController::upload() - APP/Controller\UploadsController.php, line 24
+Cake\Controller\Controller::invokeAction() - CORE\src\Controller\Controller.php, line 435
+Cake\Http\ActionDispatcher::_invoke() - CORE\src\Http\ActionDispatcher.php, line 124
+Cake\Http\ActionDispatcher::dispatch() - CORE\src\Http\ActionDispatcher.php, line 98
+Cake\Http\BaseApplication::__invoke() - CORE\src\Http\BaseApplication.php, line 83
+Cake\Http\Runner::__invoke() - CORE\src\Http\Runner.php, line 65
+Cake\Routing\Middleware\RoutingMiddleware::__invoke() - CORE\src\Routing\Middleware\RoutingMiddleware.php, line 52
+Cake\Http\Runner::__invoke() - CORE\src\Http\Runner.php, line 65
+Cake\Routing\Middleware\AssetMiddleware::__invoke() - CORE\src\Routing\Middleware\AssetMiddleware.php, line 88
+Cake\Http\Runner::__invoke() - CORE\src\Http\Runner.php, line 65
+Cake\Error\Middleware\ErrorHandlerMiddleware::__invoke() - CORE\src\Error\Middleware\ErrorHandlerMiddleware.php, line 51
+Cake\Http\Runner::__invoke() - CORE\src\Http\Runner.php, line 65
+Cake\Http\Runner::run() - CORE\src\Http\Runner.php, line 51
+Cake\Http\Server::run() - CORE\src\Http\Server.php, line 82
+[main] - ROOT\webroot\index.php, line 37
+
+
+
+2017-08-28 11:20:41 Warning: Warning (2): move_uploaded_file() [<a href='http://php.net/function.move-uploaded-file'>function.move-uploaded-file</a>]: Unable to move 'C:\xampp\tmp\php80D9.tmp' to 'C:\Users\Hp\Desktop\testnew\webroot\\img\uploadedpics\web.config' in [C:\Users\Hp\Desktop\testnew\src\Controller\UploadsController.php, line 24]
+Request URL: /Uploads/upload
+Referer URL: http://localhost:8765/Vehicles/add/
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE\src\Error\BaseErrorHandler.php, line 146
+move_uploaded_file - [internal], line ??
+App\Controller\UploadsController::upload() - APP/Controller\UploadsController.php, line 24
+Cake\Controller\Controller::invokeAction() - CORE\src\Controller\Controller.php, line 435
+Cake\Http\ActionDispatcher::_invoke() - CORE\src\Http\ActionDispatcher.php, line 124
+Cake\Http\ActionDispatcher::dispatch() - CORE\src\Http\ActionDispatcher.php, line 98
+Cake\Http\BaseApplication::__invoke() - CORE\src\Http\BaseApplication.php, line 83
+Cake\Http\Runner::__invoke() - CORE\src\Http\Runner.php, line 65
+Cake\Routing\Middleware\RoutingMiddleware::__invoke() - CORE\src\Routing\Middleware\RoutingMiddleware.php, line 52
+Cake\Http\Runner::__invoke() - CORE\src\Http\Runner.php, line 65
+Cake\Routing\Middleware\AssetMiddleware::__invoke() - CORE\src\Routing\Middleware\AssetMiddleware.php, line 88
+Cake\Http\Runner::__invoke() - CORE\src\Http\Runner.php, line 65
+Cake\Error\Middleware\ErrorHandlerMiddleware::__invoke() - CORE\src\Error\Middleware\ErrorHandlerMiddleware.php, line 51
+Cake\Http\Runner::__invoke() - CORE\src\Http\Runner.php, line 65
+Cake\Http\Runner::run() - CORE\src\Http\Runner.php, line 51
+Cake\Http\Server::run() - CORE\src\Http\Server.php, line 82
+[main] - ROOT\webroot\index.php, line 37
+
+
+
+2017-08-28 11:20:42 Warning: Headers already sent in C:\Users\Hp\Desktop\testnew\vendor\cakephp\cakephp\src\Error\Debugger.php:753
+2017-08-28 11:20:42 Error: [RuntimeException] Unable to emit response; headers already sent
+Request URL: /Uploads/upload
+Referer URL: http://localhost:8765/Vehicles/add/
+Stack Trace:
+#0 C:\Users\Hp\Desktop\testnew\vendor\cakephp\cakephp\src\Http\Server.php(107): Zend\Diactoros\Response\SapiStreamEmitter->emit(Object(Zend\Diactoros\Response))
+#1 C:\Users\Hp\Desktop\testnew\webroot\index.php(37): Cake\Http\Server->emit(Object(Zend\Diactoros\Response))
+#2 {main}
+
+
+2017-08-28 11:21:38 Warning: Warning (2): move_uploaded_file(C:\Users\Hp\Desktop\testnew\webroot\\img\uploadedpics\renjith.png): failed to open stream: No such file or directory in [C:\Users\Hp\Desktop\testnew\src\Controller\UploadsController.php, line 24]
+Request URL: /Uploads/upload
+Referer URL: http://localhost:8765/Vehicles/add/
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE\src\Error\BaseErrorHandler.php, line 146
+move_uploaded_file - [internal], line ??
+App\Controller\UploadsController::upload() - APP/Controller\UploadsController.php, line 24
+Cake\Controller\Controller::invokeAction() - CORE\src\Controller\Controller.php, line 435
+Cake\Http\ActionDispatcher::_invoke() - CORE\src\Http\ActionDispatcher.php, line 124
+Cake\Http\ActionDispatcher::dispatch() - CORE\src\Http\ActionDispatcher.php, line 98
+Cake\Http\BaseApplication::__invoke() - CORE\src\Http\BaseApplication.php, line 83
+Cake\Http\Runner::__invoke() - CORE\src\Http\Runner.php, line 65
+Cake\Routing\Middleware\RoutingMiddleware::__invoke() - CORE\src\Routing\Middleware\RoutingMiddleware.php, line 52
+Cake\Http\Runner::__invoke() - CORE\src\Http\Runner.php, line 65
+Cake\Routing\Middleware\AssetMiddleware::__invoke() - CORE\src\Routing\Middleware\AssetMiddleware.php, line 88
+Cake\Http\Runner::__invoke() - CORE\src\Http\Runner.php, line 65
+Cake\Error\Middleware\ErrorHandlerMiddleware::__invoke() - CORE\src\Error\Middleware\ErrorHandlerMiddleware.php, line 51
+Cake\Http\Runner::__invoke() - CORE\src\Http\Runner.php, line 65
+Cake\Http\Runner::run() - CORE\src\Http\Runner.php, line 51
+Cake\Http\Server::run() - CORE\src\Http\Server.php, line 82
+[main] - ROOT\webroot\index.php, line 37
+
+
+
+2017-08-28 11:21:38 Warning: Warning (2): move_uploaded_file() [<a href='http://php.net/function.move-uploaded-file'>function.move-uploaded-file</a>]: Unable to move 'C:\xampp\tmp\php6169.tmp' to 'C:\Users\Hp\Desktop\testnew\webroot\\img\uploadedpics\renjith.png' in [C:\Users\Hp\Desktop\testnew\src\Controller\UploadsController.php, line 24]
+Request URL: /Uploads/upload
+Referer URL: http://localhost:8765/Vehicles/add/
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE\src\Error\BaseErrorHandler.php, line 146
+move_uploaded_file - [internal], line ??
+App\Controller\UploadsController::upload() - APP/Controller\UploadsController.php, line 24
+Cake\Controller\Controller::invokeAction() - CORE\src\Controller\Controller.php, line 435
+Cake\Http\ActionDispatcher::_invoke() - CORE\src\Http\ActionDispatcher.php, line 124
+Cake\Http\ActionDispatcher::dispatch() - CORE\src\Http\ActionDispatcher.php, line 98
+Cake\Http\BaseApplication::__invoke() - CORE\src\Http\BaseApplication.php, line 83
+Cake\Http\Runner::__invoke() - CORE\src\Http\Runner.php, line 65
+Cake\Routing\Middleware\RoutingMiddleware::__invoke() - CORE\src\Routing\Middleware\RoutingMiddleware.php, line 52
+Cake\Http\Runner::__invoke() - CORE\src\Http\Runner.php, line 65
+Cake\Routing\Middleware\AssetMiddleware::__invoke() - CORE\src\Routing\Middleware\AssetMiddleware.php, line 88
+Cake\Http\Runner::__invoke() - CORE\src\Http\Runner.php, line 65
+Cake\Error\Middleware\ErrorHandlerMiddleware::__invoke() - CORE\src\Error\Middleware\ErrorHandlerMiddleware.php, line 51
+Cake\Http\Runner::__invoke() - CORE\src\Http\Runner.php, line 65
+Cake\Http\Runner::run() - CORE\src\Http\Runner.php, line 51
+Cake\Http\Server::run() - CORE\src\Http\Server.php, line 82
+[main] - ROOT\webroot\index.php, line 37
+
+
+
+2017-08-28 11:21:39 Warning: Headers already sent in C:\Users\Hp\Desktop\testnew\vendor\cakephp\cakephp\src\Error\Debugger.php:753
+2017-08-28 11:21:39 Error: [RuntimeException] Unable to emit response; headers already sent
+Request URL: /Uploads/upload
+Referer URL: http://localhost:8765/Vehicles/add/
+Stack Trace:
+#0 C:\Users\Hp\Desktop\testnew\vendor\cakephp\cakephp\src\Http\Server.php(107): Zend\Diactoros\Response\SapiStreamEmitter->emit(Object(Zend\Diactoros\Response))
+#1 C:\Users\Hp\Desktop\testnew\webroot\index.php(37): Cake\Http\Server->emit(Object(Zend\Diactoros\Response))
+#2 {main}
+
+
+2017-08-29 03:26:24 Error: Servicesentries/add/
+2017-08-29 06:54:10 Error: Fatal Error (1): Call to a member function count() on array in [C:\Users\Hp\Desktop\testnew\src\Controller\AppController.php, line 102]
+Request URL: /Workorders
+Trace:
+Cake\Error\BaseErrorHandler::handleFatalError() - CORE\src\Error\BaseErrorHandler.php, line 216
+Cake\Error\BaseErrorHandler::Cake\Error\{closure}() - CORE\src\Error\BaseErrorHandler.php, line 98
+[main] - [internal], line ??
+
+
+
+2017-08-29 06:54:10 Error: [Cake\Error\FatalErrorException] Call to a member function count() on array
+Request URL: /Workorders
+Stack Trace:
+#0 C:\Users\Hp\Desktop\testnew\vendor\cakephp\cakephp\src\Error\BaseErrorHandler.php(98): Cake\Error\BaseErrorHandler->handleFatalError(1, 'Call to a membe...', 'C:\\Users\\Hp\\Des...', 102)
+#1 [internal function]: Cake\Error\BaseErrorHandler->Cake\Error\{closure}()
+#2 {main}
+
+
+2017-08-30 08:30:00 Error: Servicesentries/add/
+2017-08-30 08:30:34 Error: Workorders/add/
+2017-10-23 07:05:26 Error: Workorders/add/
+2017-10-23 09:30:01 Error: Workorders/add/
+2017-10-23 09:32:14 Error: Workorders/add/
+2017-10-23 09:35:29 Error: Workorders/add/
+2017-10-24 05:13:36 Error: Servicesentries/add/
+2017-10-24 07:08:35 Error: Servicesentries/add/
+2017-10-24 07:37:51 Error: Servicesentries/add/
+2017-10-24 07:46:30 Error: Workorders/add/
+2017-10-24 08:12:36 Error: Servicesentries/add/21
+2017-10-24 08:12:55 Error: Servicesentries/add/21,20,23
+2017-10-24 09:45:04 Error: Workorders/add/
+2017-10-24 09:47:37 Error: Workorders/add/
+2017-10-24 09:49:11 Error: Workorders/add/
+2017-10-24 10:16:56 Error: Workorders/add/
+2017-10-24 10:17:30 Error: Workorders/add/
+2017-10-24 10:18:58 Error: Workorders/add/
+2017-10-24 12:15:29 Error: Workorders/add/
+2017-10-24 12:15:55 Error: Workorders/add/
+2017-10-24 12:18:23 Error: Workorders/add/
+2017-10-24 12:22:44 Error: Workorders/add/
+2017-10-24 12:26:09 Error: Workorders/add/
+2017-10-24 12:30:15 Error: Workorders/add/
+2017-10-25 03:56:51 Error: Workorders/add/
+2017-10-25 04:00:58 Error: Workorders/add/
+2017-10-25 04:01:22 Error: Workorders/add/
+2017-10-25 04:07:14 Error: Workorders/add/
+2017-10-25 04:09:46 Error: Workorders/add/
+2017-10-25 04:10:52 Error: Workorders/add/
+2017-10-25 04:13:44 Error: Workorders/add/
+2017-10-25 04:14:24 Error: Workorders/add/
+2017-10-25 05:09:57 Error: Workorders/add/
+2017-10-25 05:21:56 Error: Workorders/add/
+2017-10-25 05:22:52 Error: Workorders/add/
+2017-10-25 06:36:52 Error: Servicesentries/add/
+2017-10-25 07:07:47 Error: Servicesentries/add/
+2017-10-25 07:11:02 Error: Servicesentries/add/
+2017-10-25 07:19:52 Error: Workorders/add/
+2017-10-25 07:23:28 Error: Servicesentries/add/
+2017-10-25 07:23:55 Error: Servicesentries/add/
+2017-10-25 07:26:08 Error: Servicesentries/add/
+2017-10-25 07:27:20 Error: Servicesentries/add/
+2017-10-25 07:27:51 Error: Servicesentries/add/
+2017-10-25 07:27:58 Error: Servicesentries/add/
+2017-10-25 07:28:41 Error: Servicesentries/add/
+2017-10-25 07:31:12 Error: Servicesentries/add/
+2017-10-25 07:32:10 Error: Servicesentries/add/
+2017-10-25 07:38:42 Error: Servicesentries/add/
+2017-10-25 07:41:27 Error: Servicesentries/add/
+2017-10-25 07:44:17 Error: Servicesentries/add/
+2017-10-25 07:46:54 Error: Servicesentries/add/
+2017-10-25 08:35:18 Error: Servicesentries/add/
+2017-10-25 08:37:29 Error: Servicesentries/add/
+2017-10-25 08:39:40 Error: Servicesentries/add/
+2017-10-25 08:42:34 Error: Servicesentries/add/
+2017-10-25 08:44:38 Error: Servicesentries/add/
+2017-10-25 08:45:40 Error: Workorders/add/
+2017-10-25 08:47:41 Error: Servicesentries/add/
+2017-10-25 08:48:18 Error: Servicesentries/add/
+2017-10-25 08:51:17 Error: Servicesentries/add/
+2017-10-25 08:52:22 Error: Servicesentries/add/
+2017-10-25 08:56:15 Error: Servicesentries/add/
+2017-10-25 08:58:49 Error: Servicesentries/add/
+2017-10-25 09:24:35 Error: Servicesentries/add/
+2017-10-25 09:24:47 Error: sdfsdf
+2017-10-25 09:25:47 Error: Servicesentries/add/
+2017-10-25 09:26:01 Error: sdfsdf
+2017-10-25 10:10:51 Error: Servicesentries/add/
+2017-10-25 10:11:05 Error: Servicesentries/add/
+2017-10-26 03:21:57 Error: Workorders/add/
+2017-10-30 07:00:04 Warning: Headers already sent in C:\Users\Hp\Desktop\testnew\vendor\cakephp\cakephp\src\Error\Debugger.php:753
+2017-10-30 07:00:04 Error: [RuntimeException] Unable to emit response; headers already sent
+Request URL: /Workorders/createajax_data?name=&data=%5Bobject+HTMLTextAreaElement%5D
+Referer URL: http://localhost:8765/Inspectionforms/add/
+Stack Trace:
+#0 C:\Users\Hp\Desktop\testnew\vendor\cakephp\cakephp\src\Http\Server.php(107): Zend\Diactoros\Response\SapiStreamEmitter->emit(Object(Zend\Diactoros\Response))
+#1 C:\Users\Hp\Desktop\testnew\webroot\index.php(37): Cake\Http\Server->emit(Object(Zend\Diactoros\Response))
+#2 {main}
+
+
+2017-11-10 08:58:13 Error: Fatal Error (4): syntax error, unexpected end of file, expecting function (T_FUNCTION) in [C:\Users\Hp\Desktop\testnew\src\Controller\InspectionitemsController.php, line 171]
+Request URL: /Inspectionitems/addInspectionItems?content=pf+item1%5EPass%2FFail+Item1%2Cmeterentry1%5EMeter+Entry1
+Referer URL: http://localhost:8765/inspectionforms/add
+Trace:
+Cake\Error\BaseErrorHandler::handleFatalError() - CORE\src\Error\BaseErrorHandler.php, line 216
+Cake\Error\BaseErrorHandler::Cake\Error\{closure}() - CORE\src\Error\BaseErrorHandler.php, line 98
+[main] - [internal], line ??
+
+
+
+2017-11-10 08:58:13 Error: [Cake\Error\FatalErrorException] syntax error, unexpected end of file, expecting function (T_FUNCTION)
+Request URL: /Inspectionitems/addInspectionItems?content=pf+item1%5EPass%2FFail+Item1%2Cmeterentry1%5EMeter+Entry1
+Referer URL: http://localhost:8765/inspectionforms/add
+Stack Trace:
+#0 C:\Users\Hp\Desktop\testnew\vendor\cakephp\cakephp\src\Error\BaseErrorHandler.php(98): Cake\Error\BaseErrorHandler->handleFatalError(4, 'syntax error, u...', 'C:\\Users\\Hp\\Des...', 171)
+#1 [internal function]: Cake\Error\BaseErrorHandler->Cake\Error\{closure}()
+#2 {main}
+
+
+2017-11-10 09:01:55 Error: Fatal Error (4): syntax error, unexpected end of file, expecting function (T_FUNCTION) in [C:\Users\Hp\Desktop\testnew\src\Controller\InspectionitemsController.php, line 171]
+Request URL: /Inspectionitems/addInspectionItems?content=pf+item1%5EPass%2FFail+Item1%2Cmeterentry1%5EMeter+Entry1
+Trace:
+Cake\Error\BaseErrorHandler::handleFatalError() - CORE\src\Error\BaseErrorHandler.php, line 216
+Cake\Error\BaseErrorHandler::Cake\Error\{closure}() - CORE\src\Error\BaseErrorHandler.php, line 98
+[main] - [internal], line ??
+
+
+
+2017-11-10 09:01:55 Error: [Cake\Error\FatalErrorException] syntax error, unexpected end of file, expecting function (T_FUNCTION)
+Request URL: /Inspectionitems/addInspectionItems?content=pf+item1%5EPass%2FFail+Item1%2Cmeterentry1%5EMeter+Entry1
+Stack Trace:
+#0 C:\Users\Hp\Desktop\testnew\vendor\cakephp\cakephp\src\Error\BaseErrorHandler.php(98): Cake\Error\BaseErrorHandler->handleFatalError(4, 'syntax error, u...', 'C:\\Users\\Hp\\Des...', 171)
+#1 [internal function]: Cake\Error\BaseErrorHandler->Cake\Error\{closure}()
+#2 {main}
+
+
+2017-11-10 09:05:01 Warning: Headers already sent in C:\Users\Hp\Desktop\testnew\vendor\cakephp\cakephp\src\Error\Debugger.php:753
+2017-11-10 09:05:01 Error: [RuntimeException] Unable to emit response; headers already sent
+Request URL: /Inspectionitems/addInspectionItems?content=pf1%5E+Pass%2FFail+Item1%2Cme1%5EMeter+Entry1
+Referer URL: http://localhost:8765/inspectionforms/add
+Stack Trace:
+#0 C:\Users\Hp\Desktop\testnew\vendor\cakephp\cakephp\src\Http\Server.php(107): Zend\Diactoros\Response\SapiStreamEmitter->emit(Object(Zend\Diactoros\Response))
+#1 C:\Users\Hp\Desktop\testnew\webroot\index.php(37): Cake\Http\Server->emit(Object(Zend\Diactoros\Response))
+#2 {main}
+
+
+2017-11-10 09:05:33 Warning: Headers already sent in C:\Users\Hp\Desktop\testnew\vendor\cakephp\cakephp\src\Error\Debugger.php:753
+2017-11-10 09:05:33 Error: [RuntimeException] Unable to emit response; headers already sent
+Request URL: /Inspectionitems/addInspectionItems?content=pf1%5E+Pass%2FFail+Item1%2Cme1%5EMeter+Entry1
+Referer URL: http://localhost:8765/inspectionforms/add
+Stack Trace:
+#0 C:\Users\Hp\Desktop\testnew\vendor\cakephp\cakephp\src\Http\Server.php(107): Zend\Diactoros\Response\SapiStreamEmitter->emit(Object(Zend\Diactoros\Response))
+#1 C:\Users\Hp\Desktop\testnew\webroot\index.php(37): Cake\Http\Server->emit(Object(Zend\Diactoros\Response))
+#2 {main}
+
+
+2017-11-10 09:15:14 Warning: Warning (2): log() expects parameter 1 to be double, string given in [C:\Users\Hp\Desktop\testnew\src\Controller\InspectionitemsController.php, line 135]
+Request URL: /Inspectionitems/addInspectionItems?content=pf2%5EPass%2FFail+Item2%2Cme2%5EMeter+Entry2
+Referer URL: http://localhost:8765/inspectionforms/add
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE\src\Error\BaseErrorHandler.php, line 146
+log - [internal], line ??
+App\Controller\InspectionitemsController::addInspectionItems() - APP/Controller\InspectionitemsController.php, line 135
+Cake\Controller\Controller::invokeAction() - CORE\src\Controller\Controller.php, line 435
+Cake\Http\ActionDispatcher::_invoke() - CORE\src\Http\ActionDispatcher.php, line 124
+Cake\Http\ActionDispatcher::dispatch() - CORE\src\Http\ActionDispatcher.php, line 98
+Cake\Http\BaseApplication::__invoke() - CORE\src\Http\BaseApplication.php, line 83
+Cake\Http\Runner::__invoke() - CORE\src\Http\Runner.php, line 65
+Cake\Routing\Middleware\RoutingMiddleware::__invoke() - CORE\src\Routing\Middleware\RoutingMiddleware.php, line 52
+Cake\Http\Runner::__invoke() - CORE\src\Http\Runner.php, line 65
+Cake\Routing\Middleware\AssetMiddleware::__invoke() - CORE\src\Routing\Middleware\AssetMiddleware.php, line 88
+Cake\Http\Runner::__invoke() - CORE\src\Http\Runner.php, line 65
+Cake\Error\Middleware\ErrorHandlerMiddleware::__invoke() - CORE\src\Error\Middleware\ErrorHandlerMiddleware.php, line 51
+Cake\Http\Runner::__invoke() - CORE\src\Http\Runner.php, line 65
+Cake\Http\Runner::run() - CORE\src\Http\Runner.php, line 51
+Cake\Http\Server::run() - CORE\src\Http\Server.php, line 82
+[main] - ROOT\webroot\index.php, line 37
+
+
+
+2017-11-10 09:15:14 Warning: Warning (2): log() expects parameter 1 to be double, string given in [C:\Users\Hp\Desktop\testnew\src\Controller\InspectionitemsController.php, line 135]
+Request URL: /Inspectionitems/addInspectionItems?content=pf2%5EPass%2FFail+Item2%2Cme2%5EMeter+Entry2
+Referer URL: http://localhost:8765/inspectionforms/add
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE\src\Error\BaseErrorHandler.php, line 146
+log - [internal], line ??
+App\Controller\InspectionitemsController::addInspectionItems() - APP/Controller\InspectionitemsController.php, line 135
+Cake\Controller\Controller::invokeAction() - CORE\src\Controller\Controller.php, line 435
+Cake\Http\ActionDispatcher::_invoke() - CORE\src\Http\ActionDispatcher.php, line 124
+Cake\Http\ActionDispatcher::dispatch() - CORE\src\Http\ActionDispatcher.php, line 98
+Cake\Http\BaseApplication::__invoke() - CORE\src\Http\BaseApplication.php, line 83
+Cake\Http\Runner::__invoke() - CORE\src\Http\Runner.php, line 65
+Cake\Routing\Middleware\RoutingMiddleware::__invoke() - CORE\src\Routing\Middleware\RoutingMiddleware.php, line 52
+Cake\Http\Runner::__invoke() - CORE\src\Http\Runner.php, line 65
+Cake\Routing\Middleware\AssetMiddleware::__invoke() - CORE\src\Routing\Middleware\AssetMiddleware.php, line 88
+Cake\Http\Runner::__invoke() - CORE\src\Http\Runner.php, line 65
+Cake\Error\Middleware\ErrorHandlerMiddleware::__invoke() - CORE\src\Error\Middleware\ErrorHandlerMiddleware.php, line 51
+Cake\Http\Runner::__invoke() - CORE\src\Http\Runner.php, line 65
+Cake\Http\Runner::run() - CORE\src\Http\Runner.php, line 51
+Cake\Http\Server::run() - CORE\src\Http\Server.php, line 82
+[main] - ROOT\webroot\index.php, line 37
+
+
+
+2017-11-10 09:15:15 Warning: Headers already sent in C:\Users\Hp\Desktop\testnew\vendor\cakephp\cakephp\src\Error\Debugger.php:753
+2017-11-10 09:15:15 Error: [RuntimeException] Unable to emit response; headers already sent
+Request URL: /Inspectionitems/addInspectionItems?content=pf2%5EPass%2FFail+Item2%2Cme2%5EMeter+Entry2
+Referer URL: http://localhost:8765/inspectionforms/add
+Stack Trace:
+#0 C:\Users\Hp\Desktop\testnew\vendor\cakephp\cakephp\src\Http\Server.php(107): Zend\Diactoros\Response\SapiStreamEmitter->emit(Object(Zend\Diactoros\Response))
+#1 C:\Users\Hp\Desktop\testnew\webroot\index.php(37): Cake\Http\Server->emit(Object(Zend\Diactoros\Response))
+#2 {main}
+
+
+2017-11-10 09:18:50 Warning: Warning (2): log() expects parameter 1 to be double, string given in [C:\Users\Hp\Desktop\testnew\src\Controller\InspectionitemsController.php, line 135]
+Request URL: /Inspectionitems/addInspectionItems?content=pf3%5Edgasdf
+Referer URL: http://localhost:8765/inspectionforms/add
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE\src\Error\BaseErrorHandler.php, line 146
+log - [internal], line ??
+App\Controller\InspectionitemsController::addInspectionItems() - APP/Controller\InspectionitemsController.php, line 135
+Cake\Controller\Controller::invokeAction() - CORE\src\Controller\Controller.php, line 435
+Cake\Http\ActionDispatcher::_invoke() - CORE\src\Http\ActionDispatcher.php, line 124
+Cake\Http\ActionDispatcher::dispatch() - CORE\src\Http\ActionDispatcher.php, line 98
+Cake\Http\BaseApplication::__invoke() - CORE\src\Http\BaseApplication.php, line 83
+Cake\Http\Runner::__invoke() - CORE\src\Http\Runner.php, line 65
+Cake\Routing\Middleware\RoutingMiddleware::__invoke() - CORE\src\Routing\Middleware\RoutingMiddleware.php, line 52
+Cake\Http\Runner::__invoke() - CORE\src\Http\Runner.php, line 65
+Cake\Routing\Middleware\AssetMiddleware::__invoke() - CORE\src\Routing\Middleware\AssetMiddleware.php, line 88
+Cake\Http\Runner::__invoke() - CORE\src\Http\Runner.php, line 65
+Cake\Error\Middleware\ErrorHandlerMiddleware::__invoke() - CORE\src\Error\Middleware\ErrorHandlerMiddleware.php, line 51
+Cake\Http\Runner::__invoke() - CORE\src\Http\Runner.php, line 65
+Cake\Http\Runner::run() - CORE\src\Http\Runner.php, line 51
+Cake\Http\Server::run() - CORE\src\Http\Server.php, line 82
+[main] - ROOT\webroot\index.php, line 37
+
+
+
+2017-11-10 09:18:51 Warning: Headers already sent in C:\Users\Hp\Desktop\testnew\vendor\cakephp\cakephp\src\Error\Debugger.php:753
+2017-11-10 09:18:51 Error: [RuntimeException] Unable to emit response; headers already sent
+Request URL: /Inspectionitems/addInspectionItems?content=pf3%5Edgasdf
+Referer URL: http://localhost:8765/inspectionforms/add
+Stack Trace:
+#0 C:\Users\Hp\Desktop\testnew\vendor\cakephp\cakephp\src\Http\Server.php(107): Zend\Diactoros\Response\SapiStreamEmitter->emit(Object(Zend\Diactoros\Response))
+#1 C:\Users\Hp\Desktop\testnew\webroot\index.php(37): Cake\Http\Server->emit(Object(Zend\Diactoros\Response))
+#2 {main}
+
+

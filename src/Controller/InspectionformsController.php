@@ -54,6 +54,7 @@ class InspectionformsController extends AppController
         $inspectionform = $this->Inspectionforms->newEntity();
         if ($this->request->is('post')) {
             $inspectionform = $this->Inspectionforms->patchEntity($inspectionform, $this->request->data);
+			$inspectionform['customer_id']=$this->loggedinuser['customer_id'];
             if ($this->Inspectionforms->save($inspectionform)) {
                 $this->Flash->success(__('The inspectionform has been saved.'));
 
@@ -93,7 +94,31 @@ class InspectionformsController extends AppController
         $this->set(compact('inspectionform', 'customers'));
         $this->set('_serialize', ['inspectionform']);
     }
-
+	
+	public function createajaxData()
+		{
+			
+    	
+			if($this->request->is('ajax')) 
+				{
+					$this->autoRender=false;
+					$inspectionform = $this->Inspectionforms->newEntity();
+					$this->request->data['name']=$this->request->query['name'];
+					$this->request->data['data']=$this->request->query['data'];
+					$inspectionform = $this->Inspectionforms->patchEntity($inspectionform,$this->request->data);
+					$inspectionform['customer_id']=$this->loggedinuser['customer_id'];
+					if ($this->Inspectionforms->save($inspectionform)) 
+						{
+							$this->response->body(json_encode($inspectionform['id']));			
+				    		return $this->response;
+				    	} 
+			        else 
+			        	{
+			            	$this->response->body("error");
+				    		return $this->response;
+			            }
+		            }
+        }
     /**
      * Delete method
      *
