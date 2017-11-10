@@ -10,7 +10,9 @@ use Cake\Validation\Validator;
  * Inspectionforms Model
  *
  * @property \Cake\ORM\Association\BelongsTo $Customers
+ * @property \Cake\ORM\Association\HasMany $Inspectionitems
  * @property \Cake\ORM\Association\HasMany $Inspections
+ * @property \Cake\ORM\Association\BelongsToMany $Inspectionitems
  *
  * @method \App\Model\Entity\Inspectionform get($primaryKey, $options = [])
  * @method \App\Model\Entity\Inspectionform newEntity($data = null, array $options = [])
@@ -40,8 +42,16 @@ class InspectionformsTable extends Table
         $this->belongsTo('Customers', [
             'foreignKey' => 'customer_id'
         ]);
+        $this->hasMany('Inspectionitems', [
+            'foreignKey' => 'inspectionform_id'
+        ]);
         $this->hasMany('Inspections', [
             'foreignKey' => 'inspectionform_id'
+        ]);
+        $this->belongsToMany('Inspectionitems', [
+            'foreignKey' => 'inspectionform_id',
+            'targetForeignKey' => 'inspectionitem_id',
+            'joinTable' => 'inspectionforms_inspectionitems'
         ]);
     }
 

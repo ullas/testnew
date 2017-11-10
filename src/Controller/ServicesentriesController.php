@@ -438,5 +438,27 @@ class ServicesentriesController extends AppController
 
              return $this->redirect(['action' => 'index']);
      }
+	
+	public function populateResIssues()
+	     {
+	    	if($this->request->is('ajax')) 
+		    	{
+		    		$this->log("sdfsdf");
+		    		$this->loadModel('Issues');
+					$this->autoRender=false;
+					
+					$vid = $this->request->query['vehicleid'];
+					
+					
+					
+					// $issues = array();
+					
+						// $ttt = $this->Issues->populateResIssues($this->loggedinuser['customer_id'],$vid);
+						$resolvedissues = $this->Servicesentries->Issues->find('list', ['limit' => 200])->where(['customer_id' => $this->loggedinuser['customer_id']])->orwhere(['customer_id' => '0'])->andwhere(['vehicle_id' => $vid]) ;
+						$this->set(compact('$resolvedissues'));
+					
+		    		
+		    	}
+		 }
 
 }

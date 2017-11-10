@@ -70,6 +70,7 @@
   <div class="row">
    <div class="form-group">
                 <div class="col-sm-offset-6 col-sm-10">
+                	<input type="button" class="btn btn-flat btn-success" id="btnSave" value="Ajax Save"/>
                   <button type="submit" class="btn btn-success">Save</button>
                 </div>
    </div>
@@ -102,7 +103,7 @@ $this->Html->script([
 		
 		
 		 $('.itemselect').select2({
-    		width: '100%',allowClear: true,placeholder: "Select",data: [{'id':1, "text":"Pass/Fail Item"},{'id':2, "text":"Meter Entry"},{'id':2, "text":"Text"}]
+    		width: '100%',allowClear: true,placeholder: "Select",data: [{'id':1, "text":"Pass/Fail Item"},{'id':2, "text":"Meter Entry"},{'id':3, "text":"Text"}]
 		});
 		
 		
@@ -110,42 +111,86 @@ $this->Html->script([
 
   $(function () {
   	
+  			//Delete Inspection items
+  		$('.maindiv').on('click', 'a.compdelete', function() 
+				{
+	        		if (confirm("Are you sure you want to delete the particular Item ?")) 
+	        				{
+								$(this).parent().closest('div.classname').hide();
+								
+								return true;
+	           		   		} 
+	           		 else 
+	           		   		{
+	             				return false;
+	           				}
+	
+	 			});
+  	// var numItems = 1;
   		$("#btnAddInspectionItem").click(function (event) 
-		{
-			event.preventDefault();
-			var numItems = $('.laborhrs').length+1;
-			if(document.getElementById("itemselect").value == 1)// for Pass/Fail Item
-				{
-					$(".maindiv").append("<div class='classname' 	id='contentDiv"+numItems+"'><div class='clearfix'><div class="col-sm-3"><div class="form-group"><label>Name:</label><div class="input-group"><div class="input-group-btn"><a id="delete1" class="compdelete btn btn-danger btn-flat"><i class="fa fa-trash"></i></a></div><input name="issue2" class="form-control testissue" id="wotype12"></div></div></div><div class="col-sm-3"><label>Desc:</label><input name="issue2" class="form-control testissue" id="wotype12"></div></div></div>");
-				}
-			else if(document.getElementById("itemselect").value == 2)// for Meter Entry
-				{
-					$(".maindiv").append("<div class='classname' 	id='contentDiv"+numItems+"'><div class='clearfix'><div 	class='col-sm-3'><div class='form-group'><label>Issue:</label><div class='input-group'><div class='input-group-btn'><a id='delete1' class='compdelete btn btn-danger btn-flat'><i class='fa fa-trash'></i></a></div><input  name='issue"+numItems+"' class='form-control testissue' id='wotype1"+numItems+"'/></div>	</div></div><div 	class='col-sm-3'><label>Contact:</label><input  name='contact"+numItems+"' class='form-control contact' id='contactpart1"+numItems+"'/></div><div class='col-sm-2'><label>Hourly Rate:</label><input type='text' 	class='form-control laborrate' id='laborrate"+numItems+"'/></div><div class='col-sm-2'><label>Hours:</label><input type='text' id='laborqty"+numItems+"' class='form-control laborhrs' name='hrs'/></div>   <div class='col-sm-2'> <div class='form-group'><label>Tax:</label><div class='input-group'><span class='input-group-addon no-padding'><input  id='labortaxtype"+numItems+"' class='labortaxtype' name='taxtype'/></span><input type='text' id='labortax"+numItems+"' class='form-control labortax' name='tax'/></div></div></div><div class='col-sm-2 pull-right' ><label >SubTotal</label><label class='subtotallabor pull-right' id='subtotallaborIS"+numItems+"' >0.00</label></div></div><hr/></div>");
-				}
-			else if(document.getElementById("itemselect").value == 3)// for Text Entry
-				{
-					$(".maindiv").append("<div class='classname' 	id='contentDiv"+numItems+"'><div class='clearfix'><div 	class='col-sm-3'><div class='form-group'><label>Issue:</label><div class='input-group'><div class='input-group-btn'><a id='delete1' class='compdelete btn btn-danger btn-flat'><i class='fa fa-trash'></i></a></div><input  name='issue"+numItems+"' class='form-control testissue' id='wotype1"+numItems+"'/></div>	</div></div><div 	class='col-sm-3'><label>Contact:</label><input  name='contact"+numItems+"' class='form-control contact' id='contactpart1"+numItems+"'/></div><div class='col-sm-2'><label>Hourly Rate:</label><input type='text' 	class='form-control laborrate' id='laborrate"+numItems+"'/></div><div class='col-sm-2'><label>Hours:</label><input type='text' id='laborqty"+numItems+"' class='form-control laborhrs' name='hrs'/></div>   <div class='col-sm-2'> <div class='form-group'><label>Tax:</label><div class='input-group'><span class='input-group-addon no-padding'><input  id='labortaxtype"+numItems+"' class='labortaxtype' name='taxtype'/></span><input type='text' id='labortax"+numItems+"' class='form-control labortax' name='tax'/></div></div></div><div class='col-sm-2 pull-right' ><label >SubTotal</label><label class='subtotallabor pull-right' id='subtotallaborIS"+numItems+"' >0.00</label></div></div><hr/></div>");
-				}
-			// $('.testissue').select2({
-	    		// width: '100%',allowClear: true,placeholder: "Select",data: issuedata
-			// });
-			// $('.test').select2({
-	    		// width: '100%',allowClear: true,placeholder: "Select",data: servicetaskdata
-			// });
-			// $('.contact').select2({
-	    		// width: '100%',allowClear: true,placeholder: "Select",data: contactdata
-			// });
-			// $('.labortaxtype').select2({
-    		// width: '100%',data: [{'id':1, "text":"%"},{'id':2, "text":"$"}]
-			// });
-		
-		// $('#labortaxtype'+numItems).val(1).trigger('change');
-		// if(document.getElementById('subtotallaborST'+numItems))
-		// {document.getElementById('subtotallaborST'+numItems).innerHTML = "0.00";}
-		// if(document.getElementById('subtotallaborIS'+numItems))
-		// {document.getElementById('subtotallaborIS'+numItems).innerHTML = "0.00";}
-	});
-  	
+			{
+				event.preventDefault();
+			var	numItems = $('.insitemname').length+1;
+				
+				if(document.getElementById("itemselect").value == 1)// for Pass/Fail Item
+					{
+						$(".maindiv").append("<div class='classname' 	id='contentDiv"+numItems+"'>Pass/Fail Item<div class='clearfix'><div 	class='col-sm-3'><div class='form-group'><label>Name:</label><div class='input-group'><div class='input-group-btn'><a id='delete1' class='compdelete btn btn-danger btn-flat'><i class='fa fa-trash'></i></a></div><input  name='issue"+numItems+"' class='form-control insitemname ' id='insitemname"+numItems+"'/></div>	</div></div><div 	class='col-sm-3'><label>Description:</label><input type='text' name='contact"+numItems+"' class='form-control desc' id='desc"+numItems+"'/></div> <div 	class='col-sm-3'><div class='checkbox'><label></label><input type='checkbox' >Required</div></div>   </div><hr/></div>");
+					}
+				else if(document.getElementById("itemselect").value == 2)// for Meter Entry
+					{
+						$(".maindiv").append("<div class='classname' 	id='contentDiv"+numItems+"'>Meter Entry<div class='clearfix'><div 	class='col-sm-3'><div class='form-group'><label>Name:</label><div class='input-group'><div class='input-group-btn'><a id='delete1' class='compdelete btn btn-danger btn-flat'><i class='fa fa-trash'></i></a></div><input  name='issue"+numItems+"' class='form-control insitemname ' id='insitemname"+numItems+"'/></div>	</div></div><div 	class='col-sm-3'><label>Description:</label><input type='text' name='contact"+numItems+"' class='form-control desc' id='desc"+numItems+"'/></div>   </div><hr/></div>");
+					}
+				else if(document.getElementById("itemselect").value == 3)// for Text Entry
+					{
+						$(".maindiv").append("<div class='classname' 	id='contentDiv"+numItems+"'>Text Entry<div class='clearfix'><div 	class='col-sm-3'><div class='form-group'><label>Name:</label><div class='input-group'><div class='input-group-btn'><a id='delete1' class='compdelete btn btn-danger btn-flat'><i class='fa fa-trash'></i></a></div><input  name='issue"+numItems+"' class='form-control insitemname ' id='insitemname"+numItems+"'/></div>	</div></div><div 	class='col-sm-3'><label>Description:</label><input type='text' name='contact"+numItems+"' class='form-control desc' id='desc"+numItems+"'/></div>   </div><hr/></div>");
+					}
+					
+				
+			});
+  		
+  			//save btn onclick
+		$("#btnSave").click(function () 
+			{
+				var name = document.getElementById("name").value;
+				var data = document.getElementById("data").value;
+				
+				$.get('/Inspectionforms/createajax_data?name='+name+'&data='+data
+				    		
+				    		, function(d) 
+				    			{
+				    				if(d!="error")
+					   		 		{
+					   		 			
+					   		 		}
+				    				else
+					   		 		{
+					   		 			// console.log("inside error");
+				   		 			}       			
+				    			}
+				    			
+				   )  
+				    	
+				  var noofitems = $('.insitemname').length;  		
+				  alert("noofitems"+noofitems);
+				  var postdata = [];
+				//for labor
+				
+				for(count = 1; count <= noofitems; count++)
+					{ 
+						if($("#insitemname"+count).parent().closest('div .classname').is(":visible"))
+							{
+								postdata.push($(' #insitemname'+count ).val() + "^" +$('#desc'+count ).val()+ "^" +$('#itemselect' ).val()+ "^" +$('#desc'+count ).val() );
+							}
+					}		
+			  if($('.insitemname').length>0 )
+							{
+								console.log("postdatta--"+postdata);
+								$.get('/Inspectionitems/addInspectionItems?content='+postdata, function(d) 
+									{
+									});
+							}
+			
+			});
   	
     //Initialize Select2 Elements
    $(".select2").select2({ width: '100%' });

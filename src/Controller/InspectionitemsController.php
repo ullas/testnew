@@ -117,4 +117,47 @@ class InspectionitemsController extends AppController
 
         return $this->redirect(['action' => 'index']);
     }
+	
+	public function addInspectionItems()
+	{
+		if($this->request->is('ajax')) 
+		    	{
+		    		$this->autoRender=false;
+					$inspectionitem = $this->Inspectionitems->newEntity();
+					$this->autoRender=false;
+					$this->loadModel('Inspectionitems');
+			
+					$it="";
+	    			$it=explode(",",($this->request->query['content']));
+		    		$stst = json_encode($this->request->query['content']);
+					$contentarray = array();
+					 for ($i=0; $i <substr_count($stst, ',')+1 ; $i++) {
+					 	
+						 array_push($contentarray, $it[$i]);
+					 }
+				 
+				   // $this->response->body(json_encode($contentarray));			
+	    		   // return $this->response;
+				 
+					// foreach(json_encode($this->request->query['content'])  as $d){
+	    			foreach($contentarray as $d)
+	    			{
+				$inspectionitem = $this->Inspectionitems->newEntity();
+						$items="";
+		    			$items=explode("^",$d);
+						$this->request->data['name']=$items[0];
+		            	// $this->request->data['inspectionitemtype_id']=$items[1];
+						$this->request->data['description']=$items[1];
+						// $this->request->data['required']=$items[5];
+						// $this->request->data['inspectionform_id']=$items[6];
+						$inspectionitem=$this->Inspectionitems->patchEntity($inspectionitem,$this->request->data);
+						$inspectionitem['customer_id']=$this->loggedinuser['customer_id'];
+						if ($this->Inspectionitems->save($inspectionitem)) 
+							{
+								 $this->Flash->success(__('Succesfully added'));
+							}
+					}
+				}
+		
+	}
 }

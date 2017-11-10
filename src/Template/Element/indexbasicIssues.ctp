@@ -658,14 +658,15 @@ $('.mptl-resolver-base1').click(function(){
 	  {
 	  	var valuearray = [];
 	  	valuearray = setSelection();
-	  	if(valuearray = [])
-	  		{
-	  			alert("No issues selected");
-			}
-	  	else
+	  	if(valuearray.length > 0)
 	  		{
 	  			var url = "/Servicesentries/add/"+valuearray;
 	  			window.location.href = url; 
+			}
+	  	else
+	  		{
+	  			
+	  			alert("No issues selectedssss"+valuearray[0]);
 	  		}
 	  	 
 	  }
@@ -679,14 +680,14 @@ $('.mptl-resolver-base1').click(function(){
 	  	var valuearray = [];
 	  	valuearray = setSelection();
 	  	
-	    if(valuearray = [])
-	  		{
-	  			alert("No issues selected");
-			}
-	  	else
+	    if(valuearray.length > 0)
 	  		{
 	  			var url = "/Workorders/add/"+valuearray; 
 	  			window.location.href = url; 
+			}
+	  	else
+	  		{
+	  			alert("No issues selected");
 	  		}
 	  }
 	  

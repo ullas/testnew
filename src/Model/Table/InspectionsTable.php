@@ -9,10 +9,10 @@ use Cake\Validation\Validator;
 /**
  * Inspections Model
  *
- * @property \Cake\ORM\Association\BelongsTo $Inspectionforms
  * @property \Cake\ORM\Association\BelongsTo $Customers
  * @property \Cake\ORM\Association\BelongsTo $Inspectionstatuses
  * @property \Cake\ORM\Association\BelongsTo $Vehicles
+ * @property \Cake\ORM\Association\BelongsTo $Inspectionforms
  *
  * @method \App\Model\Entity\Inspection get($primaryKey, $options = [])
  * @method \App\Model\Entity\Inspection newEntity($data = null, array $options = [])
@@ -39,9 +39,6 @@ class InspectionsTable extends Table
         $this->displayField('name');
         $this->primaryKey('id');
 
-        $this->belongsTo('Inspectionforms', [
-            'foreignKey' => 'inspectionform_id'
-        ]);
         $this->belongsTo('Customers', [
             'foreignKey' => 'customer_id'
         ]);
@@ -50,6 +47,9 @@ class InspectionsTable extends Table
         ]);
         $this->belongsTo('Vehicles', [
             'foreignKey' => 'vehicle_id'
+        ]);
+        $this->belongsTo('Inspectionforms', [
+            'foreignKey' => 'inspectionform_id'
         ]);
     }
 
@@ -86,10 +86,10 @@ class InspectionsTable extends Table
      */
     public function buildRules(RulesChecker $rules)
     {
-        $rules->add($rules->existsIn(['inspectionform_id'], 'Inspectionforms'));
         $rules->add($rules->existsIn(['customer_id'], 'Customers'));
         $rules->add($rules->existsIn(['inspectionstatus_id'], 'Inspectionstatuses'));
         $rules->add($rules->existsIn(['vehicle_id'], 'Vehicles'));
+        $rules->add($rules->existsIn(['inspectionform_id'], 'Inspectionforms'));
 
         return $rules;
     }

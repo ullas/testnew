@@ -5,7 +5,7 @@
   <ol class="breadcrumb">
   	<li><a href="#"><i class="fa fa-dashboard"></i>Home</a></li>
     <li><a href="#"> Fleet Management</a></li>
-    <li><a href="/inspections/"> Issues</a></li>
+    <li><a href="/issues/"> Issues</a></li>
     <li class="active">View</li>
   </ol>
 </section>

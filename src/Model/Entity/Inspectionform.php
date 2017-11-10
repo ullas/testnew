@@ -12,6 +12,8 @@ use Cake\ORM\Entity;
  * @property int $customer_id
  *
  * @property \App\Model\Entity\Customer $customer
+ * @property \App\Model\Entity\Inspection $inspection
+ * @property \App\Model\Entity\Inspectionitem[] $inspectionitems
  */
 class Inspectionform extends Entity
 {

@@ -27,7 +27,7 @@
        <?php
                 echo $this->Form->input('name',['templateVars' => ['help' => 'A short name for the inspection'],'required' => 'required']);
                 echo $this->Form->input('vehicle_id', ['options' => $vehicles, 'empty' => true,'class'=>'select2','required' => 'required']);
-                echo $this->Form->input('description');
+                echo $this->Form->input('descriptions');
 				echo $this->Form->input('inspectionform_id', ['label'=>'Inspection Form','options' => $inspectionforms, 'empty' => true,'class'=>'select2','required' => 'required','templateVars' => ['help' => 'Select an inspection form from the list','buttontag' => '<a href="/Inspectionforms/add/" id="addfltr" class="btn btn-sm btn-success" title="Add New Vehicle"><i class="fa fa-plus" aria-hidden="true"></i></a>']]);
                 // echo $this->Form->input('inspectionform_id', ['label'=>'Inspection Form','options' => $inspectionforms, 'empty' => true,'class'=>'select2', 'templateVars' => ['help' => 'Select an inspection form from the list'],]);
                 echo $this->Form->input('date', ['empty' => true,'type'=>'text','required' => 'required', 'class'=>'datemask','templateVars' => ['icon' => '<div class="input-group-addon"><i class="fa fa-calendar"></i></div>']]);
