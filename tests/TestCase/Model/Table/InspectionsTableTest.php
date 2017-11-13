@@ -1,22 +1,22 @@
 <?php
 namespace App\Test\TestCase\Model\Table;
 
-use App\Model\Table\InspectionitemsTable;
+use App\Model\Table\InspectionsTable;
 use Cake\ORM\TableRegistry;
 use Cake\TestSuite\TestCase;
 
 /**
- * App\Model\Table\InspectionitemsTable Test Case
+ * App\Model\Table\InspectionsTable Test Case
  */
-class InspectionitemsTableTest extends TestCase
+class InspectionsTableTest extends TestCase
 {
 
     /**
      * Test subject
      *
-     * @var \App\Model\Table\InspectionitemsTable
+     * @var \App\Model\Table\InspectionsTable
      */
-    public $Inspectionitems;
+    public $Inspections;
 
     /**
      * Fixtures
@@ -24,8 +24,7 @@ class InspectionitemsTableTest extends TestCase
      * @var array
      */
     public $fixtures = [
-        'app.inspectionitems',
-        'app.inspectionitemtypes',
+        'app.inspections',
         'app.customers',
         'app.customertypes',
         'app.addresses',
@@ -124,10 +123,6 @@ class InspectionitemsTableTest extends TestCase
         'app.measurementunits',
         'app.manufacturers',
         'app.activedrivers',
-        'app.inspections',
-        'app.inspectionstatuses',
-        'app.inspectionforms',
-        'app.inspectionforms_inspectionitems',
         'app.vehicleengines',
         'app.vehiclefluids',
         'app.vehiclepermits',
@@ -143,7 +138,12 @@ class InspectionitemsTableTest extends TestCase
         'app.renewalstypes',
         'app.servicetasks_servicesentries',
         'app.issues_servicesentries',
-        'app.worklorderlineitems'
+        'app.worklorderlineitems',
+        'app.inspectionstatuses',
+        'app.inspectionforms',
+        'app.inspectionitems',
+        'app.inspectionitemtypes',
+        'app.inspectionforms_inspectionitems'
     ];
 
     /**
@@ -154,8 +154,8 @@ class InspectionitemsTableTest extends TestCase
     public function setUp()
     {
         parent::setUp();
-        $config = TableRegistry::exists('Inspectionitems') ? [] : ['className' => 'App\Model\Table\InspectionitemsTable'];
-        $this->Inspectionitems = TableRegistry::get('Inspectionitems', $config);
+        $config = TableRegistry::exists('Inspections') ? [] : ['className' => 'App\Model\Table\InspectionsTable'];
+        $this->Inspections = TableRegistry::get('Inspections', $config);
     }
 
     /**
@@ -165,7 +165,7 @@ class InspectionitemsTableTest extends TestCase
      */
     public function tearDown()
     {
-        unset($this->Inspectionitems);
+        unset($this->Inspections);
 
         parent::tearDown();
     }

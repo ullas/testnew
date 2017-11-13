@@ -11,6 +11,8 @@ use Cake\ORM\Entity;
  * @property string $name
  * @property string $description
  * @property int $customer_id
+ * @property bool $required
+ * @property int $inspectionform_id
  *
  * @property \App\Model\Entity\Inspectionitemtype $inspectionitemtype
  * @property \App\Model\Entity\Customer $customer

@@ -21,14 +21,20 @@
     <div class="col-md-12">
       <div class="nav-tabs-custom">
 
-        <div class="tab-content" style="padding-top:45px">
+        <div class="tab-content maindiv" style="padding-top:45px">
           <div class="active tab-pane" id="details">
              <div class="form-horizontal">
         <?php
         $resissues1=[1,14,6];
             echo $this->Form->input('name',['label'=>'Name','templateVars' => ['help' => 'A short name for the service entry'],'required' => 'required']);
             echo $this->Form->input('dateofservice', ['type'=>'text','empty' => true,'label'=>'Date Of Service','required' => 'required','class'=>'datemask','templateVars' => ['icon' => '<div class="input-group-addon"><i class="fa fa-calendar"></i></div>']]);
-            echo $this->Form->input('vehicle_id', ['options' => $vehicles, 'empty' => true,'class'=>'select2','required' => 'required']);
+            ?>
+            <div class="vehicleselector" id="vehicleselector">
+            <?php
+            echo $this->Form->input('vehicle_id', ['options' => $vehicles, 'empty' => true,'class'=>'select2 vehicledropdown','required' => 'required']);
+            ?>
+            </div>
+            <?php
             echo $this->Form->input('odo',['label'=>'Odometer','templateVars' => ['help' => 'Odometer reading at the time of service'],'required' => 'required']);
             echo $this->Form->input('refer',['label'=>'Reference','templateVars' => ['help' => 'Optional (e.g. Bill Number, Invoice Number etc.)']]);
             echo $this->Form->input('servicetasks._ids', ['label'=>'Completed Service Tasks','options' => $servicetasks,'class'=>'select2']);
@@ -98,6 +104,31 @@ $this->Html->script([
             format:"dd/mm/yy",
               autoclose: true
    });
+   
+   $('.vehicleselector').click(function (event) {
+   	// alert("jjfgsdg");
+   });
+   
+   
+   $("#vehicle-id").change(function () 
+	   {
+	   		// alert("asddf");
+	   		var selectedText = $(this).find("option:selected").text();
+            var selectedValue = $(this).val();
+            alert("Selected Text: " + selectedText + " Value: " + selectedValue);
+            
+             					$.ajax({
+								        	 type : "POST",
+								             url  : '/Servicesentries/populateResIssues?vehicleid='+selectedValue,
+								             success : function(array1)
+								             	{
+								             	  // window.location.reload();
+								             	}
+								            })	
+            
+	   							});
+   
+ 
    	
 	
   });

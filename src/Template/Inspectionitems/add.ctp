@@ -19,7 +19,7 @@
             echo $this->Form->input('name');
             echo $this->Form->input('description');
             echo $this->Form->input('customer_id', ['options' => $customers, 'empty' => true]);
-            echo $this->Form->input('inspectionforms._ids', ['options' => $inspectionforms]);
+            echo $this->Form->input('inspectionform_id', ['options' => $inspectionforms]);
         ?>
     </fieldset>
     <?= $this->Form->button(__('Submit')) ?>

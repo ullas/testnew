@@ -195,4 +195,13 @@ class IssuesTable extends Table
 		$results = $stmt->fetchAll('assoc');
 		return $results;
 	}
+	
+	public function populateResIssues($cid,$vid)
+	{
+		$con = ConnectionManager::get('default');
+		// $stmt = $con->execute("update zorba.issues SET issuestatus_id = 3 WHERE id  = ? ",[$issueid],['integer']);
+	    $stmt = $con->execute("update zorba.issues SET workorder_id = $wid WHERE id  = $issueid ");
+		$results = $stmt->fetchAll('assoc');
+		return $results;
+	}
 }
