@@ -145,11 +145,11 @@ class InspectionitemsController extends AppController
 				$inspectionitem = $this->Inspectionitems->newEntity();
 						$items="";
 		    			$items=explode("^",$d);
-						$this->request->data['name']=$items[0];
-		            	// $this->request->data['inspectionitemtype_id']=$items[1];
-						$this->request->data['description']=$items[1];
+						$this->request->data['name']=$items[1];
+		            	$this->request->data['inspectionitemtype_id']=$items[3];
+						$this->request->data['description']=$items[2];
 						// $this->request->data['required']=$items[5];
-						// $this->request->data['inspectionform_id']=$items[6];
+						$this->request->data['inspectionform_id']=$items[0];
 						$inspectionitem=$this->Inspectionitems->patchEntity($inspectionitem,$this->request->data);
 						$inspectionitem['customer_id']=$this->loggedinuser['customer_id'];
 						if ($this->Inspectionitems->save($inspectionitem)) 

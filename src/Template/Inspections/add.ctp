@@ -35,7 +35,8 @@
         ?>
     </div>
 
-          </div>
+          <div class="contentdiv"></div>
+   </div>
           <!-- /.tab-pane -->
         </div>
         <!-- /.tab-content -->
@@ -50,6 +51,7 @@
                 <div class="col-sm-offset-6 col-sm-10">
                   <button type="submit" class="btn btn-success">Save</button>
                 </div>
+   
    </div>
    </div>
    <!-- /.row -->
@@ -79,10 +81,40 @@ $this->Html->script([
     //Initialize Select2 Elements
    $(".select2").select2({ width: '100%' });
    $('.datemask').datepicker({
-            format:"dd/mm/yy",
-              autoclose: true
+        format:"dd/mm/yy",
+   		autoclose: true
    });
 
+
+	$(document.body).on("change","#inspectionform-id",function(){
+		
+		$(".contentdiv").html("");
+		
+		var numItems=0;
+ 		$.ajax({
+        	type: "POST",
+        	url: '/Inspections/getInspectionformContents',
+        	data: 'inspectionformid='+this.value,
+        	success : function(ttdata) {
+        		var contentarr=JSON.parse(ttdata);var html="";
+				$.each(contentarr, function(key, value) {
+					if(value["inspectionitemtype_id"]==1){
+						html+="<div class='classname' id='contentDiv"+numItems+"'><div class='clearfix'><div class='col-sm-3'><div class='form-group'><label>Name:</label><div class='input-group'><input disabled name='issue"+numItems+"' value='" + value['name'] + "' class='form-control insitemname ' id='insitemname"+numItems+"'/></div>	</div></div> <div 	class='col-sm-3'><div class='checkbox'><label></label><input type='checkbox' >Pass/Fail</div></div>   </div><hr/></div>";				
+					}else if(value["inspectionitemtype_id"]==2){
+						html+="<div class='classname' id='contentDiv"+numItems+"'><div class='clearfix'><div class='col-sm-3'><div class='form-group'><label>Name:</label><div class='input-group'><input disabled name='issue"+numItems+"' value='" + value['name'] + "' class='form-control insitemname ' id='insitemname"+numItems+"'/></div>	</div></div> <div 	class='col-sm-3'><div class='checkbox'><label></label><input type='checkbox' >Pass/Fail</div></div>   </div><hr/></div>";				
+					}else if(value["inspectionitemtype_id"]==3){
+						html+="<div class='classname' id='contentDiv"+numItems+"'><div class='clearfix'><div class='col-sm-3'><div class='form-group'><label>Name:</label><div class='input-group'><input disabled name='issue"+numItems+"' value='" + value['name'] + "' class='form-control insitemname ' id='insitemname"+numItems+"'/></div>	</div></div> <div 	class='col-sm-3'><div class='form-group'><label></label><div class='input-group'><input name='issue"+numItems+"' value='" + value['name'] + "' class='form-control insitemname ' id='insitemname"+numItems+"'/></div>	</div></div>   </div><hr/></div>";				
+					}
+    			});
+    			$(".contentdiv").append(html);
+				return true;
+        	},error: function(data) {
+        	    alert("Couldn't load the particular inspection forms contents.Please try again later.");
+				return false;
+        	}    
+        });
+	});
+	
   });
 </script>
 <?php $this->end(); ?>
