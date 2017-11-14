@@ -233,14 +233,14 @@ div.dataTables_wrapper { clear: both; }
             size: "3px"
         }).css("width", "100%");
        
-        var a = $('a[href="<?php echo $this->request->webroot . $this->request->url ?>"]');
-        if (!a.parent().hasClass('treeview')) {
-            a.parent().addClass('active').parents('.treeview').addClass('active');
-        }
-        var a = $('a[href="/<?php echo $this->request->params['controller'] ?>"]');
+        
+       
+        var a = $('a[href="/<?php echo strtolower($this->request->params['controller']) ?>"]');
        if (!a.parent().hasClass('treeview')) {
 			a.parent().addClass('active').parents('.treeview').addClass('active');
        }
+       
+ 	
         $(".actions a").each(function(){
                  if($(this).text()=='View')
                  {
