@@ -273,7 +273,15 @@
           </div>
           <!-- /.tab-pane -->
           <div class="tab-pane" id="attachments">
-          	
+          	<?php if($vehicle['attachment']!=''){$picturename=$vehicle['attachment'];}
+                       else{$picturename='defaultuser.png';}
+                            				 
+								if (file_exists(WWW_ROOT.'img'.DS.'uploadedpics'.DS.$picturename)){
+									echo $this->Html->image('/img/uploadedpics/'.$picturename, array('class' => 'emp-profilepic img-responsive', 'id'=>'profilepic', 'alt' => 'Attachment'));
+								}else{
+									echo $this->Html->image('/img/uploadedpics/defaultuser.png', array('class' => 'emp-profilepic img-responsive', 'id'=>'profilepic', 'alt' => 'Attachment'));
+								}
+					?>
           </div>
         </div>
         <!-- /.tab-content -->

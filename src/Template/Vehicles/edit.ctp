@@ -203,19 +203,18 @@
           </div>
           <!-- /.tab-pane -->
            <div class="tab-pane" id="docs">
+           	<a href="#" class="open-Popup pull-right" data-toggle="modal" data-remote="false" data-target="#editpicpopover" style="font-size:20px;">&nbsp;<i class="fa fa-camera"></i></a>
             <div class="form-horizontal">
             	<?php echo $this->Form->input('attachment', array('type' => 'hidden')); ?>
-            	<!-- <div class="form-group">
-            		<label class="col-sm-3 control-label" for="upload">Picture:</label>
-            		<div class="col-sm-6">
-            			<div id="drop" class="dropzone" action="/Uploads/upload"></div>
-					</div>
-				</div> -->
-			    <!-- upload component -->
-            	<div class="form-group" style="margin:20px;"><div id="myDropZone" class="dropzone"><div class="dz-message text-center"><i class="fa fa-cloud-upload text-light-blue fa-5x"></i>
-            		<br/><span>Drag and drop Files Here to upload.</span>
-            		<br/><span class="upload-btn bg-info">or select files to Upload</span></div></div>
-            	</div>
+            	<?php if($vehicle['attachment']!=''){$picturename=$vehicle['attachment'];}
+                       else{$picturename='defaultuser.png';}
+                            				 
+								if (file_exists(WWW_ROOT.'img'.DS.'uploadedpics'.DS.$picturename)){
+									echo $this->Html->image('/img/uploadedpics/'.$picturename, array('class' => 'emp-profilepic img-responsive', 'id'=>'profilepic', 'alt' => 'Attachment'));
+								}else{
+									echo $this->Html->image('/img/uploadedpics/defaultuser.png', array('class' => 'emp-profilepic img-responsive', 'id'=>'profilepic', 'alt' => 'Attachment'));
+								}
+					?>
             </div>
           </div>
           <!-- /.tab-pane -->
@@ -353,3 +352,34 @@ $this->Html->script([
   });
 </script>
 <?php $this->end(); ?>
+
+
+<div class="modal fade" id="editpicpopover" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+          <div class="modal-content">
+          	  <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Edit Attachment</h4>
+      </div>
+              <div class="modal-body" >
+            <div class="form-horizontal">
+            	
+            	
+            	
+            	
+			    <!-- upload component -->
+            	<div class="form-group" style="margin:20px;"><div id="myDropZone" class="dropzone"><div class="dz-message text-center"><i class="fa fa-cloud-upload text-light-blue fa-5x"></i>
+            		<br/><span>Drag and Drop the picture Here to upload.</span>
+            		<br/><span class="upload-btn bg-info">or select the picture to Upload</span></div></div>
+            	</div>
+            	
+            	
+            	
+            </div>
+			  </div>
+			  
+			  
+
+          </div>
+      </div>
+</div>
