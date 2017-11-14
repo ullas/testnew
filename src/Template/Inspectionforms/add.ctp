@@ -71,7 +71,7 @@
    <div class="form-group">
                 <div class="col-sm-offset-6 col-sm-10">
                 	<input type="button" class="btn btn-flat btn-success" id="btnSave" value="Ajax Save"/>
-                  <button type="submit" class="btn btn-success">Save</button>
+                  <!-- <button type="submit" class="btn btn-success">Save</button> -->
                 </div>
    </div>
    </div>
@@ -160,18 +160,8 @@ $this->Html->script([
 				    			{
 				    				if(d!="error")
 					   		 		{
-					   		 			
-					   		 		}
-				    				else
-					   		 		{
-					   		 			// console.log("inside error");
-				   		 			}       			
-				    			}
-				    			
-				   )  
-				    	
-				  var noofitems = $('.insitemname').length;  		
-				  alert("noofitems"+noofitems);
+					   		 			var noofitems = $('.insitemname').length;  		
+				  // alert("noofitems"+noofitems);
 				  var postdata = [];
 				//for labor
 				
@@ -179,7 +169,7 @@ $this->Html->script([
 					{ 
 						if($("#insitemname"+count).parent().closest('div .classname').is(":visible"))
 							{
-								postdata.push($(' #insitemname'+count ).val() + "^" +$('#desc'+count ).val()+ "^" +$('#itemselect' ).val()+ "^" +$('#desc'+count ).val() );
+								postdata.push(d + "^" + $(' #insitemname'+count ).val() + "^" +$('#desc'+count ).val()+ "^" +$('#itemselect' ).val()+ "^" +$('#desc'+count ).val() );
 							}
 					}		
 			  if($('.insitemname').length>0 )
@@ -189,6 +179,18 @@ $this->Html->script([
 									{
 									});
 							}
+							
+							window.location.href = '/Inspectionforms';
+					   		 		}
+				    				else
+					   		 		{
+					   		 			alert("Ajax error");
+				   		 			}       			
+				    			}
+				    			
+				   )  
+				    	
+				  
 			
 			});
   	

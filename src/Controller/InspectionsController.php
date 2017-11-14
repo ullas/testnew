@@ -62,7 +62,21 @@ class InspectionsController extends AppController
        
        
     }
-    
+    public function getInspectionformContents(){
+		if($this->request->is('ajax')) {
+
+			$this->autoRender=false;
+			
+			$this->loadModel('InspectionItems');
+			$inspecitems = $this->InspectionItems
+        					->find('all')->where(['inspectionform_id' => $this->request->data['inspectionformid']])
+							->andwhere(['InspectionItems.customer_id' => $this->loggedinuser['customer_id']])->orwhere(['InspectionItems.customer_id' => '0'])->toArray() ;
+							
+			$this->response->body(json_encode($inspecitems));
+			return $this->response;
+		
+		}
+	}
    public function updateSettings()
 {
    	
