@@ -32,19 +32,20 @@
             <th><?= __('Id') ?></th>
             <td><?= $this->Number->format($group->id) ?></td>
         </tr>
+        </table>
    </div><!--boxbody-->
    </div><!-- box -->
   
   </div><!-- col12-->
-</div> </table>
+</div> 
     <div class="row">
     	<div class="col-md-12">
   	
   	     <div class="box box-primary"><div class="box-header">
         <h4><?= __('Related Fences') ?></h4>
-        <?php if (!empty($group->fences)): ?>
         </div>
-  		<div class="box-body">
+  		<?php if (!empty($group->fences)): ?>
+        <div class="box-body">
   		<table class="table table-hover">
             <tr>
                 <th><?= __('Id') ?></th>
@@ -103,9 +104,9 @@
   	
   	     <div class="box box-primary"><div class="box-header">
         <h4><?= __('Related Locations') ?></h4>
-        <?php if (!empty($group->locations)): ?>
         </div>
-  		<div class="box-body">
+  		<?php if (!empty($group->locations)): ?>
+        <div class="box-body">
   		<table class="table table-hover">
             <tr>
                 <th><?= __('Id') ?></th>
@@ -148,9 +149,9 @@
   	
   	     <div class="box box-primary"><div class="box-header">
         <h4><?= __('Related Renewalreminders') ?></h4>
-        <?php if (!empty($group->renewalreminders)): ?>
         </div>
-  		<div class="box-body">
+  		<?php if (!empty($group->renewalreminders)): ?>
+        <div class="box-body">
   		<table class="table table-hover">
             <tr>
                 <th><?= __('Id') ?></th>
@@ -193,9 +194,9 @@
   	
   	     <div class="box box-primary"><div class="box-header">
         <h4><?= __('Related Routes') ?></h4>
-        <?php if (!empty($group->routes)): ?>
         </div>
-  		<div class="box-body">
+  		<?php if (!empty($group->routes)): ?>
+        <div class="box-body">
   		<table class="table table-hover">
             <tr>
                 <th><?= __('Id') ?></th>
@@ -242,7 +243,8 @@
   	
   	     <div class="box box-primary"><div class="box-header">
         <h4><?= __('Related Servicereminders') ?></h4>
-        <?php if (!empty($group->servicereminders)): ?>
+        </div>
+  		<?php if (!empty($group->servicereminders)): ?>
         </div>
   		<div class="box-body">
   		<table class="table table-hover">
@@ -291,9 +293,9 @@
   	
   	     <div class="box box-primary"><div class="box-header">
         <h4><?= __('Related Trackingobjects') ?></h4>
-        <?php if (!empty($group->trackingobjects)): ?>
         </div>
-  		<div class="box-body">
+  		<?php if (!empty($group->trackingobjects)): ?>
+        <div class="box-body">
   		<table class="table table-hover">
             <tr>
                 <th><?= __('Id') ?></th>
@@ -332,3 +334,4 @@
         <?php endif; ?>
     </div>
 </div>
+</section>

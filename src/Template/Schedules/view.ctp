@@ -1,3 +1,7 @@
+<style>
+	.p3{padding: 3px;}
+</style>
+
 <section class="content-header">
   <h1>
      <?= h($schedule->name) ?> Details
@@ -79,20 +83,20 @@
         <tr>
             <th><?= __('End Time') ?></th>
             <td><?= h($schedule->end_time) ?></td>
-        </tr>
+        </tr></table>
    </div><!--boxbody-->
    </div><!-- box -->
   
   </div><!-- col12-->
-</div> </table>
+</div> 
     <div class="row">
     	<div class="col-md-12">
   	
   	    <div class="box box-primary"><div class="box-header">
         <h4><?= __('Related Subscriptions') ?></h4>
-        <?php if (!empty($schedule->subscriptions)): ?>
         </div>
-  		<div class="box-body">
+  		<?php if (!empty($schedule->subscriptions)): ?>
+        <div class="box-body">
   		<table class="table table-hover">
             <tr>
                 <th><?= __('Id') ?></th>
@@ -139,9 +143,9 @@
   	
   	     <div class="box box-primary"><div class="box-header">
         <h4><?= __('Related Trips') ?></h4>
-        <?php if (!empty($schedule->trips)): ?>
         </div>
-  		<div class="box-body">
+  		<?php if (!empty($schedule->trips)): ?>
+        <div class="box-body">
   		<table class="table table-hover">
             <tr>
                 <th><?= __('Id') ?></th>
@@ -226,9 +230,9 @@
   	
   	     <div class="box box-primary"><div class="box-header">
         <h4><?= __('Related Locations') ?></h4>
-        <?php if (!empty($schedule->locations)): ?>
         </div>
-  		<div class="box-body">
+  		<?php if (!empty($schedule->locations)): ?>
+        <div class="box-body">
   		<table class="table table-hover">
             <tr>
                 <th><?= __('Id') ?></th>
@@ -252,9 +256,9 @@
                 <td><?= h($locations->group_id) ?></td>
                 <td><?= h($locations->reg_name) ?></td>
                 <td class="actions">
-                    <?= $this->Html->link(__('View'), ['controller' => 'Locations', 'action' => 'view', $locations->id]) ?>
-                    <?= $this->Html->link(__('Edit'), ['controller' => 'Locations', 'action' => 'edit', $locations->id]) ?>
-                    <?= $this->Form->postLink(__('Delete'), ['controller' => 'Locations', 'action' => 'delete', $locations->id], ['confirm' => __('Are you sure you want to delete # {0}?', $locations->id)]) ?>
+                    <?= $this->Html->link(__('View'), ['controller' => 'Locations', 'action' => 'view', $locations->id], ['class'=>'p3 ']) ?>
+                    <?= $this->Html->link(__('Edit'), ['controller' => 'Locations', 'action' => 'edit', $locations->id], ['class'=>'p3 ']) ?>
+                    <?= $this->Form->postLink(__('Delete'), ['controller' => 'Locations', 'action' => 'delete', $locations->id], ['confirm' => __('Are you sure you want to delete # {0} ?', $locations->name)]) ?>
                 </td>
             </tr>
             <?php endforeach; ?>
@@ -267,3 +271,4 @@
         <?php endif; ?>
     </div>
 </div>
+</section>
