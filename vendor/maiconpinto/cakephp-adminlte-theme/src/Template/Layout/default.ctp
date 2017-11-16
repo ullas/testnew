@@ -233,14 +233,22 @@ div.dataTables_wrapper { clear: both; }
             size: "3px"
         }).css("width", "100%");
        
-        
-       
-        var a = $('a[href="/<?php echo strtolower($this->request->params['controller']) ?>"]');
+       /* ------ Add class active for submenus  ------ */
+       //highlght menu if add/edit/view page loaded
+       var a = $('a[href="/<?php echo strtolower($this->request->params['controller']) ?>"]');//href in menu contains lowercase letters
        if (!a.parent().hasClass('treeview')) {
 			a.parent().addClass('active').parents('.treeview').addClass('active');
        }
+       //dashboard operations(as it contains yet another link href-"/dashboard" ie Manager dashboard)
+       var action='<?php echo $this->request->params['action'] ?>';
+		if(action=="operations"){
+			var atag = $('a[href="/dashboard/operations"]');
+			atag.parent().addClass('active');//enable highlight on operations dashboard
+			atag = $('a[href="/dashboard"]');
+			atag.parent().removeClass('active');//disable highlight on Manager dashboard
+		}
+ 		/* ------ Add class active for submenus  ------ */
        
- 	
         $(".actions a").each(function(){
                  if($(this).text()=='View')
                  {

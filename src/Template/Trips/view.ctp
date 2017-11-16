@@ -1,33 +1,21 @@
-<nav class="large-3 medium-4 columns" id="actions-sidebar">
-    <ul class="side-nav">
-        <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Html->link(__('Edit Trip'), ['action' => 'edit', $trip->id]) ?> </li>
-        <li><?= $this->Form->postLink(__('Delete Trip'), ['action' => 'delete', $trip->id], ['confirm' => __('Are you sure you want to delete # {0}?', $trip->id)]) ?> </li>
-        <li><?= $this->Html->link(__('List Trips'), ['action' => 'index']) ?> </li>
-        <li><?= $this->Html->link(__('New Trip'), ['action' => 'add']) ?> </li>
-        <li><?= $this->Html->link(__('List Customers'), ['controller' => 'Customers', 'action' => 'index']) ?> </li>
-        <li><?= $this->Html->link(__('New Customer'), ['controller' => 'Customers', 'action' => 'add']) ?> </li>
-        <li><?= $this->Html->link(__('List Vehicles'), ['controller' => 'Vehicles', 'action' => 'index']) ?> </li>
-        <li><?= $this->Html->link(__('New Vehicle'), ['controller' => 'Vehicles', 'action' => 'add']) ?> </li>
-        <li><?= $this->Html->link(__('List Timepolicies'), ['controller' => 'Timepolicies', 'action' => 'index']) ?> </li>
-        <li><?= $this->Html->link(__('New Timepolicy'), ['controller' => 'Timepolicies', 'action' => 'add']) ?> </li>
-        <li><?= $this->Html->link(__('List Routes'), ['controller' => 'Routes', 'action' => 'index']) ?> </li>
-        <li><?= $this->Html->link(__('New Route'), ['controller' => 'Routes', 'action' => 'add']) ?> </li>
-        <li><?= $this->Html->link(__('List Schedules'), ['controller' => 'Schedules', 'action' => 'index']) ?> </li>
-        <li><?= $this->Html->link(__('New Schedule'), ['controller' => 'Schedules', 'action' => 'add']) ?> </li>
-        <li><?= $this->Html->link(__('List Tripstatuses'), ['controller' => 'Tripstatuses', 'action' => 'index']) ?> </li>
-        <li><?= $this->Html->link(__('New Tripstatus'), ['controller' => 'Tripstatuses', 'action' => 'add']) ?> </li>
-        <li><?= $this->Html->link(__('List Vehiclecategories'), ['controller' => 'Vehiclecategories', 'action' => 'index']) ?> </li>
-        <li><?= $this->Html->link(__('New Vehiclecategory'), ['controller' => 'Vehiclecategories', 'action' => 'add']) ?> </li>
-        <li><?= $this->Html->link(__('List Triptypes'), ['controller' => 'Triptypes', 'action' => 'index']) ?> </li>
-        <li><?= $this->Html->link(__('New Triptype'), ['controller' => 'Triptypes', 'action' => 'add']) ?> </li>
-        <li><?= $this->Html->link(__('List Locations'), ['controller' => 'Locations', 'action' => 'index']) ?> </li>
-        <li><?= $this->Html->link(__('New Location'), ['controller' => 'Locations', 'action' => 'add']) ?> </li>
-    </ul>
-</nav>
-<div class="trips view large-9 medium-8 columns content">
-    <h3><?= h($trip->name) ?></h3>
-    <table class="vertical-table">
+<section class="content-header">
+  <h1>
+     <?= h($trip->name) ?> Details
+  </h1>
+  <ol class="breadcrumb">
+  	<li><a href="#"><i class="fa fa-dashboard"></i>Home</a></li>
+   
+    <li><a href="/trips/"> Trips</a></li>
+    <li class="active">View</li>
+  </ol>
+</section>
+<section class="content">
+<div class="row">
+  <div class="col-md-12">
+  	
+  	<div class="box box-primary">
+  		<div class="box-body">
+  		<table class="table table-hover">
         <tr>
             <th><?= __('Name') ?></th>
             <td><?= h($trip->name) ?></td>
@@ -149,10 +137,20 @@
             <td><?= $trip->hwtriggered ? __('Yes') : __('No'); ?></td>
         </tr>
     </table>
-    <div class="related">
+   </div><!--boxbody-->
+   </div><!-- box -->
+  
+  </div><!-- col12-->
+</div> 
+    <div class="row">
+    	<div class="col-md-12">
+  	
+  	     <div class="box box-primary"><div class="box-header">
         <h4><?= __('Related Locations') ?></h4>
+        </div>
         <?php if (!empty($trip->locations)): ?>
-        <table cellpadding="0" cellspacing="0">
+        <div class="box-body">
+        <table class='table table-hover'>
             <tr>
                 <th><?= __('Id') ?></th>
                 <th><?= __('Pointdata') ?></th>
@@ -182,6 +180,11 @@
             </tr>
             <?php endforeach; ?>
         </table>
+        </div><!--boxbody-->
+   </div><!-- box -->
+  
+  </div><!-- col12-->
         <?php endif; ?>
     </div>
 </div>
+</section>
