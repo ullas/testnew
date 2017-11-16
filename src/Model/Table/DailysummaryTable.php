@@ -5,6 +5,7 @@ use Cake\ORM\Query;
 use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
 use Cake\Validation\Validator;
+use Cake\Datasource\ConnectionManager;
 
 /**
  * Dailysummary Model
@@ -113,4 +114,13 @@ class DailysummaryTable extends Table
 
         return $rules;
     }
+
+//Get the monthly sum of businesstime and fuel for displaying in chart in Dashboard
+	public function getSumOfBtime($cid)
+	{
+		$con = ConnectionManager::get('default');
+		$stmt = $con->execute("select   sum(dailysummary.businesstime) as sum1,date_trunc('month', mdate),sum(fuel) as sum2 from zorba.dailysummary  group by  date_trunc('month', mdate) order by date_trunc ");
+		$results = $stmt->fetchAll('assoc');
+		return $results;
+	}
 }
